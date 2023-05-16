@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_dvm_cmd_add_device",
+			Type:             "fortianalyzer_dvm_cmd_add_device",
 			Category:         "Device Manager",
 			ShortDescription: `Add a device to the Device Manager database.`,
 			Description:      ``,
@@ -129,7 +129,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_dvm_cmd_del_device",
+			Type:             "fortianalyzer_dvm_cmd_del_device",
 			Category:         "Device Manager",
 			ShortDescription: `Delete a device.`,
 			Description:      ``,
@@ -171,7 +171,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_dvmdb_adom",
+			Type:             "fortianalyzer_dvmdb_adom",
 			Category:         "Device Manager",
 			ShortDescription: `ADOM table, most attributes are read-only and can only be changed internally.`,
 			Description:      ``,
@@ -243,6 +243,10 @@ var (
 					Description: `Os_Ver. Valid values: ` + "`" + `unknown` + "`" + `, ` + "`" + `0.0` + "`" + `, ` + "`" + `1.0` + "`" + `, ` + "`" + `2.0` + "`" + `, ` + "`" + `3.0` + "`" + `, ` + "`" + `4.0` + "`" + `, ` + "`" + `5.0` + "`" + `, ` + "`" + `6.0` + "`" + `, ` + "`" + `7.0` + "`" + `, ` + "`" + `8.0` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "restricted_prds_unitary",
+					Description: `Restricted_Prds. Valid values: ` + "`" + `fos` + "`" + `, ` + "`" + `foc` + "`" + `, ` + "`" + `fml` + "`" + `, ` + "`" + `fch` + "`" + `, ` + "`" + `fwb` + "`" + `, ` + "`" + `log` + "`" + `, ` + "`" + `fct` + "`" + `, ` + "`" + `faz` + "`" + `, ` + "`" + `fsa` + "`" + `, ` + "`" + `fsw` + "`" + `, ` + "`" + `fmg` + "`" + `, ` + "`" + `fdd` + "`" + `, ` + "`" + `fac` + "`" + `, ` + "`" + `fpx` + "`" + `, ` + "`" + `fna` + "`" + `, ` + "`" + `ffw` + "`" + `, ` + "`" + `fsr` + "`" + `, ` + "`" + `fad` + "`" + `, ` + "`" + `fdc` + "`" + `, ` + "`" + `fap` + "`" + `, ` + "`" + `fxt` + "`" + `, ` + "`" + `fts` + "`" + `, ` + "`" + `fai` + "`" + `, ` + "`" + `fwc` + "`" + `, ` + "`" + `fis` + "`" + `, ` + "`" + `fed` + "`" + `, ` + "`" + `fabric` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "restricted_prds",
 					Description: `Restricted_Prds. Valid values: ` + "`" + `fos` + "`" + `, ` + "`" + `foc` + "`" + `, ` + "`" + `fml` + "`" + `, ` + "`" + `fch` + "`" + `, ` + "`" + `fwb` + "`" + `, ` + "`" + `log` + "`" + `, ` + "`" + `fct` + "`" + `, ` + "`" + `faz` + "`" + `, ` + "`" + `fsa` + "`" + `, ` + "`" + `fsw` + "`" + `, ` + "`" + `fmg` + "`" + `, ` + "`" + `fdd` + "`" + `, ` + "`" + `fac` + "`" + `, ` + "`" + `fpx` + "`" + `, ` + "`" + `fna` + "`" + `, ` + "`" + `ffw` + "`" + `, ` + "`" + `fsr` + "`" + `, ` + "`" + `fad` + "`" + `, ` + "`" + `fdc` + "`" + `, ` + "`" + `fap` + "`" + `, ` + "`" + `fxt` + "`" + `.`,
 				},
@@ -272,7 +276,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_dvmdb_group",
+			Type:             "fortianalyzer_dvmdb_group",
 			Category:         "Device Manager",
 			ShortDescription: `Device group table.`,
 			Description:      ``,
@@ -292,8 +296,16 @@ var (
 					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `Cluster_Type. Valid values: ` + "`" + `unknown` + "`" + `, ` + "`" + `vwan` + "`" + `, ` + "`" + `sase` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "desc",
 					Description: `Desc.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Id.`,
 				},
 				resource.Attribute{
 					Name:        "metafields",
@@ -325,7 +337,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_analyzer_virusreport",
+			Type:             "fortianalyzer_fmupdate_analyzer_virusreport",
 			Category:         "Fmupdate",
 			ShortDescription: `Send virus detection notification to FortiGuard.`,
 			Description:      ``,
@@ -353,7 +365,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_avips_advancedlog",
+			Type:             "fortianalyzer_fmupdate_avips_advancedlog",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable logging of FortiGuard antivirus and IPS update packages received by FortiManager's built-in FortiGuard.`,
 			Description:      ``,
@@ -385,7 +397,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_avips_webproxy",
+			Type:             "fortianalyzer_fmupdate_avips_webproxy",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the web proxy for use with FortiGuard antivirus and IPS updates.`,
 			Description:      ``,
@@ -433,7 +445,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_customurllist",
+			Type:             "fortianalyzer_fmupdate_customurllist",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the URL database for rating and filtering.`,
 			Description:      ``,
@@ -460,7 +472,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_diskquota",
+			Type:             "fortianalyzer_fmupdate_diskquota",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure disk space available for use by the Upgrade Manager.`,
 			Description:      ``,
@@ -487,7 +499,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fctservices",
+			Type:             "fortianalyzer_fmupdate_fctservices",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure FortiGuard to provide services to FortiClient installations.`,
 			Description:      ``,
@@ -518,7 +530,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fdssetting",
+			Type:             "fortianalyzer_fmupdate_fdssetting",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure FortiGuard settings.`,
 			Description:      ``,
@@ -528,7 +540,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "User_Agent",
+					Name:        "user_agent",
 					Description: `Configure the user agent string.`,
 				},
 				resource.Attribute{
@@ -582,6 +594,10 @@ var (
 				resource.Attribute{
 					Name:        "server_override",
 					Description: `Server-Override. The structure of ` + "`" + `server_override` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "system_support_faz",
+					Description: `Supported FortiAnalyzer versions. 6.x - Support version 6.x 7.x - Support version 7.x Valid values: ` + "`" + `6.x` + "`" + `, ` + "`" + `7.x` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "system_support_fct",
@@ -717,7 +733,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fdssetting_pushoverride",
+			Type:             "fortianalyzer_fmupdate_fdssetting_pushoverride",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable push updates, and override the default IP address and port used by FortiGuard to send antivirus and IPS push messages for clients.`,
 			Description:      ``,
@@ -753,7 +769,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fdssetting_pushoverridetoclient",
+			Type:             "fortianalyzer_fmupdate_fdssetting_pushoverridetoclient",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable push updates, and override the default IP address and port used by FortiGuard to send antivirus and IPS push messages for clients.`,
 			Description:      ``,
@@ -801,7 +817,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fdssetting_serveroverride",
+			Type:             "fortianalyzer_fmupdate_fdssetting_serveroverride",
 			Category:         "Fmupdate",
 			ShortDescription: `Server override configure.`,
 			Description:      ``,
@@ -857,7 +873,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fdssetting_updateschedule",
+			Type:             "fortianalyzer_fmupdate_fdssetting_updateschedule",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the schedule when built-in FortiGuard retrieves antivirus and IPS updates.`,
 			Description:      ``,
@@ -897,7 +913,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_fwmsetting",
+			Type:             "fortianalyzer_fmupdate_fwmsetting",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure firmware management settings.`,
 			Description:      ``,
@@ -932,7 +948,63 @@ var (
 				},
 				resource.Attribute{
 					Name:        "multiple_steps_interval",
-					Description: `waiting time between multiple steps upgrade (30-180s, default=60) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `waiting time between multiple steps upgrade (30-180s, default=60)`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_timeout",
+					Description: `Upgrade-Timeout. The structure of ` + "`" + `upgrade_timeout` + "`" + ` block is documented below. The ` + "`" + `upgrade_timeout` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "check_status_timeout",
+					Description: `timeout for checking status after tunnnel is up.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_check_status_timeout",
+					Description: `timeout for checking fap/fsw/fext status after request upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_put_image_by_fds_timeout",
+					Description: `timeout for waiting device get fap/fsw/fext image from fortiguard.(1-9000ss, default=900)`,
+				},
+				resource.Attribute{
+					Name:        "ha_sync_timeout",
+					Description: `timeout for waiting HA sync.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "license_check_timeout",
+					Description: `timeout for waiting fortigate check license.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "prepare_image_timeout",
+					Description: `timeout for preparing image.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_by_fds_timeout",
+					Description: `timeout for waiting device get image from fortiguard.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_timeout",
+					Description: `timeout for waiting send image over tunnel.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_fsck_timeout",
+					Description: `timeout for waiting fortigate reboot.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_upgrade_timeout",
+					Description: `timeout for waiting fortigate reboot after image upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "retrieve_timeout",
+					Description: `timeout for waiting retrieve.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "rpc_timeout",
+					Description: `timeout for waiting fortigate rpc response.(1-1800s, default=180)`,
+				},
+				resource.Attribute{
+					Name:        "total_timeout",
+					Description: `timeout for the whole fortigate upgrade(1-86400s, default=3600) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -948,7 +1020,85 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_multilayer",
+			Type:             "fortianalyzer_fmupdate_fwmsetting_upgradetimeout",
+			Category:         "No Category",
+			ShortDescription: `Configure the timeout value of image upgrade process.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"fmupdate",
+				"fwmsetting",
+				"upgradetimeout",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "check_status_timeout",
+					Description: `timeout for checking status after tunnnel is up.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_check_status_timeout",
+					Description: `timeout for checking fap/fsw/fext status after request upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_put_image_by_fds_timeout",
+					Description: `timeout for waiting device get fap/fsw/fext image from fortiguard.(1-9000ss, default=900)`,
+				},
+				resource.Attribute{
+					Name:        "ha_sync_timeout",
+					Description: `timeout for waiting HA sync.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "license_check_timeout",
+					Description: `timeout for waiting fortigate check license.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "prepare_image_timeout",
+					Description: `timeout for preparing image.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_by_fds_timeout",
+					Description: `timeout for waiting device get image from fortiguard.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_timeout",
+					Description: `timeout for waiting send image over tunnel.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_fsck_timeout",
+					Description: `timeout for waiting fortigate reboot.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_upgrade_timeout",
+					Description: `timeout for waiting fortigate reboot after image upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "retrieve_timeout",
+					Description: `timeout for waiting retrieve.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "rpc_timeout",
+					Description: `timeout for waiting fortigate rpc response.(1-1800s, default=180)`,
+				},
+				resource.Attribute{
+					Name:        "total_timeout",
+					Description: `timeout for the whole fortigate upgrade(1-86400s, default=3600) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Fmupdate FwmSettingUpgradeTimeout can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_fmupdate_fwmsetting_upgradetimeout.labelname FmupdateFwmSettingUpgradeTimeout $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Fmupdate FwmSettingUpgradeTimeout can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_fmupdate_fwmsetting_upgradetimeout.labelname FmupdateFwmSettingUpgradeTimeout $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortianalyzer_fmupdate_multilayer",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure multilayer mode.`,
 			Description:      ``,
@@ -975,7 +1125,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_publicnetwork",
+			Type:             "fortianalyzer_fmupdate_publicnetwork",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable access to the public FortiGuard.`,
 			Description:      ``,
@@ -1002,7 +1152,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_serveraccesspriorities",
+			Type:             "fortianalyzer_fmupdate_serveraccesspriorities",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure priorities for FortiGate units accessing antivirus updates and web filtering services.`,
 			Description:      ``,
@@ -1061,7 +1211,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_serveroverridestatus",
+			Type:             "fortianalyzer_fmupdate_serveroverridestatus",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure strict/loose server override.`,
 			Description:      ``,
@@ -1088,7 +1238,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_service",
+			Type:             "fortianalyzer_fmupdate_service",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable services provided by the built-in FortiGuard.`,
 			Description:      ``,
@@ -1115,7 +1265,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_webspam_fgdsetting",
+			Type:             "fortianalyzer_fmupdate_webspam_fgdsetting",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the FortiGuard run parameters.`,
 			Description:      ``,
@@ -1192,6 +1342,10 @@ var (
 				resource.Attribute{
 					Name:        "iot_preload",
 					Description: `Enable/disable preloading IoT database to memory (default = disable). disable - Disable IoT db preload. enable - Enable IoT db preload. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "iotv_preload",
+					Description: `Enable/disable preloading IoT-Vulnerability database to memory (default = disable). disable - Disable IoT-Vulnerability db preload. enable - Enable IoT-Vulnerability db preload. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "linkd_log",
@@ -1323,7 +1477,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_fmupdate_webspam_webproxy",
+			Type:             "fortianalyzer_fmupdate_webspam_webproxy",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the web proxy for use with FortiGuard antivirus and IPS updates.`,
 			Description:      ``,
@@ -1371,7 +1525,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_json_generic_api",
+			Type:             "fortianalyzer_json_generic_api",
 			Category:         "Generic",
 			ShortDescription: `FortiAnalyzer API Generic Interface.`,
 			Description:      ``,
@@ -1411,7 +1565,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_group",
+			Type:             "fortianalyzer_system_admin_group",
 			Category:         "System Admin",
 			ShortDescription: `User group.`,
 			Description:      ``,
@@ -1451,7 +1605,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_ldap",
+			Type:             "fortianalyzer_system_admin_ldap",
 			Category:         "System Admin",
 			ShortDescription: `LDAP server entry configuration.`,
 			Description:      ``,
@@ -1567,7 +1721,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_profile",
+			Type:             "fortianalyzer_system_admin_profile",
 			Category:         "System Admin",
 			ShortDescription: `Admin profile.`,
 			Description:      ``,
@@ -1630,6 +1784,10 @@ var (
 					Description: `Manage FortiClient. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "device_fortiextender",
+					Description: `Manage FortiExtender. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "device_fortiswitch",
 					Description: `Manage FortiSwitch. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
 				},
@@ -1668,6 +1826,10 @@ var (
 				resource.Attribute{
 					Name:        "fortirecorder_setting",
 					Description: `FortiRecorder settings. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ips_lock",
+					Description: `IPS locking none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_trusthost1",
@@ -1835,7 +1997,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_radius",
+			Type:             "fortianalyzer_system_admin_radius",
 			Category:         "System Admin",
 			ShortDescription: `Configure radius.`,
 			Description:      ``,
@@ -1891,7 +2053,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_setting",
+			Type:             "fortianalyzer_system_admin_setting",
 			Category:         "System Admin",
 			ShortDescription: `Admin setting.`,
 			Description:      ``,
@@ -1928,6 +2090,10 @@ var (
 				resource.Attribute{
 					Name:        "banner_message",
 					Description: `Banner message.`,
+				},
+				resource.Attribute{
+					Name:        "fsw_ignore_platform_check",
+					Description: `Enable/disable FortiSwitch Manager switch platform support check. disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "gui_theme",
@@ -2019,7 +2185,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_tacacs",
+			Type:             "fortianalyzer_system_admin_tacacs",
 			Category:         "System Admin",
 			ShortDescription: `TACACS+ server entry configuration.`,
 			Description:      ``,
@@ -2083,7 +2249,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_admin_user",
+			Type:             "fortianalyzer_system_admin_user",
 			Category:         "System Admin",
 			ShortDescription: `Admin user.`,
 			Description:      ``,
@@ -2118,6 +2284,10 @@ var (
 					Description: `Enable/disable restricted user to change self password. disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "cors_allow_origin",
+					Description: `Access-Control-Allow-Origin.`,
+				},
+				resource.Attribute{
 					Name:        "dashboard",
 					Description: `Dashboard. The structure of ` + "`" + `dashboard` + "`" + ` block is documented below.`,
 				},
@@ -2148,6 +2318,10 @@ var (
 				resource.Attribute{
 					Name:        "ext_auth_group_match",
 					Description: `Only administrators belonging to this group can login.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `PKI user certificate fingerprint (MD5, SHA1, SHA256) constraints.`,
 				},
 				resource.Attribute{
 					Name:        "first_name",
@@ -2475,7 +2649,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_alertconsole",
+			Type:             "fortianalyzer_system_alertconsole",
 			Category:         "System Alert",
 			ShortDescription: `Alert console.`,
 			Description:      ``,
@@ -2507,7 +2681,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_alertemail",
+			Type:             "fortianalyzer_system_alertemail",
 			Category:         "System Alert",
 			ShortDescription: `Configure alertemail.`,
 			Description:      ``,
@@ -2559,7 +2733,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_alertevent",
+			Type:             "fortianalyzer_system_alertevent",
 			Category:         "System Alert",
 			ShortDescription: `Alert events.`,
 			Description:      ``,
@@ -2651,7 +2825,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_autodelete",
+			Type:             "fortianalyzer_system_autodelete",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for logs, reports, archived, and quarantined files.`,
 			Description:      ``,
@@ -2758,7 +2932,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_autodelete_dlpfilesautodeletion",
+			Type:             "fortianalyzer_system_autodelete_dlpfilesautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for DLP archives.`,
 			Description:      ``,
@@ -2798,7 +2972,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_autodelete_logautodeletion",
+			Type:             "fortianalyzer_system_autodelete_logautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for device logs.`,
 			Description:      ``,
@@ -2838,7 +3012,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_autodelete_quarantinefilesautodeletion",
+			Type:             "fortianalyzer_system_autodelete_quarantinefilesautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for quarantined files.`,
 			Description:      ``,
@@ -2878,7 +3052,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_autodelete_reportautodeletion",
+			Type:             "fortianalyzer_system_autodelete_reportautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for reports.`,
 			Description:      ``,
@@ -2918,7 +3092,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_backup_allsettings",
+			Type:             "fortianalyzer_system_backup_allsettings",
 			Category:         "System Others",
 			ShortDescription: `Scheduled backup settings.`,
 			Description:      ``,
@@ -2983,7 +3157,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_centralmanagement",
+			Type:             "fortianalyzer_system_centralmanagement",
 			Category:         "No Category",
 			ShortDescription: `Central management configuration.`,
 			Description:      ``,
@@ -2994,6 +3168,10 @@ var (
 				"centralmanagement",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "acctid",
+					Description: `Account ID.`,
+				},
 				resource.Attribute{
 					Name:        "allow_monitor",
 					Description: `Enable/disable remote monitor of device. disable - Disable. enable - Enable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
@@ -3036,7 +3214,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_certificate_ca",
+			Type:             "fortianalyzer_system_certificate_ca",
 			Category:         "System Certificate",
 			ShortDescription: `CA certificate.`,
 			Description:      ``,
@@ -3072,7 +3250,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_certificate_crl",
+			Type:             "fortianalyzer_system_certificate_crl",
 			Category:         "System Certificate",
 			ShortDescription: `Certificate Revocation List.`,
 			Description:      ``,
@@ -3116,7 +3294,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_certificate_local",
+			Type:             "fortianalyzer_system_certificate_local",
 			Category:         "System Certificate",
 			ShortDescription: `Local keys and certificates.`,
 			Description:      ``,
@@ -3164,7 +3342,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_certificate_oftp",
+			Type:             "fortianalyzer_system_certificate_oftp",
 			Category:         "System Certificate",
 			ShortDescription: `OFTP certificates and keys.`,
 			Description:      ``,
@@ -3212,7 +3390,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_certificate_remote",
+			Type:             "fortianalyzer_system_certificate_remote",
 			Category:         "System Certificate",
 			ShortDescription: `Remote certificate.`,
 			Description:      ``,
@@ -3248,7 +3426,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_certificate_ssh",
+			Type:             "fortianalyzer_system_certificate_ssh",
 			Category:         "System Certificate",
 			ShortDescription: `SSH certificates and keys.`,
 			Description:      ``,
@@ -3288,7 +3466,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_connector",
+			Type:             "fortianalyzer_system_connector",
 			Category:         "System Others",
 			ShortDescription: `Configure connector.`,
 			Description:      ``,
@@ -3332,7 +3510,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_dns",
+			Type:             "fortianalyzer_system_dns",
 			Category:         "System Global",
 			ShortDescription: `DNS configuration.`,
 			Description:      ``,
@@ -3372,7 +3550,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_docker",
+			Type:             "fortianalyzer_system_docker",
 			Category:         "System Others",
 			ShortDescription: `Docker host.`,
 			Description:      ``,
@@ -3456,7 +3634,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_fips",
+			Type:             "fortianalyzer_system_fips",
 			Category:         "System Others",
 			ShortDescription: `Settings for FIPS-CC mode.`,
 			Description:      ``,
@@ -3492,7 +3670,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_fortiview_autocache",
+			Type:             "fortianalyzer_system_fortiview_autocache",
 			Category:         "System FortiView",
 			ShortDescription: `FortiView auto-cache settings.`,
 			Description:      ``,
@@ -3528,7 +3706,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_fortiview_setting",
+			Type:             "fortianalyzer_system_fortiview_setting",
 			Category:         "System FortiView",
 			ShortDescription: `FortiView settings.`,
 			Description:      ``,
@@ -3564,7 +3742,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_global",
+			Type:             "fortianalyzer_system_global",
 			Category:         "System Global",
 			ShortDescription: `Global range attributes.`,
 			Description:      ``,
@@ -3576,6 +3754,10 @@ var (
 				resource.Attribute{
 					Name:        "admin_lockout_duration",
 					Description: `Lockout duration(sec) for administration.`,
+				},
+				resource.Attribute{
+					Name:        "admin_lockout_method",
+					Description: `Lockout method for administration. ip - Lockout by IP user - Lockout by user Valid values: ` + "`" + `ip` + "`" + `, ` + "`" + `user` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "admin_lockout_threshold",
@@ -3612,6 +3794,10 @@ var (
 				resource.Attribute{
 					Name:        "console_output",
 					Description: `Console output mode. standard - Standard output. more - More page output. Valid values: ` + "`" + `standard` + "`" + `, ` + "`" + `more` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "contentpack_fgt_install",
+					Description: `Enable/disable outbreak alert auto install for FGT ADOMS . disable - Disable the sql report auto outbreak auto install. enable - Enable the sql report auto outbreak auto install. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "country_flag",
@@ -3654,8 +3840,16 @@ var (
 					Description: `SSL communication encryption algorithms. low - SSL communication using all available encryption algorithms. medium - SSL communication using high and medium encryption algorithms. high - SSL communication using high encryption algorithms. Valid values: ` + "`" + `low` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `high` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "event_correlation_cache_size",
+					Description: `Maimum event correlation cache size (GB)`,
+				},
+				resource.Attribute{
 					Name:        "fgfm_ca_cert",
 					Description: `set the extra fgfm CA certificates.`,
+				},
+				resource.Attribute{
+					Name:        "fgfm_cert_exclusive",
+					Description: `set if the local or CA certificates should be used exclusively. disable - Used certificate best-effort. enable - Used certificate exclusive. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "fgfm_local_cert",
@@ -3664,6 +3858,14 @@ var (
 				resource.Attribute{
 					Name:        "fgfm_ssl_protocol",
 					Description: `set the lowest SSL protocols for fgfmsd. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: ` + "`" + `sslv3` + "`" + `, ` + "`" + `tlsv1.0` + "`" + `, ` + "`" + `tlsv1.1` + "`" + `, ` + "`" + `tlsv1.2` + "`" + `, ` + "`" + `tlsv1.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gui_curl_timeout",
+					Description: `GUI curl timeout in seconds (5-900 default 30).`,
+				},
+				resource.Attribute{
+					Name:        "gui_polling_interval",
+					Description: `GUI polling interval in seconds (1-288000 default 5).`,
 				},
 				resource.Attribute{
 					Name:        "ha_member_auto_grouping",
@@ -3794,6 +3996,10 @@ var (
 					Description: `Enable/disable SSL static key ciphers. disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "table_entry_blink",
+					Description: `Enable/disable table entry blink in GUI disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "task_list_size",
 					Description: `Maximum number of completed tasks to keep.`,
 				},
@@ -3851,7 +4057,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_global_sslciphersuites",
+			Type:             "fortianalyzer_system_global_sslciphersuites",
 			Category:         "No Category",
 			ShortDescription: `Configure preferred SSL/TLS cipher suites`,
 			Description:      ``,
@@ -3889,7 +4095,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_guiact",
+			Type:             "fortianalyzer_system_guiact",
 			Category:         "System Others",
 			ShortDescription: `System settings through GUI.`,
 			Description:      ``,
@@ -3949,7 +4155,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_ha",
+			Type:             "fortianalyzer_system_ha",
 			Category:         "System Global",
 			ShortDescription: `HA configuration.`,
 			Description:      ``,
@@ -4052,6 +4258,10 @@ var (
 					Description: `Use unicast for HA heartbeat. disable - HA heartbeat through multicast. enable - HA heartbeat through unicast. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "vip_block",
+					Description: `Vip. The structure of ` + "`" + `vip_block` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "vip",
 					Description: `Virtual IP address for the HA`,
 				},
@@ -4101,7 +4311,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Peer admin status. disable - Disable. enable - Enable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `Peer admin status. disable - Disable. enable - Enable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `vip_block` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `VIP enabled status. disable - Disable. enable - Enable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Virtual IP address for the HA`,
+				},
+				resource.Attribute{
+					Name:        "vip_interface",
+					Description: `Interface for configuring virtual IP address ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4117,7 +4343,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_ha_peer",
+			Type:             "fortianalyzer_system_ha_peer",
 			Category:         "System Global",
 			ShortDescription: `Peers.`,
 			Description:      ``,
@@ -4162,7 +4388,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_ha_privatepeer",
+			Type:             "fortianalyzer_system_ha_privatepeer",
 			Category:         "No Category",
 			ShortDescription: `Peer.`,
 			Description:      ``,
@@ -4208,7 +4434,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_interface",
+			Type:             "fortianalyzer_system_ha_vip",
+			Category:         "No Category",
+			ShortDescription: `VIPs.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"system",
+				"ha",
+				"vip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Id.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `VIP enabled status. disable - Disable. enable - Enable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Virtual IP address for the HA`,
+				},
+				resource.Attribute{
+					Name:        "vip_interface",
+					Description: `Interface for configuring virtual IP address ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System HaVip can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_ha_vip.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System HaVip can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_ha_vip.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortianalyzer_system_interface",
 			Category:         "System Global",
 			ShortDescription: `Interface configuration.`,
 			Description:      ``,
@@ -4235,6 +4503,10 @@ var (
 					Description: `Description.`,
 				},
 				resource.Attribute{
+					Name:        "interface",
+					Description: `Underlying interface name.`,
+				},
+				resource.Attribute{
 					Name:        "ip",
 					Description: `IP address of interface.`,
 				},
@@ -4253,6 +4525,10 @@ var (
 				resource.Attribute{
 					Name:        "link_up_delay",
 					Description: `Number of milliseconds to wait before considering a link is up.`,
+				},
+				resource.Attribute{
+					Name:        "lldp",
+					Description: `Enable/disable LLDP (Link Layer Discovery Protocol). disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "member",
@@ -4285,6 +4561,14 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `Set type of interface (physical/aggregate). physical - Physical interface. aggregate - Aggregate interface. Valid values: ` + "`" + `physical` + "`" + `, ` + "`" + `aggregate` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_protocol",
+					Description: `Ethernet protocol of VLAN. 8021q - IEEE 802.1Q. 8021ad - IEEE 802.1AD. Valid values: ` + "`" + `8021q` + "`" + `, ` + "`" + `8021ad` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vlanid",
+					Description: `VLAN ID (1 - 4094).`,
 				},
 				resource.Attribute{
 					Name:        "autogenerated",
@@ -4328,7 +4612,113 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_disk_filter",
+			Type:             "fortianalyzer_system_localinpolicy",
+			Category:         "No Category",
+			ShortDescription: `IPv4 local in policy configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"system",
+				"localinpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action performed on traffic matching this policy. drop - Drop traffic matching this policy (default). reject - Reject traffic matching this policy. accept - Allow traffic matching this policy. Valid values: ` + "`" + `drop` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `accept` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dport",
+					Description: `Destination port number (0 for all).`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination IP and mask.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Entry number.`,
+				},
+				resource.Attribute{
+					Name:        "intf",
+					Description: `Incoming interface name.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Traffic protocol. tcp - TCP only. udp - UDP only. tcp_udp - Both TCP and UDP. Valid values: ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `tcp_udp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source IP and mask. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_localinpolicy.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_localinpolicy.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortianalyzer_system_localinpolicy6",
+			Category:         "No Category",
+			ShortDescription: `IPv6 local in policy configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"system",
+				"localinpolicy6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action performed on traffic matching this policy. drop - Drop traffic matching this policy (default). reject - Reject traffic matching this policy. accept - Allow traffic matching this policy. Valid values: ` + "`" + `drop` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `accept` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dport",
+					Description: `Destination port number (0 for all).`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination IP and prefix.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Entry number.`,
+				},
+				resource.Attribute{
+					Name:        "intf",
+					Description: `Incoming interface name.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Traffic protocol. tcp - TCP only. udp - UDP only. tcp_udp - Both TCP and UDP. Valid values: ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `tcp_udp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source IP and prefix. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_localinpolicy6.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_localinpolicy6.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortianalyzer_system_locallog_disk_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for disk logging.`,
 			Description:      ``,
@@ -4521,7 +4911,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_disk_setting",
+			Type:             "fortianalyzer_system_locallog_disk_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for local disk logging.`,
 			Description:      ``,
@@ -4634,7 +5024,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_fortianalyzer2_filter",
+			Type:             "fortianalyzer_system_locallog_fortianalyzer2_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for FortiAnalyzer2 logging.`,
 			Description:      ``,
@@ -4827,7 +5217,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_fortianalyzer2_setting",
+			Type:             "fortianalyzer_system_locallog_fortianalyzer2_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog to fortianalyzer.`,
 			Description:      ``,
@@ -4880,7 +5270,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_fortianalyzer3_filter",
+			Type:             "fortianalyzer_system_locallog_fortianalyzer3_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for FortiAnalyzer3 logging.`,
 			Description:      ``,
@@ -5073,7 +5463,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_fortianalyzer3_setting",
+			Type:             "fortianalyzer_system_locallog_fortianalyzer3_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog to fortianalyzer.`,
 			Description:      ``,
@@ -5126,7 +5516,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_fortianalyzer_filter",
+			Type:             "fortianalyzer_system_locallog_fortianalyzer_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for FortiAnalyzer logging.`,
 			Description:      ``,
@@ -5318,7 +5708,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_fortianalyzer_setting",
+			Type:             "fortianalyzer_system_locallog_fortianalyzer_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog to fortianalyzer.`,
 			Description:      ``,
@@ -5370,7 +5760,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_memory_filter",
+			Type:             "fortianalyzer_system_locallog_memory_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for memory logging.`,
 			Description:      ``,
@@ -5563,7 +5953,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_memory_setting",
+			Type:             "fortianalyzer_system_locallog_memory_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for memory buffer.`,
 			Description:      ``,
@@ -5600,7 +5990,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_setting",
+			Type:             "fortianalyzer_system_locallog_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog logging.`,
 			Description:      ``,
@@ -5610,6 +6000,10 @@ var (
 				"setting",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "log_daemon_crash",
+					Description: `Send a logmsg when a daemon crashes. enable/disable disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
 				resource.Attribute{
 					Name:        "log_interval_dev_no_logging",
 					Description: `Interval in minute for logging the event of no logs received from a device.`,
@@ -5636,7 +6030,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_syslogd2_filter",
+			Type:             "fortianalyzer_system_locallog_syslogd2_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for syslog logging.`,
 			Description:      ``,
@@ -5829,7 +6223,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_syslogd2_setting",
+			Type:             "fortianalyzer_system_locallog_syslogd2_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for remote syslog server.`,
 			Description:      ``,
@@ -5886,7 +6280,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_syslogd3_filter",
+			Type:             "fortianalyzer_system_locallog_syslogd3_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for syslog logging.`,
 			Description:      ``,
@@ -6079,7 +6473,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_syslogd3_setting",
+			Type:             "fortianalyzer_system_locallog_syslogd3_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for remote syslog server.`,
 			Description:      ``,
@@ -6136,7 +6530,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_syslogd_filter",
+			Type:             "fortianalyzer_system_locallog_syslogd_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for syslog logging.`,
 			Description:      ``,
@@ -6329,7 +6723,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_locallog_syslogd_setting",
+			Type:             "fortianalyzer_system_locallog_syslogd_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for remote syslog server.`,
 			Description:      ``,
@@ -6386,7 +6780,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_alert",
+			Type:             "fortianalyzer_system_log_alert",
 			Category:         "System Log",
 			ShortDescription: `Log based alert settings.`,
 			Description:      ``,
@@ -6414,7 +6808,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_devicedisable",
+			Type:             "fortianalyzer_system_log_devicedisable",
 			Category:         "System Log",
 			ShortDescription: `Disable client device logging.`,
 			Description:      ``,
@@ -6425,7 +6819,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "TTL",
+					Name:        "ttl",
 					Description: `Time to Live`,
 				},
 				resource.Attribute{
@@ -6450,7 +6844,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_fospolicystats",
+			Type:             "fortianalyzer_system_log_fospolicystats",
 			Category:         "No Category",
 			ShortDescription: `FortiOS policy statistics settings.`,
 			Description:      ``,
@@ -6488,7 +6882,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_interfacestats",
+			Type:             "fortianalyzer_system_log_interfacestats",
 			Category:         "System Log",
 			ShortDescription: `Interface statistics settings.`,
 			Description:      ``,
@@ -6528,7 +6922,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_ioc",
+			Type:             "fortianalyzer_system_log_ioc",
 			Category:         "System Log",
 			ShortDescription: `IoC settings.`,
 			Description:      ``,
@@ -6576,7 +6970,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_maildomain",
+			Type:             "fortianalyzer_system_log_maildomain",
 			Category:         "System Log",
 			ShortDescription: `FortiMail domain setting.`,
 			Description:      ``,
@@ -6616,7 +7010,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_ratelimit",
+			Type:             "fortianalyzer_system_log_ratelimit",
 			Category:         "System Others",
 			ShortDescription: `Logging rate limit.`,
 			Description:      ``,
@@ -6697,7 +7091,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_ratelimit_device",
+			Type:             "fortianalyzer_system_log_ratelimit_device",
 			Category:         "System Others",
 			ShortDescription: `Device log rate limit.`,
 			Description:      ``,
@@ -6739,7 +7133,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_ratelimit_ratelimits",
+			Type:             "fortianalyzer_system_log_ratelimit_ratelimits",
 			Category:         "No Category",
 			ShortDescription: `Per device or ADOM log rate limits.`,
 			Description:      ``,
@@ -6770,19 +7164,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource. ## Import System LogRatelimitRatelimits can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_log_ratelimit_ratelimits.labelname SystemLogRatelimitRatelimits $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LogRatelimitRatelimits can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_log_ratelimit_ratelimits.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource. ## Import System LogRatelimitRatelimits can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_log_ratelimit_ratelimits.labelname SystemLogRatelimitRatelimits $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LogRatelimitRatelimits can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIANALYZER_IMPORT_TABLE"="true" $ terraform import fortianalyzer_system_log_ratelimit_ratelimits.labelname {{fosid}} $ unset "FORTIANALYZER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_settings",
+			Type:             "fortianalyzer_system_log_settings",
 			Category:         "System Log",
 			ShortDescription: `Log settings.`,
 			Description:      ``,
@@ -6793,47 +7187,47 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "FAC_custom_field1",
+					Name:        "fac_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FAZ_custom_field1",
+					Name:        "faz_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FCH_custom_field1",
+					Name:        "fch_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FCT_custom_field1",
+					Name:        "fct_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FDD_custom_field1",
+					Name:        "fdd_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FGT_custom_field1",
+					Name:        "fgt_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FMG_custom_field1",
+					Name:        "fmg_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FML_custom_field1",
+					Name:        "fml_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FPX_custom_field1",
+					Name:        "fpx_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FSA_custom_field1",
+					Name:        "fsa_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FWB_custom_field1",
+					Name:        "fwb_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
@@ -6953,8 +7347,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -7061,8 +7467,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -7169,8 +7587,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -7218,7 +7648,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_settings_rollinganalyzer",
+			Type:             "fortianalyzer_system_log_settings_rollinganalyzer",
 			Category:         "System Log",
 			ShortDescription: `Log rolling policy for Network Analyzer logs.`,
 			Description:      ``,
@@ -7302,8 +7732,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -7351,7 +7793,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_settings_rollinglocal",
+			Type:             "fortianalyzer_system_log_settings_rollinglocal",
 			Category:         "System Log",
 			ShortDescription: `Log rolling policy for local logs.`,
 			Description:      ``,
@@ -7435,8 +7877,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -7484,7 +7938,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_settings_rollingregular",
+			Type:             "fortianalyzer_system_log_settings_rollingregular",
 			Category:         "System Log",
 			ShortDescription: `Log rolling policy for device logs.`,
 			Description:      ``,
@@ -7568,8 +8022,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -7617,7 +8083,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_log_topology",
+			Type:             "fortianalyzer_system_log_topology",
 			Category:         "No Category",
 			ShortDescription: `Logging topology settings.`,
 			Description:      ``,
@@ -7651,7 +8117,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_logfetch_clientprofile",
+			Type:             "fortianalyzer_system_logfetch_clientprofile",
 			Category:         "System Log",
 			ShortDescription: `Log-fetch client profile settings.`,
 			Description:      ``,
@@ -7788,7 +8254,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_logfetch_serversettings",
+			Type:             "fortianalyzer_system_logfetch_serversettings",
 			Category:         "System Log",
 			ShortDescription: `Log-fetch server settings.`,
 			Description:      ``,
@@ -7825,7 +8291,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_logforward",
+			Type:             "fortianalyzer_system_logforward",
 			Category:         "No Category",
 			ShortDescription: `Log forwarding.`,
 			Description:      ``,
@@ -8086,7 +8552,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_logforwardservice",
+			Type:             "fortianalyzer_system_logforwardservice",
 			Category:         "No Category",
 			ShortDescription: `Log forwarding service.`,
 			Description:      ``,
@@ -8119,7 +8585,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_mail",
+			Type:             "fortianalyzer_system_mail",
 			Category:         "System Others",
 			ShortDescription: `Alert emails.`,
 			Description:      ``,
@@ -8136,6 +8602,10 @@ var (
 				resource.Attribute{
 					Name:        "auth_type",
 					Description: `SMTP authentication type. psk - Use username and password to authenticate. certificate - Use local certificate to authenticate. Valid values: ` + "`" + `psk` + "`" + `, ` + "`" + `certificate` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `Username for MAIL FROM.`,
 				},
 				resource.Attribute{
 					Name:        "fosid",
@@ -8179,7 +8649,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_metadata_admins",
+			Type:             "fortianalyzer_system_metadata_admins",
 			Category:         "System Others",
 			ShortDescription: `Configure admins.`,
 			Description:      ``,
@@ -8220,7 +8690,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_ntp",
+			Type:             "fortianalyzer_system_ntp",
 			Category:         "System NTP",
 			ShortDescription: `NTP settings.`,
 			Description:      ``,
@@ -8291,7 +8761,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_ntp_ntpserver",
+			Type:             "fortianalyzer_system_ntp_ntpserver",
 			Category:         "System NTP",
 			ShortDescription: `NTP server.`,
 			Description:      ``,
@@ -8347,7 +8817,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_passwordpolicy",
+			Type:             "fortianalyzer_system_passwordpolicy",
 			Category:         "System Others",
 			ShortDescription: `Password policy.`,
 			Description:      ``,
@@ -8391,7 +8861,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_report_autocache",
+			Type:             "fortianalyzer_system_report_autocache",
 			Category:         "System Report",
 			ShortDescription: `Report auto-cache settings.`,
 			Description:      ``,
@@ -8427,7 +8897,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_report_estbrowsetime",
+			Type:             "fortianalyzer_system_report_estbrowsetime",
 			Category:         "System Report",
 			ShortDescription: `Report estimated browse time settings`,
 			Description:      ``,
@@ -8459,7 +8929,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_report_setting",
+			Type:             "fortianalyzer_system_report_setting",
 			Category:         "System Report",
 			ShortDescription: `Report settings.`,
 			Description:      ``,
@@ -8494,6 +8964,10 @@ var (
 					Description: `LDAP cache timeout in minutes, default 60, 0 means not use cache.`,
 				},
 				resource.Attribute{
+					Name:        "max_rpt_pdf_rows",
+					Description: `Maximum number of rows can be generated in a single pdf.`,
+				},
+				resource.Attribute{
 					Name:        "max_table_rows",
 					Description: `Maximum number of rows can be generated in a single table.`,
 				},
@@ -8523,7 +8997,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_route",
+			Type:             "fortianalyzer_system_route",
 			Category:         "System Route",
 			ShortDescription: `Routing table configuration.`,
 			Description:      ``,
@@ -8562,7 +9036,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_route6",
+			Type:             "fortianalyzer_system_route6",
 			Category:         "System Route",
 			ShortDescription: `Routing table configuration.`,
 			Description:      ``,
@@ -8602,7 +9076,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_saml",
+			Type:             "fortianalyzer_system_saml",
 			Category:         "System Saml",
 			ShortDescription: `Global settings for SAML authentication.`,
 			Description:      ``,
@@ -8728,12 +9202,20 @@ var (
 					Description: `Prefix.`,
 				},
 				resource.Attribute{
+					Name:        "sp_adom",
+					Description: `SP adom name.`,
+				},
+				resource.Attribute{
 					Name:        "sp_cert",
 					Description: `SP certificate name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_entity_id",
 					Description: `SP Entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "sp_profile",
+					Description: `SP profile name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_single_logout_url",
@@ -8757,7 +9239,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_saml_fabricidp",
+			Type:             "fortianalyzer_system_saml_fabricidp",
 			Category:         "System Saml",
 			ShortDescription: `Authorized identity providers.`,
 			Description:      ``,
@@ -8805,7 +9287,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_saml_serviceproviders",
+			Type:             "fortianalyzer_system_saml_serviceproviders",
 			Category:         "System Saml",
 			ShortDescription: `Authorized service providers.`,
 			Description:      ``,
@@ -8836,12 +9318,20 @@ var (
 					Description: `Prefix.`,
 				},
 				resource.Attribute{
+					Name:        "sp_adom",
+					Description: `SP adom name.`,
+				},
+				resource.Attribute{
 					Name:        "sp_cert",
 					Description: `SP certificate name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_entity_id",
 					Description: `SP Entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "sp_profile",
+					Description: `SP profile name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_single_logout_url",
@@ -8865,7 +9355,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_sniffer",
+			Type:             "fortianalyzer_system_sniffer",
 			Category:         "System Others",
 			ShortDescription: `Interface sniffer.`,
 			Description:      ``,
@@ -8925,7 +9415,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_snmp_community",
+			Type:             "fortianalyzer_system_snmp_community",
 			Category:         "System SNMP",
 			ShortDescription: `SNMP community configuration.`,
 			Description:      ``,
@@ -9033,7 +9523,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_snmp_sysinfo",
+			Type:             "fortianalyzer_system_snmp_sysinfo",
 			Category:         "System SNMP",
 			ShortDescription: `SNMP configuration.`,
 			Description:      ``,
@@ -9093,7 +9583,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_snmp_user",
+			Type:             "fortianalyzer_system_snmp_user",
 			Category:         "System SNMP",
 			ShortDescription: `SNMP user configuration.`,
 			Description:      ``,
@@ -9161,7 +9651,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_socfabric",
+			Type:             "fortianalyzer_system_socfabric",
 			Category:         "System Others",
 			ShortDescription: `SOC Fabric.`,
 			Description:      ``,
@@ -9213,7 +9703,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_sql",
+			Type:             "fortianalyzer_system_sql",
 			Category:         "System SQL",
 			ShortDescription: `SQL settings.`,
 			Description:      ``,
@@ -9372,7 +9862,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_sql_customindex",
+			Type:             "fortianalyzer_system_sql_customindex",
 			Category:         "System SQL",
 			ShortDescription: `List of SQL index fields.`,
 			Description:      ``,
@@ -9416,7 +9906,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_sql_customskipidx",
+			Type:             "fortianalyzer_system_sql_customskipidx",
 			Category:         "System SQL",
 			ShortDescription: `List of aditional SQL skip index fields.`,
 			Description:      ``,
@@ -9456,7 +9946,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_sql_tsindexfield",
+			Type:             "fortianalyzer_system_sql_tsindexfield",
 			Category:         "System SQL",
 			ShortDescription: `List of SQL text search index fields.`,
 			Description:      ``,
@@ -9488,7 +9978,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_syslog",
+			Type:             "fortianalyzer_system_syslog",
 			Category:         "System Others",
 			ShortDescription: `Syslog servers.`,
 			Description:      ``,
@@ -9503,12 +9993,28 @@ var (
 					Description: `Syslog server IP address or hostname.`,
 				},
 				resource.Attribute{
+					Name:        "local_cert",
+					Description: `Select local certificate used for secure connection.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Syslog server name.`,
 				},
 				resource.Attribute{
+					Name:        "peer_cert_cn",
+					Description: `Certificate common name of syslog server. null or &apos;-&apos; means not check certificate CN of syslog server`,
+				},
+				resource.Attribute{
 					Name:        "port",
-					Description: `Syslog server port. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `Syslog server port.`,
+				},
+				resource.Attribute{
+					Name:        "reliable",
+					Description: `Enable/disable reliable connection with syslog server. disable - Disable reliable connection with syslog server. enable - Enable reliable connection with syslog server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secure_connection",
+					Description: `Enable/disable connection secured by TLS/SSL. disable - Disable SSL connection. enable - Enable SSL connection. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9524,7 +10030,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_webproxy",
+			Type:             "fortianalyzer_system_webproxy",
 			Category:         "No Category",
 			ShortDescription: `Configure system web proxy.`,
 			Description:      ``,
@@ -9573,7 +10079,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortianalyzer_fortianalyzer_system_workflow_approvalmatrix",
+			Type:             "fortianalyzer_system_workflow_approvalmatrix",
 			Category:         "System Others",
 			ShortDescription: `workflow approval matrix.`,
 			Description:      ``,
@@ -9628,126 +10134,130 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"fortianalyzer_fortianalyzer_dvm_cmd_add_device":                            0,
-		"fortianalyzer_fortianalyzer_dvm_cmd_del_device":                            1,
-		"fortianalyzer_fortianalyzer_dvmdb_adom":                                    2,
-		"fortianalyzer_fortianalyzer_dvmdb_group":                                   3,
-		"fortianalyzer_fortianalyzer_fmupdate_analyzer_virusreport":                 4,
-		"fortianalyzer_fortianalyzer_fmupdate_avips_advancedlog":                    5,
-		"fortianalyzer_fortianalyzer_fmupdate_avips_webproxy":                       6,
-		"fortianalyzer_fortianalyzer_fmupdate_customurllist":                        7,
-		"fortianalyzer_fortianalyzer_fmupdate_diskquota":                            8,
-		"fortianalyzer_fortianalyzer_fmupdate_fctservices":                          9,
-		"fortianalyzer_fortianalyzer_fmupdate_fdssetting":                           10,
-		"fortianalyzer_fortianalyzer_fmupdate_fdssetting_pushoverride":              11,
-		"fortianalyzer_fortianalyzer_fmupdate_fdssetting_pushoverridetoclient":      12,
-		"fortianalyzer_fortianalyzer_fmupdate_fdssetting_serveroverride":            13,
-		"fortianalyzer_fortianalyzer_fmupdate_fdssetting_updateschedule":            14,
-		"fortianalyzer_fortianalyzer_fmupdate_fwmsetting":                           15,
-		"fortianalyzer_fortianalyzer_fmupdate_multilayer":                           16,
-		"fortianalyzer_fortianalyzer_fmupdate_publicnetwork":                        17,
-		"fortianalyzer_fortianalyzer_fmupdate_serveraccesspriorities":               18,
-		"fortianalyzer_fortianalyzer_fmupdate_serveroverridestatus":                 19,
-		"fortianalyzer_fortianalyzer_fmupdate_service":                              20,
-		"fortianalyzer_fortianalyzer_fmupdate_webspam_fgdsetting":                   21,
-		"fortianalyzer_fortianalyzer_fmupdate_webspam_webproxy":                     22,
-		"fortianalyzer_fortianalyzer_json_generic_api":                              23,
-		"fortianalyzer_fortianalyzer_system_admin_group":                            24,
-		"fortianalyzer_fortianalyzer_system_admin_ldap":                             25,
-		"fortianalyzer_fortianalyzer_system_admin_profile":                          26,
-		"fortianalyzer_fortianalyzer_system_admin_radius":                           27,
-		"fortianalyzer_fortianalyzer_system_admin_setting":                          28,
-		"fortianalyzer_fortianalyzer_system_admin_tacacs":                           29,
-		"fortianalyzer_fortianalyzer_system_admin_user":                             30,
-		"fortianalyzer_fortianalyzer_system_alertconsole":                           31,
-		"fortianalyzer_fortianalyzer_system_alertemail":                             32,
-		"fortianalyzer_fortianalyzer_system_alertevent":                             33,
-		"fortianalyzer_fortianalyzer_system_autodelete":                             34,
-		"fortianalyzer_fortianalyzer_system_autodelete_dlpfilesautodeletion":        35,
-		"fortianalyzer_fortianalyzer_system_autodelete_logautodeletion":             36,
-		"fortianalyzer_fortianalyzer_system_autodelete_quarantinefilesautodeletion": 37,
-		"fortianalyzer_fortianalyzer_system_autodelete_reportautodeletion":          38,
-		"fortianalyzer_fortianalyzer_system_backup_allsettings":                     39,
-		"fortianalyzer_fortianalyzer_system_centralmanagement":                      40,
-		"fortianalyzer_fortianalyzer_system_certificate_ca":                         41,
-		"fortianalyzer_fortianalyzer_system_certificate_crl":                        42,
-		"fortianalyzer_fortianalyzer_system_certificate_local":                      43,
-		"fortianalyzer_fortianalyzer_system_certificate_oftp":                       44,
-		"fortianalyzer_fortianalyzer_system_certificate_remote":                     45,
-		"fortianalyzer_fortianalyzer_system_certificate_ssh":                        46,
-		"fortianalyzer_fortianalyzer_system_connector":                              47,
-		"fortianalyzer_fortianalyzer_system_dns":                                    48,
-		"fortianalyzer_fortianalyzer_system_docker":                                 49,
-		"fortianalyzer_fortianalyzer_system_fips":                                   50,
-		"fortianalyzer_fortianalyzer_system_fortiview_autocache":                    51,
-		"fortianalyzer_fortianalyzer_system_fortiview_setting":                      52,
-		"fortianalyzer_fortianalyzer_system_global":                                 53,
-		"fortianalyzer_fortianalyzer_system_global_sslciphersuites":                 54,
-		"fortianalyzer_fortianalyzer_system_guiact":                                 55,
-		"fortianalyzer_fortianalyzer_system_ha":                                     56,
-		"fortianalyzer_fortianalyzer_system_ha_peer":                                57,
-		"fortianalyzer_fortianalyzer_system_ha_privatepeer":                         58,
-		"fortianalyzer_fortianalyzer_system_interface":                              59,
-		"fortianalyzer_fortianalyzer_system_locallog_disk_filter":                   60,
-		"fortianalyzer_fortianalyzer_system_locallog_disk_setting":                  61,
-		"fortianalyzer_fortianalyzer_system_locallog_fortianalyzer2_filter":         62,
-		"fortianalyzer_fortianalyzer_system_locallog_fortianalyzer2_setting":        63,
-		"fortianalyzer_fortianalyzer_system_locallog_fortianalyzer3_filter":         64,
-		"fortianalyzer_fortianalyzer_system_locallog_fortianalyzer3_setting":        65,
-		"fortianalyzer_fortianalyzer_system_locallog_fortianalyzer_filter":          66,
-		"fortianalyzer_fortianalyzer_system_locallog_fortianalyzer_setting":         67,
-		"fortianalyzer_fortianalyzer_system_locallog_memory_filter":                 68,
-		"fortianalyzer_fortianalyzer_system_locallog_memory_setting":                69,
-		"fortianalyzer_fortianalyzer_system_locallog_setting":                       70,
-		"fortianalyzer_fortianalyzer_system_locallog_syslogd2_filter":               71,
-		"fortianalyzer_fortianalyzer_system_locallog_syslogd2_setting":              72,
-		"fortianalyzer_fortianalyzer_system_locallog_syslogd3_filter":               73,
-		"fortianalyzer_fortianalyzer_system_locallog_syslogd3_setting":              74,
-		"fortianalyzer_fortianalyzer_system_locallog_syslogd_filter":                75,
-		"fortianalyzer_fortianalyzer_system_locallog_syslogd_setting":               76,
-		"fortianalyzer_fortianalyzer_system_log_alert":                              77,
-		"fortianalyzer_fortianalyzer_system_log_devicedisable":                      78,
-		"fortianalyzer_fortianalyzer_system_log_fospolicystats":                     79,
-		"fortianalyzer_fortianalyzer_system_log_interfacestats":                     80,
-		"fortianalyzer_fortianalyzer_system_log_ioc":                                81,
-		"fortianalyzer_fortianalyzer_system_log_maildomain":                         82,
-		"fortianalyzer_fortianalyzer_system_log_ratelimit":                          83,
-		"fortianalyzer_fortianalyzer_system_log_ratelimit_device":                   84,
-		"fortianalyzer_fortianalyzer_system_log_ratelimit_ratelimits":               85,
-		"fortianalyzer_fortianalyzer_system_log_settings":                           86,
-		"fortianalyzer_fortianalyzer_system_log_settings_rollinganalyzer":           87,
-		"fortianalyzer_fortianalyzer_system_log_settings_rollinglocal":              88,
-		"fortianalyzer_fortianalyzer_system_log_settings_rollingregular":            89,
-		"fortianalyzer_fortianalyzer_system_log_topology":                           90,
-		"fortianalyzer_fortianalyzer_system_logfetch_clientprofile":                 91,
-		"fortianalyzer_fortianalyzer_system_logfetch_serversettings":                92,
-		"fortianalyzer_fortianalyzer_system_logforward":                             93,
-		"fortianalyzer_fortianalyzer_system_logforwardservice":                      94,
-		"fortianalyzer_fortianalyzer_system_mail":                                   95,
-		"fortianalyzer_fortianalyzer_system_metadata_admins":                        96,
-		"fortianalyzer_fortianalyzer_system_ntp":                                    97,
-		"fortianalyzer_fortianalyzer_system_ntp_ntpserver":                          98,
-		"fortianalyzer_fortianalyzer_system_passwordpolicy":                         99,
-		"fortianalyzer_fortianalyzer_system_report_autocache":                       100,
-		"fortianalyzer_fortianalyzer_system_report_estbrowsetime":                   101,
-		"fortianalyzer_fortianalyzer_system_report_setting":                         102,
-		"fortianalyzer_fortianalyzer_system_route":                                  103,
-		"fortianalyzer_fortianalyzer_system_route6":                                 104,
-		"fortianalyzer_fortianalyzer_system_saml":                                   105,
-		"fortianalyzer_fortianalyzer_system_saml_fabricidp":                         106,
-		"fortianalyzer_fortianalyzer_system_saml_serviceproviders":                  107,
-		"fortianalyzer_fortianalyzer_system_sniffer":                                108,
-		"fortianalyzer_fortianalyzer_system_snmp_community":                         109,
-		"fortianalyzer_fortianalyzer_system_snmp_sysinfo":                           110,
-		"fortianalyzer_fortianalyzer_system_snmp_user":                              111,
-		"fortianalyzer_fortianalyzer_system_socfabric":                              112,
-		"fortianalyzer_fortianalyzer_system_sql":                                    113,
-		"fortianalyzer_fortianalyzer_system_sql_customindex":                        114,
-		"fortianalyzer_fortianalyzer_system_sql_customskipidx":                      115,
-		"fortianalyzer_fortianalyzer_system_sql_tsindexfield":                       116,
-		"fortianalyzer_fortianalyzer_system_syslog":                                 117,
-		"fortianalyzer_fortianalyzer_system_webproxy":                               118,
-		"fortianalyzer_fortianalyzer_system_workflow_approvalmatrix":                119,
+		"fortianalyzer_dvm_cmd_add_device":                            0,
+		"fortianalyzer_dvm_cmd_del_device":                            1,
+		"fortianalyzer_dvmdb_adom":                                    2,
+		"fortianalyzer_dvmdb_group":                                   3,
+		"fortianalyzer_fmupdate_analyzer_virusreport":                 4,
+		"fortianalyzer_fmupdate_avips_advancedlog":                    5,
+		"fortianalyzer_fmupdate_avips_webproxy":                       6,
+		"fortianalyzer_fmupdate_customurllist":                        7,
+		"fortianalyzer_fmupdate_diskquota":                            8,
+		"fortianalyzer_fmupdate_fctservices":                          9,
+		"fortianalyzer_fmupdate_fdssetting":                           10,
+		"fortianalyzer_fmupdate_fdssetting_pushoverride":              11,
+		"fortianalyzer_fmupdate_fdssetting_pushoverridetoclient":      12,
+		"fortianalyzer_fmupdate_fdssetting_serveroverride":            13,
+		"fortianalyzer_fmupdate_fdssetting_updateschedule":            14,
+		"fortianalyzer_fmupdate_fwmsetting":                           15,
+		"fortianalyzer_fmupdate_fwmsetting_upgradetimeout":            16,
+		"fortianalyzer_fmupdate_multilayer":                           17,
+		"fortianalyzer_fmupdate_publicnetwork":                        18,
+		"fortianalyzer_fmupdate_serveraccesspriorities":               19,
+		"fortianalyzer_fmupdate_serveroverridestatus":                 20,
+		"fortianalyzer_fmupdate_service":                              21,
+		"fortianalyzer_fmupdate_webspam_fgdsetting":                   22,
+		"fortianalyzer_fmupdate_webspam_webproxy":                     23,
+		"fortianalyzer_json_generic_api":                              24,
+		"fortianalyzer_system_admin_group":                            25,
+		"fortianalyzer_system_admin_ldap":                             26,
+		"fortianalyzer_system_admin_profile":                          27,
+		"fortianalyzer_system_admin_radius":                           28,
+		"fortianalyzer_system_admin_setting":                          29,
+		"fortianalyzer_system_admin_tacacs":                           30,
+		"fortianalyzer_system_admin_user":                             31,
+		"fortianalyzer_system_alertconsole":                           32,
+		"fortianalyzer_system_alertemail":                             33,
+		"fortianalyzer_system_alertevent":                             34,
+		"fortianalyzer_system_autodelete":                             35,
+		"fortianalyzer_system_autodelete_dlpfilesautodeletion":        36,
+		"fortianalyzer_system_autodelete_logautodeletion":             37,
+		"fortianalyzer_system_autodelete_quarantinefilesautodeletion": 38,
+		"fortianalyzer_system_autodelete_reportautodeletion":          39,
+		"fortianalyzer_system_backup_allsettings":                     40,
+		"fortianalyzer_system_centralmanagement":                      41,
+		"fortianalyzer_system_certificate_ca":                         42,
+		"fortianalyzer_system_certificate_crl":                        43,
+		"fortianalyzer_system_certificate_local":                      44,
+		"fortianalyzer_system_certificate_oftp":                       45,
+		"fortianalyzer_system_certificate_remote":                     46,
+		"fortianalyzer_system_certificate_ssh":                        47,
+		"fortianalyzer_system_connector":                              48,
+		"fortianalyzer_system_dns":                                    49,
+		"fortianalyzer_system_docker":                                 50,
+		"fortianalyzer_system_fips":                                   51,
+		"fortianalyzer_system_fortiview_autocache":                    52,
+		"fortianalyzer_system_fortiview_setting":                      53,
+		"fortianalyzer_system_global":                                 54,
+		"fortianalyzer_system_global_sslciphersuites":                 55,
+		"fortianalyzer_system_guiact":                                 56,
+		"fortianalyzer_system_ha":                                     57,
+		"fortianalyzer_system_ha_peer":                                58,
+		"fortianalyzer_system_ha_privatepeer":                         59,
+		"fortianalyzer_system_ha_vip":                                 60,
+		"fortianalyzer_system_interface":                              61,
+		"fortianalyzer_system_localinpolicy":                          62,
+		"fortianalyzer_system_localinpolicy6":                         63,
+		"fortianalyzer_system_locallog_disk_filter":                   64,
+		"fortianalyzer_system_locallog_disk_setting":                  65,
+		"fortianalyzer_system_locallog_fortianalyzer2_filter":         66,
+		"fortianalyzer_system_locallog_fortianalyzer2_setting":        67,
+		"fortianalyzer_system_locallog_fortianalyzer3_filter":         68,
+		"fortianalyzer_system_locallog_fortianalyzer3_setting":        69,
+		"fortianalyzer_system_locallog_fortianalyzer_filter":          70,
+		"fortianalyzer_system_locallog_fortianalyzer_setting":         71,
+		"fortianalyzer_system_locallog_memory_filter":                 72,
+		"fortianalyzer_system_locallog_memory_setting":                73,
+		"fortianalyzer_system_locallog_setting":                       74,
+		"fortianalyzer_system_locallog_syslogd2_filter":               75,
+		"fortianalyzer_system_locallog_syslogd2_setting":              76,
+		"fortianalyzer_system_locallog_syslogd3_filter":               77,
+		"fortianalyzer_system_locallog_syslogd3_setting":              78,
+		"fortianalyzer_system_locallog_syslogd_filter":                79,
+		"fortianalyzer_system_locallog_syslogd_setting":               80,
+		"fortianalyzer_system_log_alert":                              81,
+		"fortianalyzer_system_log_devicedisable":                      82,
+		"fortianalyzer_system_log_fospolicystats":                     83,
+		"fortianalyzer_system_log_interfacestats":                     84,
+		"fortianalyzer_system_log_ioc":                                85,
+		"fortianalyzer_system_log_maildomain":                         86,
+		"fortianalyzer_system_log_ratelimit":                          87,
+		"fortianalyzer_system_log_ratelimit_device":                   88,
+		"fortianalyzer_system_log_ratelimit_ratelimits":               89,
+		"fortianalyzer_system_log_settings":                           90,
+		"fortianalyzer_system_log_settings_rollinganalyzer":           91,
+		"fortianalyzer_system_log_settings_rollinglocal":              92,
+		"fortianalyzer_system_log_settings_rollingregular":            93,
+		"fortianalyzer_system_log_topology":                           94,
+		"fortianalyzer_system_logfetch_clientprofile":                 95,
+		"fortianalyzer_system_logfetch_serversettings":                96,
+		"fortianalyzer_system_logforward":                             97,
+		"fortianalyzer_system_logforwardservice":                      98,
+		"fortianalyzer_system_mail":                                   99,
+		"fortianalyzer_system_metadata_admins":                        100,
+		"fortianalyzer_system_ntp":                                    101,
+		"fortianalyzer_system_ntp_ntpserver":                          102,
+		"fortianalyzer_system_passwordpolicy":                         103,
+		"fortianalyzer_system_report_autocache":                       104,
+		"fortianalyzer_system_report_estbrowsetime":                   105,
+		"fortianalyzer_system_report_setting":                         106,
+		"fortianalyzer_system_route":                                  107,
+		"fortianalyzer_system_route6":                                 108,
+		"fortianalyzer_system_saml":                                   109,
+		"fortianalyzer_system_saml_fabricidp":                         110,
+		"fortianalyzer_system_saml_serviceproviders":                  111,
+		"fortianalyzer_system_sniffer":                                112,
+		"fortianalyzer_system_snmp_community":                         113,
+		"fortianalyzer_system_snmp_sysinfo":                           114,
+		"fortianalyzer_system_snmp_user":                              115,
+		"fortianalyzer_system_socfabric":                              116,
+		"fortianalyzer_system_sql":                                    117,
+		"fortianalyzer_system_sql_customindex":                        118,
+		"fortianalyzer_system_sql_customskipidx":                      119,
+		"fortianalyzer_system_sql_tsindexfield":                       120,
+		"fortianalyzer_system_syslog":                                 121,
+		"fortianalyzer_system_webproxy":                               122,
+		"fortianalyzer_system_workflow_approvalmatrix":                123,
 	}
 )
 

@@ -469,6 +469,26 @@ var (
 					Name:        "order",
 					Description: `Order in which the ASN is prepended to Set AS Path.`,
 				},
+				resource.Attribute{
+					Name:        "set_dampening",
+					Description: `(Optional) A block representing the attributes of Set Dampening object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "half_life",
+					Description: `Half Life of the Set Dampening object.`,
+				},
+				resource.Attribute{
+					Name:        "reuse",
+					Description: `Reuse Limit of the Set Dampening object.`,
+				},
+				resource.Attribute{
+					Name:        "suppress",
+					Description: `Suppress Limit of the Set Dampening object.`,
+				},
+				resource.Attribute{
+					Name:        "max_suppress_time",
+					Description: `Max Suppress Time of the Set Dampening object.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -547,6 +567,26 @@ var (
 					Name:        "order",
 					Description: `Order in which the ASN is prepended to Set AS Path.`,
 				},
+				resource.Attribute{
+					Name:        "set_dampening",
+					Description: `(Optional) A block representing the attributes of Set Dampening object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "half_life",
+					Description: `Half Life of the Set Dampening object.`,
+				},
+				resource.Attribute{
+					Name:        "reuse",
+					Description: `Reuse Limit of the Set Dampening object.`,
+				},
+				resource.Attribute{
+					Name:        "suppress",
+					Description: `Suppress Limit of the Set Dampening object.`,
+				},
+				resource.Attribute{
+					Name:        "max_suppress_time",
+					Description: `Max Suppress Time of the Set Dampening object.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -592,8 +632,86 @@ var (
 			ShortDescription: `Data source for ACI Any`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `(Required) Distinguished name of the parent VRF object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "match_t",
+					Description: `(Optional) Represents the provider label match criteria.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "pref_gr_memb",
+					Description: `(Optional) Represents parameter used to determine if EPgs can be divided in a the context can be divided into two subgroups.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_any_to_cons",
+					Description: `(Optional) Relation to Consumed Contracts (vzBrCP class)`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_any_to_cons_if",
+					Description: `(Optional) Relation to Consumed Contract Interfaces (vzCPIf class)`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_any_to_prov",
+					Description: `(Optional) Relation to Provided Contracts (vzBrCP class).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "match_t",
+					Description: `(Optional) Represents the provider label match criteria.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of the Any object.`,
+				},
+				resource.Attribute{
+					Name:        "pref_gr_memb",
+					Description: `(Optional) Represents parameter used to determine if EPgs can be divided in a the context can be divided into two subgroups.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_any_to_cons",
+					Description: `(Optional) Relation to Consumed Contracts (vzBrCP class)`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_any_to_cons_if",
+					Description: `(Optional) Relation to Consumed Contract Interfaces (vzCPIf class)`,
+				},
+				resource.Attribute{
+					Name:        "relation_vz_rs_any_to_prov",
+					Description: `(Optional) Relation to Provided Contracts (vzBrCP class).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1228,6 +1346,122 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_cloud_account",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Cloud Account`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) ID of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `(Required) Vendor of the Cloud Account object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud Account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Authentication type for the Cloud Account (managed=no credentials required (IAM), credentials=using accessKeys).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud Account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Cloud Account object.`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Authentication type for the Cloud Account (managed=no credentials required (IAM), credentials=using accessKeys).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_cloud_ad",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Cloud Active Directory`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Active Directory object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Active Directory object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Active Directory object.`,
+				},
+				resource.Attribute{
+					Name:        "active_directory_id",
+					Description: `(Optional) Id of the Azure Active Directory.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Active Directory object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Active Directory object.`,
+				},
+				resource.Attribute{
+					Name:        "active_directory_id",
+					Description: `(Optional) Id of the Azure Active Directory.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_cloud_applicationcontainer",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Cloud Application container`,
@@ -1509,8 +1743,214 @@ var (
 			ShortDescription: `Data source for ACI Cloud Context Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Cloud Context Profile object. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Dn of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `Annotation of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "primary_cidr",
+					Description: `Primary CIDR block of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_vendor",
+					Description: `Name of the vendor.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `Name alias of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network",
+					Description: `Hub Network Dn which enables Transit Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "relation_cloud_rs_ctx_to_flow_log",
+					Description: `Relation to a AWS Flow Log Policy (class cloudAwsFlowLogPol).`,
+				},
+				resource.Attribute{
+					Name:        "relation_cloud_rs_to_ctx",
+					Description: `Relation to a VRF (class fvCtx).`,
+				},
+				resource.Attribute{
+					Name:        "cloud_brownfield",
+					Description: `ID of imported brownfield virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy_type",
+					Description: `Type of cloud context access policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Dn of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `Annotation of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "primary_cidr",
+					Description: `Primary CIDR block of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `Region of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_vendor",
+					Description: `Name of the vendor.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `Name alias of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the Cloud Context Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network",
+					Description: `Hub Network Dn which enables Transit Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "relation_cloud_rs_ctx_to_flow_log",
+					Description: `Relation to a AWS Flow Log Policy (class cloudAwsFlowLogPol).`,
+				},
+				resource.Attribute{
+					Name:        "relation_cloud_rs_to_ctx",
+					Description: `Relation to a VRF (class fvCtx).`,
+				},
+				resource.Attribute{
+					Name:        "cloud_brownfield",
+					Description: `ID of imported brownfield virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy_type",
+					Description: `Type of cloud context access policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_cloud_credentials",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Cloud Credential to manage the cloud resources`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Cloud Credential object used to manage the cloud resources. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud Credential to manage the cloud resources.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Cloud Credential object to manage the cloud resources.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Cloud Credential object to manage the cloud resources.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Client ID of the Cloud Credential object.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) email address of the locally-authenticated user.`,
+				},
+				resource.Attribute{
+					Name:        "http_proxy",
+					Description: `(Optional) HTTP Proxy to connect to the cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The Secret key or password used to uniquely identify the cloud resource configuration object.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Optional) The Access key ID of the cloud resource.`,
+				},
+				resource.Attribute{
+					Name:        "rsa_private_key",
+					Description: `(Optional) RSA Secret Key of the cloud resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud Credential to manage the cloud resources.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Cloud Credential object to manage the cloud resources.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Cloud Credential object to manage the cloud resources.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Optional) Client ID of the Cloud Credential object.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) email address of the locally-authenticated user.`,
+				},
+				resource.Attribute{
+					Name:        "http_proxy",
+					Description: `(Optional) HTTP Proxy to connect to the cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The Secret key or password used to uniquely identify the cloud resource configuration object.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Optional) The Access key ID of the cloud resource.`,
+				},
+				resource.Attribute{
+					Name:        "rsa_private_key",
+					Description: `(Optional) RSA Secret Key of the cloud resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1654,6 +2094,142 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_cloud_external_network",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Cloud External Network`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Cloud External Network. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `(Optional) Distinguished name of the VRF. Note that the VRF has to be created under the infra tenant.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network_name",
+					Description: `(Optional) Hub Network name of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_router_name",
+					Description: `(Optional) VPN Router name of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "host_router_name",
+					Description: `(Optional) Host Router name of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "all_regions",
+					Description: `(Optional) Selects all regions available to the Cloud External Network. This option is always set to "yes" for Azure and AWS cAPICs and "no" in GCP cAPIC.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `(Optional) Manually adds the regions to the Cloud External Network. This option is only available in GCP cAPICs.`,
+				},
+				resource.Attribute{
+					Name:        "router_type",
+					Description: `(Optional) Router type. Allowed values are "c8kv", "tgw". (Available only for AWS cAPIC).`,
+				},
+				resource.Attribute{
+					Name:        "cloud_vendor",
+					Description: `(Optional) Name of the vendor. Allowed values are "aws", "azure", "gcp".`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `(Optional) Distinguished name of the VRF. Note that the VRF has to be created under the infra tenant.`,
+				},
+				resource.Attribute{
+					Name:        "hub_network_name",
+					Description: `(Optional) Hub Network name of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_router_name",
+					Description: `(Optional) VPN Router name of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "host_router_name",
+					Description: `(Optional) Host Router name of the Cloud External Network.`,
+				},
+				resource.Attribute{
+					Name:        "all_regions",
+					Description: `(Optional) Selects all regions available to the Cloud External Network. This option is always set to "yes" for Azure and AWS cAPICs and "no" in GCP cAPIC.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `(Optional) Manually adds the regions to the Cloud External Network. This option is only available in GCP cAPICs.`,
+				},
+				resource.Attribute{
+					Name:        "router_type",
+					Description: `(Optional) Router type. Allowed values are "c8kv", "tgw". (Available only for AWS cAPIC).`,
+				},
+				resource.Attribute{
+					Name:        "cloud_vendor",
+					Description: `(Optional) Name of the vendor. Allowed values are "aws", "azure", "gcp".`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_cloud_ipsec_tunnel_subnet_pool",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for the ACI Cloud Subnet Pool for IPsec Tunnels`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "subnet_pool",
+					Description: `(Required) Subnet of the Subnet Pool for IPsec Tunnels object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Subnet Pool for IPsec Tunnels object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Subnet Pool Name of the Subnet Pool for IPsec Tunnels object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Subnet Pool for IPsec Tunnels object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Subnet Pool Name of the Subnet Pool for IPsec Tunnels object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_cloud_provider_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Cloud Provider Profile`,
@@ -1724,7 +2300,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_cidr_pool_dn",
-					Description: `(Required) Distinguished name of parent CloudCIDRPool object.`,
+					Description: `(Required) Distinguished name of the Cloud CIDR Pool parent object.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -1732,61 +2308,85 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Subnet.`,
+					Description: `Dn of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name for object cloud subnet.`,
+					Description: `(Optional) Name of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description for object cloud subnet.`,
+					Description: `(Optional) Description of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object cloud subnet.`,
+					Description: `(Optional) Annotation of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for object cloud subnet.`,
+					Description: `(Optional) Name alias of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
-					Description: `(Optional) The domain applicable to the capability.`,
+					Description: `(Optional) List of domain applicable to the capability. Allowed values are "public", "private" and "shared". Default is ["private"].`,
 				},
 				resource.Attribute{
 					Name:        "usage",
 					Description: `(Optional) The usage of the port. This property shows how the port is used.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Relation to a Cloud Resource Zone (class cloudRsZoneAttach). It is only applicable to the AWS vendor.`,
+				},
+				resource.Attribute{
+					Name:        "relation_cloud_rs_subnet_to_flow_log",
+					Description: `(Optional) Relation to the AWS Flow Log Policy (class cloudAwsFlowLogPol).`,
+				},
+				resource.Attribute{
+					Name:        "subnet_group_label",
+					Description: `(Optional) Subnet Group Label of the Cloud Subnet object. It is only applicable to the GCP vendor.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Attribute id set to the Dn of the Cloud Subnet.`,
+					Description: `Dn of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name for object cloud subnet.`,
+					Description: `(Optional) Name of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description for object cloud subnet.`,
+					Description: `(Optional) Description of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) Annotation for object cloud subnet.`,
+					Description: `(Optional) Annotation of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) Name alias for object cloud subnet.`,
+					Description: `(Optional) Name alias of the Cloud Subnet object.`,
 				},
 				resource.Attribute{
 					Name:        "scope",
-					Description: `(Optional) The domain applicable to the capability.`,
+					Description: `(Optional) List of domain applicable to the capability. Allowed values are "public", "private" and "shared". Default is ["private"].`,
 				},
 				resource.Attribute{
 					Name:        "usage",
 					Description: `(Optional) The usage of the port. This property shows how the port is used.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Relation to a Cloud Resource Zone (class cloudRsZoneAttach). It is only applicable to the AWS vendor.`,
+				},
+				resource.Attribute{
+					Name:        "relation_cloud_rs_subnet_to_flow_log",
+					Description: `(Optional) Relation to the AWS Flow Log Policy (class cloudAwsFlowLogPol).`,
+				},
+				resource.Attribute{
+					Name:        "subnet_group_label",
+					Description: `(Optional) Subnet Group Label of the Cloud Subnet object. It is only applicable to the GCP vendor.`,
 				},
 			},
 		},
@@ -1855,6 +2455,282 @@ var (
 				resource.Attribute{
 					Name:        "cloud_router_profile_type",
 					Description: `(Optional) Component type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_cloud_vpn_network",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Cloud Template for VPN Network`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aci_cloud_external_network_dn",
+					Description: `(Required) Distinguished name of parent TemplateforExternalNetwork object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Cloud VPN Network object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud VPN Network.`,
+				},
+				resource.Attribute{
+					Name:        "remote_site_id",
+					Description: `(Optional) Remote Site ID.`,
+				},
+				resource.Attribute{
+					Name:        "remote_site_name",
+					Description: `(Optional) Name of the Remote Site.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_tunnel",
+					Description: `(Optional) IPsec tunnel destination (cloudtemplateIpSecTunnelSourceInterface class). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Required) IKE version. Allowed values are "ikev1", "ikev2", and default value is "ikev2".`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `(Required) Peer address of the Cloud IPsec tunnel object.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_pool_name",
+					Description: `(Required) Subnet Pool Name.`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `(Optional) Pre Shared Key for all tunnels to this peer address.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_peer_asn",
+					Description: `(Required) BGP ASN Number. A number that uniquely identifies an autonomous system.`,
+				},
+				resource.Attribute{
+					Name:        "source_interfaces",
+					Description: `(Optional) Source Interface Ids of the object for IPsec tunnel Source Interface. It is available only on Azure cAPIC.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Cloud VPN Network.`,
+				},
+				resource.Attribute{
+					Name:        "remote_site_id",
+					Description: `(Optional) Remote Site ID.`,
+				},
+				resource.Attribute{
+					Name:        "remote_site_name",
+					Description: `(Optional) Name of the Remote Site.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_tunnel",
+					Description: `(Optional) IPsec tunnel destination (cloudtemplateIpSecTunnelSourceInterface class). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Required) IKE version. Allowed values are "ikev1", "ikev2", and default value is "ikev2".`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `(Required) Peer address of the Cloud IPsec tunnel object.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_pool_name",
+					Description: `(Required) Subnet Pool Name.`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `(Optional) Pre Shared Key for all tunnels to this peer address.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_peer_asn",
+					Description: `(Required) BGP ASN Number. A number that uniquely identifies an autonomous system.`,
+				},
+				resource.Attribute{
+					Name:        "source_interfaces",
+					Description: `(Optional) Source Interface Ids of the object for IPsec tunnel Source Interface. It is available only on Azure cAPIC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_cloud_vrf_leak_routes",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for Cloud ACI Inter-VRF Leaked Routes`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `(Required) Distinguished name of the parent VRF object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Inter-VRF Leaked Route object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Inter-VRF Leaked Route object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Inter-VRF Leaked Route object.`,
+				},
+				resource.Attribute{
+					Name:        "leak_to",
+					Description: `(Optional) A block representing the attributes of ` + "`" + `Leak Routes` + "`" + ` for the Inter-VRF Leaked Route object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `Distinguished name of the destination VRF object, which is mapped to the Inter-VRF Leaked Route object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Inter-VRF Leaked Route object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Inter-VRF Leaked Route object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Inter-VRF Leaked Route object.`,
+				},
+				resource.Attribute{
+					Name:        "leak_to",
+					Description: `(Optional) A block representing the attributes of ` + "`" + `Leak Routes` + "`" + ` for the Inter-VRF Leaked Route object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `Distinguished name of the destination VRF object, which is mapped to the Inter-VRF Leaked Route object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_concrete_device",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Concrete Device`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "l4-l7_device_dn",
+					Description: `(Required) Distinguished name of the parent L4-L7 Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Concrete Device object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Concrete Device.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Concrete Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Concrete Device object.`,
+				},
+				resource.Attribute{
+					Name:        "vmm_controller_dn",
+					Description: `(Optional) Distinguished name of the VMM controller object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "vm_name",
+					Description: `(Optional) The name of the Virtual Machine (VM) in the vCenter on which the device is hosted in the L4-L7 device cluster. It uniquely identifies the VM. Type: String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Concrete Device.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Concrete Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Concrete Device object.`,
+				},
+				resource.Attribute{
+					Name:        "vmm_controller_dn",
+					Description: `(Optional) Distinguished name of the VMM controller object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "vm_name",
+					Description: `(Optional) The name of the Virtual Machine (VM) in the vCenter on which the device is hosted in the L4-L7 device cluster. It uniquely identifies the VM. Type: String.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_concrete_interface",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Concrete Interface`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "concrete_device_dn",
+					Description: `(Required) Distinguished name of the parent Concrete Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Concrete Interface object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Concrete Interface.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Concrete Interface object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) The port encapsulation. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "vnic_name",
+					Description: `(Optional) The virtual NIC (vNIC) name of the L4-L7 Device VM represented by the concrete interface. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_c_if_path_att",
+					Description: `(Optional) Represents a relation from the Concrete Interface to the Physical Port on the Leaf (class fabricPathEp). Type: String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Concrete Interface.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Concrete Interface object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) The port encapsulation. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "vnic_name",
+					Description: `(Optional) The virtual NIC (vNIC) name of the L4-L7 Device VM represented by the concrete interface. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_c_if_path_att",
+					Description: `(Optional) Represents a relation from the Concrete Interface to the Physical Port on the Leaf (class fabricPathEp). Type: String.`,
 				},
 			},
 		},
@@ -2012,6 +2888,134 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_contract_subject_filter",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Contract Subject Filter`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "contract_subject_dn",
+					Description: `(Required) Distinguished name of parent Contract Subject object.`,
+				},
+				resource.Attribute{
+					Name:        "filter_dn",
+					Description: `(Required) Distinguished name of the Filter object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Subject Filter.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Contract Subject Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The action required when the condition is met.`,
+				},
+				resource.Attribute{
+					Name:        "directives",
+					Description: `(Optional) Directives of the Contract Subject Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "priority_override",
+					Description: `(Optional) Priority Override of the Contract Subject Filter object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Subject Filter.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Contract Subject Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The action required when the condition is met.`,
+				},
+				resource.Attribute{
+					Name:        "directives",
+					Description: `(Optional) Directives of the Contract Subject Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "priority_override",
+					Description: `(Optional) Priority Override of the Contract Subject Filter object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_contract_subject_one_way_filter",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI One Way Filter`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "contract_subject_dn",
+					Description: `(Required) Distinguished name of the parent Contract Subject object.`,
+				},
+				resource.Attribute{
+					Name:        "filter_dn",
+					Description: `(Required) Distinguished name of the Filter object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Filter.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The action required when the condition is met. Allowed values are "deny", "permit", and the default value is "permit". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "directives",
+					Description: `(Optional) Directives of the Contract Subject Filter object. Allowed values are "log", "no_stats", "none", and the default value is "none". Type: List.`,
+				},
+				resource.Attribute{
+					Name:        "priority_override",
+					Description: `(Optional) Priority override of the Filter object. It is only used when action is set to deny. Allowed values are "default", "level1", "level2", "level3", and the default value is "default". Type: String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Filter.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Filter object.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The action required when the condition is met. Allowed values are "deny", "permit", and the default value is "permit". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "directives",
+					Description: `(Optional) Directives of the Contract Subject Filter object. Allowed values are "log", "no_stats", "none", and the default value is "none". Type: List.`,
+				},
+				resource.Attribute{
+					Name:        "priority_override",
+					Description: `(Optional) Priority override of the Filter object. It is only used when action is set to deny. Allowed values are "default", "level1", "level2", "level3", and the default value is "default". Type: String.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3135,8 +4139,138 @@ var (
 			ShortDescription: `Data source for ACI External Network Instance Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "l3_outside_dn",
+					Description: `(Required) Distinguished name of the parent L3Outside object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the External Network Instance Profile object. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the External Network Instance Profile.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "exception_tag",
+					Description: `(Optional) Exception tag of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "flood_on_encap",
+					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
+				},
+				resource.Attribute{
+					Name:        "match_t",
+					Description: `(Optional) The provider label match criteria of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "pref_gr_memb",
+					Description: `(Optional) Represents parameter used to determine if an External EPG is part of a group that does not require a contract for communication.`,
+				},
+				resource.Attribute{
+					Name:        "prio",
+					Description: `(Optional) The QoS priority class identifier of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "target_dscp",
+					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_sec_inherited",
+					Description: `(Optional) Relation to EPGs to be used as Contract Masters (class fvEPg). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_prov",
+					Description: `(Optional) Relation to Provided Contracts (class vzBrCP). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_cons_if",
+					Description: `(Optional) Relation to Provided Contract Interfaces (class vzCPIf). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_inst_p_to_profile",
+					Description: `(Optional) Relation to Route Control Profiles (class rtctrlProfile). Cardinality - N_TO_M. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_cons",
+					Description: `(Optional) Relation to Consumed Contracts (class vzBrCP). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_prot_by",
+					Description: `(Optional) Relation to Taboo Contracts (vzTaboo). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the External Network Instance Profile.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "exception_tag",
+					Description: `(Optional) Exception tag of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "flood_on_encap",
+					Description: `(Optional) Control at EPG level if the traffic L2 Multicast/Broadcast and Link Local Layer should be flooded only on ENCAP or based on bridg-domain settings.`,
+				},
+				resource.Attribute{
+					Name:        "match_t",
+					Description: `(Optional) The provider label match criteria of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "pref_gr_memb",
+					Description: `(Optional) Represents parameter used to determine if an External EPG is part of a group that does not require a contract for communication.`,
+				},
+				resource.Attribute{
+					Name:        "prio",
+					Description: `(Optional) The QoS priority class identifier of the External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "target_dscp",
+					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_sec_inherited",
+					Description: `(Optional) Relation to EPGs to be used as Contract Masters (class fvEPg). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_prov",
+					Description: `(Optional) Relation to Provided Contracts (class vzBrCP). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_cons_if",
+					Description: `(Optional) Relation to Provided Contract Interfaces (class vzCPIf). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_inst_p_to_profile",
+					Description: `(Optional) Relation to Route Control Profiles (class rtctrlProfile). Cardinality - N_TO_M. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_cons",
+					Description: `(Optional) Relation to Consumed Contracts (class vzBrCP). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_fv_rs_prot_by",
+					Description: `(Optional) Relation to Taboo Contracts (vzTaboo). Cardinality - N_TO_M. Type - Set of String.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3454,6 +4588,10 @@ var (
 					Description: `(Optional) Disable Ep Dampening knob of object Fabric-Wide Settings Policy.`,
 				},
 				resource.Attribute{
+					Name:        "domain_validation",
+					Description: `(Optional) Validate that the correct physical domain is added before associating a new static path to an EPG.`,
+				},
+				resource.Attribute{
 					Name:        "enable_mo_streaming",
 					Description: `(Optional) Enable MO streaming of object Fabric-Wide Settings Policy.`,
 				},
@@ -3466,12 +4604,32 @@ var (
 					Description: `(Optional) Enforce subnet check of object Fabric-Wide Settings Policy.`,
 				},
 				resource.Attribute{
+					Name:        "leaf_opflexp_authenticate_clients",
+					Description: `(Optional) Require Opflexp Client Certificates for authentication for Leaf.`,
+				},
+				resource.Attribute{
+					Name:        "leaf_opflexp_use_ssl",
+					Description: `(Optional) Require SSL transport for Opflexp for Leaf.`,
+				},
+				resource.Attribute{
 					Name:        "opflexp_authenticate_clients",
 					Description: `(Optional) Opflexp Client Certificates for authentication of object Fabric-Wide Settings Policy.`,
 				},
 				resource.Attribute{
+					Name:        "opflexp_ssl_protocols",
+					Description: `(Optional) SSL Opflex versions.`,
+				},
+				resource.Attribute{
 					Name:        "opflexp_use_ssl",
 					Description: `(Optional) SSL transport for Opflexp indicator of object Fabric-Wide Settings Policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_sync_node_bringup",
+					Description: `(Optional) Blacklist the Leaf frontpanel port until policy download during first time bringup.`,
+				},
+				resource.Attribute{
+					Name:        "reallocate_gipo",
+					Description: `(Optional) Reallocate gipo such that stretched and non stretched BDs have non overlapping gipos.`,
 				},
 				resource.Attribute{
 					Name:        "restrict_infra_vlan_traffic",
@@ -4070,6 +5228,102 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_interface_config",
+			Category:         "Data Sources",
+			ShortDescription: `Manages ACI Access and Fabric Ports is only supported for ACI 5.2(5)+`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node",
+					Description: `(Required) The Node ID of the Port Configuration object. Type: Integer.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `(Required) The Interface address of the Port Configuration object. The format of the interface value should be 1/1/1 (card/port_id/sub_port) or 1/1 (card/port_id). Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "port_type",
+					Description: `(Optional) The Type of the Port Configuration object. Allowed values are "access", "fabric". Default value is "access". Type: String. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Attribute ID set to the Dn of the Port Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) The Role of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "policy_group",
+					Description: `(Optional) The Distinguished Name of the Policy Group being associated with the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "breakout",
+					Description: `(Optional) The Breakout Map of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state",
+					Description: `(Optional) The Admin State of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "pc_member",
+					Description: `(Optional) The Distinguished Name of the Port Channel Member being associated with the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The Description of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) The Annotation of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) The Name Alias of the Port Configuration object. Type: String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Attribute ID set to the Dn of the Port Configuration.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) The Role of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "policy_group",
+					Description: `(Optional) The Distinguished Name of the Policy Group being associated with the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "breakout",
+					Description: `(Optional) The Breakout Map of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state",
+					Description: `(Optional) The Admin State of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "pc_member",
+					Description: `(Optional) The Distinguished Name of the Port Channel Member being associated with the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The Description of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) The Annotation of the Port Configuration object. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) The Name Alias of the Port Configuration object. Type: String.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_interface_fc_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Interface FC Policy`,
@@ -4077,6 +5331,130 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_ip_sla_monitoring_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI IP SLA Monitoring Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the IP SLA Monitoring Policy object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the IP SLA Monitoring Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the IP SLA Monitoring Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the IP SLA Monitoring Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "http_version",
+					Description: `(Optional) HTTP Version used for probing. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "type_of_service",
+					Description: `(Optional) Type of Service value for IPv4 packets which provides an indication of the desired Quality of Service (QoS). Allowed range is 0-255 and default value is "0". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_class_value",
+					Description: `(Optional) Traffic Class Value indicates class or priority of IPv6 packet. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "request_data_size",
+					Description: `(Optional) Minimum size of the IP SLA packet. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_detect_multiplier",
+					Description: `(Optional) Detect Multiplier value for number of missed probes. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_frequency",
+					Description: `(Optional) The SLA frequency value for forwarding packets. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_port",
+					Description: `(Optional) The SLA destination port number. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_type",
+					Description: `(Optional) The IP SLA protocol type. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Optional) The threshold value at which the SLA is considered as failed. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The amount of time between authentication attempts. Type: String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the IP SLA Monitoring Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the IP SLA Monitoring Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the IP SLA Monitoring Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "http_version",
+					Description: `(Optional) HTTP Version used for probing. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "type_of_service",
+					Description: `(Optional) Type of Service value for IPv4 packets which provides an indication of the desired Quality of Service (QoS). Allowed range is 0-255 and default value is "0". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_class_value",
+					Description: `(Optional) Traffic Class Value indicates class or priority of IPv6 packet. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "request_data_size",
+					Description: `(Optional) Minimum size of the IP SLA packet. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_detect_multiplier",
+					Description: `(Optional) Detect Multiplier value for number of missed probes. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_frequency",
+					Description: `(Optional) The SLA frequency value for forwarding packets. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_port",
+					Description: `(Optional) The SLA destination port number. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "sla_type",
+					Description: `(Optional) The IP SLA protocol type. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Optional) The threshold value at which the SLA is considered as failed. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The amount of time between authentication attempts. Type: String.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4263,11 +5641,101 @@ var (
 			Name:             "",
 			Type:             "aci_l3_ext_subnet",
 			Category:         "Data Sources",
-			ShortDescription: `Data source for ACI l3 extension subnet`,
+			ShortDescription: `Data source for ACI External EPG Subnet`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "external_network_instance_profile_dn",
+					Description: `(Required) Distinguished name of the parent External Network Instance Profile object.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) IP address of the External EPG Subnet object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `(Optional) Aggregate Routes of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Optional) The list of domain applicable to the capability.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_subnet_to_profile",
+					Description: `(Optional) Relation to Route Control Profile (class rtctrlProfile). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "tn_rtctrl_profile_dn",
+					Description: `(Optional) Associates the External EPGs with the Route Control Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional) Relation to configure route map for each BGP peer in the inbound and outbound directions.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_subnet_to_rt_summ",
+					Description: `(Optional) Relation to a Route Summarization Policy (class rtsumARtSummPol).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `(Optional) Aggregate Routes of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name alias of the External EPG Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Optional) The list of domain applicable to the capability.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_subnet_to_profile",
+					Description: `(Optional) Relation to Route Control Profile (class rtctrlProfile). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "tn_rtctrl_profile_dn",
+					Description: `(Optional) Associates the External EPGs with the Route Control Profiles.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Optional) Relation to configure route map for each BGP peer in the inbound and outbound directions.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_subnet_to_rt_summ",
+					Description: `(Optional) Relation to a Route Summarization Policy (class rtsumARtSummPol).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4335,11 +5803,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
-					Description: `(Required) Distinguished name of parent Tenant object.`,
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object l3 outside. ## Attribute Reference`,
+					Description: `(Required) Name of the L3 Outside object. ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4347,19 +5815,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3 outside.`,
+					Description: `(Optional) Annotation of the L3 Outside object.`,
 				},
 				resource.Attribute{
 					Name:        "enforce_rtctrl",
-					Description: `(Optional) enforce route control type`,
+					Description: `(Optional) Enforce route control type of the L3 Outside object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3 outside.`,
+					Description: `(Optional) Name alias of the L3 Outside object.`,
 				},
 				resource.Attribute{
 					Name:        "target_dscp",
-					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
+					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the L3 Outside object.`,
+				},
+				resource.Attribute{
+					Name:        "mpls_enabled",
+					Description: `(Optional) Indiscate whether MPLS is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_dampening_pol",
+					Description: `(Optional) Relation to Route Control Profile for Dampening Policies (class rtctrlProfile). Cardinality - N_TO_M. Type - Block.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_ectx",
+					Description: `(Optional) Relation to VRF (class fvCtx). Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_interleak_pol",
+					Description: `(Optional) Relation to Route Profile for Interleak (class rtctrlProfile). Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_l3_dom_att",
+					Description: `(Optional) Relation to a L3 Domain (class extnwDomP). Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3extrs_redistribute_pol",
+					Description: `(Optional) A block representing the relation to a Route Profile for Redistribution (class rtctrlProfile). Cardinality - N_TO_M. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) Route Map Source for the Route Profile for Redistribution.`,
+				},
+				resource.Attribute{
+					Name:        "target_dn",
+					Description: `(Optional) Distinguished name of the Route Control Profile for the Route Profile for Redistribution.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4369,19 +5869,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "annotation",
-					Description: `(Optional) annotation for object l3 outside.`,
+					Description: `(Optional) Annotation of the L3 Outside object.`,
 				},
 				resource.Attribute{
 					Name:        "enforce_rtctrl",
-					Description: `(Optional) enforce route control type`,
+					Description: `(Optional) Enforce route control type of the L3 Outside object.`,
 				},
 				resource.Attribute{
 					Name:        "name_alias",
-					Description: `(Optional) name_alias for object l3 outside.`,
+					Description: `(Optional) Name alias of the L3 Outside object.`,
 				},
 				resource.Attribute{
 					Name:        "target_dscp",
-					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
+					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the L3 Outside object.`,
+				},
+				resource.Attribute{
+					Name:        "mpls_enabled",
+					Description: `(Optional) Indiscate whether MPLS is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_dampening_pol",
+					Description: `(Optional) Relation to Route Control Profile for Dampening Policies (class rtctrlProfile). Cardinality - N_TO_M. Type - Block.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_ectx",
+					Description: `(Optional) Relation to VRF (class fvCtx). Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_interleak_pol",
+					Description: `(Optional) Relation to Route Profile for Interleak (class rtctrlProfile). Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_l3_dom_att",
+					Description: `(Optional) Relation to a L3 Domain (class extnwDomP). Cardinality - N_TO_ONE. Type - String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3extrs_redistribute_pol",
+					Description: `(Optional) A block representing the relation to a Route Profile for Redistribution (class rtctrlProfile). Cardinality - N_TO_M. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) Route Map Source for the Route Profile for Redistribution.`,
+				},
+				resource.Attribute{
+					Name:        "target_dn",
+					Description: `(Optional) Distinguished name of the Route Control Profile for the Route Profile for Redistribution.`,
 				},
 			},
 		},
@@ -4422,8 +5954,182 @@ var (
 			ShortDescription: `Data source for ACI L3out Floating SVI`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes:       []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "logical_interface_profile_dn",
+					Description: `(Required) Distinguished name of the parent logical interface profile object.`,
+				},
+				resource.Attribute{
+					Name:        "node_dn",
+					Description: `(Required) Node DN of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Required) Port encapsulation of the L3out floating SVI object. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Logical Interface Profile.`,
+				},
+				resource.Attribute{
+					Name:        "addr",
+					Description: `(Optional) Peer address of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "autostate",
+					Description: `(Optional) Autostate of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "encap_scope",
+					Description: `(Optional) Encap scope of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "if_inst_t",
+					Description: `(Optional) Interface type of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_dad",
+					Description: `(Optional) IPv6 dad of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "ll_addr",
+					Description: `(Optional) Link local address address of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `(Optional) MAC address of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) BGP domain mode of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "target_dscp",
+					Description: `(Optional) Target DSCP of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_dyn_path_att",
+					Description: `(Optional) A block representing the relation to a Domain (class infraDomP or vmmDomP). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "tdn",
+					Description: `(Required) The distinguished name of the target.`,
+				},
+				resource.Attribute{
+					Name:        "floating_address",
+					Description: `(Optional) Floating address of the target.`,
+				},
+				resource.Attribute{
+					Name:        "forged_transmit",
+					Description: `(Optional) A configuration option that allows virtual machines to send frames with a mac address that is different from the one specified in the virtual-nic adapter configuration.`,
+				},
+				resource.Attribute{
+					Name:        "mac_change",
+					Description: `(Optional) The status of the mac address change support of the port groups in an external VMM controller, such as a vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "promiscuous_mode",
+					Description: `(Optional) The status of the promiscuous mode support status of the port groups in an external VMM controller, such as a vCenter. This needs to be turned on only for service devices in the cloud, not for Enterprise AVE service deployments.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced_lag_policy_dn",
+					Description: `(Optional) The distinguished name of the target enhanced lag policy (class lacpEnhancedLagPol).`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) Access port encapsulation (VLAN) of the target (format: vlan-101).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Logical Interface Profile.`,
+				},
+				resource.Attribute{
+					Name:        "addr",
+					Description: `(Optional) Peer address of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "autostate",
+					Description: `(Optional) Autostate of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "encap_scope",
+					Description: `(Optional) Encap scope of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "if_inst_t",
+					Description: `(Optional) Interface type of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_dad",
+					Description: `(Optional) IPv6 dad of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "ll_addr",
+					Description: `(Optional) Link local address address of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `(Optional) MAC address of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) BGP domain mode of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "target_dscp",
+					Description: `(Optional) Target DSCP of the L3out floating SVI object.`,
+				},
+				resource.Attribute{
+					Name:        "relation_l3ext_rs_dyn_path_att",
+					Description: `(Optional) A block representing the relation to a Domain (class infraDomP or vmmDomP). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "tdn",
+					Description: `(Required) The distinguished name of the target.`,
+				},
+				resource.Attribute{
+					Name:        "floating_address",
+					Description: `(Optional) Floating address of the target.`,
+				},
+				resource.Attribute{
+					Name:        "forged_transmit",
+					Description: `(Optional) A configuration option that allows virtual machines to send frames with a mac address that is different from the one specified in the virtual-nic adapter configuration.`,
+				},
+				resource.Attribute{
+					Name:        "mac_change",
+					Description: `(Optional) The status of the mac address change support of the port groups in an external VMM controller, such as a vCenter.`,
+				},
+				resource.Attribute{
+					Name:        "promiscuous_mode",
+					Description: `(Optional) The status of the promiscuous mode support status of the port groups in an external VMM controller, such as a vCenter. This needs to be turned on only for service devices in the cloud, not for Enterprise AVE service deployments.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced_lag_policy_dn",
+					Description: `(Optional) The distinguished name of the target enhanced lag policy (class lacpEnhancedLagPol).`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) Access port encapsulation (VLAN) of the target (format: vlan-101).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4589,6 +6295,354 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_l4_l7_deployed_graph_connector_vlan",
+			Category:         "Data Sources",
+			ShortDescription: `Data Source for ACI L4-L7 Deployed Graph Connector VLAN`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "logical_context_dn",
+					Description: `(Required) Distinguished name of the Logical Interface Context.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of EPgDef.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `Annotation of the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `Name Alias of the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `The VLAN encapsulation tag.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_encap",
+					Description: `The VXLAN encapsulation tag.`,
+				},
+				resource.Attribute{
+					Name:        "delete_pbr_scenario",
+					Description: `The boolean value for deleting Policy Based Routing.`,
+				},
+				resource.Attribute{
+					Name:        "member_type",
+					Description: `The type of member for the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `The IP address of the routing device.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of EPgDef.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `Annotation of the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `Name Alias of the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `The VLAN encapsulation tag.`,
+				},
+				resource.Attribute{
+					Name:        "fabric_encap",
+					Description: `The VXLAN encapsulation tag.`,
+				},
+				resource.Attribute{
+					Name:        "delete_pbr_scenario",
+					Description: `The boolean value for deleting Policy Based Routing.`,
+				},
+				resource.Attribute{
+					Name:        "member_type",
+					Description: `The type of member for the EPgDef object.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `The IP address of the routing device.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_l4_l7_devices",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI L4-L7 Device`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the L4-L7 Device. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the L4-L7 Device.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the L4-L7 Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the L4-L7 Device object.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Optional) Enables L4-L7 device cluster to operate in active/active mode. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "context_aware",
+					Description: `(Optional) Determines if the L4-L7 device cluster supports multiple contexts (VRFs). Allowed values are "multi-Context", "single-Context", and default value is "single-Context". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `(Optional) Device Type. Allowed values are "CLOUD", "PHYSICAL", "VIRTUAL", and default value is "PHYSICAL". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "function_type",
+					Description: `(Optional) Function Type of the L4-L7 device cluster. Allowed values are "GoThrough", "GoTo", "L1", "L2", "None", and default value is "GoTo". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "is_copy",
+					Description: `(Optional) Sets device as a copy device. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "promiscuous_mode",
+					Description: `(Optional) Enabling Promiscuous Mode to allow all the traffic in a port group to reach a VM attached to a promiscuous port. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `(Optional) The type of service the L4-L7 device performs. Allowed values are "ADC", "COPY", "FW", "NATIVELB", "OTHERS", and default value is "OTHERS". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "trunking",
+					Description: `(Optional) Configures the device port group for trunking of virtual devices. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_al_dev_to_dom_p",
+					Description: `(Optional) Represents a relation from L4-L7 Device to a VMM Domain Profile (class vmmDomP). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "domain_dn",
+					Description: `(Optional) Distinguished name of the VMM Domain in which the VM is deployed. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "switching_mode",
+					Description: `(Optional) Port group switching mode. Allowed values are "native", "AVE", and default value is "native". The value "AVE" is not supported with non-AVE VMM Domain. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_al_dev_to_phys_dom_p",
+					Description: `(Optional) Represents a relation from L4-L7 Device to a Physical Domain Profile (class physDomP). Type: String.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the L4-L7 Device.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the L4-L7 Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the L4-L7 Device object.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Optional) Enables L4-L7 device cluster to operate in active/active mode. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "context_aware",
+					Description: `(Optional) Determines if the L4-L7 device cluster supports multiple contexts (VRFs). Allowed values are "multi-Context", "single-Context", and default value is "single-Context". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `(Optional) Device Type. Allowed values are "CLOUD", "PHYSICAL", "VIRTUAL", and default value is "PHYSICAL". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "function_type",
+					Description: `(Optional) Function Type of the L4-L7 device cluster. Allowed values are "GoThrough", "GoTo", "L1", "L2", "None", and default value is "GoTo". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "is_copy",
+					Description: `(Optional) Sets device as a copy device. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "promiscuous_mode",
+					Description: `(Optional) Enabling Promiscuous Mode to allow all the traffic in a port group to reach a VM attached to a promiscuous port. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `(Optional) The type of service the L4-L7 device performs. Allowed values are "ADC", "COPY", "FW", "NATIVELB", "OTHERS", and default value is "OTHERS". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "trunking",
+					Description: `(Optional) Configures the device port group for trunking of virtual devices. Allowed values are "no", "yes", and default value is "no". Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_al_dev_to_dom_p",
+					Description: `(Optional) Represents a relation from L4-L7 Device to a VMM Domain Profile (class vmmDomP). Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "domain_dn",
+					Description: `(Optional) Distinguished name of the VMM Domain in which the VM is deployed. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "switching_mode",
+					Description: `(Optional) Port group switching mode. Allowed values are "native", "AVE", and default value is "native". The value "AVE" is not supported with non-AVE VMM Domain. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_al_dev_to_phys_dom_p",
+					Description: `(Optional) Represents a relation from L4-L7 Device to a Physical Domain Profile (class physDomP). Type: String.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_l4_l7_logical_interface",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI L4-L7 Logical Interface`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "l4-l7_devices_dn",
+					Description: `(Required) Distinguished name of the parent L4-L7 Device object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Logical Interface object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Logical Interface.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Logical Interface object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Logical Interface object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) The port encapsulation to be used with the device. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "lag_policy_name",
+					Description: `(Optional) Name of the enhanced Lag policy. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_c_if_att_n",
+					Description: `(Optional) Represents the relation between a set of Concrete Interfaces and the Device Cluster (class vnsCIf). Type: List.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Logical Interface.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Logical Interface object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Logical Interface object.`,
+				},
+				resource.Attribute{
+					Name:        "encap",
+					Description: `(Optional) The port encapsulation to be used with the device. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "lag_policy_name",
+					Description: `(Optional) Name of the enhanced Lag policy. Type: String.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_c_if_att_n",
+					Description: `(Optional) Represents the relation between a set of Concrete Interfaces and the Device Cluster (class vnsCIf). Type: List.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_l4_l7_redirect_health_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI L4-L7 Redirect Health Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the L4-L7 Redirect Health Group object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the L4-L7 Redirect Health Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the L4-L7 Redirect Health Group object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the L4-L7 Redirect Health Group object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the L4-L7 Redirect Health Group object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the L4-L7 Redirect Health Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the L4-L7 Redirect Health Group object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the L4-L7 Redirect Health Group object.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the L4-L7 Redirect Health Group object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_l4_l7_service_graph_template",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI L4-L7 Service Graph Template`,
@@ -4596,6 +6650,62 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_lacp_member_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI LACP Member Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of LACP Member Policy object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LACP Member Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the LACP Member Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the LACP Member Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Port priority - LACP uses the port priority to decide which ports should be put in standby mode when there is a limitation that prevents all compatible ports from aggregating and which ports should be put into active mode. A higher port priority value means a lower priority for LACP.`,
+				},
+				resource.Attribute{
+					Name:        "transmit_rate",
+					Description: `(Optional) Transmission Rate. The configured transmit rate of the LACP packets.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the LACP Member Policy.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the LACP Member Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the LACP Member Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Port priority - LACP uses the port priority to decide which ports should be put in standby mode when there is a limitation that prevents all compatible ports from aggregating and which ports should be put into active mode. A higher port priority value means a lower priority for LACP.`,
+				},
+				resource.Attribute{
+					Name:        "transmit_rate",
+					Description: `(Optional) Transmission Rate. The configured transmit rate of the LACP packets.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4920,6 +7030,50 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_leaf_access_bundle_policy_sub_group",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Override Policy Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "leaf_access_bundle_policy_group_dn",
+					Description: `(Required) Distinguished name of the parent infraAccBndlGrp object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Override Policy Group object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Override Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Override Policy Group object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Override Policy Group object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Override Policy Group.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Override Policy Group object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Override Policy Group object.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5959,6 +8113,114 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_multicast_pool",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for the ACI Multicast Address Pool`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Multicast Address Pool.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Multicast Address Pool.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Multicast Address Pool.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Multicast Address Pool.`,
+				},
+				resource.Attribute{
+					Name:        "multicast_address_block",
+					Description: `(Optional) Multicast Address Pool Block Configuration. Type: block.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Optional) First multicast IP of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Optional) Last multicast IP of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name Alias of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Multicast Address Pool Block. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Multicast Address Pool.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Multicast Address Pool.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_multicast_pool_block",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for the ACI Multicast Address Pool Block`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "multicast_pool_dn",
+					Description: `(Required) Distinguished name of the parent Multicast Pool object.`,
+				},
+				resource.Attribute{
+					Name:        "from",
+					Description: `(Required) First multicast IP of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "to",
+					Description: `(Required) Last multicast IP of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Multicast Address Pool Block.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Multicast Address Pool Block. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Multicast Address Pool Block.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Multicast Address Pool Block.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_node_block",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Node Block`,
@@ -6074,6 +8336,90 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_pbr_l1_l2_destination",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Destination of L1/L2 Redirected Traffic`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_based_redirect_dn",
+					Description: `(Required) Distinguished name of the parent Policy-Based (Redirect or Redirect Backup) object.`,
+				},
+				resource.Attribute{
+					Name:        "destination_name",
+					Description: `(Required) Destination Name of the destination of the L1/L2 Redirected Traffic. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `(Optional) MAC Address of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "pod_id",
+					Description: `(Optional) Pod Id of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_l1_l2_redirect_health_group",
+					Description: `(Optional) Represents the relation to a L4-L7 Redirect Health Group (class vnsRedirectHealthGroup).`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_to_c_if",
+					Description: `(Optional) Represents the relation to a Concrete Interface (class vnsCIf).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `(Optional) MAC Address of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "pod_id",
+					Description: `(Optional) Pod Id of the destination of the L1/L2 Redirected Traffic.`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_l1_l2_redirect_health_group",
+					Description: `(Optional) Represents the relation to a L4-L7 Redirect Health Group (class vnsRedirectHealthGroup).`,
+				},
+				resource.Attribute{
+					Name:        "relation_vns_rs_to_c_if",
+					Description: `(Optional) Represents the relation to a Concrete Interface (class vnsCIf).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7060,6 +9406,50 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description of object SAML Provider Group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_service_redirect_backup_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI PBR Backup Policy`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the PBR Backup Policy object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the PBR Backup Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the PBR Backup Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the PBR Backup Policy object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the PBR Backup Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the PBR Backup Policy object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the PBR Backup Policy object.`,
 				},
 			},
 		},
@@ -8111,6 +10501,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_tenant_to_cloud_account",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Tenant to Cloud Account association`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_dn",
+					Description: `(Required) Distinguished name of the parent Tenant object.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_account_dn",
+					Description: `(Optional) The distinguished name of the target Cloud Account object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to Dn of the Tenant to Cloud Account association object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Tenant to Cloud Account association object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Tenant to Cloud Account association object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to Dn of the Tenant to Cloud Account association object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Tenant to Cloud Account association object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Tenant to Cloud Account association object.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_trigger_scheduler",
 			Category:         "Data Sources",
 			ShortDescription: `Data source for ACI Trigger Scheduler`,
@@ -8511,7 +10945,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) name of Object vmm_domain. ## Argument Reference - ` + "`" + `provider_profile_dn` + "`" + ` - (Required) Distinguished name of parent ProviderProfile object. - ` + "`" + `name` + "`" + ` - (Required) name of Object vmm_domain. ## Attribute Reference - ` + "`" + `id` + "`" + ` - Attribute id set to the Dn of the VMM Domain. - ` + "`" + `access_mode` + "`" + ` - (Optional) Access mode for object vmm domain. - ` + "`" + `annotation` + "`" + ` - (Optional) Annotation for object vmm domain. - ` + "`" + `arp_learning` + "`" + ` - (Optional) Enable/Disable arp learning for AVS Domain. - ` + "`" + `ave_time_out` + "`" + ` - (Optional) ACI Virtual Edge time-out for object vmm domain. - ` + "`" + `config_infra_pg` + "`" + ` - (Optional) Flag to enable configure infra port groups for object vmm domain. - ` + "`" + `ctrl_knob` + "`" + ` - (Optional) Type pf control knob to use. Allowed values are "none" and "epDpVerify". - ` + "`" + `delimiter` + "`" + ` - (Optional) Delimiter for object vmm domain. - ` + "`" + `enable_ave` + "`" + ` - (Optional) Flag to enable ACI Virtual Edge for object vmm domain. - ` + "`" + `enable_tag` + "`" + ` - (Optional) Flag enable tagging for object vmm domain. - ` + "`" + `encap_mode` + "`" + ` - (Optional) The layer 2 encapsulation protocol to use with the virtual switch. - ` + "`" + `enf_pref` + "`" + ` - (Optional) The switching enforcement preference. This determines whether switches can be done within the virtual switch (Local Switching) or whether all switched traffic must go through the fabric (No Local Switching). - ` + "`" + `ep_inventory_type` + "`" + ` - (Optional) Determines which end point inventory type to use for object VMM domain. - ` + "`" + `ep_ret_time` + "`" + ` - (Optional) End point retention time for object vmm domain. Allowed value range is "0" - "600". Default value is "0". - ` + "`" + `hv_avail_monitor` + "`" + ` - (Optional) Flag to enable host availability monitor for object VMM domain. - ` + "`" + `mcast_addr` + "`" + ` - (Optional) The multicast address of the VMM domain profile. - ` + "`" + `mode` + "`" + ` - (Optional) The switch to be used for the domain profile. - ` + "`" + `name_alias` + "`" + ` - (Optional) Name alias for object VMM domain. - ` + "`" + `pref_encap_mode` + "`" + ` - (Optional) The preferred encapsulation mode for object VMM domain.`,
+					Description: `(Required) name of Object vmm_domain. ## Argument Reference - ` + "`" + `provider_profile_dn` + "`" + ` - (Required) Distinguished name of parent ProviderProfile object. - ` + "`" + `name` + "`" + ` - (Required) name of Object vmm_domain. ## Attribute Reference - ` + "`" + `id` + "`" + ` - Attribute id set to the Dn of the VMM Domain. - ` + "`" + `access_mode` + "`" + ` - (Optional) Access mode for object vmm domain. - ` + "`" + `annotation` + "`" + ` - (Optional) Annotation for object vmm domain. - ` + "`" + `arp_learning` + "`" + ` - (Optional) Enable/Disable arp learning for AVS Domain. - ` + "`" + `ave_time_out` + "`" + ` - (Optional) ACI Virtual Edge time-out for object vmm domain. - ` + "`" + `config_infra_pg` + "`" + ` - (Optional) Flag to enable configure infra port groups for object vmm domain. - ` + "`" + `ctrl_knob` + "`" + ` - (Optional) Type pf control knob to use. Allowed values are "none" and "epDpVerify". - ` + "`" + `delimiter` + "`" + ` - (Optional) Delimiter for object vmm domain. - ` + "`" + `enable_ave` + "`" + ` - (Optional) Flag to enable ACI Virtual Edge for object vmm domain. - ` + "`" + `enable_tag` + "`" + ` - (Optional) Flag enable tagging for object vmm domain. - ` + "`" + `enable_vm_foler` + "`" + ` - (Optional) Flag enable vm folder for object vmm domain. - ` + "`" + `encap_mode` + "`" + ` - (Optional) The layer 2 encapsulation protocol to use with the virtual switch. - ` + "`" + `enf_pref` + "`" + ` - (Optional) The switching enforcement preference. This determines whether switches can be done within the virtual switch (Local Switching) or whether all switched traffic must go through the fabric (No Local Switching). - ` + "`" + `ep_inventory_type` + "`" + ` - (Optional) Determines which end point inventory type to use for object VMM domain. - ` + "`" + `ep_ret_time` + "`" + ` - (Optional) End point retention time for object vmm domain. Allowed value range is "0" - "600". Default value is "0". - ` + "`" + `hv_avail_monitor` + "`" + ` - (Optional) Flag to enable host availability monitor for object VMM domain. - ` + "`" + `mcast_addr` + "`" + ` - (Optional) The multicast address of the VMM domain profile. - ` + "`" + `mode` + "`" + ` - (Optional) The switch to be used for the domain profile. - ` + "`" + `name_alias` + "`" + ` - (Optional) Name alias for object VMM domain. - ` + "`" + `pref_encap_mode` + "`" + ` - (Optional) The preferred encapsulation mode for object VMM domain.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8591,6 +11025,82 @@ var (
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aci_vrf_leak_epg_bd_subnet",
+			Category:         "Data Sources",
+			ShortDescription: `Data source for ACI Inter-VRF Leaked EPG/BD Subnet`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `(Required) Distinguished name of the parent VRF object.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) IP of the Inter-VRF Leaked EPG/BD Subnet object. ## Attribute Reference ##`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "allow_l3out_advertisement",
+					Description: `(Optional) Visibility of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "leak_to",
+					Description: `(Optional) A block representing the attributes of ` + "`" + `Tenant and VRF Destinations` + "`" + ` for the Inter-VRF Leaked Routes object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `Distinguished name of the destination VRF object, which is mapped to the ` + "`" + `Tenant and VRF Destinations` + "`" + ` object.`,
+				},
+				resource.Attribute{
+					Name:        "allow_l3out_advertisement",
+					Description: `Scope of the destination VRF object, which is mapped to the ` + "`" + `Tenant and VRF Destinations` + "`" + ` object.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Attribute id set to the Dn of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "annotation",
+					Description: `(Optional) Annotation of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "name_alias",
+					Description: `(Optional) Name Alias of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "allow_l3out_advertisement",
+					Description: `(Optional) Visibility of the Inter-VRF Leaked EPG/BD Subnet object.`,
+				},
+				resource.Attribute{
+					Name:        "leak_to",
+					Description: `(Optional) A block representing the attributes of ` + "`" + `Tenant and VRF Destinations` + "`" + ` for the Inter-VRF Leaked Routes object. Type: Block.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_dn",
+					Description: `Distinguished name of the destination VRF object, which is mapped to the ` + "`" + `Tenant and VRF Destinations` + "`" + ` object.`,
+				},
+				resource.Attribute{
+					Name:        "allow_l3out_advertisement",
+					Description: `Scope of the destination VRF object, which is mapped to the ` + "`" + `Tenant and VRF Destinations` + "`" + ` object.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8882,195 +11392,220 @@ var (
 		"aci_bridge_domain":                            27,
 		"aci_cdp_interface_policy":                     28,
 		"aci_client_end_point":                         29,
-		"aci_cloud_applicationcontainer":               30,
-		"aci_cloud_availability_zone":                  31,
-		"aci_cloud_aws_provider":                       32,
-		"aci_cloud_cidr_pool":                          33,
-		"aci_cloud_context_profile":                    34,
-		"aci_cloud_domain_profile":                     35,
-		"aci_cloud_endpoint_selector":                  36,
-		"aci_cloud_endpoint_selectorfor_external_epgs": 37,
-		"aci_cloud_epg":                                38,
-		"aci_cloud_external_epg":                       39,
-		"aci_cloud_provider_profile":                   40,
-		"aci_cloud_providers_region":                   41,
-		"aci_cloud_subnet":                             42,
-		"aci_cloud_vpn_gateway":                        43,
-		"aci_configuration_export_policy":              44,
-		"aci_configuration_import_policy":              45,
-		"aci_connection":                               46,
-		"aci_console_authentication":                   47,
-		"aci_contract":                                 48,
-		"aci_contract_subject":                         49,
-		"aci_coop_policy":                              50,
-		"aci_default_authentication":                   51,
-		"aci_destination_of_redirected_traffic":        52,
-		"aci_dhcp_option":                              53,
-		"aci_dhcp_option_policy":                       54,
-		"aci_dhcp_relay_policy":                        55,
-		"aci_duo_provider_group":                       56,
-		"aci_encryption_key":                           57,
-		"aci_end_point_retention_policy":               58,
-		"aci_endpoint_controls":                        59,
-		"aci_endpoint_ip_aging_profile":                60,
-		"aci_endpoint_loop_protection":                 61,
-		"aci_endpoint_security_group":                  62,
-		"aci_endpoint_security_group_epg_selector":     63,
-		"aci_endpoint_security_group_selector":         64,
-		"aci_endpoint_security_group_tag_selector":     65,
-		"aci_epg_to_contract":                          66,
-		"aci_epg_to_contract_interface":                67,
-		"aci_epg_to_domain":                            68,
-		"aci_epg_to_static_path":                       69,
-		"aci_epgs_using_function":                      70,
-		"aci_error_disable_recovery":                   71,
-		"aci_external_network_instance_profile":        72,
-		"aci_fabric_if_pol":                            73,
-		"aci_fabric_node":                              74,
-		"aci_fabric_node_control":                      75,
-		"aci_fabric_node_member":                       76,
-		"aci_fabric_path_ep":                           77,
-		"aci_fabric_wide_settings":                     78,
-		"aci_fc_domain":                                79,
-		"aci_fex_bundle_group":                         80,
-		"aci_fex_profile":                              81,
-		"aci_file_remote_path":                         82,
-		"aci_filter":                                   83,
-		"aci_filter_entry":                             84,
-		"aci_firmware_download_task":                   85,
-		"aci_firmware_group":                           86,
-		"aci_firmware_policy":                          87,
-		"aci_function_node":                            88,
-		"aci_global_security":                          89,
-		"aci_hsrp_group_policy":                        90,
-		"aci_hsrp_interface_policy":                    91,
-		"aci_imported_contract":                        92,
-		"aci_interface_blacklist":                      93,
-		"aci_interface_fc_policy":                      94,
-		"aci_isis_domain_policy":                       95,
-		"aci_l2_domain":                                96,
-		"aci_l2_interface_policy":                      97,
-		"aci_l2_outside":                               98,
-		"aci_l2out_extepg":                             99,
-		"aci_l3_domain_profile":                        100,
-		"aci_l3_ext_subnet":                            101,
-		"aci_l3_interface_policy":                      102,
-		"aci_l3_outside":                               103,
-		"aci_l3out_bfd_interface_profile":              104,
-		"aci_l3out_bgp_external_policy":                105,
-		"aci_l3out_bgp_protocol_profile":               106,
-		"aci_l3out_floating_svi":                       107,
-		"aci_l3out_hsrp_interface_group":               108,
-		"aci_l3out_hsrp_interface_profile":             109,
-		"aci_l3out_hsrp_secondary_vip":                 110,
-		"aci_l3out_loopback_interface_profile":         111,
-		"aci_l3out_ospf_external_policy":               112,
-		"aci_l3out_ospf_interface_profile":             113,
-		"aci_l3out_path_attachment":                    114,
-		"aci_l3out_path_attachment_secondary_ip":       115,
-		"aci_l3out_route_tag_policy":                   116,
-		"aci_l3out_static_route":                       117,
-		"aci_l3out_static_route_next_hop":              118,
-		"aci_l3out_vpc_member":                         119,
-		"aci_l4_l7_service_graph_template":             120,
-		"aci_lacp_policy":                              121,
-		"aci_ldap_group_map":                           122,
-		"aci_ldap_group_map_rule":                      123,
-		"aci_ldap_group_map_rule_to_group_map":         124,
-		"aci_ldap_provider":                            125,
-		"aci_leaf_access_bundle_policy_group":          126,
-		"aci_leaf_access_port_policy_group":            127,
-		"aci_leaf_breakout_port_group":                 128,
-		"aci_leaf_interface_profile":                   129,
-		"aci_leaf_profile":                             130,
-		"aci_leaf_selector":                            131,
-		"aci_lldp_interface_policy":                    132,
-		"aci_local_user":                               133,
-		"aci_logical_device_context":                   134,
-		"aci_logical_interface_context":                135,
-		"aci_logical_interface_profile":                136,
-		"aci_logical_node_profile":                     137,
-		"aci_logical_node_to_fabric_node":              138,
-		"aci_login_domain":                             139,
-		"aci_login_domain_provider":                    140,
-		"aci_maintenance_group_node":                   141,
-		"aci_maintenance_policy":                       142,
-		"aci_managed_node_connectivity_group":          143,
-		"aci_match_community_terms":                    144,
-		"aci_match_regex_community_terms":              145,
-		"aci_match_route_destination_rule":             146,
-		"aci_match_rule":                               147,
-		"aci_mcp_instance_policy":                      148,
-		"aci_mgmt_preference":                          149,
-		"aci_mgmt_zone":                                150,
-		"aci_miscabling_protocol_interface_policy":     151,
-		"aci_monitoring_policy":                        152,
-		"aci_node_block":                               153,
-		"aci_node_block_firmware":                      154,
-		"aci_node_mgmt_epg":                            155,
-		"aci_ospf_interface_policy":                    156,
-		"aci_ospf_route_summarization":                 157,
-		"aci_ospf_timers":                              158,
-		"aci_physical_domain":                          159,
-		"aci_pod_maintenance_group":                    160,
-		"aci_port_security_policy":                     161,
-		"aci_port_tracking":                            162,
-		"aci_qos_instance_policy":                      163,
-		"aci_radius_provider":                          164,
-		"aci_radius_provider_group":                    165,
-		"aci_ranges":                                   166,
-		"aci_recurring_window":                         167,
-		"aci_rest":                                     168,
-		"aci_rest_managed":                             169,
-		"aci_route_control_context":                    170,
-		"aci_route_control_profile":                    171,
-		"aci_rsa_provider":                             172,
-		"aci_saml_certificate":                         173,
-		"aci_saml_provider":                            174,
-		"aci_saml_provider_group":                      175,
-		"aci_service_redirect_policy":                  176,
-		"aci_snmp_community":                           177,
-		"aci_span_destination_group":                   178,
-		"aci_span_source_group":                        179,
-		"aci_span_sourcedestination_group_match_label": 180,
-		"aci_spanning_tree_interface_policy":           181,
-		"aci_spine_access_port_selector":               182,
-		"aci_spine_interface_profile":                  183,
-		"aci_spine_interface_profile_selector":         184,
-		"aci_spine_port_policy_group":                  185,
-		"aci_spine_port_selector":                      186,
-		"aci_spine_profile":                            187,
-		"aci_spine_switch_association":                 188,
-		"aci_spine_switch_policy_group":                189,
-		"aci_static_node_mgmt_address":                 190,
-		"aci_subnet":                                   191,
-		"aci_system":                                   192,
-		"aci_taboo_contract":                           193,
-		"aci_tacacs_accounting":                        194,
-		"aci_tacacs_accounting_destination":            195,
-		"aci_tacacs_provider":                          196,
-		"aci_tacacs_provider_group":                    197,
-		"aci_tacacs_source":                            198,
-		"aci_tag":                                      199,
-		"aci_tenant":                                   200,
-		"aci_trigger_scheduler":                        201,
-		"aci_user_security_domain":                     202,
-		"aci_user_security_domain_role":                203,
-		"aci_vlan_encapsulationfor_vxlan_traffic":      204,
-		"aci_vlan_pool":                                205,
-		"aci_vmm_controller":                           206,
-		"aci_vmm_credential":                           207,
-		"aci_vmm_domain":                               208,
-		"aci_vpc_domain_policy":                        209,
-		"aci_vpc_explicit_protection_group":            210,
-		"aci_vrf":                                      211,
-		"aci_vrf_snmp_context":                         212,
-		"aci_vrf_snmp_context_community":               213,
-		"aci_vrf_to_bgp_address_family_context":        214,
-		"aci_vsan_pool":                                215,
-		"aci_vswitch_policy":                           216,
-		"aci_vxlan_pool":                               217,
-		"aci_x509_certificate":                         218,
+		"aci_cloud_account":                            30,
+		"aci_cloud_ad":                                 31,
+		"aci_cloud_applicationcontainer":               32,
+		"aci_cloud_availability_zone":                  33,
+		"aci_cloud_aws_provider":                       34,
+		"aci_cloud_cidr_pool":                          35,
+		"aci_cloud_context_profile":                    36,
+		"aci_cloud_credentials":                        37,
+		"aci_cloud_domain_profile":                     38,
+		"aci_cloud_endpoint_selector":                  39,
+		"aci_cloud_endpoint_selectorfor_external_epgs": 40,
+		"aci_cloud_epg":                                41,
+		"aci_cloud_external_epg":                       42,
+		"aci_cloud_external_network":                   43,
+		"aci_cloud_ipsec_tunnel_subnet_pool":           44,
+		"aci_cloud_provider_profile":                   45,
+		"aci_cloud_providers_region":                   46,
+		"aci_cloud_subnet":                             47,
+		"aci_cloud_vpn_gateway":                        48,
+		"aci_cloud_vpn_network":                        49,
+		"aci_cloud_vrf_leak_routes":                    50,
+		"aci_concrete_device":                          51,
+		"aci_concrete_interface":                       52,
+		"aci_configuration_export_policy":              53,
+		"aci_configuration_import_policy":              54,
+		"aci_connection":                               55,
+		"aci_console_authentication":                   56,
+		"aci_contract":                                 57,
+		"aci_contract_subject":                         58,
+		"aci_contract_subject_filter":                  59,
+		"aci_contract_subject_one_way_filter":          60,
+		"aci_coop_policy":                              61,
+		"aci_default_authentication":                   62,
+		"aci_destination_of_redirected_traffic":        63,
+		"aci_dhcp_option":                              64,
+		"aci_dhcp_option_policy":                       65,
+		"aci_dhcp_relay_policy":                        66,
+		"aci_duo_provider_group":                       67,
+		"aci_encryption_key":                           68,
+		"aci_end_point_retention_policy":               69,
+		"aci_endpoint_controls":                        70,
+		"aci_endpoint_ip_aging_profile":                71,
+		"aci_endpoint_loop_protection":                 72,
+		"aci_endpoint_security_group":                  73,
+		"aci_endpoint_security_group_epg_selector":     74,
+		"aci_endpoint_security_group_selector":         75,
+		"aci_endpoint_security_group_tag_selector":     76,
+		"aci_epg_to_contract":                          77,
+		"aci_epg_to_contract_interface":                78,
+		"aci_epg_to_domain":                            79,
+		"aci_epg_to_static_path":                       80,
+		"aci_epgs_using_function":                      81,
+		"aci_error_disable_recovery":                   82,
+		"aci_external_network_instance_profile":        83,
+		"aci_fabric_if_pol":                            84,
+		"aci_fabric_node":                              85,
+		"aci_fabric_node_control":                      86,
+		"aci_fabric_node_member":                       87,
+		"aci_fabric_path_ep":                           88,
+		"aci_fabric_wide_settings":                     89,
+		"aci_fc_domain":                                90,
+		"aci_fex_bundle_group":                         91,
+		"aci_fex_profile":                              92,
+		"aci_file_remote_path":                         93,
+		"aci_filter":                                   94,
+		"aci_filter_entry":                             95,
+		"aci_firmware_download_task":                   96,
+		"aci_firmware_group":                           97,
+		"aci_firmware_policy":                          98,
+		"aci_function_node":                            99,
+		"aci_global_security":                          100,
+		"aci_hsrp_group_policy":                        101,
+		"aci_hsrp_interface_policy":                    102,
+		"aci_imported_contract":                        103,
+		"aci_interface_blacklist":                      104,
+		"aci_interface_config":                         105,
+		"aci_interface_fc_policy":                      106,
+		"aci_ip_sla_monitoring_policy":                 107,
+		"aci_isis_domain_policy":                       108,
+		"aci_l2_domain":                                109,
+		"aci_l2_interface_policy":                      110,
+		"aci_l2_outside":                               111,
+		"aci_l2out_extepg":                             112,
+		"aci_l3_domain_profile":                        113,
+		"aci_l3_ext_subnet":                            114,
+		"aci_l3_interface_policy":                      115,
+		"aci_l3_outside":                               116,
+		"aci_l3out_bfd_interface_profile":              117,
+		"aci_l3out_bgp_external_policy":                118,
+		"aci_l3out_bgp_protocol_profile":               119,
+		"aci_l3out_floating_svi":                       120,
+		"aci_l3out_hsrp_interface_group":               121,
+		"aci_l3out_hsrp_interface_profile":             122,
+		"aci_l3out_hsrp_secondary_vip":                 123,
+		"aci_l3out_loopback_interface_profile":         124,
+		"aci_l3out_ospf_external_policy":               125,
+		"aci_l3out_ospf_interface_profile":             126,
+		"aci_l3out_path_attachment":                    127,
+		"aci_l3out_path_attachment_secondary_ip":       128,
+		"aci_l3out_route_tag_policy":                   129,
+		"aci_l3out_static_route":                       130,
+		"aci_l3out_static_route_next_hop":              131,
+		"aci_l3out_vpc_member":                         132,
+		"aci_l4_l7_deployed_graph_connector_vlan":      133,
+		"aci_l4_l7_devices":                            134,
+		"aci_l4_l7_logical_interface":                  135,
+		"aci_l4_l7_redirect_health_group":              136,
+		"aci_l4_l7_service_graph_template":             137,
+		"aci_lacp_member_policy":                       138,
+		"aci_lacp_policy":                              139,
+		"aci_ldap_group_map":                           140,
+		"aci_ldap_group_map_rule":                      141,
+		"aci_ldap_group_map_rule_to_group_map":         142,
+		"aci_ldap_provider":                            143,
+		"aci_leaf_access_bundle_policy_group":          144,
+		"aci_leaf_access_bundle_policy_sub_group":      145,
+		"aci_leaf_access_port_policy_group":            146,
+		"aci_leaf_breakout_port_group":                 147,
+		"aci_leaf_interface_profile":                   148,
+		"aci_leaf_profile":                             149,
+		"aci_leaf_selector":                            150,
+		"aci_lldp_interface_policy":                    151,
+		"aci_local_user":                               152,
+		"aci_logical_device_context":                   153,
+		"aci_logical_interface_context":                154,
+		"aci_logical_interface_profile":                155,
+		"aci_logical_node_profile":                     156,
+		"aci_logical_node_to_fabric_node":              157,
+		"aci_login_domain":                             158,
+		"aci_login_domain_provider":                    159,
+		"aci_maintenance_group_node":                   160,
+		"aci_maintenance_policy":                       161,
+		"aci_managed_node_connectivity_group":          162,
+		"aci_match_community_terms":                    163,
+		"aci_match_regex_community_terms":              164,
+		"aci_match_route_destination_rule":             165,
+		"aci_match_rule":                               166,
+		"aci_mcp_instance_policy":                      167,
+		"aci_mgmt_preference":                          168,
+		"aci_mgmt_zone":                                169,
+		"aci_miscabling_protocol_interface_policy":     170,
+		"aci_monitoring_policy":                        171,
+		"aci_multicast_pool":                           172,
+		"aci_multicast_pool_block":                     173,
+		"aci_node_block":                               174,
+		"aci_node_block_firmware":                      175,
+		"aci_node_mgmt_epg":                            176,
+		"aci_ospf_interface_policy":                    177,
+		"aci_ospf_route_summarization":                 178,
+		"aci_ospf_timers":                              179,
+		"aci_pbr_l1_l2_destination":                    180,
+		"aci_physical_domain":                          181,
+		"aci_pod_maintenance_group":                    182,
+		"aci_port_security_policy":                     183,
+		"aci_port_tracking":                            184,
+		"aci_qos_instance_policy":                      185,
+		"aci_radius_provider":                          186,
+		"aci_radius_provider_group":                    187,
+		"aci_ranges":                                   188,
+		"aci_recurring_window":                         189,
+		"aci_rest":                                     190,
+		"aci_rest_managed":                             191,
+		"aci_route_control_context":                    192,
+		"aci_route_control_profile":                    193,
+		"aci_rsa_provider":                             194,
+		"aci_saml_certificate":                         195,
+		"aci_saml_provider":                            196,
+		"aci_saml_provider_group":                      197,
+		"aci_service_redirect_backup_policy":           198,
+		"aci_service_redirect_policy":                  199,
+		"aci_snmp_community":                           200,
+		"aci_span_destination_group":                   201,
+		"aci_span_source_group":                        202,
+		"aci_span_sourcedestination_group_match_label": 203,
+		"aci_spanning_tree_interface_policy":           204,
+		"aci_spine_access_port_selector":               205,
+		"aci_spine_interface_profile":                  206,
+		"aci_spine_interface_profile_selector":         207,
+		"aci_spine_port_policy_group":                  208,
+		"aci_spine_port_selector":                      209,
+		"aci_spine_profile":                            210,
+		"aci_spine_switch_association":                 211,
+		"aci_spine_switch_policy_group":                212,
+		"aci_static_node_mgmt_address":                 213,
+		"aci_subnet":                                   214,
+		"aci_system":                                   215,
+		"aci_taboo_contract":                           216,
+		"aci_tacacs_accounting":                        217,
+		"aci_tacacs_accounting_destination":            218,
+		"aci_tacacs_provider":                          219,
+		"aci_tacacs_provider_group":                    220,
+		"aci_tacacs_source":                            221,
+		"aci_tag":                                      222,
+		"aci_tenant":                                   223,
+		"aci_tenant_to_cloud_account":                  224,
+		"aci_trigger_scheduler":                        225,
+		"aci_user_security_domain":                     226,
+		"aci_user_security_domain_role":                227,
+		"aci_vlan_encapsulationfor_vxlan_traffic":      228,
+		"aci_vlan_pool":                                229,
+		"aci_vmm_controller":                           230,
+		"aci_vmm_credential":                           231,
+		"aci_vmm_domain":                               232,
+		"aci_vpc_domain_policy":                        233,
+		"aci_vpc_explicit_protection_group":            234,
+		"aci_vrf":                                      235,
+		"aci_vrf_leak_epg_bd_subnet":                   236,
+		"aci_vrf_snmp_context":                         237,
+		"aci_vrf_snmp_context_community":               238,
+		"aci_vrf_to_bgp_address_family_context":        239,
+		"aci_vsan_pool":                                240,
+		"aci_vswitch_policy":                           241,
+		"aci_vxlan_pool":                               242,
+		"aci_x509_certificate":                         243,
 	}
 )
 

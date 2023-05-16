@@ -1246,6 +1246,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_authentication_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"authentication",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_certificate_profile",
 			Category:         "Device",
 			ShortDescription: ``,
@@ -1999,7 +2043,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_certificate",
-					Description: `The SSL certificate.`,
+					Description: `(PAN-OS 10.1 and below) The SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificates",
+					Description: `(PAN-OS 10.2+) List of SSL certificate.`,
 				},
 				resource.Attribute{
 					Name:        "decryption_profile",
@@ -2121,7 +2169,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_certificate",
-					Description: `The SSL certificate.`,
+					Description: `(PAN-OS 10.1 and below) The SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_certificates",
+					Description: `(PAN-OS 10.2+) List of SSL certificate.`,
 				},
 				resource.Attribute{
 					Name:        "decryption_profile",
@@ -3074,6 +3126,82 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_globalprotect_ipsec_crypto_profile",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"globalprotect",
+				"ipsec",
+				"crypto",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "authentications",
+					Description: `(List of string) The authentication algorithms.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "authentications",
+					Description: `(List of string) The authentication algorithms.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_globalprotect_ipsec_crypto_profiles",
+			Category:         "Network",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"globalprotect",
+				"ipsec",
+				"crypto",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "authentications",
+					Description: `(List of string) The authentication algorithms.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "authentications",
+					Description: `(List of string) The authentication algorithms.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_ip_tag",
 			Category:         "User-ID",
 			ShortDescription: ``,
@@ -3130,6 +3258,166 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(list) List of tags.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_kerberos_profile",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"kerberos",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "admin_use_only",
+					Description: `(bool) Administrator use only.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `List of server specs, as defined below. ` + "`" + `server` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Server hostname or IP address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(int) Kerberos server port number.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "admin_use_only",
+					Description: `(bool) Administrator use only.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `List of server specs, as defined below. ` + "`" + `server` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `Server hostname or IP address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(int) Kerberos server port number.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_kerberos_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"kerberos",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_ldap_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"ldap",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
 				},
 			},
 		},
@@ -5029,6 +5317,165 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_radius_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"radius",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_saml_profile",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"saml",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "admin_use_only",
+					Description: `(bool) Administrator use only.`,
+				},
+				resource.Attribute{
+					Name:        "identity_provider_id",
+					Description: `Unique identifier for SAML IdP.`,
+				},
+				resource.Attribute{
+					Name:        "identity_provider_certificate",
+					Description: `Object name of IdP signing certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sso_url",
+					Description: `The single sign on service URL for the IdP server.`,
+				},
+				resource.Attribute{
+					Name:        "sso_binding",
+					Description: `SAML HTTP binding for SSO requests to IdP.`,
+				},
+				resource.Attribute{
+					Name:        "slo_url",
+					Description: `The single logout service URL for the IdP server.`,
+				},
+				resource.Attribute{
+					Name:        "slo_binding",
+					Description: `SAML HTTP binding for SLO requests to IdP.`,
+				},
+				resource.Attribute{
+					Name:        "validate_identity_provider_certificate",
+					Description: `(bool) Validate identity provider certificate.`,
+				},
+				resource.Attribute{
+					Name:        "sign_saml_message",
+					Description: `(bool) Sign SAML message to IdP.`,
+				},
+				resource.Attribute{
+					Name:        "max_clock_skew",
+					Description: `(int) Maximum allowed clock skew in seconds between SAML entities.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_saml_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"saml",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_security_profile_group",
 			Category:         "Objects",
 			ShortDescription: ``,
@@ -5667,6 +6114,206 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_ssl_tls_service_profile",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"ssl",
+				"tls",
+				"service",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). The following arguments are supported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `SSL certificate file name.`,
+				},
+				resource.Attribute{
+					Name:        "min_version",
+					Description: `Minimum TLS protocol version.`,
+				},
+				resource.Attribute{
+					Name:        "max_version",
+					Description: `Maximum TLS protocol version.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_rsa",
+					Description: `(bool) Allow algorithm RSA.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_dhe",
+					Description: `(bool) Allow algorithm DHE.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_ecdhe",
+					Description: `(bool) Allow algorithm ECDHE.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_3des",
+					Description: `(bool) Allow algorithm 3DES.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_rc4",
+					Description: `(bool) Allow algorithm RC4.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_128_cbc",
+					Description: `(bool) Allow algorithm AES-128-CBC.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_256_cbc",
+					Description: `(bool) Allow algorithm AES-256-CBC.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_128_gcm",
+					Description: `(bool) Allow algorithm AES-128-GCM.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_256_gcm",
+					Description: `(bool) Allow algorithm AES-256-GCM.`,
+				},
+				resource.Attribute{
+					Name:        "allow_authentication_sha1",
+					Description: `(bool) Allow authentication SHA1.`,
+				},
+				resource.Attribute{
+					Name:        "allow_authentication_sha256",
+					Description: `(bool) Allow authentication SHA256.`,
+				},
+				resource.Attribute{
+					Name:        "allow_authentication_sha384",
+					Description: `(bool) Allow authentication SHA384.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `SSL certificate file name.`,
+				},
+				resource.Attribute{
+					Name:        "min_version",
+					Description: `Minimum TLS protocol version.`,
+				},
+				resource.Attribute{
+					Name:        "max_version",
+					Description: `Maximum TLS protocol version.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_rsa",
+					Description: `(bool) Allow algorithm RSA.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_dhe",
+					Description: `(bool) Allow algorithm DHE.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_ecdhe",
+					Description: `(bool) Allow algorithm ECDHE.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_3des",
+					Description: `(bool) Allow algorithm 3DES.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_rc4",
+					Description: `(bool) Allow algorithm RC4.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_128_cbc",
+					Description: `(bool) Allow algorithm AES-128-CBC.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_256_cbc",
+					Description: `(bool) Allow algorithm AES-256-CBC.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_128_gcm",
+					Description: `(bool) Allow algorithm AES-128-GCM.`,
+				},
+				resource.Attribute{
+					Name:        "allow_algorithm_aes_256_gcm",
+					Description: `(bool) Allow algorithm AES-256-GCM.`,
+				},
+				resource.Attribute{
+					Name:        "allow_authentication_sha1",
+					Description: `(bool) Allow authentication SHA1.`,
+				},
+				resource.Attribute{
+					Name:        "allow_authentication_sha256",
+					Description: `(bool) Allow authentication SHA256.`,
+				},
+				resource.Attribute{
+					Name:        "allow_authentication_sha384",
+					Description: `(bool) Allow authentication SHA384.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_ssl_tls_service_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"ssl",
+				"tls",
+				"service",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_system_info",
 			Category:         "Operational State",
 			ShortDescription: ``,
@@ -5694,6 +6341,51 @@ var (
 				resource.Attribute{
 					Name:        "version_patch",
 					Description: `Patch version number.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "panos_tacacs_plus_profiles",
+			Category:         "Device",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"device",
+				"tacacs",
+				"plus",
+				"profiles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template",
+					Description: `The template.`,
+				},
+				resource.Attribute{
+					Name:        "template_stack",
+					Description: `The template stack. NGFW / Panorama:`,
+				},
+				resource.Attribute{
+					Name:        "vsys",
+					Description: `The vsys (default: ` + "`" + `shared` + "`" + `). ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) The number of items present.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `(list) A list of the items present.`,
 				},
 			},
 		},
@@ -6788,66 +7480,78 @@ var (
 		"panos_arp":                                 9,
 		"panos_arps":                                10,
 		"panos_audit_comment_history":               11,
-		"panos_certificate_profile":                 12,
-		"panos_certificate_profiles":                13,
-		"panos_custom_data_pattern_object":          14,
-		"panos_custom_data_pattern_objects":         15,
-		"panos_custom_url_categories":               16,
-		"panos_custom_url_category":                 17,
-		"panos_data_filtering_security_profile":     18,
-		"panos_data_filtering_security_profiles":    19,
-		"panos_decryption_rule":                     20,
-		"panos_decryption_rules":                    21,
-		"panos_device_group":                        22,
-		"panos_device_group_parent":                 23,
-		"panos_device_groups":                       24,
-		"panos_dhcp_interface_info":                 25,
-		"panos_dos_protection_profile":              26,
-		"panos_dos_protection_profiles":             27,
-		"panos_dynamic_user_group":                  28,
-		"panos_dynamic_user_groups":                 29,
-		"panos_edl":                                 30,
-		"panos_edls":                                31,
-		"panos_file_blocking_security_profile":      32,
-		"panos_file_blocking_security_profiles":     33,
-		"panos_ip_tag":                              34,
-		"panos_local_user_db_group":                 35,
-		"panos_local_user_db_groups":                36,
-		"panos_nat_rule":                            37,
-		"panos_nat_rules":                           38,
-		"panos_ospf":                                39,
-		"panos_ospf_area":                           40,
-		"panos_ospf_area_interface":                 41,
-		"panos_ospf_area_interfaces":                42,
-		"panos_ospf_area_virtual_link":              43,
-		"panos_ospf_area_virtual_links":             44,
-		"panos_ospf_areas":                          45,
-		"panos_ospf_auth_profiles":                  46,
-		"panos_ospf_export":                         47,
-		"panos_ospf_exports":                        48,
-		"panos_pbf_rule":                            49,
-		"panos_pbf_rules":                           50,
-		"panos_plugin":                              51,
-		"panos_predefined_dlp_file_type":            52,
-		"panos_predefined_tdb_file_type":            53,
-		"panos_predefined_threat":                   54,
-		"panos_security_profile_group":              55,
-		"panos_security_profile_groups":             56,
-		"panos_security_rule":                       57,
-		"panos_security_rules":                      58,
-		"panos_ssl_decrypt":                         59,
-		"panos_system_info":                         60,
-		"panos_tech_support_file":                   61,
-		"panos_url_filtering_security_profile":      62,
-		"panos_url_filtering_security_profiles":     63,
-		"panos_user_tag":                            64,
-		"panos_virtual_router":                      65,
-		"panos_virtual_routers":                     66,
-		"panos_vm_auth_key":                         67,
-		"panos_vulnerability_security_profile":      68,
-		"panos_vulnerability_security_profiles":     69,
-		"panos_wildfire_analysis_security_profile":  70,
-		"panos_wildfire_analysis_security_profiles": 71,
+		"panos_authentication_profiles":             12,
+		"panos_certificate_profile":                 13,
+		"panos_certificate_profiles":                14,
+		"panos_custom_data_pattern_object":          15,
+		"panos_custom_data_pattern_objects":         16,
+		"panos_custom_url_categories":               17,
+		"panos_custom_url_category":                 18,
+		"panos_data_filtering_security_profile":     19,
+		"panos_data_filtering_security_profiles":    20,
+		"panos_decryption_rule":                     21,
+		"panos_decryption_rules":                    22,
+		"panos_device_group":                        23,
+		"panos_device_group_parent":                 24,
+		"panos_device_groups":                       25,
+		"panos_dhcp_interface_info":                 26,
+		"panos_dos_protection_profile":              27,
+		"panos_dos_protection_profiles":             28,
+		"panos_dynamic_user_group":                  29,
+		"panos_dynamic_user_groups":                 30,
+		"panos_edl":                                 31,
+		"panos_edls":                                32,
+		"panos_file_blocking_security_profile":      33,
+		"panos_file_blocking_security_profiles":     34,
+		"panos_globalprotect_ipsec_crypto_profile":  35,
+		"panos_globalprotect_ipsec_crypto_profiles": 36,
+		"panos_ip_tag":                              37,
+		"panos_kerberos_profile":                    38,
+		"panos_kerberos_profiles":                   39,
+		"panos_ldap_profiles":                       40,
+		"panos_local_user_db_group":                 41,
+		"panos_local_user_db_groups":                42,
+		"panos_nat_rule":                            43,
+		"panos_nat_rules":                           44,
+		"panos_ospf":                                45,
+		"panos_ospf_area":                           46,
+		"panos_ospf_area_interface":                 47,
+		"panos_ospf_area_interfaces":                48,
+		"panos_ospf_area_virtual_link":              49,
+		"panos_ospf_area_virtual_links":             50,
+		"panos_ospf_areas":                          51,
+		"panos_ospf_auth_profiles":                  52,
+		"panos_ospf_export":                         53,
+		"panos_ospf_exports":                        54,
+		"panos_pbf_rule":                            55,
+		"panos_pbf_rules":                           56,
+		"panos_plugin":                              57,
+		"panos_predefined_dlp_file_type":            58,
+		"panos_predefined_tdb_file_type":            59,
+		"panos_predefined_threat":                   60,
+		"panos_radius_profiles":                     61,
+		"panos_saml_profile":                        62,
+		"panos_saml_profiles":                       63,
+		"panos_security_profile_group":              64,
+		"panos_security_profile_groups":             65,
+		"panos_security_rule":                       66,
+		"panos_security_rules":                      67,
+		"panos_ssl_decrypt":                         68,
+		"panos_ssl_tls_service_profile":             69,
+		"panos_ssl_tls_service_profiles":            70,
+		"panos_system_info":                         71,
+		"panos_tacacs_plus_profiles":                72,
+		"panos_tech_support_file":                   73,
+		"panos_url_filtering_security_profile":      74,
+		"panos_url_filtering_security_profiles":     75,
+		"panos_user_tag":                            76,
+		"panos_virtual_router":                      77,
+		"panos_virtual_routers":                     78,
+		"panos_vm_auth_key":                         79,
+		"panos_vulnerability_security_profile":      80,
+		"panos_vulnerability_security_profiles":     81,
+		"panos_wildfire_analysis_security_profile":  82,
+		"panos_wildfire_analysis_security_profiles": 83,
 	}
 )
 

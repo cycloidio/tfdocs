@@ -23,7 +23,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "import_source_format",
-					Description: `(Required) The file format of the image referenced in the ` + "`" + `import_url` + "`" + `. Options include ` + "`" + `raw` + "`" + `.`,
+					Description: `(Optional, Ignored) Deprecated: this field no longer needs to be specified and will be ignored. The image format is detected automatically.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -38,12 +38,20 @@ var (
 					Description: `(Required) How user_data will be handled when creating a server. Options include ` + "`" + `pass-through` + "`" + ` and ` + "`" + `extend-cloud-config` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "firmware_type",
+					Description: `(Optional) The firmware type that will be used for servers created with the custom image. Options include ` + "`" + `bios` + "`" + ` and ` + "`" + `uefi` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "zone_slugs",
 					Description: `(Required) Specify the zones in which the custom image will be available. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "timeouts",
-					Description: `(Optional) Specify how long certain operations are allowed to take before being considered to have failed. Currently, only the ` + "`" + `create` + "`" + ` timeout can be specified. Takes a string representation of a duration, such as ` + "`" + `20m` + "`" + ` for 20 minutes (default), ` + "`" + `10s` + "`" + ` for ten seconds, or ` + "`" + `2h` + "`" + ` for two hours. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Specify how long certain operations are allowed to take before being considered to have failed. Currently, only the ` + "`" + `create` + "`" + ` timeout can be specified. Takes a string representation of a duration, such as ` + "`" + `20m` + "`" + ` for 20 minutes (default), ` + "`" + `10s` + "`" + ` for ten seconds, or ` + "`" + `2h` + "`" + ` for two hours.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -110,6 +118,10 @@ var (
 					Description: `(Optional) Assign the Floating IP to this server (UUID).`,
 				},
 				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `(Optional) Assign the Floating IP to this load balancer (UUID).`,
+				},
+				resource.Attribute{
 					Name:        "ip_version",
 					Description: `(Required) ` + "`" + `4` + "`" + ` or ` + "`" + `6` + "`" + `, for an IPv4 or IPv6 address or network respectively.`,
 				},
@@ -127,15 +139,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reverse_ptr",
-					Description: `(Optional) You can specify the PTR record (reverse DNS pointer) in case of a single Floating IP address. The following arguments are supported when updating Floating IPs:`,
+					Description: `(Optional) You can specify the PTR record (reverse DNS pointer) in case of a single Floating IP address.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating Floating IPs:`,
 				},
 				resource.Attribute{
 					Name:        "server",
-					Description: `(Required) (Re-)Assign the Floating IP to this server (UUID).`,
+					Description: `(Optional) (Re-)Assign the Floating IP to this server (UUID).`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `(Optional) (Re-)Assign the Floating IP to this load balancer (UUID).`,
 				},
 				resource.Attribute{
 					Name:        "reverse_ptr",
-					Description: `(Optional) You can specify the new PTR record (reverse DNS pointer) in case of a single Floating IP address. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) You can specify the new PTR record (reverse DNS pointer) in case of a single Floating IP address.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -147,7 +171,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "next_hop",
-					Description: `The IP address of the server that your Floating IP is currently assigned to. ## Import Floating IPs can be imported using the Floating IP's network IP: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_floating_ip.floating_ip 192.0.2.24 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The IP address of the server or load balancer that your Floating IP is currently assigned to. ## Import Floating IPs can be imported using the Floating IP's network IP: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_floating_ip.floating_ip 192.0.2.24 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -161,7 +185,539 @@ var (
 				},
 				resource.Attribute{
 					Name:        "next_hop",
-					Description: `The IP address of the server that your Floating IP is currently assigned to. ## Import Floating IPs can be imported using the Floating IP's network IP: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_floating_ip.floating_ip 192.0.2.24 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The IP address of the server or load balancer that your Floating IP is currently assigned to. ## Import Floating IPs can be imported using the Floating IP's network IP: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_floating_ip.floating_ip 192.0.2.24 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_load_balancer",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_slug",
+					Description: `(Required) The slug (name) of the flavor to use for the new load balancer. Possible values can be found in our [API documentation](https://www.cloudscale.ch/en/api/v1#load-balancer-flavors).`,
+				},
+				resource.Attribute{
+					Name:        "zone_slug",
+					Description: `(Required) The slug of the zone in which the new load balancer will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vip_addresses",
+					Description: `(Optional) A list of VIP address objects. This attributes needs to be specified if the load balancer should be assigned a VIP address in a subnet on a private network. If the VIP address should be created on the public network, this attribute should be omitted. Each VIP address object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "subnet_uuid",
+					Description: `(Optional) The UUID of the subnet this VIP address should be part of.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) An VIP address that has been assigned to this load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating load balancers:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `New name of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Change tags (see documentation above)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "vip_addresses",
+					Description: `A list of VIP address objects. Each VIP address object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The IP version, either ` + "`" + `4` + "`" + ` or ` + "`" + `6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `The cidr of the subnet the VIP address is part of.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_href",
+					Description: `The cloudscale.ch API URL of the subnet the VIP address is part of. ## Import Load balancer can be imported using the load balancer's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer.lb 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "vip_addresses",
+					Description: `A list of VIP address objects. Each VIP address object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The IP version, either ` + "`" + `4` + "`" + ` or ` + "`" + `6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `The cidr of the subnet the VIP address is part of.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_href",
+					Description: `The cloudscale.ch API URL of the subnet the VIP address is part of. ## Import Load balancer can be imported using the load balancer's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer.lb 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_load_balancer_health_monitor",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new load balancer health monitor.`,
+				},
+				resource.Attribute{
+					Name:        "pool_uuid",
+					Description: `(Required) The pool of the health monitor.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the health monitor. Options include: ` + "`" + `"ping"` + "`" + `, ` + "`" + `"tcp"` + "`" + `, ` + "`" + `"http"` + "`" + `, ` + "`" + `"https"` + "`" + ` and ` + "`" + `"tls-hello"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "delay_s",
+					Description: `(Optional) The delay between two successive checks in seconds. Default is ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_s",
+					Description: `(Optional) The maximum time allowed for an individual check in seconds. Default is ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "up_threshold",
+					Description: `(Optional) The number of checks that need to be successful before the ` + "`" + `monitor_status` + "`" + ` of a pool member changes to ` + "`" + `"up"` + "`" + `. Default is ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "down_threshold",
+					Description: `(Optional) The number of checks that need to fail before the ` + "`" + `monitor_status` + "`" + ` of a pool member changes to ` + "`" + `"down"` + "`" + `. Default is ` + "`" + `3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_expected_codes",
+					Description: `(Optional) The HTTP status codes allowed for a check to be considered successful. Can either be a list of status codes, for example ` + "`" + `["200", "202"]` + "`" + `, or a list containing a single range, for example ` + "`" + `["200-204"]` + "`" + `. Default is ` + "`" + `["200"]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_method",
+					Description: `(Optional) The HTTP method used for the check. Options include ` + "`" + `"CONNECT"` + "`" + `, ` + "`" + `"DELETE"` + "`" + `, ` + "`" + `"GET"` + "`" + `, ` + "`" + `"HEAD"` + "`" + `, ` + "`" + `"OPTIONS"` + "`" + `, ` + "`" + `"PATCH"` + "`" + `, ` + "`" + `"POST"` + "`" + `, ` + "`" + `"PUT"` + "`" + ` and ` + "`" + `"TRACE"` + "`" + `. Default is ` + "`" + `"GET"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_url_path",
+					Description: `(Optional) The URL used for the check. Default is ` + "`" + `"/"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_version",
+					Description: `(Optional) The HTTP version used for the check. Options include ` + "`" + `"1.0"` + "`" + ` and ` + "`" + `"1.1"` + "`" + `. Default is ` + "`" + `"1.1"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_host",
+					Description: `(Optional) The server name in the HTTP Host: header used for the check. Requires version to be set to ` + "`" + `"1.1"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating load balancer health monitor:`,
+				},
+				resource.Attribute{
+					Name:        "delay_s",
+					Description: `The delay between two successive checks in seconds. Default is ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_s",
+					Description: `The maximum time allowed for an individual check in seconds. Default is ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "up_threshold",
+					Description: `The number of checks that need to be successful before the ` + "`" + `monitor_status` + "`" + ` of a pool member changes to ` + "`" + `"up"` + "`" + `. Default is ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "down_threshold",
+					Description: `The number of checks that need to fail before the ` + "`" + `monitor_status` + "`" + ` of a pool member changes to ` + "`" + `"down"` + "`" + `. Default is ` + "`" + `3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_expected_codes",
+					Description: `The HTTP status codes allowed for a check to be considered successful. Can either be a list of status codes, for example ` + "`" + `["200", "202"]` + "`" + `, or a list containing a single range, for example ` + "`" + `["200-204"]` + "`" + `. Default is ` + "`" + `["200"]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_method",
+					Description: `The HTTP method used for the check. Options include ` + "`" + `"CONNECT"` + "`" + `, ` + "`" + `"DELETE"` + "`" + `, ` + "`" + `"GET"` + "`" + `, ` + "`" + `"HEAD"` + "`" + `, ` + "`" + `"OPTIONS"` + "`" + `, ` + "`" + `"PATCH"` + "`" + `, ` + "`" + `"POST"` + "`" + `, ` + "`" + `"PUT"` + "`" + ` and ` + "`" + `"TRACE"` + "`" + `. Default is ` + "`" + `"GET"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_url_path",
+					Description: `The URL used for the check. Default is ` + "`" + `"/"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_host",
+					Description: `The server name in the HTTP Host: header used for the check. Requires version to be set to ` + "`" + `"1.1"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer health monitor.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `The load balancer pool name of the health monitor.`,
+				},
+				resource.Attribute{
+					Name:        "pool_href",
+					Description: `The cloudscale.ch API URL of the health monitor's load balancer pool. ## Import Load balancer health monitor can be imported using the load balancer health monitor's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_health_monitor.lb1-health-monitor 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer health monitor.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `The load balancer pool name of the health monitor.`,
+				},
+				resource.Attribute{
+					Name:        "pool_href",
+					Description: `The cloudscale.ch API URL of the health monitor's load balancer pool. ## Import Load balancer health monitor can be imported using the load balancer health monitor's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_health_monitor.lb1-health-monitor 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_load_balancer_listener",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new load balancer listener.`,
+				},
+				resource.Attribute{
+					Name:        "pool_uuid",
+					Description: `(Required) The pool of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The protocol used for receiving traffic. Options include ` + "`" + `"tcp"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) The port on which traffic is received.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_client_data_ms",
+					Description: `(Optional) Client inactivity timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_connect_ms",
+					Description: `(Optional) Pool member connection timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_data_ms",
+					Description: `(Optional) Pool member inactivity timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_cidrs",
+					Description: `(Optional) Restrict the allowed source IPs for this listener. ` + "`" + `[]` + "`" + ` means that any source IP is allowed. If the list is non-empty, traffic from source IPs not included is denied.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating load balancer listener:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `New name of the load balancer listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used for receiving traffic. Options include ` + "`" + `"tcp"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `The port on which traffic is received.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_client_data_ms",
+					Description: `Client inactivity timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_connect_ms",
+					Description: `Pool member connection timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_data_ms",
+					Description: `Pool member inactivity timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_cidrs",
+					Description: `Restrict the allowed source IPs for this listener. ` + "`" + `[]` + "`" + ` means that any source IP is allowed. If the list is non-empty, traffic from source IPs not included is denied.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer listner.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `The load balancer pool name of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "pool_href",
+					Description: `The cloudscale.ch API URL of the listener's load balancer pool. ## Import Load balancer listener can be imported using the load balancer listener's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_listener.lb1-listener 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer listner.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `The load balancer pool name of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "pool_href",
+					Description: `The cloudscale.ch API URL of the listener's load balancer pool. ## Import Load balancer listener can be imported using the load balancer listener's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_listener.lb1-listener 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_load_balancer_pool",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Required) The algorithm according to which the incoming traffic is distributed between the pool members. Options include ` + "`" + `"round_robin"` + "`" + `, ` + "`" + `"least_connections"` + "`" + ` and ` + "`" + `"source_ip"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The protocol used for traffic between the load balancer and the pool members. Options include: ` + "`" + `"tcp"` + "`" + `, ` + "`" + `"proxy"` + "`" + ` and ` + "`" + `"proxyv2"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_uuid",
+					Description: `(Required) The load balancer of the pool.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating load balancer pools:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `New name of the load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_name",
+					Description: `The load balancer name of the pool.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_href",
+					Description: `The cloudscale.ch API URL of the pool's load balancer. ## Import Load balancer pools can be imported using the load balancer pool's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_pool.lb1-pool 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_name",
+					Description: `The load balancer name of the pool.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_href",
+					Description: `The cloudscale.ch API URL of the pool's load balancer. ## Import Load balancer pools can be imported using the load balancer pool's UUID: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_pool.lb1-pool 48151623-42aa-aaaa-bbbb-caffeeeeeeee ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudscale_load_balancer_pool_member",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new load balancer pool member.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Pool member will not receive traffic if ` + "`" + `false` + "`" + `. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pool_uuid",
+					Description: `(Required) The load balancer pool of the member.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) The port to which actual traffic is sent.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_port",
+					Description: `(Optional) The port to which health monitor checks are sent. If not specified, ` + "`" + `protocol_port` + "`" + ` will be used.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The IP address to which traffic is sent.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_uuid",
+					Description: `(Required) The subnet UUID of the address must be specified here.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating load balancer pool members:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `New name of the load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Pool member will not receive traffic if ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer pool member.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_status",
+					Description: `The status of the pool's health monitor check for this member. Can be ` + "`" + `"up"` + "`" + `, ` + "`" + `"down"` + "`" + `, ` + "`" + `"changing"` + "`" + `, ` + "`" + `"no_monitor"` + "`" + ` and ` + "`" + `"unknown"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `The load balancer pool name of the member.`,
+				},
+				resource.Attribute{
+					Name:        "pool_href",
+					Description: `The cloudscale.ch API URL of the member's load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `The CIDR of the member's address subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_href",
+					Description: `The cloudscale.ch API URL of the member's address subnet. ## Import Load balancer pool members can be imported using the load balancer pool member's UUID and the pool UUID using this schema ` + "`" + `{pool_uuid}.{member_uuid}` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_pool_member.lb1-pool-member 48151623-42aa-aaaa-bbbb-caffeeeeeeee.6a18a377-9977-4cd0-b1fa-70908356efaa ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of this load balancer pool member.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current resource.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_status",
+					Description: `The status of the pool's health monitor check for this member. Can be ` + "`" + `"up"` + "`" + `, ` + "`" + `"down"` + "`" + `, ` + "`" + `"changing"` + "`" + `, ` + "`" + `"no_monitor"` + "`" + ` and ` + "`" + `"unknown"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `The load balancer pool name of the member.`,
+				},
+				resource.Attribute{
+					Name:        "pool_href",
+					Description: `The cloudscale.ch API URL of the member's load balancer pool.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `The CIDR of the member's address subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_href",
+					Description: `The cloudscale.ch API URL of the member's address subnet. ## Import Load balancer pool members can be imported using the load balancer pool member's UUID and the pool UUID using this schema ` + "`" + `{pool_uuid}.{member_uuid}` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` terraform import cloudscale_load_balancer_pool_member.lb1-pool-member 48151623-42aa-aaaa-bbbb-caffeeeeeeee.6a18a377-9977-4cd0-b1fa-70908356efaa ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -187,7 +743,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_create_ipv4_subnet",
-					Description: `(Optional) Automatically create an IPv4 Subnet on the network. Can be ` + "`" + `true` + "`" + ` (default) or ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Automatically create an IPv4 Subnet on the network. Can be ` + "`" + `true` + "`" + ` (default) or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -243,11 +803,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Required) The display name of the Objects User. The following arguments are supported when updating Objects Users:`,
+					Description: `(Required) The display name of the Objects User.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating Objects Users:`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Required) The new display name of the Objects User. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The new display name of the Objects User.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -399,7 +967,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeouts",
-					Description: `(Optional) Specify how long certain operations are allowed to take before being considered to have failed. Currently, only the ` + "`" + `create` + "`" + ` timeout can be specified. Takes a string representation of a duration such as ` + "`" + `5m` + "`" + ` for 5 minutes (default), ` + "`" + `10s` + "`" + ` for ten seconds, or ` + "`" + `2h` + "`" + ` for two hours. The following arguments are supported when updating servers:`,
+					Description: `(Optional) Specify how long certain operations are allowed to take before being considered to have failed. Currently, only the ` + "`" + `create` + "`" + ` timeout can be specified. Takes a string representation of a duration such as ` + "`" + `5m` + "`" + ` for 5 minutes (default), ` + "`" + `10s` + "`" + ` for ten seconds, or ` + "`" + `2h` + "`" + ` for two hours.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating servers:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -419,7 +991,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The desired state of a server. Can be ` + "`" + `running` + "`" + ` (default) or ` + "`" + `stopped` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `The desired state of a server. Can be ` + "`" + `running` + "`" + ` (default) or ` + "`" + `stopped` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -619,11 +1195,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
-					Description: `(Optional) The slug of the zone in which the new server group will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `. The following arguments are supported when updating server groups:`,
+					Description: `(Optional) The slug of the zone in which the new server group will be created. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). The following arguments are supported when updating server groups:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The new name of the server group. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `The new name of the server group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Change tags (see documentation above) ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -659,7 +1243,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns_servers",
-					Description: `(Optional) A list of DNS resolver IP addresses, that act as DNS servers. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) A list of DNS resolver IP addresses, that act as DNS servers.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -715,7 +1303,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_uuids",
-					Description: `(Optional) A list of server UUIDs. Default to an empty list. Currently a volume can only be attached to one server UUID. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) A list of server UUIDs. Default to an empty list. Currently a volume can only be attached to one server UUID.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags allow you to assign custom metadata to resources: ` + "`" + `` + "`" + `` + "`" + ` tags = { foo = "bar" } ` + "`" + `` + "`" + `` + "`" + ` Tags are always strings (both keys and values). ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -733,14 +1325,19 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"cloudscale_custom_image": 0,
-		"cloudscale_floating_ip":  1,
-		"cloudscale_network":      2,
-		"cloudscale_objects_user": 3,
-		"cloudscale_server":       4,
-		"cloudscale_server_group": 5,
-		"cloudscale_subnet":       6,
-		"cloudscale_volume":       7,
+		"cloudscale_custom_image":                 0,
+		"cloudscale_floating_ip":                  1,
+		"cloudscale_load_balancer":                2,
+		"cloudscale_load_balancer_health_monitor": 3,
+		"cloudscale_load_balancer_listener":       4,
+		"cloudscale_load_balancer_pool":           5,
+		"cloudscale_load_balancer_pool_member":    6,
+		"cloudscale_network":                      7,
+		"cloudscale_objects_user":                 8,
+		"cloudscale_server":                       9,
+		"cloudscale_server_group":                 10,
+		"cloudscale_subnet":                       11,
+		"cloudscale_volume":                       12,
 	}
 )
 

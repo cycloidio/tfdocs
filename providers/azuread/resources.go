@@ -11,6 +11,240 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuread_access_package",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Manages an Access Package within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Required) The ID of the Catalog this access package will be created in.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description of the access package.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The display name of the access package.`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `(Optional) Whether the access package is hidden from the requestor. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource. ## Import Access Packages can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package.example_package 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource. ## Import Access Packages can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package.example_package 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_assignment_policy",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Manages an assignment policy for an access package within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"assignment",
+				"policy",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_catalog",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Manages an access package catalog within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"catalog",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description of the access package catalog.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The display name of the access package catalog.`,
+				},
+				resource.Attribute{
+					Name:        "externally_visible",
+					Description: `(Optional) Whether the access packages in this catalog can be requested by users outside the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "published",
+					Description: `(Optional) Whether the access packages in this catalog are available for management. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource. ## Import An Access Package Catalog can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package_catalog.example 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource. ## Import An Access Package Catalog can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package_catalog.example 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_catalog_role_assignment",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Manages a single catalog role assignment within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"catalog",
+				"role",
+				"assignment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Required) The ID of the Catalog this role assignment will be scoped to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "principal_object_id",
+					Description: `(Required) The object ID of the principal for you want to create a role assignment. Supported object types are Users, Groups or Service Principals. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Required) The object ID of the catalog role you want to assign. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_resource_catalog_association",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Manages the resources added to access package catalogs within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"resource",
+				"catalog",
+				"association",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Required) The unique ID of the access package catalog. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_origin_id",
+					Description: `(Required) The unique identifier of the resource in the origin system. In the case of an Azure AD group, this is the identifier of the group. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_origin_system",
+					Description: `(Required) The type of the resource in the origin system, such as ` + "`" + `SharePointOnline` + "`" + `, ` + "`" + `AadApplication` + "`" + ` or ` + "`" + `AadGroup` + "`" + `. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource, the ID is the concatenation of ` + "`" + `catalog_id` + "`" + ` and ` + "`" + `resource_origin_id` + "`" + ` with colon in between. ## Import The resource and catalog association can be imported using the catalog ID and the resource origin ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package_resource_catalog_association.example 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the Catalog ID and the Resource Origin ID in the format ` + "`" + `{CatalogID}/{ResourceOriginID}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource, the ID is the concatenation of ` + "`" + `catalog_id` + "`" + ` and ` + "`" + `resource_origin_id` + "`" + ` with colon in between. ## Import The resource and catalog association can be imported using the catalog ID and the resource origin ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package_resource_catalog_association.example 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the Catalog ID and the Resource Origin ID in the format ` + "`" + `{CatalogID}/{ResourceOriginID}` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_resource_package_association",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Manages the resources added to access packages within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"resource",
+				"association",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_package_id",
+					Description: `(Required) The ID of access package this resource association is configured to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) The role of access type to the specified resource. Valid values are ` + "`" + `Member` + "`" + `, or ` + "`" + `Owner` + "`" + ` The default is ` + "`" + `Member` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_resource_association_id",
+					Description: `(Required) The ID of the catalog association from the ` + "`" + `azuread_access_package_resource_catalog_association` + "`" + ` resource. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource. The ID is combined by four fields with colon in between, the four fields are ` + "`" + `access_package_id` + "`" + `, this package association id, ` + "`" + `resource_origin_id` + "`" + ` and ` + "`" + `access_type` + "`" + `. ## Import The resource and catalog association can be imported using the access package ID, the resource association ID, the resource origin ID, and the access type, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package_resource_package_association.example 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111_22222222-2222-2222-2222-22222222/33333333-3333-3333-3333-33333333/Member ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the Access Package ID, the Resource Association ID, the Resource Origin ID, and the Access Type, in the format ` + "`" + `{AccessPackageID}/{ResourceAssociationID}/{ResourceOriginID}/{AccessType}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource. The ID is combined by four fields with colon in between, the four fields are ` + "`" + `access_package_id` + "`" + `, this package association id, ` + "`" + `resource_origin_id` + "`" + ` and ` + "`" + `access_type` + "`" + `. ## Import The resource and catalog association can be imported using the access package ID, the resource association ID, the resource origin ID, and the access type, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azuread_access_package_resource_package_association.example 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111_22222222-2222-2222-2222-22222222/33333333-3333-3333-3333-33333333/Member ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the Access Package ID, the Resource Association ID, the Resource Origin ID, and the Access Type, in the format ` + "`" + `{AccessPackageID}/{ResourceAssociationID}/{ResourceOriginID}/{AccessType}` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuread_administrative_unit",
 			Category:         "Administrative Units",
 			ShortDescription: ``,
@@ -85,6 +319,39 @@ Manages a single administrative unit membership within Azure Active Directory.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuread_administrative_unit_role_member",
+			Category:         "Administrative Units",
+			ShortDescription: ``,
+			Description: `
+
+Manages a single directory role assignment scoped to an administrative unit within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"administrative",
+				"units",
+				"unit",
+				"role",
+				"member",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "administrative_unit_object_id",
+					Description: `(Required) The object ID of the administrative unit you want to add the member to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "member_object_id",
+					Description: `(Required) The object ID of the user, group or service principal you want to add as a member of the administrative unit. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "role_object_id",
+					Description: `(Required) The object ID of the directory role you want to assign. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuread_app_role_assignment",
 			Category:         "App Role Assignments",
 			ShortDescription: ``,
@@ -102,7 +369,7 @@ Manages an app role assignment for a group, user or service principal. Can be us
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_role_id",
-					Description: `(Required) The ID of the app role to be assigned. Changing this forces a new resource to be created.`,
+					Description: `(Required) The ID of the app role to be assigned, or the default role ID ` + "`" + `00000000-0000-0000-0000-000000000000` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "principal_object_id",
@@ -164,6 +431,10 @@ Manages an application registration within Azure Active Directory.
 					Description: `(Optional) A collection of ` + "`" + `app_role` + "`" + ` blocks as documented below. For more information see [official documentation on Application Roles](https://docs.microsoft.com/en-us/azure/architecture/multitenant-identity/app-roles).`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the application, as shown to end users.`,
+				},
+				resource.Attribute{
 					Name:        "device_only_auth_enabled",
 					Description: `(Optional) Specifies whether this application supports device authentication without a user. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
@@ -196,6 +467,10 @@ Manages an application registration within Azure Active Directory.
 					Description: `(Optional) URL of the application's marketing page.`,
 				},
 				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) User-specified notes relevant for the management of the application.`,
+				},
+				resource.Attribute{
 					Name:        "oauth2_post_response_required",
 					Description: `(Optional) Specifies whether, as part of OAuth 2.0 token requests, Azure AD allows POST requests, as opposed to GET requests. Defaults to ` + "`" + `false` + "`" + `, which specifies that only GET requests are allowed.`,
 				},
@@ -224,6 +499,10 @@ Manages an application registration within Azure Active Directory.
 					Description: `(Optional) A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "service_management_reference",
+					Description: `(Optional) References application context information from a Service or Asset Management database.`,
+				},
+				resource.Attribute{
 					Name:        "sign_in_audience",
 					Description: `(Optional) The Microsoft account types that are supported for the current application. Must be one of ` + "`" + `AzureADMyOrg` + "`" + `, ` + "`" + `AzureADMultipleOrgs` + "`" + `, ` + "`" + `AzureADandPersonalMicrosoftAccount` + "`" + ` or ` + "`" + `PersonalMicrosoftAccount` + "`" + `. Defaults to ` + "`" + `AzureADMyOrg` + "`" + `. ~>`,
 				},
@@ -237,7 +516,7 @@ Manages an application registration within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A set of tags to apply to the application. Cannot be used together with the ` + "`" + `feature_tags` + "`" + ` block. ->`,
+					Description: `(Optional) A set of tags to apply to the application for configuring specific behaviours of the application and linked service principals. Note that these are not provided for use by practitioners. Cannot be used together with the ` + "`" + `feature_tags` + "`" + ` block. ->`,
 				},
 				resource.Attribute{
 					Name:        "template_id",
@@ -285,7 +564,7 @@ Manages an application registration within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Whether this delegated permission should be considered safe for non-admin users to consent to on behalf of themselves, or whether an administrator should be required for consent to the permissions. Defaults to ` + "`" + `User` + "`" + `. Possible values are ` + "`" + `User` + "`" + ` or ` + "`" + `Admin` + "`" + `.`,
+					Description: `(Optional) Whether this delegated permission should be considered safe for non-admin users to consent to on behalf of themselves, or whether an administrator should be required for consent to the permissions. Defaults to ` + "`" + `User` + "`" + `. Possible values are ` + "`" + `User` + "`" + ` or ` + "`" + `Admin` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "user_consent_description",
@@ -513,7 +792,7 @@ Manages a certificate associated with an application within Azure Active Directo
 				},
 				resource.Attribute{
 					Name:        "start_date",
-					Description: `(Optional) The start date from which the certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `). If this isn't specified, the current date and time are used. Changing this field forces a new resource to be created.`,
+					Description: `(Optional) The start date from which the certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `). If this isn't specified, the value is determined by Azure Active Directory and is usually the start date of the certificate for asymmetric keys, or the current timestamp for symmetric keys. Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -602,7 +881,7 @@ Manages a password credential associated with an application within Azure Active
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) A display name for the password.`,
+					Description: `(Optional) A display name for the password. Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "end_date",
@@ -779,11 +1058,11 @@ Manages a Conditional Access Policy within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "excluded_applications",
-					Description: `(Optional) A list of application IDs explicitly excluded from the policy.`,
+					Description: `(Optional) A list of application IDs explicitly excluded from the policy. Can also be set to ` + "`" + `Office365` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "included_applications",
-					Description: `(Optional) A list of application IDs the policy applies to, unless explicitly excluded (in ` + "`" + `excluded_applications` + "`" + `). Can also be set to ` + "`" + `All` + "`" + `. Cannot be specified with ` + "`" + `included_user_actions` + "`" + `. One of ` + "`" + `included_applications` + "`" + ` or ` + "`" + `included_user_actions` + "`" + ` must be specified.`,
+					Description: `(Optional) A list of application IDs the policy applies to, unless explicitly excluded (in ` + "`" + `excluded_applications` + "`" + `). Can also be set to ` + "`" + `All` + "`" + `, ` + "`" + `None` + "`" + ` or ` + "`" + `Office365` + "`" + `. Cannot be specified with ` + "`" + `included_user_actions` + "`" + `. One of ` + "`" + `included_applications` + "`" + ` or ` + "`" + `included_user_actions` + "`" + ` must be specified.`,
 				},
 				resource.Attribute{
 					Name:        "included_user_actions",
@@ -827,7 +1106,7 @@ Manages a Conditional Access Policy within Azure Active Directory.
 				},
 				resource.Attribute{
 					Name:        "excluded_locations",
-					Description: `(Optional) A list of location IDs excluded from scope of policy.`,
+					Description: `(Optional) A list of location IDs excluded from scope of policy. Can also be set to ` + "`" + `AllTrusted` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "included_locations",
@@ -998,12 +1277,50 @@ Once activated, directory roles cannot be deactivated and so this resource does 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuread_directory_role_assignment",
+			Category:         "Directory Roles",
+			ShortDescription: ``,
+			Description: `
+
+Manages a single directory role assignment within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"directory",
+				"roles",
+				"role",
+				"assignment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_scope_id",
+					Description: `(Optional) Identifier of the app-specific scope when the assignment scope is app-specific. Cannot be used with ` + "`" + `directory_scope_id` + "`" + `. See [official documentation](https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0&tabs=http) for example usage. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "directory_scope_id",
+					Description: `(Optional) Identifier of the directory object representing the scope of the assignment. Cannot be used with ` + "`" + `app_scope_id` + "`" + `. See [official documentation](https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0&tabs=http) for example usage. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "principal_object_id",
+					Description: `(Required) The object ID of the principal for you want to create a role assignment. Supported object types are Users, Groups or Service Principals. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Required) The template ID (in the case of built-in roles) or object ID (in the case of custom roles) of the directory role you want to assign. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuread_directory_role_member",
 			Category:         "Directory Roles",
 			ShortDescription: ``,
 			Description: `
 
 Manages a single directory role membership (assignment) within Azure Active Directory.
+
+-> **Deprecation Warning:** This resource has been superseded by the [azuread_directory_role_assignment](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/directory_role_assignment) resource and will be removed in version 3.0 of the AzureAD provider
 
 `,
 			Keywords: []string{
@@ -1040,8 +1357,12 @@ Manages a group within Azure Active Directory.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "administrative_unit_ids",
+					Description: `(Optional) The object IDs of administrative units in which the group is a member. If specified, new groups will be created in the scope of the first administrative unit and added to the others. If empty, new groups will be created at the tenant level. !>`,
+				},
+				resource.Attribute{
 					Name:        "assignable_to_role",
-					Description: `(Optional) Indicates whether this group can be assigned to an Azure Active Directory role. Can only be ` + "`" + `true` + "`" + ` for security-enabled groups. Changing this forces a new resource to be created.`,
+					Description: `(Optional) Indicates whether this group can be assigned to an Azure Active Directory role. Defaults to ` + "`" + `false` + "`" + `. Can only be set to ` + "`" + `true` + "`" + ` for security-enabled groups. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "auto_subscribe_new_members",
@@ -1088,6 +1409,10 @@ Manages a group within Azure Active Directory.
 					Description: `(Optional) A set of members who should be present in this group. Supported object types are Users, Groups or Service Principals. Cannot be used with the ` + "`" + `dynamic_membership` + "`" + ` block. !>`,
 				},
 				resource.Attribute{
+					Name:        "onpremises_group_type",
+					Description: `(Optional) The on-premises group type that the AAD group will be written as, when writeback is enabled. Possible values are ` + "`" + `UniversalDistributionGroup` + "`" + `, ` + "`" + `UniversalMailEnabledSecurityGroup` + "`" + `, or ` + "`" + `UniversalSecurityGroup` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "owners",
 					Description: `(Optional) A set of object IDs of principals that will be granted ownership of the group. Supported object types are users or service principals. By default, the principal being used to execute Terraform is assigned as the sole owner. Groups cannot be created with no owners or have all their owners removed. ->`,
 				},
@@ -1116,12 +1441,16 @@ Manages a group within Azure Active Directory.
 					Description: `(Optional) The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility and this value must be set when the group is created. By default, security groups will receive ` + "`" + `Private` + "`" + ` visibility and Microsoft 365 groups will receive ` + "`" + `Public` + "`" + ` visibility. ->`,
 				},
 				resource.Attribute{
+					Name:        "writeback_enabled",
+					Description: `(Optional) Whether the group will be written back to the configured on-premises Active Directory when Azure AD Connect is used. --- ` + "`" + `dynamic_membership` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Required) Whether rule processing is "On" (true) or "Paused" (false).`,
 				},
 				resource.Attribute{
 					Name:        "rule",
-					Description: `(Optional) The rule that determines membership of this group. For more information, see official documentation on [memmbership rules syntax](https://docs.microsoft.com/en-gb/azure/active-directory/enterprise-users/groups-dynamic-membership). ~>`,
+					Description: `(Required) The rule that determines membership of this group. For more information, see official documentation on [membership rules syntax](https://docs.microsoft.com/en-gb/azure/active-directory/enterprise-users/groups-dynamic-membership). ~>`,
 				},
 				resource.Attribute{
 					Name:        "mail",
@@ -1418,7 +1747,7 @@ Manages a service principal associated with an application within Azure Active D
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A set of tags to apply to the service principal. Cannot be used together with the ` + "`" + `feature_tags` + "`" + ` block. ->`,
+					Description: `(Optional) A set of tags to apply to the service principal for configuring specific behaviours of the service principal. Note that these are not provided for use by practitioners. Cannot be used together with the ` + "`" + `feature_tags` + "`" + ` block. ->`,
 				},
 				resource.Attribute{
 					Name:        "use_existing",
@@ -1711,7 +2040,7 @@ Manages a certificate associated with a service principal within Azure Active Di
 				},
 				resource.Attribute{
 					Name:        "start_date",
-					Description: `(Optional) The start date from which the certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `). If this isn't specified, the current date is used. Changing this field forces a new resource to be created.`,
+					Description: `(Optional) The start date from which the certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `). If this isn't specified, the value is determined by Azure Active Directory and is usually the start date of the certificate for asymmetric keys, or the current timestamp for symmetric keys. Changing this field forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1869,6 +2198,187 @@ Manages a password credential associated with a service principal within Azure A
 				resource.Attribute{
 					Name:        "value",
 					Description: `The password for this service principal, which is generated by Azure Active Directory. ## Import This resource does not support importing.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_service_principal_token_signing_certificate",
+			Category:         "Service Principals",
+			ShortDescription: ``,
+			Description: `
+
+Manages a token signing certificate associated with a service principal within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"service",
+				"principals",
+				"principal",
+				"token",
+				"signing",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Specifies a friendly name for the certificate. Must start with ` + "`" + `CN=` + "`" + `. Changing this field forces a new resource to be created. ~> If not specified, it will default to ` + "`" + `CN=Microsoft Azure Federated SSO Certificate` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "end_date",
+					Description: `(Optional) The end date until which the token signing certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `). Changing this field forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `(Required) The object ID of the service principal for which this certificate should be created. Changing this field forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `A UUID used to uniquely identify the verify certificate.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `A SHA-1 generated thumbprint of the token signing certificate, which can be used to set the preferred signing certificate for a service principal.`,
+				},
+				resource.Attribute{
+					Name:        "start_date",
+					Description: `The start date from which the certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The certificate data, which is PEM encoded but does not include the header ` + "`" + `-----BEGIN CERTIFICATE-----\n` + "`" + ` or the footer ` + "`" + `\n-----END CERTIFICATE-----` + "`" + `. ## Import Token signing certificates can be imported using the object ID of the associated service principal and the key ID of the verify certificate credential, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_service_principal_token_signing_certificate.example 00000000-0000-0000-0000-000000000000/tokenSigningCertificate/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the service principal's object ID, the string "tokenSigningCertificate" and the verify certificate's key ID in the format ` + "`" + `{ServicePrincipalObjectId}/tokenSigningCertificate/{CertificateKeyId}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `A UUID used to uniquely identify the verify certificate.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `A SHA-1 generated thumbprint of the token signing certificate, which can be used to set the preferred signing certificate for a service principal.`,
+				},
+				resource.Attribute{
+					Name:        "start_date",
+					Description: `The start date from which the certificate is valid, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The certificate data, which is PEM encoded but does not include the header ` + "`" + `-----BEGIN CERTIFICATE-----\n` + "`" + ` or the footer ` + "`" + `\n-----END CERTIFICATE-----` + "`" + `. ## Import Token signing certificates can be imported using the object ID of the associated service principal and the key ID of the verify certificate credential, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_service_principal_token_signing_certificate.example 00000000-0000-0000-0000-000000000000/tokenSigningCertificate/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the service principal's object ID, the string "tokenSigningCertificate" and the verify certificate's key ID in the format ` + "`" + `{ServicePrincipalObjectId}/tokenSigningCertificate/{CertificateKeyId}` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_synchronization_job",
+			Category:         "Synchronization",
+			ShortDescription: ``,
+			Description: `
+
+Manages a synchronization job associated with a service principal (enterprise application) within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"synchronization",
+				"job",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether or not the provisioning job is enabled. Default state is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `(Required) The object ID of the service principal for which this synchronization job should be created. Changing this field forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `(Required) Identifier of the synchronization template this job is based on. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An ID used to uniquely identify this synchronization job.`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `A ` + "`" + `schedule` + "`" + ` list as documented below. --- ` + "`" + `schedule` + "`" + ` block exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `Date and time when this job will expire, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `The interval between synchronization iterations ISO8601. E.g. PT40M run every 40 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the job. ## Import Synchronization jobs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_synchronization_job.example 00000000-0000-0000-0000-000000000000/job/dataBricks.f5532fc709734b1a90e8a1fa9fd03a82.8442fd39-2183-419c-8732-74b6ce866bd5 ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the Service Principal Object ID and the ID of the Synchronization Job Id in the format ` + "`" + `{servicePrincipalId}/job/{jobId}` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `An ID used to uniquely identify this synchronization job.`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `A ` + "`" + `schedule` + "`" + ` list as documented below. --- ` + "`" + `schedule` + "`" + ` block exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `Date and time when this job will expire, formatted as an RFC3339 date string (e.g. ` + "`" + `2018-01-01T01:02:03Z` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `The interval between synchronization iterations ISO8601. E.g. PT40M run every 40 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the job. ## Import Synchronization jobs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_synchronization_job.example 00000000-0000-0000-0000-000000000000/job/dataBricks.f5532fc709734b1a90e8a1fa9fd03a82.8442fd39-2183-419c-8732-74b6ce866bd5 ` + "`" + `` + "`" + `` + "`" + ` -> This ID format is unique to Terraform and is composed of the Service Principal Object ID and the ID of the Synchronization Job Id in the format ` + "`" + `{servicePrincipalId}/job/{jobId}` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_synchronization_secret",
+			Category:         "Synchronization",
+			ShortDescription: ``,
+			Description: `
+
+Manages synchronization secrets associated with a service principal (enterprise application) within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"synchronization",
+				"secret",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "credential",
+					Description: `(Optional) One or more ` + "`" + `credential` + "`" + ` blocks as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `(Required) The object ID of the service principal for which this synchronization secrets should be stored. Changing this field forces a new resource to be created. --- ` + "`" + `credential` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the secret. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An ID used to uniquely identify this synchronization sec. ## Import This resource does not support importing.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `An ID used to uniquely identify this synchronization sec. ## Import This resource does not support importing.`,
 				},
 			},
 		},
@@ -2127,33 +2637,94 @@ Manages a user within Azure Active Directory.
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_user_flow_attribute",
+			Category:         "User Flows",
+			ShortDescription: ``,
+			Description: `
+
+Manages user flow attributes in an Azure Active Directory (Azure AD) tenant.
+
+`,
+			Keywords: []string{
+				"user",
+				"flows",
+				"flow",
+				"attribute",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data_type",
+					Description: `(Required) The data type of the user flow attribute. Possible values are ` + "`" + `boolean` + "`" + `, ` + "`" + `dateTime` + "`" + `, ` + "`" + `int64` + "`" + `, ` + "`" + `string` + "`" + ` or ` + "`" + `stringCollection` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description of the user flow attribute that is shown to the user at the time of sign-up.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The display name of the user flow attribute. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "attribute_type",
+					Description: `The type of the user flow attribute. Values include ` + "`" + `builtIn` + "`" + `, ` + "`" + `custom` + "`" + ` or ` + "`" + `required` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An ID used to uniquely identify this user flow attribute. ## Import User flow attributes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_user_flow_attribute.example extension_ecc9f88db2924942b8a96f44873616fe_Hobbyjkorv ` + "`" + `` + "`" + `` + "`" + ` -> This ID can be queried using the [User Flow Attributes API](https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0&tabs=http).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "attribute_type",
+					Description: `The type of the user flow attribute. Values include ` + "`" + `builtIn` + "`" + `, ` + "`" + `custom` + "`" + ` or ` + "`" + `required` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `An ID used to uniquely identify this user flow attribute. ## Import User flow attributes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_user_flow_attribute.example extension_ecc9f88db2924942b8a96f44873616fe_Hobbyjkorv ` + "`" + `` + "`" + `` + "`" + ` -> This ID can be queried using the [User Flow Attributes API](https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-list?view=graph-rest-1.0&tabs=http).`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"azuread_administrative_unit":                                0,
-		"azuread_administrative_unit_member":                         1,
-		"azuread_app_role_assignment":                                2,
-		"azuread_application":                                        3,
-		"azuread_application_certificate":                            4,
-		"azuread_application_federated_identity_credential":          5,
-		"azuread_application_password":                               6,
-		"azuread_application_pre_authorized":                         7,
-		"azuread_claims_mapping_policy":                              8,
-		"azuread_conditional_access_policy":                          9,
-		"azuread_custom_directory_role":                              10,
-		"azuread_directory_role":                                     11,
-		"azuread_directory_role_member":                              12,
-		"azuread_group":                                              13,
-		"azuread_group_member":                                       14,
-		"azuread_invitation":                                         15,
-		"azuread_named_location":                                     16,
-		"azuread_service_principal":                                  17,
-		"azuread_service_principal_certificate":                      18,
-		"azuread_service_principal_claims_mapping_policy_assignment": 19,
-		"azuread_service_principal_delegated_permission_grant":       20,
-		"azuread_service_principal_password":                         21,
-		"azuread_user":                                               22,
+		"azuread_access_package":                                     0,
+		"azuread_access_package_assignment_policy":                   1,
+		"azuread_access_package_catalog":                             2,
+		"azuread_access_package_catalog_role_assignment":             3,
+		"azuread_access_package_resource_catalog_association":        4,
+		"azuread_access_package_resource_package_association":        5,
+		"azuread_administrative_unit":                                6,
+		"azuread_administrative_unit_member":                         7,
+		"azuread_administrative_unit_role_member":                    8,
+		"azuread_app_role_assignment":                                9,
+		"azuread_application":                                        10,
+		"azuread_application_certificate":                            11,
+		"azuread_application_federated_identity_credential":          12,
+		"azuread_application_password":                               13,
+		"azuread_application_pre_authorized":                         14,
+		"azuread_claims_mapping_policy":                              15,
+		"azuread_conditional_access_policy":                          16,
+		"azuread_custom_directory_role":                              17,
+		"azuread_directory_role":                                     18,
+		"azuread_directory_role_assignment":                          19,
+		"azuread_directory_role_member":                              20,
+		"azuread_group":                                              21,
+		"azuread_group_member":                                       22,
+		"azuread_invitation":                                         23,
+		"azuread_named_location":                                     24,
+		"azuread_service_principal":                                  25,
+		"azuread_service_principal_certificate":                      26,
+		"azuread_service_principal_claims_mapping_policy_assignment": 27,
+		"azuread_service_principal_delegated_permission_grant":       28,
+		"azuread_service_principal_password":                         29,
+		"azuread_service_principal_token_signing_certificate":        30,
+		"azuread_synchronization_job":                                31,
+		"azuread_synchronization_secret":                             32,
+		"azuread_user":                                               33,
+		"azuread_user_flow_attribute":                                34,
 	}
 )
 

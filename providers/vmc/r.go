@@ -138,7 +138,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "num_host",
-					Description: `(Required) The number of hosts.`,
+					Description: `(Required) The number of hosts in the primary Cluster of the SDDC.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -290,6 +290,32 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vmc_sddc_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a resource to provision SDDC Group.`,
+			Description:      ``,
+			Keywords: []string{
+				"sddc",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the SDDC Group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) Short description of the SDDC Group.`,
+				},
+				resource.Attribute{
+					Name:        "sddc_member_ids",
+					Description: `(Required) IDs of the SDDCs to be included as members in the SDDC Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vmc_site_recovery",
 			Category:         "Resources",
 			ShortDescription: `Provides a resource to activate and deactivate site recovery for SDDC.`,
@@ -389,8 +415,9 @@ var (
 		"vmc_cluster":       0,
 		"vmc_public_ip":     1,
 		"vmc_sddc":          2,
-		"vmc_site_recovery": 3,
-		"vmc_srm_node":      4,
+		"vmc_sddc_group":    3,
+		"vmc_site_recovery": 4,
+		"vmc_srm_node":      5,
 	}
 )
 

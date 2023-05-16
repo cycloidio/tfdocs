@@ -12,10 +12,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_audit_log_subscription",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly integration audit log subscriptions.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"audit",
 				"log",
 				"subscription",
@@ -26,10 +27,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_custom_role",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly custom roles.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"custom",
 				"role",
 			},
@@ -39,10 +41,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_destination",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Interact with the LaunchDarkly data export destinations API.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"destination",
 			},
 			Arguments:  []resource.Attribute{},
@@ -51,10 +54,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_environment",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly environments.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"environment",
 			},
 			Arguments:  []resource.Attribute{},
@@ -63,10 +67,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_feature_flag",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly feature flags.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"feature",
 				"flag",
 			},
@@ -76,10 +81,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_feature_flag_environment",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly environment-specific feature flag attributes.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"feature",
 				"flag",
 				"environment",
@@ -90,10 +96,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_flag_trigger",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly flag triggers.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"flag",
 				"trigger",
 			},
@@ -103,10 +110,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_metric",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly metrics.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"metric",
 			},
 			Arguments:  []resource.Attribute{},
@@ -115,10 +123,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_project",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly projects.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"project",
 			},
 			Arguments:  []resource.Attribute{},
@@ -127,10 +136,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_segment",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly segments.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"segment",
 			},
 			Arguments:  []resource.Attribute{},
@@ -138,11 +148,25 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "launchdarkly_team",
+			Category:         "Guides",
+			ShortDescription: `Create and manage a LaunchDarkly team.`,
+			Description:      ``,
+			Keywords: []string{
+				"guides",
+				"team",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "launchdarkly_team_member",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly team members.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"team",
 				"member",
 			},
@@ -152,10 +176,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "launchdarkly_webhook",
-			Category:         "Resources",
+			Category:         "Guides",
 			ShortDescription: `Create and manage LaunchDarkly webhooks.`,
 			Description:      ``,
 			Keywords: []string{
+				"guides",
 				"webhook",
 			},
 			Arguments:  []resource.Attribute{},
@@ -175,8 +200,9 @@ var (
 		"launchdarkly_metric":                   7,
 		"launchdarkly_project":                  8,
 		"launchdarkly_segment":                  9,
-		"launchdarkly_team_member":              10,
-		"launchdarkly_webhook":                  11,
+		"launchdarkly_team":                     10,
+		"launchdarkly_team_member":              11,
+		"launchdarkly_webhook":                  12,
 	}
 )
 

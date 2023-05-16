@@ -31,7 +31,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of object. The value returned will be ` + "`" + `business_service` + "`" + `. Can be used for passing to a service dependency.`,
+					Description: `The type of object. The value returned will be ` + "`" + `business_service` + "`" + `. Can be used for passing to a service dependency. [1]: https://api-reference.pagerduty.com/#!/Business_Services/get_business_services`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -45,7 +45,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of object. The value returned will be ` + "`" + `business_service` + "`" + `. Can be used for passing to a service dependency.`,
+					Description: `The type of object. The value returned will be ` + "`" + `business_service` + "`" + `. Can be used for passing to a service dependency. [1]: https://api-reference.pagerduty.com/#!/Business_Services/get_business_services`,
 				},
 			},
 		},
@@ -255,7 +255,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency.`,
+				},
+				resource.Attribute{
+					Name:        "auto_resolve_timeout",
+					Description: `Time in seconds that an incident is automatically resolved if left open for that long. Value is null if the feature is disabled. Value must not be negative. Setting this field to 0, null (or unset) will disable the feature.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledgement_timeout",
+					Description: `Time in seconds that an incident changes to the Triggered State after being Acknowledged. Value is null if the feature is disabled. Value must not be negative. Setting this field to 0, null (or unset) will disable the feature.`,
+				},
+				resource.Attribute{
+					Name:        "alert_creation",
+					Description: `Whether a service creates only incidents, or both alerts and incidents. A service must create alerts in order to enable incident merging.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The user-provided description of the service.`,
+				},
+				resource.Attribute{
+					Name:        "escalation_policy",
+					Description: `The escalation policy associated with this service.`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `The set of teams associated with the service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -269,7 +293,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+					Description: `The type of object. The value returned will be ` + "`" + `service` + "`" + `. Can be used for passing to a service dependency.`,
+				},
+				resource.Attribute{
+					Name:        "auto_resolve_timeout",
+					Description: `Time in seconds that an incident is automatically resolved if left open for that long. Value is null if the feature is disabled. Value must not be negative. Setting this field to 0, null (or unset) will disable the feature.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledgement_timeout",
+					Description: `Time in seconds that an incident changes to the Triggered State after being Acknowledged. Value is null if the feature is disabled. Value must not be negative. Setting this field to 0, null (or unset) will disable the feature.`,
+				},
+				resource.Attribute{
+					Name:        "alert_creation",
+					Description: `Whether a service creates only incidents, or both alerts and incidents. A service must create alerts in order to enable incident merging.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The user-provided description of the service.`,
+				},
+				resource.Attribute{
+					Name:        "escalation_policy",
+					Description: `The escalation policy associated with this service.`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `The set of teams associated with the service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
 				},
 			},
 		},
@@ -523,7 +571,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI1OQ-list-vendors`,
+					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI1OQ-list-vendors [2]: https://support.pagerduty.com/docs/change-events [3]: https://support.pagerduty.com/docs/aiops`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -537,7 +585,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI1OQ-list-vendors`,
+					Description: `The generic service type for this vendor. [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODI1OQ-list-vendors [2]: https://support.pagerduty.com/docs/change-events [3]: https://support.pagerduty.com/docs/aiops`,
 				},
 			},
 		},

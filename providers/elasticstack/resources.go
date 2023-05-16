@@ -67,6 +67,24 @@ Manages data streams. This resource can create, delete and show the information 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "elasticstack_elasticsearch_enrich_policy",
+			Category:         "Enrich",
+			ShortDescription: `Managing Elasticsearch enrich policies, see: https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-apis.html`,
+			Description: `
+
+Creates or updates enrich policies, see: https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-apis.html
+
+`,
+			Keywords: []string{
+				"enrich",
+				"elasticsearch",
+				"policy",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "elasticstack_elasticsearch_index",
 			Category:         "Index",
 			ShortDescription: `Creates or updates an index.`,
@@ -138,6 +156,57 @@ Use ingest APIs to manage tasks and resources related to ingest pipelines and pr
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "elasticstack_elasticsearch_logstash_pipeline",
+			Category:         "Logstash",
+			ShortDescription: `Creates or updates centrally managed logstash pipelines.`,
+			Description: `
+
+Creates or updates centrally managed logstash pipelines. See: https://www.elastic.co/guide/en/elasticsearch/reference/current/logstash-apis.html
+
+`,
+			Keywords: []string{
+				"logstash",
+				"elasticsearch",
+				"pipeline",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_script",
+			Category:         "Cluster",
+			ShortDescription: `Creates or updates a stored script or search template.`,
+			Description: `
+
+Creates or updates a stored script or search template. See https://www.elastic.co/guide/en/elasticsearch/reference/current/create-stored-script-api.html
+
+`,
+			Keywords: []string{
+				"cluster",
+				"elasticsearch",
+				"script",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_security_api_key",
+			Category:         "Security",
+			ShortDescription: `Creates an API key for access without requiring basic authentication. See, https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html`,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"elasticsearch",
+				"api",
+				"key",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "elasticstack_elasticsearch_security_role",
 			Category:         "Security",
 			ShortDescription: `Adds and updates roles in the native realm.`,
@@ -150,6 +219,45 @@ Adds and updates roles in the native realm. See, https://www.elastic.co/guide/en
 				"security",
 				"elasticsearch",
 				"role",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_security_role_mapping",
+			Category:         "Security",
+			ShortDescription: `Manage role mappings. See, https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html`,
+			Description: `
+
+Manage role mappings. See, https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html
+
+`,
+			Keywords: []string{
+				"security",
+				"elasticsearch",
+				"role",
+				"mapping",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_security_system_user",
+			Category:         "Security",
+			ShortDescription: `Updates system user's password and enablement.`,
+			Description: `
+
+Updates system user's password and enablement. See, https://www.elastic.co/guide/en/elasticsearch/reference/current/built-in-users.html
+Since this resource is to manage built-in users, destroy will not delete the underlying Elasticsearch and will only remove it from Terraform state.
+
+`,
+			Keywords: []string{
+				"security",
+				"elasticsearch",
+				"system",
+				"user",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -208,21 +316,122 @@ Registers or updates a snapshot repository. See: https://www.elastic.co/guide/en
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_transform",
+			Category:         "Transform",
+			ShortDescription: `Manages transforms. Transforms enable you to convert existing Elasticsearch indices into summarized indices.`,
+			Description: `
+
+Creates, updates, starts and stops a transform. See: https://www.elastic.co/guide/en/elasticsearch/reference/current/transforms.html
+
+**NOTE:** Some transform settings require a minimum Elasticsearch version. Such settings will be ignored when applied to versions below the required one (a warning will be issued in the logs).
+
+`,
+			Keywords: []string{
+				"transform",
+				"elasticsearch",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_watch",
+			Category:         "Watcher",
+			ShortDescription: `Adds and manages a Watch.`,
+			Description: `
+
+Adds and manages a Watch. See: https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api.html
+
+`,
+			Keywords: []string{
+				"watcher",
+				"elasticsearch",
+				"watch",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_fleet_agent_policy",
+			Category:         "Fleet",
+			ShortDescription: `Creates or updates a Fleet Agent Policy.`,
+			Description: `
+
+Creates or updates a Fleet Agent Policy. See https://www.elastic.co/guide/en/fleet/current/fleet-api-docs.html#create-agent-policy-api
+
+`,
+			Keywords: []string{
+				"fleet",
+				"agent",
+				"policy",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_kibana_alerting_rule",
+			Category:         "Kibana",
+			ShortDescription: `Creates or updates a Kibana alerting rule.`,
+			Description: `
+
+Creates or updates a Kibana alerting rule. See https://www.elastic.co/guide/en/kibana/8.6/create-and-manage-rules.html
+
+`,
+			Keywords: []string{
+				"kibana",
+				"alerting",
+				"rule",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_kibana_space",
+			Category:         "Kibana",
+			ShortDescription: `Creates or updates a Kibana space.`,
+			Description: `
+
+Creates or updates a Kibana space. See https://www.elastic.co/guide/en/kibana/master/xpack-spaces.html
+
+`,
+			Keywords: []string{
+				"kibana",
+				"space",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"elasticstack_elasticsearch_cluster_settings":    0,
-		"elasticstack_elasticsearch_component_template":  1,
-		"elasticstack_elasticsearch_data_stream":         2,
-		"elasticstack_elasticsearch_index":               3,
-		"elasticstack_elasticsearch_index_lifecycle":     4,
-		"elasticstack_elasticsearch_index_template":      5,
-		"elasticstack_elasticsearch_ingest_pipeline":     6,
-		"elasticstack_elasticsearch_security_role":       7,
-		"elasticstack_elasticsearch_security_user":       8,
-		"elasticstack_elasticsearch_snapshot_lifecycle":  9,
-		"elasticstack_elasticsearch_snapshot_repository": 10,
+		"elasticstack_elasticsearch_cluster_settings":      0,
+		"elasticstack_elasticsearch_component_template":    1,
+		"elasticstack_elasticsearch_data_stream":           2,
+		"elasticstack_elasticsearch_enrich_policy":         3,
+		"elasticstack_elasticsearch_index":                 4,
+		"elasticstack_elasticsearch_index_lifecycle":       5,
+		"elasticstack_elasticsearch_index_template":        6,
+		"elasticstack_elasticsearch_ingest_pipeline":       7,
+		"elasticstack_elasticsearch_logstash_pipeline":     8,
+		"elasticstack_elasticsearch_script":                9,
+		"elasticstack_elasticsearch_security_api_key":      10,
+		"elasticstack_elasticsearch_security_role":         11,
+		"elasticstack_elasticsearch_security_role_mapping": 12,
+		"elasticstack_elasticsearch_security_system_user":  13,
+		"elasticstack_elasticsearch_security_user":         14,
+		"elasticstack_elasticsearch_snapshot_lifecycle":    15,
+		"elasticstack_elasticsearch_snapshot_repository":   16,
+		"elasticstack_elasticsearch_transform":             17,
+		"elasticstack_elasticsearch_watch":                 18,
+		"elasticstack_fleet_agent_policy":                  19,
+		"elasticstack_kibana_alerting_rule":                20,
+		"elasticstack_kibana_space":                        21,
 	}
 )
 

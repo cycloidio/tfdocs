@@ -221,7 +221,7 @@ in the manual backup mode.
 					Description: `SSH File Transfer Protocol (SFTP) to access file server.`,
 				},
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: `+ ` + "`" + `week_of_month` + "`" + `:(int) Schedule a task on a specific week of the month. Valid values are 1 through 5. Value of 5 means last week of the month. WeekOfMonth may not be set when dayOfMonth is specified.`,
 				},
 				resource.Attribute{
@@ -235,6 +235,266 @@ in the manual backup mode.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_backup_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_backup_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_cluster_info",
+			Category:         "appliance",
+			ShortDescription: `ClusterInfo model is used for a peer appliance to create a cluster with an existing, fully configured appliance.`,
+			Description: `
+ClusterInfo model is used for a peer appliance to create a cluster with an existing, fully configured
+appliance.
+`,
+			Keywords: []string{
+				"appliance",
+				"cluster",
+				"info",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The status of the appliance node is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Operational",
+					Description: `The appliance node is operational.`,
+				},
+				resource.Attribute{
+					Name:        "Impaired",
+					Description: `The appliance node is impaired.`,
+				},
+				resource.Attribute{
+					Name:        "AttentionNeeded",
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_appliance_cluster_info` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_cluster_info.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_appliance_cluster_replace_node",
+			Category:         "appliance",
+			ShortDescription: `ClusterReplaceNode is a singleton that tracks the Intersight Appliance's process for replacing a cluster node.`,
+			Description: `
+ClusterReplaceNode is a singleton that tracks the Intersight Appliance's process for replacing a cluster node.
+`,
+			Keywords: []string{
+				"appliance",
+				"cluster",
+				"replace",
+				"node",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Backup",
+					Description: `Backup the currently running node.`,
+				},
+				resource.Attribute{
+					Name:        "EnableBootstrap",
+					Description: `Disable echo and enable nginx on the currently running node.`,
+				},
+				resource.Attribute{
+					Name:        "UpdateAnsibleHosts",
+					Description: `Update /etc/ansible/hosts on each node.`,
+				},
+				resource.Attribute{
+					Name:        "SyncImages",
+					Description: `Sync images and manifest to each node.`,
+				},
+				resource.Attribute{
+					Name:        "ConfigureEtcd",
+					Description: `Configure etcd on each node.`,
+				},
+				resource.Attribute{
+					Name:        "DeployServices",
+					Description: `Deploy kubernetes services from node 1.`,
+				},
+				resource.Attribute{
+					Name:        "InstallEquinox",
+					Description: `Configure and install equinox on each node.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validate equinox is running in primary/secondary mode.`,
+				},
+				resource.Attribute{
+					Name:        "CheckApplianceClusterState",
+					Description: `Check the appliance cluster status.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Upgrade completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Indicates that the upgrade process has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Indicates that the upgrade was canceled by the Intersight Appliance. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `pending_nodes` + "`" + `: (Array of schema.TypeInt) - + ` + "`" + `start_time` + "`" + `:(string)(ReadOnly) Start date of the software install phase. + ` + "`" + `status` + "`" + `:(string)(ReadOnly) Status of the install phase.`,
+				},
+				resource.Attribute{
+					Name:        "Backup",
+					Description: `Backup the currently running node.`,
+				},
+				resource.Attribute{
+					Name:        "EnableBootstrap",
+					Description: `Disable echo and enable nginx on the currently running node.`,
+				},
+				resource.Attribute{
+					Name:        "UpdateAnsibleHosts",
+					Description: `Update /etc/ansible/hosts on each node.`,
+				},
+				resource.Attribute{
+					Name:        "SyncImages",
+					Description: `Sync images and manifest to each node.`,
+				},
+				resource.Attribute{
+					Name:        "ConfigureEtcd",
+					Description: `Configure etcd on each node.`,
+				},
+				resource.Attribute{
+					Name:        "DeployServices",
+					Description: `Deploy kubernetes services from node 1.`,
+				},
+				resource.Attribute{
+					Name:        "InstallEquinox",
+					Description: `Configure and install equinox on each node.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validate equinox is running in primary/secondary mode.`,
+				},
+				resource.Attribute{
+					Name:        "CheckApplianceClusterState",
+					Description: `Check the appliance cluster status.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Upgrade completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Indicates that the upgrade process has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Indicates that the upgrade was canceled by the Intersight Appliance. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `pending_nodes` + "`" + `: (Array of schema.TypeInt) - + ` + "`" + `start_time` + "`" + `:(string)(ReadOnly) Start date of the software install phase. + ` + "`" + `status` + "`" + `:(string)(ReadOnly) Status of the install phase.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The status of the appliance node is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Operational",
+					Description: `The appliance node is operational.`,
+				},
+				resource.Attribute{
+					Name:        "Impaired",
+					Description: `The appliance node is impaired.`,
+				},
+				resource.Attribute{
+					Name:        "AttentionNeeded",
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced.`,
+				},
+				resource.Attribute{
+					Name:        "NotReady",
+					Description: `Cluster is not ready. Install cannot be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "Ready",
+					Description: `Cluster is ready. Install can be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Install is currently in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Install was run and succeeded.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `Install was run and failed.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Unknown",
+					Description: `The status of the appliance node is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "Operational",
+					Description: `The appliance node is operational.`,
+				},
+				resource.Attribute{
+					Name:        "Impaired",
+					Description: `The appliance node is impaired.`,
+				},
+				resource.Attribute{
+					Name:        "AttentionNeeded",
+					Description: `The appliance node needs attention.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyToJoin",
+					Description: `The node is ready to be added to a standalone Intersight Appliance to form a cluster.`,
+				},
+				resource.Attribute{
+					Name:        "OutOfService",
+					Description: `The user has taken this node (part of a cluster) to out of service.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForReplacement",
+					Description: `The cluster node is ready to be replaced. ## Import ` + "`" + `intersight_appliance_cluster_replace_node` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_appliance_cluster_replace_node.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -300,135 +560,143 @@ of the device claim operation can be obtained from the claim workflow.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -452,39 +720,75 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -492,11 +796,11 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -504,35 +808,39 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -540,7 +848,7 @@ of the device claim operation can be obtained from the claim workflow.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "started",
@@ -607,9 +915,9 @@ administrator has the privileges to use this REST API.
 			Name:             "",
 			Type:             "intersight_appliance_remote_file_import",
 			Category:         "appliance",
-			ShortDescription: `Trigger a remote file import request by configuring this mo.`,
+			ShortDescription: `The properties of appliance.RemoteFileImport are used to create an scp or sftp request to import a firmware image.`,
 			Description: `
-Trigger a remote file import request by configuring this mo.
+The properties of appliance.RemoteFileImport are used to create an scp or sftp request to import a firmware image.
 `,
 			Keywords: []string{
 				"appliance",
@@ -713,18 +1021,6 @@ DeviceClaim captures the intent to claim a device to an Intersight account. A de
 				"claim",
 			},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Unknown",
-					Description: `The node is unable to complete election or determine the current state. If the device has been registered before and the node has access to the current credentials it will establish a connection to Intersight with limited capabilities that can be used to debug the HA failure from Intersight.`,
-				},
-				resource.Attribute{
-					Name:        "Primary",
-					Description: `The node has been elected as the primary and will establish a connection to the Intersight service and accept all message types enabled for a primary node. There can only be one primary in a given cluster, while the underlying platform may be active-active only one connector will assume the primary role.`,
-				},
-				resource.Attribute{
-					Name:        "Secondary",
-					Description: `The node has been elected as a secondary node in the cluster. The device connector will establish a connection to the Intersight service with limited capabilities. e.g. file upload will be enabled, but requests to the underlying platform management will be disabled. + ` + "`" + `new_identity` + "`" + `:(string) The new identity assigned to a device on ownership change (claim/unclaim). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `partition` + "`" + `:(int) The partition the device was last connected to, used to address the control message to the device connector gateway instance holding the devices connection.`,
-				},
 				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
@@ -881,135 +1177,143 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -1033,39 +1337,75 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -1073,11 +1413,11 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -1085,35 +1425,39 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -1121,7 +1465,7 @@ Target represents an entity which can be managed by Intersight. This includes ph
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -1294,6 +1638,26 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Default",
+					Description: `Value - Default for configuring AdaptiveRefreshMgmtLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "Level A",
+					Description: `Value - Level A for configuring AdaptiveRefreshMgmtLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "Level B",
+					Description: `Value - Level B for configuring AdaptiveRefreshMgmtLevel token.`,
+				},
+				resource.Attribute{
+					Name:        "Level C",
+					Description: `Value - Level C for configuring AdaptiveRefreshMgmtLevel token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2436,6 +2800,70 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 48 for configuring CoreMultiProcessing token.`,
 				},
 				resource.Attribute{
+					Name:        "49",
+					Description: `Value - 49 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "50",
+					Description: `Value - 50 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "51",
+					Description: `Value - 51 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "52",
+					Description: `Value - 52 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "53",
+					Description: `Value - 53 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "54",
+					Description: `Value - 54 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "55",
+					Description: `Value - 55 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "56",
+					Description: `Value - 56 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "57",
+					Description: `Value - 57 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "58",
+					Description: `Value - 58 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "59",
+					Description: `Value - 59 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "60",
+					Description: `Value - 60 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "61",
+					Description: `Value - 61 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "62",
+					Description: `Value - 62 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "63",
+					Description: `Value - 63 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
+					Name:        "64",
+					Description: `Value - 64 for configuring CoreMultiProcessing token.`,
+				},
+				resource.Attribute{
 					Name:        "all",
 					Description: `Value - all for configuring CoreMultiProcessing token.`,
 				},
@@ -2466,6 +2894,18 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "power",
 					Description: `Value - power for configuring CpuEnergyPerformance token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2550,6 +2990,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Mode 2 - M2M QoS Enable and CHA QoS Enable",
 					Description: `Value - Mode 2 - M2M QoS Enable and CHA QoS Enable for configuring CrQos token.`,
+				},
+				resource.Attribute{
+					Name:        "Profile 1",
+					Description: `Value - Profile 1 for configuring CrQos token.`,
 				},
 				resource.Attribute{
 					Name:        "Recipe 1",
@@ -2648,6 +3092,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring DramClockThrottling token.`,
 				},
@@ -2730,6 +3186,34 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "On Fatal and Non-Fatal Errors",
 					Description: `Value - On Fatal and Non-Fatal Errors for configuring EdpcEn token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "0P3_Percent",
+					Description: `Value - 0P3_Percent for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "0P5_Percent",
+					Description: `Value - 0P5_Percent for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Value - disabled for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Value - enabled for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "Hardware",
+					Description: `Value - Hardware for configuring EnableClockSpreadSpec token.`,
+				},
+				resource.Attribute{
+					Name:        "Off",
+					Description: `Value - Off for configuring EnableClockSpreadSpec token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -2862,6 +3346,22 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "Power",
 					Description: `Value - Power for configuring EppProfile token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring ErrorCheckScrub token.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled with Result Collection",
+					Description: `Value - Enabled with Result Collection for configuring ErrorCheckScrub token.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled without Result Collection",
+					Description: `Value - Enabled without Result Collection for configuring ErrorCheckScrub token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -3002,6 +3502,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring IntelSpeedSelect token.`,
 				},
 				resource.Attribute{
 					Name:        "Base",
@@ -3884,6 +4388,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring PcieSlotMraid1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring PcieSlotMraid1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -3922,6 +4430,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring PcieSlotMraid2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring PcieSlotMraid2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4400,6 +4912,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - 11.2GT/s for configuring QpiLinkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "12.8GT/s",
+					Description: `Value - 12.8GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "14.4GT/s",
+					Description: `Value - 14.4GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "16.0GT/s",
+					Description: `Value - 16.0GT/s for configuring QpiLinkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "9.6GT/s",
 					Description: `Value - 9.6GT/s for configuring QpiLinkSpeed token.`,
 				},
@@ -4828,6 +5352,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4874,6 +5402,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -4924,6 +5456,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot3linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -4970,6 +5506,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5020,6 +5560,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot5linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot5linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5066,6 +5610,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot6linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot6linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5116,6 +5664,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring Slot7linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot7linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5162,6 +5714,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring Slot8linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring Slot8linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5284,6 +5840,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme10linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme10linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5322,6 +5882,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme11linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme11linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5364,16 +5928,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme12linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme12linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5392,36 +5948,32 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme13linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5440,12 +5992,252 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme14linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme15linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme16linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme17linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme18linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme19linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme19linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5488,16 +6280,8 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "platform-default",
-					Description: `Default value used by the platform for the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
-				},
-				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5516,12 +6300,32 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `Enables the BIOS setting.`,
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme20linkSpeed token.`,
 				},
 				resource.Attribute{
-					Name:        "disabled",
-					Description: `Disables the BIOS setting.`,
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme20linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme20linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5540,12 +6344,164 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme21linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `Enables the BIOS setting.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
 					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme22linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme23linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Value - Auto for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Value - Disabled for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN1",
+					Description: `Value - GEN1 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN2",
+					Description: `Value - GEN2 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN3",
+					Description: `Value - GEN3 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN4",
+					Description: `Value - GEN4 for configuring SlotFrontNvme24linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme24linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5588,6 +6544,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme2linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5626,6 +6586,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme3linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5668,6 +6632,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5706,6 +6674,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme5linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme5linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5748,6 +6720,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme6linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme6linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5786,6 +6762,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme7linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme7linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -5828,6 +6808,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotFrontNvme8linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme8linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -5866,6 +6850,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotFrontNvme9linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotFrontNvme9linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6140,6 +7128,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotMlomLinkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotMlomLinkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6186,6 +7178,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotMraidLinkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotMraidLinkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6568,6 +7564,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotRearNvme1linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme1linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6606,6 +7606,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotRearNvme2linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme2linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -6648,6 +7652,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - GEN4 for configuring SlotRearNvme3linkSpeed token.`,
 				},
 				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme3linkSpeed token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -6686,6 +7694,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "GEN4",
 					Description: `Value - GEN4 for configuring SlotRearNvme4linkSpeed token.`,
+				},
+				resource.Attribute{
+					Name:        "GEN5",
+					Description: `Value - GEN5 for configuring SlotRearNvme4linkSpeed token.`,
 				},
 				resource.Attribute{
 					Name:        "platform-default",
@@ -7048,6 +8060,14 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - enabled for configuring Snc token.`,
 				},
 				resource.Attribute{
+					Name:        "SNC2",
+					Description: `Value - SNC2 for configuring Snc token.`,
+				},
+				resource.Attribute{
+					Name:        "SNC4",
+					Description: `Value - SNC4 for configuring Snc token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -7180,6 +8200,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring Tsme token.`,
 				},
@@ -7240,6 +8272,10 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Value - Hemisphere (2-clusters) for configuring UmaBasedClustering token.`,
 				},
 				resource.Attribute{
+					Name:        "Quadrant (4-clusters)",
+					Description: `Value - Quadrant (4-clusters) for configuring UmaBasedClustering token.`,
+				},
+				resource.Attribute{
 					Name:        "platform-default",
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
@@ -7250,6 +8286,10 @@ Policy for setting BIOS tokens on the endpoint.
 				resource.Attribute{
 					Name:        "2",
 					Description: `Value - 2 for configuring UpiLinkEnablement token.`,
+				},
+				resource.Attribute{
+					Name:        "3",
+					Description: `Value - 3 for configuring UpiLinkEnablement token.`,
 				},
 				resource.Attribute{
 					Name:        "Auto",
@@ -7452,6 +8492,18 @@ Policy for setting BIOS tokens on the endpoint.
 					Description: `Default value used by the platform for the BIOS setting.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `Enables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disables the BIOS setting.`,
+				},
+				resource.Attribute{
+					Name:        "platform-default",
+					Description: `Default value used by the platform for the BIOS setting.`,
+				},
+				resource.Attribute{
 					Name:        "Auto",
 					Description: `Value - Auto for configuring XptPrefetch token.`,
 				},
@@ -7497,12 +8549,12 @@ Boot order policy models a reusable boot order configuration that can be applied
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Legacy",
-					Description: `Legacy mode refers to the traditional process of booting from BIOS. Legacy mode uses the Master Boot Record (MBR) to locate the bootloader.`,
-				},
-				resource.Attribute{
 					Name:        "Uefi",
 					Description: `UEFI mode uses the GUID Partition Table (GPT) to locate EFI Service Partitions to boot from.`,
+				},
+				resource.Attribute{
+					Name:        "Legacy",
+					Description: `Legacy mode refers to the traditional process of booting from BIOS. Legacy mode uses the MBR to locate the bootloader.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -7924,6 +8976,358 @@ perform a PATCH action on multiple objects of a given REST resource type).
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_actions_meta_data",
+			Category:         "capability",
+			ShortDescription: `Metadata or constraints of various server actions supported in Intersight for 3rd Party servers. It is validated against the target provided and the actions are allowed only upon successful validation.`,
+			Description: `
+Metadata or constraints of various server actions supported in Intersight for 3rd Party servers. It is validated against the target provided  and the actions are allowed only upon successful validation.
+`,
+			Keywords: []string{
+				"capability",
+				"actions",
+				"meta",
+				"data",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "APIC",
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
+				},
+				resource.Attribute{
+					Name:        "CAPIC",
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
+				},
+				resource.Attribute{
+					Name:        "DCNM",
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
+				},
+				resource.Attribute{
+					Name:        "UCSFI",
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
+				},
+				resource.Attribute{
+					Name:        "UCSFIISM",
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "IMC",
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "IMCM4",
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCM5",
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
+				},
+				resource.Attribute{
+					Name:        "IMCRack",
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
+				},
+				resource.Attribute{
+					Name:        "UCSIOM",
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
+				},
+				resource.Attribute{
+					Name:        "HX",
+					Description: `A Cisco HyperFlex (HX) cluster.`,
+				},
+				resource.Attribute{
+					Name:        "HyperFlexAP",
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "IWE",
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
+				},
+				resource.Attribute{
+					Name:        "UCSD",
+					Description: `A Cisco UCS Director (UCSD) instance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAppliance",
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightAssist",
+					Description: `A Cisco Intersight Assist instance.`,
+				},
+				resource.Attribute{
+					Name:        "PureStorageFlashArray",
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "NexusDevice",
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "ACISwitch",
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
+				},
+				resource.Attribute{
+					Name:        "NexusSwitch",
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSDevice",
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC890",
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppOntap",
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "NetAppActiveIqUnifiedManager",
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "EmcScaleIo",
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVmax",
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcVplex",
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "EmcXtremIo",
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "VmwareVcenter",
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftHyperV",
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
+				},
+				resource.Attribute{
+					Name:        "AppDynamics",
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
+				},
+				resource.Attribute{
+					Name:        "Dynatrace",
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "NewRelic",
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceNow",
+					Description: `A cloud-based workflow automation platform that enables enterprise organizations to improve operational efficiencies by streamlining and automating routine work tasks.`,
+				},
+				resource.Attribute{
+					Name:        "ReadHatOpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "CloudFoundry",
+					Description: `An open source cloud platform on which developers can build, deploy, run and scale applications.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureApplicationInsights",
+					Description: `A feature of Azure Monitor, is an extensible Application Performance Management service for developers and DevOps professionals to monitor their live applications.`,
+				},
+				resource.Attribute{
+					Name:        "OpenStack",
+					Description: `An OpenStack target manages Virtual Machines, Physical Machines, Datacenters and Virtual Datacenters using different OpenStack services as administrative endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftSqlServer",
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "MySqlServer",
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
+				},
+				resource.Attribute{
+					Name:        "Kubernetes",
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebService",
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "AmazonWebServiceBilling",
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureServicePrincipal",
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureEnterpriseAgreement",
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "DellCompellent",
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "HPE3Par",
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatEnterpriseVirtualization",
+					Description: `A Red Hat Enterprise Virtualization Hypervisor system that manages Virtual Machines.`,
+				},
+				resource.Attribute{
+					Name:        "NutanixAcropolis",
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "HPEOneView",
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
+				},
+				resource.Attribute{
+					Name:        "ServiceEngine",
+					Description: `Cisco Application Services Engine. Cisco Application Services Engine is a platform to deploy and manage applications.`,
+				},
+				resource.Attribute{
+					Name:        "HitachiVirtualStoragePlatform",
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
+				},
+				resource.Attribute{
+					Name:        "IMCBlade",
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformCloud",
+					Description: `A Terraform Cloud Business Tier account.`,
+				},
+				resource.Attribute{
+					Name:        "TerraformAgent",
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
+				},
+				resource.Attribute{
+					Name:        "CustomTarget",
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "AnsibleEndpoint",
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "HTTPEndpoint",
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
+				},
+				resource.Attribute{
+					Name:        "SSHEndpoint",
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "CiscoCatalyst",
+					Description: `A Cisco Catalyst networking switch device.`,
+				},
+				resource.Attribute{
+					Name:        "PowerShellEndpoint",
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_actions_meta_data` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_actions_meta_data.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_adapter_deprecated_def",
+			Category:         "capability",
+			ShortDescription: `Object to represent an unsupported/deprecated adapter. Meant to be used under server descriptor object.`,
+			Description: `
+Object to represent an unsupported/deprecated adapter. Meant to be used under server descriptor object.
+`,
+			Keywords: []string{
+				"capability",
+				"adapter",
+				"deprecated",
+				"def",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_adapter_deprecated_def` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_adapter_deprecated_def.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_adapter_unit_descriptor",
 			Category:         "capability",
 			ShortDescription: `Descriptor that uniquely identifies an adapter.`,
@@ -8091,6 +9495,96 @@ Descriptor that identifies the server's redfish integration capability using cim
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_cpu_endpoint_descriptor",
+			Category:         "capability",
+			ShortDescription: `Descriptor that uniquely identifies a cpu.`,
+			Description: `
+Descriptor that uniquely identifies a cpu.
+`,
+			Keywords: []string{
+				"capability",
+				"cpu",
+				"endpoint",
+				"descriptor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_cpu_endpoint_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_cpu_endpoint_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_dimms_endpoint_descriptor",
+			Category:         "capability",
+			ShortDescription: `Descriptor that uniquely identifies a dimm.`,
+			Description: `
+Descriptor that uniquely identifies a dimm.
+`,
+			Keywords: []string{
+				"capability",
+				"dimms",
+				"endpoint",
+				"descriptor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_dimms_endpoint_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_dimms_endpoint_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_drives_endpoint_descriptor",
+			Category:         "capability",
+			ShortDescription: `Descriptor that uniquely identifies a drive.`,
+			Description: `
+Descriptor that uniquely identifies a drive.
+`,
+			Keywords: []string{
+				"capability",
+				"drives",
+				"endpoint",
+				"descriptor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_drives_endpoint_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_drives_endpoint_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_equipment_physical_def",
 			Category:         "capability",
 			ShortDescription: `Type to represent additional switch specific capabilities.`,
@@ -8244,6 +9738,35 @@ Fan module unit that contains multiple fans.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_capability_fex_capability_def",
+			Category:         "capability",
+			ShortDescription: `Fabric Extender module capabilities.`,
+			Description: `
+Fabric Extender module capabilities.
+`,
+			Keywords: []string{
+				"capability",
+				"fex",
+				"def",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_fex_capability_def` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_fex_capability_def.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_capability_fex_descriptor",
 			Category:         "capability",
 			ShortDescription: `Descriptor that uniquely identifies an Fabric extender.`,
@@ -8297,6 +9820,36 @@ Fabric extender manufacturing def properties.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_gpu_endpoint_descriptor",
+			Category:         "capability",
+			ShortDescription: `Descriptor that uniquely identifies a cpu.`,
+			Description: `
+Descriptor that uniquely identifies a cpu.
+`,
+			Keywords: []string{
+				"capability",
+				"gpu",
+				"endpoint",
+				"descriptor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_gpu_endpoint_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_gpu_endpoint_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8486,6 +10039,47 @@ Power supply unit properties.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_capability_server_descriptor",
+			Category:         "capability",
+			ShortDescription: `Descriptor that uniquely identifies an IMM server.`,
+			Description: `
+Descriptor that uniquely identifies an IMM server.
+`,
+			Keywords: []string{
+				"capability",
+				"server",
+				"descriptor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "unknown",
+					Description: `The form factor of the server is unknown.`,
+				},
+				resource.Attribute{
+					Name:        "blade",
+					Description: `Blade server form factor.`,
+				},
+				resource.Attribute{
+					Name:        "rack",
+					Description: `Rack unit server form factor.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_capability_server_descriptor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_capability_server_descriptor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -8782,6 +10376,14 @@ Certificate Management policy models a reusable certificate and private key conf
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `Set certificate on the selected end point .`,
+				},
+				resource.Attribute{
+					Name:        "KMIPClient",
+					Description: `Set KMIP certificate on the selected end point. + ` + "`" + `certificate` + "`" + `:(HashMap) - Certificate that is used for verifying the authorization. This complex property has following sub-properties: + ` + "`" + `issuer` + "`" + `:(HashMap) -(ReadOnly) The X.509 distinguished name of the issuer of this certificate. This complex property has following sub-properties: + ` + "`" + `common_name` + "`" + `:(string)(ReadOnly) A required component that identifies a person or an object. + ` + "`" + `country` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `locality` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `organization` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `organizational_unit` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `state` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `not_after` + "`" + `:(string)(ReadOnly) The date on which the certificate's validity period ends. + ` + "`" + `not_before` + "`" + `:(string)(ReadOnly) The date on which the certificate's validity period begins. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `pem_certificate` + "`" + `:(string) The base64 encoded certificate in PEM format. + ` + "`" + `sha256_fingerprint` + "`" + `:(string)(ReadOnly) The computed SHA-256 fingerprint of the certificate. Equivalent to 'openssl x509 -fingerprint -sha256'. + ` + "`" + `signature_algorithm` + "`" + `:(string)(ReadOnly) Signature algorithm, as specified in [RFC 5280](https://tools.ietf.org/html/rfc5280). + ` + "`" + `subject` + "`" + `:(HashMap) -(ReadOnly) The X.509 distinguished name of the subject of this certificate. This complex property has following sub-properties: + ` + "`" + `common_name` + "`" + `:(string)(ReadOnly) A required component that identifies a person or an object. + ` + "`" + `country` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `locality` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `organization` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `organizational_unit` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `state` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `enabled` + "`" + `:(bool) Enable/Disable the certificate in Certificate Management policy. + ` + "`" + `is_privatekey_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'privatekey' property has been set. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `privatekey` + "`" + `:(string) Private Key which is used to validate the certificate.`,
+				},
+				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -8838,6 +10440,62 @@ A profile specifying configuration settings for a chassis.
 				"profile",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
 				resource.Attribute{
 					Name:        "FIAttached",
 					Description: `Chassis which are connected to a Fabric Interconnect that is managed by Intersight.`,
@@ -9422,20 +11080,20 @@ Configuration object sent by user to create a fc uplink port.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Auto",
-					Description: `Admin configurable speed AUTO ( default ).`,
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "8Gbps",
 					Description: `Admin configurable speed 8Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "16Gbps",
-					Description: `Admin configurable speed 16Gbps.`,
-				},
-				resource.Attribute{
 					Name:        "32Gbps",
 					Description: `Admin configurable speed 32Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -9469,20 +11127,20 @@ Object sent by user to configure a fc uplink port-channel on the collection of p
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Auto",
-					Description: `Admin configurable speed AUTO ( default ).`,
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "8Gbps",
 					Description: `Admin configurable speed 8Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "16Gbps",
-					Description: `Admin configurable speed 16Gbps.`,
-				},
-				resource.Attribute{
 					Name:        "32Gbps",
 					Description: `Admin configurable speed 32Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
 				},
 				resource.Attribute{
 					Name:        "Idle",
@@ -9523,20 +11181,20 @@ Configuration object sent by user to create a fc uplink port.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Auto",
-					Description: `Admin configurable speed AUTO ( default ).`,
+					Name:        "16Gbps",
+					Description: `Admin configurable speed 16Gbps.`,
 				},
 				resource.Attribute{
 					Name:        "8Gbps",
 					Description: `Admin configurable speed 8Gbps.`,
 				},
 				resource.Attribute{
-					Name:        "16Gbps",
-					Description: `Admin configurable speed 16Gbps.`,
-				},
-				resource.Attribute{
 					Name:        "32Gbps",
 					Description: `Admin configurable speed 32Gbps.`,
+				},
+				resource.Attribute{
+					Name:        "Auto",
+					Description: `Admin configurable speed AUTO ( default ).`,
 				},
 				resource.Attribute{
 					Name:        "Idle",
@@ -9557,6 +11215,56 @@ Configuration object sent by user to create a fc uplink port.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_fabric_fc_zone_policy",
+			Category:         "fabric",
+			ShortDescription: `List of target path entries of storage arrays that are used to configure zones on the switch.`,
+			Description: `
+List of target path entries of storage arrays that are used to configure zones on the switch.
+`,
+			Keywords: []string{
+				"fabric",
+				"fc",
+				"zone",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "A",
+					Description: `Switch Identifier of Fabric Interconnect A.`,
+				},
+				resource.Attribute{
+					Name:        "B",
+					Description: `Switch Identifier of Fabric Interconnect B. + ` + "`" + `vsan_id` + "`" + `:(int) VSAN with scope defined as Storage in the VSAN policy. + ` + "`" + `wwpn` + "`" + `:(string) WWPN that is a member of the FC zone.`,
+				},
+				resource.Attribute{
+					Name:        "SIST",
+					Description: `The system automatically creates one zone for each vHBA and storage port pair. Each zone has two members.`,
+				},
+				resource.Attribute{
+					Name:        "SIMT",
+					Description: `The system automatically creates one zone for each vHBA. Configure this type of zoning if the number of zones created is likely to exceed the maximum supported number of zones.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `FC zoning is not configured.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fabric_fc_zone_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fabric_fc_zone_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9704,6 +11412,10 @@ Priority Flow Control setting for each port.
 				resource.Attribute{
 					Name:        "on",
 					Description: `Enables PFC on the local port regardless of the capability of the peers.`,
+				},
+				resource.Attribute{
+					Name:        "off",
+					Description: `Disable PFC on the local port regardless of the capability of the peers.`,
 				},
 				resource.Attribute{
 					Name:        "Disabled",
@@ -9871,6 +11583,14 @@ A policy to configure Multicast settings for all the Virtual LAN networks.
 				resource.Attribute{
 					Name:        "Enabled",
 					Description: `Admin configured Enabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Admin configured Enabled State.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Admin configured Disabled State.`,
 				},
 				resource.Attribute{
 					Name:        "Enabled",
@@ -10156,6 +11876,18 @@ Configuration object sent by user to create a server port.
 					Description: `Forward error correction option 'cl74'.`,
 				},
 				resource.Attribute{
+					Name:        "Auto",
+					Description: `Preferred Id will be ignored if specified with this type.`,
+				},
+				resource.Attribute{
+					Name:        "RackServer",
+					Description: `Connected device type is Rack Unit Server.`,
+				},
+				resource.Attribute{
+					Name:        "Chassis",
+					Description: `Connected device type is Chassis.`,
+				},
+				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -10185,6 +11917,62 @@ This specifies the configuration policies for a cluster of switches.
 				"profile",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
@@ -10284,6 +12072,62 @@ This specifies configuration policies for a managed network switch.
 				"profile",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
@@ -10498,6 +12342,22 @@ Configuration object for Virtual LAN.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `This represents a regular VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Primary",
+					Description: `This represents a primary VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Isolated",
+					Description: `This represents an isolated VLAN.`,
+				},
+				resource.Attribute{
+					Name:        "Community",
+					Description: `This represents a community VLAN.`,
+				},
+				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -10598,6 +12458,42 @@ Pool represents a collection of WWN addresses that can be allocated to VHBAs of 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_fcpool_reservation",
+			Category:         "fcpool",
+			ShortDescription: `The WWN reservation object, used to hold reserved identities.`,
+			Description: `
+The WWN reservation object, used to hold reserved identities.
+`,
+			Keywords: []string{
+				"fcpool",
+				"reservation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_fcpool_reservation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_fcpool_reservation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_feedback_feedback_post",
 			Category:         "feedback",
 			ShortDescription: `Initial feedback submitted by the user from UI.`,
@@ -10623,7 +12519,7 @@ Initial feedback submitted by the user from UI.
 				},
 				resource.Attribute{
 					Name:        "Good",
-					Description: `Option that specifies user's good evaluation. + ` + "`" + `follow_up` + "`" + `:(bool) If a user is open for follow-up or not. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `trace_ids` + "`" + `:(JSON as string) Bunch of last traceId for reproducing user last activity. + ` + "`" + `type` + "`" + `:(string) Type of the feedback from user.`,
+					Description: `Option that specifies user's good evaluation. + ` + "`" + `follow_up` + "`" + `:(bool) If a user is open for follow-up or not. + ` + "`" + `full_story_url` + "`" + `:(string) URL generated by FullStory linking to the UI session's recording. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `trace_ids` + "`" + `:(JSON as string) Bunch of last traceId for reproducing user last activity. + ` + "`" + `type` + "`" + `:(string) Type of the feedback from user.`,
 				},
 				resource.Attribute{
 					Name:        "Evaluation",
@@ -10759,7 +12655,15 @@ Firmware upgrade operation for chassis that downloads the image located at Cisco
 				},
 				resource.Attribute{
 					Name:        "chassis_upgrade_full",
-					Description: `Direct upgrade chassis upgrade full. + ` + "`" + `username` + "`" + `:(string) Username as configured on the local https server.`,
+					Description: `Direct upgrade chassis upgrade full.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_only",
+					Description: `Direct upgrade monitor progress only.`,
+				},
+				resource.Attribute{
+					Name:        "validate_only",
+					Description: `Validate whether a component is ready for ugprade. + ` + "`" + `username` + "`" + `:(string) Username as configured on the local https server.`,
 				},
 				resource.Attribute{
 					Name:        "none",
@@ -11032,6 +12936,18 @@ An image distributed by Cisco.
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
 				},
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -11300,6 +13216,18 @@ A device driver image distributed by Cisco.
 				resource.Attribute{
 					Name:        "AutomaticPowerCycle",
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
+				},
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -11616,6 +13544,114 @@ Descriptor to uniquely identify a PCIE component.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_firmware_policy",
+			Category:         "firmware",
+			ShortDescription: `Firmware policy on the endpoint.`,
+			Description: `
+Firmware policy on the endpoint.
+`,
+			Keywords: []string{
+				"firmware",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "UCSC-C220-M5",
+					Description: `The upgrade on all C220-M5 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C220-M4",
+					Description: `The upgrade on all C220-M4 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C240-M4",
+					Description: `The upgrade on all C240-M4 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C460-M4",
+					Description: `The upgrade on all C460-M4 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C240-M5",
+					Description: `The upgrade on all C240-M5 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C480-M5",
+					Description: `The upgrade on all C480-M5 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSB-B200-M5",
+					Description: `The upgrade on all B200-M5 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSB-B480-M5",
+					Description: `The upgrade on all B480-M5 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C220-M6",
+					Description: `The upgrade on all C220-M6 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C240-M6",
+					Description: `The upgrade on all C240-M6 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C225-M6",
+					Description: `The upgrade on all C225-M6 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C245-M6",
+					Description: `The upgrade on all C245-M6 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSB-B200-M6",
+					Description: `The upgrade on all B200-M6 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSX-210C-M6",
+					Description: `The upgrade on all 210C-M6 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSX-210C-M7",
+					Description: `The upgrade on all 210C-M7 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSX-220-M7",
+					Description: `The upgrade on all C220-M7 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSX-240-M7",
+					Description: `The upgrade on all C240-M7 servers claimed in setup.`,
+				},
+				resource.Attribute{
+					Name:        "UCSC-C125",
+					Description: `The upgrade on all C125 servers claimed in setup. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "Standalone",
+					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
+				},
+				resource.Attribute{
+					Name:        "FIAttached",
+					Description: `Servers which are connected to a Fabric Interconnect that is managed by Intersight.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_firmware_psu_descriptor",
 			Category:         "firmware",
 			ShortDescription: `Descriptor to uniquely identify a PSU component.`,
@@ -11796,6 +13832,18 @@ A server configuration utility image distributed by Cisco.
 				resource.Attribute{
 					Name:        "AutomaticPowerCycle",
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
+				},
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -11990,7 +14038,15 @@ Firmware upgrade operation for Fabric Interconnects that downloads the image loc
 				},
 				resource.Attribute{
 					Name:        "chassis_upgrade_full",
-					Description: `Direct upgrade chassis upgrade full. + ` + "`" + `username` + "`" + `:(string) Username as configured on the local https server.`,
+					Description: `Direct upgrade chassis upgrade full.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_only",
+					Description: `Direct upgrade monitor progress only.`,
+				},
+				resource.Attribute{
+					Name:        "validate_only",
+					Description: `Validate whether a component is ready for ugprade. + ` + "`" + `username` + "`" + `:(string) Username as configured on the local https server.`,
 				},
 				resource.Attribute{
 					Name:        "none",
@@ -12104,7 +14160,7 @@ This represents an operation managed object used for upgrading equipment that ca
 				},
 				resource.Attribute{
 					Name:        "sha256",
-					Description: `A SHA256 hash as defined by RFC 4634. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `An SHA256 hash as defined by RFC 4634. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -12184,7 +14240,15 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				},
 				resource.Attribute{
 					Name:        "chassis_upgrade_full",
-					Description: `Direct upgrade chassis upgrade full. + ` + "`" + `username` + "`" + `:(string) Username as configured on the local https server.`,
+					Description: `Direct upgrade chassis upgrade full.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_only",
+					Description: `Direct upgrade monitor progress only.`,
+				},
+				resource.Attribute{
+					Name:        "validate_only",
+					Description: `Validate whether a component is ready for ugprade. + ` + "`" + `username` + "`" + `:(string) Username as configured on the local https server.`,
 				},
 				resource.Attribute{
 					Name:        "none",
@@ -12253,6 +14317,14 @@ Firmware upgrade operation for rack and blade servers that downloads the image l
 				resource.Attribute{
 					Name:        "TERMINATED",
 					Description: `The upgrade has been terminated.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Upgrade is invoked within the service.`,
+				},
+				resource.Attribute{
+					Name:        "profileTrigger",
+					Description: `Upgrade is invoked from a profile deployment.`,
 				},
 				resource.Attribute{
 					Name:        "direct_upgrade",
@@ -12818,6 +14890,35 @@ Before submitting firmware upgrade operation, the estimate impact helps to know 
 				resource.Attribute{
 					Name:        "Downgrade",
 					Description: `The component will be downgraded.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_firmware_upgrade_validity",
+			Category:         "firmware",
+			ShortDescription: `Upgrade Validity API that performs basic validity checks for performing a firmware upgrade on the endpoint. The API checks whether the endpoint satisfies the basic platform requirements that are needed for firmware upgrade to happen. Support is currently available only for Standalone servers.`,
+			Description: `
+Upgrade Validity API that performs basic validity checks for performing a firmware upgrade on the endpoint. The API checks whether the endpoint satisfies the basic platform requirements that are needed for firmware upgrade to happen. Support is currently available only for Standalone servers.
+`,
+			Keywords: []string{
+				"firmware",
+				"upgrade",
+				"validity",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_firmware_upgrade_validity` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_firmware_upgrade_validity.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -13582,6 +15683,62 @@ A profile specifying configuration settings for a HyperFlex cluster.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
+				resource.Attribute{
 					Name:        "ESXi",
 					Description: `The hypervisor running on the HyperFlex cluster is a Vmware ESXi hypervisor of any version.`,
 				},
@@ -13608,6 +15765,10 @@ A profile specifying configuration settings for a HyperFlex cluster.
 				resource.Attribute{
 					Name:        "EDGE",
 					Description: `The host servers used in the cluster deployment are standalone severs.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The host servers used in the cluster deployment are standalone servers with the DC Advantage license.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexDp",
@@ -13808,19 +15969,23 @@ The HyperFlex feature limits that are available to end users.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The deployment type of the cluster is not available.`,
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "Datacenter",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
 				},
 				resource.Attribute{
 					Name:        "Stretched Cluster",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
 				},
 				resource.Attribute{
 					Name:        "Edge",
-					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The deployment type of a HyperFlex cluster consisting of 3 or more standalone nodes with the required Datacenter license. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -13848,7 +16013,11 @@ The HyperFlex feature limits that are available to end users.
 				},
 				resource.Attribute{
 					Name:        "EDGE",
-					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
+					Description: `The host servers used in the cluster deployment are standalone severs.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The host servers used in the cluster deployment are standalone servers with the DC Advantage license. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -13882,19 +16051,23 @@ The HyperFlex installer feature limits for internal system use.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The deployment type of the cluster is not available.`,
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "Datacenter",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
 				},
 				resource.Attribute{
 					Name:        "Stretched Cluster",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
 				},
 				resource.Attribute{
 					Name:        "Edge",
-					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The deployment type of a HyperFlex cluster consisting of 3 or more standalone nodes with the required Datacenter license. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -13922,7 +16095,11 @@ The HyperFlex installer feature limits for internal system use.
 				},
 				resource.Attribute{
 					Name:        "EDGE",
-					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
+					Description: `The host servers used in the cluster deployment are standalone severs.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The host servers used in the cluster deployment are standalone servers with the DC Advantage license. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -14198,6 +16375,62 @@ It defines node settings such as IP address configuration for hypervisor managem
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
+				resource.Attribute{
 					Name:        "Unknown",
 					Description: `The node role is not available.`,
 				},
@@ -14306,19 +16539,23 @@ An entry specifying supported server firmware version in regex format.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The deployment type of the cluster is not available.`,
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "Datacenter",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
 				},
 				resource.Attribute{
 					Name:        "Stretched Cluster",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
 				},
 				resource.Attribute{
 					Name:        "Edge",
-					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The deployment type of a HyperFlex cluster consisting of 3 or more standalone nodes with the required Datacenter license. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -14346,7 +16583,11 @@ An entry specifying supported server firmware version in regex format.
 				},
 				resource.Attribute{
 					Name:        "EDGE",
-					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format.`,
+					Description: `The host servers used in the cluster deployment are standalone severs.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The host servers used in the cluster deployment are standalone servers with the DC Advantage license. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format.`,
 				},
 				resource.Attribute{
 					Name:        "M5",
@@ -14395,19 +16636,23 @@ A supported server model.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "NA",
-					Description: `The deployment type of the cluster is not available.`,
+					Description: `The deployment type of the HyperFlex cluster is not available.`,
 				},
 				resource.Attribute{
 					Name:        "Datacenter",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes on the same site.`,
 				},
 				resource.Attribute{
 					Name:        "Stretched Cluster",
-					Description: `The deployment type of a cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of UCS Fabric Interconnect-attached nodes across different sites.`,
 				},
 				resource.Attribute{
 					Name:        "Edge",
-					Description: `The deployment type of a cluster consisting of 2 or more standalone nodes. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
+					Description: `The deployment type of a HyperFlex cluster consisting of 2 or more standalone nodes.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The deployment type of a HyperFlex cluster consisting of 3 or more standalone nodes with the required Datacenter license. + ` + "`" + `hxdp_version` + "`" + `:(string) The supported HyperFlex Data Platform version in regex format. + ` + "`" + `hypervisor_type` + "`" + `:(string) The hypervisor type for the HyperFlex cluster.`,
 				},
 				resource.Attribute{
 					Name:        "ESXi",
@@ -14435,7 +16680,11 @@ A supported server model.
 				},
 				resource.Attribute{
 					Name:        "EDGE",
-					Description: `The host servers used in the cluster deployment are standalone severs. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
+					Description: `The host servers used in the cluster deployment are standalone severs.`,
+				},
+				resource.Attribute{
+					Name:        "DC-No-FI",
+					Description: `The host servers used in the cluster deployment are standalone servers with the DC Advantage license. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_model` + "`" + `:(string) The supported server models in regex format. + ` + "`" + `name` + "`" + `:(string) The application setting identifier. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) The application setting value.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -14662,7 +16911,7 @@ A policy specifying system configuration such as timezone, DNS servers, and NTP 
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: ``,
 				},
 				resource.Attribute{
@@ -14880,7 +17129,59 @@ The beta features enabled for the specified account.
 				},
 				resource.Attribute{
 					Name:        "IksBm",
-					Description: `Enables Intersight Kubernetes Service on Baremetal server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `Enables Intersight Kubernetes Service on Baremetal server.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloud",
+					Description: `Enables Nexus Cloud services functionality.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloudTrial",
+					Description: `Enables Nexus Cloud trial period.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloudUpgradeAssist",
+					Description: `Enables Nexus Cloud upgrade assist.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloudSustainability",
+					Description: `Enables Nexus Cloud sustainability.`,
+				},
+				resource.Attribute{
+					Name:        "PlatformUIRefresh",
+					Description: `Enables platform refreshed UI with new service launcher.`,
+				},
+				resource.Attribute{
+					Name:        "IksGpu",
+					Description: `Enables GPU support for Intersight Kubernetes Service.`,
+				},
+				resource.Attribute{
+					Name:        "IwoAppServiceVerticalScaling",
+					Description: `Enables vertical Scaling of App Service Plans.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloudTechPreviewGold",
+					Description: `Enable Nexus Cloud Preview of stable features, available for public consumption.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloudTechPreviewSilver",
+					Description: `Enable Nexus Cloud Preview of beta features. This feature set is intended for consumption by internal audiences.`,
+				},
+				resource.Attribute{
+					Name:        "NexusCloudTechPreviewBronze",
+					Description: `Enable Nexus Cloud Preview of features still in development. This feature set is intended for consumption by internal audiences.`,
+				},
+				resource.Attribute{
+					Name:        "DisconnectedTargetAlarm",
+					Description: `Raise an alarm when a Target is disconnected from Intersight. Intersight is unable to manage disconnected Targets.`,
+				},
+				resource.Attribute{
+					Name:        "AsAService",
+					Description: `Enable AsAService Preview of beta features. This feature set is intended for consumption by selective audiences.`,
+				},
+				resource.Attribute{
+					Name:        "EMEA",
+					Description: `Enable all avaialble features on Intersight EMEA region. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -15792,6 +18093,35 @@ User Group provides a way to assign permissions to a group of users based on the
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_iam_user_setting",
+			Category:         "iam",
+			ShortDescription: `Holder for UI Settings such as preference of the user for Session Recording.`,
+			Description: `
+Holder for UI Settings such as preference of the user for Session Recording.
+`,
+			Keywords: []string{
+				"iam",
+				"user",
+				"setting",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iam_user_setting` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iam_user_setting.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_inventory_request",
 			Category:         "inventory",
 			ShortDescription: `Request MO allows the inventory of specific devices to be collected on demand. The inventory can be collected in three levels - all the MOs of a specific device, MOs of specific MO types for a given device or specific MO instances of specific MO types for a given device. These MO instances are used just to collect the requests and not persisted.`,
@@ -15896,6 +18226,50 @@ Pool represents a collection of IPv4 and/or IPv6 addresses that can be allocated
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_ippool_reservation",
+			Category:         "ippool",
+			ShortDescription: `The IP reservation object, used to hold reserved addresses.`,
+			Description: `
+The IP reservation object, used to hold reserved addresses.
+`,
+			Keywords: []string{
+				"ippool",
+				"reservation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "IPv4",
+					Description: `IP V4 address type requested.`,
+				},
+				resource.Attribute{
+					Name:        "IPv6",
+					Description: `IP V6 address type requested.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_iqnpool_pool",
 			Category:         "iqnpool",
 			ShortDescription: `Pool represents a collection of iSCSI Qualified Names (IQNs) for use as initiator identifiers by iSCSI vNICs.`,
@@ -15926,6 +18300,71 @@ Pool represents a collection of iSCSI Qualified Names (IQNs) for use as initiato
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iqnpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iqnpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iqnpool_reservation",
+			Category:         "iqnpool",
+			ShortDescription: `The IQN reservation object, used to hold reserved identity.`,
+			Description: `
+The IQN reservation object, used to hold reserved identity.
+`,
+			Keywords: []string{
+				"iqnpool",
+				"reservation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iqnpool_reservation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iqnpool_reservation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_iwotenant_maintenance_notification",
+			Category:         "iwotenant",
+			ShortDescription: `Maintenance related notification to be displayed as UI banner when customer logs in the Intersight UI.`,
+			Description: `
+Maintenance related notification to be displayed as UI banner when customer logs in the Intersight UI.
+`,
+			Keywords: []string{
+				"iwotenant",
+				"maintenance",
+				"notification",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_iwotenant_maintenance_notification` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_iwotenant_maintenance_notification.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -16209,6 +18648,62 @@ A profile specifying configuration settings for a baremetal node. Users can do o
 					Description: `Out of tree cloud provider, e.g. CPI for vsphere.`,
 				},
 				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
+				resource.Attribute{
 					Name:        "Name",
 					Description: `A network interface name, e.g. eth0, eno9.`,
 				},
@@ -16401,6 +18896,62 @@ Cluster profile specifies the config profile for a Kubernetes cluster. It also d
 				},
 				resource.Attribute{
 					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
+				resource.Attribute{
+					Name:        "None",
 					Description: `Unspecified install strategy.`,
 				},
 				resource.Attribute{
@@ -16558,6 +19109,36 @@ A policy specifying container runtime configuration, such as docker proxy, no pr
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_kubernetes_http_proxy_policy",
+			Category:         "kubernetes",
+			ShortDescription: `A policy specifying HTTP and HTTPS proxy configuration.`,
+			Description: `
+A policy specifying HTTP and HTTPS proxy configuration.
+`,
+			Keywords: []string{
+				"kubernetes",
+				"http",
+				"proxy",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_http_proxy_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_http_proxy_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_kubernetes_network_policy",
 			Category:         "kubernetes",
 			ShortDescription: `A policy specifying the CIDR for internal networks in a Kubernetes cluster like Pod network, and Service network.`,
@@ -16609,6 +19190,62 @@ A configuration profile for a node group in a Kubernetes cluster.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
+				resource.Attribute{
 					Name:        "Worker",
 					Description: `Node will be marked as a worker node.`,
 				},
@@ -16634,7 +19271,37 @@ A configuration profile for a node group in a Kubernetes cluster.
 				},
 				resource.Attribute{
 					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_node_group_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_node_group_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_node_group_profile` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_node_group_profile.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [infra.GpuConfiguration](#argument-reference) Generic GPU configuration on a compute resource (BM or VM). ### [infra.MigGpuConfiguration](#argument-reference) Nvidia MIG capable GPU configuration on a compute resource (BM or VM).`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_kubernetes_nvidia_gpu_product",
+			Category:         "kubernetes",
+			ShortDescription: `Information of a Nvidia GPU product.`,
+			Description: `
+Information of a Nvidia GPU product.
+`,
+			Keywords: []string{
+				"kubernetes",
+				"nvidia",
+				"gpu",
+				"product",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_kubernetes_nvidia_gpu_product` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_kubernetes_nvidia_gpu_product.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -16655,7 +19322,7 @@ A policy specifying system configuration such as timezone, DNS servers, and NTP 
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: ``,
 				},
 				resource.Attribute{
@@ -16895,6 +19562,62 @@ A profile specifying configuration settings for a Virtual Machine node. It is au
 					Description: `Out of tree cloud provider, e.g. CPI for vsphere.`,
 				},
 				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
+				resource.Attribute{
 					Name:        "Name",
 					Description: `A network interface name, e.g. eth0, eno9.`,
 				},
@@ -17090,6 +19813,35 @@ Customer operation object to request reservation code.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_license_inc_license_count",
+			Category:         "license",
+			ShortDescription: `Customer operation object to request reservation code.`,
+			Description: `
+Customer operation object to request reservation code.
+`,
+			Keywords: []string{
+				"license",
+				"inc",
+				"count",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_license_inc_license_count` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_license_inc_license_count.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_license_iwo_license_count",
 			Category:         "license",
 			ShortDescription: `Customer operation object to request reservation code.`,
@@ -17193,6 +19945,58 @@ the feature set defined for the license entitlement is granted to the customer.
 					Description: `IKS-Advantage as a License type.`,
 				},
 				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -17268,6 +20072,42 @@ Pool represents a collection of MAC addresses that can be allocated to VNICs of 
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_macpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_macpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_macpool_reservation",
+			Category:         "macpool",
+			ShortDescription: `The MAC reservation object, used to hold reserved addresses.`,
+			Description: `
+The MAC reservation object, used to hold reserved addresses.
+`,
+			Keywords: []string{
+				"macpool",
+				"reservation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_macpool_reservation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_macpool_reservation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -17403,6 +20243,66 @@ Enable or disable Dynamic DNS, add or update DNS settings for IPv4 and IPv6 on C
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_niatelemetry_nexus_cloud_account",
+			Category:         "niatelemetry",
+			ShortDescription: `Nexus Cloud object responsible for tracking site devices per account.`,
+			Description: `
+Nexus Cloud object responsible for tracking site devices per account.
+`,
+			Keywords: []string{
+				"niatelemetry",
+				"nexus",
+				"cloud",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_niatelemetry_nexus_cloud_account` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_niatelemetry_nexus_cloud_account.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_niatelemetry_nexus_cloud_site",
+			Category:         "niatelemetry",
+			ShortDescription: `Stores information of Nexus Cloud site devices.`,
+			Description: `
+Stores information of Nexus Cloud site devices.
+`,
+			Keywords: []string{
+				"niatelemetry",
+				"nexus",
+				"cloud",
+				"site",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_niatelemetry_nexus_cloud_site` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_niatelemetry_nexus_cloud_site.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_notification_account_subscription",
 			Category:         "notification",
 			ShortDescription: `AccountSubscription is a concrete type that extends abstract Subscription type and intent to be used only for account level subscriptions by Account Administrator.`,
@@ -17465,7 +20365,7 @@ Policy to configure the NTP Servers.
 					Description: `Key type used by the authentication is SHA1. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `server_name` + "`" + `:(string) Server hostname or IP address. + ` + "`" + `sym_key_id` + "`" + `:(int) The key ID is a positive integer that identifies a cryptographic key used to authenticate NTP messages. + ` + "`" + `sym_key_value` + "`" + `:(string) The value of the symmetric key.`,
 				},
 				resource.Attribute{
-					Name:        "Pacific/Kiritimati",
+					Name:        "UTC",
 					Description: ``,
 				},
 				resource.Attribute{
@@ -17505,6 +20405,10 @@ User's consent for Intersight to contact an external software repository such as
 					Description: `Smart licensing API type.`,
 				},
 				resource.Attribute{
+					Name:        "CommerceEstimate-API",
+					Description: `Commerce Estimate API type.`,
+				},
+				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -17515,6 +20419,315 @@ User's consent for Intersight to contact an external software repository such as
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_oauth_authorization` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_oauth_authorization.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_open_api_specification",
+			Category:         "openapi",
+			ShortDescription: `An OpenAPI specification file uploaded to generate workflow tasks.`,
+			Description: `
+An OpenAPI specification file uploaded to generate workflow tasks.
+`,
+			Keywords: []string{
+				"openapi",
+				"open",
+				"api",
+				"specification",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action should be taken on the imported file.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedUploadUrl",
+					Description: `Generate pre signed URL of file for importing into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedDownloadUrl",
+					Description: `Generate pre signed URL of file in the repository to download.`,
+				},
+				resource.Attribute{
+					Name:        "CompleteImportProcess",
+					Description: `Mark that the import process of the file into the repository is complete.`,
+				},
+				resource.Attribute{
+					Name:        "MarkImportFailed",
+					Description: `Mark to indicate that the import process of the file into the repository failed.`,
+				},
+				resource.Attribute{
+					Name:        "PreCache",
+					Description: `Cache the file into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `The cancel import process for the file into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extract",
+					Description: `The action to extract the file in the external repository.`,
+				},
+				resource.Attribute{
+					Name:        "Evict",
+					Description: `Evict the cached file from the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForImport",
+					Description: `The image is ready to be imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Importing",
+					Description: `The image is being imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Imported",
+					Description: `The image has been extracted and imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "PendingExtraction",
+					Description: `Indicates that the image has been imported but not extracted in the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracting",
+					Description: `Indicates that the image is being extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracted",
+					Description: `Indicates that the image has been extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The image import from an external source to the repository has failed.`,
+				},
+				resource.Attribute{
+					Name:        "MetaOnly",
+					Description: `The image is present in an external repository.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForCache",
+					Description: `The image is ready to be cached into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Caching",
+					Description: `Indicates that the image is being cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Cached",
+					Description: `Indicates that the image has been cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "CachingFailed",
+					Description: `Indicates that the image caching into the Intersight Appliance failed or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Corrupted",
+					Description: `Indicates that the image in the local repository (or endpoint cache) has been corrupted after it was cached.`,
+				},
+				resource.Attribute{
+					Name:        "Evicted",
+					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_openapi_open_api_specification` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_openapi_open_api_specification.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_process_file",
+			Category:         "openapi",
+			ShortDescription: `Validates the OpenAPI specification file. On successful validation, it persists information about the available APIs. This information can be used to create tasks in the cloud orchestrator.`,
+			Description: `
+Validates the OpenAPI specification file. On successful validation, it persists information about the available APIs. This information can be used to create tasks in the cloud orchestrator.
+`,
+			Keywords: []string{
+				"openapi",
+				"process",
+				"file",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Indicates that operation is in progress`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `Indicates that the operation is complete`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Indicates that the operation has failed. Check the failureReason attribute for more details.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_openapi_process_file` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_openapi_process_file.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_openapi_task_generation_request",
+			Category:         "openapi",
+			ShortDescription: `Creates a request which has information about the tasks that need to be created from the previously uploaded OpenAPI specification file. This object internally triggers a workflow that creates tasks which can be used in workflows.`,
+			Description: `
+Creates a request which has information about the tasks that need to be created from the previously uploaded OpenAPI specification file. This object internally triggers a workflow that creates tasks which can be used in workflows.
+`,
+			Keywords: []string{
+				"openapi",
+				"task",
+				"generation",
+				"request",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "External",
+					Description: `Denotes that the target endpoint is an external API endpoint`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `Denotes that the target endpoint is a Intersight API endpoint`,
+				},
+				resource.Attribute{
+					Name:        "HTTPS",
+					Description: `Denotes that the API call uses the HTTPS protocol type`,
+				},
+				resource.Attribute{
+					Name:        "HTTP",
+					Description: `Denotes that the API call uses the HTTP protocol type`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `Method type which indicates it is a GET API call.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `Method type which indicates it is a POST API call.`,
+				},
+				resource.Attribute{
+					Name:        "PUT",
+					Description: `Method type which indicates it is a PUT API call.`,
+				},
+				resource.Attribute{
+					Name:        "PATCH",
+					Description: `Method type which indicates it is a PATCH API call.`,
+				},
+				resource.Attribute{
+					Name:        "DELETE",
+					Description: `Method type which indicates it is a DELETE API call. + ` + "`" + `name` + "`" + `:(string) Name of the selected API endpoint. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `path` + "`" + `:(string) API Path of the selected API endpoint. + ` + "`" + `validation_error` + "`" + `:(string)(ReadOnly) Validation error messages will be captured by this property. + ` + "`" + `validation_status` + "`" + `:(string)(ReadOnly) Validation Status of selected API that indicates if the API validation passed or failed.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `Denotes that the validation is successful.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `Denotes that the validation failed. Validation could fail if information present in the OpenAPI specification is incomplete or missing.`,
+				},
+				resource.Attribute{
+					Name:        "none",
+					Description: `Indicates the default status.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `Request has been picked up for generating tasks from the OpenAPI Specification file.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `All the tasks from the request have been created.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `There were failures in generating one or more tasks in the request.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -17573,135 +20786,143 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -17725,39 +20946,75 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -17765,11 +21022,11 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -17777,35 +21034,39 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -17813,7 +21074,7 @@ The targets sync messages are sent to assist and back to euclid for reconciliati
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -17894,64 +21155,12 @@ in the model can be populated along with respective validation.
 					Description: `The API is completed with some warning then OperStatus will be CompletedWarning.`,
 				},
 				resource.Attribute{
-					Name:        "None",
-					Description: `Display none of the widget types.`,
-				},
-				resource.Attribute{
-					Name:        "Radio",
-					Description: `Display the widget as a radio button.`,
-				},
-				resource.Attribute{
-					Name:        "Dropdown",
-					Description: `Display the widget as a dropdown.`,
-				},
-				resource.Attribute{
-					Name:        "GridSelector",
-					Description: `Display the widget as a selector.`,
-				},
-				resource.Attribute{
-					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_) and must have an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user. + ` + "`" + `answers` + "`" + `:(HashMap) -(ReadOnly) Answers provided by user for the unattended OS installation. This complex property has following sub-properties: + ` + "`" + `answer_file` + "`" + `:(string) If the source of the answers is a static file, the content of the file is stored as valuein this property.The value is mandatory only when the 'Source' property has been set to 'File'. + ` + "`" + `hostname` + "`" + `:(string) Hostname to be configured for the server in the OS. + ` + "`" + `ip_config_type` + "`" + `:(string) IP configuration type. Values are Static or Dynamic configuration of IP.In case of static IP configuration, IP address, gateway and other details needto be populated. In case of dynamic the IP configuration is obtained dynamicallyfrom DHCP.`,
-				},
-				resource.Attribute{
 					Name:        "static",
 					Description: `In case of static IP configuraton, provide the details such as IP address, netmask, and gateway.`,
 				},
 				resource.Attribute{
 					Name:        "DHCP",
-					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `network_device` + "`" + `:(string) Network Device where the IP address must be configured. Network Interface names and MAC address are supported. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
+					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `network_device` + "`" + `:(string) Network Device where the IP address must be configured. Network Interface names and MAC address are supported.For SUSE Linux Enterprise Server, Network Interface name is a required input and if provided as a MAC address,A persistent interface name is binded to the MAC address and the interface name will be used for network configuration.Refer https://documentation.suse.com/sles/15-SP2/html/SLES-all/cha-configuration-installation-options.html#CreateProfile-Network-names. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -17967,7 +21176,7 @@ in the model can be populated along with respective validation.
 				},
 				resource.Attribute{
 					Name:        "Template",
-					Description: `Indicates that the given answers are used to populate the answer filetemplate. The template allows the users to refer some server specificanswers as fields/placeholders and replace these placeholders with theactual values for each Server during OS installation using 'Answers' and'AdditionalParameters' properties in os.Install MO.The answer file templates can be created by users as os.ConfigurationFile objects. + ` + "`" + `error_msgs` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `install_target` + "`" + `:(string)(ReadOnly) The target in which OS installation triggered, the value represented is StorageControllerID follwed by PhysicalDisk SerialNumber in case of Physcial disk or VirtualDriveId for virtual drive. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `operating_system_parameters` + "`" + `:(HashMap) -(ReadOnly) Parameters specific to selected OS. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `processed_install_target` + "`" + `:(HashMap) -(ReadOnly) The target in which OS installation triggered, this is populated after processing the given data. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `serial_number` + "`" + `:(string)(ReadOnly) The Serial Number of the server.`,
+					Description: `Indicates that the given answers are used to populate the answer filetemplate. The template allows the users to refer some server specificanswers as fields/placeholders and replace these placeholders with theactual values for each Server during OS installation using 'Answers' and'AdditionalParameters' properties in os.Install MO.The answer file templates can be created by users as os.ConfigurationFile objects. + ` + "`" + `error_msgs` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `initiator_wwpn` + "`" + `:(string)(ReadOnly) The WWPN Address of the underlying fibre channel interface at the host side used for SAN accesss. Value must be in hexadecimal format xx:xx:xx:xx:xx:xx:xx:xx. For example, 20:00:D4:C9:3C:35:02:01. + ` + "`" + `install_target` + "`" + `:(string)(ReadOnly) The target in which OS installation triggered, the value represented is StorageControllerID follwed by PhysicalDisk SerialNumber in case of Physcial disk or VirtualDriveId for virtual drive. + ` + "`" + `lun_id` + "`" + `:(int)(ReadOnly) The Logical Unit Number (LUN) of the install target. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `operating_system_parameters` + "`" + `:(HashMap) -(ReadOnly) Parameters specific to selected OS. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `processed_install_target` + "`" + `:(HashMap) -(ReadOnly) The target in which OS installation triggered, this is populated after processing the given data. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `serial_number` + "`" + `:(string)(ReadOnly) The Serial Number of the server. + ` + "`" + `target_iqn` + "`" + `:(string)(ReadOnly) IQN (iSCSI qualified name) of Storage iSCSI target. Can be up to 255 characters long and has the following format, iqn.yyyy-mm.naming-authority:unique_name. + ` + "`" + `target_wwpn` + "`" + `:(string)(ReadOnly) The WWPN Address of the underlying fibre channel interface at the target used by the storage. Value must be in hexadecimal format xx:xx:xx:xx:xx:xx:xx:xx. For example, 51:4F:0C:50:14:1F:AF:01. + ` + "`" + `vnic_mac` + "`" + `:(string)(ReadOnly) MAC address of the VNIC used as iSCSI initiator interface.`,
 				},
 				resource.Attribute{
 					Name:        "NotValidated",
@@ -18042,58 +21251,6 @@ os.OsInstall object.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "None",
-					Description: `Display none of the widget types.`,
-				},
-				resource.Attribute{
-					Name:        "Radio",
-					Description: `Display the widget as a radio button.`,
-				},
-				resource.Attribute{
-					Name:        "Dropdown",
-					Description: `Display the widget as a dropdown.`,
-				},
-				resource.Attribute{
-					Name:        "GridSelector",
-					Description: `Display the widget as a selector.`,
-				},
-				resource.Attribute{
-					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_) and must have an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user.`,
-				},
-				resource.Attribute{
 					Name:        "Modified",
 					Description: `Version created every time an object is modified.`,
 				},
@@ -18126,64 +21283,12 @@ using workflow engine MO workflow.WorkflowInfo.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "None",
-					Description: `Display none of the widget types.`,
-				},
-				resource.Attribute{
-					Name:        "Radio",
-					Description: `Display the widget as a radio button.`,
-				},
-				resource.Attribute{
-					Name:        "Dropdown",
-					Description: `Display the widget as a dropdown.`,
-				},
-				resource.Attribute{
-					Name:        "GridSelector",
-					Description: `Display the widget as a selector.`,
-				},
-				resource.Attribute{
-					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_) and must have an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `value` + "`" + `:(JSON as string) Value for placeholder provided by user.`,
-				},
-				resource.Attribute{
 					Name:        "static",
 					Description: `In case of static IP configuraton, provide the details such as IP address, netmask, and gateway.`,
 				},
 				resource.Attribute{
 					Name:        "DHCP",
-					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `network_device` + "`" + `:(string) Network Device where the IP address must be configured. Network Interface names and MAC address are supported. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
+					Description: `In case of dynamic IP configuration, the IP address, netmask and gateway detailsare obtained from DHCP. + ` + "`" + `ip_configuration` + "`" + `:(HashMap) - In case of static IP configuration, IP address, netmask and gateway details areprovided. This complex property has following sub-properties: + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `is_answer_file_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'answerFile' property has been set. + ` + "`" + `is_root_password_crypted` + "`" + `:(bool) Enable to indicate Root Password provided is encrypted. + ` + "`" + `is_root_password_set` + "`" + `:(bool)(ReadOnly) Indicates whether the value of the 'rootPassword' property has been set. + ` + "`" + `nameserver` + "`" + `:(string) IP address of the name server to be configured in the OS. + ` + "`" + `network_device` + "`" + `:(string) Network Device where the IP address must be configured. Network Interface names and MAC address are supported.For SUSE Linux Enterprise Server, Network Interface name is a required input and if provided as a MAC address,A persistent interface name is binded to the MAC address and the interface name will be used for network configuration.Refer https://documentation.suse.com/sles/15-SP2/html/SLES-all/cha-configuration-installation-options.html#CreateProfile-Network-names. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `product_key` + "`" + `:(string) The product key to be used for a specific version of Windows installation. + ` + "`" + `root_password` + "`" + `:(string) Password configured for the root / administrator user in the OS. You can enter a plain text or an encrypted password.Intersight encrypts the plaintext password. Enable the Encrypted Password option to provide an encrypted password.For more details on encrypting passwords, see Help Center. + ` + "`" + `nr_source` + "`" + `:(string) Answer values can be provided from three sources - Embedded in OS image, static file,or as placeholder values for an answer file template.Source of the answers is given as value, Embedded/File/Template.'Embedded' option indicates that the answer file is embedded within the OS Image. 'File'option indicates that the answers are provided as a file. 'Template' indicates that theplaceholders in the selected os.ConfigurationFile MO are replaced with values providedas os.Answers MO.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -18334,6 +21439,379 @@ The List of Install targets includes Physical Disks and Virtual Drives.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_partnerintegration_device_connector",
+			Category:         "partnerintegration",
+			ShortDescription: `Recipe for device connector build and deploy.`,
+			Description: `
+Recipe for device connector build and deploy.
+`,
+			Keywords: []string{
+				"partnerintegration",
+				"device",
+				"connector",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default Value of the action, i.e. do nothing.`,
+				},
+				resource.Attribute{
+					Name:        "Build",
+					Description: `Build the device connector service image.`,
+				},
+				resource.Attribute{
+					Name:        "Deploy",
+					Description: `Deploy the device connector service on the appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Upload",
+					Description: `Upload a file to the Partner Integration Appliance bucket.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value of the status. i.e. done nothing.`,
+				},
+				resource.Attribute{
+					Name:        "BackendInProgress",
+					Description: `The backend build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "BackendFailed",
+					Description: `The backend build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "DockerInProgress",
+					Description: `The docker build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "DockerFailed",
+					Description: `The docker build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The operation completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_partnerintegration_device_connector` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_partnerintegration_device_connector.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_etl",
+			Category:         "partnerintegration",
+			ShortDescription: `ETL definition for the endpoint to translate platform API outputs to Intersight managed objects.`,
+			Description: `
+ETL definition for the endpoint to translate platform API outputs to Intersight managed objects.
+`,
+			Keywords: []string{
+				"partnerintegration",
+				"etl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_partnerintegration_etl` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_partnerintegration_etl.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_file",
+			Category:         "partnerintegration",
+			ShortDescription: `A partner integration artifact which will be files containing development code uploaded by our partners to get the build for dc/microservice.`,
+			Description: `
+A partner integration artifact which will be files containing development code uploaded by our partners to get the build for dc/microservice.
+`,
+			Keywords: []string{
+				"partnerintegration",
+				"file",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Invalid file type for partnerIntegration appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Model",
+					Description: `Model file of Generic Device.`,
+				},
+				resource.Attribute{
+					Name:        "Etl",
+					Description: `ETL file of Generic Device.`,
+				},
+				resource.Attribute{
+					Name:        "Ui",
+					Description: `UI file of Generic Device.`,
+				},
+				resource.Attribute{
+					Name:        "DeviceConnector",
+					Description: `Generic Device Connector file.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action should be taken on the imported file.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedUploadUrl",
+					Description: `Generate pre signed URL of file for importing into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "GeneratePreSignedDownloadUrl",
+					Description: `Generate pre signed URL of file in the repository to download.`,
+				},
+				resource.Attribute{
+					Name:        "CompleteImportProcess",
+					Description: `Mark that the import process of the file into the repository is complete.`,
+				},
+				resource.Attribute{
+					Name:        "MarkImportFailed",
+					Description: `Mark to indicate that the import process of the file into the repository failed.`,
+				},
+				resource.Attribute{
+					Name:        "PreCache",
+					Description: `Cache the file into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `The cancel import process for the file into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extract",
+					Description: `The action to extract the file in the external repository.`,
+				},
+				resource.Attribute{
+					Name:        "Evict",
+					Description: `Evict the cached file from the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForImport",
+					Description: `The image is ready to be imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Importing",
+					Description: `The image is being imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Imported",
+					Description: `The image has been extracted and imported into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "PendingExtraction",
+					Description: `Indicates that the image has been imported but not extracted in the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracting",
+					Description: `Indicates that the image is being extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Extracted",
+					Description: `Indicates that the image has been extracted into the repository.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The image import from an external source to the repository has failed.`,
+				},
+				resource.Attribute{
+					Name:        "MetaOnly",
+					Description: `The image is present in an external repository.`,
+				},
+				resource.Attribute{
+					Name:        "ReadyForCache",
+					Description: `The image is ready to be cached into the Intersight Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "Caching",
+					Description: `Indicates that the image is being cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Cached",
+					Description: `Indicates that the image has been cached into the Intersight Appliance or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "CachingFailed",
+					Description: `Indicates that the image caching into the Intersight Appliance failed or endpoint cache.`,
+				},
+				resource.Attribute{
+					Name:        "Corrupted",
+					Description: `Indicates that the image in the local repository (or endpoint cache) has been corrupted after it was cached.`,
+				},
+				resource.Attribute{
+					Name:        "Evicted",
+					Description: `Indicates that the image has been evicted from the Intersight Appliance (or endpoint cache) to reclaim storage space.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `Indicates that the corresponding distributable MO has been removed from the backend. This can be due to unpublishing of an image.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_inventory",
+			Category:         "partnerintegration",
+			ShortDescription: `Inventory Collection object that acts as an aggregator object for the underlying model and ETL objects.`,
+			Description: `
+Inventory Collection object that acts as an aggregator object for the underlying model and ETL objects.
+`,
+			Keywords: []string{
+				"partnerintegration",
+				"inventory",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default Value of the action, i.e. do nothing.`,
+				},
+				resource.Attribute{
+					Name:        "Build",
+					Description: `Build the inventory service image.`,
+				},
+				resource.Attribute{
+					Name:        "Deploy",
+					Description: `Deploy the inventory service on the appliance.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value of the status. i.e. done nothing.`,
+				},
+				resource.Attribute{
+					Name:        "BackendInProgress",
+					Description: `The backend build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "BackendFailed",
+					Description: `The backend build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "DockerInProgress",
+					Description: `The docker build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "DockerFailed",
+					Description: `The docker build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "UiInProgress",
+					Description: `The UI build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UiFailed",
+					Description: `The inventory UI build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "ApidocsInProgress",
+					Description: `The apidocs build is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "ApidocsFailed",
+					Description: `The apidocs build has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The operation completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Default value of the status. i.e. done nothing.`,
+				},
+				resource.Attribute{
+					Name:        "Completed",
+					Description: `The operation completed successfully.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The deploy operation failed.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_partnerintegration_inventory` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_partnerintegration_inventory.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_partnerintegration_model",
+			Category:         "partnerintegration",
+			ShortDescription: `Model definition for the endpoint.`,
+			Description: `
+Model definition for the endpoint.
+`,
+			Keywords: []string{
+				"partnerintegration",
+				"model",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_partnerintegration_model` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_partnerintegration_model.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_power_policy",
 			Category:         "power",
 			ShortDescription: `Power Management policy models a configuration that can be applied to Chassis or Server to manage Power Related Features.`,
@@ -18345,6 +21823,14 @@ Power Management policy models a configuration that can be applied to Chassis or
 				"policy",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Enabled",
+					Description: `Set the value to Enabled.`,
+				},
+				resource.Attribute{
+					Name:        "Disabled",
+					Description: `Set the value to Disabled.`,
+				},
 				resource.Attribute{
 					Name:        "Enabled",
 					Description: `Set the value to Enabled.`,
@@ -18426,6 +21912,201 @@ Power Management policy models a configuration that can be applied to Chassis or
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_recommendation_hardware_expansion_request",
+			Category:         "recommendation",
+			ShortDescription: `Entity representing the user request for HyperFlex cluster expansion.`,
+			Description: `
+Entity representing the user request for HyperFlex cluster expansion.
+`,
+			Keywords: []string{
+				"recommendation",
+				"hardware",
+				"expansion",
+				"request",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no action is triggered on the forecast Instance managed object.`,
+				},
+				resource.Attribute{
+					Name:        "Evaluate",
+					Description: `The Enum value Evaluate represents that a re-evaluation of the forecast needs to be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents the default status value before any API call is made.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `The Enum value Success represents that the API call returned with success.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `The Enum value Fail represents that the API call returned with a failure.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recommendation_hardware_expansion_request` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recommendation_hardware_expansion_request.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_hardware_expansion_request_item",
+			Category:         "recommendation",
+			ShortDescription: `Entity representing the user request for expansion of each hardware item.`,
+			Description: `
+Entity representing the user request for expansion of each hardware item.
+`,
+			Keywords: []string{
+				"recommendation",
+				"hardware",
+				"expansion",
+				"request",
+				"item",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no value was set for the hardware type.`,
+				},
+				resource.Attribute{
+					Name:        "CPU",
+					Description: `The Enum value CPU represents that the hardware type requested for expansion is a physical CPU.`,
+				},
+				resource.Attribute{
+					Name:        "Memory",
+					Description: `The Enum value Memory represents that the hardware type requested for expansion is a memory unit.`,
+				},
+				resource.Attribute{
+					Name:        "Storage",
+					Description: `The Enum value Storage represents that the hardware type requested for expansion is a storage unit, ie, storage drives.`,
+				},
+				resource.Attribute{
+					Name:        "TB",
+					Description: `The Enum value TB represents that the measurement unit is in terabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MB",
+					Description: `The Enum value MB represents that the measurement unit is in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "GB",
+					Description: `The Enum value GB represents that the measurement unit is in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MHz",
+					Description: `The Enum value MHz represents that the measurement unit is in megahertz.`,
+				},
+				resource.Attribute{
+					Name:        "GHz",
+					Description: `The Enum value GHz represents that the measurement unit is in gigahertz.`,
+				},
+				resource.Attribute{
+					Name:        "Percentage",
+					Description: `The Enum value Percentage represents that the expansion request is in the percentage of resource increase. For example, a 20% increase in CPU capacity.`,
+				},
+				resource.Attribute{
+					Name:        "TB",
+					Description: `The Enum value TB represents that the measurement unit is in terabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MB",
+					Description: `The Enum value MB represents that the measurement unit is in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "GB",
+					Description: `The Enum value GB represents that the measurement unit is in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "MHz",
+					Description: `The Enum value MHz represents that the measurement unit is in megahertz.`,
+				},
+				resource.Attribute{
+					Name:        "GHz",
+					Description: `The Enum value GHz represents that the measurement unit is in gigahertz.`,
+				},
+				resource.Attribute{
+					Name:        "Percentage",
+					Description: `The Enum value Percentage represents that the expansion request is in the percentage of resource increase. For example, a 20% increase in CPU capacity.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recommendation_hardware_expansion_request_item` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recommendation_hardware_expansion_request_item.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_recommendation_purchase_order_estimate",
+			Category:         "recommendation",
+			ShortDescription: `Entity representing the estimate for the purchase order for user requested expansion.`,
+			Description: `
+Entity representing the estimate for the purchase order for user requested expansion.
+`,
+			Keywords: []string{
+				"recommendation",
+				"purchase",
+				"order",
+				"estimate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents that no action is triggered on the forecast Instance managed object.`,
+				},
+				resource.Attribute{
+					Name:        "Evaluate",
+					Description: `The Enum value Evaluate represents that a re-evaluation of the forecast needs to be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The Enum value None represents the default status value before any API call is made.`,
+				},
+				resource.Attribute{
+					Name:        "Success",
+					Description: `The Enum value Success represents that the API call returned with success.`,
+				},
+				resource.Attribute{
+					Name:        "Fail",
+					Description: `The Enum value Fail represents that the API call returned with a failure.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_recommendation_purchase_order_estimate` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_recommendation_purchase_order_estimate.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_recovery_backup_config_policy",
 			Category:         "recovery",
 			ShortDescription: `Backup config policy which contains all the required inputs to do backup on a local or remote server.`,
@@ -18488,6 +22169,62 @@ Backup profile to initiate on-demand or scheduled backups at end points.
 				"profile",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
 				resource.Attribute{
 					Name:        "instance",
 					Description: `The profile defines the configuration for a specific instance of a target.`,
@@ -18725,6 +22462,35 @@ A Reservation is used to reserve a place for a new resource in the resource grou
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_resource_selection_criteria",
+			Category:         "resource",
+			ShortDescription: `One or more resources are selected based on a criteria. SelectionCriteria can refer to static resources using object reference or dynamic resources using OData query filters.`,
+			Description: `
+One or more resources are selected based on a criteria. SelectionCriteria can refer to static resources using  object reference or dynamic resources using OData query filters.
+`,
+			Keywords: []string{
+				"resource",
+				"selection",
+				"criteria",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_resource_selection_criteria` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_resource_selection_criteria.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_resourcepool_pool",
 			Category:         "resourcepool",
 			ShortDescription: `Pool represents a collection of resource. The resource can be any MO which has PoolResource meta enabled. The resource in the pool can be reserved or unreserved by using Lease API, reserved/unreserved resources can be used in the entities like server profiles.`,
@@ -18918,7 +22684,119 @@ A profile specifying configuration settings for a physical server.
 				},
 				resource.Attribute{
 					Name:        "Drift-failed",
-					Description: `Config change state represents there is internal error in calculating endpoint configuraion drift. + ` + "`" + `initial_config_context` + "`" + `:(HashMap) -(ReadOnly) Stores initial Configuration state. Used for reverting back to initial state of ConfigContext in case of validation failure. This complex property has following sub-properties: + ` + "`" + `config_state` + "`" + `:(string)(ReadOnly) Indicates a profile's configuration deploying state. Values -- Assigned, Not-assigned, Associated, Pending-changes, Out-of-sync, Validating, Configuring, Failed. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+					Description: `Config change state represents there is internal error in calculating endpoint configuraion drift. + ` + "`" + `initial_config_context` + "`" + `:(HashMap) -(ReadOnly) Stores initial Configuration state. Used for reverting back to initial state of ConfigContext in case of validation failure. This complex property has following sub-properties: + ` + "`" + `config_state` + "`" + `:(string)(ReadOnly) Indicates a profile's configuration deploying state. Values -- Assigned, Not-assigned, Associated, Pending-changes, Out-of-sync, Validating, Configuring, Failed. + ` + "`" + `config_state_summary` + "`" + `:(string)(ReadOnly) Indicates a profile's configuration deploying state. Values -- Assigned, Not-assigned, Associated, InConsistent, Validating, Configuring, Failed, Activating, UnConfiguring.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -18968,6 +22846,34 @@ A profile specifying configuration settings for a physical server.
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ### Custom keywords These are`,
 				},
+				resource.Attribute{
+					Name:        "Vhba",
+					Description: `FC reservation would be used by Vhba.`,
+				},
+				resource.Attribute{
+					Name:        "WWNN",
+					Description: `FC reservation would be used by WWNN. ### [ippool.ReservationReference](#argument-reference) The reference to the reservation object.`,
+				},
+				resource.Attribute{
+					Name:        "OutofbandIpv4-Access",
+					Description: `IP reservation would be used for out of band management.`,
+				},
+				resource.Attribute{
+					Name:        "InbandIpv4-Access",
+					Description: `IP reservation would be used for inband management.`,
+				},
+				resource.Attribute{
+					Name:        "InbandIpv6-Access",
+					Description: `IP reservation would be used for inband management.`,
+				},
+				resource.Attribute{
+					Name:        "ISCSI",
+					Description: `IP reservation would be used for ISCSI management. ### [iqnpool.ReservationReference](#argument-reference) The reference to the reservation object. ### [macpool.ReservationReference](#argument-reference) The reference to the reservation object.`,
+				},
+				resource.Attribute{
+					Name:        "Vnic",
+					Description: `MAC reservation would be used by VNIC. ### [uuidpool.ReservationReference](#argument-reference) The reference to the reservation object.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -18985,6 +22891,62 @@ A profile template specifying configuration settings for a physical server.
 				"template",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `The default state is none.`,
+				},
+				resource.Attribute{
+					Name:        "Not-assigned",
+					Description: `Server is not assigned to the profile.`,
+				},
+				resource.Attribute{
+					Name:        "Assigned",
+					Description: `Server is assigned to the profile and the configurations are not yet deployed.`,
+				},
+				resource.Attribute{
+					Name:        "Preparing",
+					Description: `Preparing to deploy the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Validating",
+					Description: `Profile validation in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Configuring",
+					Description: `Profile deploy operation is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "UnConfiguring",
+					Description: `Server is unassigned and config cleanup is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Analyzing",
+					Description: `Profile changes are being analyzed.`,
+				},
+				resource.Attribute{
+					Name:        "Activating",
+					Description: `Configuration is being activated at the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "Inconsistent",
+					Description: `Profile is inconsistent with the endpoint configuration.`,
+				},
+				resource.Attribute{
+					Name:        "Associated",
+					Description: `The profile configuration has been applied to the endpoint and no inconsistencies have been detected.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the profile has failed.`,
+				},
+				resource.Attribute{
+					Name:        "Not-complete",
+					Description: `Config import operation on the profile is not complete.`,
+				},
+				resource.Attribute{
+					Name:        "Waiting-for-resource",
+					Description: `Waiting for the resource to be allocated for the profile. + ` + "`" + `config_type` + "`" + `:(string)(ReadOnly) The type of configuration running on the profile. Since profile deployments can configure multiple different settings, configType indicates which type of configuration is currently in progress. + ` + "`" + `control_action` + "`" + `:(string) System action to trigger the appropriate workflow. Values -- No_op, ConfigChange, Deploy, Unbind. + ` + "`" + `error_state` + "`" + `:(string) Indicates a profile's error state. Values -- Validation-error (Static validation error), Pre-config-error (Runtime validation error), Config-error (Runtime configuration error). + ` + "`" + `inconsistency_reason` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oper_state` + "`" + `:(string)(ReadOnly) Combined state (configState, and operational state of the associated physical resource) to indicate the current state of the profile. Values -- n/a, Power-off, Pending-changes, Configuring, Ok, Failed.`,
+				},
 				resource.Attribute{
 					Name:        "Standalone",
 					Description: `Servers which are operating in standalone mode i.e. not connected to a Fabric Interconnected.`,
@@ -19098,6 +23060,18 @@ Policy to configure SNMP settings on endpoint.
 					Description: `Full access to read the information in the inventory tables.`,
 				},
 				resource.Attribute{
+					Name:        "AuthPriv",
+					Description: `The user requires both an authorization password and a privacy password.`,
+				},
+				resource.Attribute{
+					Name:        "NoAuthNoPriv",
+					Description: `The user does not require an authorization or privacy password.`,
+				},
+				resource.Attribute{
+					Name:        "AuthNoPriv",
+					Description: `The user requires an authorization password but not a privacy password. + ` + "`" + `type` + "`" + `:(string) Type of trap which decides whether to receive a notification when a trap is received at the destination.`,
+				},
+				resource.Attribute{
 					Name:        "Trap",
 					Description: `Do not receive notifications when trap is sent to the destination.`,
 				},
@@ -19110,8 +23084,12 @@ Policy to configure SNMP settings on endpoint.
 					Description: `SNMP v3 trap version notifications.`,
 				},
 				resource.Attribute{
+					Name:        "V1",
+					Description: `SNMP v1 trap version notifications.`,
+				},
+				resource.Attribute{
 					Name:        "V2",
-					Description: `SNMP v2 trap version notifications.`,
+					Description: `SNMP v2 trap version notifications. + ` + "`" + `vrf_name` + "`" + `:(string)(ReadOnly) VRF name of the SNMP server.`,
 				},
 				resource.Attribute{
 					Name:        "NA",
@@ -19303,6 +23281,18 @@ Appliance the represents the image that is uploaded by the user and to be used f
 				resource.Attribute{
 					Name:        "AutomaticPowerCycle",
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
+				},
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -19546,6 +23536,18 @@ A JSON file wth HCL metadata uploaded for consumption by the HCL service.
 					Description: `Indicates that the JSON File does have only the diff of the Hcl meta to be uploaded.`,
 				},
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -19778,6 +23780,18 @@ A HyperFlex image bundle distributed by Cisco for Private Appliance.
 				resource.Attribute{
 					Name:        "AutomaticPowerCycle",
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
+				},
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -20013,6 +24027,18 @@ A HyperFlex image distributed by Cisco.
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
 				},
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -20245,6 +24271,18 @@ An IKS image bundle distributed by Cisco for Private Appliance.
 				resource.Attribute{
 					Name:        "AutomaticPowerCycle",
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
+				},
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -20509,6 +24547,18 @@ A solution image distributed by Cisco.
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
 				},
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -20751,6 +24801,18 @@ A UCSD connector pack image bundle distributed by Cisco for Private Appliance.
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
 				},
 				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
 				},
@@ -20982,6 +25044,18 @@ A UCSD connector pack image distributed by Cisco.
 				resource.Attribute{
 					Name:        "AutomaticPowerCycle",
 					Description: `Indicates that the component received an automatic power cycle request. + ` + "`" + `image_path` + "`" + `:(string) This shows the path of component image within the distributable. + ` + "`" + `is_oob_supported` + "`" + `:(bool) If set, the component can be updated through out-of-band management, else, is updated through host service utility boot. + ` + "`" + `model` + "`" + `:(string) The model of the component image in the distributable. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `oob_manageability` + "`" + `: (Array of schema.TypeString) - + ` + "`" + `packed_version` + "`" + `:(string) The image version of components packaged in the distributable. + ` + "`" + `redfish_url` + "`" + `:(string) The redfish target for each component. + ` + "`" + `vendor` + "`" + `:(string) The version of component image in the distributable.`,
+				},
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -21278,6 +25352,18 @@ An operating system image that resides either in an external repository or has b
 				"file",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "System",
+					Description: `This indicates system initiated file uploads.`,
+				},
+				resource.Attribute{
+					Name:        "OpenAPIImport",
+					Description: `This indicates an OpenAPI file upload.`,
+				},
+				resource.Attribute{
+					Name:        "PartnerIntegrationImport",
+					Description: `This indicates a Partner-Integration Appliance user file uploads.`,
+				},
 				resource.Attribute{
 					Name:        "None",
 					Description: `No action should be taken on the imported file.`,
@@ -21668,6 +25754,36 @@ A reusable RAID drive group configuration that specifies a pool of drives and a 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_storage_drive_security_policy",
+			Category:         "storage",
+			ShortDescription: `The drive security policy models the KMIP server related configuration that can be applied on multiple servers. Storage controller encryption can be enabled through this policy using remote keys from a KMIP server.`,
+			Description: `
+The drive security policy models the KMIP server related configuration that can be applied on multiple servers. Storage controller encryption can be enabled through this policy using remote keys from a KMIP server.
+`,
+			Keywords: []string{
+				"storage",
+				"drive",
+				"security",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_storage_drive_security_policy` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_storage_drive_security_policy.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_storage_storage_policy",
 			Category:         "storage",
 			ShortDescription: `The storage policy models the reusable storage related configuration that can be applied on many servers. This policy allows creation of RAID groups using existing disk group policies and virtual drives on the drive groups. The user has options to move all unused disks to JBOD or Unconfigured good state. The encryption of drives can be enabled through this policy using remote keys from a KMIP server.`,
@@ -21679,6 +25795,18 @@ The storage policy models the reusable storage related configuration that can be
 				"policy",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "UnconfiguredGood",
+					Description: `Newly inserted drives or on reboot, drives will remain the same state.`,
+				},
+				resource.Attribute{
+					Name:        "Jbod",
+					Description: `Newly inserted drives or on reboot, drives will automatically move to JBOD state if drive state was UnconfiguredGood.`,
+				},
+				resource.Attribute{
+					Name:        "RAID0",
+					Description: `Newly inserted drives or on reboot, virtual drives will be created, respective drives will move to Online state.`,
+				},
 				resource.Attribute{
 					Name:        "MSTOR-RAID-1",
 					Description: `Virtual drive will be created on the M.2 RAID controller in the first slot.`,
@@ -21881,7 +26009,7 @@ The syslog policy configure the syslog server to receive CIMC log entries.
 				},
 				resource.Attribute{
 					Name:        "tcp",
-					Description: `Use Transmission Control Protocol (TCP) for syslog remote server connection.`,
+					Description: `Use Transmission Control Protocol (TCP) for syslog remote server connection. + ` + "`" + `vrf_name` + "`" + `:(string)(ReadOnly) VRF name used by the syslog server.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -21978,6 +26106,14 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 					Description: `Collector type for this data collection is a file in a cloud hosted object storage bucket.`,
 				},
 				resource.Attribute{
+					Name:        "tier1",
+					Description: `Advisory processing will be taken care in first advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tier2",
+					Description: `Advisory processing will be taken care in second advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
 					Name:        "intersightApi",
 					Description: `Collector type for this data collection is Intersight APIs.`,
 				},
@@ -22031,7 +26167,11 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 				},
 				resource.Attribute{
 					Name:        "past",
-					Description: `This end-of-life (EOL) milestone has past the effective date. + ` + "`" + `milestone_type` + "`" + `:(string) Milestone type as defined in Cisco end-of-life (EOL) policy (https://www.cisco.com/c/en/us/products/eos-eol-policy.html) when the specified end-of-life milestone advisory is reached.`,
+					Description: `This end-of-life (EOL) milestone has past the effective date.`,
+				},
+				resource.Attribute{
+					Name:        "info",
+					Description: `This end-of-life (EOL) milestone for informative purpose. + ` + "`" + `milestone_type` + "`" + `:(string) Milestone type as defined in Cisco end-of-life (EOL) policy (https://www.cisco.com/c/en/us/products/eos-eol-policy.html) when the specified end-of-life milestone advisory is reached.`,
 				},
 				resource.Attribute{
 					Name:        "unknown",
@@ -22043,7 +26183,11 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 				},
 				resource.Attribute{
 					Name:        "lastDateOfSupport",
-					Description: `The last date to receive service and support for the software. After this date, all support services for the software are unavailable, and the software becomes obsolete. + ` + "`" + `name` + "`" + `:(string) A milestone defined by an end-of-life advisory. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `start_offset` + "`" + `:(int) Number of days (inclusive) relative to the milestone date when the milestone is considered to be in effect. A nagative number indicates number of days ahead of the milestone date. The default is 0 which means the milestone take effect exactly on the same date as the specified milestone date. A negative value of -2147483648 (0x80000000) indicates the milestone date range's lower bound is omitted.`,
+					Description: `The last date to receive service and support for the software. After this date, all support services for the software are unavailable, and the software becomes obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "endOfLifeAnnouncementDate",
+					Description: `The date the document that announces the end-of-sale and end-of-life of a product is distributed to the general public. + ` + "`" + `name` + "`" + `:(string) A milestone defined by an end-of-life advisory. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `start_offset` + "`" + `:(int) Number of days (inclusive) relative to the milestone date when the milestone is considered to be in effect. A nagative number indicates number of days ahead of the milestone date. The default is 0 which means the milestone take effect exactly on the same date as the specified milestone date. A negative value of -2147483648 (0x80000000) indicates the milestone date range's lower bound is omitted.`,
 				},
 				resource.Attribute{
 					Name:        "upcoming",
@@ -22055,7 +26199,11 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 				},
 				resource.Attribute{
 					Name:        "past",
-					Description: `This end-of-life (EOL) milestone has past the effective date. + ` + "`" + `milestone_type` + "`" + `:(string) Milestone type as defined in Cisco end-of-life (EOL) policy (https://www.cisco.com/c/en/us/products/eos-eol-policy.html) when the specified end-of-life milestone advisory is reached.`,
+					Description: `This end-of-life (EOL) milestone has past the effective date.`,
+				},
+				resource.Attribute{
+					Name:        "info",
+					Description: `This end-of-life (EOL) milestone for informative purpose. + ` + "`" + `milestone_type` + "`" + `:(string) Milestone type as defined in Cisco end-of-life (EOL) policy (https://www.cisco.com/c/en/us/products/eos-eol-policy.html) when the specified end-of-life milestone advisory is reached.`,
 				},
 				resource.Attribute{
 					Name:        "unknown",
@@ -22067,7 +26215,11 @@ An Intersight Advisory. An advisory represents an identification of a potential 
 				},
 				resource.Attribute{
 					Name:        "lastDateOfSupport",
-					Description: `The last date to receive service and support for the software. After this date, all support services for the software are unavailable, and the software becomes obsolete. + ` + "`" + `name` + "`" + `:(string) A milestone defined by an end-of-life advisory. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `start_offset` + "`" + `:(int) Number of days (inclusive) relative to the milestone date when the milestone is considered to be in effect. A nagative number indicates number of days ahead of the milestone date. The default is 0 which means the milestone take effect exactly on the same date as the specified milestone date. A negative value of -2147483648 (0x80000000) indicates the milestone date range's lower bound is omitted.`,
+					Description: `The last date to receive service and support for the software. After this date, all support services for the software are unavailable, and the software becomes obsolete.`,
+				},
+				resource.Attribute{
+					Name:        "endOfLifeAnnouncementDate",
+					Description: `The date the document that announces the end-of-sale and end-of-life of a product is distributed to the general public. + ` + "`" + `name` + "`" + `:(string) A milestone defined by an end-of-life advisory. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `start_offset` + "`" + `:(int) Number of days (inclusive) relative to the milestone date when the milestone is considered to be in effect. A nagative number indicates number of days ahead of the milestone date. The default is 0 which means the milestone take effect exactly on the same date as the specified milestone date. A negative value of -2147483648 (0x80000000) indicates the milestone date range's lower bound is omitted.`,
 				},
 				resource.Attribute{
 					Name:        "interim",
@@ -22209,6 +26361,14 @@ Intersight representation of a Cisco PSIRT (https://tools.cisco.com/security/cen
 					Description: `Collector type for this data collection is a file in a cloud hosted object storage bucket.`,
 				},
 				resource.Attribute{
+					Name:        "tier1",
+					Description: `Advisory processing will be taken care in first advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tier2",
+					Description: `Advisory processing will be taken care in second advisory driver of multinode cluster.`,
+				},
+				resource.Attribute{
 					Name:        "ready",
 					Description: `Advisory has been evaluated. The affected devices would be analyzed and corresponding advisory instances would be created.`,
 				},
@@ -22235,6 +26395,37 @@ Intersight representation of a Cisco PSIRT (https://tools.cisco.com/security/cen
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_task_fabric_mos_scoped_inventory",
+			Category:         "task",
+			ShortDescription: `API to trigger on-demand inventory to update MDS objects in Intersight.`,
+			Description: `
+API to trigger on-demand inventory to update MDS objects in Intersight.
+`,
+			Keywords: []string{
+				"task",
+				"fabric",
+				"mos",
+				"scoped",
+				"inventory",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_task_fabric_mos_scoped_inventory` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_task_fabric_mos_scoped_inventory.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -22393,6 +26584,37 @@ API to trigger on-demand MDS inventory to update modified objects in Intersight 
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "intersight_task_mds_system_scoped_inventory",
+			Category:         "task",
+			ShortDescription: `API to trigger on-demand MDS System inventory after the workflow execution.`,
+			Description: `
+API to trigger on-demand MDS System inventory after the workflow execution.
+`,
+			Keywords: []string{
+				"task",
+				"mds",
+				"system",
+				"scoped",
+				"inventory",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_task_mds_system_scoped_inventory` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_task_mds_system_scoped_inventory.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "intersight_task_net_app_scoped_inventory",
 			Category:         "task",
 			ShortDescription: `API to trigger on-demand NetAppStorage inventory to update modified objects in Intersight report.`,
@@ -22448,6 +26670,68 @@ API to trigger on-demand Nexus inventory to update modified objects in Intersigh
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_task_nexus_scoped_inventory` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_task_nexus_scoped_inventory.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_task_nexus_system_scoped_inventory",
+			Category:         "task",
+			ShortDescription: `API to trigger on-demand Nexus SNMP inventory to update modified objects in Intersight report.`,
+			Description: `
+API to trigger on-demand Nexus SNMP inventory to update modified objects in Intersight report.
+`,
+			Keywords: []string{
+				"task",
+				"nexus",
+				"system",
+				"scoped",
+				"inventory",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_task_nexus_system_scoped_inventory` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_task_nexus_system_scoped_inventory.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_task_nexus_vlan_scoped_inventory",
+			Category:         "task",
+			ShortDescription: `API to trigger on-demand Nexus VLAN inventory to update modified objects in Intersight report.`,
+			Description: `
+API to trigger on-demand Nexus VLAN inventory to update modified objects in Intersight report.
+`,
+			Keywords: []string{
+				"task",
+				"nexus",
+				"vlan",
+				"scoped",
+				"inventory",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_task_nexus_vlan_scoped_inventory` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_task_nexus_vlan_scoped_inventory.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -22610,135 +26894,143 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -22762,39 +27054,75 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -22802,11 +27130,11 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -22814,35 +27142,39 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -22850,7 +27182,7 @@ A request to collect techsupport and upload it to Intersight Storage Service. Th
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -22987,6 +27319,42 @@ Pool represents a collection of UUID items that can be allocated to server profi
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_uuidpool_pool` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_uuidpool_pool.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_uuidpool_reservation",
+			Category:         "uuidpool",
+			ShortDescription: `The UUID reservation object, used to hold reserved identity.`,
+			Description: `
+The UUID reservation object, used to hold reserved identity.
+`,
+			Keywords: []string{
+				"uuidpool",
+				"reservation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dynamic",
+					Description: `Identifiers to be allocated by system.`,
+				},
+				resource.Attribute{
+					Name:        "static",
+					Description: `Identifiers are assigned by the user.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_uuidpool_reservation` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_uuidpool_reservation.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -24321,6 +28689,46 @@ specification based off text to extract fields of interest.
 					Name:        "External",
 					Description: `The endpoint API request is passed through by the device connector.`,
 				},
+				resource.Attribute{
+					Name:        "NonInteractive",
+					Description: `The CLI command is not an interactive command.`,
+				},
+				resource.Attribute{
+					Name:        "Interactive",
+					Description: `The CLI command is executed in interactive mode and the command must provide the expects andanswers. ### [workflow.FileOperations](#argument-reference) This models a single File Operation request within a batch of requests that get executed within a single workflow task.`,
+				},
+				resource.Attribute{
+					Name:        "FileDownload",
+					Description: `The API is executed in a remote device connected to the Intersightthrough its device connector. This operation is to download the filefrom specified storage bucket to the specific path on the device.`,
+				},
+				resource.Attribute{
+					Name:        "FileTemplatize",
+					Description: `Populates data driven template file with input values to generate textual output.Inputs - the path of the template file on the device and json values to populate.An error will be returned if the file does not exists or if there is an error whileexecuting the template. ### [workflow.PowerShellApi](#argument-reference) This models a single PowerShell script execution that can be sent to a claimed PowerShell target.`,
+				},
+				resource.Attribute{
+					Name:        "ExecuteCommand",
+					Description: `Execute a SSH command on the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "NewSession",
+					Description: `Open a new SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "FileTransfer",
+					Description: `Transfer a file from Intersight connected device to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "CloseSession",
+					Description: `Close the SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `The endpoint API executed is an internal request handled by the device connector plugin.`,
+				},
+				resource.Attribute{
+					Name:        "External",
+					Description: `The endpoint API request is passed through by the device connector.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -24395,6 +28803,246 @@ specification.
 					Name:        "External",
 					Description: `The endpoint API request is passed through by the device connector.`,
 				},
+				resource.Attribute{
+					Name:        "NonInteractive",
+					Description: `The CLI command is not an interactive command.`,
+				},
+				resource.Attribute{
+					Name:        "Interactive",
+					Description: `The CLI command is executed in interactive mode and the command must provide the expects andanswers. ### [workflow.FileOperations](#argument-reference) This models a single File Operation request within a batch of requests that get executed within a single workflow task.`,
+				},
+				resource.Attribute{
+					Name:        "FileDownload",
+					Description: `The API is executed in a remote device connected to the Intersightthrough its device connector. This operation is to download the filefrom specified storage bucket to the specific path on the device.`,
+				},
+				resource.Attribute{
+					Name:        "FileTemplatize",
+					Description: `Populates data driven template file with input values to generate textual output.Inputs - the path of the template file on the device and json values to populate.An error will be returned if the file does not exists or if there is an error whileexecuting the template. ### [workflow.PowerShellApi](#argument-reference) This models a single PowerShell script execution that can be sent to a claimed PowerShell target.`,
+				},
+				resource.Attribute{
+					Name:        "ExecuteCommand",
+					Description: `Execute a SSH command on the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "NewSession",
+					Description: `Open a new SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "FileTransfer",
+					Description: `Transfer a file from Intersight connected device to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "CloseSession",
+					Description: `Close the SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `The endpoint API executed is an internal request handled by the device connector plugin.`,
+				},
+				resource.Attribute{
+					Name:        "External",
+					Description: `The endpoint API request is passed through by the device connector.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_catalog_item_definition",
+			Category:         "workflow",
+			ShortDescription: `Catalog Item definition is a collection of Service items which are associated with workflow definition that can be used to deploy and manage service items.`,
+			Description: `
+Catalog Item definition is a collection of Service items which are associated with workflow definition that can be used to deploy and manage service items.
+`,
+			Keywords: []string{
+				"workflow",
+				"catalog",
+				"item",
+				"definition",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "NotPublished",
+					Description: `A state of the service item or catalog item which is not yet published.`,
+				},
+				resource.Attribute{
+					Name:        "Published",
+					Description: `A state denoting that the service item or catalog item is published.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `Display none of the widget types.`,
+				},
+				resource.Attribute{
+					Name:        "Radio",
+					Description: `Display the widget as a radio button.`,
+				},
+				resource.Attribute{
+					Name:        "Dropdown",
+					Description: `Display the widget as a dropdown.`,
+				},
+				resource.Attribute{
+					Name:        "GridSelector",
+					Description: `Display the widget as a selector.`,
+				},
+				resource.Attribute{
+					Name:        "DrawerSelector",
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) Capture the mapping of service item ActionDefinition inputDefinition to catalog service request. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `operation_type` + "`" + `:(string)(ReadOnly) Type of action operation to be executed on the service item.`,
+				},
+				resource.Attribute{
+					Name:        "PostDeployment",
+					Description: `This represents the post-deployment actions for the resources created or defined through the deployment action. There can be more than one post-deployment operations associated with a service item.`,
+				},
+				resource.Attribute{
+					Name:        "Deployment",
+					Description: `This represents the deploy action, for the service item action definition. This operation type is used to create or define resources that is managed by the service item. There can only be one Service Item Action Definition that can be marked with the operation type as Deployment and this is a mandatory operation type. All valid Service Items must have one and only one operation type marked as type Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "Decommission",
+					Description: `This represents the decommission action, used to decommission the created resources. All valid Service Items must have one and only one operation type marked as type Decommission. Once a decommission action is run on a Service Item, no further operations are allowed on that Service Item. + ` + "`" + `service_item_action_definition` + "`" + `:(HashMap) - Specify the service item action for which input definition is associated. This complex property has following sub-properties: + ` + "`" + `moid` + "`" + `:(string) The Moid of the referenced REST resource. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the remote type referred by this relationship. + ` + "`" + `selector` + "`" + `:(string) An OData $filter expression which describes the REST resource to be referenced. This field maybe set instead of 'moid' by clients.1. If 'moid' is set this field is ignored.1. If 'selector' is set and 'moid' is empty/absent from the request, Intersight determines the Moid of theresource matching the filter expression and populates it in the MoRef that is part of the objectinstance being inserted/updated to fulfill the REST request.An error is returned if the filter matches zero or more than one REST resource.An example filter string is: Serial eq '3AA8B7T11'.`,
+				},
+				resource.Attribute{
+					Name:        "Supported",
+					Description: `The definition is a supported version and there will be no changes to the mandatory inputs or outputs.`,
+				},
+				resource.Attribute{
+					Name:        "Beta",
+					Description: `The definition is a Beta version and this version can under go changes until the version is marked supported.`,
+				},
+				resource.Attribute{
+					Name:        "Deprecated",
+					Description: `The version of definition is deprecated and typically there will be a higher version of the same definition that has been added.`,
+				},
+				resource.Attribute{
+					Name:        "NotValidated",
+					Description: `The state when workflow definition has not been validated.`,
+				},
+				resource.Attribute{
+					Name:        "Valid",
+					Description: `The state when workflow definition is valid.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `The state when workflow definition is invalid. + ` + "`" + `validation_error` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `error_log` + "`" + `:(string)(ReadOnly) Description of the error. + ` + "`" + `field` + "`" + `:(string)(ReadOnly) When populated this refers to the input or output field within the workflow or task. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `task_name` + "`" + `:(string)(ReadOnly) The task name on which the error is found, when empty the error applies to the top level workflow. + ` + "`" + `transition_name` + "`" + `:(string)(ReadOnly) When populated this refers to the transition connection that has a problem. When this field has value OnSuccess it means the transition connection OnSuccess for the task has an issue.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_catalog_item_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_catalog_item_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "intersight_workflow_catalog_service_request",
+			Category:         "workflow",
+			ShortDescription: `Catalog Service Request is one instance of a catalog item based on a catalog item definition.`,
+			Description: `
+Catalog Service Request is one instance of a catalog item based on a catalog item definition.
+`,
+			Keywords: []string{
+				"workflow",
+				"catalog",
+				"service",
+				"request",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action is set, this is the default value for action field.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validate the action instance inputs and run the validation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Start a new execution of the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Rerun",
+					Description: `Rerun the service item action instance from the beginning.`,
+				},
+				resource.Attribute{
+					Name:        "Retry",
+					Description: `Retry the workflow that has failed from the failure point.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
+				},
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped. + ` + "`" + `create_time` + "`" + `:(string)(ReadOnly) The timestamp when the message was created. + ` + "`" + `message` + "`" + `:(string)(ReadOnly) An i18n message which can be localized and conveys status on the action. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `service_item_name` + "`" + `:(string)(ReadOnly) The service item in which operation is perfomed. + ` + "`" + `severity` + "`" + `:(string)(ReadOnly) The severity of the message such as error, warning, info etc.`,
+				},
+				resource.Attribute{
+					Name:        "Info",
+					Description: `The enum represents the log level to be used to convey info message.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `The enum represents the log level to be used to convey warning message.`,
+				},
+				resource.Attribute{
+					Name:        "Debug",
+					Description: `The enum represents the log level to be used to convey debug message.`,
+				},
+				resource.Attribute{
+					Name:        "Error",
+					Description: `The enum represents the log level to be used to convey error message.`,
+				},
+				resource.Attribute{
+					Name:        "PostDeployment",
+					Description: `This represents the post-deployment actions for the resources created or defined through the deployment action. There can be more than one post-deployment operations associated with a service item.`,
+				},
+				resource.Attribute{
+					Name:        "Deployment",
+					Description: `This represents the deploy action, for the service item action definition. This operation type is used to create or define resources that is managed by the service item. There can only be one Service Item Action Definition that can be marked with the operation type as Deployment and this is a mandatory operation type. All valid Service Items must have one and only one operation type marked as type Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "Decommission",
+					Description: `This represents the decommission action, used to decommission the created resources. All valid Service Items must have one and only one operation type marked as type Decommission. Once a decommission action is run on a Service Item, no further operations are allowed on that Service Item.`,
+				},
+				resource.Attribute{
+					Name:        "NotCreated",
+					Description: `The service item is not yet created and it is in a draft mode. A service item instance can be deleted in this state.`,
+				},
+				resource.Attribute{
+					Name:        "InProgress",
+					Description: `An action is in progress and until that action has reached a final state, another action cannot be started.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The last action on the service item instance failed and corrective measures need to be taken to bring the service item instance back to valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `The last action on the service item instance completed and the service item instance is in Okay state.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommissioned and can be safely deleted. A service item instance in any other state after it has been created cannot be deleted until it has been decommissioned.`,
+				},
+				resource.Attribute{
+					Name:        "Modified",
+					Description: `Version created every time an object is modified.`,
+				},
+				resource.Attribute{
+					Name:        "Configured",
+					Description: `Version created every time an object is configured to the service profile.`,
+				},
+				resource.Attribute{
+					Name:        "Deployed",
+					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_catalog_service_request` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_catalog_service_request.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.OperationTypeDecommission](#argument-reference) Operation details for decommission actions.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -24448,7 +29096,7 @@ Captures a customized data type definition that can be used for task or workflow
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -24464,7 +29112,15 @@ Captures a customized data type definition that can be used for task or workflow
 				},
 				resource.Attribute{
 					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
 				},
 				resource.Attribute{
 					Name:        "GET",
@@ -24604,135 +29260,143 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "APIC",
-					Description: `An Application Policy Infrastructure Controller cluster.`,
+					Description: `A Cisco Application Policy Infrastructure Controller (APIC) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "CAPIC",
-					Description: `An Application Policy Infrastructure Controller cloud instance.`,
+					Description: `A Cisco Cloud Application Policy Infrastructure Controller (Cloud APIC) instance.`,
 				},
 				resource.Attribute{
 					Name:        "DCNM",
-					Description: `A Data Center Network Manager instance. Data Center Network Manager (DCNM) is the network management platform for all NX-OS-enabled deployments, spanning new fabric architectures, IP Fabric for Media, and storage networking deployments for the Cisco Nexus-powered data center.`,
+					Description: `A Cisco Data Center Network Manager (DCNM) instance.`,
 				},
 				resource.Attribute{
 					Name:        "UCSFI",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, which is being managed by UCS Manager (UCSM).`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco UCS Manager (UCSM).`,
 				},
 				resource.Attribute{
 					Name:        "UCSFIISM",
-					Description: `A UCS Fabric Interconnect in HA or standalone mode, managed directly by Intersight.`,
+					Description: `A Cisco UCS Fabric Interconnect that is managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "IMC",
-					Description: `A standalone UCS Server Integrated Management Controller.`,
+					Description: `A standalone Cisco UCS rack server (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IMCM4",
-					Description: `A standalone UCS M4 Server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M4 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCM5",
-					Description: `A standalone UCS M5 server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M5 server.`,
 				},
 				resource.Attribute{
 					Name:        "IMCRack",
-					Description: `A standalone UCS M6 and above server.`,
+					Description: `A standalone Cisco UCS C-Series or S-Series M6 or newer server.`,
 				},
 				resource.Attribute{
 					Name:        "UCSIOM",
-					Description: `An UCS Chassis IO module.`,
+					Description: `A Cisco UCS Blade Chassis I/O Module (IOM).`,
 				},
 				resource.Attribute{
 					Name:        "HX",
-					Description: `A HyperFlex storage controller.`,
+					Description: `A Cisco HyperFlex (HX) cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HyperFlexAP",
-					Description: `A HyperFlex Application Platform.`,
+					Description: `A Cisco HyperFlex Application Platform instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "IWE",
-					Description: `An Intersight Workload Engine.`,
+					Description: `A Cisco Intersight Workload Engine instance (Deprecated).`,
 				},
 				resource.Attribute{
 					Name:        "UCSD",
-					Description: `A UCS Director virtual appliance. Cisco UCS Director automates, orchestrates, and manages Cisco and third-party hardware.`,
+					Description: `A Cisco UCS Director (UCSD) instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAppliance",
-					Description: `A Cisco Intersight Connected Virtual Appliance.`,
+					Description: `A Cisco Intersight Connected Virtual Appliance instance.`,
 				},
 				resource.Attribute{
 					Name:        "IntersightAssist",
-					Description: `A Cisco Intersight Assist.`,
+					Description: `A Cisco Intersight Assist instance.`,
 				},
 				resource.Attribute{
 					Name:        "PureStorageFlashArray",
-					Description: `A Pure Storage FlashArray device.`,
+					Description: `A Pure Storage FlashArray that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and storage management features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NexusDevice",
-					Description: `A generic platform type to support Nexus Network Device. This can also be extended to support all network devices later on.`,
+					Description: `A Cisco Nexus Network Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "ACISwitch",
-					Description: `A platform type to support ACI Switches.`,
+					Description: `A Cisco Nexus Network Switch with the embedded Device Connector and is a part of the Cisco ACI fabric.`,
 				},
 				resource.Attribute{
 					Name:        "NexusSwitch",
-					Description: `A platform type to support Cisco Nexus Switches.`,
+					Description: `A standalone Cisco Nexus Network Switch with the embedded Device Connector.`,
+				},
+				resource.Attribute{
+					Name:        "MDSSwitch",
+					Description: `A Cisco MDS Switch that is managed using the embedded Device Connector.`,
 				},
 				resource.Attribute{
 					Name:        "MDSDevice",
-					Description: `A platform type to support MDS devices.`,
+					Description: `A Cisco MDS Switch that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "UCSC890",
-					Description: `A standalone Cisco UCSC890 server.`,
+					Description: `A standalone Cisco UCS C890 server managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "RedfishServer",
+					Description: `A generic target type for servers that support Redfish APIs and is managed using Cisco Intersight Assist. Support is limited to HPE and Dell Servers.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppOntap",
-					Description: `A NetApp ONTAP storage system.`,
+					Description: `A Netapp ONTAP Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "NetAppActiveIqUnifiedManager",
-					Description: `A NetApp Active IQ Unified Manager.`,
+					Description: `A NetApp Active IQ Unified Manager (AIQUM) that is managed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "EmcScaleIo",
-					Description: `An EMC ScaleIO storage system.`,
+					Description: `An EMC ScaleIO Software Defined Storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVmax",
-					Description: `An EMC VMAX storage system.`,
+					Description: `An EMC VMAX 2 or 3 series enterprise storage array that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcVplex",
-					Description: `An EMC VPLEX storage system.`,
+					Description: `An EMC VPLEX virtual storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "EmcXtremIo",
-					Description: `An EMC XtremIO storage system.`,
+					Description: `An EMC XtremIO SSD storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "VmwareVcenter",
-					Description: `A VMware vCenter device that manages Virtual Machines.`,
+					Description: `A VMware vCenter instance that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer and Virtualization features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftHyperV",
-					Description: `A Microsoft Hyper-V system that manages Virtual Machines.`,
+					Description: `A Microsoft Hyper-V host that is managed using Cisco Intersight Assist. Optionally, other hosts in the cluster can be discovered through this host. Cisco Intersight Workload Optimizer features are supported on this hypervisor.`,
 				},
 				resource.Attribute{
 					Name:        "AppDynamics",
-					Description: `An AppDynamics controller that monitors applications.`,
+					Description: `An AppDynamics controller running in a SaaS or on-prem datacenter. On-prem AppDynamics instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this controller.`,
 				},
 				resource.Attribute{
 					Name:        "Dynatrace",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A Dynatrace Server instance running in a SaaS or on-prem datacenter. On-prem Dynatrace instance is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "NewRelic",
-					Description: `A software-intelligence monitoring platform that simplifies enterprise cloud complexity and accelerates digital transformation.`,
+					Description: `A NewRelic user account. The NewRelic instance monitors the application infrastructure. Cisco Intersight Workload Optimizer features are supported on this server.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceNow",
@@ -24756,39 +29420,75 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "MicrosoftSqlServer",
-					Description: `A Microsoft SQL database server.`,
+					Description: `A Microsoft SQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
 				},
 				resource.Attribute{
 					Name:        "MySqlServer",
-					Description: `An instance of either Oracle MySQL Database or the open source MariaDB.`,
+					Description: `A MySQL database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "OracleDatabaseServer",
+					Description: `An Oracle database server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this database.`,
+				},
+				resource.Attribute{
+					Name:        "IBMWebSphereApplicationServer",
+					Description: `An IBM WebSphere Application server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application server.`,
+				},
+				resource.Attribute{
+					Name:        "OracleWebLogicServer",
+					Description: `Oracle WebLogic Server is a unified and extensible platform for developing, deploying and running enterprise applications, such as Java, for on-premises and in the cloud. WebLogic Server offers a robust, mature, and scalable implementation of Java Enterprise Edition (EE) and Jakarta EE.`,
+				},
+				resource.Attribute{
+					Name:        "ApacheTomcatServer",
+					Description: `An Apache Tomcat server that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this server.`,
+				},
+				resource.Attribute{
+					Name:        "JavaVirtualMachine",
+					Description: `A JVM Application with JMX configured that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this application.`,
+				},
+				resource.Attribute{
+					Name:        "RedHatJBossApplicationServer",
+					Description: `JBoss Application Server is an open-source, cross-platform Java application server developed by JBoss, a division of Red Hat Inc. It is an open-source implementation of Java 2 Enterprise Edition (J2EE) that is used for implementing Java applications and other Web-based applications and software.`,
 				},
 				resource.Attribute{
 					Name:        "Kubernetes",
-					Description: `A Kubernetes cluster that runs containerized applications.`,
+					Description: `A Kubernetes cluster that runs containerized applications, with Kubernetes Collector installed. Cisco Intersight Workload Optimizer features are supported on Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebService",
-					Description: `A Amazon web service target that discovers and monitors different services like EC2. It discovers entities like VMs, Volumes, regions etc. and monitors attributes like Mem, CPU, cost.`,
+					Description: `An Amazon Web Service cloud account. Cisco Intersight Workload Optimizer and Virtualization features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "AmazonWebServiceBilling",
-					Description: `A Amazon web service billing target to retrieve billing information stored in S3 bucket.`,
+					Description: `An Amazon Web Service cloud billing account used to retrieve billing information stored in S3 bucket. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatform",
+					Description: `A Google Cloud Platform service account with access to one or more projects. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "GoogleCloudPlatformBilling",
+					Description: `A Google Cloud Platform service account used to retrieve billing information from BigQuery. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureServicePrincipal",
-					Description: `A Microsoft Azure Service Principal target that discovers all the associated Azure subscriptions.`,
+					Description: `A Microsoft Azure Service Principal account with access to Azure subscriptions. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "MicrosoftAzureEnterpriseAgreement",
-					Description: `A Microsoft Azure Enterprise Agreement target that discovers cost, billing and RIs.`,
+					Description: `A Microsoft Azure Enterprise Agreement enrolment used to retrieve pricing and billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
+				},
+				resource.Attribute{
+					Name:        "MicrosoftAzureBilling",
+					Description: `A Microsoft Azure Service Principal account with access to billing information. Cisco Intersight Workload Optimizer features are supported on this cloud.`,
 				},
 				resource.Attribute{
 					Name:        "DellCompellent",
-					Description: `A Dell Compellent storage system.`,
+					Description: `A Dell EMC SC Series (Compellent) storage system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "HPE3Par",
-					Description: `A HPE 3PAR storage system.`,
+					Description: `A HPE 3PAR StoreServ system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this device.`,
 				},
 				resource.Attribute{
 					Name:        "RedHatEnterpriseVirtualization",
@@ -24796,11 +29496,11 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "NutanixAcropolis",
-					Description: `A Nutanix Acropolis system that combines servers and storage into a distributed infrastructure platform.`,
+					Description: `A Nutanix Acropolis cluster that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "HPEOneView",
-					Description: `A HPE Oneview management system that manages compute, storage, and networking.`,
+					Description: `A HPE OneView system that is managed using Cisco Intersight Assist. Cisco Intersight Workload Optimizer features are supported on this system.`,
 				},
 				resource.Attribute{
 					Name:        "ServiceEngine",
@@ -24808,35 +29508,39 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "HitachiVirtualStoragePlatform",
-					Description: `A Hitachi Virtual Storage Platform also referred to as Hitachi VSP. It includes various storage systems designed for data centers.`,
+					Description: `A Hitachi Virtual Storage Platform (Hitachi VSP) that is managed using Cisco Intersight Assist.`,
+				},
+				resource.Attribute{
+					Name:        "GenericTarget",
+					Description: `A generic third-party target supported only in Partner Integration Appliance. This target type is used for development purposes and will not be supported in production environment.`,
 				},
 				resource.Attribute{
 					Name:        "IMCBlade",
-					Description: `An Intersight managed UCS Blade Server.`,
+					Description: `A Cisco UCS blade server managed by Cisco Intersight.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformCloud",
-					Description: `A Terraform Cloud account.`,
+					Description: `A Terraform Cloud Business Tier account.`,
 				},
 				resource.Attribute{
 					Name:        "TerraformAgent",
-					Description: `A Terraform Cloud Agent that Intersight will deploy in datacenter. The agent will execute Terraform plan for Terraform Cloud workspace configured to use the agent.`,
+					Description: `A Terraform Cloud Agent that will be deployed on Cisco Intersight Assist. The agent can be used to plan and apply Terraform runs from a Terraform Cloud workspace.`,
 				},
 				resource.Attribute{
 					Name:        "CustomTarget",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic.`,
+					Description: `CustomTarget is deprecated. Use HTTPEndpoint type to claim HTTP endpoints.`,
 				},
 				resource.Attribute{
 					Name:        "AnsibleEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through Ansible in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An external endpoint that is added as a target which can be accessed through Ansible in Intersight Cloud Orchestrator automation workflows.`,
 				},
 				resource.Attribute{
 					Name:        "HTTPEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through its HTTP API interface in Intersight Orchestrator automation workflow.Standard HTTP authentication scheme supported: Basic, Bearer Token.`,
+					Description: `An HTTP endpoint that can be accessed in Intersight Orchestrator workflows directly or using Cisco Intersight Assist. Authentication Schemes supported are Basic and Bearer Token.`,
 				},
 				resource.Attribute{
 					Name:        "SSHEndpoint",
-					Description: `An external endpoint added as Target that can be accessed through SSH in Intersight Cloud Orchestrator automation workflow.`,
+					Description: `An SSH endpoint that can be accessed in Intersight Orchestrator workflows using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "CiscoCatalyst",
@@ -24844,7 +29548,7 @@ error parameters.
 				},
 				resource.Attribute{
 					Name:        "PowerShellEndpoint",
-					Description: `A Windows machine on which PowerShell scripts can be executed remotely.`,
+					Description: `A Windows operating system server on which PowerShell scripts can be executed using Cisco Intersight Assist.`,
 				},
 				resource.Attribute{
 					Name:        "simple",
@@ -24957,6 +29661,46 @@ specification.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_power_shell_batch_api_executor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_power_shell_batch_api_executor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.AnsiblePlaySession](#argument-reference) This models a single Ansible playbook execution session on the Ansible Control node. While execution of the respective Ansible task, the below provided property values are used to construct the SSH Batch executor, which gets executed on the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "NonInteractive",
+					Description: `The CLI command is not an interactive command.`,
+				},
+				resource.Attribute{
+					Name:        "Interactive",
+					Description: `The CLI command is executed in interactive mode and the command must provide the expects andanswers. ### [workflow.FileOperations](#argument-reference) This models a single File Operation request within a batch of requests that get executed within a single workflow task.`,
+				},
+				resource.Attribute{
+					Name:        "FileDownload",
+					Description: `The API is executed in a remote device connected to the Intersightthrough its device connector. This operation is to download the filefrom specified storage bucket to the specific path on the device.`,
+				},
+				resource.Attribute{
+					Name:        "FileTemplatize",
+					Description: `Populates data driven template file with input values to generate textual output.Inputs - the path of the template file on the device and json values to populate.An error will be returned if the file does not exists or if there is an error whileexecuting the template. ### [workflow.PowerShellApi](#argument-reference) This models a single PowerShell script execution that can be sent to a claimed PowerShell target.`,
+				},
+				resource.Attribute{
+					Name:        "ExecuteCommand",
+					Description: `Execute a SSH command on the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "NewSession",
+					Description: `Open a new SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "FileTransfer",
+					Description: `Transfer a file from Intersight connected device to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "CloseSession",
+					Description: `Close the SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `The endpoint API executed is an internal request handled by the device connector plugin.`,
+				},
+				resource.Attribute{
+					Name:        "External",
+					Description: `The endpoint API request is passed through by the device connector.`,
 				},
 				resource.Attribute{
 					Name:        "NonInteractive",
@@ -25118,6 +29862,18 @@ Definition to capture the details needed to execute an action on the service ite
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "PostDeployment",
+					Description: `This represents the post-deployment actions for the resources created or defined through the deployment action. There can be more than one post-deployment operations associated with a service item.`,
+				},
+				resource.Attribute{
+					Name:        "Deployment",
+					Description: `This represents the deploy action, for the service item action definition. This operation type is used to create or define resources that is managed by the service item. There can only be one Service Item Action Definition that can be marked with the operation type as Deployment and this is a mandatory operation type. All valid Service Items must have one and only one operation type marked as type Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "Decommission",
+					Description: `This represents the decommission action, used to decommission the created resources. All valid Service Items must have one and only one operation type marked as type Decommission. Once a decommission action is run on a Service Item, no further operations are allowed on that Service Item. + ` + "`" + `stop_on_failure` + "`" + `:(bool) When true, the action on the service item will be stopped when it reaches a failure by either calling the configured stop workflow or by calling the rollback workflow. By default value is set to true.`,
+				},
+				resource.Attribute{
 					Name:        "External",
 					Description: `External actions definition can be triggered by enduser to perform actions on the service item. Once action is completed successfully (eg. create/deploy), user cannot re-trigger that action again.`,
 				},
@@ -25147,7 +29903,7 @@ Definition to capture the details needed to execute an action on the service ite
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "NotValidated",
@@ -25175,7 +29931,15 @@ Definition to capture the details needed to execute an action on the service ite
 				},
 				resource.Attribute{
 					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
 				},
 				resource.Attribute{
 					Name:        "GET",
@@ -25257,11 +30021,11 @@ Service item action instance which represents one action on a service item insta
 					Description: `Start a new execution of the action instance.`,
 				},
 				resource.Attribute{
-					Name:        "Retry",
-					Description: `Retry the service item action instance from the beginning.`,
+					Name:        "Rerun",
+					Description: `Rerun the service item action instance from the beginning.`,
 				},
 				resource.Attribute{
-					Name:        "RetryFailed",
+					Name:        "Retry",
 					Description: `Retry the workflow that has failed from the failure point.`,
 				},
 				resource.Attribute{
@@ -25285,11 +30049,11 @@ Service item action instance which represents one action on a service item insta
 					Description: `Start a new execution of the action instance.`,
 				},
 				resource.Attribute{
-					Name:        "Retry",
-					Description: `Retry the service item action instance from the beginning.`,
+					Name:        "Rerun",
+					Description: `Rerun the service item action instance from the beginning.`,
 				},
 				resource.Attribute{
-					Name:        "RetryFailed",
+					Name:        "Retry",
 					Description: `Retry the workflow that has failed from the failure point.`,
 				},
 				resource.Attribute{
@@ -25299,6 +30063,78 @@ Service item action instance which represents one action on a service item insta
 				resource.Attribute{
 					Name:        "Stop",
 					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped.`,
+				},
+				resource.Attribute{
+					Name:        "None",
+					Description: `No action is set, this is the default value for action field.`,
+				},
+				resource.Attribute{
+					Name:        "Validate",
+					Description: `Validate the action instance inputs and run the validation workflows.`,
+				},
+				resource.Attribute{
+					Name:        "Start",
+					Description: `Start a new execution of the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Rerun",
+					Description: `Rerun the service item action instance from the beginning.`,
+				},
+				resource.Attribute{
+					Name:        "Retry",
+					Description: `Retry the workflow that has failed from the failure point.`,
+				},
+				resource.Attribute{
+					Name:        "Cancel",
+					Description: `Cancel the core workflow that is in running or waiting state. This action can be used when the workflows are stuck and not progressing.`,
+				},
+				resource.Attribute{
+					Name:        "Stop",
+					Description: `Stop the action instance which is in progress and didn't complete successfully. Use this action to clear the state and then delete the action instance. A completed action cannot be stopped. + ` + "`" + `create_time` + "`" + `:(string)(ReadOnly) The timestamp when the message was created. + ` + "`" + `message` + "`" + `:(string)(ReadOnly) An i18n message which can be localized and conveys status on the action. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `severity` + "`" + `:(string)(ReadOnly) The severity of the message such as error, warning, info etc.`,
+				},
+				resource.Attribute{
+					Name:        "Info",
+					Description: `The enum represents the log level to be used to convey info message.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `The enum represents the log level to be used to convey warning message.`,
+				},
+				resource.Attribute{
+					Name:        "Debug",
+					Description: `The enum represents the log level to be used to convey debug message.`,
+				},
+				resource.Attribute{
+					Name:        "Error",
+					Description: `The enum represents the log level to be used to convey error message.`,
+				},
+				resource.Attribute{
+					Name:        "Creating",
+					Description: `The service item is not yet created and creation action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Created",
+					Description: `The service item is created.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioning",
+					Description: `The service item is not yet decommissioned and decommission action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommisioned.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The service item is not yet deleted and deletion action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Deleted",
+					Description: `The service item is deleted.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The service item action is failed to perform the operation.`,
 				},
 				resource.Attribute{
 					Name:        "NotStarted",
@@ -25323,6 +30159,10 @@ Service item action instance which represents one action on a service item insta
 				resource.Attribute{
 					Name:        "Stopping",
 					Description: `The stop action is running on the action instance.`,
+				},
+				resource.Attribute{
+					Name:        "Stopped",
+					Description: `The action on the service item instance has stopped.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -25354,6 +30194,26 @@ Service Item definition is a collection of actions and associated workflow defin
 				"definition",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "None",
+					Description: `Display none of the widget types.`,
+				},
+				resource.Attribute{
+					Name:        "Radio",
+					Description: `Display the widget as a radio button.`,
+				},
+				resource.Attribute{
+					Name:        "Dropdown",
+					Description: `Display the widget as a dropdown.`,
+				},
+				resource.Attribute{
+					Name:        "GridSelector",
+					Description: `Display the widget as a selector.`,
+				},
+				resource.Attribute{
+					Name:        "DrawerSelector",
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+				},
 				resource.Attribute{
 					Name:        "Base",
 					Description: `Base as a License type. It is default license type.`,
@@ -25391,24 +30251,100 @@ Service Item definition is a collection of actions and associated workflow defin
 					Description: `IKS-Advantage as a License type.`,
 				},
 				resource.Attribute{
-					Name:        "None",
-					Description: `Display none of the widget types.`,
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
 				},
 				resource.Attribute{
-					Name:        "Radio",
-					Description: `Display the widget as a radio button.`,
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
 				},
 				resource.Attribute{
-					Name:        "Dropdown",
-					Description: `Display the widget as a dropdown.`,
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
 				},
 				resource.Attribute{
-					Name:        "GridSelector",
-					Description: `Display the widget as a selector.`,
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
 				},
 				resource.Attribute{
-					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+				resource.Attribute{
+					Name:        "NotPublished",
+					Description: `A state of the service item or catalog item which is not yet published.`,
+				},
+				resource.Attribute{
+					Name:        "Published",
+					Description: `A state denoting that the service item or catalog item is published.`,
+				},
+				resource.Attribute{
+					Name:        "Okay",
+					Description: `Deployment and other post-deployment actions are in valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Critical",
+					Description: `Deployment action is not in valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Warning",
+					Description: `Deployment action is in valid state, and one or more post-deployment actions are not in valid state.`,
+				},
+				resource.Attribute{
+					Name:        "Supported",
+					Description: `The definition is a supported version and there will be no changes to the mandatory inputs or outputs.`,
+				},
+				resource.Attribute{
+					Name:        "Beta",
+					Description: `The definition is a Beta version and this version can under go changes until the version is marked supported.`,
+				},
+				resource.Attribute{
+					Name:        "Deprecated",
+					Description: `The version of definition is deprecated and typically there will be a higher version of the same definition that has been added.`,
+				},
+				resource.Attribute{
+					Name:        "NotValidated",
+					Description: `The state when workflow definition has not been validated.`,
+				},
+				resource.Attribute{
+					Name:        "Valid",
+					Description: `The state when workflow definition is valid.`,
+				},
+				resource.Attribute{
+					Name:        "Invalid",
+					Description: `The state when workflow definition is invalid. + ` + "`" + `validation_error` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `error_log` + "`" + `:(string)(ReadOnly) Description of the error. + ` + "`" + `field` + "`" + `:(string)(ReadOnly) When populated this refers to the input or output field within the workflow or task. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `task_name` + "`" + `:(string)(ReadOnly) The task name on which the error is found, when empty the error applies to the top level workflow. + ` + "`" + `transition_name` + "`" + `:(string)(ReadOnly) When populated this refers to the transition connection that has a problem. When this field has value OnSuccess it means the transition connection OnSuccess for the task has an issue.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -25424,7 +30360,15 @@ Service Item definition is a collection of actions and associated workflow defin
 				},
 				resource.Attribute{
 					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
 				},
 				resource.Attribute{
 					Name:        "GET",
@@ -25553,6 +30497,34 @@ Service item instance is one instance of a service item based on a service item 
 					Description: `The service item is decommissioned and can be safely deleted. A service item instance in any other state after it has been created cannot be deleted until it has been decommissioned.`,
 				},
 				resource.Attribute{
+					Name:        "Creating",
+					Description: `The service item is not yet created and creation action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Created",
+					Description: `The service item is created.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioning",
+					Description: `The service item is not yet decommissioned and decommission action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Decommissioned",
+					Description: `The service item is decommisioned.`,
+				},
+				resource.Attribute{
+					Name:        "Deleting",
+					Description: `The service item is not yet deleted and deletion action is in progress.`,
+				},
+				resource.Attribute{
+					Name:        "Deleted",
+					Description: `The service item is deleted.`,
+				},
+				resource.Attribute{
+					Name:        "Failed",
+					Description: `The service item action is failed to perform the operation.`,
+				},
+				resource.Attribute{
 					Name:        "NotCreated",
 					Description: `The service item is not yet created and it is in a draft mode. A service item instance can be deleted in this state.`,
 				},
@@ -25619,269 +30591,6 @@ Service item output which represents all the artifacts created or related to thi
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_workflow_solution_action_definition",
-			Category:         "workflow",
-			ShortDescription: `Definition to capture the details needed to execute an action on the solution.`,
-			Description: `
-Definition to capture the details needed to execute an action on the solution.
-`,
-			Keywords: []string{
-				"workflow",
-				"solution",
-				"action",
-				"definition",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "External",
-					Description: `External actions definition can be triggered by enduser to perform actions on the solution. Once action is completed successfully (eg. create/deploy), user cannot re-trigger that action again.`,
-				},
-				resource.Attribute{
-					Name:        "Internal",
-					Description: `Internal action definition is used to trigger periodic actions on the solution instance.`,
-				},
-				resource.Attribute{
-					Name:        "Repetitive",
-					Description: `Repetitive action definition is an external action that can be triggered by enduser to perform repetitive actions (eg. Edit/Update/Perform health check) on the created solution.`,
-				},
-				resource.Attribute{
-					Name:        "None",
-					Description: `Display none of the widget types.`,
-				},
-				resource.Attribute{
-					Name:        "Radio",
-					Description: `Display the widget as a radio button.`,
-				},
-				resource.Attribute{
-					Name:        "Dropdown",
-					Description: `Display the widget as a dropdown.`,
-				},
-				resource.Attribute{
-					Name:        "GridSelector",
-					Description: `Display the widget as a selector.`,
-				},
-				resource.Attribute{
-					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
-				},
-				resource.Attribute{
-					Name:        "NotValidated",
-					Description: `The state when workflow definition has not been validated.`,
-				},
-				resource.Attribute{
-					Name:        "Valid",
-					Description: `The state when workflow definition is valid.`,
-				},
-				resource.Attribute{
-					Name:        "Invalid",
-					Description: `The state when workflow definition is invalid. + ` + "`" + `validation_error` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `error_log` + "`" + `:(string)(ReadOnly) Description of the error. + ` + "`" + `field` + "`" + `:(string)(ReadOnly) When populated this refers to the input or output field within the workflow or task. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `task_name` + "`" + `:(string)(ReadOnly) The task name on which the error is found, when empty the error applies to the top level workflow. + ` + "`" + `transition_name` + "`" + `:(string)(ReadOnly) When populated this refers to the transition connection that has a problem. When this field has value OnSuccess it means the transition connection OnSuccess for the task has an issue.`,
-				},
-				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
-				},
-				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed.`,
-				},
-				resource.Attribute{
-					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) -`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_solution_definition",
-			Category:         "workflow",
-			ShortDescription: `Solution definition is a collection of actions and associated workflow definition that can be used to deploy a solution.`,
-			Description: `
-Solution definition is a collection of actions and associated workflow definition that can be used to deploy a solution.
-`,
-			Keywords: []string{
-				"workflow",
-				"solution",
-				"definition",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Base",
-					Description: `Base as a License type. It is default license type.`,
-				},
-				resource.Attribute{
-					Name:        "Essential",
-					Description: `Essential as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "Standard",
-					Description: `Standard as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "Advantage",
-					Description: `Advantage as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "Premier",
-					Description: `Premier as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IWO-Essential",
-					Description: `IWO-Essential as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IWO-Advantage",
-					Description: `IWO-Advantage as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IWO-Premier",
-					Description: `IWO-Premier as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "IKS-Advantage",
-					Description: `IKS-Advantage as a License type.`,
-				},
-				resource.Attribute{
-					Name:        "None",
-					Description: `Display none of the widget types.`,
-				},
-				resource.Attribute{
-					Name:        "Radio",
-					Description: `Display the widget as a radio button.`,
-				},
-				resource.Attribute{
-					Name:        "Dropdown",
-					Description: `Display the widget as a dropdown.`,
-				},
-				resource.Attribute{
-					Name:        "GridSelector",
-					Description: `Display the widget as a selector.`,
-				},
-				resource.Attribute{
-					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
-				},
-				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
-				},
-				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_solution_definition` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_solution_definition.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
-				},
-				resource.Attribute{
-					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) -`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "intersight_workflow_ssh_batch_executor",
 			Category:         "workflow",
 			ShortDescription: `Intersight allows generic tasks to be created by taking the executor request body and a response parser specification in the form of content.Grammar object. SSH Batch associates the list of SSH requests to be executed as part of single task execution. Each SSH request takes the command to execute and a response parser specification based off text to extract fields of interest.`,
@@ -25910,6 +30619,46 @@ specification based off text to extract fields of interest.
 				resource.Attribute{
 					Name:        "Deployed",
 					Description: `Version created for objects related to a service profile when it is deployed. ## Import ` + "`" + `intersight_workflow_ssh_batch_executor` + "`" + ` can be imported using the Moid of the object, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import intersight_workflow_ssh_batch_executor.example 1234567890987654321abcde ` + "`" + `` + "`" + `` + "`" + ` ## Allowed Types in ` + "`" + `AdditionalProperties` + "`" + ` ### [workflow.AnsiblePlaySession](#argument-reference) This models a single Ansible playbook execution session on the Ansible Control node. While execution of the respective Ansible task, the below provided property values are used to construct the SSH Batch executor, which gets executed on the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "NonInteractive",
+					Description: `The CLI command is not an interactive command.`,
+				},
+				resource.Attribute{
+					Name:        "Interactive",
+					Description: `The CLI command is executed in interactive mode and the command must provide the expects andanswers. ### [workflow.FileOperations](#argument-reference) This models a single File Operation request within a batch of requests that get executed within a single workflow task.`,
+				},
+				resource.Attribute{
+					Name:        "FileDownload",
+					Description: `The API is executed in a remote device connected to the Intersightthrough its device connector. This operation is to download the filefrom specified storage bucket to the specific path on the device.`,
+				},
+				resource.Attribute{
+					Name:        "FileTemplatize",
+					Description: `Populates data driven template file with input values to generate textual output.Inputs - the path of the template file on the device and json values to populate.An error will be returned if the file does not exists or if there is an error whileexecuting the template. ### [workflow.PowerShellApi](#argument-reference) This models a single PowerShell script execution that can be sent to a claimed PowerShell target.`,
+				},
+				resource.Attribute{
+					Name:        "ExecuteCommand",
+					Description: `Execute a SSH command on the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "NewSession",
+					Description: `Open a new SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "FileTransfer",
+					Description: `Transfer a file from Intersight connected device to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "CloseSession",
+					Description: `Close the SSH connection to the remote server.`,
+				},
+				resource.Attribute{
+					Name:        "Internal",
+					Description: `The endpoint API executed is an internal request handled by the device connector plugin.`,
+				},
+				resource.Attribute{
+					Name:        "External",
+					Description: `The endpoint API request is passed through by the device connector.`,
 				},
 				resource.Attribute{
 					Name:        "NonInteractive",
@@ -26005,6 +30754,58 @@ Used to define a task which can be included within a workflow. Task definition c
 					Description: `IKS-Advantage as a License type.`,
 				},
 				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Display none of the widget types.`,
 				},
@@ -26022,7 +30823,7 @@ Used to define a task which can be included within a workflow. Task definition c
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON as string) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.DynamicTemplateParserDataType](#workflowDynamicTemplateParserDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(ReadOnly) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `:(JSON as string) Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `output_definition` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `additional_properties` + "`" + `:(JSON as string) - Additional Properties as per object type, can be added as JSON using ` + "`" + `jsonencode()` + "`" + `. Allowed Types are: [workflow.ArrayDataType](#workflowArrayDataType) [workflow.CustomDataType](#workflowCustomDataType) [workflow.DynamicTemplateParserDataType](#workflowDynamicTemplateParserDataType) [workflow.MoInventoryDataType](#workflowMoInventoryDataType) [workflow.MoReferenceAutoDataType](#workflowMoReferenceAutoDataType) [workflow.MoReferenceDataType](#workflowMoReferenceDataType) [workflow.PrimitiveDataType](#workflowPrimitiveDataType) [workflow.TargetDataType](#workflowTargetDataType) + ` + "`" + `default` + "`" + `:(HashMap) - Default value for the data type. If default value was provided and the input was required the default value will be used as the input. This complex property has following sub-properties: + ` + "`" + `is_value_set` + "`" + `:(bool)(ReadOnly) A flag that indicates whether a default value is given or not. This flag will be useful in case of the secure parameter where the value will be filtered out in API responses. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `override` + "`" + `:(bool) Override the default value provided for the data type. When true, allow the user to enter value for the data type. + ` + "`" + `value` + "`" + `:(JSON as string) Default value for the data type. If default value was provided and the input was required the default value will be used as the input. + ` + "`" + `description` + "`" + `:(string) Provide a detailed description of the data type. + ` + "`" + `display_meta` + "`" + `:(HashMap) - Captures the meta data needed for displaying workflow data types in Intersight User Interface. This complex property has following sub-properties: + ` + "`" + `inventory_selector` + "`" + `:(bool) Inventory selector specified for primitive data property should be used in Intersight User Interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `widget_type` + "`" + `:(string) Specify the widget type for data display.`,
 				},
 				resource.Attribute{
 					Name:        "None",
@@ -26042,7 +30843,7 @@ Used to define a task which can be included within a workflow. Task definition c
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `retry_count` + "`" + `:(int) The number of times a task should be tried before marking as failed. + ` + "`" + `retry_delay` + "`" + `:(int) The delay in seconds after which the the task is re-tried. + ` + "`" + `retry_policy` + "`" + `:(string) The retry policy for the task.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow. + ` + "`" + `retry_count` + "`" + `:(int) The number of times a task should be tried before marking as failed. + ` + "`" + `retry_delay` + "`" + `:(int) The delay in seconds after which the the task is re-tried. + ` + "`" + `retry_policy` + "`" + `:(string) The retry policy for the task.`,
 				},
 				resource.Attribute{
 					Name:        "Fixed",
@@ -26085,35 +30886,6 @@ Used to define a task which can be included within a workflow. Task definition c
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "intersight_workflow_task_notification",
-			Category:         "workflow",
-			ShortDescription: `The push notification of the scheduled task received from conductor.`,
-			Description: `
-The push notification of the scheduled task received from conductor.
-`,
-			Keywords: []string{
-				"workflow",
-				"task",
-				"notification",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
-				},
-				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "intersight_workflow_template_evaluation",
 			Category:         "workflow",
 			ShortDescription: `Executes a given template and returns the result.`,
@@ -26144,7 +30916,7 @@ Executes a given template and returns the result.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -26160,7 +30932,15 @@ Executes a given template and returns the result.
 				},
 				resource.Attribute{
 					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
 				},
 				resource.Attribute{
 					Name:        "GET",
@@ -26245,7 +31025,7 @@ The template parser that will parse the template to get all the placeholders.
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_) and must have an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `properties` + "`" + `:(HashMap) - Primitive data type properties. This complex property has following sub-properties: + ` + "`" + `constraints` + "`" + `:(HashMap) - Constraints that must be applied to the parameter value supplied for this data type. This complex property has following sub-properties: + ` + "`" + `enum_list` + "`" + `:(Array) This complex property has following sub-properties: + ` + "`" + `label` + "`" + `:(string) Label for the enum value. A user friendly short string to identify the enum value. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), single quote ('), forward slash (/), or an underscore (_) and must have an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value` + "`" + `:(string) Enum value for this enum entry. Value will be passed to the workflow as string type for execution. Value can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), period (.), colon (:), space ( ), forward slash (/), or an underscore (_). + ` + "`" + `max` + "`" + `:(float) Allowed maximum value of the parameter if parameter is integer/float or maximum length of the parameter if the parameter is string. When max and min are set to 0, then the limits are not checked. If parameter is integer/float, then maximum number supported is 1.797693134862315708145274237317043567981e+308 or (2`,
 				},
 				resource.Attribute{
 					Name:        "GET",
@@ -26325,7 +31105,7 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "eq",
@@ -26380,6 +31160,58 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 					Description: `IKS-Advantage as a License type.`,
 				},
 				resource.Attribute{
+					Name:        "INC-Premier-1GFixed",
+					Description: `Premier 1G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-10GFixed",
+					Description: `Premier 10G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-100GFixed",
+					Description: `Premier 100G Fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod4Slot",
+					Description: `Premier Modular 4 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-Mod8Slot",
+					Description: `Premier Modular 8 slot license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsFixed",
+					Description: `Premier D2Ops fixed license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-D2OpsMod",
+					Description: `Premier D2Ops modular license tier for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-CentralizedMod8Slot",
+					Description: `Premier modular license tier of switch type CentralizedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "INC-Premier-DistributedMod8Slot",
+					Description: `Premier modular license tier of switch type DistributedMod8Slot for Intersight Nexus Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "IntersightTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Intersight tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IWOTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IKS tiers.`,
+				},
+				resource.Attribute{
+					Name:        "IKSTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode IWO tiers.`,
+				},
+				resource.Attribute{
+					Name:        "INCTrial",
+					Description: `Virtual dummy license type to indicate trial. Used for UI display of trial mode Nexus tiers.`,
+				},
+				resource.Attribute{
 					Name:        "None",
 					Description: `Display none of the widget types.`,
 				},
@@ -26397,7 +31229,7 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "Supported",
@@ -26441,7 +31273,7 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "DrawerSelector",
-					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
+					Description: `Display the widget as a selector. + ` + "`" + `input_parameters` + "`" + `:(JSON as string) JSON formatted mapping from other property of the definition to the current property. Input parameter mapping is supported only for custom data type property in workflow definition and custom data type definition. The format to specify mapping ina workflow definition when source property is of scalar types is '${workflow.input.property}'. The format to specify mapping when the source property is of object reference and mapping needs to be made to the property of the object is '${workflow.input.property.subproperty}'. The format to specify mapping in a custom data type definition is '${datatype.type.property}'. When the current property is of non-scalar type like composite custom data type, then mapping can be provided to the individual property of the custom data type like 'cdt_property:${workflow.input.property}'. + ` + "`" + `label` + "`" + `:(string) Descriptive label for the data type. Label can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-), space ( ), forward slash (/) or an underscore (_). The first and last character in label must be an alphanumeric character. + ` + "`" + `name` + "`" + `:(string) Descriptive name for the data type. Name can only contain letters (a-z, A-Z), numbers (0-9), hyphen (-) or an underscore (_). The first and last character in name must be an alphanumeric character. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property.The enum values provides the list of concrete types that can be instantiated from this abstract type. + ` + "`" + `required` + "`" + `:(bool) Specifies whether this parameter is required. The field is applicable for task and workflow.`,
 				},
 				resource.Attribute{
 					Name:        "Modified",
@@ -26457,7 +31289,135 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 				},
 				resource.Attribute{
 					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `Enum to specify a string data type.`,
+				},
+				resource.Attribute{
+					Name:        "integer",
+					Description: `Enum to specify an integer32 data type.`,
+				},
+				resource.Attribute{
+					Name:        "float",
+					Description: `Enum to specify a float64 data type.`,
+				},
+				resource.Attribute{
+					Name:        "boolean",
+					Description: `Enum to specify a boolean data type.`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `Enum to specify a json data type.`,
+				},
+				resource.Attribute{
+					Name:        "enum",
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) - ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
+				},
+				resource.Attribute{
+					Name:        "OsInstall",
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
+				},
+				resource.Attribute{
+					Name:        "string",
+					Description: `Enum to specify a string data type.`,
+				},
+				resource.Attribute{
+					Name:        "integer",
+					Description: `Enum to specify an integer32 data type.`,
+				},
+				resource.Attribute{
+					Name:        "float",
+					Description: `Enum to specify a float64 data type.`,
+				},
+				resource.Attribute{
+					Name:        "boolean",
+					Description: `Enum to specify a boolean data type.`,
+				},
+				resource.Attribute{
+					Name:        "json",
+					Description: `Enum to specify a json data type.`,
+				},
+				resource.Attribute{
+					Name:        "enum",
+					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
+				},
+				resource.Attribute{
+					Name:        "GET",
+					Description: `The HTTP GET method requests a representation of the specified resource.`,
+				},
+				resource.Attribute{
+					Name:        "POST",
+					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) - ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
+				},
+				resource.Attribute{
+					Name:        "OsInstall",
+					Description: `This refers to the OS configuration template MO. ### [workflow.MoInventoryDataType](#argument-reference) The data type to represent the selected properties of an Intersight managed object. This data type is used only in Service items to define the schema of resources and their attributes.`,
+				},
+				resource.Attribute{
+					Name:        "Moid",
+					Description: `The reference to the original resource is via an Moid.`,
+				},
+				resource.Attribute{
+					Name:        "Selector",
+					Description: `The reference to the original resource is via a selector query. This can potentially lead to tracking data for multiple resources. ### [workflow.MoReferenceAutoDataType](#argument-reference) The data type to capture an Intersight managed object reference that is automatically selected by the system based on a given selection criteria.`,
 				},
 				resource.Attribute{
 					Name:        "GET",
@@ -26531,110 +31491,6 @@ Workflow definition is a collection of tasks that are sequenced in a certain way
 					Name:        "Failed",
 					Description: `The enum represents the status when task has failed.`,
 				},
-				resource.Attribute{
-					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) - ### [workflow.ArrayDataType](#argument-reference) This data type represents an array of a given type. It can be an array of primitive data or of custom data.`,
-				},
-				resource.Attribute{
-					Name:        "OsInstall",
-					Description: `This refers to the OS configuration template MO. ### [workflow.MoReferenceDataType](#argument-reference) Data type to capture an Intersight Managed object reference.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. ### [workflow.PrimitiveDataType](#argument-reference) This data type is used to represent primitives like string, floats and integers.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `value_attribute` + "`" + `:(string) A property from the Intersight object, value of which can be used as value for referenced input definition. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `secure` + "`" + `:(bool) Intersight supports secure properties as task input/output. The values ofthese properties are encrypted and stored in Intersight.This flag marks the property to be secure when it is set to true. + ` + "`" + `type` + "`" + `:(string) Specify the enum type for primitive data type.`,
-				},
-				resource.Attribute{
-					Name:        "string",
-					Description: `Enum to specify a string data type.`,
-				},
-				resource.Attribute{
-					Name:        "integer",
-					Description: `Enum to specify an integer32 data type.`,
-				},
-				resource.Attribute{
-					Name:        "float",
-					Description: `Enum to specify a float64 data type.`,
-				},
-				resource.Attribute{
-					Name:        "boolean",
-					Description: `Enum to specify a boolean data type.`,
-				},
-				resource.Attribute{
-					Name:        "json",
-					Description: `Enum to specify a json data type.`,
-				},
-				resource.Attribute{
-					Name:        "enum",
-					Description: `Enum to specify a enum data type which is a list of pre-defined strings. ### [workflow.TargetDataType](#argument-reference) Data type to capture a target endpoint or device.`,
-				},
-				resource.Attribute{
-					Name:        "GET",
-					Description: `The HTTP GET method requests a representation of the specified resource.`,
-				},
-				resource.Attribute{
-					Name:        "POST",
-					Description: `The HTTP POST method sends data to the server. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `supported_objects` + "`" + `: (Array of schema.TypeString) -`,
-				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -26665,19 +31521,27 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Pause",
-					Description: `Pause the workflow, this can only be issued on workflows that are in running state.`,
+					Description: `Pause the workflow, this can only be issued on workflows that are in running state. A workflow can be paused for a maximum of 180 days, after 180 days the workflow will be terminated by the system.`,
 				},
 				resource.Attribute{
 					Name:        "Resume",
 					Description: `Resume the workflow which was previously paused through pause action on the workflow.`,
 				},
 				resource.Attribute{
+					Name:        "Rerun",
+					Description: `Rerun the workflow that has previously reached a failed state. The workflow is run from the beginning using inputs from previous execution. Completed and currently running workflows cannot be rerun. Workflows do not have to be marked for retry to use this action.`,
+				},
+				resource.Attribute{
 					Name:        "Retry",
-					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
+					Description: `This action has been deprecated. Please use RetryFailed, Rerun or RetryFromTask action. Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
 				},
 				resource.Attribute{
 					Name:        "RetryFailed",
 					Description: `Retry the workflow that has failed. A running or waiting workflow or a workflow that completed successfully cannot be retried. Only the tasks that failed in the previous run will be retried and the rest of workflow will be run. This action does not restart the workflow and also does not support retrying from a specific task.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFromTask",
+					Description: `Retry the workflow that has previously reached a failed state and has the retryable property set to true. A running or waiting workflow cannot be retried. RetryFromTaskName must be passed along with this action, and the workflow will be started from that specific task. The task name in RetryFromTaskName must be one of the tasks that was executed in the previous attempt. It is not possible to retry a workflow from a task that wasn't run in the previous execution attempt.`,
 				},
 				resource.Attribute{
 					Name:        "Cancel",
@@ -26697,19 +31561,27 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "Pause",
-					Description: `Pause the workflow, this can only be issued on workflows that are in running state.`,
+					Description: `Pause the workflow, this can only be issued on workflows that are in running state. A workflow can be paused for a maximum of 180 days, after 180 days the workflow will be terminated by the system.`,
 				},
 				resource.Attribute{
 					Name:        "Resume",
 					Description: `Resume the workflow which was previously paused through pause action on the workflow.`,
 				},
 				resource.Attribute{
+					Name:        "Rerun",
+					Description: `Rerun the workflow that has previously reached a failed state. The workflow is run from the beginning using inputs from previous execution. Completed and currently running workflows cannot be rerun. Workflows do not have to be marked for retry to use this action.`,
+				},
+				resource.Attribute{
 					Name:        "Retry",
-					Description: `Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
+					Description: `This action has been deprecated. Please use RetryFailed, Rerun or RetryFromTask action. Retry the workflow that has previously reached a final state and has the retryable property set to true. A running or waiting workflow cannot be retried. If the property retryFromTaskName is also passed along with this action, the workflow will be started from that specific task, otherwise the workflow will be restarted from the first task. The task name in retryFromTaskName must be one of the tasks that completed or failed in the previous run. It is not possible to retry a workflow from a task which wasn't run in the previous iteration.`,
 				},
 				resource.Attribute{
 					Name:        "RetryFailed",
 					Description: `Retry the workflow that has failed. A running or waiting workflow or a workflow that completed successfully cannot be retried. Only the tasks that failed in the previous run will be retried and the rest of workflow will be run. This action does not restart the workflow and also does not support retrying from a specific task.`,
+				},
+				resource.Attribute{
+					Name:        "RetryFromTask",
+					Description: `Retry the workflow that has previously reached a failed state and has the retryable property set to true. A running or waiting workflow cannot be retried. RetryFromTaskName must be passed along with this action, and the workflow will be started from that specific task. The task name in RetryFromTaskName must be one of the tasks that was executed in the previous attempt. It is not possible to retry a workflow from a task that wasn't run in the previous execution attempt.`,
 				},
 				resource.Attribute{
 					Name:        "Cancel",
@@ -26749,7 +31621,7 @@ Contains information for a workflow execution which is a runtime instance of wor
 				},
 				resource.Attribute{
 					Name:        "All",
-					Description: `The workflow can be canceled from API or from the user interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `retryable` + "`" + `:(bool) When true, this workflow can be retried if has not been modified for more than a period of 2 weeks. + ` + "`" + `rollback_action` + "`" + `:(string)(ReadOnly) Status of rollback for this workflow instance. The rollback action of the workflow can be enabled, disabled, completed.`,
+					Description: `The workflow can be canceled from API or from the user interface. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `object_type` + "`" + `:(string) The fully-qualified name of the instantiated, concrete type.The value should be the same as the 'ClassId' property. + ` + "`" + `retryable` + "`" + `:(bool)(ReadOnly) When true, this workflow can be retried within 2 weeks from the last failure. + ` + "`" + `rollback_action` + "`" + `:(string)(ReadOnly) Status of rollback for this workflow instance. The rollback action can be enabled, disabled or completed.`,
 				},
 				resource.Attribute{
 					Name:        "Disabled",
@@ -26803,46 +31675,6 @@ Contains information for a workflow execution which is a runtime instance of wor
 					Name:        "WaitingToStart",
 					Description: `Workflow is waiting to start on workflow engine.`,
 				},
-				resource.Attribute{
-					Name:        "SystemDefined",
-					Description: `System defined workflow definition.`,
-				},
-				resource.Attribute{
-					Name:        "UserDefined",
-					Description: `User defined workflow definition.`,
-				},
-				resource.Attribute{
-					Name:        "Dynamic",
-					Description: `Dynamically defined workflow definition.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "intersight_workflow_workflow_notification",
-			Category:         "workflow",
-			ShortDescription: `The push notification received from conductor of the workflow which are in terminal state. Terminal state can be completed, failed, terminated, timed out.`,
-			Description: `
-The push notification received from conductor of the workflow which are in terminal state. Terminal state can be completed, failed, terminated, timed out.
-`,
-			Keywords: []string{
-				"workflow",
-				"notification",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "Modified",
-					Description: `Version created every time an object is modified.`,
-				},
-				resource.Attribute{
-					Name:        "Configured",
-					Description: `Version created every time an object is configured to the service profile.`,
-				},
-				resource.Attribute{
-					Name:        "Deployed",
-					Description: `Version created for objects related to a service profile when it is deployed.`,
-				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -26856,321 +31688,361 @@ The push notification received from conductor of the workflow which are in termi
 		"intersight_appliance_auto_rma_policy":                               3,
 		"intersight_appliance_backup":                                        4,
 		"intersight_appliance_backup_policy":                                 5,
-		"intersight_appliance_data_export_policy":                            6,
-		"intersight_appliance_device_claim":                                  7,
-		"intersight_appliance_diag_setting":                                  8,
-		"intersight_appliance_remote_file_import":                            9,
-		"intersight_appliance_restore":                                       10,
-		"intersight_asset_device_claim":                                      11,
-		"intersight_asset_device_contract_notification":                      12,
-		"intersight_asset_target":                                            13,
-		"intersight_bios_policy":                                             14,
-		"intersight_boot_precision_policy":                                   15,
-		"intersight_bulk_export":                                             16,
-		"intersight_bulk_mo_cloner":                                          17,
-		"intersight_bulk_mo_merger":                                          18,
-		"intersight_bulk_request":                                            19,
-		"intersight_capability_adapter_unit_descriptor":                      20,
-		"intersight_capability_chassis_descriptor":                           21,
-		"intersight_capability_chassis_manufacturing_def":                    22,
-		"intersight_capability_cimc_firmware_descriptor":                     23,
-		"intersight_capability_equipment_physical_def":                       24,
-		"intersight_capability_equipment_slot_array":                         25,
-		"intersight_capability_fan_module_descriptor":                        26,
-		"intersight_capability_fan_module_manufacturing_def":                 27,
-		"intersight_capability_fex_descriptor":                               28,
-		"intersight_capability_fex_manufacturing_def":                        29,
-		"intersight_capability_io_card_capability_def":                       30,
-		"intersight_capability_io_card_descriptor":                           31,
-		"intersight_capability_io_card_manufacturing_def":                    32,
-		"intersight_capability_port_group_aggregation_def":                   33,
-		"intersight_capability_psu_descriptor":                               34,
-		"intersight_capability_psu_manufacturing_def":                        35,
-		"intersight_capability_server_models_capability_def":                 36,
-		"intersight_capability_server_schema_descriptor":                     37,
-		"intersight_capability_sioc_module_capability_def":                   38,
-		"intersight_capability_sioc_module_descriptor":                       39,
-		"intersight_capability_sioc_module_manufacturing_def":                40,
-		"intersight_capability_switch_capability":                            41,
-		"intersight_capability_switch_descriptor":                            42,
-		"intersight_capability_switch_manufacturing_def":                     43,
-		"intersight_certificatemanagement_policy":                            44,
-		"intersight_chassis_config_import":                                   45,
-		"intersight_chassis_profile":                                         46,
-		"intersight_cloud_collect_inventory":                                 47,
-		"intersight_comm_http_proxy_policy":                                  48,
-		"intersight_connectorpack_connector_pack_upgrade":                    49,
-		"intersight_crd_custom_resource":                                     50,
-		"intersight_deviceconnector_policy":                                  51,
-		"intersight_externalsite_authorization":                              52,
-		"intersight_fabric_appliance_pc_role":                                53,
-		"intersight_fabric_appliance_role":                                   54,
-		"intersight_fabric_estimate_impact":                                  55,
-		"intersight_fabric_eth_network_control_policy":                       56,
-		"intersight_fabric_eth_network_group_policy":                         57,
-		"intersight_fabric_eth_network_policy":                               58,
-		"intersight_fabric_fc_network_policy":                                59,
-		"intersight_fabric_fc_storage_role":                                  60,
-		"intersight_fabric_fc_uplink_pc_role":                                61,
-		"intersight_fabric_fc_uplink_role":                                   62,
-		"intersight_fabric_fcoe_uplink_pc_role":                              63,
-		"intersight_fabric_fcoe_uplink_role":                                 64,
-		"intersight_fabric_flow_control_policy":                              65,
-		"intersight_fabric_lan_pin_group":                                    66,
-		"intersight_fabric_link_aggregation_policy":                          67,
-		"intersight_fabric_link_control_policy":                              68,
-		"intersight_fabric_multicast_policy":                                 69,
-		"intersight_fabric_pc_operation":                                     70,
-		"intersight_fabric_port_mode":                                        71,
-		"intersight_fabric_port_operation":                                   72,
-		"intersight_fabric_port_policy":                                      73,
-		"intersight_fabric_san_pin_group":                                    74,
-		"intersight_fabric_server_role":                                      75,
-		"intersight_fabric_switch_cluster_profile":                           76,
-		"intersight_fabric_switch_control_policy":                            77,
-		"intersight_fabric_switch_profile":                                   78,
-		"intersight_fabric_system_qos_policy":                                79,
-		"intersight_fabric_uplink_pc_role":                                   80,
-		"intersight_fabric_uplink_role":                                      81,
-		"intersight_fabric_vlan":                                             82,
-		"intersight_fabric_vsan":                                             83,
-		"intersight_fcpool_pool":                                             84,
-		"intersight_feedback_feedback_post":                                  85,
-		"intersight_firmware_bios_descriptor":                                86,
-		"intersight_firmware_board_controller_descriptor":                    87,
-		"intersight_firmware_chassis_upgrade":                                88,
-		"intersight_firmware_cimc_descriptor":                                89,
-		"intersight_firmware_dimm_descriptor":                                90,
-		"intersight_firmware_distributable":                                  91,
-		"intersight_firmware_drive_descriptor":                               92,
-		"intersight_firmware_driver_distributable":                           93,
-		"intersight_firmware_eula":                                           94,
-		"intersight_firmware_gpu_descriptor":                                 95,
-		"intersight_firmware_hba_descriptor":                                 96,
-		"intersight_firmware_iom_descriptor":                                 97,
-		"intersight_firmware_mswitch_descriptor":                             98,
-		"intersight_firmware_nxos_descriptor":                                99,
-		"intersight_firmware_pcie_descriptor":                                100,
-		"intersight_firmware_psu_descriptor":                                 101,
-		"intersight_firmware_sas_expander_descriptor":                        102,
-		"intersight_firmware_server_configuration_utility_distributable":     103,
-		"intersight_firmware_storage_controller_descriptor":                  104,
-		"intersight_firmware_switch_upgrade":                                 105,
-		"intersight_firmware_unsupported_version_upgrade":                    106,
-		"intersight_firmware_upgrade":                                        107,
-		"intersight_firmware_upgrade_impact":                                 108,
-		"intersight_hcl_compatibility_status":                                109,
-		"intersight_hcl_hyperflex_software_compatibility_info":               110,
-		"intersight_hcl_supported_driver_name":                               111,
-		"intersight_hyperflex_app_catalog":                                   112,
-		"intersight_hyperflex_auto_support_policy":                           113,
-		"intersight_hyperflex_capability_info":                               114,
-		"intersight_hyperflex_cluster_backup_policy":                         115,
-		"intersight_hyperflex_cluster_backup_policy_deployment":              116,
-		"intersight_hyperflex_cluster_network_policy":                        117,
-		"intersight_hyperflex_cluster_profile":                               118,
-		"intersight_hyperflex_cluster_replication_network_policy":            119,
-		"intersight_hyperflex_cluster_replication_network_policy_deployment": 120,
-		"intersight_hyperflex_cluster_storage_policy":                        121,
-		"intersight_hyperflex_ext_fc_storage_policy":                         122,
-		"intersight_hyperflex_ext_iscsi_storage_policy":                      123,
-		"intersight_hyperflex_feature_limit_external":                        124,
-		"intersight_hyperflex_feature_limit_internal":                        125,
-		"intersight_hyperflex_health_check_definition":                       126,
-		"intersight_hyperflex_health_check_package_checksum":                 127,
-		"intersight_hyperflex_hxdp_version":                                  128,
-		"intersight_hyperflex_key_encryption_key":                            129,
-		"intersight_hyperflex_local_credential_policy":                       130,
-		"intersight_hyperflex_node_config_policy":                            131,
-		"intersight_hyperflex_node_profile":                                  132,
-		"intersight_hyperflex_proxy_setting_policy":                          133,
-		"intersight_hyperflex_server_firmware_version":                       134,
-		"intersight_hyperflex_server_firmware_version_entry":                 135,
-		"intersight_hyperflex_server_model":                                  136,
-		"intersight_hyperflex_service_auth_token":                            137,
-		"intersight_hyperflex_software_distribution_component":               138,
-		"intersight_hyperflex_software_distribution_entry":                   139,
-		"intersight_hyperflex_software_distribution_version":                 140,
-		"intersight_hyperflex_software_version_policy":                       141,
-		"intersight_hyperflex_sys_config_policy":                             142,
-		"intersight_hyperflex_ucsm_config_policy":                            143,
-		"intersight_hyperflex_vcenter_config_policy":                         144,
-		"intersight_hyperflex_vm_import_operation":                           145,
-		"intersight_hyperflex_vm_restore_operation":                          146,
-		"intersight_iam_account":                                             147,
-		"intersight_iam_account_experience":                                  148,
-		"intersight_iam_api_key":                                             149,
-		"intersight_iam_app_registration":                                    150,
-		"intersight_iam_certificate":                                         151,
-		"intersight_iam_certificate_request":                                 152,
-		"intersight_iam_domain_name_info":                                    153,
-		"intersight_iam_end_point_user":                                      154,
-		"intersight_iam_end_point_user_policy":                               155,
-		"intersight_iam_end_point_user_role":                                 156,
-		"intersight_iam_idp":                                                 157,
-		"intersight_iam_ip_access_management":                                158,
-		"intersight_iam_ip_address":                                          159,
-		"intersight_iam_ldap_group":                                          160,
-		"intersight_iam_ldap_policy":                                         161,
-		"intersight_iam_ldap_provider":                                       162,
-		"intersight_iam_permission":                                          163,
-		"intersight_iam_private_key_spec":                                    164,
-		"intersight_iam_qualifier":                                           165,
-		"intersight_iam_resource_roles":                                      166,
-		"intersight_iam_session_limits":                                      167,
-		"intersight_iam_trust_point":                                         168,
-		"intersight_iam_user":                                                169,
-		"intersight_iam_user_group":                                          170,
-		"intersight_inventory_request":                                       171,
-		"intersight_ipmioverlan_policy":                                      172,
-		"intersight_ippool_pool":                                             173,
-		"intersight_iqnpool_pool":                                            174,
-		"intersight_kubernetes_aci_cni_apic":                                 175,
-		"intersight_kubernetes_aci_cni_profile":                              176,
-		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            177,
-		"intersight_kubernetes_addon_definition":                             178,
-		"intersight_kubernetes_addon_policy":                                 179,
-		"intersight_kubernetes_addon_repository":                             180,
-		"intersight_kubernetes_baremetal_node_profile":                       181,
-		"intersight_kubernetes_cluster":                                      182,
-		"intersight_kubernetes_cluster_addon_profile":                        183,
-		"intersight_kubernetes_cluster_profile":                              184,
-		"intersight_kubernetes_container_runtime_policy":                     185,
-		"intersight_kubernetes_network_policy":                               186,
-		"intersight_kubernetes_node_group_profile":                           187,
-		"intersight_kubernetes_sys_config_policy":                            188,
-		"intersight_kubernetes_trusted_registries_policy":                    189,
-		"intersight_kubernetes_version":                                      190,
-		"intersight_kubernetes_version_policy":                               191,
-		"intersight_kubernetes_virtual_machine_infra_config_policy":          192,
-		"intersight_kubernetes_virtual_machine_infrastructure_provider":      193,
-		"intersight_kubernetes_virtual_machine_instance_type":                194,
-		"intersight_kubernetes_virtual_machine_node_profile":                 195,
-		"intersight_kvm_policy":                                              196,
-		"intersight_kvm_session":                                             197,
-		"intersight_kvm_tunnel":                                              198,
-		"intersight_kvm_tunneled_kvm_policy":                                 199,
-		"intersight_license_iks_license_count":                               200,
-		"intersight_license_iwo_license_count":                               201,
-		"intersight_license_license_info":                                    202,
-		"intersight_license_license_reservation_op":                          203,
-		"intersight_macpool_pool":                                            204,
-		"intersight_memory_persistent_memory_policy":                         205,
-		"intersight_networkconfig_policy":                                    206,
-		"intersight_notification_account_subscription":                       207,
-		"intersight_ntp_policy":                                              208,
-		"intersight_oauth_authorization":                                     209,
-		"intersight_oprs_deployment":                                         210,
-		"intersight_oprs_sync_target_list_message":                           211,
-		"intersight_organization_organization":                               212,
-		"intersight_os_bulk_install_info":                                    213,
-		"intersight_os_configuration_file":                                   214,
-		"intersight_os_install":                                              215,
-		"intersight_os_os_support":                                           216,
-		"intersight_os_template_file":                                        217,
-		"intersight_os_valid_install_target":                                 218,
-		"intersight_power_policy":                                            219,
-		"intersight_recovery_backup_config_policy":                           220,
-		"intersight_recovery_backup_profile":                                 221,
-		"intersight_recovery_on_demand_backup":                               222,
-		"intersight_recovery_restore":                                        223,
-		"intersight_recovery_schedule_config_policy":                         224,
-		"intersight_resource_group":                                          225,
-		"intersight_resource_reservation":                                    226,
-		"intersight_resourcepool_pool":                                       227,
-		"intersight_rproxy_reverse_proxy":                                    228,
-		"intersight_sdcard_policy":                                           229,
-		"intersight_search_suggest_item":                                     230,
-		"intersight_server_config_import":                                    231,
-		"intersight_server_profile":                                          232,
-		"intersight_server_profile_template":                                 233,
-		"intersight_smtp_policy":                                             234,
-		"intersight_snmp_policy":                                             235,
-		"intersight_software_appliance_distributable":                        236,
-		"intersight_software_hcl_meta":                                       237,
-		"intersight_software_hyperflex_bundle_distributable":                 238,
-		"intersight_software_hyperflex_distributable":                        239,
-		"intersight_software_iks_bundle_distributable":                       240,
-		"intersight_software_release_meta":                                   241,
-		"intersight_software_solution_distributable":                         242,
-		"intersight_software_ucsd_bundle_distributable":                      243,
-		"intersight_software_ucsd_distributable":                             244,
-		"intersight_softwarerepository_authorization":                        245,
-		"intersight_softwarerepository_category_mapper":                      246,
-		"intersight_softwarerepository_category_mapper_model":                247,
-		"intersight_softwarerepository_category_support_constraint":          248,
-		"intersight_softwarerepository_operating_system_file":                249,
-		"intersight_softwarerepository_release":                              250,
-		"intersight_sol_policy":                                              251,
-		"intersight_ssh_policy":                                              252,
-		"intersight_storage_drive_group":                                     253,
-		"intersight_storage_storage_policy":                                  254,
-		"intersight_syslog_policy":                                           255,
-		"intersight_tam_advisory_count":                                      256,
-		"intersight_tam_advisory_definition":                                 257,
-		"intersight_tam_advisory_info":                                       258,
-		"intersight_tam_advisory_instance":                                   259,
-		"intersight_tam_security_advisory":                                   260,
-		"intersight_task_hitachi_scoped_inventory":                           261,
-		"intersight_task_hyper_flex_management_scoped_inventory":             262,
-		"intersight_task_hyperflex_scoped_inventory":                         263,
-		"intersight_task_iwe_scoped_inventory":                               264,
-		"intersight_task_mds_scoped_inventory":                               265,
-		"intersight_task_net_app_scoped_inventory":                           266,
-		"intersight_task_nexus_scoped_inventory":                             267,
-		"intersight_task_public_cloud_scoped_inventory":                      268,
-		"intersight_task_pure_scoped_inventory":                              269,
-		"intersight_task_server_scoped_inventory":                            270,
-		"intersight_techsupportmanagement_collection_control_policy":         271,
-		"intersight_techsupportmanagement_tech_support_bundle":               272,
-		"intersight_terraform_executor":                                      273,
-		"intersight_thermal_policy":                                          274,
-		"intersight_uuidpool_pool":                                           275,
-		"intersight_virtualization_cisco_hypervisor_manager":                 276,
-		"intersight_virtualization_esxi_console":                             277,
-		"intersight_virtualization_iwe_datacenter":                           278,
-		"intersight_virtualization_virtual_disk":                             279,
-		"intersight_virtualization_virtual_machine":                          280,
-		"intersight_virtualization_virtual_network":                          281,
-		"intersight_vmedia_policy":                                           282,
-		"intersight_vmrc_console":                                            283,
-		"intersight_vnc_console":                                             284,
-		"intersight_vnic_eth_adapter_policy":                                 285,
-		"intersight_vnic_eth_if":                                             286,
-		"intersight_vnic_eth_network_policy":                                 287,
-		"intersight_vnic_eth_qos_policy":                                     288,
-		"intersight_vnic_fc_adapter_policy":                                  289,
-		"intersight_vnic_fc_if":                                              290,
-		"intersight_vnic_fc_network_policy":                                  291,
-		"intersight_vnic_fc_qos_policy":                                      292,
-		"intersight_vnic_iscsi_adapter_policy":                               293,
-		"intersight_vnic_iscsi_boot_policy":                                  294,
-		"intersight_vnic_iscsi_static_target_policy":                         295,
-		"intersight_vnic_lan_connectivity_policy":                            296,
-		"intersight_vnic_san_connectivity_policy":                            297,
-		"intersight_vrf_vrf":                                                 298,
-		"intersight_workflow_ansible_batch_executor":                         299,
-		"intersight_workflow_batch_api_executor":                             300,
-		"intersight_workflow_custom_data_type_definition":                    301,
-		"intersight_workflow_error_response_handler":                         302,
-		"intersight_workflow_power_shell_batch_api_executor":                 303,
-		"intersight_workflow_rollback_workflow":                              304,
-		"intersight_workflow_service_item_action_definition":                 305,
-		"intersight_workflow_service_item_action_instance":                   306,
-		"intersight_workflow_service_item_definition":                        307,
-		"intersight_workflow_service_item_health_check_definition":           308,
-		"intersight_workflow_service_item_instance":                          309,
-		"intersight_workflow_service_item_output":                            310,
-		"intersight_workflow_solution_action_definition":                     311,
-		"intersight_workflow_solution_definition":                            312,
-		"intersight_workflow_ssh_batch_executor":                             313,
-		"intersight_workflow_task_definition":                                314,
-		"intersight_workflow_task_notification":                              315,
-		"intersight_workflow_template_evaluation":                            316,
-		"intersight_workflow_template_parser":                                317,
-		"intersight_workflow_workflow_definition":                            318,
-		"intersight_workflow_workflow_info":                                  319,
-		"intersight_workflow_workflow_notification":                          320,
+		"intersight_appliance_cluster_info":                                  6,
+		"intersight_appliance_cluster_replace_node":                          7,
+		"intersight_appliance_data_export_policy":                            8,
+		"intersight_appliance_device_claim":                                  9,
+		"intersight_appliance_diag_setting":                                  10,
+		"intersight_appliance_remote_file_import":                            11,
+		"intersight_appliance_restore":                                       12,
+		"intersight_asset_device_claim":                                      13,
+		"intersight_asset_device_contract_notification":                      14,
+		"intersight_asset_target":                                            15,
+		"intersight_bios_policy":                                             16,
+		"intersight_boot_precision_policy":                                   17,
+		"intersight_bulk_export":                                             18,
+		"intersight_bulk_mo_cloner":                                          19,
+		"intersight_bulk_mo_merger":                                          20,
+		"intersight_bulk_request":                                            21,
+		"intersight_capability_actions_meta_data":                            22,
+		"intersight_capability_adapter_deprecated_def":                       23,
+		"intersight_capability_adapter_unit_descriptor":                      24,
+		"intersight_capability_chassis_descriptor":                           25,
+		"intersight_capability_chassis_manufacturing_def":                    26,
+		"intersight_capability_cimc_firmware_descriptor":                     27,
+		"intersight_capability_cpu_endpoint_descriptor":                      28,
+		"intersight_capability_dimms_endpoint_descriptor":                    29,
+		"intersight_capability_drives_endpoint_descriptor":                   30,
+		"intersight_capability_equipment_physical_def":                       31,
+		"intersight_capability_equipment_slot_array":                         32,
+		"intersight_capability_fan_module_descriptor":                        33,
+		"intersight_capability_fan_module_manufacturing_def":                 34,
+		"intersight_capability_fex_capability_def":                           35,
+		"intersight_capability_fex_descriptor":                               36,
+		"intersight_capability_fex_manufacturing_def":                        37,
+		"intersight_capability_gpu_endpoint_descriptor":                      38,
+		"intersight_capability_io_card_capability_def":                       39,
+		"intersight_capability_io_card_descriptor":                           40,
+		"intersight_capability_io_card_manufacturing_def":                    41,
+		"intersight_capability_port_group_aggregation_def":                   42,
+		"intersight_capability_psu_descriptor":                               43,
+		"intersight_capability_psu_manufacturing_def":                        44,
+		"intersight_capability_server_descriptor":                            45,
+		"intersight_capability_server_models_capability_def":                 46,
+		"intersight_capability_server_schema_descriptor":                     47,
+		"intersight_capability_sioc_module_capability_def":                   48,
+		"intersight_capability_sioc_module_descriptor":                       49,
+		"intersight_capability_sioc_module_manufacturing_def":                50,
+		"intersight_capability_switch_capability":                            51,
+		"intersight_capability_switch_descriptor":                            52,
+		"intersight_capability_switch_manufacturing_def":                     53,
+		"intersight_certificatemanagement_policy":                            54,
+		"intersight_chassis_config_import":                                   55,
+		"intersight_chassis_profile":                                         56,
+		"intersight_cloud_collect_inventory":                                 57,
+		"intersight_comm_http_proxy_policy":                                  58,
+		"intersight_connectorpack_connector_pack_upgrade":                    59,
+		"intersight_crd_custom_resource":                                     60,
+		"intersight_deviceconnector_policy":                                  61,
+		"intersight_externalsite_authorization":                              62,
+		"intersight_fabric_appliance_pc_role":                                63,
+		"intersight_fabric_appliance_role":                                   64,
+		"intersight_fabric_estimate_impact":                                  65,
+		"intersight_fabric_eth_network_control_policy":                       66,
+		"intersight_fabric_eth_network_group_policy":                         67,
+		"intersight_fabric_eth_network_policy":                               68,
+		"intersight_fabric_fc_network_policy":                                69,
+		"intersight_fabric_fc_storage_role":                                  70,
+		"intersight_fabric_fc_uplink_pc_role":                                71,
+		"intersight_fabric_fc_uplink_role":                                   72,
+		"intersight_fabric_fc_zone_policy":                                   73,
+		"intersight_fabric_fcoe_uplink_pc_role":                              74,
+		"intersight_fabric_fcoe_uplink_role":                                 75,
+		"intersight_fabric_flow_control_policy":                              76,
+		"intersight_fabric_lan_pin_group":                                    77,
+		"intersight_fabric_link_aggregation_policy":                          78,
+		"intersight_fabric_link_control_policy":                              79,
+		"intersight_fabric_multicast_policy":                                 80,
+		"intersight_fabric_pc_operation":                                     81,
+		"intersight_fabric_port_mode":                                        82,
+		"intersight_fabric_port_operation":                                   83,
+		"intersight_fabric_port_policy":                                      84,
+		"intersight_fabric_san_pin_group":                                    85,
+		"intersight_fabric_server_role":                                      86,
+		"intersight_fabric_switch_cluster_profile":                           87,
+		"intersight_fabric_switch_control_policy":                            88,
+		"intersight_fabric_switch_profile":                                   89,
+		"intersight_fabric_system_qos_policy":                                90,
+		"intersight_fabric_uplink_pc_role":                                   91,
+		"intersight_fabric_uplink_role":                                      92,
+		"intersight_fabric_vlan":                                             93,
+		"intersight_fabric_vsan":                                             94,
+		"intersight_fcpool_pool":                                             95,
+		"intersight_fcpool_reservation":                                      96,
+		"intersight_feedback_feedback_post":                                  97,
+		"intersight_firmware_bios_descriptor":                                98,
+		"intersight_firmware_board_controller_descriptor":                    99,
+		"intersight_firmware_chassis_upgrade":                                100,
+		"intersight_firmware_cimc_descriptor":                                101,
+		"intersight_firmware_dimm_descriptor":                                102,
+		"intersight_firmware_distributable":                                  103,
+		"intersight_firmware_drive_descriptor":                               104,
+		"intersight_firmware_driver_distributable":                           105,
+		"intersight_firmware_eula":                                           106,
+		"intersight_firmware_gpu_descriptor":                                 107,
+		"intersight_firmware_hba_descriptor":                                 108,
+		"intersight_firmware_iom_descriptor":                                 109,
+		"intersight_firmware_mswitch_descriptor":                             110,
+		"intersight_firmware_nxos_descriptor":                                111,
+		"intersight_firmware_pcie_descriptor":                                112,
+		"intersight_firmware_policy":                                         113,
+		"intersight_firmware_psu_descriptor":                                 114,
+		"intersight_firmware_sas_expander_descriptor":                        115,
+		"intersight_firmware_server_configuration_utility_distributable":     116,
+		"intersight_firmware_storage_controller_descriptor":                  117,
+		"intersight_firmware_switch_upgrade":                                 118,
+		"intersight_firmware_unsupported_version_upgrade":                    119,
+		"intersight_firmware_upgrade":                                        120,
+		"intersight_firmware_upgrade_impact":                                 121,
+		"intersight_firmware_upgrade_validity":                               122,
+		"intersight_hcl_compatibility_status":                                123,
+		"intersight_hcl_hyperflex_software_compatibility_info":               124,
+		"intersight_hcl_supported_driver_name":                               125,
+		"intersight_hyperflex_app_catalog":                                   126,
+		"intersight_hyperflex_auto_support_policy":                           127,
+		"intersight_hyperflex_capability_info":                               128,
+		"intersight_hyperflex_cluster_backup_policy":                         129,
+		"intersight_hyperflex_cluster_backup_policy_deployment":              130,
+		"intersight_hyperflex_cluster_network_policy":                        131,
+		"intersight_hyperflex_cluster_profile":                               132,
+		"intersight_hyperflex_cluster_replication_network_policy":            133,
+		"intersight_hyperflex_cluster_replication_network_policy_deployment": 134,
+		"intersight_hyperflex_cluster_storage_policy":                        135,
+		"intersight_hyperflex_ext_fc_storage_policy":                         136,
+		"intersight_hyperflex_ext_iscsi_storage_policy":                      137,
+		"intersight_hyperflex_feature_limit_external":                        138,
+		"intersight_hyperflex_feature_limit_internal":                        139,
+		"intersight_hyperflex_health_check_definition":                       140,
+		"intersight_hyperflex_health_check_package_checksum":                 141,
+		"intersight_hyperflex_hxdp_version":                                  142,
+		"intersight_hyperflex_key_encryption_key":                            143,
+		"intersight_hyperflex_local_credential_policy":                       144,
+		"intersight_hyperflex_node_config_policy":                            145,
+		"intersight_hyperflex_node_profile":                                  146,
+		"intersight_hyperflex_proxy_setting_policy":                          147,
+		"intersight_hyperflex_server_firmware_version":                       148,
+		"intersight_hyperflex_server_firmware_version_entry":                 149,
+		"intersight_hyperflex_server_model":                                  150,
+		"intersight_hyperflex_service_auth_token":                            151,
+		"intersight_hyperflex_software_distribution_component":               152,
+		"intersight_hyperflex_software_distribution_entry":                   153,
+		"intersight_hyperflex_software_distribution_version":                 154,
+		"intersight_hyperflex_software_version_policy":                       155,
+		"intersight_hyperflex_sys_config_policy":                             156,
+		"intersight_hyperflex_ucsm_config_policy":                            157,
+		"intersight_hyperflex_vcenter_config_policy":                         158,
+		"intersight_hyperflex_vm_import_operation":                           159,
+		"intersight_hyperflex_vm_restore_operation":                          160,
+		"intersight_iam_account":                                             161,
+		"intersight_iam_account_experience":                                  162,
+		"intersight_iam_api_key":                                             163,
+		"intersight_iam_app_registration":                                    164,
+		"intersight_iam_certificate":                                         165,
+		"intersight_iam_certificate_request":                                 166,
+		"intersight_iam_domain_name_info":                                    167,
+		"intersight_iam_end_point_user":                                      168,
+		"intersight_iam_end_point_user_policy":                               169,
+		"intersight_iam_end_point_user_role":                                 170,
+		"intersight_iam_idp":                                                 171,
+		"intersight_iam_ip_access_management":                                172,
+		"intersight_iam_ip_address":                                          173,
+		"intersight_iam_ldap_group":                                          174,
+		"intersight_iam_ldap_policy":                                         175,
+		"intersight_iam_ldap_provider":                                       176,
+		"intersight_iam_permission":                                          177,
+		"intersight_iam_private_key_spec":                                    178,
+		"intersight_iam_qualifier":                                           179,
+		"intersight_iam_resource_roles":                                      180,
+		"intersight_iam_session_limits":                                      181,
+		"intersight_iam_trust_point":                                         182,
+		"intersight_iam_user":                                                183,
+		"intersight_iam_user_group":                                          184,
+		"intersight_iam_user_setting":                                        185,
+		"intersight_inventory_request":                                       186,
+		"intersight_ipmioverlan_policy":                                      187,
+		"intersight_ippool_pool":                                             188,
+		"intersight_ippool_reservation":                                      189,
+		"intersight_iqnpool_pool":                                            190,
+		"intersight_iqnpool_reservation":                                     191,
+		"intersight_iwotenant_maintenance_notification":                      192,
+		"intersight_kubernetes_aci_cni_apic":                                 193,
+		"intersight_kubernetes_aci_cni_profile":                              194,
+		"intersight_kubernetes_aci_cni_tenant_cluster_allocation":            195,
+		"intersight_kubernetes_addon_definition":                             196,
+		"intersight_kubernetes_addon_policy":                                 197,
+		"intersight_kubernetes_addon_repository":                             198,
+		"intersight_kubernetes_baremetal_node_profile":                       199,
+		"intersight_kubernetes_cluster":                                      200,
+		"intersight_kubernetes_cluster_addon_profile":                        201,
+		"intersight_kubernetes_cluster_profile":                              202,
+		"intersight_kubernetes_container_runtime_policy":                     203,
+		"intersight_kubernetes_http_proxy_policy":                            204,
+		"intersight_kubernetes_network_policy":                               205,
+		"intersight_kubernetes_node_group_profile":                           206,
+		"intersight_kubernetes_nvidia_gpu_product":                           207,
+		"intersight_kubernetes_sys_config_policy":                            208,
+		"intersight_kubernetes_trusted_registries_policy":                    209,
+		"intersight_kubernetes_version":                                      210,
+		"intersight_kubernetes_version_policy":                               211,
+		"intersight_kubernetes_virtual_machine_infra_config_policy":          212,
+		"intersight_kubernetes_virtual_machine_infrastructure_provider":      213,
+		"intersight_kubernetes_virtual_machine_instance_type":                214,
+		"intersight_kubernetes_virtual_machine_node_profile":                 215,
+		"intersight_kvm_policy":                                              216,
+		"intersight_kvm_session":                                             217,
+		"intersight_kvm_tunnel":                                              218,
+		"intersight_kvm_tunneled_kvm_policy":                                 219,
+		"intersight_license_iks_license_count":                               220,
+		"intersight_license_inc_license_count":                               221,
+		"intersight_license_iwo_license_count":                               222,
+		"intersight_license_license_info":                                    223,
+		"intersight_license_license_reservation_op":                          224,
+		"intersight_macpool_pool":                                            225,
+		"intersight_macpool_reservation":                                     226,
+		"intersight_memory_persistent_memory_policy":                         227,
+		"intersight_networkconfig_policy":                                    228,
+		"intersight_niatelemetry_nexus_cloud_account":                        229,
+		"intersight_niatelemetry_nexus_cloud_site":                           230,
+		"intersight_notification_account_subscription":                       231,
+		"intersight_ntp_policy":                                              232,
+		"intersight_oauth_authorization":                                     233,
+		"intersight_openapi_open_api_specification":                          234,
+		"intersight_openapi_process_file":                                    235,
+		"intersight_openapi_task_generation_request":                         236,
+		"intersight_oprs_deployment":                                         237,
+		"intersight_oprs_sync_target_list_message":                           238,
+		"intersight_organization_organization":                               239,
+		"intersight_os_bulk_install_info":                                    240,
+		"intersight_os_configuration_file":                                   241,
+		"intersight_os_install":                                              242,
+		"intersight_os_os_support":                                           243,
+		"intersight_os_template_file":                                        244,
+		"intersight_os_valid_install_target":                                 245,
+		"intersight_partnerintegration_device_connector":                     246,
+		"intersight_partnerintegration_etl":                                  247,
+		"intersight_partnerintegration_file":                                 248,
+		"intersight_partnerintegration_inventory":                            249,
+		"intersight_partnerintegration_model":                                250,
+		"intersight_power_policy":                                            251,
+		"intersight_recommendation_hardware_expansion_request":               252,
+		"intersight_recommendation_hardware_expansion_request_item":          253,
+		"intersight_recommendation_purchase_order_estimate":                  254,
+		"intersight_recovery_backup_config_policy":                           255,
+		"intersight_recovery_backup_profile":                                 256,
+		"intersight_recovery_on_demand_backup":                               257,
+		"intersight_recovery_restore":                                        258,
+		"intersight_recovery_schedule_config_policy":                         259,
+		"intersight_resource_group":                                          260,
+		"intersight_resource_reservation":                                    261,
+		"intersight_resource_selection_criteria":                             262,
+		"intersight_resourcepool_pool":                                       263,
+		"intersight_rproxy_reverse_proxy":                                    264,
+		"intersight_sdcard_policy":                                           265,
+		"intersight_search_suggest_item":                                     266,
+		"intersight_server_config_import":                                    267,
+		"intersight_server_profile":                                          268,
+		"intersight_server_profile_template":                                 269,
+		"intersight_smtp_policy":                                             270,
+		"intersight_snmp_policy":                                             271,
+		"intersight_software_appliance_distributable":                        272,
+		"intersight_software_hcl_meta":                                       273,
+		"intersight_software_hyperflex_bundle_distributable":                 274,
+		"intersight_software_hyperflex_distributable":                        275,
+		"intersight_software_iks_bundle_distributable":                       276,
+		"intersight_software_release_meta":                                   277,
+		"intersight_software_solution_distributable":                         278,
+		"intersight_software_ucsd_bundle_distributable":                      279,
+		"intersight_software_ucsd_distributable":                             280,
+		"intersight_softwarerepository_authorization":                        281,
+		"intersight_softwarerepository_category_mapper":                      282,
+		"intersight_softwarerepository_category_mapper_model":                283,
+		"intersight_softwarerepository_category_support_constraint":          284,
+		"intersight_softwarerepository_operating_system_file":                285,
+		"intersight_softwarerepository_release":                              286,
+		"intersight_sol_policy":                                              287,
+		"intersight_ssh_policy":                                              288,
+		"intersight_storage_drive_group":                                     289,
+		"intersight_storage_drive_security_policy":                           290,
+		"intersight_storage_storage_policy":                                  291,
+		"intersight_syslog_policy":                                           292,
+		"intersight_tam_advisory_count":                                      293,
+		"intersight_tam_advisory_definition":                                 294,
+		"intersight_tam_advisory_info":                                       295,
+		"intersight_tam_advisory_instance":                                   296,
+		"intersight_tam_security_advisory":                                   297,
+		"intersight_task_fabric_mos_scoped_inventory":                        298,
+		"intersight_task_hitachi_scoped_inventory":                           299,
+		"intersight_task_hyper_flex_management_scoped_inventory":             300,
+		"intersight_task_hyperflex_scoped_inventory":                         301,
+		"intersight_task_iwe_scoped_inventory":                               302,
+		"intersight_task_mds_scoped_inventory":                               303,
+		"intersight_task_mds_system_scoped_inventory":                        304,
+		"intersight_task_net_app_scoped_inventory":                           305,
+		"intersight_task_nexus_scoped_inventory":                             306,
+		"intersight_task_nexus_system_scoped_inventory":                      307,
+		"intersight_task_nexus_vlan_scoped_inventory":                        308,
+		"intersight_task_public_cloud_scoped_inventory":                      309,
+		"intersight_task_pure_scoped_inventory":                              310,
+		"intersight_task_server_scoped_inventory":                            311,
+		"intersight_techsupportmanagement_collection_control_policy":         312,
+		"intersight_techsupportmanagement_tech_support_bundle":               313,
+		"intersight_terraform_executor":                                      314,
+		"intersight_thermal_policy":                                          315,
+		"intersight_uuidpool_pool":                                           316,
+		"intersight_uuidpool_reservation":                                    317,
+		"intersight_virtualization_cisco_hypervisor_manager":                 318,
+		"intersight_virtualization_esxi_console":                             319,
+		"intersight_virtualization_iwe_datacenter":                           320,
+		"intersight_virtualization_virtual_disk":                             321,
+		"intersight_virtualization_virtual_machine":                          322,
+		"intersight_virtualization_virtual_network":                          323,
+		"intersight_vmedia_policy":                                           324,
+		"intersight_vmrc_console":                                            325,
+		"intersight_vnc_console":                                             326,
+		"intersight_vnic_eth_adapter_policy":                                 327,
+		"intersight_vnic_eth_if":                                             328,
+		"intersight_vnic_eth_network_policy":                                 329,
+		"intersight_vnic_eth_qos_policy":                                     330,
+		"intersight_vnic_fc_adapter_policy":                                  331,
+		"intersight_vnic_fc_if":                                              332,
+		"intersight_vnic_fc_network_policy":                                  333,
+		"intersight_vnic_fc_qos_policy":                                      334,
+		"intersight_vnic_iscsi_adapter_policy":                               335,
+		"intersight_vnic_iscsi_boot_policy":                                  336,
+		"intersight_vnic_iscsi_static_target_policy":                         337,
+		"intersight_vnic_lan_connectivity_policy":                            338,
+		"intersight_vnic_san_connectivity_policy":                            339,
+		"intersight_vrf_vrf":                                                 340,
+		"intersight_workflow_ansible_batch_executor":                         341,
+		"intersight_workflow_batch_api_executor":                             342,
+		"intersight_workflow_catalog_item_definition":                        343,
+		"intersight_workflow_catalog_service_request":                        344,
+		"intersight_workflow_custom_data_type_definition":                    345,
+		"intersight_workflow_error_response_handler":                         346,
+		"intersight_workflow_power_shell_batch_api_executor":                 347,
+		"intersight_workflow_rollback_workflow":                              348,
+		"intersight_workflow_service_item_action_definition":                 349,
+		"intersight_workflow_service_item_action_instance":                   350,
+		"intersight_workflow_service_item_definition":                        351,
+		"intersight_workflow_service_item_health_check_definition":           352,
+		"intersight_workflow_service_item_instance":                          353,
+		"intersight_workflow_service_item_output":                            354,
+		"intersight_workflow_ssh_batch_executor":                             355,
+		"intersight_workflow_task_definition":                                356,
+		"intersight_workflow_template_evaluation":                            357,
+		"intersight_workflow_template_parser":                                358,
+		"intersight_workflow_workflow_definition":                            359,
+		"intersight_workflow_workflow_info":                                  360,
 	}
 )
 

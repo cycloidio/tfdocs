@@ -74,6 +74,8 @@ Provides an rule of ACG(Access Control Group) resource.
 
 ~> **NOTE:** This resource only supports VPC environment.
 
+~> **NOTE:** Do not create ACG(Access Control Group) Rule Resource more than once for the same ACG(Access Control Group) no. Doing so will cause a conflict of rule settings and occur an error, and rule settings will be deleted or overwritten.
+
 ~> **NOTE:** To performance, we recommend using one resource per ACG(Access Control Group). If you use multiple resources in a single ACG(Access Control Group), then can cause a slowdown.
 
 
@@ -155,6 +157,10 @@ Provides a ncloud auto scaling group resource.
 				resource.Attribute{
 					Name:        "max_size",
 					Description: `(Required) The maximum size of the Auto Scaling Group. valid from ` + "`" + `0` + "`" + ` to ` + "`" + `30` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_capacity_changes",
+					Description: `(Optional) If set this ` + "`" + `true` + "`" + `, any changes of ` + "`" + `desired_capacity` + "`" + `, ` + "`" + `min_size` + "`" + ` and ` + "`" + `max_size` + "`" + ` will be ignored and not rolled back.`,
 				},
 				resource.Attribute{
 					Name:        "default_cooldown",
@@ -369,10 +375,6 @@ Provides a Block Storage resource.
 					Description: `(Required) The size of the block storage to create. It is automatically set when you take a snapshot.`,
 				},
 				resource.Attribute{
-					Name:        "server_instance_no",
-					Description: `(Required) Server instance ID to which you want to assign the block storage.`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name to create. If omitted, Terraform will assign a random, unique name.`,
 				},
@@ -382,7 +384,11 @@ Provides a Block Storage resource.
 				},
 				resource.Attribute{
 					Name:        "disk_detail_type",
-					Description: `(Optional) Type of block storage disk detail to create. Default ` + "`" + `SSD` + "`" + `. Accepted values: ` + "`" + `SSD` + "`" + ` | ` + "`" + `HDD` + "`" + ` ~>`,
+					Description: `(Optional) Type of block storage disk detail to create. Default ` + "`" + `SSD` + "`" + `. Accepted values: ` + "`" + `SSD` + "`" + ` | ` + "`" + `HDD` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "stop_instance_before_detaching",
+					Description: `(Optional, Boolean) Set this to true to ensure that the target instance is stopped before trying to detach the block storage. It stops the instance, if it is not already stopped. > If ` + "`" + `stop_instance_before_detaching` + "`" + ` is ` + "`" + `true` + "`" + `, server will be stopped and`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -567,6 +573,206 @@ Provides a ncloud block storage snapshot resource.
 				resource.Attribute{
 					Name:        "os_information",
 					Description: `OS Information`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_cluster",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "kafka_version_code",
+					Description: `Cloud Data Streaming Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "config_group_no",
+					Description: `ConfigGroup number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "os_image",
+					Description: `OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "cmak",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `CMAK access ID. Only lowercase alphanumeric characters and non-consecutive hyphens (-) allowed First character must be a letter, but the last character may be a letter or a number.`,
+				},
+				resource.Attribute{
+					Name:        "user_password",
+					Description: `CMAK access password. Must be at least 8 characters and contain at least one of each: English uppercase letter, lowercase letter, special character, and number.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "node_product_code",
+					Description: `HW specifications of the manager node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the manager node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "broker_nodes",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "node_product_code",
+					Description: `HW specifications of the broker node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the broker node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `Number of broker nodes. At least 3 units, up to 10 units allowed.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `Broker node storage capacity. At least 100 GB, up to 2000 GB. Must be in units of 10 GB. ## Attribute Reference In addition to all arguments above, the following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster id.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `List of broker nodes (Port 9092).`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `List of broker nodes (Port 9093).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext",
+					Description: `List of public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls",
+					Description: `List of public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_private_endpoint_tls",
+					Description: `Editing details of the hosts file (Private IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_public_endpoint_tls",
+					Description: `Editing details of the hosts file (Public IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `List of ZooKeeper nodes (Port 2181).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster id.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `List of broker nodes (Port 9092).`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `List of broker nodes (Port 9093).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext",
+					Description: `List of public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_plaintext_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes.`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls",
+					Description: `List of public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "public_endpoint_tls_listener_port",
+					Description: `List of listener port for public endpoint of broker nodes (TLS).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_private_endpoint_tls",
+					Description: `Editing details of the hosts file (Private IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "hosts_public_endpoint_tls",
+					Description: `Editing details of the hosts file (Public IP hostname format).`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `List of ZooKeeper nodes (Port 2181).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_cdss_config_group",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) ConfigGroup name.`,
+				},
+				resource.Attribute{
+					Name:        "kafka_version_code",
+					Description: `(Required) Cloud Data Streaming Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) ConfigGroup description. ## Attribute Reference In addition to all arguments above, the following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ConfigGroup id.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ConfigGroup id.`,
 				},
 			},
 		},
@@ -820,7 +1026,7 @@ Provides a Load Balancer Listener resource.
 				},
 				resource.Attribute{
 					Name:        "rule_no_list",
-					Description: `The list of listener rule number.`,
+					Description: `The list of listener rule number. ## Import Individual load balancer listener can be imported using LOAD_BALANCER_NO:LOAD_BALANCER_LISTENER_NO. For example, import a listener ` + "`" + `69643` + "`" + ` in a load balancer ` + "`" + `17019658` + "`" + ` like this: ` + "`" + `` + "`" + `` + "`" + ` hcl $ terraform import ncloud_lb_listener.my_lb_listener 17019658:69643 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -834,7 +1040,7 @@ Provides a Load Balancer Listener resource.
 				},
 				resource.Attribute{
 					Name:        "rule_no_list",
-					Description: `The list of listener rule number.`,
+					Description: `The list of listener rule number. ## Import Individual load balancer listener can be imported using LOAD_BALANCER_NO:LOAD_BALANCER_LISTENER_NO. For example, import a listener ` + "`" + `69643` + "`" + ` in a load balancer ` + "`" + `17019658` + "`" + ` like this: ` + "`" + `` + "`" + `` + "`" + ` hcl $ terraform import ncloud_lb_listener.my_lb_listener 17019658:69643 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1233,7 +1439,7 @@ Provides a NAS volume.
 				},
 				resource.Attribute{
 					Name:        "volume_size",
-					Description: `(Required) Enter the nas volume size to be created. You can enter in GiB.`,
+					Description: `(Required) NAS volume size. The default capacity of a volume ranges from 500 GB to 10,000 GB. Additions can be made in units of 100 GB.`,
 				},
 				resource.Attribute{
 					Name:        "volume_allotment_protocol_type",
@@ -1241,11 +1447,11 @@ Provides a NAS volume.
 				},
 				resource.Attribute{
 					Name:        "server_instance_no_list",
-					Description: `(Optional) List of server instance numbers for which access to NFS is to be controlled.`,
+					Description: `(Optional) List of server instance numbers where you want to mount the NAS volume.`,
 				},
 				resource.Attribute{
 					Name:        "cifs_user_name",
-					Description: `(Optional) CIFS user name. The ID must contain a combination of English alphabet and numbers, which can be 6-20 characters in length.`,
+					Description: `(Optional) CIFS user name. The ID must contain a combination of English alphabet and numbers, which can be 6-19 characters in length.`,
 				},
 				resource.Attribute{
 					Name:        "cifs_user_password",
@@ -1253,11 +1459,15 @@ Provides a NAS volume.
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) NAS volume description`,
+					Description: `(Optional) NAS volume description. 1-1000 characters.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional) Zone code. Zone in which you want to create a NAS volume. Default: The first zone of the region. Get available values using the data source ` + "`" + `ncloud_zones` + "`" + `. ~>`,
+					Description: `(Optional) Zone code. Zone in which you want to create a NAS volume. Default: The first zone of the region. Get available values using the data source ` + "`" + `ncloud_zones` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "return_protection",
+					Description: `(Optional) Termination protection status. Default ` + "`" + `false` + "`" + ` ~>`,
 				},
 				resource.Attribute{
 					Name:        "custom_ip_list",
@@ -1375,6 +1585,18 @@ Provides a NAT gateway resource.
 					Name:        "public_ip",
 					Description: `Public IP on created NAT Gateway.`,
 				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `Subnet name on created NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet ID on created NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP on created NAT Gateway.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1388,6 +1610,18 @@ Provides a NAT gateway resource.
 				resource.Attribute{
 					Name:        "public_ip",
 					Description: `Public IP on created NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `Subnet name on created NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet ID on created NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP on created NAT Gateway.`,
 				},
 			},
 		},
@@ -1500,6 +1734,8 @@ Network ACL Deny-Allow Group can be added to the Network ACL Rule(` + "`" + `ncl
 			Description: `
 
 Provides a rule of Network ACL  resource.
+
+~> **NOTE:** Do not create Network ACL Rule Resource more than once for the same Network ACL no. Doing so will cause a conflict of rule settings and occur an error, and rule settings will be deleted or overwritten.
 
 ~> **NOTE:** To performance, we recommend using one resource per Network ACL. If you use multiple resources in a single Network ACL, then can cause a slowdown.
 
@@ -1661,7 +1897,11 @@ Provides a Kubernetes Service cluster resource.
 				},
 				resource.Attribute{
 					Name:        "subnet_no_list",
-					Description: `(Required) Subnet No. list. (For now, ` + "`" + `public subnet` + "`" + ` is not supported. Will be supported soon)`,
+					Description: `(Required) Subnet No. list.`,
+				},
+				resource.Attribute{
+					Name:        "public_network",
+					Description: `(Optional) Public Subnet Network (` + "`" + `boolean` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "lb_private_subnet_no",
@@ -1693,7 +1933,11 @@ Provides a Kubernetes Service cluster resource.
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `Control Plane API address. ## Import Kubernetes Service Cluster can be imported using the name, e.g., $ terraform import ncloud_nks_cluster.my_cluster uuid`,
+					Description: `Control Plane API address.`,
+				},
+				resource.Attribute{
+					Name:        "acg_no",
+					Description: `The ID of cluster ACG. ## Import Kubernetes Service Cluster can be imported using the name, e.g., $ terraform import ncloud_nks_cluster.my_cluster uuid`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1707,7 +1951,11 @@ Provides a Kubernetes Service cluster resource.
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `Control Plane API address. ## Import Kubernetes Service Cluster can be imported using the name, e.g., $ terraform import ncloud_nks_cluster.my_cluster uuid`,
+					Description: `Control Plane API address.`,
+				},
+				resource.Attribute{
+					Name:        "acg_no",
+					Description: `The ID of cluster ACG. ## Import Kubernetes Service Cluster can be imported using the name, e.g., $ terraform import ncloud_nks_cluster.my_cluster uuid`,
 				},
 			},
 		},
@@ -1761,7 +2009,39 @@ Provides a Kubernetes Service nodepool resource.
 				},
 				resource.Attribute{
 					Name:        "instance_no",
-					Description: `Instance No. ## Import NKS Node Pools can be imported using the cluster_name and node_pool_name separated by a colon (:), e.g., $ terraform import ncloud_nks_node_pool.my_node_pool uuid:my_node_pool`,
+					Description: `Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Server instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `The ID of server instance.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Server spec.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP.`,
+				},
+				resource.Attribute{
+					Name:        "node_status",
+					Description: `Node Status.`,
+				},
+				resource.Attribute{
+					Name:        "container_version",
+					Description: `Container version of node.`,
+				},
+				resource.Attribute{
+					Name:        "kernel_version",
+					Description: `kernel version of node. ## Import NKS Node Pools can be imported using the cluster_name and node_pool_name separated by a colon (:), e.g., $ terraform import ncloud_nks_node_pool.my_node_pool uuid:my_node_pool`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1771,7 +2051,39 @@ Provides a Kubernetes Service nodepool resource.
 				},
 				resource.Attribute{
 					Name:        "instance_no",
-					Description: `Instance No. ## Import NKS Node Pools can be imported using the cluster_name and node_pool_name separated by a colon (:), e.g., $ terraform import ncloud_nks_node_pool.my_node_pool uuid:my_node_pool`,
+					Description: `Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of Server instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_no",
+					Description: `The ID of server instance.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Server spec.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP.`,
+				},
+				resource.Attribute{
+					Name:        "node_status",
+					Description: `Node Status.`,
+				},
+				resource.Attribute{
+					Name:        "container_version",
+					Description: `Container version of node.`,
+				},
+				resource.Attribute{
+					Name:        "kernel_version",
+					Description: `kernel version of node. ## Import NKS Node Pools can be imported using the cluster_name and node_pool_name separated by a colon (:), e.g., $ terraform import ncloud_nks_node_pool.my_node_pool uuid:my_node_pool`,
 				},
 			},
 		},
@@ -1957,7 +2269,7 @@ Provides a Route resource.
 				},
 				resource.Attribute{
 					Name:        "vpc_no",
-					Description: `The ID of the associated VPC.`,
+					Description: `The ID of the associated VPC. ## Import Individual routes can be imported using ROUTE_TABLE_NO:DESTINATION_CIDR. For example, import a route in a route table ` + "`" + `57039` + "`" + ` with an IPv4 destination CIDR ` + "`" + `0.0.0.0/0` + "`" + ` like this: ` + "`" + `` + "`" + `` + "`" + ` hcl $ terraform import ncloud_route.my_route 57039:0.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1967,7 +2279,7 @@ Provides a Route resource.
 				},
 				resource.Attribute{
 					Name:        "vpc_no",
-					Description: `The ID of the associated VPC.`,
+					Description: `The ID of the associated VPC. ## Import Individual routes can be imported using ROUTE_TABLE_NO:DESTINATION_CIDR. For example, import a route in a route table ` + "`" + `57039` + "`" + ` with an IPv4 destination CIDR ` + "`" + `0.0.0.0/0` + "`" + ` like this: ` + "`" + `` + "`" + `` + "`" + ` hcl $ terraform import ncloud_route.my_route 57039:0.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2309,6 +2621,1122 @@ Provides a Server instance resource.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ncloud_ses_cluster",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+Provides a Search Engine Service cluster resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "os_image_code",
+					Description: `OS type to be used.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_no",
+					Description: `VPC number to be used.`,
+				},
+				resource.Attribute{
+					Name:        "search_engine",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "version_code",
+					Description: `Search Engine Service version to be used.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Search Engine UserName. Only lowercase alphanumeric characters and non-consecutive hyphens (-) allowed First character must be a letter, but the last character may be a letter or a number.`,
+				},
+				resource.Attribute{
+					Name:        "user_password",
+					Description: `Search Engine User password. Must be at least 8 characters and contain at least one of each: English uppercase letter, lowercase letter, special character, and number.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_port",
+					Description: `Search Engine Dashboard port.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "is_dual_manager",
+					Description: `Redundancy of manager node`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the manager node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the manager node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "data_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the data node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the data node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Number of data nodes. At least 3 units. (Can only be increased)`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `Data node storage capacity. At least 100 GB, up to 2000 GB. Must be in units of 10 GB.`,
+				},
+				resource.Attribute{
+					Name:        "master_node(Optional)",
+					Description: `If declared, creates a master-only node.`,
+				},
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `HW specifications of the master node.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_no",
+					Description: `Subnet number where the master node is to be located.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Number of master nodes. Only 3 or 5 units are available.`,
+				},
+				resource.Attribute{
+					Name:        "login_key_name",
+					Description: `Required Login key to access Manager node server ## Attribute Reference In addition to all arguments above, the following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Cluster Instance No. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "data_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "master_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node_instance_no_list",
+					Description: `List of Manager node's instance number`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node_list",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "compute_instance_name",
+					Description: `The name of Server instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Cluster Instance No.`,
+				},
+				resource.Attribute{
+					Name:        "service_group_instance_no",
+					Description: `Cluster Instance No. (It is the same result as ` + "`" + `id` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "manager_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of manager node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "data_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of data node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "master_node",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "acg_id",
+					Description: `The ID of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "acg_name",
+					Description: `The name of master node ACG.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node_instance_no_list",
+					Description: `List of Manager node's instance number`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node_list",
+					Description: `.`,
+				},
+				resource.Attribute{
+					Name:        "compute_instance_name",
+					Description: `The name of Server instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcebuild_project",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This resource only supports 'public' site.
+
+~> **Note:** This resource is a beta release. Some features may change in the future.
+
+Provides a Sourcebuild project resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Sourcebuild Project. Specify a name that is only English letters, numbers, and special characters (-, _).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Sourcebuild project description.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) Build target's type and config.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Build target type. Accepted values: ` + "`" + `SourceCommit` + "`" + `. (Other repository types are not supported yet.)`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) Build target config.`,
+				},
+				resource.Attribute{
+					Name:        "repository_name",
+					Description: `(Required) Repository name to build.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Required) Branch to build.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `(Required) Build environment.`,
+				},
+				resource.Attribute{
+					Name:        "compute",
+					Description: `(Required) Computing environment to build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Computing type id.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `(Required) Information about the build environment image.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Build environment image type. Accepted values: ` + "`" + `SourceBuild` + "`" + `, ` + "`" + `ContainerRegistry` + "`" + ` ` + "`" + `PublicRegistry` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) Build environment image config.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `(Optional, Required if ` + "`" + `env.platform.type` + "`" + ` is set to ` + "`" + `SourceBuild` + "`" + `) OS config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) OS id.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `(Optional, Required if ` + "`" + `env.platform.type` + "`" + ` is set to ` + "`" + `SourceBuild` + "`" + `) Runtime config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) runtime id.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) runtime version.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) runtime version id.`,
+				},
+				resource.Attribute{
+					Name:        "registry",
+					Description: `(Optional, Required if ` + "`" + `env.platform.type` + "`" + ` is set to ` + "`" + `ContainerRegistry` + "`" + `) Registry name of NCP Container Registry where the image to build is located.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional, Required if ` + "`" + `env.platform.type` + "`" + ` is set to ` + "`" + `ContainerRegistry` + "`" + ` or ` + "`" + `PublicRegistry` + "`" + `) Container image name to build.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional, Required if ` + "`" + `env.platform.type` + "`" + ` is set to ` + "`" + `ContainerRegistry` + "`" + ` or ` + "`" + `PublicRegistry` + "`" + `) Container image tag to build.`,
+				},
+				resource.Attribute{
+					Name:        "docker_engine",
+					Description: `(Optional) Docker engine to use when building docker image.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `(Required) Whether or not to use of docker engine. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Docker engine id.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Build timeout (in Minutes). Specify it between ` + "`" + `5` + "`" + ` and ` + "`" + `540` + "`" + `. Default ` + "`" + `60` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "env_var",
+					Description: `(Optional) Environment variables to use for build.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Key of environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of environment variable.`,
+				},
+				resource.Attribute{
+					Name:        "build_command",
+					Description: `(Optional) Commands to execute in build.`,
+				},
+				resource.Attribute{
+					Name:        "pre_build",
+					Description: `(Optional) Commands before build.`,
+				},
+				resource.Attribute{
+					Name:        "in_build",
+					Description: `(Optional) Commands during build.`,
+				},
+				resource.Attribute{
+					Name:        "post_build",
+					Description: `(Optional) Commands after build.`,
+				},
+				resource.Attribute{
+					Name:        "docker_image_build",
+					Description: `(Optional) Docker image build config.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `(Optional) Whether or not to use of dockerbuild. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "dockerfile",
+					Description: `(Optional, Required if ` + "`" + `build_command.docker_image_build.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Dockerfile path in build source folder.`,
+				},
+				resource.Attribute{
+					Name:        "registry",
+					Description: `(Optional, Required if ` + "`" + `build_command.docker_image_build.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Registry name of NCP Container Registry to store the image.`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `(Optional, Required if ` + "`" + `build_command.docker_image_build.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Image name to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional, Required if ` + "`" + `build_command.docker_image_build.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Image tag to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) Save status of the latest tag. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "artifact",
+					Description: `(Optional) Artifact to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `(Optional) Whether or not to save build results. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional, Required if ` + "`" + `artifact.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Location to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage_to_upload",
+					Description: `(Optional, Required if ` + "`" + `artifact.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Object Storage to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Bucket name of NCP Object Storage to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) path in the NCP Object Storage bucket to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "filename",
+					Description: `(Required) File name to save build results.`,
+				},
+				resource.Attribute{
+					Name:        "backup",
+					Description: `(Optional) Whether or not to backup build results.`,
+				},
+				resource.Attribute{
+					Name:        "build_image_upload",
+					Description: `(Optional) Save build environment after completing this build.`,
+				},
+				resource.Attribute{
+					Name:        "use",
+					Description: `(Optional) Whether or not to save build environment. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "container_registry_name",
+					Description: `(Optional, Required if ` + "`" + `build_image_upload.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Registry name of NCP Container Registry to store the image of the build environment after completing the build.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `(Optional, Required if ` + "`" + `build_image_upload.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Image name to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional, Required if ` + "`" + `build_image_upload.use` + "`" + ` is set to ` + "`" + `true` + "`" + `) Image tag to upload to registry.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) Save status of the latest tag. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "linked",
+					Description: `(Optional) Set up linkage with other services related this build.`,
+				},
+				resource.Attribute{
+					Name:        "cloud_log_analytics",
+					Description: `(Optional) Whether or not to save build log in the NCP Cloud Log Analytics. (Default ` + "`" + `false` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "file_safer",
+					Description: `(Optional) Whether or not to check safety using NCP File Safer. (Default ` + "`" + `false` + "`" + `) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcebuild Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "project_no",
+					Description: `Sourcebuild Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `CPU of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Memory of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS name of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `OS version of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "archi",
+					Description: `OS architecture of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime name of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime version name of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Docker engine name.`,
+				},
+				resource.Attribute{
+					Name:        "lastbuild",
+					Description: `Information of last build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of last build.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of last build.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Timestamp of last build.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Information about creating a Sourcebuild project.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Created user`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Created timestamp`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcebuild Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "project_no",
+					Description: `Sourcebuild Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `CPU of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Memory of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `OS name of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `OS version of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "archi",
+					Description: `OS architecture of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime name of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Runtime version name of build environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Docker engine name.`,
+				},
+				resource.Attribute{
+					Name:        "lastbuild",
+					Description: `Information of last build.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of last build.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of last build.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Timestamp of last build.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Information about creating a Sourcebuild project.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Created user`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `Created timestamp`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcecommit_repository",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note:** This resource only supports 'public' site.
+
+~> **Note:** This resource is a beta release. Some features may change in the future.
+
+Provides a Sourcecommit repository resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name to create. If omitted, Terraform will force to create new repository and delete previous one.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) description to create.`,
+				},
+				resource.Attribute{
+					Name:        "file_safer",
+					Description: `(Optional) A boolean value that determines whether to use the [File Safer](https://www.ncloud.com/product/security/fileSafer) service . Default ` + "`" + `false` + "`" + `, Accepted values: ` + "`" + `true` + "`" + ` | ` + "`" + `false` + "`" + ` (You must agree to the terms and conditions for use). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "repository_no",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `Sourcecommit repository creator.`,
+				},
+				resource.Attribute{
+					Name:        "git_https_url",
+					Description: `Sourcecommit repository https git address.`,
+				},
+				resource.Attribute{
+					Name:        "git_ssh_url",
+					Description: `Sourcecommit repository ssh git address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "repository_no",
+					Description: `Sourcecommit repository ID.`,
+				},
+				resource.Attribute{
+					Name:        "creator",
+					Description: `Sourcecommit repository creator.`,
+				},
+				resource.Attribute{
+					Name:        "git_https_url",
+					Description: `Sourcecommit repository https git address.`,
+				},
+				resource.Attribute{
+					Name:        "git_ssh_url",
+					Description: `Sourcecommit repository ssh git address.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This resource only supports 'public' site.
+
+-> **Note:** This resource is a beta release. Some features may change in the future.
+
+Provides a Sourcedeploy project resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of Sourcedeploy project. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy project. ## Import SourceDeploy project can be imported using the project_id, e.g., $ terraform import ncloud_sourcedeploy_project.my_project project_id`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Sourcedeploy project. ## Import SourceDeploy project can be imported using the project_id, e.g., $ terraform import ncloud_sourcedeploy_project.my_project project_id`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project_stage",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of stage.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `(Required) The type of deploy target. Accepted values: ` + "`" + `Server` + "`" + `, ` + "`" + `AutoScalingGroup` + "`" + `, ` + "`" + `KubernetesService` + "`" + `, ` + "`" + `ObjectStorage` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) The configuration of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `server`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, Required If type=` + "`" + `Server` + "`" + `) The no of server. [` + "`" + `ncloud_server` + "`" + ` data source](../data-sources/server.md)`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_no",
+					Description: `(Optional, Required If type=` + "`" + `AutoScalingGroup` + "`" + `) The ID of Auto Scaling Group. [` + "`" + `ncloud_auto_scaling_group` + "`" + ` data source](../data-sources/auto_scaling_group.md)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_uuid",
+					Description: `(Optional, Required If type=` + "`" + `KubernetesService` + "`" + `) The uuid of Kubernetes Service Cluster. [` + "`" + `ncloud_nks_cluster` + "`" + ` data source](../data-sources/nks_cluster.md)`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Optional, Required If type=` + "`" + `ObjectStorage` + "`" + `) The name of ObjectStorage bucket. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of stage.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) The configuration of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `server`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_name",
+					Description: `The name of Auto Scaling Group.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of Kubernetes Service Cluster. ## Import SourceDeploy stage can be imported using the project_id and stage_id separated by a colon (:), e.g., $ terraform import ncloud_sourcedeploy_project_stage.my_stage project_id:stage_id`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of stage.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) The configuration of deploy target.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `server`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scaling_group_name",
+					Description: `The name of Auto Scaling Group.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `The name of Kubernetes Service Cluster. ## Import SourceDeploy stage can be imported using the project_id and stage_id separated by a colon (:), e.g., $ terraform import ncloud_sourcedeploy_project_stage.my_stage project_id:stage_id`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcedeploy_project_stage_scenario",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of Sourcedeploy project.`,
+				},
+				resource.Attribute{
+					Name:        "stage_id",
+					Description: `(Required) The ID of Sourcedeploy stage.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of scenario.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Sourcedeploy project description.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) scenario config.`,
+				},
+				resource.Attribute{
+					Name:        "strategy",
+					Description: `(Required) Deployment strategy. Accepted values: ` + "`" + `normal` + "`" + `, ` + "`" + `blueGreen` + "`" + `, ` + "`" + `rolling` + "`" + `, ` + "`" + `canary` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file",
+					Description: `(Optional, Required If stage type is set to ` + "`" + `Server` + "`" + ` or ` + "`" + `AutoScalingGroup` + "`" + ` or ` + "`" + `ObjectStorage` + "`" + `) Deployment file.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) File type. Accepted values: ` + "`" + `SourceBuild` + "`" + `, ` + "`" + `ObjectStorage` + "`" + `, ` + "`" + `later` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "object_storage",
+					Description: `(Optional, Required if file.type is set to ` + "`" + `ObjectStorage` + "`" + ` ) Objectstorage config.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The Name of ObjectStorage bucket.`,
+				},
+				resource.Attribute{
+					Name:        "object",
+					Description: `(Required) ObjectStorage object .`,
+				},
+				resource.Attribute{
+					Name:        "source_build",
+					Description: `(Optional, Required if file.type is set to` + "`" + `SourceBuild` + "`" + ` ) Sourcebuild config.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The ID of SourceBiuld project. [` + "`" + `ncloud_sourcebuild_project` + "`" + ` data source](../data-sources/sourcebuild_project.md)`,
+				},
+				resource.Attribute{
+					Name:        "rollboack",
+					Description: `(Optional, Required If stage type is set to ` + "`" + `Server` + "`" + ` or ` + "`" + `AutoScalingGroup` + "`" + ` ) Rollback on deployment failure.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_command",
+					Description: `(Optional) Commands to execute in deploy.`,
+				},
+				resource.Attribute{
+					Name:        "pre_deploy",
+					Description: `(Optional) Commands before deploy.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) Running Account.`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `(Required) Run Command.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) Deploy file.`,
+				},
+				resource.Attribute{
+					Name:        "source_path",
+					Description: `(Required) Source file path.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_path",
+					Description: `(Required) Deploy Path.`,
+				},
+				resource.Attribute{
+					Name:        "post_deploy",
+					Description: `(Optional) Commands after deploy.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) Running Account.`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `(Required) Run Command.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `(Optional, Required If stage type is set to ` + "`" + `AutoScalingGroup` + "`" + ` & strategy is set to ` + "`" + `blueGreen` + "`" + `) Loadbalancer target group for blue-green deployment.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_no",
+					Description: `(Required) Loadbalancer Target Group no. [` + "`" + `ncloud_lb_target_group` + "`" + ` data source](../data-sources/lb_target_group.md)`,
+				},
+				resource.Attribute{
+					Name:        "delete_server",
+					Description: `(Required) Whether to delete Servers in the auto scaling group.`,
+				},
+				resource.Attribute{
+					Name:        "manifest",
+					Description: `(Optional, Required If stage type is set to ` + "`" + `KubernetesService` + "`" + `) Manifest file for Kubernetesservice deployment.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Repository type. Accepted values: ` + "`" + `SourceCommit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "repository_name",
+					Description: `(Required) The name of repository.`,
+				},
+				resource.Attribute{
+					Name:        "branch",
+					Description: `(Required) The name of repository branch.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) File path.`,
+				},
+				resource.Attribute{
+					Name:        "canary_config",
+					Description: `(Optional, Required If stage type is set to ` + "`" + `KubernetesService` + "`" + ` & strategy is set to ` + "`" + `canary` + "`" + ` ) config when deploying Kubernetesservice canary.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_type",
+					Description: `(Required) Canary analysis method. Accepted values: ` + "`" + `manual` + "`" + `, ` + "`" + `auto` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "canary_count",
+					Description: `(Required) Number of baseline and canary pod.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional, Required if canaryConfig.analysisType=` + "`" + `manual` + "`" + `) Maximum time of deployment/cancellation.`,
+				},
+				resource.Attribute{
+					Name:        "prometheus",
+					Description: `(Optional, Required if canaryConfig.analysisType=` + "`" + `auto` + "`" + `) Prometheus Url.`,
+				},
+				resource.Attribute{
+					Name:        "env",
+					Description: `(Optional, Required if canaryConfig.analysisType=` + "`" + `auto` + "`" + `) Analysis environment.`,
+				},
+				resource.Attribute{
+					Name:        "baseline",
+					Description: `(Required) Analysis environment variable > baseline.`,
+				},
+				resource.Attribute{
+					Name:        "canary",
+					Description: `(Required) Analysis environment variable > canary.`,
+				},
+				resource.Attribute{
+					Name:        "metrics",
+					Description: `(Optional, Required if canaryConfig.analysisType=` + "`" + `auto` + "`" + `) Metric.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Metric name.`,
+				},
+				resource.Attribute{
+					Name:        "success_criteria",
+					Description: `(Required) Success criteria. Accepted values: ` + "`" + `base` + "`" + `, ` + "`" + `canary` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Required) Weight.`,
+				},
+				resource.Attribute{
+					Name:        "query_type",
+					Description: `(Required) Query type. Accepted values: ` + "`" + `default` + "`" + `, ` + "`" + `promQL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Optional, Required if canaryConfig.query_type is set to ` + "`" + `default` + "`" + ` ) Metric.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional, Required if canaryConfig.query_type is set to` + "`" + `default` + "`" + ` ) Filter.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Optional, Required if canaryConfig.query_type is set to ` + "`" + `promQL` + "`" + ` ) Query.`,
+				},
+				resource.Attribute{
+					Name:        "analysis_config",
+					Description: `(Optional, Required if canaryConfig.analysisType is set to ` + "`" + `auto` + "`" + ` ) Analysis config.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Analysis time.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `(Required) Analysis delay time.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Required) Analysis cycle.`,
+				},
+				resource.Attribute{
+					Name:        "step",
+					Description: `(Required) Metric collection cycle.`,
+				},
+				resource.Attribute{
+					Name:        "pass_score",
+					Description: `(Optional, Required if canaryConfig.analysisType=` + "`" + `auto` + "`" + `) Analysis success score.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional, Required If stage type is set to ` + "`" + `ObjectStorage` + "`" + `) Deploy file.`,
+				},
+				resource.Attribute{
+					Name:        "source_path",
+					Description: `(Required) Source file path.`,
+				},
+				resource.Attribute{
+					Name:        "deploy_path",
+					Description: `(Required) Deploy Path. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of scenario.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `scenario config.`,
+				},
+				resource.Attribute{
+					Name:        "source_build",
+					Description: `Sourcebuild config.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of SourceBuild project.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `Loadbalancer target group for blue-green deployment.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_name",
+					Description: `The name of Loadbalancer Target Group. ## Import SourceDeploy scenario can be imported using the project_id, stage_id, scenario_id separated by a colon (:), e.g., $ terraform import ncloud_sourcedeploy_project_stage_scenario.my_scenario project_id:stage_id:scenario_id`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of scenario.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `scenario config.`,
+				},
+				resource.Attribute{
+					Name:        "source_build",
+					Description: `Sourcebuild config.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of SourceBuild project.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer",
+					Description: `Loadbalancer target group for blue-green deployment.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_target_group_name",
+					Description: `The name of Loadbalancer Target Group. ## Import SourceDeploy scenario can be imported using the project_id, stage_id, scenario_id separated by a colon (:), e.g., $ terraform import ncloud_sourcedeploy_project_stage_scenario.my_scenario project_id:stage_id:scenario_id`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ncloud_sourcepipeline_project",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+~> **Note** This resource only supports 'public' site.
+
+~> **Note:** This resource is a beta release. Some features may change in the future.
+
+Provides a Sourcepipeline project resource.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the sourcepipeline trigger project.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the sourcepipeline trigger project.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ncloud_subnet",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -2345,7 +3773,7 @@ Provides a Subnet resource.
 				},
 				resource.Attribute{
 					Name:        "usage_type",
-					Description: `(Optional) Usage type, Default ` + "`" + `GEN` + "`" + `. Accepted values: ` + "`" + `GEN` + "`" + ` (General) | ` + "`" + `LOADB` + "`" + ` (For load balancer). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Usage type, Default ` + "`" + `GEN` + "`" + `. Accepted values: ` + "`" + `GEN` + "`" + ` (General) | ` + "`" + `LOADB` + "`" + ` (For load balancer) | ` + "`" + `NATGW` + "`" + ` (for NAT Gateway. Only pub env). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2511,40 +3939,49 @@ Provides a VPC Peering resource.
 
 	resourcesMap = map[string]int{
 
-		"ncloud_access_control_group":          0,
-		"ncloud_access_control_group_rule":     1,
-		"ncloud_auto_scaling_group":            2,
-		"ncloud_auto_scaling_policy":           3,
-		"ncloud_auto_scaling_schedule":         4,
-		"ncloud_block_storage":                 5,
-		"ncloud_block_storage_snapshot":        6,
-		"ncloud_init_script":                   7,
-		"ncloud_launch_configuration":          8,
-		"ncloud_lb":                            9,
-		"ncloud_lb_listener":                   10,
-		"ncloud_lb_target_group":               11,
-		"ncloud_lb_target_group_attachment":    12,
-		"ncloud_load_balancer":                 13,
-		"ncloud_load_balancer_ssl_certificate": 14,
-		"ncloud_login_key":                     15,
-		"ncloud_nas_volume":                    16,
-		"ncloud_nat_gateway":                   17,
-		"ncloud_network_acl":                   18,
-		"ncloud_network_acl_deny_allow_group":  19,
-		"ncloud_network_acl_rule":              20,
-		"ncloud_network_interface":             21,
-		"ncloud_nks_cluster":                   22,
-		"ncloud_nks_node_pool":                 23,
-		"ncloud_placement_group":               24,
-		"ncloud_port_forwarding_rule":          25,
-		"ncloud_public_ip":                     26,
-		"ncloud_route":                         27,
-		"ncloud_route_table":                   28,
-		"ncloud_route_table_association":       29,
-		"ncloud_server":                        30,
-		"ncloud_subnet":                        31,
-		"ncloud_vpc":                           32,
-		"ncloud_vpc_peering":                   33,
+		"ncloud_access_control_group":                0,
+		"ncloud_access_control_group_rule":           1,
+		"ncloud_auto_scaling_group":                  2,
+		"ncloud_auto_scaling_policy":                 3,
+		"ncloud_auto_scaling_schedule":               4,
+		"ncloud_block_storage":                       5,
+		"ncloud_block_storage_snapshot":              6,
+		"ncloud_cdss_cluster":                        7,
+		"ncloud_cdss_config_group":                   8,
+		"ncloud_init_script":                         9,
+		"ncloud_launch_configuration":                10,
+		"ncloud_lb":                                  11,
+		"ncloud_lb_listener":                         12,
+		"ncloud_lb_target_group":                     13,
+		"ncloud_lb_target_group_attachment":          14,
+		"ncloud_load_balancer":                       15,
+		"ncloud_load_balancer_ssl_certificate":       16,
+		"ncloud_login_key":                           17,
+		"ncloud_nas_volume":                          18,
+		"ncloud_nat_gateway":                         19,
+		"ncloud_network_acl":                         20,
+		"ncloud_network_acl_deny_allow_group":        21,
+		"ncloud_network_acl_rule":                    22,
+		"ncloud_network_interface":                   23,
+		"ncloud_nks_cluster":                         24,
+		"ncloud_nks_node_pool":                       25,
+		"ncloud_placement_group":                     26,
+		"ncloud_port_forwarding_rule":                27,
+		"ncloud_public_ip":                           28,
+		"ncloud_route":                               29,
+		"ncloud_route_table":                         30,
+		"ncloud_route_table_association":             31,
+		"ncloud_server":                              32,
+		"ncloud_ses_cluster":                         33,
+		"ncloud_sourcebuild_project":                 34,
+		"ncloud_sourcecommit_repository":             35,
+		"ncloud_sourcedeploy_project":                36,
+		"ncloud_sourcedeploy_project_stage":          37,
+		"ncloud_sourcedeploy_project_stage_scenario": 38,
+		"ncloud_sourcepipeline_project":              39,
+		"ncloud_subnet":                              40,
+		"ncloud_vpc":                                 41,
+		"ncloud_vpc_peering":                         42,
 	}
 )
 

@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "statuscake_contact_group",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "statuscake_pagespeed_monitoring_locations",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -33,8 +43,9 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"statuscake_pagespeed_monitoring_locations": 0,
-		"statuscake_uptime_monitoring_locations":    1,
+		"statuscake_contact_group":                  0,
+		"statuscake_pagespeed_monitoring_locations": 1,
+		"statuscake_uptime_monitoring_locations":    2,
 	}
 )
 

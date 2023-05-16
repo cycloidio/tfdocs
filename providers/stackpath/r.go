@@ -221,7 +221,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network",
-					Description: `(Required) A name that can be that can be referenced by a [selector](#selectors) by [network policies](/docs/providers/stackpath/r/compute_network_policy.html). Currently, only the value "default" is supported. ### Image Pull Credentials ` + "`" + `image_pull_credentials` + "`" + ` supports the following arguments:`,
+					Description: `(Required) A name that can be referenced by a [selector](#selectors) by [network policies](/docs/providers/stackpath/r/compute_network_policy.html). Both default and user created VPC networks are supported.`,
+				},
+				resource.Attribute{
+					Name:        "enable_one_to_one_nat",
+					Description: `(Optional) Boolean Flag to specify enabling of one to one nat to interface VPC IP address. Default is true.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Optional) A name of IPv4 subnet to be used for IPv4 IP allocation for interface. subnet should belong to network specified in ` + "`" + `network` + "`" + ` field. if not specified then default IPv4 subnet will be used.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_subnet",
+					Description: `(Optional) A name of IPv6 subnet to be used for IPv6 IP allocation for interface. subnet should belong to network specified in ` + "`" + `network` + "`" + ` field. if not specified then default IPv6 subnet will be used.`,
+				},
+				resource.Attribute{
+					Name:        "ip_families",
+					Description: `(Optional) List of IP Families from which IP allocation should happen to network interface. Default is [IPv4]. Currently this supports IPv4-only [IPv4] and Dual stack- [IPv4, IPv6]. It does not suport IPv6 only- [IPv6] requests. If Dual stack [IPv4, IPv6] is requested then VPC network specified in ` + "`" + `network` + "`" + ` field is expected to enabled for Dual stack networking. Bu default all Default networks are enabled for Dual stack, any user created VPC network needs to be created with [IPv4, IPv6] IPFamilies to enable it for Dual stack networking. ### Image Pull Credentials ` + "`" + `image_pull_credentials` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "docker_registry",
@@ -477,11 +493,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_ip_address",
-					Description: `(Optional) An IP address bound to the instance.`,
+					Description: `(Optional) An IPv4 address bound to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) An instance's internal IP address.`,
+					Description: `(Optional) An instance's internal IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "external_ipv6_address",
+					Description: `(Optional) An IPv6 address bound to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `(Optional) An instance's internal IPv6 address.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface",
@@ -561,15 +585,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Required) A network interface's primary IP address.`,
+					Description: `(Required) A network interface's primary IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address_aliases",
-					Description: `(Optional) Additional IP addresses bound to a network interface.`,
+					Description: `(Optional) Additional IPv4 addresses bound to a network interface.`,
 				},
 				resource.Attribute{
 					Name:        "gateway",
-					Description: `(Required) A network interface subnet's gateway IP address. ## Import StackPath compute workloads can be imported by their UUID v4 formatted id. e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import stackpath_compute_workload.terraform bdb77768-2938-4ad8-a736-be5290add801 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) A network interface IPv4 subnet's gateway IP address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address",
+					Description: `(Optional) A network interface's primary IPv6 address.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_address_aliases",
+					Description: `(Optional) Additional IPv6 addresses bound to a network interface.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_gateway",
+					Description: `(Optional) A network interface IPv6 subnet's gateway IP address. ## Import StackPath compute workloads can be imported by their UUID v4 formatted id. e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import stackpath_compute_workload.terraform bdb77768-2938-4ad8-a736-be5290add801 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

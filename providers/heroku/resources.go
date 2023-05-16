@@ -628,28 +628,28 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required) The hostname to serve requests from.`,
+					Name:        "app_id",
+					Description: `(Required) Heroku app ID (do not use app name) For apps with ACM enabled (automated certificate management):`,
 				},
 				resource.Attribute{
-					Name:        "app_id",
-					Description: `(Required) Heroku app ID (do not use app name) ## Attributes Reference The following attributes are exported:`,
+					Name:        "hostname",
+					Description: `(Required) The hostname to setup via ACM. For apps with ` + "`" + `heroku_ssl` + "`" + ` (SNI Endpoint) resources (manual certificate management):`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) Must match common name or a subject alternative name of certificate in the ` + "`" + `heroku_ssl` + "`" + ` resource references by ` + "`" + `sni_endpoint_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sni_endpoint_id",
+					Description: `(Required) The ID of the ` + "`" + `heroku_ssl` + "`" + ` resource to associate the domain with. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the domain record.`,
 				},
 				resource.Attribute{
-					Name:        "hostname",
-					Description: `The hostname traffic will be served as.`,
-				},
-				resource.Attribute{
 					Name:        "cname",
-					Description: `The CNAME traffic should route to.`,
-				},
-				resource.Attribute{
-					Name:        "sni_endpoint_id",
-					Description: `The ID of the heroku_ssl resource to associate the domain with. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -658,16 +658,8 @@ var (
 					Description: `The ID of the domain record.`,
 				},
 				resource.Attribute{
-					Name:        "hostname",
-					Description: `The hostname traffic will be served as.`,
-				},
-				resource.Attribute{
 					Name:        "cname",
-					Description: `The CNAME traffic should route to.`,
-				},
-				resource.Attribute{
-					Name:        "sni_endpoint_id",
-					Description: `The ID of the heroku_ssl resource to associate the domain with. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID is specified ` + "`" + `APP_NAME:DOMAIN_IDENTIFIER` + "`" + `, where the domain can be identified either with the UUID from the Heroku API or the domain name. For an app named ` + "`" + `test-app` + "`" + ` with a domain name of ` + "`" + `terraform.example.com` + "`" + `, you could import it with: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.default test-app:terraform.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

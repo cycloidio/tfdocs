@@ -47,19 +47,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "switch_name_1",
-					Description: `name of the switch which is associated to the interface. ## Attribute Reference for loopback Interface ##`,
+					Description: `name of the switch which is associated to the interface. ## Attribute Reference for loopback Interface`,
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `vrf name for the loopback interface.`,
+					Description: `VRF name for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `ipv4 address for the loopback interface.`,
+					Description: `IPv4 address for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `ipv6 address for the loopback interface.`,
+					Description: `IPv6 address for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_tag",
@@ -87,7 +87,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the loopback interface. ## Attribute Reference for port-channel Interface ##`,
+					Description: `description for the loopback interface. ## Attribute Reference for port-channel Interface`,
 				},
 				resource.Attribute{
 					Name:        "pc_interface",
@@ -111,7 +111,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu for the port-channel interface.`,
+					Description: `MTU for the port-channel interface.`,
 				},
 				resource.Attribute{
 					Name:        "allowed_vlans",
@@ -123,7 +123,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the port-channel interface. ## Attribute Reference for vPC Interface ##`,
+					Description: `description for the port-channel interface. ## Attribute Reference for vPC Interface`,
 				},
 				resource.Attribute{
 					Name:        "switch_name_2",
@@ -159,7 +159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu for the vPC interface.`,
+					Description: `MTU for the vPC interface.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peer1_allowed_vlans",
@@ -191,35 +191,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_peer2_conf",
-					Description: `peer2 configuration for the vPC interface. ## Attribute Reference for sub-interface Interface ##`,
+					Description: `peer2 configuration for the vPC interface. ## Attribute Reference for sub-interface Interface`,
 				},
 				resource.Attribute{
 					Name:        "subinterface_vlan",
-					Description: `vlan for the sub-interface.`,
+					Description: `VLAN for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `vrf for the sub-interface.`,
+					Description: `VRF for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `ipv4 address for the sub-interface.`,
+					Description: `IPv4 address for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `ipv6 address for the sub-interface.`,
+					Description: `IPv6 address for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `ipv6 prefic for the sub-interface.`,
+					Description: `IPv6 prefix for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
-					Description: `ipv4 prefix for the sub-interface.`,
+					Description: `IPv4 prefix for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "subinterface_mtu",
-					Description: `mtu for the sub-interface.`,
+					Description: `MTU for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -227,11 +227,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the sub-interface. ## Attribute Reference for ethernet Interface ##`,
+					Description: `description for the sub-interface. ## Attribute Reference for ethernet Interface`,
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `vrf name for the ethernet interface.`,
+					Description: `VRF name for the ethernet interface.`,
 				},
 				resource.Attribute{
 					Name:        "bpdu_guard_flag",
@@ -243,7 +243,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu for the ethernet interface.`,
+					Description: `MTU for the ethernet interface.`,
 				},
 				resource.Attribute{
 					Name:        "ethernet_speed",
@@ -263,19 +263,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `ipv4 address for the ethernet.`,
+					Description: `IPv4 address for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `ipv6 address for the ethernet.`,
+					Description: `IPv6 address for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `ipv6 prefic for the ethernet.`,
+					Description: `IPv6 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
-					Description: `ipv4 prefix for the ethernet.`,
+					Description: `IPv4 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "access_vlans",
@@ -285,15 +285,15 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `vrf name for the loopback interface.`,
+					Description: `VRF name for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `ipv4 address for the loopback interface.`,
+					Description: `IPv4 address for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `ipv6 address for the loopback interface.`,
+					Description: `IPv6 address for the loopback interface.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_tag",
@@ -321,7 +321,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the loopback interface. ## Attribute Reference for port-channel Interface ##`,
+					Description: `description for the loopback interface. ## Attribute Reference for port-channel Interface`,
 				},
 				resource.Attribute{
 					Name:        "pc_interface",
@@ -345,7 +345,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu for the port-channel interface.`,
+					Description: `MTU for the port-channel interface.`,
 				},
 				resource.Attribute{
 					Name:        "allowed_vlans",
@@ -357,7 +357,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the port-channel interface. ## Attribute Reference for vPC Interface ##`,
+					Description: `description for the port-channel interface. ## Attribute Reference for vPC Interface`,
 				},
 				resource.Attribute{
 					Name:        "switch_name_2",
@@ -393,7 +393,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu for the vPC interface.`,
+					Description: `MTU for the vPC interface.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_peer1_allowed_vlans",
@@ -425,35 +425,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_peer2_conf",
-					Description: `peer2 configuration for the vPC interface. ## Attribute Reference for sub-interface Interface ##`,
+					Description: `peer2 configuration for the vPC interface. ## Attribute Reference for sub-interface Interface`,
 				},
 				resource.Attribute{
 					Name:        "subinterface_vlan",
-					Description: `vlan for the sub-interface.`,
+					Description: `VLAN for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `vrf for the sub-interface.`,
+					Description: `VRF for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `ipv4 address for the sub-interface.`,
+					Description: `IPv4 address for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `ipv6 address for the sub-interface.`,
+					Description: `IPv6 address for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `ipv6 prefic for the sub-interface.`,
+					Description: `IPv6 prefix for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
-					Description: `ipv4 prefix for the sub-interface.`,
+					Description: `IPv4 prefix for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "subinterface_mtu",
-					Description: `mtu for the sub-interface.`,
+					Description: `MTU for the sub-interface.`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -461,11 +461,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `description for the sub-interface. ## Attribute Reference for ethernet Interface ##`,
+					Description: `description for the sub-interface. ## Attribute Reference for ethernet Interface`,
 				},
 				resource.Attribute{
 					Name:        "vrf",
-					Description: `vrf name for the ethernet interface.`,
+					Description: `VRF name for the ethernet interface.`,
 				},
 				resource.Attribute{
 					Name:        "bpdu_guard_flag",
@@ -477,7 +477,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu for the ethernet interface.`,
+					Description: `MTU for the ethernet interface.`,
 				},
 				resource.Attribute{
 					Name:        "ethernet_speed",
@@ -497,19 +497,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4",
-					Description: `ipv4 address for the ethernet.`,
+					Description: `IPv4 address for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
-					Description: `ipv6 address for the ethernet.`,
+					Description: `IPv6 address for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_prefix",
-					Description: `ipv6 prefic for the ethernet.`,
+					Description: `IPv6 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_prefix",
-					Description: `ipv4 prefix for the ethernet.`,
+					Description: `IPv4 prefix for the ethernet.`,
 				},
 				resource.Attribute{
 					Name:        "access_vlans",
@@ -631,7 +631,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf_name",
-					Description: `name of the vrf which should be associated with the network.`,
+					Description: `name of the VRF which should be associated with the network.`,
 				},
 				resource.Attribute{
 					Name:        "l2_only_flag",
@@ -639,23 +639,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan_id",
-					Description: `vlan number for the network.`,
+					Description: `VLAN ID for the network.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `vlan name for the network.`,
+					Description: `VLAN name for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_gateway",
-					Description: `ipv4 address of gateway for the network.`,
+					Description: `IPv4 address of gateway for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_gateway",
-					Description: `ipv6 address of gateway for the network.`,
+					Description: `IPv6 address of gateway for the network.`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu value for the network.`,
+					Description: `MTU value for the network.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -663,15 +663,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_1",
-					Description: `ipv4 secondary gateway 1 for the network.`,
+					Description: `IPv4 secondary gateway 1 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_2",
-					Description: `ipv4 secondary gateway 2 for the network.`,
+					Description: `IPv4 secondary gateway 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "arp_supp_flag",
-					Description: `arp suppression flag for the network.`,
+					Description: `ARP suppression flag for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ir_enable_flag",
@@ -683,15 +683,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dhcp_1",
-					Description: `ipv4 address of DHCP server 1 for the network.`,
+					Description: `IPv4 address of DHCP server 1 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_2",
-					Description: `ipv4 address of DHCP server 2 for the network.`,
+					Description: `IPv4 address of DHCP server 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_vrf",
-					Description: `vrf name of DHCP server for the network.`,
+					Description: `VRF name of DHCP server for the network.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_id",
@@ -739,7 +739,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `vlan ID for the switch associated with network.`,
+					Description: `VLAN ID for the switch associated with network.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",
@@ -785,7 +785,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vrf_name",
-					Description: `name of the vrf which should be associated with the network.`,
+					Description: `name of the VRF which should be associated with the network.`,
 				},
 				resource.Attribute{
 					Name:        "l2_only_flag",
@@ -793,23 +793,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan_id",
-					Description: `vlan number for the network.`,
+					Description: `VLAN ID for the network.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `vlan name for the network.`,
+					Description: `VLAN name for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_gateway",
-					Description: `ipv4 address of gateway for the network.`,
+					Description: `IPv4 address of gateway for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_gateway",
-					Description: `ipv6 address of gateway for the network.`,
+					Description: `IPv6 address of gateway for the network.`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `mtu value for the network.`,
+					Description: `MTU value for the network.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -817,15 +817,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_1",
-					Description: `ipv4 secondary gateway 1 for the network.`,
+					Description: `IPv4 secondary gateway 1 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_gw_2",
-					Description: `ipv4 secondary gateway 2 for the network.`,
+					Description: `IPv4 secondary gateway 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "arp_supp_flag",
-					Description: `arp suppression flag for the network.`,
+					Description: `ARP suppression flag for the network.`,
 				},
 				resource.Attribute{
 					Name:        "ir_enable_flag",
@@ -837,15 +837,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dhcp_1",
-					Description: `ipv4 address of DHCP server 1 for the network.`,
+					Description: `IPv4 address of DHCP server 1 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_2",
-					Description: `ipv4 address of DHCP server 2 for the network.`,
+					Description: `IPv4 address of DHCP server 2 for the network.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_vrf",
-					Description: `vrf name of DHCP server for the network.`,
+					Description: `VRF name of DHCP server for the network.`,
 				},
 				resource.Attribute{
 					Name:        "loopback_id",
@@ -893,7 +893,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `vlan ID for the switch associated with network.`,
+					Description: `VLAN ID for the switch associated with network.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",
@@ -1015,7 +1015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "next_hop_ip",
-					Description: `(Optional) Nexthop IPV4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
+					Description: `(Optional) Nexthop IPv4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
 				},
 				resource.Attribute{
 					Name:        "option",
@@ -1043,11 +1043,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_networks.vlan_id",
-					Description: `(Required) VLan Id of network.`,
+					Description: `(Required) VLAN Id of network.`,
 				},
 				resource.Attribute{
 					Name:        "service_networks.gateway_ip_address",
-					Description: `(Required) IPV4 gateway information including the mask e.g. 192.168.1.1/24.`,
+					Description: `(Required) IPv4 gateway information including the mask e.g. 192.168.1.1/24.`,
 				},
 				resource.Attribute{
 					Name:        "routes",
@@ -1085,7 +1085,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "next_hop_ip",
-					Description: `(Optional) Nexthop IPV4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
+					Description: `(Optional) Nexthop IPv4 information.NOTE: This object is applicable only when 'deploy_mode' is 'IntraTenantFW'`,
 				},
 				resource.Attribute{
 					Name:        "option",
@@ -1113,11 +1113,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_networks.vlan_id",
-					Description: `(Required) VLan Id of network.`,
+					Description: `(Required) VLAN Id of network.`,
 				},
 				resource.Attribute{
 					Name:        "service_networks.gateway_ip_address",
-					Description: `(Required) IPV4 gateway information including the mask e.g. 192.168.1.1/24.`,
+					Description: `(Required) IPv4 gateway information including the mask e.g. 192.168.1.1/24.`,
 				},
 				resource.Attribute{
 					Name:        "routes",
@@ -1175,7 +1175,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_vlans",
-					Description: `Allowed vlan names of the Service.`,
+					Description: `Allowed VLAN names of the Service.`,
 				},
 				resource.Attribute{
 					Name:        "attached_fabric",
@@ -1281,7 +1281,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_vlans",
-					Description: `Allowed vlan names of the Service.`,
+					Description: `Allowed VLAN names of the Service.`,
 				},
 				resource.Attribute{
 					Name:        "attached_fabric",
@@ -1590,11 +1590,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan",
-					Description: `Vlan Id for the VRF.`,
+					Description: `VLAN ID for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `Vlan name for the VRF.`,
+					Description: `VLAN name for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1602,7 +1602,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "intf_description",
-					Description: `Intf desscription for the VRF.`,
+					Description: `Interface description for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -1642,7 +1642,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6_link_local_flag",
-					Description: `Ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `IPv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "trm_bgw_msite_flag",
@@ -1666,7 +1666,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `Mtu value for the VRF. Ranginf from 68 to 9216.`,
+					Description: `MTU value for the VRF. Ranging from 68 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "extension_template",
@@ -1694,7 +1694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `Vlan ID for the switch associated with VRF.`,
+					Description: `VLAN ID for the switch associated with VRF.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",
@@ -1708,11 +1708,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vlan",
-					Description: `Vlan Id for the VRF.`,
+					Description: `VLAN ID for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_name",
-					Description: `Vlan name for the VRF.`,
+					Description: `VLAN name for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1720,7 +1720,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "intf_description",
-					Description: `Intf desscription for the VRF.`,
+					Description: `Interface description for the VRF.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -1760,7 +1760,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6_link_local_flag",
-					Description: `Ipv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
+					Description: `IPv6 link local enable flag for the VRF. Allowed values are "true" and "false".`,
 				},
 				resource.Attribute{
 					Name:        "trm_bgw_msite_flag",
@@ -1784,7 +1784,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mtu",
-					Description: `Mtu value for the VRF. Ranginf from 68 to 9216.`,
+					Description: `MTU value for the VRF. Ranging from 68 to 9216.`,
 				},
 				resource.Attribute{
 					Name:        "extension_template",
@@ -1812,7 +1812,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachments.vlan_id",
-					Description: `Vlan ID for the switch associated with VRF.`,
+					Description: `VLAN ID for the switch associated with VRF.`,
 				},
 				resource.Attribute{
 					Name:        "attachments.attach",

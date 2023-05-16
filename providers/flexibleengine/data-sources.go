@@ -11,6 +11,84 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_apig_environments",
+			Category:         "API Gateway (Dedicated APIG)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"gateway",
+				"dedicated",
+				"apig",
+				"environments",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to query the APIG environment list. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required, String) Specifies an ID of the APIG dedicated instance to which the API environment belongs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the API environment. The API environment name consists of 3 to 64 characters, starting with a letter. Only letters, digits and underscores (_) are allowed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "environments",
+					Description: `List of APIG environment details. The structure is documented below. The ` + "`" + `environments` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the APIG environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The environment name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description about the API environment.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Time when the APIG environment was created, in RFC-3339 format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "environments",
+					Description: `List of APIG environment details. The structure is documented below. The ` + "`" + `environments` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the APIG environment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The environment name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description about the API environment.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Time when the APIG environment was created, in RFC-3339 format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_availability_zones",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -370,7 +448,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The ID of the subnet used to create the node.`,
+					Description: `The ID of the VPC Subnet used to create the node.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_id",
@@ -395,6 +473,18 @@ var (
 				resource.Attribute{
 					Name:        "billingMode",
 					Description: `Charging mode of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_mode",
+					Description: `Authentication mode of the cluster, possible values are x509 and rbac.`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `Advanced configuration of master nodes. Structure is documented below. The ` + "`" + `masters` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone (AZ) of the master node.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -436,7 +526,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The ID of the subnet used to create the node.`,
+					Description: `The ID of the VPC Subnet used to create the node.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_id",
@@ -462,6 +552,344 @@ var (
 					Name:        "billingMode",
 					Description: `Charging mode of the cluster.`,
 				},
+				resource.Attribute{
+					Name:        "authentication_mode",
+					Description: `Authentication mode of the cluster, possible values are x509 and rbac.`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `Advanced configuration of master nodes. Structure is documented below. The ` + "`" + `masters` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone (AZ) of the master node.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_cce_clusters",
+			Category:         "Cloud Container Engine (CCE)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
+				"cce",
+				"clusters",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the CCE clusters. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional, String) Specifies the ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `(Optional, String) Specifies the type of the cluster. Possible values:`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, String) Specifies the VPC ID to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `(Optional, String) Specifies the enterprise project ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, String) Specifies the status of the cluster. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `Indicates a list of IDs of all CCE clusters found.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `Indicates a list of CCE clusters found. Structure is documented below. The ` + "`" + `clusters` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `The type of the cluster. Possible values:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The specification of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `The version of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "billing_mode",
+					Description: `The charging mode of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "container_network_cidr",
+					Description: `The container network segment.`,
+				},
+				resource.Attribute{
+					Name:        "container_network_type",
+					Description: `The container network type:`,
+				},
+				resource.Attribute{
+					Name:        "eni_subnet_id",
+					Description: `The ENI subnet ID.`,
+				},
+				resource.Attribute{
+					Name:        "eni_subnet_cidr",
+					Description: `The ENI network segment.`,
+				},
+				resource.Attribute{
+					Name:        "service_network_cidr",
+					Description: `The service network segment.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_mode",
+					Description: `The authentication mode of the cluster, possible values are x509 and rbac. Defaults to`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `The advanced configuration of master nodes.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `The security group ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The vpc ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the VPC Subnet used to create the node.`,
+				},
+				resource.Attribute{
+					Name:        "highway_subnet_id",
+					Description: `The ID of the high speed network used to create bare metal nodes.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `The enterprise project ID of the CCE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `The access addresses of kube-apiserver in the cluster. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters",
+					Description: `The certificate clusters. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users",
+					Description: `The certificate users. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config_raw",
+					Description: `The raw Kubernetes config to be used by kubectl and other compatible tools. The ` + "`" + `endpoints` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the cluster access address.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the cluster access address. +`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority_data",
+					Description: `The certificate data. The ` + "`" + `certificate_users` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "client_key_data",
+					Description: `The client key data.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `Indicates a list of IDs of all CCE clusters found.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `Indicates a list of CCE clusters found. Structure is documented below. The ` + "`" + `clusters` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_type",
+					Description: `The type of the cluster. Possible values:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The specification of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_version",
+					Description: `The version of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "billing_mode",
+					Description: `The charging mode of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "container_network_cidr",
+					Description: `The container network segment.`,
+				},
+				resource.Attribute{
+					Name:        "container_network_type",
+					Description: `The container network type:`,
+				},
+				resource.Attribute{
+					Name:        "eni_subnet_id",
+					Description: `The ENI subnet ID.`,
+				},
+				resource.Attribute{
+					Name:        "eni_subnet_cidr",
+					Description: `The ENI network segment.`,
+				},
+				resource.Attribute{
+					Name:        "service_network_cidr",
+					Description: `The service network segment.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_mode",
+					Description: `The authentication mode of the cluster, possible values are x509 and rbac. Defaults to`,
+				},
+				resource.Attribute{
+					Name:        "masters",
+					Description: `The advanced configuration of master nodes.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `The security group ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The vpc ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the VPC Subnet used to create the node.`,
+				},
+				resource.Attribute{
+					Name:        "highway_subnet_id",
+					Description: `The ID of the high speed network used to create bare metal nodes.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `The enterprise project ID of the CCE cluster.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `The access addresses of kube-apiserver in the cluster. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters",
+					Description: `The certificate clusters. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users",
+					Description: `The certificate users. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config_raw",
+					Description: `The raw Kubernetes config to be used by kubectl and other compatible tools. The ` + "`" + `endpoints` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The URL of the cluster access address.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the cluster access address. +`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority_data",
+					Description: `The certificate data. The ` + "`" + `certificate_users` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "client_key_data",
+					Description: `The client key data.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -471,7 +899,8 @@ var (
 			ShortDescription: ``,
 			Description: `
 
-` + "`" + `flexibleengine_cce_node_ids_v3` + "`" + ` provides a list of node ids for a CCE cluster. This resource can be useful for getting back a list of node ids for a CCE cluster.
+` + "`" + `flexibleengine_cce_node_ids_v3` + "`" + ` provides a list of node ids for a CCE cluster.
+This data source can be useful for getting back a list of node ids for a CCE cluster.
 
 `,
 			Keywords: []string{
@@ -576,20 +1005,12 @@ var (
 					Description: `Bandwidth billing type.`,
 				},
 				resource.Attribute{
-					Name:        "disk_size",
-					Description: `Disk size in GB.`,
+					Name:        "root_volume",
+					Description: `It corresponds to the system disk related configuration. + ` + "`" + `disk_size` + "`" + ` - Disk size in GB. + ` + "`" + `volume_type` + "`" + ` - Disk type.`,
 				},
 				resource.Attribute{
-					Name:        "volume_type",
-					Description: `Disk type.`,
-				},
-				resource.Attribute{
-					Name:        "disk_size",
-					Description: `Disk size in GB.`,
-				},
-				resource.Attribute{
-					Name:        "volume_type",
-					Description: `Disk type.`,
+					Name:        "data_volumes",
+					Description: `Represents the data disk to be created. + ` + "`" + `disk_size` + "`" + ` - Disk size in GB. + ` + "`" + `volume_type` + "`" + ` - Disk type.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -642,20 +1063,12 @@ var (
 					Description: `Bandwidth billing type.`,
 				},
 				resource.Attribute{
-					Name:        "disk_size",
-					Description: `Disk size in GB.`,
+					Name:        "root_volume",
+					Description: `It corresponds to the system disk related configuration. + ` + "`" + `disk_size` + "`" + ` - Disk size in GB. + ` + "`" + `volume_type` + "`" + ` - Disk type.`,
 				},
 				resource.Attribute{
-					Name:        "volume_type",
-					Description: `Disk type.`,
-				},
-				resource.Attribute{
-					Name:        "disk_size",
-					Description: `Disk size in GB.`,
-				},
-				resource.Attribute{
-					Name:        "volume_type",
-					Description: `Disk type.`,
+					Name:        "data_volumes",
+					Description: `Represents the data disk to be created. + ` + "`" + `disk_size` + "`" + ` - Disk size in GB. + ` + "`" + `volume_type` + "`" + ` - Disk type.`,
 				},
 			},
 		},
@@ -766,7 +1179,6 @@ Use this data source to get an available BMS Flavor.
 
 ` + "`" + `flexibleengine_compute_bms_keypairs_v2` + "`" + ` used to query SSH key pairs.
 
-
 `,
 			Keywords: []string{
 				"bare",
@@ -810,7 +1222,6 @@ Use this data source to get an available BMS Flavor.
 			Description: `
 
 ` + "`" + `flexibleengine_compute_bms_nic_v2` + "`" + ` used to query information about a BMS NIC based on the NIC ID.
-
 
 `,
 			Keywords: []string{
@@ -1639,66 +2050,6 @@ The FlexibleEngine CSBS Backup Policy data source allows access of backup Policy
 					Name:        "parameters",
 					Description: `Specifies the parameters of a backup policy.`,
 				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Specifies Scheduling period name.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Specifies Scheduling period description.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Specifies whether the scheduling period is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "max_backups",
-					Description: `Specifies maximum number of backups that can be automatically created for a backup object.`,
-				},
-				resource.Attribute{
-					Name:        "retention_duration_days",
-					Description: `Specifies duration of retaining a backup, in days.`,
-				},
-				resource.Attribute{
-					Name:        "permanent",
-					Description: `Specifies whether backups are permanently retained.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_pattern",
-					Description: `Specifies Scheduling policy of the scheduler.`,
-				},
-				resource.Attribute{
-					Name:        "operation_type",
-					Description: `Specifies Operation type, which can be backup.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Specifies Scheduling period ID.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_id",
-					Description: `Specifies Scheduler ID.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_name",
-					Description: `Specifies Scheduler name.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_type",
-					Description: `Specifies Scheduler type.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Specifies the ID of the object to be backed up.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Entity object type of the backup object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Specifies backup object name.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1712,66 +2063,6 @@ The FlexibleEngine CSBS Backup Policy data source allows access of backup Policy
 				resource.Attribute{
 					Name:        "parameters",
 					Description: `Specifies the parameters of a backup policy.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Specifies Scheduling period name.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Specifies Scheduling period description.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Specifies whether the scheduling period is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "max_backups",
-					Description: `Specifies maximum number of backups that can be automatically created for a backup object.`,
-				},
-				resource.Attribute{
-					Name:        "retention_duration_days",
-					Description: `Specifies duration of retaining a backup, in days.`,
-				},
-				resource.Attribute{
-					Name:        "permanent",
-					Description: `Specifies whether backups are permanently retained.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_pattern",
-					Description: `Specifies Scheduling policy of the scheduler.`,
-				},
-				resource.Attribute{
-					Name:        "operation_type",
-					Description: `Specifies Operation type, which can be backup.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Specifies Scheduling period ID.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_id",
-					Description: `Specifies Scheduler ID.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_name",
-					Description: `Specifies Scheduler name.`,
-				},
-				resource.Attribute{
-					Name:        "trigger_type",
-					Description: `Specifies Scheduler type.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Specifies the ID of the object to be backed up.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Entity object type of the backup object.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Specifies backup object name.`,
 				},
 			},
 		},
@@ -1848,92 +2139,12 @@ The FlexibleEngine CSBS Backup data source allows access of backup resources.
 					Description: `Specifies the backup capacity.`,
 				},
 				resource.Attribute{
-					Name:        "space_saving_ratio",
-					Description: `Specifies the space saving rate.`,
+					Name:        "volume_backups",
+					Description: `block supports the following arguments: + ` + "`" + `status` + "`" + ` - Status of backup Volume. + ` + "`" + `space_saving_ratio` + "`" + ` - Specifies the space saving rate. + ` + "`" + `name` + "`" + ` - It gives EVS disk backup name. + ` + "`" + `bootable` + "`" + ` - Specifies whether the disk is bootable. + ` + "`" + `average_speed` + "`" + ` - Specifies the average speed. + ` + "`" + `source_volume_size` + "`" + ` - Shows source volume size in GB. + ` + "`" + `source_volume_id` + "`" + ` - It specifies source volume ID. + ` + "`" + `incremental` + "`" + ` - Shows whether incremental backup is used. + ` + "`" + `snapshot_id` + "`" + ` - ID of snapshot. + ` + "`" + `source_volume_name` + "`" + ` - Specifies source volume name. + ` + "`" + `image_type` + "`" + ` - It specifies backup. The default value is backup. + ` + "`" + `id` + "`" + ` - Specifies Cinder backup ID. + ` + "`" + `size` + "`" + ` - Specifies accumulated size (MB) of backups.`,
 				},
 				resource.Attribute{
-					Name:        "status",
-					Description: `Status of backup Volume.`,
-				},
-				resource.Attribute{
-					Name:        "space_saving_ratio",
-					Description: `Specifies space saving rate.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `It gives EVS disk backup name.`,
-				},
-				resource.Attribute{
-					Name:        "bootable",
-					Description: `Specifies whether the disk is bootable.`,
-				},
-				resource.Attribute{
-					Name:        "average_speed",
-					Description: `Specifies the average speed.`,
-				},
-				resource.Attribute{
-					Name:        "source_volume_size",
-					Description: `Shows source volume size in GB.`,
-				},
-				resource.Attribute{
-					Name:        "source_volume_id",
-					Description: `It specifies source volume ID.`,
-				},
-				resource.Attribute{
-					Name:        "incremental",
-					Description: `Shows whether incremental backup is used.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `ID of snapshot.`,
-				},
-				resource.Attribute{
-					Name:        "source_volume_name",
-					Description: `Specifies source volume name.`,
-				},
-				resource.Attribute{
-					Name:        "image_type",
-					Description: `It specifies backup. The default value is backup.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Specifies Cinder backup ID.`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `Specifies accumulated size (MB) of backups.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of backup data.`,
-				},
-				resource.Attribute{
-					Name:        "eip",
-					Description: `Specifies elastic IP address of the ECS.`,
-				},
-				resource.Attribute{
-					Name:        "cloud_service_type",
-					Description: `Specifies ECS type.`,
-				},
-				resource.Attribute{
-					Name:        "ram",
-					Description: `Specifies memory size of the ECS, in MB.`,
-				},
-				resource.Attribute{
-					Name:        "vcpus",
-					Description: `Specifies CPU cores corresponding to the ECS.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip",
-					Description: `It specifies internal IP address of the ECS.`,
-				},
-				resource.Attribute{
-					Name:        "disk",
-					Description: `Shows system disk size corresponding to the ECS specifications.`,
-				},
-				resource.Attribute{
-					Name:        "image_type",
-					Description: `Specifies image type.`,
+					Name:        "vm_metadata",
+					Description: `block supports the following arguments: + ` + "`" + `name` + "`" + ` - Name of backup data. + ` + "`" + `eip` + "`" + ` - Specifies elastic IP address of the ECS. + ` + "`" + `cloud_service_type` + "`" + ` - Specifies ECS type. + ` + "`" + `ram` + "`" + ` - Specifies memory size of the ECS, in MB. + ` + "`" + `vcpus` + "`" + ` - Specifies CPU cores corresponding to the ECS. + ` + "`" + `private_ip` + "`" + ` - It specifies internal IP address of the ECS. + ` + "`" + `disk` + "`" + ` - Shows system disk size corresponding to the ECS specifications. + ` + "`" + `image_type` + "`" + ` - Specifies image type.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1954,92 +2165,12 @@ The FlexibleEngine CSBS Backup data source allows access of backup resources.
 					Description: `Specifies the backup capacity.`,
 				},
 				resource.Attribute{
-					Name:        "space_saving_ratio",
-					Description: `Specifies the space saving rate.`,
+					Name:        "volume_backups",
+					Description: `block supports the following arguments: + ` + "`" + `status` + "`" + ` - Status of backup Volume. + ` + "`" + `space_saving_ratio` + "`" + ` - Specifies the space saving rate. + ` + "`" + `name` + "`" + ` - It gives EVS disk backup name. + ` + "`" + `bootable` + "`" + ` - Specifies whether the disk is bootable. + ` + "`" + `average_speed` + "`" + ` - Specifies the average speed. + ` + "`" + `source_volume_size` + "`" + ` - Shows source volume size in GB. + ` + "`" + `source_volume_id` + "`" + ` - It specifies source volume ID. + ` + "`" + `incremental` + "`" + ` - Shows whether incremental backup is used. + ` + "`" + `snapshot_id` + "`" + ` - ID of snapshot. + ` + "`" + `source_volume_name` + "`" + ` - Specifies source volume name. + ` + "`" + `image_type` + "`" + ` - It specifies backup. The default value is backup. + ` + "`" + `id` + "`" + ` - Specifies Cinder backup ID. + ` + "`" + `size` + "`" + ` - Specifies accumulated size (MB) of backups.`,
 				},
 				resource.Attribute{
-					Name:        "status",
-					Description: `Status of backup Volume.`,
-				},
-				resource.Attribute{
-					Name:        "space_saving_ratio",
-					Description: `Specifies space saving rate.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `It gives EVS disk backup name.`,
-				},
-				resource.Attribute{
-					Name:        "bootable",
-					Description: `Specifies whether the disk is bootable.`,
-				},
-				resource.Attribute{
-					Name:        "average_speed",
-					Description: `Specifies the average speed.`,
-				},
-				resource.Attribute{
-					Name:        "source_volume_size",
-					Description: `Shows source volume size in GB.`,
-				},
-				resource.Attribute{
-					Name:        "source_volume_id",
-					Description: `It specifies source volume ID.`,
-				},
-				resource.Attribute{
-					Name:        "incremental",
-					Description: `Shows whether incremental backup is used.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `ID of snapshot.`,
-				},
-				resource.Attribute{
-					Name:        "source_volume_name",
-					Description: `Specifies source volume name.`,
-				},
-				resource.Attribute{
-					Name:        "image_type",
-					Description: `It specifies backup. The default value is backup.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Specifies Cinder backup ID.`,
-				},
-				resource.Attribute{
-					Name:        "size",
-					Description: `Specifies accumulated size (MB) of backups.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of backup data.`,
-				},
-				resource.Attribute{
-					Name:        "eip",
-					Description: `Specifies elastic IP address of the ECS.`,
-				},
-				resource.Attribute{
-					Name:        "cloud_service_type",
-					Description: `Specifies ECS type.`,
-				},
-				resource.Attribute{
-					Name:        "ram",
-					Description: `Specifies memory size of the ECS, in MB.`,
-				},
-				resource.Attribute{
-					Name:        "vcpus",
-					Description: `Specifies CPU cores corresponding to the ECS.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip",
-					Description: `It specifies internal IP address of the ECS.`,
-				},
-				resource.Attribute{
-					Name:        "disk",
-					Description: `Shows system disk size corresponding to the ECS specifications.`,
-				},
-				resource.Attribute{
-					Name:        "image_type",
-					Description: `Specifies image type.`,
+					Name:        "vm_metadata",
+					Description: `block supports the following arguments: + ` + "`" + `name` + "`" + ` - Name of backup data. + ` + "`" + `eip` + "`" + ` - Specifies elastic IP address of the ECS. + ` + "`" + `cloud_service_type` + "`" + ` - Specifies ECS type. + ` + "`" + `ram` + "`" + ` - Specifies memory size of the ECS, in MB. + ` + "`" + `vcpus` + "`" + ` - Specifies CPU cores corresponding to the ECS. + ` + "`" + `private_ip` + "`" + ` - It specifies internal IP address of the ECS. + ` + "`" + `disk` + "`" + ` - Shows system disk size corresponding to the ECS specifications. + ` + "`" + `image_type` + "`" + ` - Specifies image type.`,
 				},
 			},
 		},
@@ -2218,46 +2349,38 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `(Optional, String) The version of a cache engine. It is valid when the engine is`,
 				},
 				resource.Attribute{
+					Name:        "cache_mode",
+					Description: `(Optional, String) The mode of a cache engine. The valid values are as follows: + ` + "`" + `single` + "`" + ` - Single-node. + ` + "`" + `ha` + "`" + ` - Master/Standby. + ` + "`" + `cluster` + "`" + ` - Redis Cluster, it is valid when the engine is`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional, Float) The total memory of the cache, in GB. It is valid when the engine is redis 4.0/5.0. + Single-node and Master/Standby instances support: ` + "`" + `0.125` + "`" + `, ` + "`" + `0.25` + "`" + `, ` + "`" + `0.5` + "`" + `, ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `32` + "`" + `, ` + "`" + `48` + "`" + ` and ` + "`" + `64` + "`" + `. + Redis Cluster and Proxy Cluster instances support: ` + "`" + `4` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `32` + "`" + `, ` + "`" + `48` + "`" + `, ` + "`" + `64` + "`" + `, ` + "`" + `96` + "`" + `, ` + "`" + `128` + "`" + `, ` + "`" + `192` + "`" + `, ` + "`" + `256` + "`" + `, ` + "`" + `384` + "`" + `, ` + "`" + `512` + "`" + `, ` + "`" + `768` + "`" + ` and ` + "`" + `1024` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "replica_count",
+					Description: `(Optional, Int) The number of replicas includes the master. It is valid when the engine is redis 4.0/5.0 with`,
+				},
+				resource.Attribute{
 					Name:        "spec_code",
 					Description: `(Optional, String) Specifies the DCS instance specification code. You can log in to the DCS console, click`,
 				},
 				resource.Attribute{
-					Name:        "cache_mode",
-					Description: `(Optional, String) The mode of a cache engine. The valid values are as follows: + ` + "`" + `single` + "`" + ` - Single-node. + ` + "`" + `ha` + "`" + ` - Master/Standby. + ` + "`" + `cluster` + "`" + ` - Redis Cluster. + ` + "`" + `proxy` + "`" + ` - Proxy Cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
+					Name:        "id",
+					Description: `The found product ID.`,
 				},
 				resource.Attribute{
-					Name:        "engine",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "engine_version",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "cache_mode",
-					Description: `See Argument Reference above.`,
+					Name:        "cpu_architecture",
+					Description: `The CPU architecture of DCS instance.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "engine",
-					Description: `See Argument Reference above.`,
+					Name:        "id",
+					Description: `The found product ID.`,
 				},
 				resource.Attribute{
-					Name:        "engine_version",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "cache_mode",
-					Description: `See Argument Reference above.`,
+					Name:        "cpu_architecture",
+					Description: `The CPU architecture of DCS instance.`,
 				},
 			},
 		},
@@ -2425,6 +2548,369 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_dms_kafka_instances",
+			Category:         "Distributed Message Service (DMS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
+				"dms",
+				"kafka",
+				"instances",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to query the kafka instance list. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional, String) Specifies the kafka instance ID to match exactly.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the kafka instance name for data-source queries.`,
+				},
+				resource.Attribute{
+					Name:        "fuzzy_match",
+					Description: `(Optional, Bool) Specifies whether to match the instance name fuzzily, the default is a exact match (` + "`" + `flase` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, String) Specifies the kafka instance status for data-source queries.`,
+				},
+				resource.Attribute{
+					Name:        "include_failure",
+					Description: `(Optional, Bool) Specifies whether the query results contain instances that failed to create. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `The result of the query's list of kafka instances. The structure is documented below. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The instance type.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The instance name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The instance description.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The list of AZ names.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `The product ID used by the instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `The kafka engine version.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `The storage I/O specification.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `The message storage capacity, in GB unit.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC ID to which the instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The subnet ID to which the instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `The security group ID associated with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "manager_user",
+					Description: `The username for logging in to the Kafka Manager.`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `The access username.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `The time at which a maintenance time window starts, the format is ` + "`" + `HH:mm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `The time at which a maintenance time window ends, the format is ` + "`" + `HH:mm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_public_ip",
+					Description: `Whether public access to the instance is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_ids",
+					Description: `The IDs of the elastic IP address (EIP).`,
+				},
+				resource.Attribute{
+					Name:        "public_conn_addresses",
+					Description: `The instance public access address. The format of each connection address is ` + "`" + `{IP address}:{port}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retention_policy",
+					Description: `The action to be taken when the memory usage reaches the disk capacity threshold.`,
+				},
+				resource.Attribute{
+					Name:        "dumping",
+					Description: `Whether to dumping is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_topic",
+					Description: `Whether to enable automatic topic creation.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `The maximum number of topics in the DMS kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enable",
+					Description: `Whether the Kafka SASL_SSL is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `The used message storage space, in GB unit.`,
+				},
+				resource.Attribute{
+					Name:        "connect_address",
+					Description: `The IP address for instance connection.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The instance status.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `The resource specifications identifier.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The user ID who created the instance.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The username who created the instance.`,
+				},
+				resource.Attribute{
+					Name:        "management_connect_address",
+					Description: `The connection address of the Kafka manager of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The key/value pairs to associate with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "cross_vpc_accesses",
+					Description: `Indicates the Access information of cross-VPC. The structure is documented below. The ` + "`" + `cross_vpc_accesses` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "listener_ip",
+					Description: `The listener IP address.`,
+				},
+				resource.Attribute{
+					Name:        "advertised_ip",
+					Description: `The advertised IP Address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `The port ID associated with the address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `The result of the query's list of kafka instances. The structure is documented below. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The instance ID.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The instance type.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The instance name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The instance description.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The list of AZ names.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `The product ID used by the instance.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `The kafka engine version.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `The storage I/O specification.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `The message storage capacity, in GB unit.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC ID to which the instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The subnet ID to which the instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `The security group ID associated with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "manager_user",
+					Description: `The username for logging in to the Kafka Manager.`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `The access username.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `The time at which a maintenance time window starts, the format is ` + "`" + `HH:mm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `The time at which a maintenance time window ends, the format is ` + "`" + `HH:mm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_public_ip",
+					Description: `Whether public access to the instance is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_ids",
+					Description: `The IDs of the elastic IP address (EIP).`,
+				},
+				resource.Attribute{
+					Name:        "public_conn_addresses",
+					Description: `The instance public access address. The format of each connection address is ` + "`" + `{IP address}:{port}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "retention_policy",
+					Description: `The action to be taken when the memory usage reaches the disk capacity threshold.`,
+				},
+				resource.Attribute{
+					Name:        "dumping",
+					Description: `Whether to dumping is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_topic",
+					Description: `Whether to enable automatic topic creation.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `The maximum number of topics in the DMS kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enable",
+					Description: `Whether the Kafka SASL_SSL is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `The used message storage space, in GB unit.`,
+				},
+				resource.Attribute{
+					Name:        "connect_address",
+					Description: `The IP address for instance connection.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The instance status.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `The resource specifications identifier.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The user ID who created the instance.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The username who created the instance.`,
+				},
+				resource.Attribute{
+					Name:        "management_connect_address",
+					Description: `The connection address of the Kafka manager of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The key/value pairs to associate with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "cross_vpc_accesses",
+					Description: `Indicates the Access information of cross-VPC. The structure is documented below. The ` + "`" + `cross_vpc_accesses` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "listener_ip",
+					Description: `The listener IP address.`,
+				},
+				resource.Attribute{
+					Name:        "advertised_ip",
+					Description: `The advertised IP Address.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `The port number.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `The port ID associated with the address.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_dms_product",
 			Category:         "Distributed Message Service (DMS)",
 			ShortDescription: ``,
@@ -2526,6 +3012,392 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "max_tps",
 					Description: `The maximum number of messages per unit time.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_dms_rocketmq_broker",
+			Category:         "Distributed Message Service (DMS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
+				"dms",
+				"rocketmq",
+				"broker",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to query the data source. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional, String) Specifies the ID of the rocketMQ instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "brokers",
+					Description: `Indicates the list of the brokers.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "brokers",
+					Description: `Indicates the list of the brokers.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_dms_rocketmq_instances",
+			Category:         "Distributed Message Service (DMS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
+				"dms",
+				"rocketmq",
+				"instances",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to query the data source. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional, String) Specifies the ID of the RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, String) Specifies the status of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "exact_match_name",
+					Description: `(Optional, String) Specifies whether to search for the instance that precisely matches a specified instance name. Value options:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `Indicates the list of DMS RocketMQ instances. The [Instance](#DmsRocketMQInstances_Instance) structure is documented below. <a name="DmsRocketMQInstances_Instance"></a> The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the name of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the description of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the DMS RocketMQ instance type.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `Indicates the instance specification. For a cluster DMS RocketMQ instance, VM specifications and the number of nodes are returned.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Indicates the version of the RocketMQ engine.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `Indicates the ID of a VPC.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `Indicates a product ID.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Indicates the ID of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Indicates the ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `Indicates the list of availability zone names, where instance brokers reside and which has available resources.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `Indicates the time at which the maintenance window starts. The format is HH:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `Indicates the time at which the maintenance window ends. The format is HH:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `Indicates the message storage capacity. Unit: GB.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `Indicates the used message storage space. Unit: GB.`,
+				},
+				resource.Attribute{
+					Name:        "enable_publicip",
+					Description: `Indicates whether to enable public access.`,
+				},
+				resource.Attribute{
+					Name:        "publicip_id",
+					Description: `Indicates the ID of the EIP bound to the instance. Use commas (,) to separate multiple EIP IDs. This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).`,
+				},
+				resource.Attribute{
+					Name:        "publicip_address",
+					Description: `Indicates the public IP address.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enable",
+					Description: `Indicates whether the RocketMQ SASL_SSL is enabled. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "cross_vpc_accesses",
+					Description: `Indicates the Cross-VPC access information. The [CrossVpc](#DmsRocketMQInstances_InstanceCrossVpc) structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `Indicates the storage I/O specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Indicates whether to support IPv6. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `Indicates the node quantity.`,
+				},
+				resource.Attribute{
+					Name:        "new_spec_billing_enable",
+					Description: `Indicates the whether billing based on new specifications is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_acl",
+					Description: `Indicates whether access control is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "broker_num",
+					Description: `Specifies the broker numbers. Defaults to 1.`,
+				},
+				resource.Attribute{
+					Name:        "namesrv_address",
+					Description: `Indicates the metadata address.`,
+				},
+				resource.Attribute{
+					Name:        "broker_address",
+					Description: `Indicates the service data address.`,
+				},
+				resource.Attribute{
+					Name:        "public_namesrv_address",
+					Description: `Indicates the public network metadata address.`,
+				},
+				resource.Attribute{
+					Name:        "public_broker_address",
+					Description: `Indicates the public network service data address.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `Indicates the resource specifications. <a name="DmsRocketMQInstances_InstanceCrossVpc"></a> The ` + "`" + `cross_vpc_accesses` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "lisenter_ip",
+					Description: `Indicates the IP of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "advertised_ip",
+					Description: `Indicates the advertised IP.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the port.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `Indicates the port ID associated with the address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `Indicates the list of DMS RocketMQ instances. The [Instance](#DmsRocketMQInstances_Instance) structure is documented below. <a name="DmsRocketMQInstances_Instance"></a> The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the name of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the description of the DMS RocketMQ instance.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the DMS RocketMQ instance type.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `Indicates the instance specification. For a cluster DMS RocketMQ instance, VM specifications and the number of nodes are returned.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `Indicates the version of the RocketMQ engine.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `Indicates the ID of a VPC.`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `Indicates a product ID.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Indicates the ID of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Indicates the ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `Indicates the list of availability zone names, where instance brokers reside and which has available resources.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `Indicates the time at which the maintenance window starts. The format is HH:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `Indicates the time at which the maintenance window ends. The format is HH:mm:ss.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `Indicates the message storage capacity. Unit: GB.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `Indicates the used message storage space. Unit: GB.`,
+				},
+				resource.Attribute{
+					Name:        "enable_publicip",
+					Description: `Indicates whether to enable public access.`,
+				},
+				resource.Attribute{
+					Name:        "publicip_id",
+					Description: `Indicates the ID of the EIP bound to the instance. Use commas (,) to separate multiple EIP IDs. This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).`,
+				},
+				resource.Attribute{
+					Name:        "publicip_address",
+					Description: `Indicates the public IP address.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_enable",
+					Description: `Indicates whether the RocketMQ SASL_SSL is enabled. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "cross_vpc_accesses",
+					Description: `Indicates the Cross-VPC access information. The [CrossVpc](#DmsRocketMQInstances_InstanceCrossVpc) structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `Indicates the storage I/O specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6_enable",
+					Description: `Indicates whether to support IPv6. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `Indicates the node quantity.`,
+				},
+				resource.Attribute{
+					Name:        "new_spec_billing_enable",
+					Description: `Indicates the whether billing based on new specifications is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "enable_acl",
+					Description: `Indicates whether access control is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "broker_num",
+					Description: `Specifies the broker numbers. Defaults to 1.`,
+				},
+				resource.Attribute{
+					Name:        "namesrv_address",
+					Description: `Indicates the metadata address.`,
+				},
+				resource.Attribute{
+					Name:        "broker_address",
+					Description: `Indicates the service data address.`,
+				},
+				resource.Attribute{
+					Name:        "public_namesrv_address",
+					Description: `Indicates the public network metadata address.`,
+				},
+				resource.Attribute{
+					Name:        "public_broker_address",
+					Description: `Indicates the public network service data address.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `Indicates the resource specifications. <a name="DmsRocketMQInstances_InstanceCrossVpc"></a> The ` + "`" + `cross_vpc_accesses` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "lisenter_ip",
+					Description: `Indicates the IP of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "advertised_ip",
+					Description: `Indicates the advertised IP.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the port.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `Indicates the port ID associated with the address.`,
 				},
 			},
 		},
@@ -2667,14 +3539,113 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_dws_flavors",
+			Category:         "Data Warehouse Service (DWS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"warehouse",
+				"service",
+				"dws",
+				"flavors",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the DWS cluster client. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional, String) Specifies the availability zone name.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `(Optional, String) Specifies the vcpus of the DWS node flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional, String) Specifies the ram of the DWS node flavor in GB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The name of the DWS node flavor. It is referenced by`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the vcpus of the DWS node flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the ram of the DWS node flavor in GB.`,
+				},
+				resource.Attribute{
+					Name:        "volumetype",
+					Description: `Indicates Disk type.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Indicates the Disk size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the availability zone where the node resides.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "flavor_id",
+					Description: `The name of the DWS node flavor. It is referenced by`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the vcpus of the DWS node flavor.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the ram of the DWS node flavor in GB.`,
+				},
+				resource.Attribute{
+					Name:        "volumetype",
+					Description: `Indicates Disk type.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Indicates the Disk size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the availability zone where the node resides.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_elb_certificate",
-			Category:         "Elastic Load Balance (ELB)",
+			Category:         "Elastic Load Balance (Dedicated ELB)",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"elastic",
 				"load",
 				"balance",
+				"dedicated",
 				"elb",
 				"certificate",
 			},
@@ -2734,13 +3705,14 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_elb_flavors",
-			Category:         "Elastic Load Balance (ELB)",
+			Category:         "Elastic Load Balance (Dedicated ELB)",
 			ShortDescription: ``,
 			Description:      ``,
 			Keywords: []string{
 				"elastic",
 				"load",
 				"balance",
+				"dedicated",
 				"elb",
 				"flavors",
 			},
@@ -2901,6 +3873,399 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_gaussdb_cassandra_instances",
+			Category:         "GaussDB NoSQL",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"gaussdb",
+				"nosql",
+				"cassandra",
+				"instances",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to obtain the instance. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional, String) Specifies the VPC ID.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional, String) Specifies the network ID of a subnet. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the data source.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `An array of available instances. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `Indicates the VPC ID.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Indicates the network ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the instance mode.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `Indicates the instance specifications.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Indicates the security group ID.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `Indicates the enterprise project id.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the instance availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `Indicates the count of the nodes.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `Indicates the size of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the list of private IP address of the nodes.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `Indicates the database information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `Indicates the advanced backup policy. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Indicates the key/value tags of the instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Indicates the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "storage_engine",
+					Description: `Indicates the database storage engine.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Indicates the database version. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Indicates the backup time window.`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `Indicates the number of days to retain the generated The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the node ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the node name.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Indicates the private IP address of a node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the node status.`,
+				},
+				resource.Attribute{
+					Name:        "support_reduce",
+					Description: `Indicates whether the node support reduce.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the availability zone where the node resides.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the data source.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `An array of available instances. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `Indicates the VPC ID.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Indicates the network ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the DB instance status.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Indicates the instance mode.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `Indicates the instance specifications.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Indicates the security group ID.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `Indicates the enterprise project id.`,
+				},
+				resource.Attribute{
+					Name:        "db_user_name",
+					Description: `Indicates the default username.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the instance availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the database port.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `Indicates the count of the nodes.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `Indicates the size of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the list of private IP address of the nodes.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `Indicates the database information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `Indicates the advanced backup policy. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Indicates the key/value tags of the instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Indicates the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "storage_engine",
+					Description: `Indicates the database storage engine.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Indicates the database version. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Indicates the backup time window.`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `Indicates the number of days to retain the generated The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the node ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the node name.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Indicates the private IP address of a node.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the node status.`,
+				},
+				resource.Attribute{
+					Name:        "support_reduce",
+					Description: `Indicates whether the node support reduce.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the availability zone where the node resides.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_gaussdb_nosql_flavors",
+			Category:         "GaussDB NoSQL",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"gaussdb",
+				"nosql",
+				"flavors",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the GaussDB specifications. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional, String) Specifies the type of the database engine. The valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Optional, String) Specifies the version of the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `(Optional, Int) Specifies the number of vCPUs.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional, Int) Specifies the memory size in gigabytes (GB).`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional, String) Specifies the availability zone (AZ) of the GaussDB specifications. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `The information of the GaussDB specifications. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The spec code of the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The number of vCPUs.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The memory size, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The type of the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `The version of the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `All available zones (on sale) for current flavor.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `The information of the GaussDB specifications. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The spec code of the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The number of vCPUs.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The memory size, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `The type of the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `The version of the database engine.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `All available zones (on sale) for current flavor.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_identity_custom_role_v3",
 			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: ``,
@@ -2957,6 +4322,109 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "catalog",
 					Description: `The catalog of the custom policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_group",
+			Category:         "Identity and Access Management (IAM)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the identity group.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, String) Specifies the ID of the identity group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, String) Specifies the description of the identity group. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `Indicates the domain the group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `Indicates the users the group contains. Structure is documented below. The ` + "`" + `users` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the IAM user name.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the User.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the description of the IAM user.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Indicates the whether the IAM user is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "password_expires_at",
+					Description: `Indicates the time when the password will expire. Null indicates that the password has unlimited validity.`,
+				},
+				resource.Attribute{
+					Name:        "password_status",
+					Description: `Indicates the password status. True means that the password needs to be changed, and false means that the password is normal.`,
+				},
+				resource.Attribute{
+					Name:        "password_strength",
+					Description: `Indicates the password strength. The value can be high, mid, or low.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `Indicates the domain the group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `Indicates the users the group contains. Structure is documented below. The ` + "`" + `users` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the IAM user name.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the User.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the description of the IAM user.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Indicates the whether the IAM user is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "password_expires_at",
+					Description: `Indicates the time when the password will expire. Null indicates that the password has unlimited validity.`,
+				},
+				resource.Attribute{
+					Name:        "password_status",
+					Description: `Indicates the password status. True means that the password needs to be changed, and false means that the password is normal.`,
+				},
+				resource.Attribute{
+					Name:        "password_strength",
+					Description: `Indicates the password strength. The value can be high, mid, or low.`,
 				},
 			},
 		},
@@ -3113,6 +4581,105 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "policy",
 					Description: `The content of the policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_identity_users",
+			Category:         "Identity and Access Management (IAM)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
+				"users",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the IAM user name.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional, String) Specifies the status of the IAM user, the default value is`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `The details of the queried IAM users. The structure is documented below. The ` + "`" + `users` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the User.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the IAM user name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the description of the IAM user.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Indicates the whether the IAM user is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `Indicates the user groups to which an IAM user belongs.`,
+				},
+				resource.Attribute{
+					Name:        "password_expires_at",
+					Description: `Indicates the time when the password will expire. Null indicates that the password has unlimited validity.`,
+				},
+				resource.Attribute{
+					Name:        "password_status",
+					Description: `Indicates the password status. True means that the password needs to be changed, and false means that the password is normal.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `The details of the queried IAM users. The structure is documented below. The ` + "`" + `users` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the ID of the User.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the IAM user name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the description of the IAM user.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Indicates the whether the IAM user is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `Indicates the user groups to which an IAM user belongs.`,
+				},
+				resource.Attribute{
+					Name:        "password_expires_at",
+					Description: `Indicates the time when the password will expire. Null indicates that the password has unlimited validity.`,
+				},
+				resource.Attribute{
+					Name:        "password_status",
+					Description: `Indicates the password status. True means that the password needs to be changed, and false means that the password is normal.`,
 				},
 			},
 		},
@@ -3544,6 +5111,343 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_modelarts_dataset_versions",
+			Category:         "AI Development Platform (ModelArts)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"ai",
+				"development",
+				"platform",
+				"modelarts",
+				"dataset",
+				"versions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain dataset versions. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "dataset_id",
+					Description: `(Required, String) Specifies the ID of dataset.`,
+				},
+				resource.Attribute{
+					Name:        "split_ratio",
+					Description: `(Optional, String) Specifies the range of splitting ratio which randomly divides a labeled sample into a training set and a validation set. Separate the minimum and maximum split ratios with commas, for example: "0.0,1.0".`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the dataset version. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `Indicates a list of all dataset versions found. Structure is documented below. The ` + "`" + `versions` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the dataset version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the dataset version.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the dataset version.`,
+				},
+				resource.Attribute{
+					Name:        "split_ratio",
+					Description: `The ratio of splitting which randomly divides a labeled sample into a training set and a validation set.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dataset version status. Valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "files",
+					Description: `The total number of samples.`,
+				},
+				resource.Attribute{
+					Name:        "storage_path",
+					Description: `The path to save the manifest file of the version.`,
+				},
+				resource.Attribute{
+					Name:        "is_current",
+					Description: `Whether this version is current version.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The creation time, in UTC format.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The last update time, in UTC format.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `Indicates a list of all dataset versions found. Structure is documented below. The ` + "`" + `versions` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the dataset version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the dataset version.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the dataset version.`,
+				},
+				resource.Attribute{
+					Name:        "split_ratio",
+					Description: `The ratio of splitting which randomly divides a labeled sample into a training set and a validation set.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dataset version status. Valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "files",
+					Description: `The total number of samples.`,
+				},
+				resource.Attribute{
+					Name:        "storage_path",
+					Description: `The path to save the manifest file of the version.`,
+				},
+				resource.Attribute{
+					Name:        "is_current",
+					Description: `Whether this version is current version.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The creation time, in UTC format.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The last update time, in UTC format.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_modelarts_datasets",
+			Category:         "AI Development Platform (ModelArts)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"ai",
+				"development",
+				"platform",
+				"modelarts",
+				"datasets",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain datasets. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of datasets.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, Int) Specifies the type of datasets. The options are: +`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "datasets",
+					Description: `Indicates a list of all datasets found. Structure is documented below. The ` + "`" + `datasets` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "output_path",
+					Description: `The OBS path for storing output files such as labeled files.`,
+				},
+				resource.Attribute{
+					Name:        "data_source",
+					Description: `The data sources which is used to imported the source data (such as pictures/files/audio, etc.) in this directory and subdirectories to the dataset. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "schemas",
+					Description: `The schema information of source data when ` + "`" + `type` + "`" + ` is ` + "`" + `400` + "`" + `(Table Type). Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `The labels information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "data_format",
+					Description: `The dataset format. Valid values include: ` + "`" + `Default` + "`" + `, ` + "`" + `CarbonData` + "`" + `: Carbon format(Supported only for table type dataset.).`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The dataset creation time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dataset status. Valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "data_type",
+					Description: `The type of data source. Valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The OBS path when ` + "`" + `data_type` + "`" + ` is ` + "`" + `0` + "`" + `(OBS) or the HDFS path when ` + "`" + `data_type` + "`" + ` is ` + "`" + `4` + "`" + `(MRS). All the file in this directory and subdirectories will be which be imported to the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "with_column_header",
+					Description: `Whether the data contains table header when the type of dataset is ` + "`" + `400` + "`" + `(Table type). The ` + "`" + `schemas` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The field type. Valid values include: ` + "`" + `String` + "`" + `, ` + "`" + `Short` + "`" + `, ` + "`" + `Int` + "`" + `, ` + "`" + `Long` + "`" + `, ` + "`" + `Double` + "`" + `, ` + "`" + `Float` + "`" + `, ` + "`" + `Byte` + "`" + `, ` + "`" + `Date` + "`" + `, ` + "`" + `Timestamp` + "`" + `, ` + "`" + `Bool` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The field name. The ` + "`" + `labels` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of label.`,
+				},
+				resource.Attribute{
+					Name:        "property_color",
+					Description: `The color of label.`,
+				},
+				resource.Attribute{
+					Name:        "property_shape",
+					Description: `The shape of label. Valid values include: ` + "`" + `bndbox` + "`" + `, ` + "`" + `polygon` + "`" + `, ` + "`" + `circle` + "`" + `, ` + "`" + `line` + "`" + `, ` + "`" + `dashed` + "`" + `, ` + "`" + `point` + "`" + `, ` + "`" + `polyline` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "property_shortcut",
+					Description: `The shortcut of label.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates a data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "datasets",
+					Description: `Indicates a list of all datasets found. Structure is documented below. The ` + "`" + `datasets` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "output_path",
+					Description: `The OBS path for storing output files such as labeled files.`,
+				},
+				resource.Attribute{
+					Name:        "data_source",
+					Description: `The data sources which is used to imported the source data (such as pictures/files/audio, etc.) in this directory and subdirectories to the dataset. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "schemas",
+					Description: `The schema information of source data when ` + "`" + `type` + "`" + ` is ` + "`" + `400` + "`" + `(Table Type). Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `The labels information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "data_format",
+					Description: `The dataset format. Valid values include: ` + "`" + `Default` + "`" + `, ` + "`" + `CarbonData` + "`" + `: Carbon format(Supported only for table type dataset.).`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The dataset creation time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dataset status. Valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "data_type",
+					Description: `The type of data source. Valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The OBS path when ` + "`" + `data_type` + "`" + ` is ` + "`" + `0` + "`" + `(OBS) or the HDFS path when ` + "`" + `data_type` + "`" + ` is ` + "`" + `4` + "`" + `(MRS). All the file in this directory and subdirectories will be which be imported to the dataset.`,
+				},
+				resource.Attribute{
+					Name:        "with_column_header",
+					Description: `Whether the data contains table header when the type of dataset is ` + "`" + `400` + "`" + `(Table type). The ` + "`" + `schemas` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The field type. Valid values include: ` + "`" + `String` + "`" + `, ` + "`" + `Short` + "`" + `, ` + "`" + `Int` + "`" + `, ` + "`" + `Long` + "`" + `, ` + "`" + `Double` + "`" + `, ` + "`" + `Float` + "`" + `, ` + "`" + `Byte` + "`" + `, ` + "`" + `Date` + "`" + `, ` + "`" + `Timestamp` + "`" + `, ` + "`" + `Bool` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The field name. The ` + "`" + `labels` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of label.`,
+				},
+				resource.Attribute{
+					Name:        "property_color",
+					Description: `The color of label.`,
+				},
+				resource.Attribute{
+					Name:        "property_shape",
+					Description: `The shape of label. Valid values include: ` + "`" + `bndbox` + "`" + `, ` + "`" + `polygon` + "`" + `, ` + "`" + `circle` + "`" + `, ` + "`" + `line` + "`" + `, ` + "`" + `dashed` + "`" + `, ` + "`" + `point` + "`" + `, ` + "`" + `polyline` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "property_shortcut",
+					Description: `The shortcut of label.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_nat_gateway_v2",
 			Category:         "NAT Gateway (NAT)",
 			ShortDescription: ``,
@@ -3569,7 +5473,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional, String) Specifies the subnet ID of the downstream interface (the next hop of the DVR) of the NAT gateway.`,
+					Description: `(Optional, String) Specifies the ID of the VPC Subnet of the downstream interface (the next hop of the DVR) of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -3589,15 +5493,12 @@ CTS Tracker data source allows access of Cloud Tracker.
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_networking_network_v2",
-			Category:         "Virtual Private Cloud (VPC)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "Network.svg",
 			Keywords: []string{
-				"virtual",
-				"private",
-				"cloud",
-				"vpc",
+				"deprecated",
 				"networking",
 				"network",
 				"v2",
@@ -3656,6 +5557,109 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "shared",
 					Description: `(Optional) Specifies whether the network resource can be accessed by any tenant or not.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_networking_port",
+			Category:         "Virtual Private Cloud (VPC)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"networking",
+				"port",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the port. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Optional, String) Specifies the ID of the port.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional, String) Specifies the ID of the network the port belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip",
+					Description: `(Optional, String) Specifies the port IP address filter.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `(Optional, String) Specifies the MAC address of the port.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, String) Specifies the status of the port.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional, String) The list of port security group IDs to filter. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the port.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `The administrative state of the port.`,
+				},
+				resource.Attribute{
+					Name:        "device_owner",
+					Description: `The device owner of the port.`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `The ID of the device the port belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "all_fixed_ips",
+					Description: `The collection of Fixed IP addresses on the port.`,
+				},
+				resource.Attribute{
+					Name:        "all_security_group_ids",
+					Description: `The collection of security group IDs applied on the port.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the port.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `The administrative state of the port.`,
+				},
+				resource.Attribute{
+					Name:        "device_owner",
+					Description: `The device owner of the port.`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `The ID of the device the port belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "all_fixed_ips",
+					Description: `The collection of Fixed IP addresses on the port.`,
+				},
+				resource.Attribute{
+					Name:        "all_security_group_ids",
+					Description: `The collection of security group IDs applied on the port.`,
 				},
 			},
 		},
@@ -3739,7 +5743,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "speccode",
-					Description: `(Optional) The spec code of a rds flavor. ## Available value for attributes datastore_name | datastore_version | speccode ---- | --- | --- PostgreSQL | 9.5.5 <br> 9.6.3 <br> 9.6.5| rds.pg.s1.xlarge rds.pg.m1.2xlarge rds.pg.c2.xlarge rds.pg.s1.medium rds.pg.c2.medium rds.pg.s1.large rds.pg.c2.large rds.pg.m1.large rds.pg.s1.2xlarge rds.pg.m1.xlarge MySQL| 5.6.33 <br>5.6.30 <br>5.6.34 <br>5.6.35 <br>5.7.17 | rds.mysql.s1.medium rds.mysql.s1.large rds.mysql.s1.xlarge rds.mysql.s1.2xlarge rds.mysql.m1.2xlarge rds.mysql.c2.medium rds.mysql.c2.large rds.mysql.c2.xlarge rds.mysql.m1.large rds.mysql.m1.xlarge SQLServer| 2014 SP2 SE | rds.mssql.s1.xlarge rds.mssql.m1.2xlarge rds.mssql.c2.xlarge rds.mssql.s1.2xlarge rds.mssql.m1.xlarge ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found rds flavor. In addition, the following attributes are exported:`,
+					Description: `(Optional) The spec code of a rds flavor. ## Available value for attributes <!-- markdownlint-disable MD033 --> datastore_name | datastore_version | speccode ---- | --- | --- PostgreSQL | 9.5.5 <br> 9.6.3 <br> 9.6.5| rds.pg.s1.xlarge rds.pg.m1.2xlarge rds.pg.c2.xlarge rds.pg.s1.medium rds.pg.c2.medium rds.pg.s1.large rds.pg.c2.large rds.pg.m1.large rds.pg.s1.2xlarge rds.pg.m1.xlarge MySQL| 5.6.33 <br>5.6.30 <br>5.6.34 <br>5.6.35 <br>5.7.17 | rds.mysql.s1.medium rds.mysql.s1.large rds.mysql.s1.xlarge rds.mysql.s1.2xlarge rds.mysql.m1.2xlarge rds.mysql.c2.medium rds.mysql.c2.large rds.mysql.c2.xlarge rds.mysql.m1.large rds.mysql.m1.xlarge SQLServer| 2014 SP2 SE | rds.mssql.s1.xlarge rds.mssql.m1.2xlarge rds.mssql.c2.xlarge rds.mssql.s1.2xlarge rds.mssql.m1.xlarge ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found rds flavor. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -3818,7 +5822,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "instance_mode",
-					Description: `(Required, String) The mode of instance. Value: ha(indicates primary/standby instance), single(indicates single instance)`,
+					Description: `(Optional, String) The mode of instance. Value:`,
 				},
 				resource.Attribute{
 					Name:        "vcpus",
@@ -3826,11 +5830,27 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `(Optional, Int) Specifies the memory size(GB) in the RDS flavor. ## Attributes Reference In addition, the following attributes are exported:`,
+					Description: `(Optional, Int) Specifies the memory size(GB) in the RDS flavor.`,
+				},
+				resource.Attribute{
+					Name:        "group_type",
+					Description: `(Optional, String) Specifies the performance specification, the valid values are as follows: +`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional, String) Specifies the availability zone which the RDS flavor belongs to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
 				},
 				resource.Attribute{
 					Name:        "flavors",
 					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the rds flavor.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3838,21 +5858,41 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "vcpus",
-					Description: `Indicates the CPU size.`,
+					Description: `The CPU size.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `Indicates the memory size in GB.`,
+					Description: `The memory size in GB.`,
 				},
 				resource.Attribute{
-					Name:        "mode",
-					Description: `See 'instance_mode' above.`,
+					Name:        "group_type",
+					Description: `The performance specification.`,
+				},
+				resource.Attribute{
+					Name:        "instance_mode",
+					Description: `The mode of instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The availability zones which the RDS flavor belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "db_versions",
+					Description: `The Available versions of the database.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
 					Name:        "flavors",
 					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the rds flavor.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3860,15 +5900,27 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "vcpus",
-					Description: `Indicates the CPU size.`,
+					Description: `The CPU size.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `Indicates the memory size in GB.`,
+					Description: `The memory size in GB.`,
 				},
 				resource.Attribute{
-					Name:        "mode",
-					Description: `See 'instance_mode' above.`,
+					Name:        "group_type",
+					Description: `The performance specification.`,
+				},
+				resource.Attribute{
+					Name:        "instance_mode",
+					Description: `The mode of instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The availability zones which the RDS flavor belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "db_versions",
+					Description: `The Available versions of the database.`,
 				},
 			},
 		},
@@ -4116,7 +6168,7 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_s3_bucket_object",
-			Category:         "Object Storage Service (OSS)",
+			Category:         "Object Storage Service (OBS)",
 			ShortDescription: ``,
 			Description:      ``,
 			Icon:             "bucket.svg",
@@ -4124,7 +6176,7 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 				"object",
 				"storage",
 				"service",
-				"oss",
+				"obs",
 				"s3",
 				"bucket",
 			},
@@ -4507,13 +6559,439 @@ Provides information about an Shared File System (SFS).
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_sfs_turbos",
+			Category:         "Scalable File Service (SFS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"scalable",
+				"file",
+				"service",
+				"sfs",
+				"turbos",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the SFS turbo file systems. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional, Int) Specifies the capacity of the SFS turbo file system, in GB. The value ranges from ` + "`" + `500` + "`" + ` to ` + "`" + `32,768` + "`" + `, and must be large than ` + "`" + `10,240` + "`" + ` for an enhanced file system.`,
+				},
+				resource.Attribute{
+					Name:        "share_proto",
+					Description: `(Optional, String) Specifies the protocol of the SFS turbo file system. The valid value is`,
+				},
+				resource.Attribute{
+					Name:        "share_type",
+					Description: `(Optional, String) Specifies the type of the SFS turbo file system. The valid values are`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "turbos",
+					Description: `The list of the SFS turbo file systems. The [object](#turbo) structure is documented below. <a name="turbo"></a> The ` + "`" + `turbos` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The capacity of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "share_proto",
+					Description: `The protocol of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "share_type",
+					Description: `The type of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced",
+					Description: `Whether the SFS turbo file system is enhanced.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone where the SFS turbo file system is located.`,
+				},
+				resource.Attribute{
+					Name:        "available_capacity",
+					Description: `The available capacity of the SFS turbo file system, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "export_location",
+					Description: `The mount point of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "crypt_key_id",
+					Description: `The ID of a KMS key to encrypt the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the VPC to which the SFS turbo belongs.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the VPC Subnet to which the SFS turbo belongs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `The ID of the security group to which the SFS turbo belongs.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "turbos",
+					Description: `The list of the SFS turbo file systems. The [object](#turbo) structure is documented below. <a name="turbo"></a> The ` + "`" + `turbos` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The capacity of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "share_proto",
+					Description: `The protocol of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "share_type",
+					Description: `The type of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced",
+					Description: `Whether the SFS turbo file system is enhanced.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone where the SFS turbo file system is located.`,
+				},
+				resource.Attribute{
+					Name:        "available_capacity",
+					Description: `The available capacity of the SFS turbo file system, in GB.`,
+				},
+				resource.Attribute{
+					Name:        "export_location",
+					Description: `The mount point of the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "crypt_key_id",
+					Description: `The ID of a KMS key to encrypt the SFS turbo file system.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of the VPC to which the SFS turbo belongs.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the VPC Subnet to which the SFS turbo belongs.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `The ID of the security group to which the SFS turbo belongs.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_smn_topics",
+			Category:         "Simple Message Notification (SMN)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"simple",
+				"message",
+				"notification",
+				"smn",
+				"topics",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) Specifies the region in which to obtain the SMN topics. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the topic.`,
+				},
+				resource.Attribute{
+					Name:        "topic_urn",
+					Description: `(Optional, String) Specifies the topic URN.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional, String) Specifies the topic display name. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "topics",
+					Description: `An array of SMN topics found. Structure is documented below. The ` + "`" + `topics` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the topic.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The topic ID. The value is the topic URN.`,
+				},
+				resource.Attribute{
+					Name:        "topic_urn",
+					Description: `The topic URN.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The topic display name.`,
+				},
+				resource.Attribute{
+					Name:        "push_policy",
+					Description: `Message pushing policy. +`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "topics",
+					Description: `An array of SMN topics found. Structure is documented below. The ` + "`" + `topics` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the topic.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The topic ID. The value is the topic URN.`,
+				},
+				resource.Attribute{
+					Name:        "topic_urn",
+					Description: `The topic URN.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The topic display name.`,
+				},
+				resource.Attribute{
+					Name:        "push_policy",
+					Description: `Message pushing policy. +`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_sms_source_servers",
+			Category:         "Server Migration Service (SMS)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"server",
+				"migration",
+				"service",
+				"sms",
+				"source",
+				"servers",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, String) Specifies the ID of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) Specifies the name of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional, String) Specifies the status of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional, String) Specifies the IP address of the source server. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "servers",
+					Description: `An array of SMS source servers found. Structure is documented below. The ` + "`" + `servers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The IP address of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Whether the source server is properly connected to SMS.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `The OS type of the source server. The value can be`,
+				},
+				resource.Attribute{
+					Name:        "os_version",
+					Description: `The OS version of the source server, for example, UBUNTU_20_4_64BIT.`,
+				},
+				resource.Attribute{
+					Name:        "registered_time",
+					Description: `The UTC time when the source server is registered.`,
+				},
+				resource.Attribute{
+					Name:        "agent_version",
+					Description: `The version of Agent installed on the source server.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The vcpus count of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The memory size in MB.`,
+				},
+				resource.Attribute{
+					Name:        "disks",
+					Description: `The disk information of the source server. Structure is documented below. The ` + "`" + `disks` + "`" + ` blocks support:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The disk name, for example, /dev/vda.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The disk size in MB.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `The disk type. The value can be`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID.`,
+				},
+				resource.Attribute{
+					Name:        "servers",
+					Description: `An array of SMS source servers found. Structure is documented below. The ` + "`" + `servers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `The IP address of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `Whether the source server is properly connected to SMS.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `The OS type of the source server. The value can be`,
+				},
+				resource.Attribute{
+					Name:        "os_version",
+					Description: `The OS version of the source server, for example, UBUNTU_20_4_64BIT.`,
+				},
+				resource.Attribute{
+					Name:        "registered_time",
+					Description: `The UTC time when the source server is registered.`,
+				},
+				resource.Attribute{
+					Name:        "agent_version",
+					Description: `The version of Agent installed on the source server.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The vcpus count of the source server.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The memory size in MB.`,
+				},
+				resource.Attribute{
+					Name:        "disks",
+					Description: `The disk information of the source server. Structure is documented below. The ` + "`" + `disks` + "`" + ` blocks support:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The disk name, for example, /dev/vda.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The disk size in MB.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `The disk type. The value can be`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_vbs_backup_policy_v2",
 			Category:         "Volume Backup Service (VBS)",
 			ShortDescription: ``,
 			Description: `
 
 The VBS Backup Policy data source provides details about a specific VBS backup policy.
-
 
 `,
 			Keywords: []string{
@@ -4677,17 +7155,15 @@ The VBS Backup data source provides details about a specific VBS Backup.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_vpc_eip_v1",
+			Type:             "flexibleengine_vpc_eip",
 			Category:         "Elastic IP (EIP)",
 			ShortDescription: ``,
 			Description:      ``,
-			Icon:             "Network-EIP.svg",
 			Keywords: []string{
 				"elastic",
 				"ip",
 				"eip",
 				"vpc",
-				"v1",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4760,21 +7236,22 @@ The VBS Backup data source provides details about a specific VBS Backup.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_vpc_peering_v2",
+			Type:             "flexibleengine_vpc_peering_connection_v2",
 			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: ``,
 			Description: `
 
 The VPC Peering Connection data source provides details about a specific VPC peering connection.
 
-
 `,
+			Icon: "peer link.svg",
 			Keywords: []string{
 				"virtual",
 				"private",
 				"cloud",
 				"vpc",
 				"peering",
+				"connection",
 				"v2",
 			},
 			Arguments:  []resource.Attribute{},
@@ -4783,9 +7260,11 @@ The VPC Peering Connection data source provides details about a specific VPC pee
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_vpc_route_ids_v2",
-			Category:         "Virtual Private Cloud (VPC)",
+			Category:         "Deprecated",
 			ShortDescription: ``,
 			Description: `
+
+!> **WARNING:** It has been deprecated, use ` + "`" + `flexibleengine_vpc_route_table` + "`" + ` to get the route details.
 
 ` + "`" + `flexibleengine_vpc_route_ids_v2` + "`" + ` provides a list of route ids for a vpc_id.
 
@@ -4793,9 +7272,7 @@ This resource can be useful for getting back a list of route ids for a vpc.
 
 `,
 			Keywords: []string{
-				"virtual",
-				"private",
-				"cloud",
+				"deprecated",
 				"vpc",
 				"route",
 				"ids",
@@ -4816,19 +7293,41 @@ This resource can be useful for getting back a list of route ids for a vpc.
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_vpc_route_v2",
+			Type:             "flexibleengine_vpc_route_table",
 			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
+				"route",
+				"table",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to query the vpc route table. If omitted, the provider-level region will be used.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_vpc_route_v2",
+			Category:         "Deprecated",
+			ShortDescription: ``,
 			Description: `
+
+!> **WARNING:** It has been deprecated, use ` + "`" + `flexibleengine_vpc_route_table` + "`" + ` to get the route details.
 
 ` + "`" + `flexibleengine_vpc_route_v2` + "`" + ` provides details about a specific VPC route.
 
 `,
 			Icon: "Network-VPC.svg",
 			Keywords: []string{
-				"virtual",
-				"private",
-				"cloud",
+				"deprecated",
 				"vpc",
 				"route",
 				"v2",
@@ -4903,8 +7402,8 @@ This resource can be useful for getting back a list of route ids for a vpc.
 					Description: `DHCP function for the subnet.`,
 				},
 				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `Specifies the subnet (Native OpenStack API) ID.`,
+					Name:        "ipv4_subnet_id",
+					Description: `The ID of the IPv4 subnet (Native OpenStack API).`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_enable",
@@ -5291,70 +7790,247 @@ This resource can be useful for getting back a list of route ids for a vpc.
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_waf_dedicated_instances",
+			Category:         "Web Application Firewall (WAF)",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"web",
+				"application",
+				"firewall",
+				"waf",
+				"dedicated",
+				"instances",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional, String) The region in which to query the WAF dedicated instance. If omitted, the provider-level region will be used.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional, String) The id of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, String) The name of WAF dedicated instance. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format. The following attributes are exported: The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `The available zone names for the WAF dedicated instances.`,
+				},
+				resource.Attribute{
+					Name:        "specification_code",
+					Description: `The specification code of instance. Different specifications have different throughput. Values are: + ` + "`" + `waf.instance.professional` + "`" + ` - The professional edition, throughput: 100 Mbit/s; QPS: 2,000 (Reference only). +` + "`" + `waf.instance.enterprise` + "`" + ` - The enterprise edition, throughput: 500 Mbit/s; QPS: 10,000 (Reference only).`,
+				},
+				resource.Attribute{
+					Name:        "cpu_architecture",
+					Description: `The ECS cpu architecture of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_flavor",
+					Description: `The flavor of the ECS used by the WAF instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC id of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the VPC Subnet of WAF dedicated instance VPC.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `The security group of the instance. This is an array of security group ids.`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `The service of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "service_ip",
+					Description: `The service ip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "run_status",
+					Description: `The running status of the instance. Values are: + ` + "`" + `0` + "`" + ` - Instance is creating. + ` + "`" + `1` + "`" + ` - Instance has created. + ` + "`" + `2` + "`" + ` - Instance is deleting. + ` + "`" + `3` + "`" + ` - Instance has deleted. + ` + "`" + `4` + "`" + ` - Instance create failed.`,
+				},
+				resource.Attribute{
+					Name:        "access_status",
+					Description: `The access status of the instance. ` + "`" + `0` + "`" + `: inaccessible, ` + "`" + `1` + "`" + `: accessible.`,
+				},
+				resource.Attribute{
+					Name:        "upgradable",
+					Description: `The instance is to support upgrades. ` + "`" + `0` + "`" + `: Cannot be upgraded, ` + "`" + `1` + "`" + `: Can be upgraded.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The instance group ID used by the WAF dedicated instance in ELB mode.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The data source ID in UUID format. The following attributes are exported: The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "available_zone",
+					Description: `The available zone names for the WAF dedicated instances.`,
+				},
+				resource.Attribute{
+					Name:        "specification_code",
+					Description: `The specification code of instance. Different specifications have different throughput. Values are: + ` + "`" + `waf.instance.professional` + "`" + ` - The professional edition, throughput: 100 Mbit/s; QPS: 2,000 (Reference only). +` + "`" + `waf.instance.enterprise` + "`" + ` - The enterprise edition, throughput: 500 Mbit/s; QPS: 10,000 (Reference only).`,
+				},
+				resource.Attribute{
+					Name:        "cpu_architecture",
+					Description: `The ECS cpu architecture of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "ecs_flavor",
+					Description: `The flavor of the ECS used by the WAF instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC id of WAF dedicated instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the VPC Subnet of WAF dedicated instance VPC.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `The security group of the instance. This is an array of security group ids.`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `The service of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "service_ip",
+					Description: `The service ip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "run_status",
+					Description: `The running status of the instance. Values are: + ` + "`" + `0` + "`" + ` - Instance is creating. + ` + "`" + `1` + "`" + ` - Instance has created. + ` + "`" + `2` + "`" + ` - Instance is deleting. + ` + "`" + `3` + "`" + ` - Instance has deleted. + ` + "`" + `4` + "`" + ` - Instance create failed.`,
+				},
+				resource.Attribute{
+					Name:        "access_status",
+					Description: `The access status of the instance. ` + "`" + `0` + "`" + `: inaccessible, ` + "`" + `1` + "`" + `: accessible.`,
+				},
+				resource.Attribute{
+					Name:        "upgradable",
+					Description: `The instance is to support upgrades. ` + "`" + `0` + "`" + `: Cannot be upgraded, ` + "`" + `1` + "`" + `: Can be upgraded.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The instance group ID used by the WAF dedicated instance in ELB mode.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"flexibleengine_availability_zones":                 0,
-		"flexibleengine_blockstorage_availability_zones_v3": 1,
-		"flexibleengine_blockstorage_volume_v2":             2,
-		"flexibleengine_cbr_vaults":                         3,
-		"flexibleengine_cce_addon_template":                 4,
-		"flexibleengine_cce_cluster_v3":                     5,
-		"flexibleengine_cce_node_ids_v3":                    6,
-		"flexibleengine_cce_node_v3":                        7,
-		"flexibleengine_compute_availability_zones_v2":      8,
-		"flexibleengine_compute_bms_flavors_v2":             9,
-		"flexibleengine_compute_bms_keypairs_v2":            10,
-		"flexibleengine_compute_bms_nic_v2":                 11,
-		"flexibleengine_compute_bms_server_v2":              12,
-		"flexibleengine_compute_flavors_v2":                 13,
-		"flexibleengine_compute_instance_v2":                14,
-		"flexibleengine_compute_instances":                  15,
-		"flexibleengine_csbs_backup_policy_v1":              16,
-		"flexibleengine_csbs_backup_v1":                     17,
-		"flexibleengine_cts_tracker_v1":                     18,
-		"flexibleengine_dcs_az_v1":                          19,
-		"flexibleengine_dcs_maintainwindow_v1":              20,
-		"flexibleengine_dcs_product_v1":                     21,
-		"flexibleengine_dds_flavor_v3":                      22,
-		"flexibleengine_dds_flavors_v3":                     23,
-		"flexibleengine_dms_product":                        24,
-		"flexibleengine_dns_zone_v2":                        25,
-		"flexibleengine_elb_certificate":                    26,
-		"flexibleengine_elb_flavors":                        27,
-		"flexibleengine_enterprise_project":                 28,
-		"flexibleengine_fgs_dependencies":                   29,
-		"flexibleengine_identity_custom_role_v3":            30,
-		"flexibleengine_identity_project_v3":                31,
-		"flexibleengine_identity_role_v3":                   32,
-		"flexibleengine_images_image_v2":                    33,
-		"flexibleengine_kms_data_key_v1":                    34,
-		"flexibleengine_kms_key_v1":                         35,
-		"flexibleengine_lb_certificate_v2":                  36,
-		"flexibleengine_lb_loadbalancer_v2":                 37,
-		"flexibleengine_nat_gateway_v2":                     38,
-		"flexibleengine_networking_network_v2":              39,
-		"flexibleengine_networking_secgroup_v2":             40,
-		"flexibleengine_rds_flavors_v1":                     41,
-		"flexibleengine_rds_flavors_v3":                     42,
-		"flexibleengine_rts_software_config":                43,
-		"flexibleengine_rts_stack_resource_v1":              44,
-		"flexibleengine_rts_stack_v1":                       45,
-		"flexibleengine_s3_bucket_object":                   46,
-		"flexibleengine_sdrs_domain_v1":                     47,
-		"flexibleengine_sfs_file_system_v2":                 48,
-		"flexibleengine_vbs_backup_policy_v2":               49,
-		"flexibleengine_vbs_backup_v2":                      50,
-		"flexibleengine_vpc_eip_v1":                         51,
-		"flexibleengine_vpc_peering_v2":                     52,
-		"flexibleengine_vpc_route_ids_v2":                   53,
-		"flexibleengine_vpc_route_v2":                       54,
-		"flexibleengine_vpc_subnet_ids_v1":                  55,
-		"flexibleengine_vpc_subnet_v1":                      56,
-		"flexibleengine_vpc_v1":                             57,
-		"flexibleengine_vpcep_endpoints":                    58,
-		"flexibleengine_vpcep_public_services":              59,
+		"flexibleengine_apig_environments":                  0,
+		"flexibleengine_availability_zones":                 1,
+		"flexibleengine_blockstorage_availability_zones_v3": 2,
+		"flexibleengine_blockstorage_volume_v2":             3,
+		"flexibleengine_cbr_vaults":                         4,
+		"flexibleengine_cce_addon_template":                 5,
+		"flexibleengine_cce_cluster_v3":                     6,
+		"flexibleengine_cce_clusters":                       7,
+		"flexibleengine_cce_node_ids_v3":                    8,
+		"flexibleengine_cce_node_v3":                        9,
+		"flexibleengine_compute_availability_zones_v2":      10,
+		"flexibleengine_compute_bms_flavors_v2":             11,
+		"flexibleengine_compute_bms_keypairs_v2":            12,
+		"flexibleengine_compute_bms_nic_v2":                 13,
+		"flexibleengine_compute_bms_server_v2":              14,
+		"flexibleengine_compute_flavors_v2":                 15,
+		"flexibleengine_compute_instance_v2":                16,
+		"flexibleengine_compute_instances":                  17,
+		"flexibleengine_csbs_backup_policy_v1":              18,
+		"flexibleengine_csbs_backup_v1":                     19,
+		"flexibleengine_cts_tracker_v1":                     20,
+		"flexibleengine_dcs_az_v1":                          21,
+		"flexibleengine_dcs_maintainwindow_v1":              22,
+		"flexibleengine_dcs_product_v1":                     23,
+		"flexibleengine_dds_flavor_v3":                      24,
+		"flexibleengine_dds_flavors_v3":                     25,
+		"flexibleengine_dms_kafka_instances":                26,
+		"flexibleengine_dms_product":                        27,
+		"flexibleengine_dms_rocketmq_broker":                28,
+		"flexibleengine_dms_rocketmq_instances":             29,
+		"flexibleengine_dns_zone_v2":                        30,
+		"flexibleengine_dws_flavors":                        31,
+		"flexibleengine_elb_certificate":                    32,
+		"flexibleengine_elb_flavors":                        33,
+		"flexibleengine_enterprise_project":                 34,
+		"flexibleengine_fgs_dependencies":                   35,
+		"flexibleengine_gaussdb_cassandra_instances":        36,
+		"flexibleengine_gaussdb_nosql_flavors":              37,
+		"flexibleengine_identity_custom_role_v3":            38,
+		"flexibleengine_identity_group":                     39,
+		"flexibleengine_identity_project_v3":                40,
+		"flexibleengine_identity_role_v3":                   41,
+		"flexibleengine_identity_users":                     42,
+		"flexibleengine_images_image_v2":                    43,
+		"flexibleengine_kms_data_key_v1":                    44,
+		"flexibleengine_kms_key_v1":                         45,
+		"flexibleengine_lb_certificate_v2":                  46,
+		"flexibleengine_lb_loadbalancer_v2":                 47,
+		"flexibleengine_modelarts_dataset_versions":         48,
+		"flexibleengine_modelarts_datasets":                 49,
+		"flexibleengine_nat_gateway_v2":                     50,
+		"flexibleengine_networking_network_v2":              51,
+		"flexibleengine_networking_port":                    52,
+		"flexibleengine_networking_secgroup_v2":             53,
+		"flexibleengine_rds_flavors_v1":                     54,
+		"flexibleengine_rds_flavors_v3":                     55,
+		"flexibleengine_rts_software_config":                56,
+		"flexibleengine_rts_stack_resource_v1":              57,
+		"flexibleengine_rts_stack_v1":                       58,
+		"flexibleengine_s3_bucket_object":                   59,
+		"flexibleengine_sdrs_domain_v1":                     60,
+		"flexibleengine_sfs_file_system_v2":                 61,
+		"flexibleengine_sfs_turbos":                         62,
+		"flexibleengine_smn_topics":                         63,
+		"flexibleengine_sms_source_servers":                 64,
+		"flexibleengine_vbs_backup_policy_v2":               65,
+		"flexibleengine_vbs_backup_v2":                      66,
+		"flexibleengine_vpc_eip":                            67,
+		"flexibleengine_vpc_peering_connection_v2":          68,
+		"flexibleengine_vpc_route_ids_v2":                   69,
+		"flexibleengine_vpc_route_table":                    70,
+		"flexibleengine_vpc_route_v2":                       71,
+		"flexibleengine_vpc_subnet_ids_v1":                  72,
+		"flexibleengine_vpc_subnet_v1":                      73,
+		"flexibleengine_vpc_v1":                             74,
+		"flexibleengine_vpcep_endpoints":                    75,
+		"flexibleengine_vpcep_public_services":              76,
+		"flexibleengine_waf_dedicated_instances":            77,
 	}
 )
 

@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "satori_data_access_controller",
+			Category:         "Data Sources",
+			ShortDescription: `satori_data_access_controller data source allows finding DAC details by its region, cloud provider, type and ID.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "satori_user",
 			Category:         "Data Sources",
 			ShortDescription: `satori_user data source allows finding user ID by user email.`,
@@ -23,7 +33,8 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"satori_user": 0,
+		"satori_data_access_controller": 0,
+		"satori_user":                   1,
 	}
 )
 

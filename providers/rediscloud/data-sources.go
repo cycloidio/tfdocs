@@ -118,6 +118,10 @@ The Database data source allows access to the details of an existing database wi
 					Description: `The rate of database data persistence (in persistent storage).`,
 				},
 				resource.Attribute{
+					Name:        "data_eviction",
+					Description: `The data items eviction policy.`,
+				},
+				resource.Attribute{
 					Name:        "password",
 					Description: `The password used to access the database - not present on ` + "`" + `memcached` + "`" + ` protocol databases.`,
 				},
@@ -143,7 +147,11 @@ The Database data source allows access to the details of an existing database wi
 				},
 				resource.Attribute{
 					Name:        "private_endpoint",
-					Description: `Private endpoint to access the database The ` + "`" + `alert` + "`" + ` block supports:`,
+					Description: `Private endpoint to access the database`,
+				},
+				resource.Attribute{
+					Name:        "enable_tls",
+					Description: `Enable TLS for database, default is ` + "`" + `false` + "`" + ` The ` + "`" + `alert` + "`" + ` block supports:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -176,6 +184,10 @@ The Database data source allows access to the details of an existing database wi
 					Description: `The rate of database data persistence (in persistent storage).`,
 				},
 				resource.Attribute{
+					Name:        "data_eviction",
+					Description: `The data items eviction policy.`,
+				},
+				resource.Attribute{
 					Name:        "password",
 					Description: `The password used to access the database - not present on ` + "`" + `memcached` + "`" + ` protocol databases.`,
 				},
@@ -201,7 +213,11 @@ The Database data source allows access to the details of an existing database wi
 				},
 				resource.Attribute{
 					Name:        "private_endpoint",
-					Description: `Private endpoint to access the database The ` + "`" + `alert` + "`" + ` block supports:`,
+					Description: `Private endpoint to access the database`,
+				},
+				resource.Attribute{
+					Name:        "enable_tls",
+					Description: `Enable TLS for database, default is ` + "`" + `false` + "`" + ` The ` + "`" + `alert` + "`" + ` block supports:`,
 				},
 			},
 		},
@@ -291,10 +307,6 @@ The Subscription data source allows access to the details of an existing subscri
 					Description: `Memory storage preference: either ‘ram’ or a combination of 'ram-and-flash’`,
 				},
 				resource.Attribute{
-					Name:        "persistent_storage_encryption",
-					Description: `Encrypt data stored in persistent storage. Required for a GCP subscription.`,
-				},
-				resource.Attribute{
 					Name:        "cloud_provider",
 					Description: `A cloud provider object, documented below`,
 				},
@@ -359,10 +371,6 @@ The Subscription data source allows access to the details of an existing subscri
 				resource.Attribute{
 					Name:        "memory_storage",
 					Description: `Memory storage preference: either ‘ram’ or a combination of 'ram-and-flash’`,
-				},
-				resource.Attribute{
-					Name:        "persistent_storage_encryption",
-					Description: `Encrypt data stored in persistent storage. Required for a GCP subscription.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_provider",

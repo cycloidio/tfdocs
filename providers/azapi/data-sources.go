@@ -60,11 +60,35 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azapi_azapi_resource_action",
+			Category:         "Data Sources",
+			ShortDescription: `Perform resource action which gets information from an existing resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the azure resource action.`,
+				},
+				resource.Attribute{
+					Name:        "output",
+					Description: `The output json containing the properties specified in ` + "`" + `response_export_values` + "`" + `. Here are some examples to decode json and extract the value. ` + "`" + `` + "`" + `` + "`" + `hcl // it will output "nHGYNd`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 30 minutes) Used when retrieving the azure resource.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"azapi_azapi_resource": 0,
+		"azapi_azapi_resource":        0,
+		"azapi_azapi_resource_action": 1,
 	}
 )
 

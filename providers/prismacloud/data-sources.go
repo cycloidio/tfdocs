@@ -260,7 +260,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `List of TargetTag objects, as defined [below](#tags) ### Tags`,
+					Description: `List of TargetTag objects, as defined [below](#tags)`,
+				},
+				resource.Attribute{
+					Name:        "resource_list",
+					Description: `Model for holding the resource list for compute access groups [below](#compute-access-group-ids) ### Tags`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -268,7 +272,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `List of values for resource tag key ### Notification Config`,
+					Description: `List of values for resource tag key ### Compute Access Group IDs`,
+				},
+				resource.Attribute{
+					Name:        "compute_access_group_ids",
+					Description: `List of compute access group IDs. ### Notification Config`,
 				},
 				resource.Attribute{
 					Name:        "config_id",
@@ -442,7 +450,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `List of TargetTag objects, as defined [below](#tags) ### Tags`,
+					Description: `List of TargetTag objects, as defined [below](#tags)`,
+				},
+				resource.Attribute{
+					Name:        "resource_list",
+					Description: `Model for holding the resource list for compute access groups [below](#compute-access-group-ids) ### Tags`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -450,7 +462,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "values",
-					Description: `List of values for resource tag key ### Notification Config`,
+					Description: `List of values for resource tag key ### Compute Access Group IDs`,
+				},
+				resource.Attribute{
+					Name:        "compute_access_group_ids",
+					Description: `List of compute access group IDs. ### Notification Config`,
 				},
 				resource.Attribute{
 					Name:        "config_id",
@@ -751,6 +767,648 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "prismacloud_anomaly_setting",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required) Policy ID ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition",
+					Description: `Alert disposition`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition_description",
+					Description: `Alert disposition information [below](#alert-disposition-description)`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `Policy description`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Policy name`,
+				},
+				resource.Attribute{
+					Name:        "training_model_description",
+					Description: `Training model information [below](#training-model-description)`,
+				},
+				resource.Attribute{
+					Name:        "training_model_threshold",
+					Description: `Training model threshold information ### Alert Disposition Description`,
+				},
+				resource.Attribute{
+					Name:        "aggressive",
+					Description: `Aggressive`,
+				},
+				resource.Attribute{
+					Name:        "moderate",
+					Description: `Moderate`,
+				},
+				resource.Attribute{
+					Name:        "conservative",
+					Description: `Conservative ### Training Model Description`,
+				},
+				resource.Attribute{
+					Name:        "low",
+					Description: `Low`,
+				},
+				resource.Attribute{
+					Name:        "medium",
+					Description: `Medium`,
+				},
+				resource.Attribute{
+					Name:        "high",
+					Description: `High`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alert_disposition",
+					Description: `Alert disposition`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition_description",
+					Description: `Alert disposition information [below](#alert-disposition-description)`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `Policy description`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Policy name`,
+				},
+				resource.Attribute{
+					Name:        "training_model_description",
+					Description: `Training model information [below](#training-model-description)`,
+				},
+				resource.Attribute{
+					Name:        "training_model_threshold",
+					Description: `Training model threshold information ### Alert Disposition Description`,
+				},
+				resource.Attribute{
+					Name:        "aggressive",
+					Description: `Aggressive`,
+				},
+				resource.Attribute{
+					Name:        "moderate",
+					Description: `Moderate`,
+				},
+				resource.Attribute{
+					Name:        "conservative",
+					Description: `Conservative ### Training Model Description`,
+				},
+				resource.Attribute{
+					Name:        "low",
+					Description: `Low`,
+				},
+				resource.Attribute{
+					Name:        "medium",
+					Description: `Medium`,
+				},
+				resource.Attribute{
+					Name:        "high",
+					Description: `High`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_anomaly_settings",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type. Valid values are ` + "`" + `Network` + "`" + `, ` + "`" + `UEBA` + "`" + ` or ` + "`" + `DNS` + "`" + `. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of anomaly settings.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of anomaly settings, as defined [below](#listing). ## Listing`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition",
+					Description: `Alert disposition`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition_description",
+					Description: `Alert disposition information [below](#alert-disposition-description)`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `Policy description`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Policy ID`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Policy name`,
+				},
+				resource.Attribute{
+					Name:        "training_model_description",
+					Description: `Training model information [below](#training-model-description)`,
+				},
+				resource.Attribute{
+					Name:        "training_model_threshold",
+					Description: `Training model threshold information ### Alert Disposition Description`,
+				},
+				resource.Attribute{
+					Name:        "aggressive",
+					Description: `Aggressive`,
+				},
+				resource.Attribute{
+					Name:        "moderate",
+					Description: `Moderate`,
+				},
+				resource.Attribute{
+					Name:        "conservative",
+					Description: `Conservative ### Training Model Description`,
+				},
+				resource.Attribute{
+					Name:        "low",
+					Description: `Low`,
+				},
+				resource.Attribute{
+					Name:        "medium",
+					Description: `Medium`,
+				},
+				resource.Attribute{
+					Name:        "high",
+					Description: `High`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of anomaly settings.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of anomaly settings, as defined [below](#listing). ## Listing`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition",
+					Description: `Alert disposition`,
+				},
+				resource.Attribute{
+					Name:        "alert_disposition_description",
+					Description: `Alert disposition information [below](#alert-disposition-description)`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `Policy description`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Policy ID`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Policy name`,
+				},
+				resource.Attribute{
+					Name:        "training_model_description",
+					Description: `Training model information [below](#training-model-description)`,
+				},
+				resource.Attribute{
+					Name:        "training_model_threshold",
+					Description: `Training model threshold information ### Alert Disposition Description`,
+				},
+				resource.Attribute{
+					Name:        "aggressive",
+					Description: `Aggressive`,
+				},
+				resource.Attribute{
+					Name:        "moderate",
+					Description: `Moderate`,
+				},
+				resource.Attribute{
+					Name:        "conservative",
+					Description: `Conservative ### Training Model Description`,
+				},
+				resource.Attribute{
+					Name:        "low",
+					Description: `Low`,
+				},
+				resource.Attribute{
+					Name:        "medium",
+					Description: `Medium`,
+				},
+				resource.Attribute{
+					Name:        "high",
+					Description: `High`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_anomaly_trusted_list",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "atl_id",
+					Description: `(int) Anomaly Trusted List ID ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Anomaly Trusted List name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Reason for trusted listing`,
+				},
+				resource.Attribute{
+					Name:        "trusted_list_type",
+					Description: `Anomaly Trusted List type`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Anomaly Trusted List account id`,
+				},
+				resource.Attribute{
+					Name:        "applicable_policies",
+					Description: `Applicable Policies`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `VPC`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Created by`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Created on`,
+				},
+				resource.Attribute{
+					Name:        "trusted_list_entries",
+					Description: `List of network anomalies in the trusted list [below](#trusted-list-entries). ### Trusted List Entries`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `Image ID`,
+				},
+				resource.Attribute{
+					Name:        "tag_key",
+					Description: `Tag key`,
+				},
+				resource.Attribute{
+					Name:        "tag_value",
+					Description: `Tag value`,
+				},
+				resource.Attribute{
+					Name:        "ip_cidr",
+					Description: `IP CIDR`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Resource ID`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service`,
+				},
+				resource.Attribute{
+					Name:        "subject",
+					Description: `Subject`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Anomaly Trusted List name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Reason for trusted listing`,
+				},
+				resource.Attribute{
+					Name:        "trusted_list_type",
+					Description: `Anomaly Trusted List type`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Anomaly Trusted List account id`,
+				},
+				resource.Attribute{
+					Name:        "applicable_policies",
+					Description: `Applicable Policies`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `VPC`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Created by`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Created on`,
+				},
+				resource.Attribute{
+					Name:        "trusted_list_entries",
+					Description: `List of network anomalies in the trusted list [below](#trusted-list-entries). ### Trusted List Entries`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `Image ID`,
+				},
+				resource.Attribute{
+					Name:        "tag_key",
+					Description: `Tag key`,
+				},
+				resource.Attribute{
+					Name:        "tag_value",
+					Description: `Tag value`,
+				},
+				resource.Attribute{
+					Name:        "ip_cidr",
+					Description: `IP CIDR`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Resource ID`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service`,
+				},
+				resource.Attribute{
+					Name:        "subject",
+					Description: `Subject`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_anomaly_trusted_lists",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of anomaly trusted lists`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of anomaly trusted list, as defined [below](#listing). ### Listing`,
+				},
+				resource.Attribute{
+					Name:        "atl_id",
+					Description: `Anomaly Trusted List ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Anomaly Trusted List name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Reason for trusted listing`,
+				},
+				resource.Attribute{
+					Name:        "trusted_list_type",
+					Description: `Anomaly Trusted List type`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Anomaly Trusted List account id`,
+				},
+				resource.Attribute{
+					Name:        "applicable_policies",
+					Description: `Applicable Policies`,
+				},
+				resource.Attribute{
+					Name:        "vpc",
+					Description: `VPC`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `Created by`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `Created on`,
+				},
+				resource.Attribute{
+					Name:        "trusted_list_entries",
+					Description: `List of network anomalies in the trusted list [below](#trusted-list-entries). ### Trusted List Entries`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `Image ID`,
+				},
+				resource.Attribute{
+					Name:        "tag_key",
+					Description: `Tag key`,
+				},
+				resource.Attribute{
+					Name:        "tag_value",
+					Description: `Tag value`,
+				},
+				resource.Attribute{
+					Name:        "ip_cidr",
+					Description: `IP CIDR`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Resource ID`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service`,
+				},
+				resource.Attribute{
+					Name:        "subject",
+					Description: `Subject`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_aws_cft_generator_external_id",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `(Required) AWS account type. ` + "`" + `account` + "`" + ` or ` + "`" + `organization` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `(Optional) List of features. If features key/field is not passed, then the default features will be applicable. Refer :`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `AWS account external ID.`,
+				},
+				resource.Attribute{
+					Name:        "create_stack_link_with_s3_presigned_url",
+					Description: `AWS account create stack link.`,
+				},
+				resource.Attribute{
+					Name:        "event_bridge_rule_name_prefix",
+					Description: `AWS account event bridge rule name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "s3_presigned_cft_url",
+					Description: `AWS CFT S3 Presigned Unencoded URL.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `AWS account external ID.`,
+				},
+				resource.Attribute{
+					Name:        "create_stack_link_with_s3_presigned_url",
+					Description: `AWS account create stack link.`,
+				},
+				resource.Attribute{
+					Name:        "event_bridge_rule_name_prefix",
+					Description: `AWS account event bridge rule name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "s3_presigned_cft_url",
+					Description: `AWS CFT S3 Presigned Unencoded URL.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_aws_storage_uuid",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Required) Unique identifier for an AWS resource (ARN).`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Required) External id for aws account. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `Storage UUID for aws account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `Storage UUID for aws account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_azure_template",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `(Required) Azure account type.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Required) Azure tenant ID.`,
+				},
+				resource.Attribute{
+					Name:        "file_name",
+					Description: `(Required) File name to store azure template (Provide filename along with path to store azure template).`,
+				},
+				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `(Optional) Azure subscription ID.`,
+				},
+				resource.Attribute{
+					Name:        "root_sync_enabled",
+					Description: `(Optional) Azure tenant has children. Must be set to true if ` + "`" + `account_type` + "`" + ` is ` + "`" + `tenant` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `(Optional) Deployment type.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `(Optional) List of features. If features key/field is not passed, then the default features will be applicable. Refer :`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "prismacloud_cloud_account",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -1026,6 +1684,878 @@ var (
 				resource.Attribute{
 					Name:        "ram_arn",
 					Description: `Unique identifier for an Alibaba RAM role resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_cloud_account_supported_features",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `(Required) Cloud type. ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + `, or ` + "`" + `gcp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `(Required) Cloud account type. ` + "`" + `account` + "`" + `, ` + "`" + `organization` + "`" + `, ` + "`" + `masterServiceAccount` + "`" + `, or ` + "`" + `tenant` + "`" + `. Supported values based on cloud_type are given below. <br /> - account, organization - cloud_type:`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "aws_partition",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "root_sync_enabled",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `Cloud type.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `Cloud Account deployment type.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `Cloud account type.`,
+				},
+				resource.Attribute{
+					Name:        "license_type",
+					Description: `Customer License type.`,
+				},
+				resource.Attribute{
+					Name:        "supported_features",
+					Description: `List of supported feature names.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `Cloud type.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `Cloud Account deployment type.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `Cloud account type.`,
+				},
+				resource.Attribute{
+					Name:        "license_type",
+					Description: `Customer License type.`,
+				},
+				resource.Attribute{
+					Name:        "supported_features",
+					Description: `List of supported feature names.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_cloud_account_v2",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `(Required) The cloud type. Valid value is ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + `, ` + "`" + `gcp` + "`" + ` or ` + "`" + `ibm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, computed) Cloud account name; computed if this is not supplied. Applicable only for ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + ` and ` + "`" + `ibm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional, computed) Account ID; computed if this is not supplied. ## Attribute Reference The cloud type given above determines which of the attributes are populated:`,
+				},
+				resource.Attribute{
+					Name:        "disable_on_destroy",
+					Description: `(bool) To disable cloud account instead of deleting when calling Terraform destroy.`,
+				},
+				resource.Attribute{
+					Name:        "aws",
+					Description: `AWS account type spec, defined [below](#aws).`,
+				},
+				resource.Attribute{
+					Name:        "azure",
+					Description: `Azure account type spec, defined [below](#azure).`,
+				},
+				resource.Attribute{
+					Name:        "gcp",
+					Description: `Gcp account type spec, defined [below](#gcp).`,
+				},
+				resource.Attribute{
+					Name:        "ibm",
+					Description: `IBM account type spec, defined [below](#ibm). ### AWS`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Unique identifier for an AWS resource (ARN).`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `aws` + "`" + ` for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "eventbridge_rule_name_prefix",
+					Description: `Eventbridge rule name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External id for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for aws account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_config",
+					Description: `Storage scan config, defined [below](#storage_scan_config)`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `StorageUUID. ### Azure`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Azure account ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `Application ID registered with Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Application ID key.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_flow_logs",
+					Description: `(bool) Automatically ingest flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Active Directory ID associated with Azure.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `Unique ID of the service principal object associated with the Prisma Cloud application that you create.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `account` + "`" + ` for azure subscription account.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for azure account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "environment_type",
+					Description: `Environment type.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "template_url",
+					Description: `Template URL.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `az` + "`" + ` for azure account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description. ### Gcp`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Gcp account ID.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `account` + "`" + ` for gcp project account and ` + "`" + `masterServiceAccount` + "`" + ` for gcp master service account.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "compression_enabled",
+					Description: `(bool) Enable or disable compressed network flow log generation.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `Content of the JSON credentials file.`,
+				},
+				resource.Attribute{
+					Name:        "data_flow_enabled_project",
+					Description: `Project ID where the Dataflow API is enabled .`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for gcp account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_storage_bucket",
+					Description: `Cloud Storage Bucket name that is used store the flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent ID.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_enabled",
+					Description: `(bool) Whether the storage scan is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "added_on_ts",
+					Description: `Added on time stamp.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `gcp` + "`" + ` for gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Gcp Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `Service account email of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_type",
+					Description: `Authentication type of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "account_group_creation_mode",
+					Description: `Account group creation mode.`,
+				},
+				resource.Attribute{
+					Name:        "default_account_group_id",
+					Description: `Account group id to which you are assigning this account. ### IBM`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `IBM account ID.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `account` + "`" + ` for IBM account.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `IBM service API key.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "svc_id_iam_id",
+					Description: `IBM service ID.`,
+				},
+				resource.Attribute{
+					Name:        "added_on_ts",
+					Description: `Added on time stamp.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `ibm` + "`" + ` for IBM account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for IBM account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_enabled",
+					Description: `(bool) Whether the storage scan is enabled. #### FEATURES`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Feature name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Feature state. ` + "`" + `enabled` + "`" + ` or ` + "`" + `disabled` + "`" + `. #### STORAGE_SCAN_CONFIG`,
+				},
+				resource.Attribute{
+					Name:        "scan_option",
+					Description: `Scan option.`,
+				},
+				resource.Attribute{
+					Name:        "sns_topic_arn",
+					Description: `SNS topic arn.`,
+				},
+				resource.Attribute{
+					Name:        "buckets",
+					Description: `List of buckets, defined [below](#buckets). #### BUCKETS`,
+				},
+				resource.Attribute{
+					Name:        "backward",
+					Description: `List of backward buckets.`,
+				},
+				resource.Attribute{
+					Name:        "forward",
+					Description: `List of forward buckets.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "disable_on_destroy",
+					Description: `(bool) To disable cloud account instead of deleting when calling Terraform destroy.`,
+				},
+				resource.Attribute{
+					Name:        "aws",
+					Description: `AWS account type spec, defined [below](#aws).`,
+				},
+				resource.Attribute{
+					Name:        "azure",
+					Description: `Azure account type spec, defined [below](#azure).`,
+				},
+				resource.Attribute{
+					Name:        "gcp",
+					Description: `Gcp account type spec, defined [below](#gcp).`,
+				},
+				resource.Attribute{
+					Name:        "ibm",
+					Description: `IBM account type spec, defined [below](#ibm). ### AWS`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Unique identifier for an AWS resource (ARN).`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `aws` + "`" + ` for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "eventbridge_rule_name_prefix",
+					Description: `Eventbridge rule name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External id for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for aws account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_config",
+					Description: `Storage scan config, defined [below](#storage_scan_config)`,
+				},
+				resource.Attribute{
+					Name:        "storage_uuid",
+					Description: `StorageUUID. ### Azure`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Azure account ID.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `Application ID registered with Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Application ID key.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_flow_logs",
+					Description: `(bool) Automatically ingest flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Active Directory ID associated with Azure.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `Unique ID of the service principal object associated with the Prisma Cloud application that you create.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `account` + "`" + ` for azure subscription account.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for azure account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "environment_type",
+					Description: `Environment type.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "template_url",
+					Description: `Template URL.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `az` + "`" + ` for azure account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description. ### Gcp`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Gcp account ID.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `account` + "`" + ` for gcp project account and ` + "`" + `masterServiceAccount` + "`" + ` for gcp master service account.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "compression_enabled",
+					Description: `(bool) Enable or disable compressed network flow log generation.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `Content of the JSON credentials file.`,
+				},
+				resource.Attribute{
+					Name:        "data_flow_enabled_project",
+					Description: `Project ID where the Dataflow API is enabled .`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for gcp account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_storage_bucket",
+					Description: `Cloud Storage Bucket name that is used store the flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent ID.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_enabled",
+					Description: `(bool) Whether the storage scan is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "added_on_ts",
+					Description: `Added on time stamp.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `gcp` + "`" + ` for gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Gcp Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `Service account email of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_type",
+					Description: `Authentication type of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "account_group_creation_mode",
+					Description: `Account group creation mode.`,
+				},
+				resource.Attribute{
+					Name:        "default_account_group_id",
+					Description: `Account group id to which you are assigning this account. ### IBM`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `IBM account ID.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `account` + "`" + ` for IBM account.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `IBM service API key.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "svc_id_iam_id",
+					Description: `IBM service ID.`,
+				},
+				resource.Attribute{
+					Name:        "added_on_ts",
+					Description: `Added on time stamp.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `ibm` + "`" + ` for IBM account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for IBM account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_enabled",
+					Description: `(bool) Whether the storage scan is enabled. #### FEATURES`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Feature name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Feature state. ` + "`" + `enabled` + "`" + ` or ` + "`" + `disabled` + "`" + `. #### STORAGE_SCAN_CONFIG`,
+				},
+				resource.Attribute{
+					Name:        "scan_option",
+					Description: `Scan option.`,
+				},
+				resource.Attribute{
+					Name:        "sns_topic_arn",
+					Description: `SNS topic arn.`,
+				},
+				resource.Attribute{
+					Name:        "buckets",
+					Description: `List of buckets, defined [below](#buckets). #### BUCKETS`,
+				},
+				resource.Attribute{
+					Name:        "backward",
+					Description: `List of backward buckets.`,
+				},
+				resource.Attribute{
+					Name:        "forward",
+					Description: `List of forward buckets.`,
 				},
 			},
 		},
@@ -2182,7 +3712,89 @@ var (
 					Name:        "alarm_enabled",
 					Description: `(bool) Alarms enabled. Alarms are Prisma Cloud Platform health notifications which are generated to notify users of system level issues/errors.`,
 				},
+				resource.Attribute{
+					Name:        "named_users_access_keys_expiry_notifications_enabled",
+					Description: `(bool) Named users access keys expiry notifications enabled.`,
+				},
+				resource.Attribute{
+					Name:        "service_users_access_keys_expiry_notifications_enabled",
+					Description: `(bool) Service users access keys expiry notifications enabled.`,
+				},
+				resource.Attribute{
+					Name:        "notification_threshold_access_keys_expiry",
+					Description: `(int) Notification threshold access keys expiry.`,
+				},
+				resource.Attribute{
+					Name:        "audit_log_siem_intgr_ids",
+					Description: `List of integration ids.`,
+				},
+				resource.Attribute{
+					Name:        "audit_logs_enabled",
+					Description: `(bool) Enable audit logs.`,
+				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_gcp_template",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `(Required) Gcp account type.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_type",
+					Description: `(Required) Authentication type of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Gcp Project ID. Must be provided for account type ` + "`" + `account` + "`" + ` and ` + "`" + `masterServiceAccount` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `(Optional) Gcp organization ID. Must be provided for account type ` + "`" + `organization` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_name",
+					Description: `(Required) File name to store gcp template (Provide filename along with path to store gcp template).`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_storage_bucket",
+					Description: `(Optional) Cloud Storage Bucket name that is used store the flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `(Optional) List of features. If features key/field is not passed, then the default features will be applicable. Refer :`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_ibm_template",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `(Required) IBM account type.`,
+				},
+				resource.Attribute{
+					Name:        "file_name",
+					Description: `(Required) File name to store ibm template (Provide filename along with path to store ibm template).`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2825,6 +4437,341 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "prismacloud_notification_template",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Notification template ID. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "integration_id",
+					Description: `Integration ID.`,
+				},
+				resource.Attribute{
+					Name:        "created_ts",
+					Description: `(int) Creation Unix timestamp in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `(int) Last modified timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "integration_type",
+					Description: `Integration type.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `User who created the notification template.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the template on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "integration_name",
+					Description: `Integration name.`,
+				},
+				resource.Attribute{
+					Name:        "customer_id",
+					Description: `(int) Prisma customer ID.`,
+				},
+				resource.Attribute{
+					Name:        "module",
+					Description: `Module.`,
+				},
+				resource.Attribute{
+					Name:        "template_type",
+					Description: `Type of notification template.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the template is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "template_config",
+					Description: `Template config spec, as defined [below](#template_config). ## Template Config`,
+				},
+				resource.Attribute{
+					Name:        "basic_config",
+					Description: `This field includes additional attributes that can be used to customize the notification, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "open",
+					Description: `Provide config to map the ` + "`" + `open` + "`" + ` alert state to ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` state and configure the ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` fields. This field includes additional attributes, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `Provide config to map the ` + "`" + `resolved` + "`" + ` alert state to ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` state and configure the ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` fields. This field includes additional attributes, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "dismissed",
+					Description: `Provide config to map the ` + "`" + `dismissed` + "`" + ` alert state to ` + "`" + `service_now` + "`" + ` state and configure the ` + "`" + `service_now` + "`" + ` fields. This field includes additional attributes, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "snoozed",
+					Description: `This field represents the notification status when the user has chosen to temporarily delay or "snooze" the notification. This field includes additional attributes, as defined [below](#config_params). ### Config Params`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `Field name.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name.`,
+				},
+				resource.Attribute{
+					Name:        "redlock_mapping",
+					Description: `(bool) Prisma Cloud will provide the field value for notification.`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(bool) Required.`,
+				},
+				resource.Attribute{
+					Name:        "type_ahead_uri",
+					Description: `URL used to query suggestions for field value.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of field.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Field value.`,
+				},
+				resource.Attribute{
+					Name:        "alias_field",
+					Description: `Alias field.`,
+				},
+				resource.Attribute{
+					Name:        "max_length",
+					Description: `(int) Maximum length.`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `Options, as defined [below](#options). #### Options`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Field option name.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Field option key.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Field option ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "integration_id",
+					Description: `Integration ID.`,
+				},
+				resource.Attribute{
+					Name:        "created_ts",
+					Description: `(int) Creation Unix timestamp in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `(int) Last modified timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "integration_type",
+					Description: `Integration type.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `User who created the notification template.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the template on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "integration_name",
+					Description: `Integration name.`,
+				},
+				resource.Attribute{
+					Name:        "customer_id",
+					Description: `(int) Prisma customer ID.`,
+				},
+				resource.Attribute{
+					Name:        "module",
+					Description: `Module.`,
+				},
+				resource.Attribute{
+					Name:        "template_type",
+					Description: `Type of notification template.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the template is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "template_config",
+					Description: `Template config spec, as defined [below](#template_config). ## Template Config`,
+				},
+				resource.Attribute{
+					Name:        "basic_config",
+					Description: `This field includes additional attributes that can be used to customize the notification, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "open",
+					Description: `Provide config to map the ` + "`" + `open` + "`" + ` alert state to ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` state and configure the ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` fields. This field includes additional attributes, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "resolved",
+					Description: `Provide config to map the ` + "`" + `resolved` + "`" + ` alert state to ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` state and configure the ` + "`" + `jira` + "`" + `/` + "`" + `service_now` + "`" + ` fields. This field includes additional attributes, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "dismissed",
+					Description: `Provide config to map the ` + "`" + `dismissed` + "`" + ` alert state to ` + "`" + `service_now` + "`" + ` state and configure the ` + "`" + `service_now` + "`" + ` fields. This field includes additional attributes, as defined [below](#config_params).`,
+				},
+				resource.Attribute{
+					Name:        "snoozed",
+					Description: `This field represents the notification status when the user has chosen to temporarily delay or "snooze" the notification. This field includes additional attributes, as defined [below](#config_params). ### Config Params`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `Field name.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name.`,
+				},
+				resource.Attribute{
+					Name:        "redlock_mapping",
+					Description: `(bool) Prisma Cloud will provide the field value for notification.`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(bool) Required.`,
+				},
+				resource.Attribute{
+					Name:        "type_ahead_uri",
+					Description: `URL used to query suggestions for field value.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of field.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Field value.`,
+				},
+				resource.Attribute{
+					Name:        "alias_field",
+					Description: `Alias field.`,
+				},
+				resource.Attribute{
+					Name:        "max_length",
+					Description: `(int) Maximum length.`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `Options, as defined [below](#options). #### Options`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Field option name.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Field option key.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Field option ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_notification_templates",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of notification templates.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of notification templates returned, as defined [below](#listing). ### Listing Each notification template has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "integration_id",
+					Description: `Integration ID.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Notification template id.`,
+				},
+				resource.Attribute{
+					Name:        "created_ts",
+					Description: `(int) Creation Unix timestamp in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `(int) Last modified timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `User who created the notification template.`,
+				},
+				resource.Attribute{
+					Name:        "integration_type",
+					Description: `Integration type.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the template on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "integration_name",
+					Description: `Integration name.`,
+				},
+				resource.Attribute{
+					Name:        "customer_id",
+					Description: `(int) Prisma customer id.`,
+				},
+				resource.Attribute{
+					Name:        "module",
+					Description: `Module.`,
+				},
+				resource.Attribute{
+					Name:        "template_type",
+					Description: `Type of notification template.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the template is enabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "prismacloud_org_cloud_account",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -3281,6 +5228,686 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "prismacloud_org_cloud_account_v2",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_type",
+					Description: `(Required) The cloud type. Valid value is ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + ` or ` + "`" + `gcp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, computed) Cloud account name; computed if this is not supplied. Applicable only for ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + ` and ` + "`" + `ibm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional, computed) Account ID; computed if this is not supplied. ## Attribute Reference The cloud type given above determines which of the attributes are populated:`,
+				},
+				resource.Attribute{
+					Name:        "disable_on_destroy",
+					Description: `(bool) To disable cloud account instead of deleting when calling Terraform destroy.`,
+				},
+				resource.Attribute{
+					Name:        "aws",
+					Description: `AWS account type spec, defined [below](#aws).`,
+				},
+				resource.Attribute{
+					Name:        "azure",
+					Description: `Azure account type spec, defined [below](#azure).`,
+				},
+				resource.Attribute{
+					Name:        "gcp",
+					Description: `Gcp account type spec, defined [below](#gcp). ### AWS`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you have assigned this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Unique identifier for an AWS resource (ARN).`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `aws` + "`" + ` for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "eventbridge_rule_name_prefix",
+					Description: `Eventbridge rule name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External id for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for aws account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "has_member_role",
+					Description: `Whether account has member role.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_selection",
+					Description: `List of hierarchy selection. Each item has resource ID, display name, node type and selection type, as defined [below](#hierarchy-selection). ### Azure`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Azure tenant account ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `Application ID registered with Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Application ID key.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_flow_logs",
+					Description: `(bool) Automatically ingest flow logs. Must be set to false when azure tenant is onboarded without children i.e., for ` + "`" + `Active Directory Tenant` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Active Directory ID associated with Azure.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `Unique ID of the service principal object associated with the Prisma Cloud application that you create.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `tenant` + "`" + ` for azure account.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "default_account_group_id",
+					Description: `Account group id to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "root_sync_enabled",
+					Description: `(bool) Azure tenant has children. Must be set to true when azure tenant is onboarded with children i.e., for ` + "`" + `Tenant` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_selection",
+					Description: `List of hierarchy selection. Each item has resource ID, display name, node type and selection type, as defined [below](#hierarchy-selection).`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for azure account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "environment_type",
+					Description: `Environment type.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "template_url",
+					Description: `Template URL.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `az` + "`" + ` for azure account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "member_sync_enabled",
+					Description: `(bool) Azure tenant has children. Must be set to true when azure tenant is onboarded with children i.e., for ` + "`" + `Tenant` + "`" + `. ### Gcp`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Gcp account ID.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `organization` + "`" + ` for gcp organization account.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "compression_enabled",
+					Description: `(bool) Enable or disable compressed network flow log generation.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `Content of the JSON credentials file.`,
+				},
+				resource.Attribute{
+					Name:        "data_flow_enabled_project",
+					Description: `Project ID where the Dataflow API is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for gcp account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_storage_bucket",
+					Description: `Cloud Storage Bucket name that is used store the flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent ID.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_enabled",
+					Description: `(bool) Whether the storage scan is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "added_on_ts",
+					Description: `Added on time stamp.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `gcp` + "`" + ` for gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Gcp Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `Service account email of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_type",
+					Description: `Authentication type of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "account_group_creation_mode",
+					Description: `Account group creation mode.`,
+				},
+				resource.Attribute{
+					Name:        "default_account_group_id",
+					Description: `Account group id to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_selection",
+					Description: `List of hierarchy selection. Each item has resource ID, display name, node type and selection type, as defined [below](#hierarchy-selection).`,
+				},
+				resource.Attribute{
+					Name:        "organization_name",
+					Description: `Gcp organization name. #### Hierarchy Selection`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Resource ID. For ACCOUNT, OU, ROOT, TENANT, SUBSCRIPTION, PROJECT, FOLDER or ORG. Example : ` + "`" + `root` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for ACCOUNT, OU, ROOT, TENANT, SUBSCRIPTION, PROJECT, FOLDER or ORG. Example : ` + "`" + `Root` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Node type - ORG, OU, ACCOUNT, SUBSCRIPTION, TENANT, MANAGEMENT_GROUP, PROJECT, FOLDER or ORG.`,
+				},
+				resource.Attribute{
+					Name:        "selection_type",
+					Description: `Selection type. Valid values: INCLUDE to include the specified resource to onboard, EXCLUDE to exclude the specified resource and onboard the rest, ALL to onboard all resources in the organization. #### FEATURES`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Feature name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Feature state. ` + "`" + `enabled` + "`" + ` or ` + "`" + `disabled` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "disable_on_destroy",
+					Description: `(bool) To disable cloud account instead of deleting when calling Terraform destroy.`,
+				},
+				resource.Attribute{
+					Name:        "aws",
+					Description: `AWS account type spec, defined [below](#aws).`,
+				},
+				resource.Attribute{
+					Name:        "azure",
+					Description: `Azure account type spec, defined [below](#azure).`,
+				},
+				resource.Attribute{
+					Name:        "gcp",
+					Description: `Gcp account type spec, defined [below](#gcp). ### AWS`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `AWS account ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you have assigned this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Unique identifier for an AWS resource (ARN).`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `aws` + "`" + ` for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "eventbridge_rule_name_prefix",
+					Description: `Eventbridge rule name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `External id for aws account.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for aws account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "has_member_role",
+					Description: `Whether account has member role.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_selection",
+					Description: `List of hierarchy selection. Each item has resource ID, display name, node type and selection type, as defined [below](#hierarchy-selection). ### Azure`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Azure tenant account ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `Application ID registered with Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Application ID key.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_flow_logs",
+					Description: `(bool) Automatically ingest flow logs. Must be set to false when azure tenant is onboarded without children i.e., for ` + "`" + `Active Directory Tenant` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `Active Directory ID associated with Azure.`,
+				},
+				resource.Attribute{
+					Name:        "service_principal_id",
+					Description: `Unique ID of the service principal object associated with the Prisma Cloud application that you create.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `tenant` + "`" + ` for azure account.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "default_account_group_id",
+					Description: `Account group id to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "root_sync_enabled",
+					Description: `(bool) Azure tenant has children. Must be set to true when azure tenant is onboarded with children i.e., for ` + "`" + `Tenant` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_selection",
+					Description: `List of hierarchy selection. Each item has resource ID, display name, node type and selection type, as defined [below](#hierarchy-selection).`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for azure account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "environment_type",
+					Description: `Environment type.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent id.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "template_url",
+					Description: `Template URL.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `az` + "`" + ` for azure account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "member_sync_enabled",
+					Description: `(bool) Azure tenant has children. Must be set to true when azure tenant is onboarded with children i.e., for ` + "`" + `Tenant` + "`" + `. ### Gcp`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Gcp account ID.`,
+				},
+				resource.Attribute{
+					Name:        "account_type",
+					Description: `` + "`" + `organization` + "`" + ` for gcp organization account.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(bool) Whether the account is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of account IDs to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name to be used for the account on the Prisma Cloud platform (must be unique).`,
+				},
+				resource.Attribute{
+					Name:        "compression_enabled",
+					Description: `(bool) Enable or disable compressed network flow log generation.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `Content of the JSON credentials file.`,
+				},
+				resource.Attribute{
+					Name:        "data_flow_enabled_project",
+					Description: `Project ID where the Dataflow API is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Features applicable for gcp account, defined [below](#features).`,
+				},
+				resource.Attribute{
+					Name:        "flow_log_storage_bucket",
+					Description: `Cloud Storage Bucket name that is used store the flow logs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_mode",
+					Description: `Protection mode of account.`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `Parent ID.`,
+				},
+				resource.Attribute{
+					Name:        "customer_name",
+					Description: `Prisma customer name.`,
+				},
+				resource.Attribute{
+					Name:        "created_epoch_millis",
+					Description: `Account created epoch time.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_epoch_millis",
+					Description: `Last modified at epoch millis.`,
+				},
+				resource.Attribute{
+					Name:        "deleted",
+					Description: `(bool) Whether the account is deleted or not.`,
+				},
+				resource.Attribute{
+					Name:        "storage_scan_enabled",
+					Description: `(bool) Whether the storage scan is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "added_on_ts",
+					Description: `Added on time stamp.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type",
+					Description: `` + "`" + `gcp` + "`" + ` for gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_type_description",
+					Description: `Deployment type description.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Gcp Project ID.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `Service account email of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_type",
+					Description: `Authentication type of gcp account.`,
+				},
+				resource.Attribute{
+					Name:        "account_group_creation_mode",
+					Description: `Account group creation mode.`,
+				},
+				resource.Attribute{
+					Name:        "default_account_group_id",
+					Description: `Account group id to which you are assigning this account.`,
+				},
+				resource.Attribute{
+					Name:        "hierarchy_selection",
+					Description: `List of hierarchy selection. Each item has resource ID, display name, node type and selection type, as defined [below](#hierarchy-selection).`,
+				},
+				resource.Attribute{
+					Name:        "organization_name",
+					Description: `Gcp organization name. #### Hierarchy Selection`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Resource ID. For ACCOUNT, OU, ROOT, TENANT, SUBSCRIPTION, PROJECT, FOLDER or ORG. Example : ` + "`" + `root` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for ACCOUNT, OU, ROOT, TENANT, SUBSCRIPTION, PROJECT, FOLDER or ORG. Example : ` + "`" + `Root` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_type",
+					Description: `Node type - ORG, OU, ACCOUNT, SUBSCRIPTION, TENANT, MANAGEMENT_GROUP, PROJECT, FOLDER or ORG.`,
+				},
+				resource.Attribute{
+					Name:        "selection_type",
+					Description: `Selection type. Valid values: INCLUDE to include the specified resource to onboard, EXCLUDE to exclude the specified resource and onboard the rest, ALL to onboard all resources in the organization. #### FEATURES`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Feature name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `Feature state. ` + "`" + `enabled` + "`" + ` or ` + "`" + `disabled` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "prismacloud_org_cloud_accounts",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -3312,6 +5939,181 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "prismacloud_permission_group",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Permission group id`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the permission group. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "permission_group_type",
+					Description: `Permission group type.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `(int) Last modified timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "associated_roles",
+					Description: `List of associated user roles which cannot exist in the system without the permission group.`,
+				},
+				resource.Attribute{
+					Name:        "accept_account_groups",
+					Description: `(bool) Accept account groups.`,
+				},
+				resource.Attribute{
+					Name:        "accept_resource_lists",
+					Description: `(bool) Accept resource lists.`,
+				},
+				resource.Attribute{
+					Name:        "accept_code_repositories",
+					Description: `(bool) Accept code repositories.`,
+				},
+				resource.Attribute{
+					Name:        "custom",
+					Description: `(bool) Boolean value signifying whether this is a custom (i.e. user-defined) permission group.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Collection of permitted features associated with the role, as defined [below](#features). ### Features`,
+				},
+				resource.Attribute{
+					Name:        "feature_name",
+					Description: `Prisma Cloud Feature Name.`,
+				},
+				resource.Attribute{
+					Name:        "operations",
+					Description: `A mapping of operations and a boolean value representing whether the privilege to perform the operation needs to be granted, as defined [below](#operations). #### Operations`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "permission_group_type",
+					Description: `Permission group type.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `(int) Last modified timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "associated_roles",
+					Description: `List of associated user roles which cannot exist in the system without the permission group.`,
+				},
+				resource.Attribute{
+					Name:        "accept_account_groups",
+					Description: `(bool) Accept account groups.`,
+				},
+				resource.Attribute{
+					Name:        "accept_resource_lists",
+					Description: `(bool) Accept resource lists.`,
+				},
+				resource.Attribute{
+					Name:        "accept_code_repositories",
+					Description: `(bool) Accept code repositories.`,
+				},
+				resource.Attribute{
+					Name:        "custom",
+					Description: `(bool) Boolean value signifying whether this is a custom (i.e. user-defined) permission group.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `Collection of permitted features associated with the role, as defined [below](#features). ### Features`,
+				},
+				resource.Attribute{
+					Name:        "feature_name",
+					Description: `Prisma Cloud Feature Name.`,
+				},
+				resource.Attribute{
+					Name:        "operations",
+					Description: `A mapping of operations and a boolean value representing whether the privilege to perform the operation needs to be granted, as defined [below](#operations). #### Operations`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_permission_groups",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of permission groups.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of permission groups returned, as defined [below](#listing). ### Listing Each permission group has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Permission group id.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the permission group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of permission group.`,
+				},
+				resource.Attribute{
+					Name:        "permission_group_type",
+					Description: `Permission group type.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_by",
+					Description: `Last modified by.`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `Last modified timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "accept_account_groups",
+					Description: `(bool) Accept account groups.`,
+				},
+				resource.Attribute{
+					Name:        "accept_resource_lists",
+					Description: `(bool) Accept resource lists.`,
+				},
+				resource.Attribute{
+					Name:        "accept_code_repositories",
+					Description: `(bool) Accept code repositories.`,
+				},
+				resource.Attribute{
+					Name:        "custom",
+					Description: `(bool) Boolean value signifying whether this is a custom (i.e. user-defined) permission group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "prismacloud_policies",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -3320,7 +6122,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filters",
-					Description: `(Optional, map) Filters to limit policies returned. Filter options can be found [here](https://api.docs.prismacloud.io/reference#get-policies-v2). ## Attribute Reference`,
+					Description: `(Optional, map) Filters to limit policies returned. Filter options can be found [here](https://prisma.pan.dev/api/cloud/cspm/policy#operation/get-policies). ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "total",
@@ -3615,6 +6417,10 @@ var (
 					Description: `Criteria for DLP Rule, as defined [below](#data-criteria)`,
 				},
 				resource.Attribute{
+					Name:        "children",
+					Description: `Children description for build policy, as defined [below](#children)`,
+				},
+				resource.Attribute{
 					Name:        "parameters",
 					Description: `(map of strings) Parameters`,
 				},
@@ -3692,7 +6498,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "extension",
-					Description: `List of file extensions`,
+					Description: `List of file extensions #### Children`,
+				},
+				resource.Attribute{
+					Name:        "criteria",
+					Description: `Criteria for build policy.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `YAML string for code build policy.`,
+				},
+				resource.Attribute{
+					Name:        "recommendation",
+					Description: `Recommendation.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of policy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3833,6 +6655,10 @@ var (
 					Description: `Criteria for DLP Rule, as defined [below](#data-criteria)`,
 				},
 				resource.Attribute{
+					Name:        "children",
+					Description: `Children description for build policy, as defined [below](#children)`,
+				},
+				resource.Attribute{
 					Name:        "parameters",
 					Description: `(map of strings) Parameters`,
 				},
@@ -3910,7 +6736,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "extension",
-					Description: `List of file extensions`,
+					Description: `List of file extensions #### Children`,
+				},
+				resource.Attribute{
+					Name:        "criteria",
+					Description: `Criteria for build policy.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `YAML string for code build policy.`,
+				},
+				resource.Attribute{
+					Name:        "recommendation",
+					Description: `Recommendation.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of policy.`,
 				},
 			},
 		},
@@ -4503,6 +7345,224 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "prismacloud_trusted_alert_ip",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the trusted alert ip.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `UUID. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "cidrs",
+					Description: `List of CIDRs, as defined [below](#CIDR).`,
+				},
+				resource.Attribute{
+					Name:        "cidr_count",
+					Description: `CIDR count. ### CIDR`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(string) Ip address.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `UUID for cidr.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `(int) Created on.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cidrs",
+					Description: `List of CIDRs, as defined [below](#CIDR).`,
+				},
+				resource.Attribute{
+					Name:        "cidr_count",
+					Description: `CIDR count. ### CIDR`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(string) Ip address.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `UUID for cidr.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `(int) Created on.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_trusted_alert_ips",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of trusted alert ips.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of trusted alert ips returned, as defined [below](#listing). ### Listing Each trusted alert ip has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the trusted alert ip.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `UUID.`,
+				},
+				resource.Attribute{
+					Name:        "cidrs",
+					Description: `List of CIDRs, as defined [below](#CIDR).`,
+				},
+				resource.Attribute{
+					Name:        "cidr_count",
+					Description: `CIDR count. ### CIDR`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `(string) Ip address.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `UUID for cidr.`,
+				},
+				resource.Attribute{
+					Name:        "created_on",
+					Description: `(int) Created on.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_trusted_login_ip",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the trusted login ip Allow List.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_login_ip_id",
+					Description: `Trusted login ip allow List ID. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the list of CIDR blocks that are in allow list for access.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_login_ip_id",
+					Description: `Login IP allow list ID`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `Timestamp for last modification of CIDR block list.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the list of CIDR blocks that are in allow list for access.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_login_ip_id",
+					Description: `Login IP allow list ID`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `Timestamp for last modification of CIDR block list.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "prismacloud_trusted_login_ips",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of trusted login ips.`,
+				},
+				resource.Attribute{
+					Name:        "listing",
+					Description: `List of trusted login Ips, as defined [below](#listing). ### Listing`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the list of CIDR blocks that are in allow list for access.`,
+				},
+				resource.Attribute{
+					Name:        "trusted_login_ip_id",
+					Description: `Login IP allow list ID`,
+				},
+				resource.Attribute{
+					Name:        "last_modified_ts",
+					Description: `Timestamp for last modification of CIDR block list.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `List of CIDR blocks (IP addresses) from which access is allowed when Login IP Allow List is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "prismacloud_user_profile",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -4953,33 +8013,53 @@ var (
 		"prismacloud_alert_rule":                               3,
 		"prismacloud_alert_rules":                              4,
 		"prismacloud_alerts":                                   5,
-		"prismacloud_cloud_account":                            6,
-		"prismacloud_cloud_accounts":                           7,
-		"prismacloud_compliance_standard":                      8,
-		"prismacloud_compliance_standard_requirement":          9,
-		"prismacloud_compliance_standard_requirement_section":  10,
-		"prismacloud_compliance_standard_requirement_sections": 11,
-		"prismacloud_compliance_standard_requirements":         12,
-		"prismacloud_compliance_standards":                     13,
-		"prismacloud_datapattern":                              14,
-		"prismacloud_datapatterns":                             15,
-		"prismacloud_dataprofile":                              16,
-		"prismacloud_dataprofiles":                             17,
-		"prismacloud_enterprise_settings":                      18,
-		"prismacloud_integration":                              19,
-		"prismacloud_integrations":                             20,
-		"prismacloud_org_cloud_account":                        21,
-		"prismacloud_org_cloud_accounts":                       22,
-		"prismacloud_policies":                                 23,
-		"prismacloud_policy":                                   24,
-		"prismacloud_report":                                   25,
-		"prismacloud_reports":                                  26,
-		"prismacloud_rql_historic_search":                      27,
-		"prismacloud_rql_historic_searches":                    28,
-		"prismacloud_user_profile":                             29,
-		"prismacloud_user_profiles":                            30,
-		"prismacloud_user_role":                                31,
-		"prismacloud_user_roles":                               32,
+		"prismacloud_anomaly_setting":                          6,
+		"prismacloud_anomaly_settings":                         7,
+		"prismacloud_anomaly_trusted_list":                     8,
+		"prismacloud_anomaly_trusted_lists":                    9,
+		"prismacloud_aws_cft_generator_external_id":            10,
+		"prismacloud_aws_storage_uuid":                         11,
+		"prismacloud_azure_template":                           12,
+		"prismacloud_cloud_account":                            13,
+		"prismacloud_cloud_account_supported_features":         14,
+		"prismacloud_cloud_account_v2":                         15,
+		"prismacloud_cloud_accounts":                           16,
+		"prismacloud_compliance_standard":                      17,
+		"prismacloud_compliance_standard_requirement":          18,
+		"prismacloud_compliance_standard_requirement_section":  19,
+		"prismacloud_compliance_standard_requirement_sections": 20,
+		"prismacloud_compliance_standard_requirements":         21,
+		"prismacloud_compliance_standards":                     22,
+		"prismacloud_datapattern":                              23,
+		"prismacloud_datapatterns":                             24,
+		"prismacloud_dataprofile":                              25,
+		"prismacloud_dataprofiles":                             26,
+		"prismacloud_enterprise_settings":                      27,
+		"prismacloud_gcp_template":                             28,
+		"prismacloud_ibm_template":                             29,
+		"prismacloud_integration":                              30,
+		"prismacloud_integrations":                             31,
+		"prismacloud_notification_template":                    32,
+		"prismacloud_notification_templates":                   33,
+		"prismacloud_org_cloud_account":                        34,
+		"prismacloud_org_cloud_account_v2":                     35,
+		"prismacloud_org_cloud_accounts":                       36,
+		"prismacloud_permission_group":                         37,
+		"prismacloud_permission_groups":                        38,
+		"prismacloud_policies":                                 39,
+		"prismacloud_policy":                                   40,
+		"prismacloud_report":                                   41,
+		"prismacloud_reports":                                  42,
+		"prismacloud_rql_historic_search":                      43,
+		"prismacloud_rql_historic_searches":                    44,
+		"prismacloud_trusted_alert_ip":                         45,
+		"prismacloud_trusted_alert_ips":                        46,
+		"prismacloud_trusted_login_ip":                         47,
+		"prismacloud_trusted_login_ips":                        48,
+		"prismacloud_user_profile":                             49,
+		"prismacloud_user_profiles":                            50,
+		"prismacloud_user_role":                                51,
+		"prismacloud_user_roles":                               52,
 	}
 )
 

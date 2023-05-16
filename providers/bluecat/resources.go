@@ -119,6 +119,16 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bluecat_bluecat_zone",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -134,6 +144,7 @@ var (
 		"bluecat_bluecat_ipv4network":    8,
 		"bluecat_bluecat_ptr_record":     9,
 		"bluecat_bluecat_txt_record":     10,
+		"bluecat_bluecat_zone":           11,
 	}
 )
 

@@ -12,7 +12,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a vSphere cluster resource. This can be used to create and manage clusters of hosts.`,
 			Description:      ``,
 			Keywords: []string{
@@ -240,6 +240,42 @@ var (
 					Description: `(Optional) Enables vSAN on the cluster.`,
 				},
 				resource.Attribute{
+					Name:        "vsan_dedup_enabled",
+					Description: `(Optional) Enables vSAN deduplication on the cluster. Cannot be independently set to true. When vSAN deduplication is enabled, vSAN compression must also be enabled.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_compression_enabled",
+					Description: `(Optional) Enables vSAN compression on the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_performance_enabled",
+					Description: `(Optional) Enables vSAN performance service on the cluster. Default: ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_verbose_mode_enabled",
+					Description: `(Optional) Enables verbose mode for vSAN performance service on the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_network_diagnostic_mode_enabled",
+					Description: `(Optional) Enables network diagnostic mode for vSAN performance service on the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_unmap_enabled",
+					Description: `(Optional) Enables vSAN unmap on the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_remote_datastore_ids",
+					Description: `(Optional) The remote vSAN datastore IDs to be mounted to this cluster. Conflicts with ` + "`" + `vsan_dit_encryption_enabled` + "`" + ` and ` + "`" + `vsan_dit_rekey_interval` + "`" + `, i.e., vSAN HCI Mesh feature cannot be enabled with data-in-transit encryption feature at the same time.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_dit_encryption_enabled",
+					Description: `(Optional) Enables vSAN data-in-transit encryption on the cluster. Conflicts with ` + "`" + `vsan_remote_datastore_ids` + "`" + `, i.e., vSAN data-in-transit feature cannot be enabled with the vSAN HCI Mesh feature at the same time.`,
+				},
+				resource.Attribute{
+					Name:        "vsan_dit_rekey_interval",
+					Description: `(Optional) Indicates the rekey interval in minutes for data-in-transit encryption. The valid rekey interval is 30 to 10800 (feature defaults to 1440). Conflicts with ` + "`" + `vsan_remote_datastore_ids` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "vsan_disk_group",
 					Description: `(Optional) Represents the configuration of a host disk group in the cluster.`,
 				},
@@ -249,7 +285,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage",
-					Description: `An array of disk canonical names for vSAN storage. ` + "`" + `` + "`" + `` + "`" + ` resource compute_cluster "compute_cluster" { ... vsan_disk_group { cache = data.vsphere_vmfs_disks.cache_disks[0] storage = data.vsphere_vmfs_disks.storage_disks } ... } ` + "`" + `` + "`" + `` + "`" + ` ## Attribute Reference The following attributes are exported:`,
+					Description: `An array of disk canonical names for vSAN storage. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -257,7 +293,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster_host_group",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere cluster virtual machine group. This can be used to manage groups of virtual machines for relevant rules in a cluster.`,
 			Description:      ``,
 			Keywords: []string{
@@ -287,7 +323,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_affinity_rule",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides the VMware vSphere Distributed Resource Scheduler affinity rule resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -327,7 +363,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_anti_affinity_rule",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides the VMware vSphere Distributed Resource Scheduler anti-affinity rule resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -368,7 +404,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_dependency_rule",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere cluster VM dependency rule. This can be used to manage VM dependency rules for vSphere HA.`,
 			Description:      ``,
 			Keywords: []string{
@@ -412,7 +448,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_group",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere cluster virtual machine group. This can be used to manage groups of virtual machines for relevant rules in a cluster.`,
 			Description:      ``,
 			Keywords: []string{
@@ -443,7 +479,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_compute_cluster_vm_host_rule",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere cluster VM/host rule. This can be used to manage VM-to-host affinity and anti-affinity rules.`,
 			Description:      ``,
 			Keywords: []string{
@@ -489,8 +525,134 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_content_library",
+			Category:         "Virtual Machine",
+			ShortDescription: `Provides a vSphere content cibrary. Content libraries allow you to manage and share virtual machines, vApp templates, and other types of files. Content libraries enable you to share content across vCenter Server instances in the same or different locations.`,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"machine",
+				"content",
+				"library",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the content library.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description for the content library.`,
+				},
+				resource.Attribute{
+					Name:        "storage_backing",
+					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the datastore on which to store the content library items.`,
+				},
+				resource.Attribute{
+					Name:        "publication",
+					Description: `(Optional) Options to publish a local content library.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `(Optional) Method to authenticate users. Must be ` + "`" + `NONE` + "`" + ` or ` + "`" + `BASIC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) Username used by subscribers to authenticate. Currently can only be ` + "`" + `vcsp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password used by subscribers to authenticate.`,
+				},
+				resource.Attribute{
+					Name:        "published",
+					Description: `(Optional) Publish the content library. Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subscription",
+					Description: `(Optional) Options subscribe to a published content library.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_url",
+					Description: `(Required) URL of the published content library.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_method",
+					Description: `(Optional) Authentication method to connect ro a published content library. Must be ` + "`" + `NONE` + "`" + ` or ` + "`" + `BASIC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) Username used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Password used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "automatic_sync",
+					Description: `(Optional) Enable automatic synchronization with the published library. Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "on_demand",
+					Description: `(Optional) Download the library from a content only when needed. Default ` + "`" + `true` + "`" + `. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "publish_url",
+					Description: `The URL of the published content library. ## Importing An existing content library can be [imported][docs-import] into this resource by supplying the content library ID. For example: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_content_library publisher_content_library f42a4b25-844a-44ec-9063-a3a5e9cc88c7 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "publish_url",
+					Description: `The URL of the published content library. ## Importing An existing content library can be [imported][docs-import] into this resource by supplying the content library ID. For example: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_content_library publisher_content_library f42a4b25-844a-44ec-9063-a3a5e9cc88c7 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_content_library_item",
+			Category:         "Virtual Machine",
+			ShortDescription: `Creates an item in a vSphere content library. Each item can contain multiple files.`,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"machine",
+				"content",
+				"library",
+				"item",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the item to be created in the content library.`,
+				},
+				resource.Attribute{
+					Name:        "library_id",
+					Description: `(Required) The ID of the content library in which to create the item.`,
+				},
+				resource.Attribute{
+					Name:        "file_url",
+					Description: `(Optional) File to import as the content library item.`,
+				},
+				resource.Attribute{
+					Name:        "source_uuid",
+					Description: `(Optional) Virtual machine UUID to clone to content library.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description for the content library item.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type of content library item. One of "ovf", "iso", or "vm-template". Default: ` + "`" + `ovf` + "`" + `. ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is a combination of the [managed object reference ID][docs-about-morefs] of the cluster, and the name of the virtual machine group. ## Importing An existing content library item can be [imported][docs-import] into this resource by supplying the content library ID. An example is below: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_content_library_item iso-linux-ubuntu-server-lts xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_custom_attribute",
-			Category:         "Inventory Resources",
+			Category:         "Inventory",
 			ShortDescription: `Provides a VMware vSphere custom attribute resource. This can be used to manage custom attributes in vSphere.`,
 			Description:      ``,
 			Keywords: []string{
@@ -513,7 +675,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_datacenter",
-			Category:         "Inventory Resources",
+			Category:         "Inventory",
 			ShortDescription: `Provides a VMware vSphere datacenter resource. This can be used as the primary container of inventory objects such as hosts and virtual machines.`,
 			Description:      ``,
 			Keywords: []string{
@@ -560,7 +722,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_datastore_cluster",
-			Category:         "Storage Resources",
+			Category:         "Storage",
 			ShortDescription: `Provides a vSphere datastore cluster resource. This can be used to create and manage datastore clusters.`,
 			Description:      ``,
 			Keywords: []string{
@@ -639,7 +801,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sdrs_io_reservable_threshold_mode",
-					Description: `(Optional) The reservable IOPS threshold setting to use, ` + "`" + `sdrs_io_reservable_percent_threshold` + "`" + ` in the event of ` + "`" + `automatic` + "`" + `, or ` + "`" + `sdrs_io_reservable_iops_threshold` + "`" + ` in the event of ` + "`" + `manual` + "`" + `. Default: ` + "`" + `automatic` + "`" + `. ### Storage DRS disk space load balancing settings The following options control disk space load balancing for Storage DRS on the datastore cluster. ~>`,
+					Description: `(Optional) The reservable IOPS threshold setting to use, ` + "`" + `sdrs_io_reservable_percent_threshold` + "`" + ` in the event of ` + "`" + `automatic` + "`" + `, or ` + "`" + `sdrs_io_reservable_iops_threshold` + "`" + ` in the event of ` + "`" + `manual` + "`" + `. Default: ` + "`" + `automatic` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sdrs_space_utilization_threshold",
+					Description: `(Optional) Runtime thresholds govern when Storage DRS performs or recommends migrations (based on the selected automation level). Default: ` + "`" + `80` + "`" + ` percent. ### Storage DRS disk space load balancing settings The following options control disk space load balancing for Storage DRS on the datastore cluster. ~>`,
 				},
 				resource.Attribute{
 					Name:        "sdrs_free_space_utilization_difference",
@@ -675,7 +841,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_datastore_cluster_vm_anti_affinity_rule",
-			Category:         "Storage Resources",
+			Category:         "Storage",
 			ShortDescription: `Provides a VMware vSphere datastore cluster virtual machine anti-affinity rule. This can be used to manage rules to tell virtual machines to run on separate datastores.`,
 			Description:      ``,
 			Keywords: []string{
@@ -714,7 +880,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_distributed_port_group",
-			Category:         "Networking Resources",
+			Category:         "Networking",
 			ShortDescription: `Provides a vSphere distributed port group resource. This can be used to create and manage port groups on a vSphere Distributed Switch.`,
 			Description:      ``,
 			Keywords: []string{
@@ -802,7 +968,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_distributed_virtual_switch",
-			Category:         "Networking Resources",
+			Category:         "Networking",
 			ShortDescription: `Provides a vSphere Distributed Switch resource. This can be used to create and manage the vSphere Distributed Switch resources in vCenter Server.`,
 			Description:      ``,
 			Keywords: []string{
@@ -817,7 +983,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_dpm_host_override",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere DPM host override resource. This can be used to override power management settings for a host in a cluster.`,
 			Description:      ``,
 			Keywords: []string{
@@ -851,7 +1017,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_drs_vm_override",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere DRS virtual machine override resource. This can be used to override DRS settings in a cluster.`,
 			Description:      ``,
 			Keywords: []string{
@@ -886,7 +1052,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_file",
-			Category:         "Storage Resources",
+			Category:         "Storage",
 			ShortDescription: `Provides a VMware vSphere file resource. This can be used to upload files (e.g. .iso and .vmdk) from the Terraform host machine to a remote vSphere or copy files within vSphere.`,
 			Description:      ``,
 			Keywords: []string{
@@ -928,7 +1094,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_folder",
-			Category:         "Inventory Resources",
+			Category:         "Inventory",
 			ShortDescription: `Provides a VMware vSphere folder resource. This can be used to manage vSphere inventory folders.`,
 			Description:      ``,
 			Keywords: []string{
@@ -962,7 +1128,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_ha_vm_override",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere HA virtual machine override resource. This can be used to override high availability settings in a cluster.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1041,7 +1207,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_host",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere host resource. This represents an ESXi host that can be used as a member of a cluster or as a standalone host.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1069,7 +1235,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster",
-					Description: `(Optional) The ID of the Compute Cluster this host should be added to. This should not be set if ` + "`" + `datacenter` + "`" + ` is set. Conflicts with: ` + "`" + `cluster` + "`" + `.`,
+					Description: `(Optional) The ID of the Compute Cluster this host should be added to. This should not be set if ` + "`" + `datacenter` + "`" + ` is set. Conflicts with: ` + "`" + `cluster_managed` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_managed",
@@ -1077,7 +1243,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `(Optional) Host's certificate SHA-1 thumbprint. If not set the CA that signed the host's certificate should be trusted. If the CA is not trusted and no thumbprint is set then the operation will fail.`,
+					Description: `(Optional) Host's certificate SHA-1 thumbprint. If not set the CA that signed the host's certificate should be trusted. If the CA is not trusted and no thumbprint is set then the operation will fail. See data source [` + "`" + `vsphere_host_thumbprint` + "`" + `][docs-host-thumbprint-data-source].`,
 				},
 				resource.Attribute{
 					Name:        "license",
@@ -1089,7 +1255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connected",
-					Description: `(Optional) If set to false then the host will be disconected. Default is ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) If set to false then the host will be disconnected. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "maintenance",
@@ -1122,8 +1288,8 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_host_port_group",
-			Category:         "Networking Resources",
-			ShortDescription: `Provides a vSphere Host Port Group Resource. This can be used to configure port groups direct on an ESXi host.`,
+			Category:         "Networking",
+			ShortDescription: `Provides a vSphere port group resource to manage port groups on ESXi hosts.`,
 			Description:      ``,
 			Keywords: []string{
 				"networking",
@@ -1150,7 +1316,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `An ID unique to Terraform for this port group. The convention is a prefix, the host system ID, and the port group name. An example would be ` + "`" + `tf-HostPortGroup:host-10:PGTerraformTest` + "`" + `.`,
+					Description: `An ID for the port group that is _unique_ to Terraform. The convention is a prefix, the host system ID, and the port group name. For example,` + "`" + `tf-HostPortGroup:host-10:portgroup-01` + "`" + `. Tracking a port group on a standard switch, which can be created with or without a vCenter Server, is different than then a dvPortGroup which is tracked as a managed object ID in vCemter Server versus a key on a host.`,
 				},
 				resource.Attribute{
 					Name:        "computed_policy",
@@ -1162,13 +1328,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `A list of ports that currently exist and are used on this port group. ## Importing An existing host port group can be [imported][docs-import] into this resource using the host port group's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_port_group.management tf-HostPortGroup:host-123:Management ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `Management` + "`" + ` host port group from host with ID ` + "`" + `host-123` + "`" + `.`,
+					Description: `A list of ports that currently exist and are used on this port group. ## Importing An existing host port group can be [imported][docs-import] into this resource using the host port group's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_port_group.management tf-HostPortGroup:host-123:management ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `management` + "`" + ` host port group from host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `An ID unique to Terraform for this port group. The convention is a prefix, the host system ID, and the port group name. An example would be ` + "`" + `tf-HostPortGroup:host-10:PGTerraformTest` + "`" + `.`,
+					Description: `An ID for the port group that is _unique_ to Terraform. The convention is a prefix, the host system ID, and the port group name. For example,` + "`" + `tf-HostPortGroup:host-10:portgroup-01` + "`" + `. Tracking a port group on a standard switch, which can be created with or without a vCenter Server, is different than then a dvPortGroup which is tracked as a managed object ID in vCemter Server versus a key on a host.`,
 				},
 				resource.Attribute{
 					Name:        "computed_policy",
@@ -1180,14 +1346,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `A list of ports that currently exist and are used on this port group. ## Importing An existing host port group can be [imported][docs-import] into this resource using the host port group's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_port_group.management tf-HostPortGroup:host-123:Management ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `Management` + "`" + ` host port group from host with ID ` + "`" + `host-123` + "`" + `.`,
+					Description: `A list of ports that currently exist and are used on this port group. ## Importing An existing host port group can be [imported][docs-import] into this resource using the host port group's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_port_group.management tf-HostPortGroup:host-123:management ` + "`" + `` + "`" + `` + "`" + ` The above would import the ` + "`" + `management` + "`" + ` host port group from host with ID ` + "`" + `host-123` + "`" + `.`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_host_virtual_switch",
-			Category:         "Networking Resources",
+			Category:         "Networking",
 			ShortDescription: `Provides a vSphere Host Virtual Switch Resource. This can be used to configure vSwitches direct on an ESXi host.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1235,7 +1401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "standby_nics",
-					Description: `(Required) The list of standby network adapters used for failover.`,
+					Description: `(Optional) The list of standby network adapters used for failover.`,
 				},
 				resource.Attribute{
 					Name:        "check_beacon",
@@ -1287,7 +1453,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_license",
-			Category:         "Administration Resources",
+			Category:         "Administration",
 			ShortDescription: `Provides a VMware vSphere license resource. This can be used to add and remove license keys.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1342,7 +1508,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_nas_datastore",
-			Category:         "Storage Resources",
+			Category:         "Storage",
 			ShortDescription: `Provides a vSphere NAS datastore resource. This can be used to mount a NFS share as a datastore on a host.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1474,7 +1640,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_resource_pool",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a resource for VMware vSphere resource pools. This can be used to create and manage resource pools.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1548,7 +1714,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_storage_drs_vm_override",
-			Category:         "Storage Resources",
+			Category:         "Storage",
 			ShortDescription: `Provides a VMware vSphere Storage DRS virtual machine override resource. This can be used to override Storage DRS settings in a datastore cluster.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1584,7 +1750,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_tag",
-			Category:         "Inventory Resources",
+			Category:         "Inventory",
 			ShortDescription: `Provides a vSphere tag resource. This can be used to manage tags in vSphere.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1610,7 +1776,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_tag_category",
-			Category:         "Inventory Resources",
+			Category:         "Inventory",
 			ShortDescription: `Provides a vSphere tag category resource. This can be used to manage tag categories in vSphere.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1641,7 +1807,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_vapp_container",
-			Category:         "Virtual Machine Resources",
+			Category:         "Virtual Machine",
 			ShortDescription: `Provides a VMware vSphere vApp container resource. This can be used to create and manage vApp container.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1713,7 +1879,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_vapp_entity",
-			Category:         "Virtual Machine Resources",
+			Category:         "Virtual Machine",
 			ShortDescription: `Provides a vSphere vApp entity resource. This can be used to describe the behavior of an entity (virtual machine or sub-vApp container) in a vApp container.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1761,7 +1927,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_virtual_disk",
-			Category:         "Virtual Machine Resources",
+			Category:         "Virtual Machine",
 			ShortDescription: `Provides a vSphere virtual disk resource. This can be used to create and delete virtual disks.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1804,7 +1970,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_virtual_machine",
-			Category:         "Virtual Machine Resources",
+			Category:         "Virtual Machine",
 			ShortDescription: `Provides a resource for VMware vSphere virtual machines. This resource can be used to create, modify, and delete virtual machines.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1827,6 +1993,10 @@ var (
 				resource.Attribute{
 					Name:        "clone",
 					Description: `(Optional) When specified, the virtual machine will be created as a clone of a specified template. Optional customization options can be submitted for the resource. See [creating a virtual machine from a template](#creating-a-virtual-machine-from-a-template) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "extra_config_reboot_required",
+					Description: `(Optional) Allow the virtual machine to be rebooted when a change to ` + "`" + `extra_config` + "`" + ` occurs. Default: ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "custom_attributes",
@@ -2202,7 +2372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ovf_mapping",
-					Description: `(Optional) Specifies which NIC in an OVF/OVA the ` + "`" + `network_interface` + "`" + ` should be associated. Only applies at creation when deploying from an OVF/OVA. ### CD-ROM Options A CD-ROM device is managed by adding an instance of the ` + "`" + `cdrom` + "`" + ` block. A single virtual CD-ROM device can be created and attached to the virtual machine. The resource supports attaching a CD-ROM from either a datastore ISO or using a remote client device.`,
+					Description: `(Optional) Specifies which NIC in an OVF/OVA the ` + "`" + `network_interface` + "`" + ` should be associated. Only applies at creation when deploying from an OVF/OVA. ### CD-ROM Options A CD-ROM device is managed by adding an instance of the ` + "`" + `cdrom` + "`" + ` block. Up to two virtual CD-ROM devices can be created and attached to the virtual machine. If adding multiple CD-ROM devices, add each device as a separate ` + "`" + `cdrom` + "`" + ` block. The resource supports attaching a CD-ROM from either a datastore ISO or using a remote client device.`,
 				},
 				resource.Attribute{
 					Name:        "client_device",
@@ -2222,7 +2392,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device_address",
-					Description: `An address internal to Terraform that helps locate the device when ` + "`" + `key` + "`" + ` is unavailable. This follows a convention of ` + "`" + `CONTROLLER_TYPE:BUS_NUMBER:UNIT_NUMBER` + "`" + `. Example: ` + "`" + `scsi:0:1` + "`" + ` means device unit ` + "`" + `1` + "`" + ` on SCSI bus ` + "`" + `0` + "`" + `. ## Creating a Virtual Machine from a Template The ` + "`" + `clone` + "`" + ` block can be used to create a new virtual machine from an existing virtual machine or template. The resource supports both making a complete copy of a virtual machine, or cloning from a snapshot (also known as a linked clone). See the section on [cloning and customization example](#cloning-and-customization-example) for more information. ~>`,
+					Description: `An address internal to Terraform that helps locate the device when ` + "`" + `key` + "`" + ` is unavailable. This follows a convention of ` + "`" + `CONTROLLER_TYPE:BUS_NUMBER:UNIT_NUMBER` + "`" + `. Example: ` + "`" + `scsi:0:1` + "`" + ` means device unit ` + "`" + `1` + "`" + ` on SCSI bus ` + "`" + `0` + "`" + `. ## Creating a Virtual Machine from a Template The ` + "`" + `clone` + "`" + ` block can be used to create a new virtual machine from an existing virtual machine or template. The resource supports both making a complete copy of a virtual machine, or cloning from a snapshot (also known as a linked clone). See the section on [cloning and customization](#cloning-and-customization) for more information. ~>`,
 				},
 				resource.Attribute{
 					Name:        "template_uuid",
@@ -2238,7 +2408,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customize",
-					Description: `(Optional) The customization spec for this clone. This allows the user to configure the virtual machine post-clone. For more details, see [virtual machine customizations](#virtual-machine-customizations). ### Virtual Machine Customizations As part of the ` + "`" + `clone` + "`" + ` operation, a virtual machine can be [customized][vmware-docs-customize] to configure host, network, or licensing settings. [vmware-docs-customize]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html To perform virtual machine customization as a part of the clone process, specify the ` + "`" + `customize` + "`" + ` block with the respective customization options, nested within the ` + "`" + `clone` + "`" + ` block. Windows guests are customized using Sysprep, which will result in the machine SID being reset. Before using customization, check is that your source virtual machine meets the [requirements](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html) for guest OS customization on vSphere. See the [cloning and customization example](#cloning-and-customization-example) for a usage synopsis. The settings for ` + "`" + `customize` + "`" + ` are as follows: #### Customization Timeout Settings`,
+					Description: `(Optional) The customization spec for this clone. This allows the user to configure the virtual machine post-clone. For more details, see [virtual machine customizations](#virtual-machine-customizations). ### Virtual Machine Customizations As part of the ` + "`" + `clone` + "`" + ` operation, a virtual machine can be [customized][vmware-docs-customize] to configure host, network, or licensing settings. [vmware-docs-customize]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html To perform virtual machine customization as a part of the clone process, specify the ` + "`" + `customize` + "`" + ` block with the respective customization options, nested within the ` + "`" + `clone` + "`" + ` block. Windows guests are customized using Sysprep, which will result in the machine SID being reset. Before using customization, check is that your source virtual machine meets the [requirements](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html) for guest OS customization on vSphere. See the section on [cloning and customization](#cloning-and-customization) for a usage synopsis. The settings for ` + "`" + `customize` + "`" + ` are as follows: #### Customization Timeout Settings`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
@@ -2353,6 +2523,14 @@ var (
 					Description: `(Optional) The time zone for the virtual machine. For a list of supported codes, please refer to the [MIcrosoft documentation][ms-docs-valid-sysprep-tzs]. The default is ` + "`" + `85` + "`" + ` (GMT/UTC). [ms-docs-valid-sysprep-tzs]: https://msdn.microsoft.com/en-us/library/ms912391(v=winembedded.11).aspx ##### Using a Windows SysPrep Configuration An alternative to the ` + "`" + `windows_options` + "`" + ` demonstrated above, you can provide a SysPrep ` + "`" + `.XML` + "`" + ` file using the ` + "`" + `windows_sysprep_text` + "`" + ` option. This option allows full control of the Windows guest operating system customization process.`,
 				},
 				resource.Attribute{
+					Name:        "allow_unverified_ssl_cert",
+					Description: `(Optional) Allow unverified SSL certificates while deploying OVF/OVA from a URL. Defaults ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_hidden_properties",
+					Description: `(Optional) Allow properties with ` + "`" + `ovf:userConfigurable=false` + "`" + ` to be set. Defaults ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "local_ovf_path",
 					Description: `(Optional) The absolute path to the OVF/OVA file on the local system. When deploying from an OVF, ensure the necessary files, such as ` + "`" + `.vmdk` + "`" + ` and ` + "`" + `.mf` + "`" + ` files are also in the same directory as the ` + "`" + `.ovf` + "`" + ` file.`,
 				},
@@ -2378,11 +2556,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ovf_network_map",
-					Description: `(Optional) The mapping of network identifiers from the OVF descriptor to a network UUID.`,
-				},
-				resource.Attribute{
-					Name:        "allow_unverified_ssl_cert",
-					Description: `(Optional) Allow unverified SSL certificates while deploying OVF/OVA from a URL. Defaults ` + "`" + `false` + "`" + `. ### Using vApp Properties for OVF/OVA Configuration You can use the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that originated from an imported OVF/OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CD-ROM backed by a client device must be included.`,
+					Description: `(Optional) The mapping of network identifiers from the OVF descriptor to a network UUID. ### Using vApp Properties for OVF/OVA Configuration You can use the ` + "`" + `properties` + "`" + ` section of the ` + "`" + `vapp` + "`" + ` block to supply configuration parameters to a virtual machine cloned from a template that originated from an imported OVF/OVA file. Both GuestInfo and ISO transport methods are supported. For templates that use ISO transport, a CD-ROM backed by a client device must be included.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -2491,7 +2665,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_virtual_machine_snapshot",
-			Category:         "Virtual Machine Resources",
+			Category:         "Virtual Machine",
 			ShortDescription: `Provides a VMware vSphere virtual machine snapshot resource. This can be used to create and delete virtual machine snapshots.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2533,8 +2707,8 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vm_storage_policy",
-			Category:         "Storage Resources",
+			Type:             "vsphere_vm_storage_policy",
+			Category:         "Storage",
 			ShortDescription: `Storage policies can select the most appropriate datastore for the virtual machine and enforce the required level of service.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2573,7 +2747,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_vmfs_datastore",
-			Category:         "Storage Resources",
+			Category:         "Storage",
 			ShortDescription: `Provides a vSphere VMFS datastore resource. This can be used to configure a VMFS datastore on a host or set of hosts.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2677,7 +2851,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_vnic",
-			Category:         "Host and Cluster Management Resources",
+			Category:         "Host and Cluster Management",
 			ShortDescription: `Provides a VMware vSphere vnic resource..`,
 			Description:      ``,
 			Keywords: []string{
@@ -2718,7 +2892,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "netstack",
-					Description: `(Optional) TCP/IP stack setting for this interface. Possible values are 'defaultTcpipStack', 'vmotion', 'vSphereProvisioning'. Changing this will force the creation of a new interface since it's not possible to change the stack once it gets created. (Default: ` + "`" + `defaultTcpipStack` + "`" + `) ### ipv4 options Configures the IPv4 settings of the network interface. Either DHCP or Static IP has to be set.`,
+					Description: `(Optional) TCP/IP stack setting for this interface. Possible values are 'defaultTcpipStack', 'vmotion', 'vSphereProvisioning'. Changing this will force the creation of a new interface since it's not possible to change the stack once it gets created. (Default: ` + "`" + `defaultTcpipStack` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) Enabled services setting for this interface. Current possible values are 'vmotion', 'management', and 'vsan'. ### ipv4 options Configures the IPv4 settings of the network interface. Either DHCP or Static IP has to be set.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp",
@@ -2767,11 +2945,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_entity_permissions",
-			Category:         "Administration Resources",
+			Category:         "Security",
 			ShortDescription: `Provides CRUD operations on a vsphere entity permissions. Permissions can be created on an entity for a given user or group with the specified roles.`,
 			Description:      ``,
 			Keywords: []string{
-				"administration",
+				"security",
 				"entity",
 				"permissions",
 			},
@@ -2790,11 +2968,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "vsphere_role",
-			Category:         "Administration Resources",
+			Category:         "Security",
 			ShortDescription: `Provides CRUD operations on a vsphere role. A role can be created and privileges can be associated with it,`,
 			Description:      ``,
 			Keywords: []string{
-				"administration",
+				"security",
 				"role",
 			},
 			Arguments: []resource.Attribute{
@@ -2804,7 +2982,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role_privileges",
-					Description: `(Optional) The privileges to be associated with this role.`,
+					Description: `(Optional) The privileges to be associated with this role. ## Importing An existing role can be imported into this resource by supplying the role id. An example is below: ` + "`" + `` + "`" + `` + "`" + `hcl terraform import vsphere_role.role1 -709298051 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2820,36 +2998,38 @@ var (
 		"vsphere_compute_cluster_vm_dependency_rule":      4,
 		"vsphere_compute_cluster_vm_group":                5,
 		"vsphere_compute_cluster_vm_host_rule":            6,
-		"vsphere_custom_attribute":                        7,
-		"vsphere_datacenter":                              8,
-		"vsphere_datastore_cluster":                       9,
-		"vsphere_datastore_cluster_vm_anti_affinity_rule": 10,
-		"vsphere_distributed_port_group":                  11,
-		"vsphere_distributed_virtual_switch":              12,
-		"vsphere_dpm_host_override":                       13,
-		"vsphere_drs_vm_override":                         14,
-		"vsphere_file":                                    15,
-		"vsphere_folder":                                  16,
-		"vsphere_ha_vm_override":                          17,
-		"vsphere_host":                                    18,
-		"vsphere_host_port_group":                         19,
-		"vsphere_host_virtual_switch":                     20,
-		"vsphere_license":                                 21,
-		"vsphere_nas_datastore":                           22,
-		"vsphere_resource_pool":                           23,
-		"vsphere_storage_drs_vm_override":                 24,
-		"vsphere_tag":                                     25,
-		"vsphere_tag_category":                            26,
-		"vsphere_vapp_container":                          27,
-		"vsphere_vapp_entity":                             28,
-		"vsphere_virtual_disk":                            29,
-		"vsphere_virtual_machine":                         30,
-		"vsphere_virtual_machine_snapshot":                31,
-		"vm_storage_policy":                               32,
-		"vsphere_vmfs_datastore":                          33,
-		"vsphere_vnic":                                    34,
-		"vsphere_entity_permissions":                      35,
-		"vsphere_role":                                    36,
+		"vsphere_content_library":                         7,
+		"vsphere_content_library_item":                    8,
+		"vsphere_custom_attribute":                        9,
+		"vsphere_datacenter":                              10,
+		"vsphere_datastore_cluster":                       11,
+		"vsphere_datastore_cluster_vm_anti_affinity_rule": 12,
+		"vsphere_distributed_port_group":                  13,
+		"vsphere_distributed_virtual_switch":              14,
+		"vsphere_dpm_host_override":                       15,
+		"vsphere_drs_vm_override":                         16,
+		"vsphere_file":                                    17,
+		"vsphere_folder":                                  18,
+		"vsphere_ha_vm_override":                          19,
+		"vsphere_host":                                    20,
+		"vsphere_host_port_group":                         21,
+		"vsphere_host_virtual_switch":                     22,
+		"vsphere_license":                                 23,
+		"vsphere_nas_datastore":                           24,
+		"vsphere_resource_pool":                           25,
+		"vsphere_storage_drs_vm_override":                 26,
+		"vsphere_tag":                                     27,
+		"vsphere_tag_category":                            28,
+		"vsphere_vapp_container":                          29,
+		"vsphere_vapp_entity":                             30,
+		"vsphere_virtual_disk":                            31,
+		"vsphere_virtual_machine":                         32,
+		"vsphere_virtual_machine_snapshot":                33,
+		"vsphere_vm_storage_policy":                       34,
+		"vsphere_vmfs_datastore":                          35,
+		"vsphere_vnic":                                    36,
+		"vsphere_entity_permissions":                      37,
+		"vsphere_role":                                    38,
 	}
 )
 

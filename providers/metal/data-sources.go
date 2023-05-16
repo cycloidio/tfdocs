@@ -717,6 +717,10 @@ var (
 					Name:        "state",
 					Description: `Status of the gateway resource`,
 				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `UUID of the VRF associated with the IP Reservation.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -738,6 +742,10 @@ var (
 				resource.Attribute{
 					Name:        "state",
 					Description: `Status of the gateway resource`,
+				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `UUID of the VRF associated with the IP Reservation.`,
 				},
 			},
 		},
@@ -1025,6 +1033,30 @@ var (
 					Name:        "logo",
 					Description: `Logo URL`,
 				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Address information`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Postal address.`,
+				},
+				resource.Attribute{
+					Name:        "city",
+					Description: `City name.`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `Two letter country code (ISO 3166-1 alpha-2), e.g. US.`,
+				},
+				resource.Attribute{
+					Name:        "zip_code",
+					Description: `Zip Code.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State name.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1046,6 +1078,58 @@ var (
 				resource.Attribute{
 					Name:        "logo",
 					Description: `Logo URL`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Address information`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Postal address.`,
+				},
+				resource.Attribute{
+					Name:        "city",
+					Description: `City name.`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `Two letter country code (ISO 3166-1 alpha-2), e.g. US.`,
+				},
+				resource.Attribute{
+					Name:        "zip_code",
+					Description: `Zip Code.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State name.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_plans",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an Equinix Metal plans datasource. This can be used to find plans that meet a filter criteria.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) One or more attribute/direction pairs on which to sort results. If multiple sorts are provided, they will be applied in order - ` + "`" + `attribute` + "`" + ` - (Required) The attribute used to sort the results. Sort attributes are case-sensitive - ` + "`" + `direction` + "`" + ` - (Optional) Sort results in ascending or descending order. Strings are sorted in alphabetical order. One of: asc, desc`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) One or more attribute/values pairs to filter off of - ` + "`" + `attribute` + "`" + ` - (Required) The attribute used to filter. Filter attributes are case-sensitive - ` + "`" + `values` + "`" + ` - (Required) The filter values. Filter values are case-sensitive. If you specify multiple values for a filter, the values are joined with an OR by default, and the request returns all results that match any of the specified values - ` + "`" + `match_by` + "`" + ` - (Optional) The type of comparison to apply. One of: ` + "`" + `in` + "`" + ` , ` + "`" + `re` + "`" + `, ` + "`" + `substring` + "`" + `, ` + "`" + `less_than` + "`" + `, ` + "`" + `less_than_or_equal` + "`" + `, ` + "`" + `greater_than` + "`" + `, ` + "`" + `greater_than_or_equal` + "`" + `. Default is ` + "`" + `in` + "`" + `. - ` + "`" + `all` + "`" + ` - (Optional) If is set to true, the values are joined with an AND, and the requests returns only the results that match all specified values. Default is ` + "`" + `false` + "`" + `. All fields in the ` + "`" + `plans` + "`" + ` block defined below can be used as attribute for both ` + "`" + `sort` + "`" + ` and ` + "`" + `filter` + "`" + ` blocks. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "plans",
+					Description: `The ID of the facility - ` + "`" + `id` + "`" + ` - id of the plan - ` + "`" + `name` + "`" + ` - name of the plan - ` + "`" + `slug` + "`" + `- plan slug - ` + "`" + `description` + "`" + `- description of the plan - ` + "`" + `line` + "`" + `- plan line, e.g. baremetal - ` + "`" + `legacy` + "`" + `- flag showing if it's a legacy plan - ` + "`" + `class` + "`" + `- plan class - ` + "`" + `pricing_hour` + "`" + `- plan hourly price - ` + "`" + `pricing_month` + "`" + `- plan monthly price - ` + "`" + `deployment_types` + "`" + `- list of deployment types, e.g. on_demand, spot_market - ` + "`" + `available_in` + "`" + `- list of facilities where the plan is available - ` + "`" + `available_in_metros` + "`" + `- list of facilities where the plan is available`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plans",
+					Description: `The ID of the facility - ` + "`" + `id` + "`" + ` - id of the plan - ` + "`" + `name` + "`" + ` - name of the plan - ` + "`" + `slug` + "`" + `- plan slug - ` + "`" + `description` + "`" + `- description of the plan - ` + "`" + `line` + "`" + `- plan line, e.g. baremetal - ` + "`" + `legacy` + "`" + `- flag showing if it's a legacy plan - ` + "`" + `class` + "`" + `- plan class - ` + "`" + `pricing_hour` + "`" + `- plan hourly price - ` + "`" + `pricing_month` + "`" + `- plan monthly price - ` + "`" + `deployment_types` + "`" + `- list of deployment types, e.g. on_demand, spot_market - ` + "`" + `available_in` + "`" + `- list of facilities where the plan is available - ` + "`" + `available_in_metros` + "`" + `- list of facilities where the plan is available`,
 				},
 			},
 		},
@@ -1411,18 +1495,27 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) UUID of the IP address block to look up`,
+					Description: `(Optional) UUID of the IP address block to look up`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) UUID of the project where the searched block should be`,
+					Description: `(Optional) UUID of the project where the searched block should be`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Required) Block containing this IP address will be returned ## Attributes Reference This datasource exposes the same attributes as the [metal_reserved_ip_block resource](../resources/reserved_ip_block.md).`,
+					Description: `(Optional) Block containing this IP address will be returned ->`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `One of ` + "`" + `global_ipv4` + "`" + `, ` + "`" + `public_ipv4` + "`" + `, ` + "`" + `private_ipv4` + "`" + `, ` + "`" + `public_ipv6` + "`" + `,or ` + "`" + `vrf` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `One of ` + "`" + `global_ipv4` + "`" + `, ` + "`" + `public_ipv4` + "`" + `, ` + "`" + `private_ipv4` + "`" + `, ` + "`" + `public_ipv6` + "`" + `,or ` + "`" + `vrf` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1554,57 +1647,113 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_circuit_id",
-					Description: `(Required) ID of the virtual circuit resource ## Attributes Reference`,
+					Description: `(Required) ID of the virtual circuit resource ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the virtual circuit resource`,
+					Description: `Name of the virtual circuit resource.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the virtal circuit`,
+					Description: `Status of the virtal circuit.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `UUID of the Connection Port where the VC is scoped to.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `ID of project to which the VC belongs`,
+					Description: `ID of project to which the VC belongs.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description for the Virtual Circuit resource`,
+					Description: `Description for the Virtual Circuit resource.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Tags for the Virtual Circuit resource`,
+					Description: `Tags for the Virtual Circuit resource.`,
 				},
 				resource.Attribute{
 					Name:        "speed",
-					Description: `Speed of the Virtual Circuit resource`,
+					Description: `Speed of the Virtual Circuit resource.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `UUID of the VLAN to associate.`,
+				},
+				resource.Attribute{
+					Name:        "peer_asn",
+					Description: `The BGP ASN of the peer. The same ASN may be the used across several VCs, but it cannot be the same as the local_asn of the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `A subnet from one of the IP blocks associated with the VRF that we will help create an IP reservation for. Can only be either a /30 or /31.`,
+				},
+				resource.Attribute{
+					Name:        "metal_ip",
+					Description: `The Metal IP address for the SVI (Switch Virtual Interface) of the VirtualCircuit. Will default to the first usable IP in the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "customer_ip",
+					Description: `The Customer IP address which the CSR switch will peer with. Will default to the other usable IP in the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `The password that can be set for the VRF BGP peer`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the virtual circuit resource`,
+					Description: `Name of the virtual circuit resource.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the virtal circuit`,
+					Description: `Status of the virtal circuit.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `UUID of the Connection Port where the VC is scoped to.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `ID of project to which the VC belongs`,
+					Description: `ID of project to which the VC belongs.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Description for the Virtual Circuit resource`,
+					Description: `Description for the Virtual Circuit resource.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Tags for the Virtual Circuit resource`,
+					Description: `Tags for the Virtual Circuit resource.`,
 				},
 				resource.Attribute{
 					Name:        "speed",
-					Description: `Speed of the Virtual Circuit resource`,
+					Description: `Speed of the Virtual Circuit resource.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `UUID of the VLAN to associate.`,
+				},
+				resource.Attribute{
+					Name:        "peer_asn",
+					Description: `The BGP ASN of the peer. The same ASN may be the used across several VCs, but it cannot be the same as the local_asn of the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `A subnet from one of the IP blocks associated with the VRF that we will help create an IP reservation for. Can only be either a /30 or /31.`,
+				},
+				resource.Attribute{
+					Name:        "metal_ip",
+					Description: `The Metal IP address for the SVI (Switch Virtual Interface) of the VirtualCircuit. Will default to the first usable IP in the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "customer_ip",
+					Description: `The Customer IP address which the CSR switch will peer with. Will default to the other usable IP in the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `The password that can be set for the VRF BGP peer`,
 				},
 			},
 		},
@@ -1666,6 +1815,70 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_vrf",
+			Category:         "Data Sources",
+			ShortDescription: `(not-GA) Provides a datasource for Equinix Metal VRF.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `(Required) ID of the VRF resource ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `User-supplied name of the VRF, unique to the project`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro ID or Code where the VRF will be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID where the VRF will be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "local_asn",
+					Description: `The 4-byte ASN set on the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "ip_ranges",
+					Description: `All IPv4 and IPv6 Ranges that will be available to BGP Peers. IPv4 addresses must be /8 or smaller with a minimum size of /29. IPv6 must be /56 or smaller with a minimum size of /64. Ranges must not overlap other ranges within the VRF.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `User-supplied name of the VRF, unique to the project`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `Metro ID or Code where the VRF will be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID where the VRF will be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "local_asn",
+					Description: `The 4-byte ASN set on the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "ip_ranges",
+					Description: `All IPv4 and IPv6 Ranges that will be available to BGP Peers. IPv4 addresses must be /8 or smaller with a minimum size of /29. IPv6 must be /56 or smaller with a minimum size of /64. Ranges must not overlap other ranges within the VRF.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -1680,16 +1893,18 @@ var (
 		"metal_metro":                7,
 		"metal_operating_system":     8,
 		"metal_organization":         9,
-		"metal_port":                 10,
-		"metal_precreated_ip_block":  11,
-		"metal_project":              12,
-		"metal_project_ssh_key":      13,
-		"metal_reserved_ip_block":    14,
-		"metal_spot_market_price":    15,
-		"metal_spot_market_request":  16,
-		"metal_virtual_circuit":      17,
-		"metal_vlan":                 18,
-		"metal_volume":               19,
+		"metal_plans":                10,
+		"metal_port":                 11,
+		"metal_precreated_ip_block":  12,
+		"metal_project":              13,
+		"metal_project_ssh_key":      14,
+		"metal_reserved_ip_block":    15,
+		"metal_spot_market_price":    16,
+		"metal_spot_market_request":  17,
+		"metal_virtual_circuit":      18,
+		"metal_vlan":                 19,
+		"metal_volume":               20,
+		"metal_vrf":                  21,
 	}
 )
 

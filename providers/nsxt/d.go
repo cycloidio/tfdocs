@@ -388,6 +388,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_bridge_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Policy Bridge Profile data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Profile to retrieve. If ID is specified, no additional argument should be configured.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_certificate",
 			Category:         "Data Sources",
 			ShortDescription: `Policy Certificate data source.`,
@@ -575,6 +611,62 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_gateway_locale_service",
+			Category:         "Data Sources",
+			ShortDescription: `A policy gateway locale service data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway_path",
+					Description: `(Required) Path for the gateway.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of locale service gateway to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name or prefix of locale service to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "edge_cluster_path",
+					Description: `The path of the Edge cluster configured on this service.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_path",
+					Description: `Path for BGP configuration configured on this service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "edge_cluster_path",
+					Description: `The path of the Edge cluster configured on this service.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+				resource.Attribute{
+					Name:        "bgp_path",
+					Description: `Path for BGP configuration configured on this service.`,
 				},
 			},
 		},
@@ -844,6 +936,86 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_local_endpoint",
+			Category:         "Data Sources",
+			ShortDescription: `Policy IPSec VPN Local Endpoint data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Local Endpoint to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Local Endpoint to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "service_path",
+					Description: `(Optional) Service Path for this Local Endpoint. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_ipsec_vpn_service",
+			Category:         "Data Sources",
+			ShortDescription: `Policy IPSec VPN Service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of IPSec VPN Service to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name of the IPSec VPN Service.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_path",
+					Description: `(Optional) Gateway Path for this Service. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_ipv6_dad_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Policy IPv6 DAD Profile data source.`,
@@ -893,6 +1065,46 @@ var (
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Optional) The Display Name prefix of the Profile to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nsxt_policy_l2_vpn_service",
+			Category:         "Data Sources",
+			ShortDescription: `Policy L2 VPN Service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of L2 VPN Service to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name of the L2 VPN Service.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_path",
+					Description: `(Optional) Gateway Path for this Service. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1312,6 +1524,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_policy_segment",
+			Category:         "Data Sources",
+			ShortDescription: `Policy Segment data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of Segment to retrieve. If ID is specified, no additional argument should be configured.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name prefix of the Segment to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the resource.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The NSX path of the policy resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_policy_segment_realization",
 			Category:         "Data Sources",
 			ShortDescription: `State of segment realization on hypervisors.`,
@@ -1684,7 +1932,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "value_tupe",
-					Description: `(Optional) Type of VM ID the user is interested in. Possible values are ` + "`" + `bios_id` + "`" + `, ` + "`" + `external_id` + "`" + `, ` + "`" + `instance_id` + "`" + `. Default is ` + "`" + `bios_id` + "`" + `. ## Attributes Reference`,
+					Description: `(Optional) Type of VM ID the user is interested in. Possible values are ` + "`" + `bios_id` + "`" + `, ` + "`" + `external_id` + "`" + `, ` + "`" + `instance_id` + "`" + `. Default is ` + "`" + `bios_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) Filter results by power state of the machine.`,
+				},
+				resource.Attribute{
+					Name:        "guest_os",
+					Description: `(Optional) Filter results by operating system of the machine. The match is case insensitive and prefix-based. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "items",
@@ -1847,43 +2103,49 @@ var (
 		"nsxt_ns_service":                       10,
 		"nsxt_ns_services":                      11,
 		"nsxt_policy_bfd_profile":               12,
-		"nsxt_policy_certificate":               13,
-		"nsxt_policy_context_profile":           14,
-		"nsxt_policy_dhcp_server":               15,
-		"nsxt_policy_edge_cluster":              16,
-		"nsxt_policy_edge_node":                 17,
-		"nsxt_policy_gateway_policy":            18,
-		"nsxt_policy_gateway_qos_profile":       19,
-		"nsxt_policy_group":                     20,
-		"nsxt_policy_intrusion_service_profile": 21,
-		"nsxt_policy_ip_block":                  22,
-		"nsxt_policy_ip_discovery_profile":      23,
-		"nsxt_policy_ip_pool":                   24,
-		"nsxt_policy_ipv6_dad_profile":          25,
-		"nsxt_policy_ipv6_ndra_profile":         26,
-		"nsxt_policy_lb_app_profile":            27,
-		"nsxt_policy_lb_client_ssl_profile":     28,
-		"nsxt_policy_lb_monitor":                29,
-		"nsxt_policy_lb_persistence_profile":    30,
-		"nsxt_policy_lb_server_ssl_profile":     31,
-		"nsxt_policy_lb_service":                32,
-		"nsxt_policy_mac_discovery_profile":     33,
-		"nsxt_policy_qos_profile":               34,
-		"nsxt_policy_realization_info":          35,
-		"nsxt_policy_security_policy":           36,
-		"nsxt_policy_segment_realization":       37,
-		"nsxt_policy_segment_security_profile":  38,
-		"nsxt_policy_service":                   39,
-		"nsxt_policy_site":                      40,
-		"nsxt_policy_spoofguard_profile":        41,
-		"nsxt_policy_tier0_gateway":             42,
-		"nsxt_policy_tier1_gateway":             43,
-		"nsxt_policy_transport_zone":            44,
-		"nsxt_policy_vm":                        45,
-		"nsxt_policy_vms":                       46,
-		"nsxt_policy_vni_pool":                  47,
-		"nsxt_switching_profile":                48,
-		"nsxt_transport_zone":                   49,
+		"nsxt_policy_bridge_profile":            13,
+		"nsxt_policy_certificate":               14,
+		"nsxt_policy_context_profile":           15,
+		"nsxt_policy_dhcp_server":               16,
+		"nsxt_policy_edge_cluster":              17,
+		"nsxt_policy_edge_node":                 18,
+		"nsxt_policy_gateway_locale_service":    19,
+		"nsxt_policy_gateway_policy":            20,
+		"nsxt_policy_gateway_qos_profile":       21,
+		"nsxt_policy_group":                     22,
+		"nsxt_policy_intrusion_service_profile": 23,
+		"nsxt_policy_ip_block":                  24,
+		"nsxt_policy_ip_discovery_profile":      25,
+		"nsxt_policy_ip_pool":                   26,
+		"nsxt_policy_ipsec_vpn_local_endpoint":  27,
+		"nsxt_policy_ipsec_vpn_service":         28,
+		"nsxt_policy_ipv6_dad_profile":          29,
+		"nsxt_policy_ipv6_ndra_profile":         30,
+		"nsxt_policy_l2_vpn_service":            31,
+		"nsxt_policy_lb_app_profile":            32,
+		"nsxt_policy_lb_client_ssl_profile":     33,
+		"nsxt_policy_lb_monitor":                34,
+		"nsxt_policy_lb_persistence_profile":    35,
+		"nsxt_policy_lb_server_ssl_profile":     36,
+		"nsxt_policy_lb_service":                37,
+		"nsxt_policy_mac_discovery_profile":     38,
+		"nsxt_policy_qos_profile":               39,
+		"nsxt_policy_realization_info":          40,
+		"nsxt_policy_security_policy":           41,
+		"nsxt_policy_segment":                   42,
+		"nsxt_policy_segment_realization":       43,
+		"nsxt_policy_segment_security_profile":  44,
+		"nsxt_policy_service":                   45,
+		"nsxt_policy_site":                      46,
+		"nsxt_policy_spoofguard_profile":        47,
+		"nsxt_policy_tier0_gateway":             48,
+		"nsxt_policy_tier1_gateway":             49,
+		"nsxt_policy_transport_zone":            50,
+		"nsxt_policy_vm":                        51,
+		"nsxt_policy_vms":                       52,
+		"nsxt_policy_vni_pool":                  53,
+		"nsxt_switching_profile":                54,
+		"nsxt_transport_zone":                   55,
 	}
 )
 

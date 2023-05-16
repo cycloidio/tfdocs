@@ -11,6 +11,84 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "ionoscloud_application_loadbalancer",
+			Category:         "Application Load Balancer",
+			ShortDescription: `Get information on an Application Load Balancer`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"load",
+				"balancer",
+				"loadbalancer",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Required) Datacenter's UUID.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the application load balancer you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. ` + "`" + `datacenter_id` + "`" + ` and either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both of ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the application load balancer. - ` + "`" + `name` + "`" + ` - The name of the Application Load Balancer. - ` + "`" + `listener_lan` + "`" + ` - ID of the listening (inbound) LAN. - ` + "`" + `ips` + "`" + ` - Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers. - ` + "`" + `target_lan` + "`" + ` - ID of the balanced private target LAN (outbound). - ` + "`" + `lb_private_ips` + "`" + ` - Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the application load balancer. - ` + "`" + `name` + "`" + ` - The name of the Application Load Balancer. - ` + "`" + `listener_lan` + "`" + ` - ID of the listening (inbound) LAN. - ` + "`" + `ips` + "`" + ` - Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers. - ` + "`" + `target_lan` + "`" + ` - ID of the balanced private target LAN (outbound). - ` + "`" + `lb_private_ips` + "`" + ` - Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_application_loadbalancer_forwardingrule",
+			Category:         "Application Load Balancer",
+			ShortDescription: `Get information on an Application Load Balancer Forwarding Rule`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"load",
+				"balancer",
+				"loadbalancer",
+				"forwardingrule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Required) Datacenter's UUID.`,
+				},
+				resource.Attribute{
+					Name:        "application_loadbalancer_id",
+					Description: `(Required) Application Load Balancer's UUID.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the application load balancer you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing application load balancer that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. Both ` + "`" + `datacenter_id` + "`" + ` and ` + "`" + `application_loadbalancer_id` + "`" + ` and either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both of ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource: - ` + "`" + `id` + "`" + ` - Id of Application Load Balancer Forwarding Rule - ` + "`" + `name` + "`" + ` - The name of the Application Load Balancer forwarding rule. - ` + "`" + `protocol` + "`" + ` - Balancing protocol. - ` + "`" + `listener_ip` + "`" + ` - Listening (inbound) IP. - ` + "`" + `listener_port` + "`" + ` - Listening (inbound) port number; valid range is 1 to 65535. - ` + "`" + `client_timeout` + "`" + ` - The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds). - ` + "`" + `server certificates` + "`" + ` - Array of items in that collection. - ` + "`" + `http_rules` + "`" + ` - Array of items in that collection - ` + "`" + `name` + "`" + ` - The unique name of the Application Load Balancer HTTP rule. - ` + "`" + `type` + "`" + ` - Type of the Http Rule. - ` + "`" + `target_group` + "`" + ` - The UUID of the target group; mandatory for FORWARD action. - ` + "`" + `drop_query` + "`" + ` - Default is false; valid only for REDIRECT actions. - ` + "`" + `location` + "`" + ` - The location for redirecting; mandatory and valid only for REDIRECT actions. - ` + "`" + `status_code` + "`" + ` - Valid only for REDIRECT and STATIC actions. For REDIRECT actions, default is 301 and possible values are 301, 302, 303, 307, and 308. For STATIC actions, default is 503 and valid range is 200 to 599. - ` + "`" + `response_message` + "`" + ` - The response message of the request; mandatory for STATIC action. - ` + "`" + `content_type` + "`" + ` - Valid only for STATIC actions. - ` + "`" + `conditions` + "`" + ` - An array of items in the collection.The action is only performed if each and every condition is met; if no conditions are set, the rule will always be performed. - ` + "`" + `type` + "`" + ` - Type of the Http Rule condition. - ` + "`" + `condition` + "`" + ` - Matching rule for the HTTP rule condition attribute; mandatory for HEADER, PATH, QUERY, METHOD, HOST, and COOKIE types; must be null when type is SOURCE_IP. - ` + "`" + `negate` + "`" + ` - Specifies whether the condition is negated or not; the default is False. - ` + "`" + `key` + "`" + ` - Must be null when type is PATH, METHOD, HOST, or SOURCE_IP. Key can only be set when type is COOKIES, HEADER, or QUERY. - ` + "`" + `value` + "`" + ` - Mandatory for conditions CONTAINS, EQUALS, MATCHES, STARTS_WITH, ENDS_WITH; must be null when condition is EXISTS; should be a valid CIDR if provided and if type is SOURCE_IP.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ionoscloud_backup_unit",
 			Category:         "Managed Backup",
 			ShortDescription: `Get Information on a IonosCloud Backup Unit`,
@@ -62,6 +140,777 @@ var (
 				resource.Attribute{
 					Name:        "login",
 					Description: `The login associated with the backup unit. Derived from the contract number.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_certificate",
+			Category:         "Compute Engine",
+			ShortDescription: `Get Information on a certificate`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing certificate that you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the certificate you want to search for. Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `Certificate body.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `Certificate chain.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `Certificate body.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_chain",
+					Description: `Certificate chain.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_container_registry",
+			Category:         "Container Registry",
+			ShortDescription: `Get information on a Container Registry`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the container registry you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing container registry that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both of ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the container registry.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the container registry.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_container_registry_locations",
+			Category:         "Container Registry",
+			ShortDescription: `Get list of Container Registry Locations`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+				"locations",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "locations",
+					Description: `list of container registry locations`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_container_registry_token",
+			Category:         "Container Registry",
+			ShortDescription: `Get information on a Container Registry Token`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `(Required) Registry's UUID.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the container registry token you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing container registry token that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. ` + "`" + `registry_id` + "`" + ` and either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both of ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the container registry token.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry token.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the container registry token.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the container registry token.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_cube_server",
+			Category:         "Compute Engine",
+			ShortDescription: `Get information on a Ionos Cloud Cube Servers`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"cube",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Required) Datacenter's UUID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing server that you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the server you want to search for. ` + "`" + `datacenter_id` + "`" + ` and either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both of ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "template_uuid",
+					Description: `The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of that resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of that resource`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Server usages: CUBE`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The id of the datacenter`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone in which the server should exist`,
+				},
+				resource.Attribute{
+					Name:        "vm_state",
+					Description: `Status of the virtual Machine`,
+				},
+				resource.Attribute{
+					Name:        "cdroms",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the attached cdrom`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the attached cdrom`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of cdrom`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Location of that image/snapshot`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the image in GB`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_plug",
+					Description: `Is capable of CPU hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_unplug",
+					Description: `Is capable of CPU hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "ram_hot_plug",
+					Description: `Is capable of memory hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "ram_hot_unplug",
+					Description: `Is capable of memory hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_plug",
+					Description: `Is capable of nic hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_unplug",
+					Description: `Is capable of nic hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_plug",
+					Description: `Is capable of Virt-IO drive hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_unplug",
+					Description: `Is capable of Virt-IO drive hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_scsi_hot_plug",
+					Description: `Is capable of SCSI drive hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_scsi_hot_unplug",
+					Description: `Is capable of SCSI drive hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "licence_type",
+					Description: `OS type of this Image`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `Type of image`,
+				},
+				resource.Attribute{
+					Name:        "image_aliases",
+					Description: `List of image aliases mapped for this Image`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `Indicates if the image is part of the public repository or not`,
+				},
+				resource.Attribute{
+					Name:        "image_aliases",
+					Description: `List of image aliases mapped for this Image`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init",
+					Description: `Cloud init compatibility`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the attached volume`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the attached volume`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Hardware type of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone in which the volume should exist`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `Image or snapshot ID to be used as template for this volume`,
+				},
+				resource.Attribute{
+					Name:        "image_password",
+					Description: `Initial password to be set for installed OS`,
+				},
+				resource.Attribute{
+					Name:        "ssh_keys",
+					Description: `Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key`,
+				},
+				resource.Attribute{
+					Name:        "bus",
+					Description: `The bus type of the volume`,
+				},
+				resource.Attribute{
+					Name:        "licence_type",
+					Description: `OS type of this volume`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_plug",
+					Description: `Is capable of CPU hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "ram_hot_plug",
+					Description: `Is capable of memory hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_plug",
+					Description: `Is capable of nic hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_unplug",
+					Description: `Is capable of nic hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_plug",
+					Description: `Is capable of Virt-IO drive hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_unplug",
+					Description: `Is capable of Virt-IO drive hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "device_number",
+					Description: `The Logical Unit Number of the storage volume`,
+				},
+				resource.Attribute{
+					Name:        "pci_slot",
+					Description: `The PCI slot number of the storage volume`,
+				},
+				resource.Attribute{
+					Name:        "backup_unit_id",
+					Description: `The uuid of the Backup Unit that user has access to`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `The cloud-init configuration for the volume as base64 encoded string`,
+				},
+				resource.Attribute{
+					Name:        "nics",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the attached nic`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the attached nid`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `The MAC address of the NIC`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `Collection of IP addresses assigned to a nic`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Indicates if the nic will reserve an IP using DHCP`,
+				},
+				resource.Attribute{
+					Name:        "lan",
+					Description: `The LAN ID the NIC will sit on`,
+				},
+				resource.Attribute{
+					Name:        "firewall_active",
+					Description: `Activate or deactivate the firewall`,
+				},
+				resource.Attribute{
+					Name:        "firewall_type",
+					Description: `The type of firewall rules that will be allowed on the NIC`,
+				},
+				resource.Attribute{
+					Name:        "device_number",
+					Description: `The Logical Unit Number (LUN) of the storage volume`,
+				},
+				resource.Attribute{
+					Name:        "pci_slot",
+					Description: `The PCI slot number of the Nic`,
+				},
+				resource.Attribute{
+					Name:        "firewall_rules",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `he protocol for the rule`,
+				},
+				resource.Attribute{
+					Name:        "source_mac",
+					Description: `Only traffic originating from the respective MAC address is allowed`,
+				},
+				resource.Attribute{
+					Name:        "source_ip",
+					Description: `Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs`,
+				},
+				resource.Attribute{
+					Name:        "target_ip",
+					Description: `In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed`,
+				},
+				resource.Attribute{
+					Name:        "icmp_code",
+					Description: `Defines the allowed code (from 0 to 254) if protocol ICMP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "icmp_type",
+					Description: `Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "port_range_start",
+					Description: `Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "port_range_end",
+					Description: `Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of firewall rule`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "template_uuid",
+					Description: `The UUID of the template for creating a CUBE server; the available templates for CUBE servers can be found on the templates resource`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of that resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of that resource`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Server usages: CUBE`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The id of the datacenter`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone in which the server should exist`,
+				},
+				resource.Attribute{
+					Name:        "vm_state",
+					Description: `Status of the virtual Machine`,
+				},
+				resource.Attribute{
+					Name:        "cdroms",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the attached cdrom`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the attached cdrom`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of cdrom`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Location of that image/snapshot`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the image in GB`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_plug",
+					Description: `Is capable of CPU hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_unplug",
+					Description: `Is capable of CPU hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "ram_hot_plug",
+					Description: `Is capable of memory hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "ram_hot_unplug",
+					Description: `Is capable of memory hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_plug",
+					Description: `Is capable of nic hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_unplug",
+					Description: `Is capable of nic hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_plug",
+					Description: `Is capable of Virt-IO drive hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_unplug",
+					Description: `Is capable of Virt-IO drive hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_scsi_hot_plug",
+					Description: `Is capable of SCSI drive hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_scsi_hot_unplug",
+					Description: `Is capable of SCSI drive hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "licence_type",
+					Description: `OS type of this Image`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `Type of image`,
+				},
+				resource.Attribute{
+					Name:        "image_aliases",
+					Description: `List of image aliases mapped for this Image`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `Indicates if the image is part of the public repository or not`,
+				},
+				resource.Attribute{
+					Name:        "image_aliases",
+					Description: `List of image aliases mapped for this Image`,
+				},
+				resource.Attribute{
+					Name:        "cloud_init",
+					Description: `Cloud init compatibility`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the attached volume`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the attached volume`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Hardware type of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone in which the volume should exist`,
+				},
+				resource.Attribute{
+					Name:        "image",
+					Description: `Image or snapshot ID to be used as template for this volume`,
+				},
+				resource.Attribute{
+					Name:        "image_password",
+					Description: `Initial password to be set for installed OS`,
+				},
+				resource.Attribute{
+					Name:        "ssh_keys",
+					Description: `Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key`,
+				},
+				resource.Attribute{
+					Name:        "bus",
+					Description: `The bus type of the volume`,
+				},
+				resource.Attribute{
+					Name:        "licence_type",
+					Description: `OS type of this volume`,
+				},
+				resource.Attribute{
+					Name:        "cpu_hot_plug",
+					Description: `Is capable of CPU hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "ram_hot_plug",
+					Description: `Is capable of memory hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_plug",
+					Description: `Is capable of nic hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "nic_hot_unplug",
+					Description: `Is capable of nic hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_plug",
+					Description: `Is capable of Virt-IO drive hot plug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "disc_virtio_hot_unplug",
+					Description: `Is capable of Virt-IO drive hot unplug (no reboot required)`,
+				},
+				resource.Attribute{
+					Name:        "device_number",
+					Description: `The Logical Unit Number of the storage volume`,
+				},
+				resource.Attribute{
+					Name:        "pci_slot",
+					Description: `The PCI slot number of the storage volume`,
+				},
+				resource.Attribute{
+					Name:        "backup_unit_id",
+					Description: `The uuid of the Backup Unit that user has access to`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `The cloud-init configuration for the volume as base64 encoded string`,
+				},
+				resource.Attribute{
+					Name:        "nics",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the attached nic`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the attached nid`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `The MAC address of the NIC`,
+				},
+				resource.Attribute{
+					Name:        "ips",
+					Description: `Collection of IP addresses assigned to a nic`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Indicates if the nic will reserve an IP using DHCP`,
+				},
+				resource.Attribute{
+					Name:        "lan",
+					Description: `The LAN ID the NIC will sit on`,
+				},
+				resource.Attribute{
+					Name:        "firewall_active",
+					Description: `Activate or deactivate the firewall`,
+				},
+				resource.Attribute{
+					Name:        "firewall_type",
+					Description: `The type of firewall rules that will be allowed on the NIC`,
+				},
+				resource.Attribute{
+					Name:        "device_number",
+					Description: `The Logical Unit Number (LUN) of the storage volume`,
+				},
+				resource.Attribute{
+					Name:        "pci_slot",
+					Description: `The PCI slot number of the Nic`,
+				},
+				resource.Attribute{
+					Name:        "firewall_rules",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `he protocol for the rule`,
+				},
+				resource.Attribute{
+					Name:        "source_mac",
+					Description: `Only traffic originating from the respective MAC address is allowed`,
+				},
+				resource.Attribute{
+					Name:        "source_ip",
+					Description: `Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs`,
+				},
+				resource.Attribute{
+					Name:        "target_ip",
+					Description: `In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed`,
+				},
+				resource.Attribute{
+					Name:        "icmp_code",
+					Description: `Defines the allowed code (from 0 to 254) if protocol ICMP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "icmp_type",
+					Description: `Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "port_range_start",
+					Description: `Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "port_range_end",
+					Description: `Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of firewall rule`,
 				},
 			},
 		},
@@ -191,6 +1040,469 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ionoscloud_dataplatform_cluster",
+			Category:         "Dataplatform",
+			ShortDescription: `Get information on a Dataplatform Cluster.`,
+			Description:      ``,
+			Keywords: []string{
+				"dataplatform",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the cluster you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. Either ` + "`" + `id` + "`" + ` or ` + "`" + `name` + "`" + ` must be provided. If none, or both are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The UUID of the virtual data center (VDC) in which the cluster is provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of your cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of the Data Platform.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `Time at which the maintenance should start.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `Kubernetes configuration`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `structured kubernetes config consisting of a list with 1 item with the following fields:`,
+				},
+				resource.Attribute{
+					Name:        "user_tokens",
+					Description: `a convenience map to be search the token of a specific user`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `cluster server (same as ` + "`" + `config[0].clusters[0].cluster.server` + "`" + ` but provided as an attribute for ease of use)`,
+				},
+				resource.Attribute{
+					Name:        "ca_crt",
+					Description: `base64 decoded cluster certificate authority data (provided as an attribute for direct use)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The UUID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The UUID of the virtual data center (VDC) in which the cluster is provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of your cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of the Data Platform.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `Time at which the maintenance should start.`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `Kubernetes configuration`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `structured kubernetes config consisting of a list with 1 item with the following fields:`,
+				},
+				resource.Attribute{
+					Name:        "user_tokens",
+					Description: `a convenience map to be search the token of a specific user`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `cluster server (same as ` + "`" + `config[0].clusters[0].cluster.server` + "`" + ` but provided as an attribute for ease of use)`,
+				},
+				resource.Attribute{
+					Name:        "ca_crt",
+					Description: `base64 decoded cluster certificate authority data (provided as an attribute for direct use)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_dataplatform_node_pool",
+			Category:         "Dataplatform",
+			ShortDescription: `Get information on a Dataplatform Node Pool.`,
+			Description:      ``,
+			Keywords: []string{
+				"dataplatform",
+				"node",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) ID of the cluster the searched node pool is part of.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the node pool you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. Either ` + "`" + `id` + "`" + ` or ` + "`" + `name` + "`" + ` must be provided. If none, or both are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `ID of the cluster the searched node pool is part of.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The UUID of the virtual data center (VDC) the cluster is provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of your node pool.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of your node pool`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of the Data Platform.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `The number of nodes that make up the node pool.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_family",
+					Description: `A CPU family.`,
+				},
+				resource.Attribute{
+					Name:        "cores_count",
+					Description: `The number of CPU cores per node.`,
+				},
+				resource.Attribute{
+					Name:        "ram_size",
+					Description: `The RAM size for one node in MB.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone of the virtual datacenter region where the node pool resources should be provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `The type of hardware for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `The size of the volume in GB.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `Time at which the maintenance should start.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `ID of the cluster the searched node pool is part of.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The UUID of the virtual data center (VDC) the cluster is provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of your node pool.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of your node pool`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version of the Data Platform.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `The number of nodes that make up the node pool.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_family",
+					Description: `A CPU family.`,
+				},
+				resource.Attribute{
+					Name:        "cores_count",
+					Description: `The number of CPU cores per node.`,
+				},
+				resource.Attribute{
+					Name:        "ram_size",
+					Description: `The RAM size for one node in MB.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The availability zone of the virtual datacenter region where the node pool resources should be provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `The type of hardware for the volume.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `The size of the volume in GB.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Starting time of a weekly 4 hour-long window, during which maintenance might occur in hh:mm:ss format`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `Time at which the maintenance should start.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Key-value pairs attached to the node pool resource as [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `Key-value pairs attached to node pool resource as [Kubernetes annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_dataplatform_node_pools",
+			Category:         "Dataplatform",
+			ShortDescription: `Get information on a Dataplatform Node Pool list under a Dataplatform Cluster.`,
+			Description:      ``,
+			Keywords: []string{
+				"dataplatform",
+				"node",
+				"pools",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) ID of the cluster the searched node pool is part of.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing cluster that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `ID of the cluster the searched node pool is part of.`,
+				},
+				resource.Attribute{
+					Name:        "node_pools",
+					Description: `List of Node Pools - See the [Node Pool](dataplatform_node_pool.md) section.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `ID of the cluster the searched node pool is part of.`,
+				},
+				resource.Attribute{
+					Name:        "node_pools",
+					Description: `List of Node Pools - See the [Node Pool](dataplatform_node_pool.md) section.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_dataplatform_versions",
+			Category:         "Dataplatform",
+			ShortDescription: `Get information on Managed Dataplatform API versions.`,
+			Description:      ``,
+			Keywords: []string{
+				"dataplatform",
+				"versions",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "versions",
+					Description: `list of Managed Dataplatform API versions.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_dbaas_mongo_cluster",
+			Category:         "Database as a Service - MongoDB",
+			ShortDescription: `Get information on DbaaS MongoDB Cluster objects.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"as",
+				"a",
+				"service",
+				"mongodb",
+				"dbaas",
+				"mongo",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "mongodb_version",
+					Description: `The MongoDB version of your cluster. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The unique ID of the template, which specifies the number of cores, storage size, and memory. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `The total number of instances in the cluster (one master and n-1 standbys). Example: 3, 5, 7. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The name of your cluster. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The connection string for your cluster. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "connections",
+					Description: `Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `The datacenter to connect your cluster to.`,
+				},
+				resource.Attribute{
+					Name:        "lan_id",
+					Description: `The LAN to connect your cluster to.`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `The IP and subnet for the database. Must be same number as instances. Note the following unavailable IP ranges: 10.233.64.0/18, 10.233.0.0/18, 10.233.114.0/24. Please input in the correct format like IP/Subnet, exp: 192.168.10.0/24. See [Private IPs](https://www.ionos.com/help/server-cloud-infrastructure/private-network/private-ip-address-ranges/) and [Cluster Setup - Preparing the network](https://docs.ionos.com/reference/product-information/api-automation-guides/database-as-a-service/create-a-database#preparing-the-network).`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `A weekly 4 hour-long window, during which maintenance might occur. Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `Credentials for the database user to be created. This attribute is immutable(disallowed in update requests). Updates to the value of the field force the cluster to be re-created.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username for the initial mongoDB user.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit"`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_dbaas_mongo_template",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the template.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the template.`,
+				},
+				resource.Attribute{
+					Name:        "edition",
+					Description: `The edition of the template (e.g. enterprise).`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `The number of CPU cores.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The amount of memory in GB.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `The amount of storage size in GB.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_dbaas_mongo_user",
+			Category:         "Database as a Service - MongoDB",
+			ShortDescription: `Creates and manages DbaaS MongoDB users.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"as",
+				"a",
+				"service",
+				"mongodb",
+				"dbaas",
+				"mongo",
+				"user",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ionoscloud_dbaas_pgsql_backups",
 			Category:         "Database as a Service - Postgres",
 			ShortDescription: `Get information on DbaaS PgSql Backups`,
@@ -227,8 +1539,24 @@ var (
 					Description: `The unique ID of the cluster`,
 				},
 				resource.Attribute{
-					Name:        "display_name",
-					Description: `The friendly name of your cluster.`,
+					Name:        "size",
+					Description: `The size of all base backups including the wal size in MB.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The S3 location where the backups will be stored.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The PostgreSQL version this backup was created from.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `Whether a cluster currently backs up data to this backup.`,
+				},
+				resource.Attribute{
+					Name:        "earliest_recovery_target_time",
+					Description: `The oldest available timestamp to which you can restore.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -261,8 +1589,24 @@ var (
 					Description: `The unique ID of the cluster`,
 				},
 				resource.Attribute{
-					Name:        "display_name",
-					Description: `The friendly name of your cluster.`,
+					Name:        "size",
+					Description: `The size of all base backups including the wal size in MB.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The S3 location where the backups will be stored.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The PostgreSQL version this backup was created from.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `Whether a cluster currently backs up data to this backup.`,
+				},
+				resource.Attribute{
+					Name:        "earliest_recovery_target_time",
+					Description: `The oldest available timestamp to which you can restore.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -297,7 +1641,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `(Optional) Display name or an existing cluster that you want to search for.`,
+					Description: `(Optional) Display Name of an existing cluster that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -383,6 +1727,10 @@ var (
 					Name:        "recovery_target_time",
 					Description: `If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.`,
 				},
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `The DNS name pointing to your cluster.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -464,6 +1812,10 @@ var (
 				resource.Attribute{
 					Name:        "recovery_target_time",
 					Description: `If this value is supplied as ISO 8601 timestamp, the backup will be replayed up until the given timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `The DNS name pointing to your cluster.`,
 				},
 			},
 		},
@@ -689,6 +2041,18 @@ var (
 					Description: `The group will be allowed to create kubernetes cluster privilege.`,
 				},
 				resource.Attribute{
+					Name:        "create_flow_log",
+					Description: `The group will be allowed to create flow log.`,
+				},
+				resource.Attribute{
+					Name:        "access_and_manage_certificates",
+					Description: `The group will be allowed to access and manage certificates.`,
+				},
+				resource.Attribute{
+					Name:        "manage_dbaas",
+					Description: `Privilege for a group to manage DBaaS related functionality.`,
+				},
+				resource.Attribute{
 					Name:        "users",
 					Description: `List of users in group.`,
 				},
@@ -739,6 +2103,18 @@ var (
 					Description: `The group will be allowed to create kubernetes cluster privilege.`,
 				},
 				resource.Attribute{
+					Name:        "create_flow_log",
+					Description: `The group will be allowed to create flow log.`,
+				},
+				resource.Attribute{
+					Name:        "access_and_manage_certificates",
+					Description: `The group will be allowed to access and manage certificates.`,
+				},
+				resource.Attribute{
+					Name:        "manage_dbaas",
+					Description: `Privilege for a group to manage DBaaS related functionality.`,
+				},
+				resource.Attribute{
 					Name:        "users",
 					Description: `List of users in group.`,
 				},
@@ -748,7 +2124,7 @@ var (
 			Name:             "",
 			Type:             "ionoscloud_image",
 			Category:         "Compute Engine",
-			ShortDescription: `Get information on a IonosCloud Images`,
+			ShortDescription: `Get information on a IonosCloud Image`,
 			Description:      ``,
 			Keywords: []string{
 				"compute",
@@ -758,19 +2134,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of an existing image that you want to search for.`,
+					Description: `(Required) Name of an existing image that you want to search for. Partial match.`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `(Optional) Id of the existing image's location.`,
+					Description: `(Optional) Id of the existing image's location. Exact match. Possible values: ` + "`" + `de/fra` + "`" + `, ` + "`" + `de/txl` + "`" + `, ` + "`" + `gb/lhr` + "`" + `, ` + "`" + `es/vit` + "`" + `, ` + "`" + `us/ewr` + "`" + `, ` + "`" + `us/las` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The image type, HDD or CD-ROM.`,
+					Description: `(Optional) The image type, HDD or CD-ROM. Exact match.`,
 				},
 				resource.Attribute{
 					Name:        "cloud_init",
-					Description: `(Optional) Cloud init compatibility ("NONE" or "V1") If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version]. ## Attributes Reference`,
+					Description: `(Optional) Cloud init compatibility ("NONE" or "V1"). Exact match.`,
+				},
+				resource.Attribute{
+					Name:        "image_alias",
+					Description: `(Optional) Image alias of the image you are searching for. Exact match. E.g. =` + "`" + `centos:latest` + "`" + `, ` + "`" + `ubuntu:latest` + "`" + ` If both "name" and "version" are provided the plugin will concatenate the two strings in this format [name]-[version]. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -829,7 +2209,7 @@ var (
 					Description: `Is capable of SCSI drive hot unplug (no reboot required)`,
 				},
 				resource.Attribute{
-					Name:        "license_type",
+					Name:        "licence_type",
 					Description: `OS type of this Image`,
 				},
 				resource.Attribute{
@@ -911,7 +2291,7 @@ var (
 					Description: `Is capable of SCSI drive hot unplug (no reboot required)`,
 				},
 				resource.Attribute{
-					Name:        "license_type",
+					Name:        "licence_type",
 					Description: `OS type of this Image`,
 				},
 				resource.Attribute{
@@ -1042,7 +2422,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name or an existing cluster that you want to search for.`,
+					Description: `(Optional) Name of an existing cluster that you want to search for.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1079,14 +2459,6 @@ var (
 				resource.Attribute{
 					Name:        "viable_node_pool_versions",
 					Description: `A list of versions that may be used for node pools under this cluster`,
-				},
-				resource.Attribute{
-					Name:        "public",
-					Description: `The indicator if the cluster is public or private. Be aware that setting it to false is currently in beta phase`,
-				},
-				resource.Attribute{
-					Name:        "gateway_ip",
-					Description: `The IP address of the gateway used by the cluster. This is mandatory when ` + "`" + `public` + "`" + ` is set to ` + "`" + `false` + "`" + ` and should not be provided otherwise.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -1157,14 +2529,6 @@ var (
 				resource.Attribute{
 					Name:        "viable_node_pool_versions",
 					Description: `A list of versions that may be used for node pools under this cluster`,
-				},
-				resource.Attribute{
-					Name:        "public",
-					Description: `The indicator if the cluster is public or private. Be aware that setting it to false is currently in beta phase`,
-				},
-				resource.Attribute{
-					Name:        "gateway_ip",
-					Description: `The IP address of the gateway used by the cluster. This is mandatory when ` + "`" + `public` + "`" + ` is set to ` + "`" + `false` + "`" + ` and should not be provided otherwise.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -1342,10 +2706,6 @@ var (
 					Name:        "public_ips",
 					Description: `The list of fixed IPs associated with this node pool`,
 				},
-				resource.Attribute{
-					Name:        "gateway_ip",
-					Description: `Public IP address for the gateway performing source NAT for the node pool's nodes belonging to a private cluster. Required only if the node pool belongs to a private cluster.`,
-				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1464,9 +2824,79 @@ var (
 					Name:        "public_ips",
 					Description: `The list of fixed IPs associated with this node pool`,
 				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_k8s_nodepool_nodes",
+			Category:         "Managed Kubernetes",
+			ShortDescription: `Get information on the list of IonosCloud K8s Nodes that make a nodepool`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"kubernetes",
+				"k8s",
+				"nodepool",
+				"nodes",
+			},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "gateway_ip",
-					Description: `Public IP address for the gateway performing source NAT for the node pool's nodes belonging to a private cluster. Required only if the node pool belongs to a private cluster.`,
+					Name:        "name",
+					Description: `(Optional) Name of an existing node pool that you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the node pool you want to search for. ` + "`" + `k8s_cluster_id` + "`" + ` and ` + "`" + `node_pool_id` + "`" + ` must be provided. ## Attributes Reference The following attributes are returned by the datasource:`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `a list of the nodes that are in the nodepool`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `id of the node in the nodepool`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `name of the node`,
+				},
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `The kubernetes version`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `public ip of the node`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `private ip of the node`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `a list of the nodes that are in the nodepool`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `id of the node in the nodepool`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `name of the node`,
+				},
+				resource.Attribute{
+					Name:        "k8s_version",
+					Description: `The kubernetes version`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `public ip of the node`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `private ip of the node`,
 				},
 			},
 		},
@@ -2357,7 +3787,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Server usages: ENTERPRISE or CUBE`,
+					Description: `Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes)`,
 				},
 				resource.Attribute{
 					Name:        "datacenter_id",
@@ -2369,7 +3799,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu_family",
-					Description: `CPU architecture on which server gets provisione`,
+					Description: `CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.`,
 				},
 				resource.Attribute{
 					Name:        "ram",
@@ -2646,6 +4076,22 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `The type of firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Id of the label`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the label`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the label`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2663,7 +4109,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Server usages: ENTERPRISE or CUBE`,
+					Description: `Server usages: [ENTERPRISE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/virtual-servers) or [CUBE](https://docs.ionos.com/cloud/compute-engine/virtual-servers/cloud-cubes)`,
 				},
 				resource.Attribute{
 					Name:        "datacenter_id",
@@ -2675,7 +4121,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu_family",
-					Description: `CPU architecture on which server gets provisione`,
+					Description: `CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.`,
 				},
 				resource.Attribute{
 					Name:        "ram",
@@ -2952,6 +4398,54 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `The type of firewall rule`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `list of`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Id of the label`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key of the label`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the label`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ionoscloud_servers",
+			Category:         "Compute Engine",
+			ShortDescription: `Retrieves a list of Ionos Cloud Servers`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"servers",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "datacenter_id",
+					Description: `(Required) Name of an existing datacenter that the servers are a part of`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) One or more name/value pairs to filter off of. You can use most base fields in the [server](../resources/server.md) resource. These do`,
+				},
+				resource.Attribute{
+					Name:        "servers",
+					Description: `list of servers that matches the filters provided. For a full reference of all attributes returned, check out [documentation](../resources/server.md)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "servers",
+					Description: `list of servers that matches the filters provided. For a full reference of all attributes returned, check out [documentation](../resources/server.md)`,
 				},
 			},
 		},
@@ -3193,6 +4687,35 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ionoscloud_target_group",
+			Category:         "Application Load Balancer",
+			ShortDescription: `Get information on an Target Group`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"load",
+				"balancer",
+				"target",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the target group you want to search for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of an existing target group that you want to search for. Search by name is case-insensitive. The whole resource name is required if ` + "`" + `partial_match` + "`" + ` parameter is not set to true.`,
+				},
+				resource.Attribute{
+					Name:        "partial_match",
+					Description: `(Optional) Whether partial matching is allowed or not when using name argument. Default value is false. Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both of ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource: - ` + "`" + `id` + "`" + ` - The Id of that Target group - ` + "`" + `name` + "`" + ` - The name of that Target Group. - ` + "`" + `algorithm` + "`" + ` - Balancing algorithm. - ` + "`" + `protocol` + "`" + ` - Balancing protocol. - ` + "`" + `targets` + "`" + ` - Array of items in the collection - ` + "`" + `ip` + "`" + ` - The IP of the balanced target VM. - ` + "`" + `port` + "`" + ` - The port of the balanced target service; valid range is 1 to 65535. - ` + "`" + `weight` + "`" + ` - Traffic is distributed in proportion to target weight, relative to the combined weight of all targets. A target with higher weight receives a greater share of traffic. Valid range is 0 to 256 and default is 1; targets with weight of 0 do not participate in load balancing but still accept persistent connections. It is best use values in the middle of the range to leave room for later adjustments. - ` + "`" + `health_check_enabled` + "`" + ` - Makes the target available only if it accepts periodic health check TCP connection attempts; when turned off, the target is considered always available. The health check only consists of a connection attempt to the address and port of the target. Default is True. - ` + "`" + `maintenance_enabled` + "`" + ` - Maintenance mode prevents the target from receiving balanced traffic. - ` + "`" + `health_check` + "`" + ` - Health check attributes for Target Group. - ` + "`" + `check_timeout` + "`" + ` - The maximum time in milliseconds to wait for a target to respond to a check. For target VMs with 'Check Interval' set, the lesser of the two values is used once the TCP connection is established. - ` + "`" + `check_interval` + "`" + ` - The interval in milliseconds between consecutive health checks; default is 2000. - ` + "`" + `retries` + "`" + ` - The maximum number of attempts to reconnect to a target after a connection failure. Valid range is 0 to 65535, and default is three reconnection. - ` + "`" + `http_health_check` + "`" + ` - Http health check attributes for Target Group - ` + "`" + `path` + "`" + ` - The path (destination URL) for the HTTP health check request; the default is /. - ` + "`" + `method` + "`" + ` - The method for the HTTP health check. - ` + "`" + `match_type` + "`" + ` - ` + "`" + `response` + "`" + ` - The response returned by the request, depending on the match type. - ` + "`" + `regex` + "`" + ` - ` + "`" + `negate` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ionoscloud_template",
 			Category:         "Compute Engine",
 			ShortDescription: `Get information on a Ionos Cloud Template`,
@@ -3272,7 +4795,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) ID of the user you want to search for. Either ` + "`" + `email` + "`" + ` or ` + "`" + `id` + "`" + ` must be provided. If none, or both are provided, the datasource will return an error. ## Attributes Reference The following attributes are returned by the datasource:`,
+					Description: `(Optional) ID of the user you want to search for. Either ` + "`" + `email` + "`" + ` or ` + "`" + `id` + "`" + ` can be provided. If no argument is set, the provider will search for the`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3408,7 +4931,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key_path",
-					Description: `List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.`,
+					Description: `List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly.`,
 				},
 				resource.Attribute{
 					Name:        "sshkey",
@@ -3425,6 +4948,10 @@ var (
 				resource.Attribute{
 					Name:        "image_alias",
 					Description: `The image alias.`,
+				},
+				resource.Attribute{
+					Name:        "licence_type",
+					Description: `The type of the licence.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -3490,7 +5017,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key_path",
-					Description: `List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images.`,
+					Description: `List of paths to files containing a public SSH key that will be injected into IonosCloud provided Linux images. Also accepts ssh keys directly.`,
 				},
 				resource.Attribute{
 					Name:        "sshkey",
@@ -3507,6 +5034,10 @@ var (
 				resource.Attribute{
 					Name:        "image_alias",
 					Description: `The image alias.`,
+				},
+				resource.Attribute{
+					Name:        "licence_type",
+					Description: `The type of the licence.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -3554,34 +5085,51 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"ionoscloud_backup_unit":                        0,
-		"ionoscloud_datacenter":                         1,
-		"ionoscloud_dbaas_pgsql_backups":                2,
-		"ionoscloud_dbaas_pgsql_cluster":                3,
-		"ionoscloud_dbaas_pgsql_versions":               4,
-		"ionoscloud_firewall":                           5,
-		"ionoscloud_group":                              6,
-		"ionoscloud_image":                              7,
-		"ionoscloud_ipblock":                            8,
-		"ionoscloud_ipfailover":                         9,
-		"ionoscloud_k8s_cluster":                        10,
-		"ionoscloud_k8s_node_pool":                      11,
-		"ionoscloud_lan":                                12,
-		"ionoscloud_location":                           13,
-		"ionoscloud_natgateway":                         14,
-		"ionoscloud_natgateway_rule":                    15,
-		"ionoscloud_networkloadbalancer":                16,
-		"ionoscloud_networkloadbalancer_forwardingrule": 17,
-		"ionoscloud_nic":                                18,
-		"ionoscloud_private_crossconnect":               19,
-		"ionoscloud_resource":                           20,
-		"ionoscloud_s3_key":                             21,
-		"ionoscloud_server":                             22,
-		"ionoscloud_share":                              23,
-		"ionoscloud_snapshot":                           24,
-		"ionoscloud_template":                           25,
-		"ionoscloud_user":                               26,
-		"ionoscloud_volume":                             27,
+		"ionoscloud_application_loadbalancer":                0,
+		"ionoscloud_application_loadbalancer_forwardingrule": 1,
+		"ionoscloud_backup_unit":                             2,
+		"ionoscloud_certificate":                             3,
+		"ionoscloud_container_registry":                      4,
+		"ionoscloud_container_registry_locations":            5,
+		"ionoscloud_container_registry_token":                6,
+		"ionoscloud_cube_server":                             7,
+		"ionoscloud_datacenter":                              8,
+		"ionoscloud_dataplatform_cluster":                    9,
+		"ionoscloud_dataplatform_node_pool":                  10,
+		"ionoscloud_dataplatform_node_pools":                 11,
+		"ionoscloud_dataplatform_versions":                   12,
+		"ionoscloud_dbaas_mongo_cluster":                     13,
+		"ionoscloud_dbaas_mongo_template":                    14,
+		"ionoscloud_dbaas_mongo_user":                        15,
+		"ionoscloud_dbaas_pgsql_backups":                     16,
+		"ionoscloud_dbaas_pgsql_cluster":                     17,
+		"ionoscloud_dbaas_pgsql_versions":                    18,
+		"ionoscloud_firewall":                                19,
+		"ionoscloud_group":                                   20,
+		"ionoscloud_image":                                   21,
+		"ionoscloud_ipblock":                                 22,
+		"ionoscloud_ipfailover":                              23,
+		"ionoscloud_k8s_cluster":                             24,
+		"ionoscloud_k8s_node_pool":                           25,
+		"ionoscloud_k8s_nodepool_nodes":                      26,
+		"ionoscloud_lan":                                     27,
+		"ionoscloud_location":                                28,
+		"ionoscloud_natgateway":                              29,
+		"ionoscloud_natgateway_rule":                         30,
+		"ionoscloud_networkloadbalancer":                     31,
+		"ionoscloud_networkloadbalancer_forwardingrule":      32,
+		"ionoscloud_nic":                                     33,
+		"ionoscloud_private_crossconnect":                    34,
+		"ionoscloud_resource":                                35,
+		"ionoscloud_s3_key":                                  36,
+		"ionoscloud_server":                                  37,
+		"ionoscloud_servers":                                 38,
+		"ionoscloud_share":                                   39,
+		"ionoscloud_snapshot":                                40,
+		"ionoscloud_target_group":                            41,
+		"ionoscloud_template":                                42,
+		"ionoscloud_user":                                    43,
+		"ionoscloud_volume":                                  44,
 	}
 )
 

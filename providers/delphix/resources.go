@@ -94,6 +94,14 @@ var (
 					Description: `(Optional) Query to find a credential in the CyberArk vault.`,
 				},
 				resource.Attribute{
+					Name:        "use_kerberos_authentication",
+					Description: `(Optional) Whether to use kerberos authentication.`,
+				},
+				resource.Attribute{
+					Name:        "use_engine_public_key",
+					Description: `(Optional) Whether to use public key authentication.`,
+				},
+				resource.Attribute{
 					Name:        "nfs_addresses",
 					Description: `(Optional) Array of ip address or hostnames. Valid values are a list of addresses. For eg: ` + "`" + `["192.168.10.2"]` + "`" + ``,
 				},
@@ -130,6 +138,10 @@ var (
 					Description: `(Optional) Query to find a credential in the CyberArk vault.`,
 				},
 				resource.Attribute{
+					Name:        "ase_db_use_kerberos_authentication",
+					Description: `(Optional) Whether to use kerberos authentication for ASE DB discovery.`,
+				},
+				resource.Attribute{
 					Name:        "java_home",
 					Description: `(Optional) The path to the user managed Java Development Kit (JDK). If not specified, then the OpenJDK will be used.`,
 				},
@@ -155,7 +167,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) The environment description. ## Attribute Reference`,
+					Description: `(Optional) The environment description.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags to be created for this environment. This is a map of 2 parameters:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Key of the tag`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of the tag ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -203,39 +227,55 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_data_id",
-					Description: `(Required) The ID of the source object (dSource or VDB) to provision from. All other objects referenced by the parameters must live on the same engine as the source.`,
+					Description: `(Optional) The ID or name of the source object (dSource or VDB) to provision from. All other objects referenced by the parameters must live on the same engine as the source.`,
 				},
 				resource.Attribute{
 					Name:        "engine_id",
-					Description: `(Optional) The ID of the Engine onto which to provision. If the source ID unambiguously identifies a source object, this parameter is unnecessary and ignored.`,
+					Description: `(Optional) The ID or name of the Engine onto which to provision. If the source ID unambiguously identifies a source object, this parameter is unnecessary and ignored.`,
 				},
 				resource.Attribute{
 					Name:        "target_group_id",
 					Description: `(Optional) The ID of the group into which the VDB will be provisioned. If unset, a group is selected randomly on the Engine.`,
 				},
 				resource.Attribute{
-					Name:        "vdb_name",
+					Name:        "name",
 					Description: `(Optional) The unique name of the provisioned VDB within a group. If unset, a name is randomly generated.`,
 				},
 				resource.Attribute{
 					Name:        "database_name",
-					Description: `(Optional) The name of the database on the target environment. Defaults to vdb_name.`,
+					Description: `(Optional) The name of the database on the target environment. Defaults to name.`,
+				},
+				resource.Attribute{
+					Name:        "cdb_id",
+					Description: `(Optional) The ID of the container database (CDB) to provision an Oracle Multitenant database into. When this is not set, a new vCDB will be provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_node_ids",
+					Description: `(Optional) The cluster node ids, name or addresses for this provision operation (Oracle RAC Only).`,
 				},
 				resource.Attribute{
 					Name:        "truncate_log_on_checkpoint",
 					Description: `(Optional) Whether to truncate log on checkpoint (ASE only).`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Optional) [Updatable] The name of the privileged user to run the provision operation (Oracle Only).`,
+					Name:        "os_username",
+					Description: `(Optional) The name of the privileged user to run the provision operation (Oracle Only).`,
 				},
 				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional) [Updatable] The password of the privileged user to run the provision operation (Oracle Only).`,
+					Name:        "os_password",
+					Description: `(Optional) The password of the privileged user to run the provision operation (Oracle Only).`,
+				},
+				resource.Attribute{
+					Name:        "db_username",
+					Description: `(Optional) [Updatable] The username of the database user (Oracle, ASE Only). Only for update.`,
+				},
+				resource.Attribute{
+					Name:        "db_password",
+					Description: `(Optional) [Updatable] The password of the database user (Oracle, ASE Only). Only for update.`,
 				},
 				resource.Attribute{
 					Name:        "environment_id",
-					Description: `(Optional) The ID of the target environment where to provision the VDB. If repository_id unambigously identifies a repository, this is unnecessary and ignored. Otherwise, a compatible repository is randomly selected on the environment.`,
+					Description: `(Optional) The ID or name of the target environment where to provision the VDB. If repository_id unambigously identifies a repository, this is unnecessary and ignored. Otherwise, a compatible repository is randomly selected on the environment.`,
 				},
 				resource.Attribute{
 					Name:        "environment_user_id",
@@ -251,7 +291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pre_refresh",
-					Description: `(Optional) The commands to execute on the target environment before refreshing the VDB. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment before refreshing the VDB. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -263,11 +303,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "post_refresh",
-					Description: `(Optional) The commands to execute on the target environment after refreshing the VDB. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment after refreshing the VDB. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -279,11 +327,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "pre_rollback",
-					Description: `(Optional) The commands to execute on the target environment before rewinding the VDB. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment before rewinding the VDB. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -295,11 +351,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "post_rollback",
-					Description: `(Optional) The commands to execute on the target environment after rewinding the VDB. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment after rewinding the VDB. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -311,11 +375,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "configure_clone",
-					Description: `(Optional) The commands to execute on the target environment when the VDB is created or refreshed. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment when the VDB is created or refreshed. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -327,11 +399,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "pre_snapshot",
-					Description: `(Optional) The commands to execute on the target environment before snapshotting a virtual source. These commands can quiesce any data prior to snapshotting. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment before snapshotting a virtual source. These commands can quiesce any data prior to snapshotting. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -343,11 +423,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "post_snapshot",
-					Description: `(Optional) The commands to execute on the target environment after snapshotting a virtual source. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment after snapshotting a virtual source. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -359,11 +447,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "pre_start",
-					Description: `(Optional) The commands to execute on the target environment before starting a virtual source. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment before starting a virtual source. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -375,11 +471,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "post_start",
-					Description: `(Optional) The commands to execute on the target environment after starting a virtual source. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment after starting a virtual source. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -391,11 +487,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "pre_stop",
-					Description: `(Optional) The commands to execute on the target environment before stopping a virtual source. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment before stopping a virtual source. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -407,11 +511,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "post_stop",
-					Description: `(Optional) The commands to execute on the target environment after stopping a virtual source. This is a map of 3 parameters:`,
+					Description: `(Optional) The commands to execute on the target environment after stopping a virtual source. This is a map of 5 parameters:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -423,11 +535,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shell",
-					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ` Default is ` + "`" + `bash` + "`" + ``,
+					Description: `Type of shell. Valid values are ` + "`" + `[bash, shell, expect, ps, psd]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "element_id",
+					Description: `Element ID for the hook`,
+				},
+				resource.Attribute{
+					Name:        "has_credentials",
+					Description: `Flag to indicate if it has credentials`,
 				},
 				resource.Attribute{
 					Name:        "vdb_restart",
 					Description: `(Optional) [Updatable] Indicates whether the Engine should automatically restart this virtual source when target host reboot is detected.`,
+				},
+				resource.Attribute{
+					Name:        "auxiliary_template_id",
+					Description: `(Optional) The ID of the configuration template to apply to the auxiliary container database. This is only relevant when provisioning a Multitenant pluggable database into an existing CDB, i.e when the cdb_id property is set. (Oracle Only)`,
 				},
 				resource.Attribute{
 					Name:        "template_id",
@@ -444,6 +568,14 @@ var (
 				resource.Attribute{
 					Name:        "unique_name",
 					Description: `(Optional) Target VDB db_unique_name (Oracle Only).`,
+				},
+				resource.Attribute{
+					Name:        "vcdb_name",
+					Description: `(Optional) When provisioning an Oracle Multitenant vCDB (when the cdb_id property is not set), the name of the provisioned vCDB (Oracle Multitenant Only).`,
+				},
+				resource.Attribute{
+					Name:        "vcdb_database_name",
+					Description: `(Optional) When provisioning an Oracle Multitenant vCDB (when the cdb_id property is not set), the database name of the provisioned vCDB. Defaults to the value of the vcdb_name property. (Oracle Multitenant Only).`,
 				},
 				resource.Attribute{
 					Name:        "mount_point",
@@ -515,7 +647,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
-					Description: `(Optional) The ID of the snapshot from which to execute the operation. If the snapshot_id is not, selects the latest snapshot. ## Attribute Reference`,
+					Description: `(Optional) The ID or name of the snapshot from which to execute the operation. If the snapshot_id is not, selects the latest snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "bookmark_id",
+					Description: `(Optional) The ID or name of the bookmark from which to execute the operation. The bookmark must contain only one VDB.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags to be created for VDB. This is a map of 2 parameters:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Key of the tag`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of the tag ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",

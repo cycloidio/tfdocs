@@ -25,6 +25,20 @@ Use this data source to retrieve information about an existing organization.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "steampipecloud_process",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to retrieve information about a process for an identity or identity workspace.`,
+			Description: `
+
+Use this data source to retrieve information about a process that belongs to an identity or identity workspace.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "steampipecloud_user",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to retrieve information about the user whose token is used for authentication.`,
@@ -42,7 +56,8 @@ Use this data source to retrieve information about the user whose token is used 
 	dataSourcesMap = map[string]int{
 
 		"steampipecloud_organization": 0,
-		"steampipecloud_user":         1,
+		"steampipecloud_process":      1,
+		"steampipecloud_user":         2,
 	}
 )
 

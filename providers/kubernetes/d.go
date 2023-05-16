@@ -57,7 +57,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "binary_data",
-					Description: `A map of preserved non-UTF8 data. For more info see [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#configmap-v1-core).`,
+					Description: `A map of preserved non-UTF8 data. For more info see [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#configmap-v1-core).`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -67,7 +67,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "binary_data",
-					Description: `A map of preserved non-UTF8 data. For more info see [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#configmap-v1-core).`,
+					Description: `A map of preserved non-UTF8 data. For more info see [Kubernetes API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#configmap-v1-core).`,
 				},
 			},
 		},
@@ -296,6 +296,137 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "kubernetes_nodes",
+			Category:         "Data Sources",
+			ShortDescription: `Gets nodes within a cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Metadata describing which nodes to return. ### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Metadata describing the node. See [metadata](#metadata) for more info.`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Defines the behavior of the node. See [spec](#spec) for more info.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status information for the node. See [status](#status) for more info. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Required) Map of string keys and values that can be used to narrow the selection of nodes returned. #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the node, must be unique.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the node.`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `A sequence number representing a specific generation of the desired state.`,
+				},
+				resource.Attribute{
+					Name:        "resource_version",
+					Description: `An opaque value that represents the internal version of this node that can be used by clients to determine when the node has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The unique in time and space value for this node . For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "pod_cidr",
+					Description: `(Optional) The pod IP range assigned to the node`,
+				},
+				resource.Attribute{
+					Name:        "pod_cidrs",
+					Description: `(Optional) A list of IP address ranges assigned to the node for usage by pods on that node.`,
+				},
+				resource.Attribute{
+					Name:        "provider_id",
+					Description: `(Optional) ID of the node assigned by the cloud provider.`,
+				},
+				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `Controls the schedulability of new pods on the node. By default, node is schedulable.`,
+				},
+				resource.Attribute{
+					Name:        "taints",
+					Description: `(Optional) Taints applied to the node. See [taints](#taints) for more info. ### ` + "`" + `status` + "`" + ` ### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "allocatable",
+					Description: `(Optional) The total resources of a node.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Optional) The resources of a node that are available for scheduling.`,
+				},
+				resource.Attribute{
+					Name:        "node_info",
+					Description: `(Optional) A set of ids/uuids to uniquely identify the node. See [node_info](#node_info) for more info. [Kubernetes reference](https://kubernetes.io/docs/concepts/nodes/node/#info) ### ` + "`" + `node_info` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "machine_id",
+					Description: `Machine ID reporte by the node see [main(5) machine-id](http://man7.org/linux/man-pages/man5/machine-id.5.html) for more info.`,
+				},
+				resource.Attribute{
+					Name:        "system_uuid",
+					Description: `System UUID reported by the node. This field is specific to [Red Hat hosts](https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/rhsm/uuid)`,
+				},
+				resource.Attribute{
+					Name:        "boot_id",
+					Description: `Boot ID reported by the node.`,
+				},
+				resource.Attribute{
+					Name:        "kernel_version",
+					Description: `Kernel Version reported by the node from ` + "`" + `uname -r` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "os_image",
+					Description: `OS Image reported by the node from ` + "`" + `/etc/os-release` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "kubelet_version",
+					Description: `Kubelet Version reported by the node.`,
+				},
+				resource.Attribute{
+					Name:        "kube_proxy_version",
+					Description: `KubeProxy Version reported by the node.`,
+				},
+				resource.Attribute{
+					Name:        "operating_system",
+					Description: `The Operating System reported by the node`,
+				},
+				resource.Attribute{
+					Name:        "architecture",
+					Description: `The Architecture reported by the node ### ` + "`" + `taints` + "`" + ` #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The taint key to be applied to a node.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The taint value corresponding to the taint key.`,
+				},
+				resource.Attribute{
+					Name:        "effect",
+					Description: `The effect of the taint on pods that do not tolerate the taint. Valid effects are ` + "`" + `NoSchedule` + "`" + `, ` + "`" + `PreferNoSchedule` + "`" + ` and ` + "`" + `NoExecute` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "kubernetes_persistent_volume_claim",
 			Category:         "Data Sources",
 			ShortDescription: `A PersistentVolumeClaim (PVC) is a request for storage by a user. This data source retrieves information about the specified PVC.`,
@@ -444,6 +575,10 @@ var (
 				resource.Attribute{
 					Name:        "restart_policy",
 					Description: `Restart policy for all containers within the pod. One of Always, OnFailure, Never. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#restartpolicy).`,
+				},
+				resource.Attribute{
+					Name:        "runtime_class_name",
+					Description: `(Optional) RuntimeClassName is a feature for selecting the container runtime configuration. The container runtime configuration is used to run a Pod's containers. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/containers/runtime-class)`,
 				},
 				resource.Attribute{
 					Name:        "security_context",
@@ -651,7 +786,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "command",
-					Description: `Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. ### ` + "`" + `image_pull_secrets` + "`" + ` #### Attributes`,
+					Description: `Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. ### ` + "`" + `grpc` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Number of the port to access on the container. Number must be in the range 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC. ### ` + "`" + `image_pull_secrets` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -684,6 +827,10 @@ var (
 				resource.Attribute{
 					Name:        "http_get",
 					Description: `Specifies the http request to perform.`,
+				},
+				resource.Attribute{
+					Name:        "grpc",
+					Description: `GRPC specifies an action involving a GRPC port.`,
 				},
 				resource.Attribute{
 					Name:        "initial_delay_seconds",
@@ -838,12 +985,16 @@ var (
 					Description: `Minimum consecutive failures for the probe to be considered failed after having succeeded.`,
 				},
 				resource.Attribute{
+					Name:        "grpc",
+					Description: `GRPC specifies an action involving a GRPC port.`,
+				},
+				resource.Attribute{
 					Name:        "http_get",
 					Description: `Specifies the http request to perform.`,
 				},
 				resource.Attribute{
 					Name:        "initial_delay_seconds",
-					Description: `Number of seconds after the container has started before liveness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
+					Description: `Number of seconds after the container has started before readiness probes are initiated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes)`,
 				},
 				resource.Attribute{
 					Name:        "period_seconds",
@@ -859,15 +1010,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout_seconds",
-					Description: `Number of seconds after which the probe times out. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes) ### ` + "`" + `resources` + "`" + ` #### Attributes`,
+					Description: `Number of seconds after which the probe times out. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/pod-states#container-probes) ### ` + "`" + `resources` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "limits",
-					Description: `Describes the maximum amount of compute resources allowed. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/compute-resources)/`,
+					Description: `(Optional) Describes the maximum amount of compute resources allowed. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/compute-resources)/`,
 				},
 				resource.Attribute{
 					Name:        "requests",
-					Description: `Describes the minimum amount of compute resources required. ### ` + "`" + `requests` + "`" + ` #### Attributes`,
+					Description: `(Optional) Describes the minimum amount of compute resources required. ` + "`" + `resources` + "`" + ` is a computed attribute and thus if it is not configured in terraform code, the value will be computed from the returned Kubernetes object. That causes a situation when removing ` + "`" + `resources` + "`" + ` from terraform code does not update the Kubernetes object. In order to delete ` + "`" + `resources` + "`" + ` from the Kubernetes object, configure an empty attribute in your code. Please, look at the example below: ` + "`" + `` + "`" + `` + "`" + `hcl resources { limits = {} requests = {} } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `requests` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "cpu",
@@ -1003,7 +1154,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "se_linux_options",
-					Description: `The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence. ### ` + "`" + `capabilities` + "`" + ` #### Attributes`,
+					Description: `The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "fs_group_change_policy",
+					Description: `Defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified, "Always" is used. Note that this field cannot be set when spec.os.name is windows. ### ` + "`" + `capabilities` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -1225,8 +1380,16 @@ var (
 					Description: `Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. This field is ignored for services with ` + "`" + `cluster_ip = "None"` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#defining-a-service) ### ` + "`" + `spec` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
+					Name:        "allocate_load_balancer_node_ports",
+					Description: `(Optional) Defines if ` + "`" + `NodePorts` + "`" + ` will be automatically allocated for services with type ` + "`" + `LoadBalancer` + "`" + `. It may be set to ` + "`" + `false` + "`" + ` if the cluster load-balancer does not rely on ` + "`" + `NodePorts` + "`" + `. If the caller requests specific ` + "`" + `NodePorts` + "`" + ` (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type ` + "`" + `LoadBalancer` + "`" + `. Default is ` + "`" + `true` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-nodeport-allocation)`,
+				},
+				resource.Attribute{
 					Name:        "cluster_ip",
 					Description: `The IP address of the service. It is usually assigned randomly by the master. If an address is specified manually and is not in use by others, it will be allocated to the service; otherwise, creation of the service will fail. ` + "`" + `None` + "`" + ` can be specified for headless services when proxying is not required. Ignored if type is ` + "`" + `ExternalName` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ips",
+					Description: `(Optional) List of IP addresses assigned to this service, and are usually assigned randomly. If an address is specified manually and is not in use by others, it will be allocated to the service; otherwise creation of the service will fail. If this field is not specified, it will be initialized from the ` + "`" + `clusterIP` + "`" + ` field. If this field is specified, clients must ensure that ` + "`" + `clusterIPs[0]` + "`" + ` and ` + "`" + `clusterIP` + "`" + ` have the same value. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
 				},
 				resource.Attribute{
 					Name:        "external_ips",
@@ -1249,6 +1412,14 @@ var (
 					Description: `(Optional) Represents the dual-stack-ness requested or required by this Service. If there is no value provided, then this field will be set to ` + "`" + `SingleStack` + "`" + `. Services can be ` + "`" + `SingleStack` + "`" + `(a single IP family), ` + "`" + `PreferDualStack` + "`" + `(two IP families on dual-stack configured clusters or a single IP family on single-stack clusters), or ` + "`" + `RequireDualStack` + "`" + `(two IP families on dual-stack configured clusters, otherwise fail). The ` + "`" + `ip_families` + "`" + ` and ` + "`" + `cluster_ip` + "`" + ` fields depend on the value of this field.`,
 				},
 				resource.Attribute{
+					Name:        "internal_traffic_policy",
+					Description: `(Optional) Specifies if the cluster internal traffic should be routed to all endpoints or node-local endpoints only. ` + "`" + `Cluster` + "`" + ` routes internal traffic to a Service to all endpoints. ` + "`" + `Local` + "`" + ` routes traffic to node-local endpoints only, traffic is dropped if no node-local endpoints are ready. The default value is ` + "`" + `Cluster` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_class",
+					Description: `(Optional) The class of the load balancer implementation this Service belongs to. If specified, the value of this field must be a label-style identifier, with an optional prefix. This field can only be set when the Service type is ` + "`" + `LoadBalancer` + "`" + `. If not set, the default load balancer implementation is used. This field can only be set when creating or updating a Service to type ` + "`" + `LoadBalancer` + "`" + `. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class)`,
+				},
+				resource.Attribute{
 					Name:        "load_balancer_ip",
 					Description: `Only applies to ` + "`" + `type = LoadBalancer` + "`" + `. LoadBalancer will get created with the IP specified in this field. This feature depends on whether the underlying cloud-provider supports specifying this field when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature.`,
 				},
@@ -1267,6 +1438,10 @@ var (
 				resource.Attribute{
 					Name:        "session_affinity",
 					Description: `Used to maintain session affinity. Supports ` + "`" + `ClientIP` + "`" + ` and ` + "`" + `None` + "`" + `. Defaults to ` + "`" + `None` + "`" + `. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/services#virtual-ips-and-service-proxies)`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_config",
+					Description: `(Optional) Contains the configurations of session affinity. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/services-networking/service/#proxy-mode-ipvs)`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1337,7 +1512,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
+					Description: `(Deprecated) Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. Starting from version ` + "`" + `1.24.0` + "`" + ` by default Kubernetes does not automatically generate tokens for service accounts. That leads to the situation when ` + "`" + `default_secret_name` + "`" + ` cannot be computed and thus will be an empty string. In order to create a service account token, please [use ` + "`" + `kubernetes_secret_v1` + "`" + ` resource](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret_v1#example-usage-service-account-token) ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1359,7 +1534,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secret_name",
-					Description: `Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
+					Description: `(Deprecated) Name of the default secret, containing service account token, created & managed by the service. By default, the provider will try to find the secret containing the service account token that Kubernetes automatically created for the service account. Where there are multiple tokens and the provider cannot determine which was created by Kubernetes, this attribute will be empty. When only one token is associated with the service account, the provider will return this single token secret. Starting from version ` + "`" + `1.24.0` + "`" + ` by default Kubernetes does not automatically generate tokens for service accounts. That leads to the situation when ` + "`" + `default_secret_name` + "`" + ` cannot be computed and thus will be an empty string. In order to create a service account token, please [use ` + "`" + `kubernetes_secret_v1` + "`" + ` resource](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/secret_v1#example-usage-service-account-token) ### ` + "`" + `image_pull_secret` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1450,12 +1625,13 @@ var (
 		"kubernetes_config_map":              1,
 		"kubernetes_ingress":                 2,
 		"kubernetes_namespace":               3,
-		"kubernetes_persistent_volume_claim": 4,
-		"kubernetes_pod":                     5,
-		"kubernetes_secret":                  6,
-		"kubernetes_service":                 7,
-		"kubernetes_service_account":         8,
-		"kubernetes_storage_class":           9,
+		"kubernetes_nodes":                   4,
+		"kubernetes_persistent_volume_claim": 5,
+		"kubernetes_pod":                     6,
+		"kubernetes_secret":                  7,
+		"kubernetes_service":                 8,
+		"kubernetes_service_account":         9,
+		"kubernetes_storage_class":           10,
 	}
 )
 

@@ -21,7 +21,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
-					Description: `(Required) User component of the new rule. - ` + "`" + `#<id>` + "`" + ` matches a single user id - ` + "`" + `@<id>` + "`" + ` matches a group id - ` + "`" + ``,
+					Description: `(Required) User component of the new rule.`,
 				},
 				resource.Attribute{
 					Name:        "resource",
@@ -29,7 +29,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rights",
-					Description: `(Optional) Rights component of the new rule. Any combination of valid Rights, separated by a ` + "`" + `+` + "`" + `. The following rights are valid: - USE - MANAGE - ADMIN - CREATE ## Import To import an existing ACL #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_acl" "importacl" { user = "@1" resource = "HOST+CLUSTER+DATASTORE/`,
+					Description: `(Optional) Rights component of the new rule. Any combination of valid Rights, separated by a ` + "`" + `+` + "`" + `. The following rights are valid:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Zone component of the new rule.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -49,14 +53,6 @@ var (
 					Description: `(Required) The name of the group.`,
 				},
 				resource.Attribute{
-					Name:        "template",
-					Description: `(Deprecated) Group template content in OpenNebula XML or String format. Used to provide SUSNTONE arguments.`,
-				},
-				resource.Attribute{
-					Name:        "delete_on_destruction",
-					Description: `(Deprecated) Flag to delete the group on destruction. Defaults to ` + "`" + `true` + "`" + `. Use [Terraform lifecycle ` + "`" + `prevent_destroy` + "`" + `](https://www.terraform.io/language/meta-arguments/lifecycle#prevent_destroy) instead.`,
-				},
-				resource.Attribute{
 					Name:        "admins",
 					Description: `(Optional) List of Administrator user IDs part of the group.`,
 				},
@@ -69,8 +65,16 @@ var (
 					Description: `(Optional) Allow users and group admins to access specific views. See [Sunstone parameters](#sunstone-parameters) below for details`,
 				},
 				resource.Attribute{
+					Name:        "opennebula",
+					Description: `(Optional) OpenNebula core configuration. See [Opennebula parameters](#opennebula-parameters) below for details`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Group tags (Key = value) ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Group tags (Key = value)`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "datastore_quotas",
@@ -142,33 +146,69 @@ var (
 				},
 				resource.Attribute{
 					Name:        "system_disk_size",
-					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. #### Sunstone parameters`,
+					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. ### Sunstone parameters`,
 				},
 				resource.Attribute{
 					Name:        "default_view",
-					Description: `(Optional) Default Sunstone view for regular users`,
+					Description: `(Optional) Default Sunstone view for regular users.`,
 				},
 				resource.Attribute{
 					Name:        "views",
-					Description: `(Optional) List of available views for regular users`,
+					Description: `(Optional) List of available views for regular users.`,
 				},
 				resource.Attribute{
 					Name:        "group_admin_default_view",
-					Description: `(Optional) Default Sunstone view for group admin users`,
+					Description: `(Optional) Default Sunstone view for group admin users.`,
 				},
 				resource.Attribute{
 					Name:        "group_admin_views",
-					Description: `(Optional) List of available views for the group admins ## Attribute Reference The following attribute is exported:`,
+					Description: `(Optional) List of available views for the group admins. #### Opennebula parameters`,
+				},
+				resource.Attribute{
+					Name:        "default_image_persistent",
+					Description: `(Optional) Control the default value for the ` + "`" + `persistent` + "`" + ` attribute on image creation ( clone and disk save-as).`,
+				},
+				resource.Attribute{
+					Name:        "default_image_persistent_new",
+					Description: `(Optional) Control the default value for the ` + "`" + `persistent` + "`" + ` attribute on image creation ( only new images).`,
+				},
+				resource.Attribute{
+					Name:        "api_list_order",
+					Description: `(Optional) Sets order of elements by ID in list API calls: asc or desc respectively for ascending or descending order. ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the group. ## Import To import an existing group #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_group" "importgroup" { name = "importedgroup" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_group.importgroup 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the group.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_group.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the group. ## Import To import an existing group #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_group" "importgroup" { name = "importedgroup" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_group.importgroup 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the group.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_group.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -248,7 +288,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Timeout (in Minutes) for Image availability. Defaults to 10 minutes. ## Attribute Reference The following attributes are exported:`,
+					Description: `(Deprecated) Timeout (in Minutes) for Image availability. Defaults to 10 minutes.`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -268,7 +320,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the image. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the image.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_image` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_image.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -290,7 +350,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the image. ## Import To import an existing image #14 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_image" "importimage" { name = "importedimage" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_image.importimage 14 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the image.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_image` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_image.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -330,7 +398,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Security group tags (Key = Value). ### Rule parameters ` + "`" + `rule` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Security group tags (Key = Value).`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Rule parameters ` + "`" + `rule` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -358,7 +430,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "icmp_type",
-					Description: `(Optional) Type of ICMP traffic to apply to when 'protocol' is ` + "`" + `ICMP` + "`" + `. See https://docs.opennebula.org/5.12/operation/network_management/security_groups.html for more details on allowed values. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) Type of ICMP traffic to apply to when 'protocol' is ` + "`" + `ICMP` + "`" + `. See <https://docs.opennebula.org/5.12/operation/network_management/security_groups.html> for more details on allowed values. ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -378,7 +458,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the security group. ## Import To import an existing security group #142 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_security_group" "importsg" { name = "importedsg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_security_group.importsg 142 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the security group.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_security_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_security_group.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -400,7 +488,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the security group. ## Import To import an existing security group #142 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_security_group" "importsg" { name = "importedsg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_security_group.importsg 142 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the security group.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_security_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_security_group.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -476,7 +572,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `Array with roles information containing: ` + "`" + `cardinality` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `nodes` + "`" + ` and ` + "`" + `state` + "`" + `. ## Import To import an existing service #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service" "importservice" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service.importservice 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Array with roles information containing: ` + "`" + `cardinality` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `nodes` + "`" + ` and ` + "`" + `state` + "`" + `. ## Import ` + "`" + `opennebula_service` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_service.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -510,7 +606,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
-					Description: `Array with roles information containing: ` + "`" + `cardinality` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `nodes` + "`" + ` and ` + "`" + `state` + "`" + `. ## Import To import an existing service #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service" "importservice" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service.importservice 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Array with roles information containing: ` + "`" + `cardinality` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `nodes` + "`" + ` and ` + "`" + `state` + "`" + `. ## Import ` + "`" + `opennebula_service` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_service.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -571,7 +667,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the service. ## Import To import an existing service template #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service_template" "importservicetmpl" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service_template.importservicetmpl 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the service. ## Import ` + "`" + `opennebula_security_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_service_template.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -593,7 +689,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the service. ## Import To import an existing service template #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_service_template" "importservicetmpl" {} ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_service_template.importservicetmpl 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Group Name which owns the service. ## Import ` + "`" + `opennebula_security_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_service_template.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -624,12 +720,16 @@ var (
 					Description: `(Optional) Amount of CPU shares assigned to the VM.`,
 				},
 				resource.Attribute{
-					Name:        "vpcu",
+					Name:        "vcpu",
 					Description: `(Optional) Number of CPU cores presented to the VM.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
 					Description: `(Optional) Amount of RAM assigned to the VM in MB.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `(Optional) See [Features parameters](#features-parameters) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "context",
@@ -681,7 +781,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lock",
-					Description: `(Optional) Lock the template with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Lock the template with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -705,7 +809,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot",
-					Description: `(Optional) ` + "`" + `OS` + "`" + ` disk to use to boot on. ### Disk parameters ` + "`" + `disk` + "`" + ` supports the following arguments`,
+					Description: `(Optional) ` + "`" + `OS` + "`" + ` disk to use to boot on. ### Features parameters ` + "`" + `features` + "`" + ` supports the following arguments`,
+				},
+				resource.Attribute{
+					Name:        "pea",
+					Description: `(Optional) Physical address extension mode allows 32-bit guests to address more than 4 GB of memory. (Can be ` + "`" + `YES` + "`" + ` or ` + "`" + `NO` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "acpi",
+					Description: `(Optional) Useful for power management, for example, with KVM guests it is required for graceful shutdown to work. (Can be ` + "`" + `YES` + "`" + ` or ` + "`" + `NO` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "apic",
+					Description: `(Optional) Enables the advanced programmable IRQ management. Useful for SMP machines. (Can be ` + "`" + `YES` + "`" + ` or ` + "`" + `NO` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "localtime",
+					Description: `(Optional) The guest clock will be synchronized to the host’s configured timezone when booted. Useful for Windows VMs. (Can be ` + "`" + `YES` + "`" + ` or ` + "`" + `NO` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "hyperv",
+					Description: `(Optional) Add hyperv extensions to the VM. The options can be configured in the driver configuration, HYPERV_OPTIONS.`,
+				},
+				resource.Attribute{
+					Name:        "guest_agent",
+					Description: `(Optional) Enables the QEMU Guest Agent communication. This only creates the socket inside the VM, the Guest Agent itself must be installed and started in the VM. (Can be ` + "`" + `YES` + "`" + ` or ` + "`" + `NO` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "virtio_scsi_queues",
+					Description: `(Optional) Numer of vCPU queues for the virtio-scsi controller.`,
+				},
+				resource.Attribute{
+					Name:        "iothreads",
+					Description: `(Optional) umber of iothreads for virtio disks. By default threads will be assign to disk by round robin algorithm. Disk thread id can be forced by disk IOTHREAD attribute. ### Disk parameters ` + "`" + `disk` + "`" + ` supports the following arguments`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -722,6 +858,22 @@ var (
 				resource.Attribute{
 					Name:        "driver",
 					Description: `(Optional) OpenNebula image driver.`,
+				},
+				resource.Attribute{
+					Name:        "dev_prefix",
+					Description: `(Optional) Prefix for the emulated device this image will be mounted at. For instance, attribute of the Image will be used.`,
+				},
+				resource.Attribute{
+					Name:        "cache",
+					Description: `(Optional) Selects the cache mechanism for the disk. Values are default, none, writethrough, writeback, directsync and unsafe.`,
+				},
+				resource.Attribute{
+					Name:        "discard",
+					Description: `(Optional) Controls what’s done with with trim commands to the disk, the values can be ignore or discard.`,
+				},
+				resource.Attribute{
+					Name:        "io",
+					Description: `(Optional) Set IO policy. Values are threads, native.`,
 				},
 				resource.Attribute{
 					Name:        "volatile_type",
@@ -769,7 +921,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Required) role of the VM group to use. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Required) role of the VM group to use. ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -793,7 +953,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reg_time",
-					Description: `Registration time of the template. ## Import To import an existing virtual machine template #54 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_template" "importtpl" { name = "importedtpl" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_template.importtppl 54 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Registration time of the template.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_template` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_template.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -819,7 +987,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reg_time",
-					Description: `Registration time of the template. ## Import To import an existing virtual machine template #54 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_template" "importtpl" { name = "importedtpl" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_template.importtppl 54 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Registration time of the template.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_template` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_template.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -855,7 +1031,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "quotas",
-					Description: `(Optional) See [Quotas parameters](#quotas-parameters) below for details ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) See [Quotas parameters](#quotas-parameters) below for details`,
+				},
+				resource.Attribute{
+					Name:        "ssh_public_key",
+					Description: `(Optional) SSH public key.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Group tags (Key = value)`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Quotas parameters ` + "`" + `quotas` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "datastore_quotas",
@@ -927,17 +1115,41 @@ var (
 				},
 				resource.Attribute{
 					Name:        "system_disk_size",
-					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. ## Attribute Reference The following attribute is exported:`,
+					Description: `(Optional) Maximum disk global size (in MB) allowed on a ` + "`" + `SYSTEM` + "`" + ` datastore. Defaults to ` + "`" + `default quota` + "`" + `. ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the user. ## Import To import an existing user #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_user" "importuser" { name = "importeduser" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_user.importuser 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_user` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_user.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the user. ## Import To import an existing user #134 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_user" "importuser" { name = "importeduser" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_user.importuser 134 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Import ` + "`" + `opennebula_user` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_user.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -985,13 +1197,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the virtual data center. ## Import To import an existing virtual data center #13 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_data_center" "importvdc" { name = "importedvdc" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_data_center.importvdc 13 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the virtual data center. ## Import ` + "`" + `opennebula_virtual_data_center` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_data_center.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the virtual data center. ## Import To import an existing virtual data center #13 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_data_center" "importvdc" { name = "importedvdc" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_data_center.importvdc 13 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the virtual data center. ## Import ` + "`" + `opennebula_virtual_data_center` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_data_center.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1079,7 +1291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) Timeout (in Minutes) for VM availability. Defaults to 3 minutes.`,
+					Description: `(Deprecated) Timeout (in Minutes) for VM availability. Defaults to 3 minutes.`,
 				},
 				resource.Attribute{
 					Name:        "lock",
@@ -1087,7 +1299,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "on_disk_change",
-					Description: `(Optional) Select the behavior for changing disk images. Supported values: ` + "`" + `RECREATE` + "`" + ` or ` + "`" + `SWAP` + "`" + ` (default). ` + "`" + `RECREATE` + "`" + ` forces recreation of the vm and ` + "`" + `SWAP` + "`" + ` adopts the standard behavior of hot-swapping the disks. NOTE: This property does not affect the behavior of adding new disks. ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Select the behavior for changing disk images. Supported values: ` + "`" + `RECREATE` + "`" + ` or ` + "`" + `SWAP` + "`" + ` (default). ` + "`" + `RECREATE` + "`" + ` forces recreation of the vm and ` + "`" + `SWAP` + "`" + ` adopts the standard behavior of hot-swapping the disks. NOTE: This property does not affect the behavior of adding new disks.`,
+				},
+				resource.Attribute{
+					Name:        "hard_shutdown",
+					Description: `(Optional) If the VM doesn't have ACPI support, it immediately poweroff/terminate/reboot/undeploy the VM. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Graphics parameters ` + "`" + `graphics` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -1171,15 +1391,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Required) role of the VM group to use. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Required) role of the VM group to use. ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the virtual machine.`,
-				},
-				resource.Attribute{
-					Name:        "instance",
-					Description: `(Deprecated) Name of the virtual machine instance created on the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -1211,7 +1435,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_nic",
-					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some NICs, this contains the template NICs description. ### Template NIC`,
+					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some NICs, this contains the template NICs description.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "template_tags",
+					Description: `When ` + "`" + `template_id` + "`" + ` was set this keeps the template tags.`,
+				},
+				resource.Attribute{
+					Name:        "template_section_names",
+					Description: `When ` + "`" + `template_id` + "`" + ` was set this keeps the template section names only. ### Template NIC`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -1319,7 +1559,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "computed_volatile_format",
-					Description: `Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import ` + "`" + `opennebula_virtual_machine` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_machine.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1328,10 +1568,6 @@ var (
 					Description: `ID of the virtual machine.`,
 				},
 				resource.Attribute{
-					Name:        "instance",
-					Description: `(Deprecated) Name of the virtual machine instance created on the cluster.`,
-				},
-				resource.Attribute{
 					Name:        "uid",
 					Description: `User ID whom owns the virtual machine.`,
 				},
@@ -1361,7 +1597,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_nic",
-					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some NICs, this contains the template NICs description. ### Template NIC`,
+					Description: `when ` + "`" + `template_id` + "`" + ` is used and the template define some NICs, this contains the template NICs description.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "template_tags",
+					Description: `When ` + "`" + `template_id` + "`" + ` was set this keeps the template tags.`,
+				},
+				resource.Attribute{
+					Name:        "template_section_names",
+					Description: `When ` + "`" + `template_id` + "`" + ` was set this keeps the template section names only. ### Template NIC`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -1469,7 +1721,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "computed_volatile_format",
-					Description: `Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import To import an existing virtual machine #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine" "importvm" { name = "importedvm" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine.importvm 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Format of the Image: ` + "`" + `raw` + "`" + ` or ` + "`" + `qcow2` + "`" + `. ## Instantiate from a template When the attribute ` + "`" + `template_id` + "`" + ` is set, here is the behavior: For all parameters excepted context: parameters present in VM overrides parameters defined in template. For context: it merges them. For disks and NICs defined in the template, if they are not overriden, are described in ` + "`" + `template_disk` + "`" + ` and ` + "`" + `template_nic` + "`" + ` attributes of the instantiated VM and are not modifiable anymore. ## Import ` + "`" + `opennebula_virtual_machine` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_machine.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1501,7 +1753,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Virtual Machine group tags. ### Role parameters ` + "`" + `role` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Virtual Machine group tags.`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Role parameters ` + "`" + `role` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1517,7 +1773,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Optional) Policy to apply between Virtual Machines using this role. Allowed Values: ` + "`" + `NONE` + "`" + `, ` + "`" + `AFFINED` + "`" + `, ` + "`" + `ANTI_AFFINED` + "`" + `. ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) Policy to apply between Virtual Machines using this role. Allowed Values: ` + "`" + `NONE` + "`" + `, ` + "`" + `AFFINED` + "`" + `, ` + "`" + `ANTI_AFFINED` + "`" + `. ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1541,11 +1805,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `See [Role Attribute Reference](#role-attribute-reference) below for details ## Role Attribute Reference The Following attributes are exported under ` + "`" + `role` + "`" + `:`,
+					Description: `See [Role Attribute Reference](#role-attribute-reference) below for details`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Role Attribute Reference The Following attributes are exported under ` + "`" + `role` + "`" + `:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the role. ## Import ` + "`" + `opennebula_virtual_machine_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_machine_group.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1571,11 +1843,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `See [Role Attribute Reference](#role-attribute-reference) below for details ## Role Attribute Reference The Following attributes are exported under ` + "`" + `role` + "`" + `:`,
+					Description: `See [Role Attribute Reference](#role-attribute-reference) below for details`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ## Role Attribute Reference The Following attributes are exported under ` + "`" + `role` + "`" + `:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the role. ## Import To import an existing virtual machine group #42 into Terraform, add this declaration to your .tf file: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_machine_group" "importvmg" { name = "importedvmg" } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_machine_group.importvmg 42 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the role. ## Import ` + "`" + `opennebula_virtual_machine_group` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_machine_group.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1603,11 +1883,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reservation_vnet",
-					Description: `(Optional) ID of the parent virtual network to reserve from. Conflicts with all parameters excepted ` + "`" + `name` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `permissions` + "`" + `, ` + "`" + `security_groups` + "`" + ` and ` + "`" + `group` + "`" + `.`,
+					Description: `(Optional) ID of the parent virtual network to reserve from. Conflicts with all parameters except ` + "`" + `name` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `permissions` + "`" + `, ` + "`" + `security_groups` + "`" + `, ` + "`" + `group` + "`" + `, ` + "`" + `reservation_ar_id` + "`" + `, ` + "`" + `reservation_first_ip` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reservation_size",
-					Description: `(Optional) Size (in address) reserved. Conflicts with all parameters excepted ` + "`" + `name` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `permissions` + "`" + `, ` + "`" + `security_groups` + "`" + ` and ` + "`" + `group` + "`" + `.`,
+					Description: `(Optional) Size (in address) reserved. Conflicts with all parameters except ` + "`" + `name` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `permissions` + "`" + `, ` + "`" + `security_groups` + "`" + `, ` + "`" + `group` + "`" + `, ` + "`" + `reservation_ar_id` + "`" + `, ` + "`" + `reservation_first_ip` + "`" + ` and ` + "`" + `reservation_vnet` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "reservation_ar_id",
+					Description: `(Optional) ID of the address range from which to reserve the addresses. Conflicts with all parameters except ` + "`" + `name` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `permissions` + "`" + `, ` + "`" + `security_groups` + "`" + `, ` + "`" + `group` + "`" + `, ` + "`" + `reservation_size` + "`" + `, ` + "`" + `reservation_first_ip` + "`" + ` and ` + "`" + `reservation_vnet` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "reservation_first_ip",
+					Description: `(Optional) The first IPv4 address to start the reservation range. Conflicts with all parameters except ` + "`" + `name` + "`" + `, ` + "`" + `description` + "`" + `, ` + "`" + `permissions` + "`" + `, ` + "`" + `security_groups` + "`" + `, ` + "`" + `group` + "`" + `, ` + "`" + `reservation_ar_id` + "`" + `, ` + "`" + `reservation_size` + "`" + ` and ` + "`" + `reservation_vnet` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -1627,7 +1915,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "clusters",
-					Description: `(Optional) List of cluster IDs where the virtual network can be use. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Deprecated) List of cluster IDs where the virtual network can be use. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ids",
+					Description: `(Optional) List of cluster IDs where the virtual network can be use. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `. Minimum 1 item.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_id",
@@ -1655,23 +1947,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns",
-					Description: `(Optional) Text String containing a comma separated list of DNS IPs. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Optional) Text String containing a space separated list of DNS IPs. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "network_address",
+					Description: `(Optional) Base network address. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "search_domain",
+					Description: `(Optional) Default search domains for DNS resolution. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ar",
-					Description: `(Optional) List of address ranges. See [Address Range Parameters](#address-range-parameters) below for more details. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Deprecated) List of address ranges. See [Address Range Parameters](#address-range-parameters) below for more details. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "hold_ips",
-					Description: `(Optional) Hold Ips from any Address Range of the Virtual Network. The IP must be available to be held` + "`" + `. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "hold_size",
-					Description: `(Deprecated) Carve a network reservation of this size from the reservation starting from ` + "`" + `ip_hold` + "`" + `. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "ip_hold",
-					Description: `(Deprecated) Start IP of the range to be held. Conflicts with ` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
+					Description: `(Deprecated) Hold Ips from any Address Range of the Virtual Network. The IP must be available to be held` + "`" + `. Conflicts with` + "`" + `reservation_vnet` + "`" + ` and ` + "`" + `reservation_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "group",
@@ -1683,7 +1975,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lock",
-					Description: `(Optional) Lock the virtual network with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `. ### Address Range parameters ` + "`" + `ar` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) Lock the virtual network with a specific lock level. Supported values: ` + "`" + `USE` + "`" + `, ` + "`" + `MANAGE` + "`" + `, ` + "`" + `ADMIN` + "`" + `, ` + "`" + `ALL` + "`" + ` or ` + "`" + `UNLOCK` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "template_section",
+					Description: `(Optional) Allow to add a custom vector. See [Template section parameters](#template-section-parameters) ### Address Range parameters ` + "`" + `ar` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "ar_type",
@@ -1715,7 +2011,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prefix_length",
-					Description: `(Optional) Prefix length. Only needed for ` + "`" + `IP6_STATIC` + "`" + ` or ` + "`" + `IP4_6_STATIC` + "`" + ` ## Attribute Reference The following attribute are exported:`,
+					Description: `(Optional) Prefix length. Only needed for ` + "`" + `IP6_STATIC` + "`" + ` or ` + "`" + `IP4_6_STATIC` + "`" + ` ### Template section parameters ` + "`" + `template_section` + "`" + ` supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The vector name.`,
+				},
+				resource.Attribute{
+					Name:        "elements",
+					Description: `(Optional) Collection of custom tags. ## Attribute Reference The following attribute are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1735,7 +2039,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the virtual network. ### Address range computed attributes`,
+					Description: `Group Name which owns the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ### Address range computed attributes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1755,7 +2067,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "computed_ula_prefix",
-					Description: `ULA prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ULA prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `. ## Import ` + "`" + `opennebula_virtual_network` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_network.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1777,7 +2089,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gname",
-					Description: `Group Name which owns the virtual network. ### Address range computed attributes`,
+					Description: `Group Name which owns the virtual network.`,
+				},
+				resource.Attribute{
+					Name:        "tags_all",
+					Description: `Result of the applied ` + "`" + `default_tags` + "`" + ` and then resource ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_tags",
+					Description: `Default tags defined in the provider configuration. ### Address range computed attributes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1797,7 +2117,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "computed_ula_prefix",
-					Description: `ULA prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `. ## Import To import an existing virtual network #1234 into Terraform, add this declaration to your .tf file (don't specify the reservation_size): ` + "`" + `` + "`" + `` + "`" + `hcl resource "opennebula_virtual_network" "importtest" { name = "importedvnet" reservation_vnet = 394 security_groups = ["0"] } ` + "`" + `` + "`" + `` + "`" + ` And then run: ` + "`" + `` + "`" + `` + "`" + ` terraform import opennebula_virtual_network.importtest 1234 ` + "`" + `` + "`" + `` + "`" + ` Verify that Terraform does not perform any change: ` + "`" + `` + "`" + `` + "`" + ` terraform plan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ULA prefix for type ` + "`" + `IP6` + "`" + ` or ` + "`" + `IP_4_6` + "`" + `. ## Import ` + "`" + `opennebula_virtual_network` + "`" + ` can be imported using its ID: ` + "`" + `` + "`" + `` + "`" + `shell terraform import opennebula_virtual_network.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

@@ -550,29 +550,37 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `UUID of the project where the gateway is scoped to`,
+					Description: `(Required) UUID of the project where the gateway is scoped to.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_id",
-					Description: `UUID of the VLAN where the gateway is scoped to`,
+					Description: `(Required) UUID of the VLAN where the gateway is scoped to.`,
 				},
 				resource.Attribute{
 					Name:        "ip_reservation_id",
-					Description: `(Optional) UUID of IP reservation block to bind to the gateway, the reservation must be in the same metro as the VLAN, conflicts with ` + "`" + `private_ipv4_subnet_size` + "`" + ``,
+					Description: `(Optional) UUID of Public or VRF IP Reservation to associate with the gateway, the reservation must be in the same metro as the VLAN, conflicts with ` + "`" + `private_ipv4_subnet_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "private_ipv4_subnet_size",
-					Description: `(Optional) Size of the private IPv4 subnet to create for this metal gateway, must be one of (8, 16, 32, 64, 128), conflicts with ` + "`" + `ip_reservation_id` + "`" + ` ## Attributes Reference`,
+					Description: `(Optional) Size of the private IPv4 subnet to create for this metal gateway, must be one of (8, 16, 32, 64, 128), conflicts with ` + "`" + `ip_reservation_id` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `Status of the gateway resource`,
+					Description: `Status of the gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `UUID of the VRF associated with the IP Reservation.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
-					Description: `Status of the gateway resource`,
+					Description: `Status of the gateway resource.`,
+				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `UUID of the VRF associated with the IP Reservation.`,
 				},
 			},
 		},
@@ -681,20 +689,44 @@ var (
 					Description: `(Required) The name of the Organization`,
 				},
 				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) An object that has the address information. See [Address](#address) below for more details.`,
+				},
+				resource.Attribute{
 					Name:        "description",
-					Description: `Description string`,
+					Description: `(Optional) Description string`,
 				},
 				resource.Attribute{
 					Name:        "website",
-					Description: `Website link`,
+					Description: `(Optional) Website link`,
 				},
 				resource.Attribute{
 					Name:        "twitter",
-					Description: `Twitter handle`,
+					Description: `(Optional) Twitter handle`,
 				},
 				resource.Attribute{
 					Name:        "logo",
-					Description: `Logo URL ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Logo URL ### Address The ` + "`" + `address` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) Postal address.`,
+				},
+				resource.Attribute{
+					Name:        "city",
+					Description: `(Required) City name.`,
+				},
+				resource.Attribute{
+					Name:        "country",
+					Description: `(Required) Two letter country code (ISO 3166-1 alpha-2), e.g. US.`,
+				},
+				resource.Attribute{
+					Name:        "zip_code",
+					Description: `(Required) Zip Code.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) State name. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1153,11 +1185,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "quantity",
-					Description: `(Required) The number of allocated /32 addresses, a power of 2`,
+					Description: `(Optional) The number of allocated /32 addresses, a power of 2. Required when ` + "`" + `type` + "`" + ` is not ` + "`" + `vrf` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Either "global_ipv4" or "public_ipv4", defaults to "public_ipv4" for backward compatibility`,
+					Description: `(Optional) One of ` + "`" + `global_ipv4` + "`" + `, ` + "`" + `public_ipv4` + "`" + `, or ` + "`" + `vrf` + "`" + `. Defaults to ` + "`" + `public_ipv4` + "`" + ` for backward compatibility.`,
 				},
 				resource.Attribute{
 					Name:        "facility",
@@ -1181,23 +1213,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_data",
-					Description: `(Optional) Custom Data is an arbitrary object (submitted in Terraform as serialized JSON) to assign to the IP Reservation. This may be helpful for self-managed IPAM. The object must be valid JSON. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Custom Data is an arbitrary object (submitted in Terraform as serialized JSON) to assign to the IP Reservation. This may be helpful for self-managed IPAM. The object must be valid JSON.`,
 				},
 				resource.Attribute{
-					Name:        "facility",
-					Description: `The facility where the block was allocated, empty for global blocks`,
+					Name:        "vrf_id",
+					Description: `(Optional) Only valid and required when ` + "`" + `type` + "`" + ` is ` + "`" + `vrf` + "`" + `. VRF ID for type=vrf reservations.`,
 				},
 				resource.Attribute{
-					Name:        "metro",
-					Description: `The metro where the block was allocated, empty for global blocks`,
+					Name:        "network",
+					Description: `(Optional) Only valid as an argument and required when ` + "`" + `type` + "`" + ` is ` + "`" + `vrf` + "`" + `. An unreserved network address from an existing ` + "`" + `ip_range` + "`" + ` in the specified VRF.`,
 				},
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `To which project the addresses beling`,
-				},
-				resource.Attribute{
-					Name:        "quantity",
-					Description: `Number of "/32" addresses in the block`,
+					Name:        "cidr",
+					Description: `(Optional) Only valid as an argument and required when ` + "`" + `type` + "`" + ` is ` + "`" + `vrf` + "`" + `. The size of the network to reserve from an existing VRF ip_range. ` + "`" + `cidr` + "`" + ` can only be specified with ` + "`" + `vrf_id` + "`" + `. Range is 22-31. Virtual Circuits require 30-31. Other VRF resources must use a CIDR in the 22-29 range. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1224,36 +1252,20 @@ var (
 					Description: `Address family as integer (4 or 6)`,
 				},
 				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `VRF ID of the block when type=vrf`,
+				},
+				resource.Attribute{
 					Name:        "public",
 					Description: `boolean flag whether addresses from a block are public`,
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `string list of tags Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "facility",
-					Description: `The facility where the block was allocated, empty for global blocks`,
-				},
-				resource.Attribute{
-					Name:        "metro",
-					Description: `The metro where the block was allocated, empty for global blocks`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `To which project the addresses beling`,
-				},
-				resource.Attribute{
-					Name:        "quantity",
-					Description: `Number of "/32" addresses in the block`,
-				},
-				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the block`,
 				},
@@ -1278,16 +1290,16 @@ var (
 					Description: `Address family as integer (4 or 6)`,
 				},
 				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `VRF ID of the block when type=vrf`,
+				},
+				resource.Attribute{
 					Name:        "public",
 					Description: `boolean flag whether addresses from a block are public`,
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility)`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `string list of tags Idempotent reference to a first "/32" address from a reserved block might look like this: ` + "`" + `join("/", [cidrhost(metal_reserved_ip_block.myblock.cidr_notation,0), "32"])` + "`" + ` ## Import This resource can be imported using an existing IP reservation ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_reserved_ip_block {existing_ip_reservation_id} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) ->`,
 				},
 			},
 		},
@@ -1377,19 +1389,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `(Required) The public key. If this is a file, it can be read using the file interpolation function ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The public key. If this is a file, it can be read using the file interpolation function ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the key`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the SSH key`,
-				},
-				resource.Attribute{
-					Name:        "public_key",
-					Description: `The text of the public key`,
 				},
 				resource.Attribute{
 					Name:        "fingerprint",
@@ -1412,14 +1416,6 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the key`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the SSH key`,
-				},
-				resource.Attribute{
-					Name:        "public_key",
-					Description: `The text of the public key`,
 				},
 				resource.Attribute{
 					Name:        "fingerprint",
@@ -1521,15 +1517,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "speed",
-					Description: `(Optional) Speed of the Virtual Circuit resource ## Attributes Reference`,
+					Description: `(Optional) Speed of the Virtual Circuit resource`,
+				},
+				resource.Attribute{
+					Name:        "vrf_id",
+					Description: `(Optional) UUID of the VRF to associate.`,
+				},
+				resource.Attribute{
+					Name:        "peer_asn",
+					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The BGP ASN of the peer. The same ASN may be the used across several VCs, but it cannot be the same as the local_asn of the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) A subnet from one of the IP blocks associated with the VRF that we will help create an IP reservation for. Can only be either a /30 or /31.`,
+				},
+				resource.Attribute{
+					Name:        "metal_ip",
+					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The Metal IP address for the SVI (Switch Virtual Interface) of the VirtualCircuit. Will default to the first usable IP in the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "customer_ip",
+					Description: `(Optional, required with ` + "`" + `vrf_id` + "`" + `) The Customer IP address which the CSR switch will peer with. Will default to the other usable IP in the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "md5",
+					Description: `(Optional, only valid with ` + "`" + `vrf_id` + "`" + `) The password that can be set for the VRF BGP peer ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the virtal circuit`,
 				},
 				resource.Attribute{
-					Name:        "nni_nvid",
-					Description: `VLAN parameters, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/)`,
+					Name:        "vnid",
+					Description: `VNID VLAN parameter, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/).`,
+				},
+				resource.Attribute{
+					Name:        "nni_vnid",
+					Description: `VLAN parameters, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/) ## Import This resource can be imported using an existing Virtual Circuit ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_virtual_circuit {existing_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1538,8 +1562,12 @@ var (
 					Description: `Status of the virtal circuit`,
 				},
 				resource.Attribute{
-					Name:        "nni_nvid",
-					Description: `VLAN parameters, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/)`,
+					Name:        "vnid",
+					Description: `VNID VLAN parameter, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/).`,
+				},
+				resource.Attribute{
+					Name:        "nni_vnid",
+					Description: `VLAN parameters, see the [documentation for Equinix Fabric](https://metal.equinix.com/developers/docs/networking/fabric/) ## Import This resource can be imported using an existing Virtual Circuit ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_virtual_circuit {existing_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1599,6 +1627,41 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "metal_vrf",
+			Category:         "Resources",
+			ShortDescription: `(not-GA) Provides a resource for Equinix Metal VRF.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) User-supplied name of the VRF, unique to the project`,
+				},
+				resource.Attribute{
+					Name:        "metro",
+					Description: `(Required) Metro ID or Code where the VRF will be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Project ID where the VRF will be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "local_asn",
+					Description: `(Optional) The 4-byte ASN set on the VRF.`,
+				},
+				resource.Attribute{
+					Name:        "ip_ranges",
+					Description: `(Optional) All IPv4 and IPv6 Ranges that will be available to BGP Peers. IPv4 addresses must be /8 or smaller with a minimum size of /29. IPv6 must be /56 or smaller with a minimum size of /64. Ranges must not overlap other ranges within the VRF. ## Attributes Reference No additional attributes are exported. ## Import This resource can be imported using an existing VRF ID: ` + "`" + `` + "`" + `` + "`" + `sh terraform import metal_vrf {existing_id} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1623,6 +1686,7 @@ var (
 		"metal_vlan":                 17,
 		"metal_volume":               18,
 		"metal_volume_attachment":    19,
+		"metal_vrf":                  20,
 	}
 )
 

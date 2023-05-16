@@ -48,7 +48,38 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete",
-					Description: `(Defaults to 30 minutes) Used when deleting the azure resource. ## Import Azure resource can be imported using the ` + "`" + `resource id` + "`" + ` with ` + "`" + `api-version` + "`" + ` as a query parameter, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azapi_resource.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resGroup1/providers/Microsoft.MachineLearningServices/workspaces/workspace1/computes/cluster1?api-version=2021-07-01 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Defaults to 30 minutes) Used when deleting the azure resource. ## Import Azure resource can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azapi_resource.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resGroup1/providers/Microsoft.MachineLearningServices/workspaces/workspace1/computes/cluster1 ` + "`" + `` + "`" + `` + "`" + ` It also supports specifying API version by using the ` + "`" + `resource id` + "`" + ` with ` + "`" + `api-version` + "`" + ` as a query parameter, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azapi_resource.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resGroup1/providers/Microsoft.MachineLearningServices/workspaces/workspace1/computes/cluster1?api-version=2021-07-01 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azapi_azapi_resource_action",
+			Category:         "Resources",
+			ShortDescription: `Perform resource action which changes an existing resource's state`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the azure resource action.`,
+				},
+				resource.Attribute{
+					Name:        "output",
+					Description: `The output json containing the properties specified in ` + "`" + `response_export_values` + "`" + `. Here are some examples to decode json and extract the value. ` + "`" + `` + "`" + `` + "`" + `hcl // it will output "nHGYNd`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 minutes) Used when creating the azure resource.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Defaults to 5 minutes) Used when retrieving the azure resource.`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 minutes) Used when deleting the azure resource.`,
 				},
 			},
 		},
@@ -88,7 +119,8 @@ var (
 	resourcesMap = map[string]int{
 
 		"azapi_azapi_resource":        0,
-		"azapi_azapi_update_resource": 1,
+		"azapi_azapi_resource_action": 1,
+		"azapi_azapi_update_resource": 2,
 	}
 )
 

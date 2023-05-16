@@ -11,7 +11,7 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvm_cmd_add_device",
+			Type:             "fortimanager_dvm_cmd_add_device",
 			Category:         "Device Manager",
 			ShortDescription: `Add a device to the Device Manager database.`,
 			Description:      ``,
@@ -62,6 +62,10 @@ var (
 				resource.Attribute{
 					Name:        "deviceaction",
 					Description: `Specify add device operations, or leave blank to add real device:<ul><li>"add_model" - add a model device.<li>"promote_unreg" - promote an unregistered device to be managed by FortiManager using information from database.</ul>`,
+				},
+				resource.Attribute{
+					Name:        "deviceblueprint",
+					Description: `<i>add model device only</i>. Device blueprint to apply to the new model device.`,
 				},
 				resource.Attribute{
 					Name:        "fazquota",
@@ -133,7 +137,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvm_cmd_del_device",
+			Type:             "fortimanager_dvm_cmd_del_device",
 			Category:         "Device Manager",
 			ShortDescription: `Delete a device.`,
 			Description:      ``,
@@ -175,7 +179,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvm_cmd_update_device",
+			Type:             "fortimanager_dvm_cmd_update_device",
 			Category:         "Device Manager",
 			ShortDescription: `Refresh the FGFM connection and system information of a device.`,
 			Description:      ``,
@@ -217,7 +221,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvmdb_adom",
+			Type:             "fortimanager_dvmdb_adom",
 			Category:         "Device Manager",
 			ShortDescription: `ADOM table, most attributes are read-only and can only be changed internally.`,
 			Description:      ``,
@@ -318,7 +322,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvmdb_group",
+			Type:             "fortimanager_dvmdb_group",
 			Category:         "Device Manager",
 			ShortDescription: `Device group table.`,
 			Description:      ``,
@@ -340,6 +344,10 @@ var (
 				resource.Attribute{
 					Name:        "desc",
 					Description: `Desc.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Id.`,
 				},
 				resource.Attribute{
 					Name:        "metafields",
@@ -371,7 +379,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvmdb_revision",
+			Type:             "fortimanager_dvmdb_revision",
 			Category:         "Device Manager",
 			ShortDescription: `ADOM revision table.`,
 			Description:      ``,
@@ -428,7 +436,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvmdb_script",
+			Type:             "fortimanager_dvmdb_script",
 			Category:         "Device Manager",
 			ShortDescription: `Script table.`,
 			Description:      ``,
@@ -545,7 +553,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_dvmdb_script_execute",
+			Type:             "fortimanager_dvmdb_script_execute",
 			Category:         "Device Manager",
 			ShortDescription: `Run script.`,
 			Description:      ``,
@@ -611,7 +619,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_exec_workspace_action",
+			Type:             "fortimanager_exec_workspace_action",
 			Category:         "System Global",
 			ShortDescription: `Workspace enables locking ADOMs, devices, or policy packages so that an administrator can prevent other administrators from making changes to the elements that they are working in.`,
 			Description:      ``,
@@ -665,7 +673,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_analyzer_virusreport",
+			Type:             "fortimanager_fmupdate_analyzer_virusreport",
 			Category:         "Fmupdate",
 			ShortDescription: `Send virus detection notification to FortiGuard.`,
 			Description:      ``,
@@ -693,7 +701,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_avips_advancedlog",
+			Type:             "fortimanager_fmupdate_avips_advancedlog",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable logging of FortiGuard antivirus and IPS update packages received by FortiManager's built-in FortiGuard.`,
 			Description:      ``,
@@ -725,7 +733,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_avips_webproxy",
+			Type:             "fortimanager_fmupdate_avips_webproxy",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the web proxy for use with FortiGuard antivirus and IPS updates.`,
 			Description:      ``,
@@ -773,7 +781,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_customurllist",
+			Type:             "fortimanager_fmupdate_customurllist",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the URL database for rating and filtering.`,
 			Description:      ``,
@@ -800,7 +808,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_diskquota",
+			Type:             "fortimanager_fmupdate_diskquota",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure disk space available for use by the Upgrade Manager.`,
 			Description:      ``,
@@ -827,7 +835,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fctservices",
+			Type:             "fortimanager_fmupdate_fctservices",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure FortiGuard to provide services to FortiClient installations.`,
 			Description:      ``,
@@ -858,7 +866,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fdssetting",
+			Type:             "fortimanager_fmupdate_fdssetting",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure FortiGuard settings.`,
 			Description:      ``,
@@ -868,7 +876,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "User_Agent",
+					Name:        "user_agent",
 					Description: `Configure the user agent string.`,
 				},
 				resource.Attribute{
@@ -1057,7 +1065,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fdssetting_pushoverride",
+			Type:             "fortimanager_fmupdate_fdssetting_pushoverride",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable push updates, and override the default IP address and port used by FortiGuard to send antivirus and IPS push messages for clients.`,
 			Description:      ``,
@@ -1093,7 +1101,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fdssetting_pushoverridetoclient",
+			Type:             "fortimanager_fmupdate_fdssetting_pushoverridetoclient",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable push updates, and override the default IP address and port used by FortiGuard to send antivirus and IPS push messages for clients.`,
 			Description:      ``,
@@ -1141,7 +1149,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fdssetting_serveroverride",
+			Type:             "fortimanager_fmupdate_fdssetting_serveroverride",
 			Category:         "Fmupdate",
 			ShortDescription: `Server override configure.`,
 			Description:      ``,
@@ -1197,7 +1205,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fdssetting_updateschedule",
+			Type:             "fortimanager_fmupdate_fdssetting_updateschedule",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the schedule when built-in FortiGuard retrieves antivirus and IPS updates.`,
 			Description:      ``,
@@ -1237,7 +1245,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_fwmsetting",
+			Type:             "fortimanager_fmupdate_fwmsetting",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure firmware management settings.`,
 			Description:      ``,
@@ -1272,7 +1280,63 @@ var (
 				},
 				resource.Attribute{
 					Name:        "multiple_steps_interval",
-					Description: `waiting time between multiple steps upgrade (30-180s, default=60) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `waiting time between multiple steps upgrade (30-180s, default=60)`,
+				},
+				resource.Attribute{
+					Name:        "upgrade_timeout",
+					Description: `Upgrade-Timeout. The structure of ` + "`" + `upgrade_timeout` + "`" + ` block is documented below. The ` + "`" + `upgrade_timeout` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "check_status_timeout",
+					Description: `timeout for checking status after tunnnel is up.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_check_status_timeout",
+					Description: `timeout for checking fap/fsw/fext status after request upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_put_image_by_fds_timeout",
+					Description: `timeout for waiting device get fap/fsw/fext image from fortiguard.(1-9000ss, default=900)`,
+				},
+				resource.Attribute{
+					Name:        "ha_sync_timeout",
+					Description: `timeout for waiting HA sync.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "license_check_timeout",
+					Description: `timeout for waiting fortigate check license.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "prepare_image_timeout",
+					Description: `timeout for preparing image.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_by_fds_timeout",
+					Description: `timeout for waiting device get image from fortiguard.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_timeout",
+					Description: `timeout for waiting send image over tunnel.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_fsck_timeout",
+					Description: `timeout for waiting fortigate reboot.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_upgrade_timeout",
+					Description: `timeout for waiting fortigate reboot after image upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "retrieve_timeout",
+					Description: `timeout for waiting retrieve.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "rpc_timeout",
+					Description: `timeout for waiting fortigate rpc response.(1-1800s, default=180)`,
+				},
+				resource.Attribute{
+					Name:        "total_timeout",
+					Description: `timeout for the whole fortigate upgrade(1-86400s, default=3600) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1288,7 +1352,85 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_multilayer",
+			Type:             "fortimanager_fmupdate_fwmsetting_upgradetimeout",
+			Category:         "No Category",
+			ShortDescription: `Configure the timeout value of image upgrade process.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"fmupdate",
+				"fwmsetting",
+				"upgradetimeout",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "check_status_timeout",
+					Description: `timeout for checking status after tunnnel is up.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_check_status_timeout",
+					Description: `timeout for checking fap/fsw/fext status after request upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "ctrl_put_image_by_fds_timeout",
+					Description: `timeout for waiting device get fap/fsw/fext image from fortiguard.(1-9000ss, default=900)`,
+				},
+				resource.Attribute{
+					Name:        "ha_sync_timeout",
+					Description: `timeout for waiting HA sync.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "license_check_timeout",
+					Description: `timeout for waiting fortigate check license.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "prepare_image_timeout",
+					Description: `timeout for preparing image.(1-6000s, default=600)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_by_fds_timeout",
+					Description: `timeout for waiting device get image from fortiguard.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "put_image_timeout",
+					Description: `timeout for waiting send image over tunnel.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_fsck_timeout",
+					Description: `timeout for waiting fortigate reboot.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "reboot_of_upgrade_timeout",
+					Description: `timeout for waiting fortigate reboot after image upgrade.(1-12000s, default=1200)`,
+				},
+				resource.Attribute{
+					Name:        "retrieve_timeout",
+					Description: `timeout for waiting retrieve.(1-18000s, default=1800)`,
+				},
+				resource.Attribute{
+					Name:        "rpc_timeout",
+					Description: `timeout for waiting fortigate rpc response.(1-1800s, default=180)`,
+				},
+				resource.Attribute{
+					Name:        "total_timeout",
+					Description: `timeout for the whole fortigate upgrade(1-86400s, default=3600) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Fmupdate FwmSettingUpgradeTimeout can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_fmupdate_fwmsetting_upgradetimeout.labelname FmupdateFwmSettingUpgradeTimeout $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Fmupdate FwmSettingUpgradeTimeout can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_fmupdate_fwmsetting_upgradetimeout.labelname FmupdateFwmSettingUpgradeTimeout $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_fmupdate_multilayer",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure multilayer mode.`,
 			Description:      ``,
@@ -1315,7 +1457,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_publicnetwork",
+			Type:             "fortimanager_fmupdate_publicnetwork",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable access to the public FortiGuard.`,
 			Description:      ``,
@@ -1342,7 +1484,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_serveraccesspriorities",
+			Type:             "fortimanager_fmupdate_serveraccesspriorities",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure priorities for FortiGate units accessing antivirus updates and web filtering services.`,
 			Description:      ``,
@@ -1401,7 +1543,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_serveroverridestatus",
+			Type:             "fortimanager_fmupdate_serveroverridestatus",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure strict/loose server override.`,
 			Description:      ``,
@@ -1428,7 +1570,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_service",
+			Type:             "fortimanager_fmupdate_service",
 			Category:         "Fmupdate",
 			ShortDescription: `Enable/disable services provided by the built-in FortiGuard.`,
 			Description:      ``,
@@ -1483,7 +1625,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_webspam_fgdsetting",
+			Type:             "fortimanager_fmupdate_webspam_fgdsetting",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the FortiGuard run parameters.`,
 			Description:      ``,
@@ -1691,7 +1833,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_fmupdate_webspam_webproxy",
+			Type:             "fortimanager_fmupdate_webspam_webproxy",
 			Category:         "Fmupdate",
 			ShortDescription: `Configure the web proxy for use with FortiGuard antivirus and IPS updates.`,
 			Description:      ``,
@@ -1739,7 +1881,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_json_generic_api",
+			Type:             "fortimanager_json_generic_api",
 			Category:         "Generic",
 			ShortDescription: `FortiManager API Generic Interface.`,
 			Description:      ``,
@@ -1779,7 +1921,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_adom_options",
+			Type:             "fortimanager_object_adom_options",
 			Category:         "Object Others",
 			ShortDescription: `ObjectAdom Options`,
 			Description:      ``,
@@ -1803,6 +1945,10 @@ var (
 					Description: `Assign_Excluded. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "assign_name",
+					Description: `Assign_Name.`,
+				},
+				resource.Attribute{
 					Name:        "specify_assign_pkg_list",
 					Description: `Specify_Assign_Pkg_List. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
@@ -1820,7 +1966,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_antivirus_mmschecksum",
+			Type:             "fortimanager_object_antivirus_mmschecksum",
 			Category:         "Object Others",
 			ShortDescription: `Configure MMS content checksum list.`,
 			Description:      ``,
@@ -1885,7 +2031,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_antivirus_notification",
+			Type:             "fortimanager_object_antivirus_notification",
 			Category:         "Object Others",
 			ShortDescription: `Configure AntiVirus notification lists.`,
 			Description:      ``,
@@ -1950,7 +2096,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_antivirus_profile",
+			Type:             "fortimanager_object_antivirus_profile",
 			Category:         "Object Others",
 			ShortDescription: `Configure AntiVirus profiles.`,
 			Description:      ``,
@@ -2044,6 +2190,30 @@ var (
 				resource.Attribute{
 					Name:        "fortiai_timeout_action",
 					Description: `Action to take if FortiAI encounters a scan timeout. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `log-only` + "`" + `, ` + "`" + `ignore` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortindr_error_action",
+					Description: `Action to take if FortiNDR encounters an error. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `log-only` + "`" + `, ` + "`" + `ignore` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortindr_timeout_action",
+					Description: `Action to take if FortiNDR encounters a scan timeout. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `log-only` + "`" + `, ` + "`" + `ignore` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox_error_action",
+					Description: `Action to take if FortiSandbox inline scan encounters an error. Valid values: ` + "`" + `log-only` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `ignore` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox_max_upload",
+					Description: `Maximum size of files that can be uploaded to FortiSandbox.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox_mode",
+					Description: `FortiSandbox scan modes. Valid values: ` + "`" + `inline` + "`" + `, ` + "`" + `analytics-suspicious` + "`" + `, ` + "`" + `analytics-everything` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox_timeout_action",
+					Description: `Action to take if FortiSandbox inline scan encounters a scan timeout. Valid values: ` + "`" + `log-only` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `ignore` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ftgd_analytics",
@@ -2140,6 +2310,14 @@ var (
 				resource.Attribute{
 					Name:        "fortiai",
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "options",
@@ -2254,6 +2432,14 @@ var (
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: ` + "`" + `scan` + "`" + `, ` + "`" + `file-filter` + "`" + `, ` + "`" + `quarantine` + "`" + `, ` + "`" + `avquery` + "`" + `, ` + "`" + `avmonitor` + "`" + `.`,
 				},
@@ -2298,6 +2484,14 @@ var (
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: ` + "`" + `scan` + "`" + `, ` + "`" + `file-filter` + "`" + `, ` + "`" + `quarantine` + "`" + `, ` + "`" + `avquery` + "`" + `, ` + "`" + `avmonitor` + "`" + `, ` + "`" + `strict-file` + "`" + `.`,
 				},
@@ -2307,7 +2501,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "quarantine",
-					Description: `Enable/disable quarantine for infected files. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `imap` + "`" + ` block supports:`,
+					Description: `Enable/disable quarantine for infected files. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "unknown_content_encoding",
+					Description: `Configure the action the FortiGate unit will take on unknown content-encoding. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `inspect` + "`" + `, ` + "`" + `bypass` + "`" + `. The ` + "`" + `imap` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "archive_block",
@@ -2340,6 +2538,14 @@ var (
 				resource.Attribute{
 					Name:        "fortiai",
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "options",
@@ -2376,6 +2582,14 @@ var (
 				resource.Attribute{
 					Name:        "external_blocklist",
 					Description: `Enable external-blocklist. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "fortiai",
@@ -2430,6 +2644,14 @@ var (
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: ` + "`" + `scan` + "`" + `, ` + "`" + `file-filter` + "`" + `, ` + "`" + `quarantine` + "`" + `, ` + "`" + `avquery` + "`" + `, ` + "`" + `avmonitor` + "`" + `.`,
 				},
@@ -2480,6 +2702,14 @@ var (
 				resource.Attribute{
 					Name:        "fortiai",
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "options",
@@ -2546,6 +2776,14 @@ var (
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: ` + "`" + `scan` + "`" + `, ` + "`" + `file-filter` + "`" + `, ` + "`" + `quarantine` + "`" + `, ` + "`" + `avquery` + "`" + `, ` + "`" + `avmonitor` + "`" + `.`,
 				},
@@ -2582,6 +2820,14 @@ var (
 					Description: `Enable/disable scanning of files by FortiAI server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `monitor` + "`" + `, ` + "`" + `block` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "fortindr",
+					Description: `Enable/disable scanning of files by FortiNDR. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortisandbox",
+					Description: `Enable scanning of files by FortiSandbox. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "options",
 					Description: `Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: ` + "`" + `avmonitor` + "`" + `, ` + "`" + `quarantine` + "`" + `, ` + "`" + `scan` + "`" + `.`,
 				},
@@ -2607,7 +2853,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_application_categories",
+			Type:             "fortimanager_object_application_categories",
 			Category:         "Object Application",
 			ShortDescription: `ObjectApplication Categories`,
 			Description:      ``,
@@ -2643,7 +2889,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_application_custom",
+			Type:             "fortimanager_object_application_custom",
 			Category:         "Object Application",
 			ShortDescription: `Configure custom application signatures.`,
 			Description:      ``,
@@ -2715,7 +2961,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_application_group",
+			Type:             "fortimanager_object_application_group",
 			Category:         "Object Application",
 			ShortDescription: `Configure firewall application groups.`,
 			Description:      ``,
@@ -2791,7 +3037,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_application_list",
+			Type:             "fortimanager_object_application_list",
 			Category:         "Object Application",
 			ShortDescription: `Configure application control lists.`,
 			Description:      ``,
@@ -3043,7 +3289,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_authentication_scheme",
+			Type:             "fortimanager_object_authentication_scheme",
 			Category:         "Object Others",
 			ShortDescription: `Configure Authentication Schemes.`,
 			Description:      ``,
@@ -3132,7 +3378,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_certificate_template",
+			Type:             "fortimanager_object_certificate_template",
 			Category:         "Object Others",
 			ShortDescription: `ObjectCertificate Template`,
 			Description:      ``,
@@ -3196,6 +3442,10 @@ var (
 					Description: `Organization-Unit.`,
 				},
 				resource.Attribute{
+					Name:        "scep_ca_identifier",
+					Description: `Scep-Ca-Identifier.`,
+				},
+				resource.Attribute{
 					Name:        "scep_password",
 					Description: `Scep-Password.`,
 				},
@@ -3229,7 +3479,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_cifs_domaincontroller",
+			Type:             "fortimanager_object_cifs_domaincontroller",
 			Category:         "No Category",
 			ShortDescription: `Define known domain controller servers.`,
 			Description:      ``,
@@ -3291,7 +3541,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_cifs_profile",
+			Type:             "fortimanager_object_cifs_profile",
 			Category:         "Object Others",
 			ShortDescription: `Configure CIFS profile.`,
 			Description:      ``,
@@ -3396,7 +3646,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_cli_template",
+			Type:             "fortimanager_object_cli_template",
 			Category:         "Object CLI",
 			ShortDescription: `ObjectCli Template`,
 			Description:      ``,
@@ -3456,7 +3706,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_cli_templategroup",
+			Type:             "fortimanager_object_cli_templategroup",
 			Category:         "Object CLI",
 			ShortDescription: `ObjectCli TemplateGroup`,
 			Description:      ``,
@@ -3504,7 +3754,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_credentialstore_domaincontroller",
+			Type:             "fortimanager_object_credentialstore_domaincontroller",
 			Category:         "Object Others",
 			ShortDescription: `Define known domain controller servers.`,
 			Description:      ``,
@@ -3569,7 +3819,159 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dlp_filepattern",
+			Type:             "fortimanager_object_dlp_datatype",
+			Category:         "No Category",
+			ShortDescription: `Configure predefined data type used by DLP blocking.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"dlp",
+				"datatype",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Optional comments.`,
+				},
+				resource.Attribute{
+					Name:        "look_ahead",
+					Description: `Number of characters to obtain in advance for verification (1 - 255, default = 1).`,
+				},
+				resource.Attribute{
+					Name:        "look_back",
+					Description: `Number of characters required to save for verification (1 - 255, default = 1).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of table containing the data type.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Regular expression pattern string without look around.`,
+				},
+				resource.Attribute{
+					Name:        "transform",
+					Description: `Template to transform user input to a pattern using capture group from 'pattern'.`,
+				},
+				resource.Attribute{
+					Name:        "verify",
+					Description: `Regular expression pattern string used to verify the data type.`,
+				},
+				resource.Attribute{
+					Name:        "verify_transformed_pattern",
+					Description: `Enable/disable verification for transformed pattern. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectDlp DataType can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_dlp_datatype.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectDlp DataType can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_dlp_datatype.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_dlp_dictionary",
+			Category:         "No Category",
+			ShortDescription: `Configure dictionaries used by DLP blocking.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"dlp",
+				"dictionary",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Optional comments.`,
+				},
+				resource.Attribute{
+					Name:        "entries",
+					Description: `Entries. The structure of ` + "`" + `entries` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `Logical relation between entries (default = match-any). Valid values: ` + "`" + `match-all` + "`" + `, ` + "`" + `match-any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of table containing the dictionary.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Universally Unique Identifier (UUID; automatically assigned but can be manually reset).`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `entries` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Optional comments.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_case",
+					Description: `Enable/disable ignore case. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Pattern to match.`,
+				},
+				resource.Attribute{
+					Name:        "repeat",
+					Description: `Enable/disable repeat match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable this pattern. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Pattern type to match. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectDlp Dictionary can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_dlp_dictionary.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectDlp Dictionary can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_dlp_dictionary.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_dlp_filepattern",
 			Category:         "Object DLP",
 			ShortDescription: `Configure file patterns used by DLP blocking.`,
 			Description:      ``,
@@ -3633,7 +4035,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dlp_fpsensitivity",
+			Type:             "fortimanager_object_dlp_fpsensitivity",
 			Category:         "No Category",
 			ShortDescription: `Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source.`,
 			Description:      ``,
@@ -3671,7 +4073,145 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dlp_sensitivity",
+			Type:             "fortimanager_object_dlp_profile",
+			Category:         "No Category",
+			ShortDescription: `Configure DLP profiles.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"dlp",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comment.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_log",
+					Description: `Enable/disable DLP logging. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "extended_log",
+					Description: `Enable/disable extended logging for data leak prevention. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "feature_set",
+					Description: `Flow/proxy feature set. Valid values: ` + "`" + `flow` + "`" + `, ` + "`" + `proxy` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "full_archive_proto",
+					Description: `Protocols to always content archive. Valid values: ` + "`" + `smtp` + "`" + `, ` + "`" + `pop3` + "`" + `, ` + "`" + `imap` + "`" + `, ` + "`" + `http-post` + "`" + `, ` + "`" + `http-get` + "`" + `, ` + "`" + `ftp` + "`" + `, ` + "`" + `nntp` + "`" + `, ` + "`" + `mapi` + "`" + `, ` + "`" + `ssh` + "`" + `, ` + "`" + `cifs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nac_quar_log",
+					Description: `Enable/disable NAC quarantine logging. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the DLP profile.`,
+				},
+				resource.Attribute{
+					Name:        "replacemsg_group",
+					Description: `Replacement message group used by this DLP profile.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `Rule. The structure of ` + "`" + `rule` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "summary_proto",
+					Description: `Protocols to always log summary. Valid values: ` + "`" + `smtp` + "`" + `, ` + "`" + `pop3` + "`" + `, ` + "`" + `imap` + "`" + `, ` + "`" + `http-post` + "`" + `, ` + "`" + `http-get` + "`" + `, ` + "`" + `ftp` + "`" + `, ` + "`" + `nntp` + "`" + `, ` + "`" + `mapi` + "`" + `, ` + "`" + `ssh` + "`" + `, ` + "`" + `cifs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action to take with content that this DLP profile matches. Valid values: ` + "`" + `log-only` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `quarantine-ip` + "`" + `, ` + "`" + `allow` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "archive",
+					Description: `Enable/disable DLP archiving. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `Quarantine duration in days, hours, minutes (format = dddhhmm).`,
+				},
+				resource.Attribute{
+					Name:        "file_size",
+					Description: `Match files this size or larger (0 - 4294967295 kbytes).`,
+				},
+				resource.Attribute{
+					Name:        "file_type",
+					Description: `Select the number of a DLP file pattern table to match.`,
+				},
+				resource.Attribute{
+					Name:        "filter_by",
+					Description: `Select the type of content to match. Valid values: ` + "`" + `fingerprint` + "`" + `, ` + "`" + `sensor` + "`" + `, ` + "`" + `encrypted` + "`" + `, ` + "`" + `none` + "`" + `, ` + "`" + `mip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `MIP label dictionary.`,
+				},
+				resource.Attribute{
+					Name:        "match_percentage",
+					Description: `Percentage of fingerprints in the fingerprint databases designated with the selected sensitivity to match.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Filter name.`,
+				},
+				resource.Attribute{
+					Name:        "proto",
+					Description: `Check messages or files over one or more of these protocols. Valid values: ` + "`" + `smtp` + "`" + `, ` + "`" + `pop3` + "`" + `, ` + "`" + `imap` + "`" + `, ` + "`" + `http-post` + "`" + `, ` + "`" + `http-get` + "`" + `, ` + "`" + `ftp` + "`" + `, ` + "`" + `nntp` + "`" + `, ` + "`" + `mapi` + "`" + `, ` + "`" + `ssh` + "`" + `, ` + "`" + `cifs` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sensitivity",
+					Description: `Select a DLP file pattern sensitivity to match.`,
+				},
+				resource.Attribute{
+					Name:        "sensor",
+					Description: `Select DLP sensors.`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `Select the severity or threat level that matches this filter. Valid values: ` + "`" + `info` + "`" + `, ` + "`" + `low` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `high` + "`" + `, ` + "`" + `critical` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Select whether to check the content of messages (an email message) or files (downloaded files or email attachments). Valid values: ` + "`" + `file` + "`" + `, ` + "`" + `message` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectDlp Profile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_dlp_profile.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectDlp Profile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_dlp_profile.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_dlp_sensitivity",
 			Category:         "Object DLP",
 			ShortDescription: `Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source.`,
 			Description:      ``,
@@ -3707,7 +4247,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dlp_sensor",
+			Type:             "fortimanager_object_dlp_sensor",
 			Category:         "Object DLP",
 			ShortDescription: `Configure DLP sensors.`,
 			Description:      ``,
@@ -3728,6 +4268,18 @@ var (
 				resource.Attribute{
 					Name:        "comment",
 					Description: `Comment.`,
+				},
+				resource.Attribute{
+					Name:        "entries",
+					Description: `Entries. The structure of ` + "`" + `entries` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "eval",
+					Description: `Expression to evaluate.`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `Logical relation between entries (default = match-any). Valid values: ` + "`" + `match-all` + "`" + `, ` + "`" + `match-any` + "`" + `, ` + "`" + `match-eval` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_log",
@@ -3775,7 +4327,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dynamic_sort_subtable",
-					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `filter` + "`" + ` block supports:`,
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `entries` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Count of dictionary matches to trigger sensor entry match (Dictionary might not be able to trigger more than once based on its 'repeat' option, 1 - 255, default = 1).`,
+				},
+				resource.Attribute{
+					Name:        "dictionary",
+					Description: `Select a DLP dictionary.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable this entry. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `filter` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -3855,7 +4423,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dnsfilter_domainfilter",
+			Type:             "fortimanager_object_dnsfilter_domainfilter",
 			Category:         "Object Dnsfilter",
 			ShortDescription: `Configure DNS domain filters.`,
 			Description:      ``,
@@ -3927,7 +4495,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dnsfilter_profile",
+			Type:             "fortimanager_object_dnsfilter_profile",
 			Category:         "Object Dnsfilter",
 			ShortDescription: `Configure DNS domain filter profiles.`,
 			Description:      ``,
@@ -4087,7 +4655,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_address",
+			Type:             "fortimanager_object_dynamic_address",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic Address`,
 			Description:      ``,
@@ -4147,7 +4715,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_certificate_local",
+			Type:             "fortimanager_object_dynamic_certificate_local",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic CertificateLocal`,
 			Description:      ``,
@@ -4212,7 +4780,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_interface",
+			Type:             "fortimanager_object_dynamic_interface",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic Interface`,
 			Description:      ``,
@@ -4356,7 +4924,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_ippool",
+			Type:             "fortimanager_object_dynamic_ippool",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic Ippool`,
 			Description:      ``,
@@ -4396,7 +4964,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_multicast_interface",
+			Type:             "fortimanager_object_dynamic_multicast_interface",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic MulticastInterface`,
 			Description:      ``,
@@ -4473,7 +5041,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_vip",
+			Type:             "fortimanager_object_dynamic_vip",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic Vip`,
 			Description:      ``,
@@ -4513,7 +5081,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_dynamic_vpntunnel",
+			Type:             "fortimanager_object_dynamic_vpntunnel",
 			Category:         "Object Dynamic",
 			ShortDescription: `ObjectDynamic Vpntunnel`,
 			Description:      ``,
@@ -4577,7 +5145,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_blockallowlist",
+			Type:             "fortimanager_object_emailfilter_blockallowlist",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure anti-spam block/allow list.`,
 			Description:      ``,
@@ -4640,6 +5208,10 @@ var (
 					Description: `IPv6 network address/subnet mask bits.`,
 				},
 				resource.Attribute{
+					Name:        "pattern",
+					Description: `Pattern to match.`,
+				},
+				resource.Attribute{
 					Name:        "pattern_type",
 					Description: `Wildcard pattern or regular expression. Valid values: ` + "`" + `wildcard` + "`" + `, ` + "`" + `regexp` + "`" + `.`,
 				},
@@ -4665,7 +5237,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_bwl",
+			Type:             "fortimanager_object_emailfilter_bwl",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure anti-spam black/white list.`,
 			Description:      ``,
@@ -4753,7 +5325,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_bword",
+			Type:             "fortimanager_object_emailfilter_bword",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure AntiSpam banned word list.`,
 			Description:      ``,
@@ -4837,7 +5409,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_dnsbl",
+			Type:             "fortimanager_object_emailfilter_dnsbl",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure AntiSpam DNSBL/ORBL.`,
 			Description:      ``,
@@ -4905,7 +5477,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_fortishield",
+			Type:             "fortimanager_object_emailfilter_fortishield",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure FortiGuard - AntiSpam.`,
 			Description:      ``,
@@ -4949,7 +5521,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_iptrust",
+			Type:             "fortimanager_object_emailfilter_iptrust",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure AntiSpam IP trust.`,
 			Description:      ``,
@@ -5021,7 +5593,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_mheader",
+			Type:             "fortimanager_object_emailfilter_mheader",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure AntiSpam MIME header.`,
 			Description:      ``,
@@ -5097,7 +5669,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_options",
+			Type:             "fortimanager_object_emailfilter_options",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure AntiSpam options.`,
 			Description:      ``,
@@ -5133,7 +5705,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_emailfilter_profile",
+			Type:             "fortimanager_object_emailfilter_profile",
 			Category:         "Object Emailfilter",
 			ShortDescription: `Configure Email Filter profiles.`,
 			Description:      ``,
@@ -5405,7 +5977,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_endpointcontrol_fctems",
+			Type:             "fortimanager_object_endpointcontrol_fctems",
 			Category:         "No Category",
 			ShortDescription: `Configure FortiClient Enterprise Management Server (EMS) entries.`,
 			Description:      ``,
@@ -5454,6 +6026,14 @@ var (
 					Description: `Cloud server type. Valid values: ` + "`" + `production` + "`" + `, ` + "`" + `alpha` + "`" + `, ` + "`" + `beta` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "dirty_reason",
+					Description: `Dirty Reason for FortiClient EMS. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `mismatched-ems-sn` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ems_id",
+					Description: `EMS ID in order (1 - 5)`,
+				},
+				resource.Attribute{
 					Name:        "fortinetone_cloud_authentication",
 					Description: `Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -5462,8 +6042,20 @@ var (
 					Description: `FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).`,
 				},
 				resource.Attribute{
+					Name:        "interface",
+					Description: `Specify outgoing interface to reach server.`,
+				},
+				resource.Attribute{
+					Name:        "interface_select_method",
+					Description: `Specify how to select outgoing interface to reach server. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `sdwan` + "`" + `, ` + "`" + `specify` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `FortiClient Enterprise Management Server (EMS) name.`,
+				},
+				resource.Attribute{
+					Name:        "out_of_sync_threshold",
+					Description: `Outdated resource threshold in seconds (10 - 3600, default = 180).`,
 				},
 				resource.Attribute{
 					Name:        "serial_number",
@@ -5502,6 +6094,14 @@ var (
 					Description: `REST API call source IP.`,
 				},
 				resource.Attribute{
+					Name:        "status",
+					Description: `Enable or disable this EMS configuration. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `EMS Tenant ID.`,
+				},
+				resource.Attribute{
 					Name:        "status_check_interval",
 					Description: `FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).`,
 				},
@@ -5523,7 +6123,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_extendercontroller_dataplan",
+			Type:             "fortimanager_object_extendercontroller_dataplan",
 			Category:         "Object Extender-Controller",
 			ShortDescription: `FortiExtender dataplan configuration.`,
 			Description:      ``,
@@ -5637,7 +6237,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_extendercontroller_extenderprofile",
+			Type:             "fortimanager_object_extendercontroller_extenderprofile",
 			Category:         "No Category",
 			ShortDescription: `FortiExtender extender profile configuration.`,
 			Description:      ``,
@@ -5999,7 +6599,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_extendercontroller_sim_profile",
+			Type:             "fortimanager_object_extendercontroller_sim_profile",
 			Category:         "Object Extender-Controller",
 			ShortDescription: `ObjectExtenderController SimProfile`,
 			Description:      ``,
@@ -6130,7 +6730,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_extendercontroller_template",
+			Type:             "fortimanager_object_extendercontroller_template",
 			Category:         "Object Extender-Controller",
 			ShortDescription: `ObjectExtenderController Template`,
 			Description:      ``,
@@ -6192,7 +6792,479 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_filefilter_profile",
+			Type:             "fortimanager_object_extensioncontroller_dataplan",
+			Category:         "No Category",
+			ShortDescription: `FortiExtender dataplan configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"extensioncontroller",
+				"dataplan",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "apn",
+					Description: `APN configuration.`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `Authentication type. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `pap` + "`" + `, ` + "`" + `chap` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "billing_date",
+					Description: `Billing day of the month (1 - 31).`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `Capacity in MB (0 - 102400000).`,
+				},
+				resource.Attribute{
+					Name:        "carrier",
+					Description: `Carrier configuration.`,
+				},
+				resource.Attribute{
+					Name:        "iccid",
+					Description: `ICCID configuration.`,
+				},
+				resource.Attribute{
+					Name:        "modem_id",
+					Description: `Dataplan's modem specifics, if any. Valid values: ` + "`" + `all` + "`" + `, ` + "`" + `modem1` + "`" + `, ` + "`" + `modem2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "monthly_fee",
+					Description: `Monthly fee of dataplan (0 - 100000, in local currency).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `FortiExtender data plan name.`,
+				},
+				resource.Attribute{
+					Name:        "overage",
+					Description: `Enable/disable dataplan overage detection. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password.`,
+				},
+				resource.Attribute{
+					Name:        "pdn",
+					Description: `PDN type. Valid values: ` + "`" + `ipv4-only` + "`" + `, ` + "`" + `ipv6-only` + "`" + `, ` + "`" + `ipv4-ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_subnet",
+					Description: `Preferred subnet mask (0 - 32).`,
+				},
+				resource.Attribute{
+					Name:        "private_network",
+					Description: `Enable/disable dataplan private network support. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "signal_period",
+					Description: `Signal period (600 to 18000 seconds).`,
+				},
+				resource.Attribute{
+					Name:        "signal_threshold",
+					Description: `Signal threshold. Specify the range between 50 - 100, where 50/100 means -50/-100 dBm.`,
+				},
+				resource.Attribute{
+					Name:        "slot",
+					Description: `SIM slot configuration. Valid values: ` + "`" + `sim1` + "`" + `, ` + "`" + `sim2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type preferences configuration. Valid values: ` + "`" + `carrier` + "`" + `, ` + "`" + `slot` + "`" + `, ` + "`" + `iccid` + "`" + `, ` + "`" + `generic` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Username. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectExtensionController Dataplan can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_extensioncontroller_dataplan.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectExtensionController Dataplan can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_extensioncontroller_dataplan.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_extensioncontroller_extenderprofile",
+			Category:         "No Category",
+			ShortDescription: `FortiExtender extender profile configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"extensioncontroller",
+				"extenderprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "allowaccess",
+					Description: `Control management access to the managed extender. Separate entries with a space. Valid values: ` + "`" + `https` + "`" + `, ` + "`" + `ping` + "`" + `, ` + "`" + `ssh` + "`" + `, ` + "`" + `snmp` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `telnet` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_limit",
+					Description: `FortiExtender LAN extension bandwidth limit (Mbps).`,
+				},
+				resource.Attribute{
+					Name:        "cellular",
+					Description: `Cellular. The structure of ` + "`" + `cellular` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_bandwidth",
+					Description: `Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `Extension option. Valid values: ` + "`" + `wan-extension` + "`" + `, ` + "`" + `lan-extension` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `ID.`,
+				},
+				resource.Attribute{
+					Name:        "lan_extension",
+					Description: `Lan-Extension. The structure of ` + "`" + `lan_extension` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "login_password",
+					Description: `Set the managed extender's administrator password.`,
+				},
+				resource.Attribute{
+					Name:        "login_password_change",
+					Description: `Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: ` + "`" + `no` + "`" + `, ` + "`" + `yes` + "`" + `, ` + "`" + `default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "model",
+					Description: `Model. Valid values: ` + "`" + `FX201E` + "`" + `, ` + "`" + `FX211E` + "`" + `, ` + "`" + `FX200F` + "`" + `, ` + "`" + `FXA11F` + "`" + `, ` + "`" + `FXE11F` + "`" + `, ` + "`" + `FXA21F` + "`" + `, ` + "`" + `FXE21F` + "`" + `, ` + "`" + `FXA22F` + "`" + `, ` + "`" + `FXE22F` + "`" + `, ` + "`" + `FX212F` + "`" + `, ` + "`" + `FX311F` + "`" + `, ` + "`" + `FX312F` + "`" + `, ` + "`" + `FX511F` + "`" + `, ` + "`" + `FVG21F` + "`" + `, ` + "`" + `FVA21F` + "`" + `, ` + "`" + `FVG22F` + "`" + `, ` + "`" + `FVA22F` + "`" + `, ` + "`" + `FX04DA` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `FortiExtender profile name. The ` + "`" + `cellular` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "controller_report",
+					Description: `Controller-Report. The structure of ` + "`" + `controller_report` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dataplan",
+					Description: `Dataplan names.`,
+				},
+				resource.Attribute{
+					Name:        "modem1",
+					Description: `Modem1. The structure of ` + "`" + `modem1` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "modem2",
+					Description: `Modem2. The structure of ` + "`" + `modem2` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sms_notification",
+					Description: `Sms-Notification. The structure of ` + "`" + `sms_notification` + "`" + ` block is documented below. The ` + "`" + `controller_report` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Controller report interval.`,
+				},
+				resource.Attribute{
+					Name:        "signal_threshold",
+					Description: `Controller report signal threshold.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `FortiExtender controller report status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `modem1` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_switch",
+					Description: `Auto-Switch. The structure of ` + "`" + `auto_switch` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "conn_status",
+					Description: `Conn-Status.`,
+				},
+				resource.Attribute{
+					Name:        "default_sim",
+					Description: `Default SIM selection. Valid values: ` + "`" + `sim1` + "`" + `, ` + "`" + `sim2` + "`" + `, ` + "`" + `carrier` + "`" + `, ` + "`" + `cost` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gps",
+					Description: `FortiExtender GPS enable/disable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "modem_id",
+					Description: `Modem ID.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_carrier",
+					Description: `Preferred carrier.`,
+				},
+				resource.Attribute{
+					Name:        "redundant_intf",
+					Description: `Redundant interface.`,
+				},
+				resource.Attribute{
+					Name:        "redundant_mode",
+					Description: `FortiExtender mode. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sim1_pin",
+					Description: `SIM #1 PIN status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sim1_pin_code",
+					Description: `SIM #1 PIN password.`,
+				},
+				resource.Attribute{
+					Name:        "sim2_pin",
+					Description: `SIM #2 PIN status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sim2_pin_code",
+					Description: `SIM #2 PIN password. The ` + "`" + `auto_switch` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "dataplan",
+					Description: `Automatically switch based on data usage. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disconnect",
+					Description: `Auto switch by disconnect. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disconnect_period",
+					Description: `Automatically switch based on disconnect period.`,
+				},
+				resource.Attribute{
+					Name:        "disconnect_threshold",
+					Description: `Automatically switch based on disconnect threshold.`,
+				},
+				resource.Attribute{
+					Name:        "signal",
+					Description: `Automatically switch based on signal strength. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "switch_back",
+					Description: `Auto switch with switch back multi-options. Valid values: ` + "`" + `time` + "`" + `, ` + "`" + `timer` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "switch_back_time",
+					Description: `Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).`,
+				},
+				resource.Attribute{
+					Name:        "switch_back_timer",
+					Description: `Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec). The ` + "`" + `modem2` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_switch",
+					Description: `Auto-Switch. The structure of ` + "`" + `auto_switch` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "conn_status",
+					Description: `Conn-Status.`,
+				},
+				resource.Attribute{
+					Name:        "default_sim",
+					Description: `Default SIM selection. Valid values: ` + "`" + `sim1` + "`" + `, ` + "`" + `sim2` + "`" + `, ` + "`" + `carrier` + "`" + `, ` + "`" + `cost` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gps",
+					Description: `FortiExtender GPS enable/disable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "modem_id",
+					Description: `Modem ID.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_carrier",
+					Description: `Preferred carrier.`,
+				},
+				resource.Attribute{
+					Name:        "redundant_intf",
+					Description: `Redundant interface.`,
+				},
+				resource.Attribute{
+					Name:        "redundant_mode",
+					Description: `FortiExtender mode. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sim1_pin",
+					Description: `SIM #1 PIN status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sim1_pin_code",
+					Description: `SIM #1 PIN password.`,
+				},
+				resource.Attribute{
+					Name:        "sim2_pin",
+					Description: `SIM #2 PIN status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sim2_pin_code",
+					Description: `SIM #2 PIN password. The ` + "`" + `auto_switch` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "dataplan",
+					Description: `Automatically switch based on data usage. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disconnect",
+					Description: `Auto switch by disconnect. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disconnect_period",
+					Description: `Automatically switch based on disconnect period.`,
+				},
+				resource.Attribute{
+					Name:        "disconnect_threshold",
+					Description: `Automatically switch based on disconnect threshold.`,
+				},
+				resource.Attribute{
+					Name:        "signal",
+					Description: `Automatically switch based on signal strength. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "switch_back",
+					Description: `Auto switch with switch back multi-options. Valid values: ` + "`" + `time` + "`" + `, ` + "`" + `timer` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "switch_back_time",
+					Description: `Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).`,
+				},
+				resource.Attribute{
+					Name:        "switch_back_timer",
+					Description: `Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec). The ` + "`" + `sms_notification` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Alert. The structure of ` + "`" + `alert` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "receiver",
+					Description: `Receiver. The structure of ` + "`" + `receiver` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `FortiExtender SMS notification status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `alert` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_exhausted",
+					Description: `Display string when data exhausted.`,
+				},
+				resource.Attribute{
+					Name:        "fgt_backup_mode_switch",
+					Description: `Display string when FortiGate backup mode switched.`,
+				},
+				resource.Attribute{
+					Name:        "low_signal_strength",
+					Description: `Display string when signal strength is low.`,
+				},
+				resource.Attribute{
+					Name:        "mode_switch",
+					Description: `Display string when mode is switched.`,
+				},
+				resource.Attribute{
+					Name:        "os_image_fallback",
+					Description: `Display string when falling back to a previous OS image.`,
+				},
+				resource.Attribute{
+					Name:        "session_disconnect",
+					Description: `Display string when session disconnected.`,
+				},
+				resource.Attribute{
+					Name:        "system_reboot",
+					Description: `Display string when system rebooted. The ` + "`" + `receiver` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "alert",
+					Description: `Alert multi-options. Valid values: ` + "`" + `system-reboot` + "`" + `, ` + "`" + `data-exhausted` + "`" + `, ` + "`" + `session-disconnect` + "`" + `, ` + "`" + `low-signal-strength` + "`" + `, ` + "`" + `mode-switch` + "`" + `, ` + "`" + `os-image-fallback` + "`" + `, ` + "`" + `fgt-backup-mode-switch` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `FortiExtender SMS notification receiver name.`,
+				},
+				resource.Attribute{
+					Name:        "phone_number",
+					Description: `Receiver phone number. Format: [+][country code][area code][local phone number]. For example, +16501234567.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `SMS notification receiver status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `lan_extension` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "backhaul",
+					Description: `Backhaul. The structure of ` + "`" + `backhaul` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backhaul_interface",
+					Description: `IPsec phase1 interface.`,
+				},
+				resource.Attribute{
+					Name:        "backhaul_ip",
+					Description: `IPsec phase1 IPv4/FQDN. Used to specify the external IP/FQDN when the FortiGate unit is behind a NAT device.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_tunnel",
+					Description: `IPsec tunnel name.`,
+				},
+				resource.Attribute{
+					Name:        "link_loadbalance",
+					Description: `LAN extension link load balance strategy. Valid values: ` + "`" + `activebackup` + "`" + `, ` + "`" + `loadbalance` + "`" + `. The ` + "`" + `backhaul` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `FortiExtender LAN extension backhaul name.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `FortiExtender uplink port. Valid values: ` + "`" + `wan` + "`" + `, ` + "`" + `lte1` + "`" + `, ` + "`" + `lte2` + "`" + `, ` + "`" + `port1` + "`" + `, ` + "`" + `port2` + "`" + `, ` + "`" + `port3` + "`" + `, ` + "`" + `port4` + "`" + `, ` + "`" + `port5` + "`" + `, ` + "`" + `sfp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `FortiExtender uplink port. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `WRR weight parameter. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectExtensionController ExtenderProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_extensioncontroller_extenderprofile.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectExtensionController ExtenderProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_extensioncontroller_extenderprofile.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_filefilter_profile",
 			Category:         "Object Others",
 			ShortDescription: `Configure file-filter profiles.`,
 			Description:      ``,
@@ -6289,7 +7361,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_accessproxy",
+			Type:             "fortimanager_object_firewall_accessproxy",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure Access Proxy.`,
 			Description:      ``,
@@ -6306,6 +7378,10 @@ var (
 				resource.Attribute{
 					Name:        "adom",
 					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "add_vhost_domain_to_dnsdb",
+					Description: `Enable/disable adding vhost/domain to dnsdb for ztna dox tunnel. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "api_gateway",
@@ -6348,6 +7424,10 @@ var (
 					Description: `Access Proxy name.`,
 				},
 				resource.Attribute{
+					Name:        "user_agent_detect",
+					Description: `Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "realservers",
 					Description: `Realservers. The structure of ` + "`" + `realservers` + "`" + ` block is documented below.`,
 				},
@@ -6366,6 +7446,10 @@ var (
 				resource.Attribute{
 					Name:        "dynamic_sort_subtable",
 					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `api_gateway` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `SaaS application controlled by this Access Proxy.`,
 				},
 				resource.Attribute{
 					Name:        "http_cookie_age",
@@ -6538,6 +7622,10 @@ var (
 				resource.Attribute{
 					Name:        "versions",
 					Description: `SSL/TLS versions that the cipher suite can be used with. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `. The ` + "`" + `api_gateway6` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `SaaS application controlled by this Access Proxy.`,
 				},
 				resource.Attribute{
 					Name:        "http_cookie_age",
@@ -6793,7 +7881,500 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_accessproxy_move",
+			Type:             "fortimanager_object_firewall_accessproxy6",
+			Category:         "No Category",
+			ShortDescription: `Configure IPv6 access proxy.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"firewall",
+				"accessproxy6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "add_vhost_domain_to_dnsdb",
+					Description: `Enable/disable adding vhost/domain to dnsdb for ztna dox tunnel. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "api_gateway",
+					Description: `Api-Gateway. The structure of ` + "`" + `api_gateway` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "api_gateway6",
+					Description: `Api-Gateway6. The structure of ` + "`" + `api_gateway6` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auth_portal",
+					Description: `Enable/disable authentication portal. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auth_virtual_host",
+					Description: `Virtual host for authentication portal.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `Enable/disable to request client certificate. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "decrypted_traffic_mirror",
+					Description: `Decrypted traffic mirror.`,
+				},
+				resource.Attribute{
+					Name:        "empty_cert_action",
+					Description: `Action of an empty client certificate. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `accept` + "`" + `, ` + "`" + `accept-unmanageable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "log_blocked_traffic",
+					Description: `Enable/disable logging of blocked traffic. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Access Proxy name.`,
+				},
+				resource.Attribute{
+					Name:        "user_agent_detect",
+					Description: `Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Virtual IP name.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `api_gateway` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `SaaS application controlled by this Access Proxy.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_age",
+					Description: `Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_domain",
+					Description: `Domain that HTTP cookie persistence should apply to.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_domain_from_host",
+					Description: `Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_generation",
+					Description: `Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_path",
+					Description: `Limit HTTP cookie persistence to the specified path.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_share",
+					Description: `Control sharing of cookies across API Gateway. Use of same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `same-ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "https_cookie_secure",
+					Description: `Enable/disable verification that inserted HTTPS cookies are secure. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `API Gateway ID.`,
+				},
+				resource.Attribute{
+					Name:        "ldb_method",
+					Description: `Method used to distribute sessions to real servers. Valid values: ` + "`" + `static` + "`" + `, ` + "`" + `round-robin` + "`" + `, ` + "`" + `weighted` + "`" + `, ` + "`" + `first-alive` + "`" + `, ` + "`" + `http-host` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `http-cookie` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "realservers",
+					Description: `Realservers. The structure of ` + "`" + `realservers` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "saml_redirect",
+					Description: `Enable/disable SAML redirection after successful authentication. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "saml_server",
+					Description: `SAML service provider configuration for VIP authentication.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service. Valid values: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp-forwarding` + "`" + `, ` + "`" + `samlsp` + "`" + `, ` + "`" + `web-portal` + "`" + `, ` + "`" + `saas` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_algorithm",
+					Description: `Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: ` + "`" + `high` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `low` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cipher_suites",
+					Description: `Ssl-Cipher-Suites. The structure of ` + "`" + `ssl_cipher_suites` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_dh_bits",
+					Description: `Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: ` + "`" + `768` + "`" + `, ` + "`" + `1024` + "`" + `, ` + "`" + `1536` + "`" + `, ` + "`" + `2048` + "`" + `, ` + "`" + `3072` + "`" + `, ` + "`" + `4096` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_max_version",
+					Description: `Highest SSL/TLS version acceptable from a server. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_min_version",
+					Description: `Lowest SSL/TLS version acceptable from a server. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_vpn_web_portal",
+					Description: `SSL-VPN web portal.`,
+				},
+				resource.Attribute{
+					Name:        "url_map",
+					Description: `URL pattern to match.`,
+				},
+				resource.Attribute{
+					Name:        "url_map_type",
+					Description: `Type of url-map. Valid values: ` + "`" + `sub-string` + "`" + `, ` + "`" + `wildcard` + "`" + `, ` + "`" + `regex` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_host",
+					Description: `Virtual host. The ` + "`" + `realservers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "addr_type",
+					Description: `Type of address. Valid values: ` + "`" + `fqdn` + "`" + `, ` + "`" + `ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Address or address group of the real server.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Wildcard domain name of the real server.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Enable to check the responsiveness of the real server before forwarding traffic. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_proto",
+					Description: `Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: ` + "`" + `ping` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `tcp-connect` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "holddown_interval",
+					Description: `Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_host",
+					Description: `HTTP server domain name in HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Real server ID.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of the real server.`,
+				},
+				resource.Attribute{
+					Name:        "mappedport",
+					Description: `Port for communicating with the real server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port for communicating with the real server.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_client_cert",
+					Description: `Set access-proxy SSH client certificate profile.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_host_key",
+					Description: `One or more server host key.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_host_key_validation",
+					Description: `Enable/disable SSH real server host key validation. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: ` + "`" + `active` + "`" + `, ` + "`" + `standby` + "`" + `, ` + "`" + `disable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `TCP forwarding server type. Valid values: ` + "`" + `tcp-forwarding` + "`" + `, ` + "`" + `ssh` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections. The ` + "`" + `ssl_cipher_suites` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cipher",
+					Description: `Cipher suite name. Valid values: ` + "`" + `TLS-RSA-WITH-RC4-128-MD5` + "`" + `, ` + "`" + `TLS-RSA-WITH-RC4-128-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-DES-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-SEED-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-DES-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-SEED-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-RC4-128-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-SEED-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-DES-CBC-SHA` + "`" + `, ` + "`" + `TLS-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `SSL/TLS cipher suites priority.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `SSL/TLS versions that the cipher suite can be used with. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `. The ` + "`" + `api_gateway6` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `SaaS application controlled by this Access Proxy.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_age",
+					Description: `Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_domain",
+					Description: `Domain that HTTP cookie persistence should apply to.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_domain_from_host",
+					Description: `Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_generation",
+					Description: `Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_path",
+					Description: `Limit HTTP cookie persistence to the specified path.`,
+				},
+				resource.Attribute{
+					Name:        "http_cookie_share",
+					Description: `Control sharing of cookies across API Gateway. Use of same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `same-ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "https_cookie_secure",
+					Description: `Enable/disable verification that inserted HTTPS cookies are secure. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `API Gateway ID.`,
+				},
+				resource.Attribute{
+					Name:        "ldb_method",
+					Description: `Method used to distribute sessions to real servers. Valid values: ` + "`" + `static` + "`" + `, ` + "`" + `round-robin` + "`" + `, ` + "`" + `weighted` + "`" + `, ` + "`" + `first-alive` + "`" + `, ` + "`" + `http-host` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `http-cookie` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "realservers",
+					Description: `Realservers. The structure of ` + "`" + `realservers` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "saml_redirect",
+					Description: `Enable/disable SAML redirection after successful authentication. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "saml_server",
+					Description: `SAML service provider configuration for VIP authentication.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service. Valid values: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp-forwarding` + "`" + `, ` + "`" + `samlsp` + "`" + `, ` + "`" + `web-portal` + "`" + `, ` + "`" + `saas` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_algorithm",
+					Description: `Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: ` + "`" + `high` + "`" + `, ` + "`" + `medium` + "`" + `, ` + "`" + `low` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cipher_suites",
+					Description: `Ssl-Cipher-Suites. The structure of ` + "`" + `ssl_cipher_suites` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_dh_bits",
+					Description: `Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: ` + "`" + `768` + "`" + `, ` + "`" + `1024` + "`" + `, ` + "`" + `1536` + "`" + `, ` + "`" + `2048` + "`" + `, ` + "`" + `3072` + "`" + `, ` + "`" + `4096` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_max_version",
+					Description: `Highest SSL/TLS version acceptable from a server. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_min_version",
+					Description: `Lowest SSL/TLS version acceptable from a server. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_vpn_web_portal",
+					Description: `SSL-VPN web portal.`,
+				},
+				resource.Attribute{
+					Name:        "url_map",
+					Description: `URL pattern to match.`,
+				},
+				resource.Attribute{
+					Name:        "url_map_type",
+					Description: `Type of url-map. Valid values: ` + "`" + `sub-string` + "`" + `, ` + "`" + `wildcard` + "`" + `, ` + "`" + `regex` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_host",
+					Description: `Virtual host. The ` + "`" + `realservers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "addr_type",
+					Description: `Type of address. Valid values: ` + "`" + `fqdn` + "`" + `, ` + "`" + `ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Address or address group of the real server.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Wildcard domain name of the real server.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Enable to check the responsiveness of the real server before forwarding traffic. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_proto",
+					Description: `Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: ` + "`" + `ping` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `tcp-connect` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "holddown_interval",
+					Description: `Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_host",
+					Description: `HTTP server domain name in HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Real server ID.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IPv6 address of the real server.`,
+				},
+				resource.Attribute{
+					Name:        "mappedport",
+					Description: `Port for communicating with the real server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port for communicating with the real server.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_client_cert",
+					Description: `Set access-proxy SSH client certificate profile.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_host_key",
+					Description: `One or more server host key.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_host_key_validation",
+					Description: `Enable/disable SSH real server host key validation. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: ` + "`" + `active` + "`" + `, ` + "`" + `standby` + "`" + `, ` + "`" + `disable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `TCP forwarding server type. Valid values: ` + "`" + `tcp-forwarding` + "`" + `, ` + "`" + `ssh` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections. The ` + "`" + `ssl_cipher_suites` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cipher",
+					Description: `Cipher suite name. Valid values: ` + "`" + `TLS-RSA-WITH-RC4-128-MD5` + "`" + `, ` + "`" + `TLS-RSA-WITH-RC4-128-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-DES-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-SEED-CBC-SHA` + "`" + `, ` + "`" + `TLS-RSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-DES-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-SEED-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-RC4-128-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-RSA-WITH-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-SEED-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA` + "`" + `, ` + "`" + `TLS-DHE-DSS-WITH-DES-CBC-SHA` + "`" + `, ` + "`" + `TLS-AES-128-GCM-SHA256` + "`" + `, ` + "`" + `TLS-AES-256-GCM-SHA384` + "`" + `, ` + "`" + `TLS-CHACHA20-POLY1305-SHA256` + "`" + `, ` + "`" + `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `SSL/TLS cipher suites priority.`,
+				},
+				resource.Attribute{
+					Name:        "versions",
+					Description: `SSL/TLS versions that the cipher suite can be used with. Valid values: ` + "`" + `tls-1.0` + "`" + `, ` + "`" + `tls-1.1` + "`" + `, ` + "`" + `tls-1.2` + "`" + `, ` + "`" + `tls-1.3` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFirewall AccessProxy6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_firewall_accessproxy6.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFirewall AccessProxy6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_firewall_accessproxy6.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_firewall_accessproxy6_move",
+			Category:         "No Category",
+			ShortDescription: `Move IPv6 access proxy.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"firewall",
+				"accessproxy6",
+				"move",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "access_proxy6",
+					Description: `Access Proxy6.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Key to the target entry.`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `Option. Valid values: ` + "`" + `before` + "`" + `, ` + "`" + `after` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_firewall_accessproxy_move",
 			Category:         "Object Firewall",
 			ShortDescription: `Move Access Proxy.`,
 			Description:      ``,
@@ -6846,7 +8427,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_accessproxyvirtualhost",
+			Type:             "fortimanager_object_firewall_accessproxyvirtualhost",
 			Category:         "No Category",
 			ShortDescription: `Configure Access Proxy virtual hosts.`,
 			Description:      ``,
@@ -6879,6 +8460,10 @@ var (
 					Description: `Virtual host name.`,
 				},
 				resource.Attribute{
+					Name:        "replacemsg_group",
+					Description: `Access-proxy-virtual-host replacement message override group.`,
+				},
+				resource.Attribute{
 					Name:        "ssl_certificate",
 					Description: `SSL certificate for this host. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
@@ -6896,7 +8481,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_address",
+			Type:             "fortimanager_object_firewall_address",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv4 addresses.`,
 			Description:      ``,
@@ -7328,7 +8913,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_address6",
+			Type:             "fortimanager_object_firewall_address6",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 firewall addresses.`,
 			Description:      ``,
@@ -7373,6 +8958,10 @@ var (
 				resource.Attribute{
 					Name:        "end_ip",
 					Description: `Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).`,
+				},
+				resource.Attribute{
+					Name:        "epg_name",
+					Description: `Endpoint group name.`,
 				},
 				resource.Attribute{
 					Name:        "end_mac",
@@ -7423,6 +9012,10 @@ var (
 					Description: `SDN.`,
 				},
 				resource.Attribute{
+					Name:        "sdn_tag",
+					Description: `SDN Tag.`,
+				},
+				resource.Attribute{
 					Name:        "start_ip",
 					Description: `First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).`,
 				},
@@ -7441,6 +9034,10 @@ var (
 				resource.Attribute{
 					Name:        "template",
 					Description: `IPv6 address template.`,
+				},
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `Tenant.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -7491,6 +9088,10 @@ var (
 					Description: `Last MAC address in the range.`,
 				},
 				resource.Attribute{
+					Name:        "epg_name",
+					Description: `Endpoint group name.`,
+				},
+				resource.Attribute{
 					Name:        "fabric_object",
 					Description: `Fabric-Object. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -7527,6 +9128,10 @@ var (
 					Description: `SDN.`,
 				},
 				resource.Attribute{
+					Name:        "sdn_tag",
+					Description: `SDN Tag.`,
+				},
+				resource.Attribute{
 					Name:        "start_ip",
 					Description: `First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).`,
 				},
@@ -7545,6 +9150,10 @@ var (
 				resource.Attribute{
 					Name:        "template",
 					Description: `IPv6 address template.`,
+				},
+				resource.Attribute{
+					Name:        "tenant",
+					Description: `Tenant.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -7628,7 +9237,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_address6template",
+			Type:             "fortimanager_object_firewall_address6template",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 address templates.`,
 			Description:      ``,
@@ -7716,7 +9325,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_addrgrp",
+			Type:             "fortimanager_object_firewall_addrgrp",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv4 address groups.`,
 			Description:      ``,
@@ -7896,7 +9505,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_addrgrp6",
+			Type:             "fortimanager_object_firewall_addrgrp6",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 address groups.`,
 			Description:      ``,
@@ -8036,7 +9645,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_carrierendpointbwl",
+			Type:             "fortimanager_object_firewall_carrierendpointbwl",
 			Category:         "Object Firewall",
 			ShortDescription: `Carrier end point black/white list tables.`,
 			Description:      ``,
@@ -8108,7 +9717,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_decryptedtrafficmirror",
+			Type:             "fortimanager_object_firewall_decryptedtrafficmirror",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure decrypted traffic mirror.`,
 			Description:      ``,
@@ -8160,7 +9769,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_identitybasedroute",
+			Type:             "fortimanager_object_firewall_identitybasedroute",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure identity based routing.`,
 			Description:      ``,
@@ -8224,7 +9833,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetservice",
+			Type:             "fortimanager_object_firewall_internetservice",
 			Category:         "Object Firewall",
 			ShortDescription: `Show Internet Service application.`,
 			Description:      ``,
@@ -8247,8 +9856,16 @@ var (
 					Description: `City sequence number list.`,
 				},
 				resource.Attribute{
+					Name:        "city6",
+					Description: `IPv6 City sequence number list.`,
+				},
+				resource.Attribute{
 					Name:        "country",
 					Description: `Country sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "country6",
+					Description: `IPv6 Country sequence number list.`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -8267,6 +9884,10 @@ var (
 					Description: `Extra-Ip-Range-Number.`,
 				},
 				resource.Attribute{
+					Name:        "extra_ip6_range_number",
+					Description: `Extra-Ip6-Range-Number.`,
+				},
+				resource.Attribute{
 					Name:        "icon_id",
 					Description: `Icon-Id.`,
 				},
@@ -8281,6 +9902,10 @@ var (
 				resource.Attribute{
 					Name:        "ip_range_number",
 					Description: `Ip-Range-Number.`,
+				},
+				resource.Attribute{
+					Name:        "ip6_range_number",
+					Description: `Ip6-Range-Number.`,
 				},
 				resource.Attribute{
 					Name:        "jitter_threshold",
@@ -8305,6 +9930,10 @@ var (
 				resource.Attribute{
 					Name:        "region",
 					Description: `Region sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "region6",
+					Description: `IPv6 Region sequence number list.`,
 				},
 				resource.Attribute{
 					Name:        "packetloss_threshold",
@@ -8348,19 +9977,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource. ## Import ObjectFirewall InternetService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_firewall_internetservice.labelname ObjectFirewallInternetService $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `an identifier for the resource with format {{fosid}}. ## Import ObjectFirewall InternetService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_firewall_internetservice.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource. ## Import ObjectFirewall InternetService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_firewall_internetservice.labelname ObjectFirewallInternetService $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `an identifier for the resource with format {{fosid}}. ## Import ObjectFirewall InternetService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_firewall_internetservice.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetservice_entry",
+			Type:             "fortimanager_object_firewall_internetservice_entry",
 			Category:         "No Category",
 			ShortDescription: `Entries in the Internet Service database.`,
 			Description:      ``,
@@ -8415,7 +10044,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetserviceaddition",
+			Type:             "fortimanager_object_firewall_internetserviceaddition",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure Internet Services Addition.`,
 			Description:      ``,
@@ -8448,6 +10077,10 @@ var (
 				resource.Attribute{
 					Name:        "dynamic_sort_subtable",
 					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `entry` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6) Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -8487,7 +10120,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetservicecustom",
+			Type:             "fortimanager_object_firewall_internetservicecustom",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure custom Internet Services.`,
 			Description:      ``,
@@ -8566,8 +10199,16 @@ var (
 					Description: `Start IP address. The ` + "`" + `entry` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6) Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "dst",
 					Description: `Destination address or address group name.`,
+				},
+				resource.Attribute{
+					Name:        "dst6",
+					Description: `Destination address6 or address6 group name.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -8607,7 +10248,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetservicecustomgroup",
+			Type:             "fortimanager_object_firewall_internetservicecustomgroup",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure custom Internet Service group.`,
 			Description:      ``,
@@ -8651,7 +10292,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetservicegroup",
+			Type:             "fortimanager_object_firewall_internetservicegroup",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure group of Internet Service.`,
 			Description:      ``,
@@ -8699,7 +10340,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_internetservicename",
+			Type:             "fortimanager_object_firewall_internetservicename",
 			Category:         "Object Firewall",
 			ShortDescription: `Define internet service names.`,
 			Description:      ``,
@@ -8755,7 +10396,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_ippool",
+			Type:             "fortimanager_object_firewall_ippool",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv4 IP pools.`,
 			Description:      ``,
@@ -8886,6 +10527,10 @@ var (
 					Description: `First port number (inclusive) in the range for the address pool (Default: 5117).`,
 				},
 				resource.Attribute{
+					Name:        "subnet_broadcast_in_ippool",
+					Description: `Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: ` + "`" + `overload` + "`" + `, ` + "`" + `one-to-one` + "`" + `, ` + "`" + `fixed-port-range` + "`" + `, ` + "`" + `port-block-allocation` + "`" + `, ` + "`" + `cgn-resource-allocation` + "`" + `.`,
 				},
@@ -9010,6 +10655,10 @@ var (
 					Description: `Startport.`,
 				},
 				resource.Attribute{
+					Name:        "subnet_broadcast_in_ippool",
+					Description: `Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: ` + "`" + `overload` + "`" + `, ` + "`" + `one-to-one` + "`" + `, ` + "`" + `fixed-port-range` + "`" + `, ` + "`" + `port-block-allocation` + "`" + `, ` + "`" + `cgn-resource-allocation` + "`" + `.`,
 				},
@@ -9043,7 +10692,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_ippool6",
+			Type:             "fortimanager_object_firewall_ippool6",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 IP pools.`,
 			Description:      ``,
@@ -9139,7 +10788,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_ippool_grp",
+			Type:             "fortimanager_object_firewall_ippool_grp",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv4 pool groups.`,
 			Description:      ``,
@@ -9190,7 +10839,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_ldbmonitor",
+			Type:             "fortimanager_object_firewall_ldbmonitor",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure server load balancing health monitors.`,
 			Description:      ``,
@@ -9274,7 +10923,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_mmsprofile",
+			Type:             "fortimanager_object_firewall_mmsprofile",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure MMS profiles.`,
 			Description:      ``,
@@ -9830,7 +11479,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_multicastaddress",
+			Type:             "fortimanager_object_firewall_multicastaddress",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure multicast addresses.`,
 			Description:      ``,
@@ -9918,7 +11567,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_multicastaddress6",
+			Type:             "fortimanager_object_firewall_multicastaddress6",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 multicast address.`,
 			Description:      ``,
@@ -9990,7 +11639,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_profilegroup",
+			Type:             "fortimanager_object_firewall_profilegroup",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure profile groups.`,
 			Description:      ``,
@@ -10019,6 +11668,10 @@ var (
 				resource.Attribute{
 					Name:        "cifs_profile",
 					Description: `Name of an existing CIFS profile.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `Name of an existing DLP profile.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -10102,7 +11755,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_profileprotocoloptions",
+			Type:             "fortimanager_object_firewall_profileprotocoloptions",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure protocol options.`,
 			Description:      ``,
@@ -10317,6 +11970,10 @@ var (
 					Description: `Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).`,
 				},
 				resource.Attribute{
+					Name:        "explicit_ftp_tls",
+					Description: `Enable/disable FTP redirection for explicit FTPS. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "inspect_all",
 					Description: `Enable/disable the inspection of all ports for the protocol. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -10373,6 +12030,10 @@ var (
 					Description: `Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10). The ` + "`" + `http` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "address_ip_rating",
+					Description: `Enable/disable IP based URL rating. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "block_page_status_code",
 					Description: `Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).`,
 				},
@@ -10383,6 +12044,10 @@ var (
 				resource.Attribute{
 					Name:        "comfort_interval",
 					Description: `Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).`,
+				},
+				resource.Attribute{
+					Name:        "h2c",
+					Description: `Enable/disable h2c HTTP connection upgrade. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "fortinet_bar",
@@ -10486,7 +12151,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "unknown_http_version",
-					Description: `How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: ` + "`" + `best-effort` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `tunnel` + "`" + `. The ` + "`" + `imap` + "`" + ` block supports:`,
+					Description: `How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: ` + "`" + `best-effort` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `tunnel` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verify_dns_for_policy_matching",
+					Description: `Enable/disable verification of DNS for policy matching. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `imap` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "inspect_all",
@@ -10750,7 +12419,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_proxyaddress",
+			Type:             "fortimanager_object_firewall_proxyaddress",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure web proxy address.`,
 			Description:      ``,
@@ -10771,6 +12440,10 @@ var (
 				resource.Attribute{
 					Name:        "_image_base64",
 					Description: `_Image-Base64.`,
+				},
+				resource.Attribute{
+					Name:        "application",
+					Description: `SaaS application.`,
 				},
 				resource.Attribute{
 					Name:        "case_sensitivity",
@@ -10894,7 +12567,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_proxyaddrgrp",
+			Type:             "fortimanager_object_firewall_proxyaddrgrp",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure web proxy address group.`,
 			Description:      ``,
@@ -10978,7 +12651,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_schedule_group",
+			Type:             "fortimanager_object_firewall_schedule_group",
 			Category:         "Object Firewall",
 			ShortDescription: `Schedule group configuration.`,
 			Description:      ``,
@@ -11031,7 +12704,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_schedule_onetime",
+			Type:             "fortimanager_object_firewall_schedule_onetime",
 			Category:         "Object Firewall",
 			ShortDescription: `Onetime schedule configuration.`,
 			Description:      ``,
@@ -11092,7 +12765,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_schedule_recurring",
+			Type:             "fortimanager_object_firewall_schedule_recurring",
 			Category:         "Object Firewall",
 			ShortDescription: `Recurring schedule configuration.`,
 			Description:      ``,
@@ -11153,7 +12826,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_service_category",
+			Type:             "fortimanager_object_firewall_service_category",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure service categories.`,
 			Description:      ``,
@@ -11202,7 +12875,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_service_custom",
+			Type:             "fortimanager_object_firewall_service_custom",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure custom services.`,
 			Description:      ``,
@@ -11347,7 +13020,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_service_group",
+			Type:             "fortimanager_object_firewall_service_group",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure service groups.`,
 			Description:      ``,
@@ -11408,7 +13081,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_shaper_peripshaper",
+			Type:             "fortimanager_object_firewall_shaper_peripshaper",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure per-IP traffic shaper.`,
 			Description:      ``,
@@ -11481,7 +13154,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_shaper_trafficshaper",
+			Type:             "fortimanager_object_firewall_shaper_trafficshaper",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure shared traffic shaper.`,
 			Description:      ``,
@@ -11570,7 +13243,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_ssh_localca",
+			Type:             "fortimanager_object_firewall_ssh_localca",
 			Category:         "Object Firewall",
 			ShortDescription: `SSH proxy local CA.`,
 			Description:      ``,
@@ -11623,7 +13296,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_sslsshprofile",
+			Type:             "fortimanager_object_firewall_sslsshprofile",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure SSL/SSH protocol options.`,
 			Description:      ``,
@@ -11724,6 +13397,10 @@ var (
 				resource.Attribute{
 					Name:        "ssl_exempt",
 					Description: `Ssl-Exempt. The structure of ` + "`" + `ssl_exempt` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_exemption_ip_rating",
+					Description: `Enable/disable IP based URL rating. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ssl_exemption_log",
@@ -12403,7 +14080,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_trafficclass",
+			Type:             "fortimanager_object_firewall_trafficclass",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure names for shaping classes.`,
 			Description:      ``,
@@ -12443,7 +14120,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vip",
+			Type:             "fortimanager_object_firewall_vip",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure virtual IP for IPv4.`,
 			Description:      ``,
@@ -13307,7 +14984,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vip46",
+			Type:             "fortimanager_object_firewall_vip46",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv4 to IPv6 virtual IPs.`,
 			Description:      ``,
@@ -13543,7 +15220,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vip6",
+			Type:             "fortimanager_object_firewall_vip6",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure virtual IP for IPv6.`,
 			Description:      ``,
@@ -13684,6 +15361,10 @@ var (
 				resource.Attribute{
 					Name:        "nat66",
 					Description: `Enable/disable DNAT66. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ndp_reply",
+					Description: `Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "outlook_web_access",
@@ -13988,6 +15669,10 @@ var (
 				resource.Attribute{
 					Name:        "nat66",
 					Description: `Enable/disable DNAT66. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ndp_reply",
+					Description: `Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "outlook_web_access",
@@ -14311,7 +15996,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vip64",
+			Type:             "fortimanager_object_firewall_vip64",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 to IPv4 virtual IPs.`,
 			Description:      ``,
@@ -14539,7 +16224,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vipgrp",
+			Type:             "fortimanager_object_firewall_vipgrp",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv4 virtual IP groups.`,
 			Description:      ``,
@@ -14635,7 +16320,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vipgrp46",
+			Type:             "fortimanager_object_firewall_vipgrp46",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv4 to IPv6 virtual IP groups.`,
 			Description:      ``,
@@ -14687,7 +16372,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vipgrp6",
+			Type:             "fortimanager_object_firewall_vipgrp6",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 virtual IP groups.`,
 			Description:      ``,
@@ -14739,7 +16424,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_vipgrp64",
+			Type:             "fortimanager_object_firewall_vipgrp64",
 			Category:         "Object Firewall",
 			ShortDescription: `Configure IPv6 to IPv4 virtual IP groups.`,
 			Description:      ``,
@@ -14791,7 +16476,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_wildcardfqdn_custom",
+			Type:             "fortimanager_object_firewall_wildcardfqdn_custom",
 			Category:         "Object Firewall",
 			ShortDescription: `Config global/VDOM Wildcard FQDN address.`,
 			Description:      ``,
@@ -14848,7 +16533,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_firewall_wildcardfqdn_group",
+			Type:             "fortimanager_object_firewall_wildcardfqdn_group",
 			Category:         "Object Firewall",
 			ShortDescription: `Config global Wildcard FQDN address groups.`,
 			Description:      ``,
@@ -14905,7 +16590,244 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_fsp_vlan",
+			Type:             "fortimanager_object_fmg_device_blueprint",
+			Category:         "No Category",
+			ShortDescription: `ObjectFmg DeviceBlueprint`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"fmg",
+				"device",
+				"blueprint",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "cliprofs",
+					Description: `Cliprofs.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "dev_group",
+					Description: `Dev-Group.`,
+				},
+				resource.Attribute{
+					Name:        "folder",
+					Description: `Folder.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Pkg.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Platform.`,
+				},
+				resource.Attribute{
+					Name:        "prefer_img_ver",
+					Description: `Prefer-Img-Ver.`,
+				},
+				resource.Attribute{
+					Name:        "prerun_cliprof",
+					Description: `Prerun-Cliprof.`,
+				},
+				resource.Attribute{
+					Name:        "prov_type",
+					Description: `Prov-Type. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `templates` + "`" + `, ` + "`" + `template-group` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "template_group",
+					Description: `Template-Group.`,
+				},
+				resource.Attribute{
+					Name:        "templates",
+					Description: `Templates. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFmg DeviceBlueprint can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_fmg_device_blueprint.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFmg DeviceBlueprint can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_fmg_device_blueprint.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_fmg_fabric_authorization_template",
+			Category:         "No Category",
+			ShortDescription: `ObjectFmg FabricAuthorizationTemplate`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"fmg",
+				"fabric",
+				"authorization",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "extender_controller",
+					Description: `Extender-Controller. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "platforms",
+					Description: `Platforms. The structure of ` + "`" + `platforms` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "switch_controller",
+					Description: `Switch-Controller. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "wireless_controller",
+					Description: `Wireless-Controller. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `platforms` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `Count.`,
+				},
+				resource.Attribute{
+					Name:        "extension_type",
+					Description: `Extension-Type. Valid values: ` + "`" + `wan-extension` + "`" + `, ` + "`" + `lan-extension` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fortilink",
+					Description: `Fortilink.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `Prefix.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type. Valid values: ` + "`" + `ap` + "`" + `, ` + "`" + `extender` + "`" + `, ` + "`" + `switch` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFmg FabricAuthorizationTemplate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_fmg_fabric_authorization_template.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFmg FabricAuthorizationTemplate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_fmg_fabric_authorization_template.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_fmg_variable",
+			Category:         "No Category",
+			ShortDescription: `ObjectFmg Variable`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"fmg",
+				"variable",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_mapping",
+					Description: `Dynamic_Mapping. The structure of ` + "`" + `dynamic_mapping` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `dynamic_mapping` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "_scope",
+					Description: `_Scope. The structure of ` + "`" + `_scope` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value. The ` + "`" + `_scope` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "vdom",
+					Description: `Vdom. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFmg Variable can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_fmg_variable.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectFmg Variable can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_fmg_variable.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_fsp_vlan",
 			Category:         "Object Others",
 			ShortDescription: `ObjectFsp Vlan`,
 			Description:      ``,
@@ -15194,7 +17116,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_ip",
-					Description: `Start of IP range. The ` + "`" + `ip_range` + "`" + ` block supports:`,
+					Description: `Start of IP range.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "end_ip",
@@ -15206,7 +17136,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_ip",
-					Description: `Start of IP range. The ` + "`" + `options` + "`" + ` block supports:`,
+					Description: `Start of IP range.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `options` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "code",
@@ -15226,7 +17164,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `DHCP option value. The ` + "`" + `reserved_address` + "`" + ` block supports:`,
+					Description: `DHCP option value.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `reserved_address` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -15526,7 +17472,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_ip",
-					Description: `Start of IP range. The ` + "`" + `ip_range` + "`" + ` block supports:`,
+					Description: `Start of IP range.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "end_ip",
@@ -15538,7 +17492,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_ip",
-					Description: `Start of IP range. The ` + "`" + `options` + "`" + ` block supports:`,
+					Description: `Start of IP range.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `options` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "code",
@@ -15558,7 +17520,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `DHCP option value. The ` + "`" + `reserved_address` + "`" + ` block supports:`,
+					Description: `DHCP option value.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `reserved_address` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -15605,6 +17575,10 @@ var (
 					Description: `Dhcp-Relay-Agent-Option. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "dhcp_relay_interface_select_method",
+					Description: `Dhcp-Relay-Interface-Select-Method. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `sdwan` + "`" + `, ` + "`" + `specify` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "dhcp_relay_ip",
 					Description: `Dhcp-Relay-Ip.`,
 				},
@@ -15625,7 +17599,7 @@ var (
 					Description: `Ipv6. The structure of ` + "`" + `ipv6` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_IP",
+					Name:        "secondary_ip",
 					Description: `Secondary-Ip. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
@@ -15969,6 +17943,10 @@ var (
 					Description: `Aggregate.`,
 				},
 				resource.Attribute{
+					Name:        "aggregate_type",
+					Description: `Type of aggregation. Valid values: ` + "`" + `physical` + "`" + `, ` + "`" + `vxlan` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "algorithm",
 					Description: `Frame distribution algorithm. Valid values: ` + "`" + `L2` + "`" + `, ` + "`" + `L3` + "`" + `, ` + "`" + `L4` + "`" + `.`,
 				},
@@ -16221,6 +18199,30 @@ var (
 					Description: `Enable/disable drop overlapped fragment packets. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "eap_ca_cert",
+					Description: `Eap-Ca-Cert.`,
+				},
+				resource.Attribute{
+					Name:        "eap_identity",
+					Description: `Eap-Identity.`,
+				},
+				resource.Attribute{
+					Name:        "eap_method",
+					Description: `Eap-Method. Valid values: ` + "`" + `tls` + "`" + `, ` + "`" + `peap` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "eap_password",
+					Description: `Eap-Password.`,
+				},
+				resource.Attribute{
+					Name:        "eap_supplicant",
+					Description: `Eap-Supplicant. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "eap_user_cert",
+					Description: `Eap-User-Cert.`,
+				},
+				resource.Attribute{
 					Name:        "egress_cos",
 					Description: `Override outgoing CoS in user VLAN tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `cos0` + "`" + `, ` + "`" + `cos1` + "`" + `, ` + "`" + `cos2` + "`" + `, ` + "`" + `cos3` + "`" + `, ` + "`" + `cos4` + "`" + `, ` + "`" + `cos5` + "`" + `, ` + "`" + `cos6` + "`" + `, ` + "`" + `cos7` + "`" + `.`,
 				},
@@ -16325,6 +18327,10 @@ var (
 					Description: `Gateway address`,
 				},
 				resource.Attribute{
+					Name:        "generic_receive_offload",
+					Description: `Generic-Receive-Offload. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "gi_gk",
 					Description: `Enable/disable Gi Gatekeeper. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -16369,6 +18375,10 @@ var (
 					Description: `If-Media. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `copper` + "`" + `, ` + "`" + `fiber` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "ike_saml_server",
+					Description: `Ike-Saml-Server.`,
+				},
+				resource.Attribute{
 					Name:        "in_force_vlan_cos",
 					Description: `In-Force-Vlan-Cos.`,
 				},
@@ -16387,6 +18397,10 @@ var (
 				resource.Attribute{
 					Name:        "ingress_spillover_threshold",
 					Description: `Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.`,
+				},
+				resource.Attribute{
+					Name:        "interconnect_profile",
+					Description: `Set interconnect profile. Valid values: ` + "`" + `default` + "`" + `, ` + "`" + `profile1` + "`" + `, ` + "`" + `profile2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "internal",
@@ -16439,6 +18453,10 @@ var (
 				resource.Attribute{
 					Name:        "lacp_speed",
 					Description: `How often the interface sends LACP messages. Valid values: ` + "`" + `slow` + "`" + `, ` + "`" + `fast` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "large_receive_offload",
+					Description: `Large-Receive-Offload. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "lcp_echo_interval",
@@ -16729,7 +18747,7 @@ var (
 					Description: `Scan-Botnet-Connections. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `block` + "`" + `, ` + "`" + `monitor` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "secondary_IP",
+					Name:        "secondary_ip",
 					Description: `Enable/disable adding a secondary IP to this interface. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
@@ -16927,6 +18945,10 @@ var (
 				resource.Attribute{
 					Name:        "switch_controller_nac",
 					Description: `Integrated NAC settings for managed FortiSwitch.`,
+				},
+				resource.Attribute{
+					Name:        "switch_controller_netflow_collect",
+					Description: `NetFlow collection and processing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "switch_controller_radius_server",
@@ -17506,7 +19528,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_global_ips_sensor",
+			Type:             "fortimanager_object_global_ips_sensor",
 			Category:         "No Category",
 			ShortDescription: `Configure IPS sensor.`,
 			Description:      ``,
@@ -17584,12 +19606,24 @@ var (
 					Description: `List of CVE IDs of the signatures to add to the sensor.`,
 				},
 				resource.Attribute{
+					Name:        "default_action",
+					Description: `Default-Action. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `pass` + "`" + `, ` + "`" + `all` + "`" + `, ` + "`" + `drop` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_status",
+					Description: `Default-Status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `, ` + "`" + `all` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "exempt_ip",
 					Description: `Exempt-Ip. The structure of ` + "`" + `exempt_ip` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Rule ID in IPS database (0 - 4294967295).`,
+				},
+				resource.Attribute{
+					Name:        "last_modified",
+					Description: `Last-Modified.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -17661,7 +19695,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `Tags. The ` + "`" + `exempt_ip` + "`" + ` block supports:`,
+					Description: `Tags.`,
+				},
+				resource.Attribute{
+					Name:        "vuln_type",
+					Description: `Vuln-Type. The ` + "`" + `exempt_ip` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "dst_ip",
@@ -17809,7 +19847,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_icap_profile",
+			Type:             "fortimanager_object_icap_profile",
 			Category:         "Object ICAP",
 			ShortDescription: `Configure ICAP profiles.`,
 			Description:      ``,
@@ -17828,12 +19866,36 @@ var (
 					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
 				},
 				resource.Attribute{
+					Name:        "n204_response",
+					Description: `Enable/disable allowance of 204 response from ICAP server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "n204_size_limit",
+					Description: `204 response size limit to be saved by ICAP client in megabytes (1 - 10, default = 1 MB).`,
+				},
+				resource.Attribute{
 					Name:        "chunk_encap",
 					Description: `Enable/disable chunked encapsulation (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "extension_feature",
 					Description: `Enable/disable ICAP extension features. Valid values: ` + "`" + `scan-progress` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_transfer",
+					Description: `Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: ` + "`" + `ssh` + "`" + `, ` + "`" + `ftp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_transfer_failure",
+					Description: `Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: ` + "`" + `error` + "`" + `, ` + "`" + `bypass` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_transfer_path",
+					Description: `Path component of the ICAP URI that identifies the file transfer processing service.`,
+				},
+				resource.Attribute{
+					Name:        "file_transfer_server",
+					Description: `ICAP server to use for a file transfer.`,
 				},
 				resource.Attribute{
 					Name:        "icap_block_log",
@@ -17916,6 +19978,10 @@ var (
 					Description: `Enable/disable bypassing of ICAP server for streaming content. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "timeout",
+					Description: `Time (in seconds) that ICAP client waits for the response from ICAP server.`,
+				},
+				resource.Attribute{
 					Name:        "dynamic_sort_subtable",
 					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `icap_headers` + "`" + ` block supports:`,
 				},
@@ -17985,7 +20051,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_icap_server",
+			Type:             "fortimanager_object_icap_server",
 			Category:         "Object ICAP",
 			ShortDescription: `Configure ICAP servers.`,
 			Description:      ``,
@@ -18002,6 +20068,22 @@ var (
 				resource.Attribute{
 					Name:        "adom",
 					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "addr_type",
+					Description: `Address type of the remote ICAP server: IPv4, IPv6 or FQDN. Valid values: ` + "`" + `fqdn` + "`" + `, ` + "`" + `ip4` + "`" + `, ` + "`" + `ip6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `ICAP remote server Fully Qualified Domain Name (FQDN).`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck",
+					Description: `Enable/disable ICAP remote server health checking. Attempts to connect to the remote ICAP server to verify that the server is operating normally. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_service",
+					Description: `ICAP Service name to use for health checks.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -18049,7 +20131,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_ips_custom",
+			Type:             "fortimanager_object_ips_custom",
 			Category:         "Object IPS",
 			ShortDescription: `Configure IPS custom signature.`,
 			Description:      ``,
@@ -18137,7 +20219,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_ips_sensor",
+			Type:             "fortimanager_object_ips_sensor",
 			Category:         "Object IPS",
 			ShortDescription: `Configure IPS sensor.`,
 			Description:      ``,
@@ -18204,12 +20286,24 @@ var (
 					Description: `List of CVE IDs of the signatures to add to the sensor`,
 				},
 				resource.Attribute{
+					Name:        "default_action",
+					Description: `Signature default action filter. Valid values: ` + "`" + `block` + "`" + `, ` + "`" + `pass` + "`" + `, ` + "`" + `all` + "`" + `, ` + "`" + `drop` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_status",
+					Description: `Signature default status filter. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `, ` + "`" + `all` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "exempt_ip",
 					Description: `Exempt-Ip. The structure of ` + "`" + `exempt_ip` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `Rule ID in IPS database (0 - 4294967295).`,
+				},
+				resource.Attribute{
+					Name:        "last_modified",
+					Description: `Filter by signature last modified date. Formats: before &lt;date&gt;, after &lt;date&gt;, between &lt;start-date&gt; &lt;end-date&gt;.`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -18273,7 +20367,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the signatures included in filter. default enables the filter and only use filters with default status of enable. Filters with default status of disable will not be used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `, ` + "`" + `default` + "`" + `. The ` + "`" + `exempt_ip` + "`" + ` block supports:`,
+					Description: `Status of the signatures included in filter. default enables the filter and only use filters with default status of enable. Filters with default status of disable will not be used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `, ` + "`" + `default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vuln_type",
+					Description: `List of signature vulnerability types to filter by. The ` + "`" + `exempt_ip` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "dst_ip",
@@ -18301,7 +20399,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_log_customfield",
+			Type:             "fortimanager_object_log_customfield",
 			Category:         "Object Others",
 			ShortDescription: `Configure custom log fields.`,
 			Description:      ``,
@@ -18346,7 +20444,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_log_npuserver",
+			Type:             "fortimanager_object_log_npuserver",
 			Category:         "No Category",
 			ShortDescription: `Configure all the log servers and create the server groups.`,
 			Description:      ``,
@@ -18407,12 +20505,20 @@ var (
 					Description: `Set the log format Valid values: ` + "`" + `syslog` + "`" + `, ` + "`" + `netflow` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "log_gen_event",
+					Description: `Enable/disbale generating event for Per-Mapping log Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "log_mode",
 					Description: `Set the log mode Valid values: ` + "`" + `per-session` + "`" + `, ` + "`" + `per-nat-mapping` + "`" + `, ` + "`" + `per-session-ending` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "log_tx_mode",
 					Description: `Configure log transmit mode. Valid values: ` + "`" + `multicast` + "`" + `, ` + "`" + `roundrobin` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "log_user_info",
+					Description: `Enable/disbale logging user information. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "server_number",
@@ -18472,7 +20578,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_log_npuserver_servergroup",
+			Type:             "fortimanager_object_log_npuserver_servergroup",
 			Category:         "No Category",
 			ShortDescription: `create server group.`,
 			Description:      ``,
@@ -18502,12 +20608,20 @@ var (
 					Description: `Set the log format Valid values: ` + "`" + `syslog` + "`" + `, ` + "`" + `netflow` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "log_gen_event",
+					Description: `Enable/disbale generating event for Per-Mapping log Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "log_mode",
 					Description: `Set the log mode Valid values: ` + "`" + `per-session` + "`" + `, ` + "`" + `per-nat-mapping` + "`" + `, ` + "`" + `per-session-ending` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "log_tx_mode",
 					Description: `Configure log transmit mode. Valid values: ` + "`" + `multicast` + "`" + `, ` + "`" + `roundrobin` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "log_user_info",
+					Description: `Enable/disbale logging user information. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "server_number",
@@ -18535,7 +20649,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_log_npuserver_serverinfo",
+			Type:             "fortimanager_object_log_npuserver_serverinfo",
 			Category:         "No Category",
 			ShortDescription: `configure server info.`,
 			Description:      ``,
@@ -18602,7 +20716,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_accesslist",
+			Type:             "fortimanager_object_router_accesslist",
 			Category:         "No Category",
 			ShortDescription: `Configure access lists.`,
 			Description:      ``,
@@ -18676,7 +20790,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_accesslist6",
+			Type:             "fortimanager_object_router_accesslist6",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv6 access lists.`,
 			Description:      ``,
@@ -18746,7 +20860,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_aspathlist",
+			Type:             "fortimanager_object_router_aspathlist",
 			Category:         "No Category",
 			ShortDescription: `Configure Autonomous System (AS) path lists.`,
 			Description:      ``,
@@ -18804,7 +20918,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_communitylist",
+			Type:             "fortimanager_object_router_communitylist",
 			Category:         "No Category",
 			ShortDescription: `Configure community lists.`,
 			Description:      ``,
@@ -18870,7 +20984,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_prefixlist",
+			Type:             "fortimanager_object_router_prefixlist",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv4 prefix lists.`,
 			Description:      ``,
@@ -18944,7 +21058,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_prefixlist6",
+			Type:             "fortimanager_object_router_prefixlist6",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv6 prefix lists.`,
 			Description:      ``,
@@ -19018,7 +21132,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_router_routemap",
+			Type:             "fortimanager_object_router_routemap",
 			Category:         "No Category",
 			ShortDescription: `Configure route maps.`,
 			Description:      ``,
@@ -19215,6 +21329,10 @@ var (
 					Description: `BGP originator ID attribute.`,
 				},
 				resource.Attribute{
+					Name:        "set_priority",
+					Description: `Priority for routing table.`,
+				},
+				resource.Attribute{
 					Name:        "set_route_tag",
 					Description: `Route tag for routing table.`,
 				},
@@ -19240,7 +21358,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_spamfilter_bwl",
+			Type:             "fortimanager_object_spamfilter_bwl",
 			Category:         "No Category",
 			ShortDescription: `Configure anti-spam black/white list.`,
 			Description:      ``,
@@ -19330,7 +21448,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_spamfilter_bword",
+			Type:             "fortimanager_object_spamfilter_bword",
 			Category:         "No Category",
 			ShortDescription: `Configure AntiSpam banned word list.`,
 			Description:      ``,
@@ -19416,7 +21534,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_spamfilter_dnsbl",
+			Type:             "fortimanager_object_spamfilter_dnsbl",
 			Category:         "No Category",
 			ShortDescription: `Configure AntiSpam DNSBL/ORBL.`,
 			Description:      ``,
@@ -19486,7 +21604,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_spamfilter_iptrust",
+			Type:             "fortimanager_object_spamfilter_iptrust",
 			Category:         "No Category",
 			ShortDescription: `Configure AntiSpam IP trust.`,
 			Description:      ``,
@@ -19560,7 +21678,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_spamfilter_mheader",
+			Type:             "fortimanager_object_spamfilter_mheader",
 			Category:         "No Category",
 			ShortDescription: `Configure AntiSpam MIME header.`,
 			Description:      ``,
@@ -19638,7 +21756,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_spamfilter_profile",
+			Type:             "fortimanager_object_spamfilter_profile",
 			Category:         "No Category",
 			ShortDescription: `Configure AntiSpam profiles.`,
 			Description:      ``,
@@ -19828,7 +21946,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_sshfilter_profile",
+			Type:             "fortimanager_object_sshfilter_profile",
 			Category:         "Object Others",
 			ShortDescription: `SSH filter profile.`,
 			Description:      ``,
@@ -19961,7 +22079,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_customcommand",
+			Type:             "fortimanager_object_switchcontroller_customcommand",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices.`,
 			Description:      ``,
@@ -20007,7 +22125,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_dsl_policy",
+			Type:             "fortimanager_object_switchcontroller_dsl_policy",
 			Category:         "No Category",
 			ShortDescription: `DSL policy.`,
 			Description:      ``,
@@ -20082,7 +22200,199 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_lldpprofile",
+			Type:             "fortimanager_object_switchcontroller_dynamicportpolicy",
+			Category:         "No Category",
+			ShortDescription: `Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"switchcontroller",
+				"dynamicportpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the Dynamic port policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Dynamic port policy name.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `Policy. The structure of ` + "`" + `policy` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "n802_1x",
+					Description: `802.1x security policy to be applied when using this policy.`,
+				},
+				resource.Attribute{
+					Name:        "bounce_port_link",
+					Description: `Enable/disable bouncing (administratively bring the link down, up) of a switch port where this policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `Category of Dynamic port policy. Valid values: ` + "`" + `device` + "`" + `, ` + "`" + `interface-tag` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the policy.`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `Match policy based on family.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Match policy based on host.`,
+				},
+				resource.Attribute{
+					Name:        "hw_vendor",
+					Description: `Match policy based on hardware vendor.`,
+				},
+				resource.Attribute{
+					Name:        "interface_tags",
+					Description: `Match policy based on the FortiSwitch interface object tags.`,
+				},
+				resource.Attribute{
+					Name:        "lldp_profile",
+					Description: `LLDP profile to be applied when using this policy.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `Match policy based on MAC address.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Policy name.`,
+				},
+				resource.Attribute{
+					Name:        "qos_policy",
+					Description: `QoS policy to be applied when using this policy.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable policy. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Match policy based on type.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_policy",
+					Description: `VLAN policy to be applied when using this policy. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController DynamicPortPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_dynamicportpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController DynamicPortPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_dynamicportpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_switchcontroller_fortilinksettings",
+			Category:         "No Category",
+			ShortDescription: `Configure integrated FortiLink settings for FortiSwitch.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"switchcontroller",
+				"fortilinksettings",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "fortilink",
+					Description: `FortiLink interface to which this fortilink-setting belongs.`,
+				},
+				resource.Attribute{
+					Name:        "inactive_timer",
+					Description: `Time interval(minutes) to be included in the inactive devices expiry calculation (mac age-out + inactive-time + periodic scan interval).`,
+				},
+				resource.Attribute{
+					Name:        "link_down_flush",
+					Description: `Clear NAC and dynamic devices on switch ports on link down event. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nac_ports",
+					Description: `Nac-Ports. The structure of ` + "`" + `nac_ports` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `FortiLink settings name. The ` + "`" + `nac_ports` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "bounce_nac_port",
+					Description: `Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lan_segment",
+					Description: `Enable/disable LAN segment feature on the FortiLink interface. Valid values: ` + "`" + `disabled` + "`" + `, ` + "`" + `enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "member_change",
+					Description: `Member-Change.`,
+				},
+				resource.Attribute{
+					Name:        "nac_lan_interface",
+					Description: `Configure NAC LAN interface.`,
+				},
+				resource.Attribute{
+					Name:        "nac_segment_vlans",
+					Description: `Configure NAC segment VLANs.`,
+				},
+				resource.Attribute{
+					Name:        "onboarding_vlan",
+					Description: `Default NAC Onboarding VLAN when NAC devices are discovered.`,
+				},
+				resource.Attribute{
+					Name:        "parent_key",
+					Description: `Parent-Key. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController FortilinkSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_fortilinksettings.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController FortilinkSettings can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_fortilinksettings.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_switchcontroller_lldpprofile",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure FortiSwitch LLDP profiles.`,
 			Description:      ``,
@@ -20224,7 +22534,69 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_qos_dot1pmap",
+			Type:             "fortimanager_object_switchcontroller_macpolicy",
+			Category:         "No Category",
+			ShortDescription: `Configure MAC policy to be applied on the managed FortiSwitch devices through NAC device.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"switchcontroller",
+				"macpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "bounce_port_link",
+					Description: `Enable/disable bouncing (administratively bring the link down, up) of a switch port where this mac-policy is applied. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fmgcount",
+					Description: `Enable/disable packet count on the NAC device. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the MAC policy.`,
+				},
+				resource.Attribute{
+					Name:        "drop",
+					Description: `Drop. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `MAC policy name.`,
+				},
+				resource.Attribute{
+					Name:        "traffic_policy",
+					Description: `Traffic policy to be applied when using this MAC policy.`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `Ingress traffic VLAN assignment for the MAC address matching this MAC policy. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController MacPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_macpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController MacPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_macpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_switchcontroller_qos_dot1pmap",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure FortiSwitch QoS 802.1p.`,
 			Description:      ``,
@@ -20303,7 +22675,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_qos_ipdscpmap",
+			Type:             "fortimanager_object_switchcontroller_qos_ipdscpmap",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure FortiSwitch QoS IP precedence/DSCP.`,
 			Description:      ``,
@@ -20374,7 +22746,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_qos_qospolicy",
+			Type:             "fortimanager_object_switchcontroller_qos_qospolicy",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure FortiSwitch QoS policy.`,
 			Description:      ``,
@@ -20429,7 +22801,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_qos_queuepolicy",
+			Type:             "fortimanager_object_switchcontroller_qos_queuepolicy",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure FortiSwitch QoS egress queue policy.`,
 			Description:      ``,
@@ -20520,7 +22892,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_switchcontroller_securitypolicy_8021x",
+			Type:             "fortimanager_object_switchcontroller_securitypolicy_8021x",
 			Category:         "Object Switch-Controller",
 			ShortDescription: `Configure 802.1x MAC Authentication Bypass (MAB) policies.`,
 			Description:      ``,
@@ -20635,7 +23007,177 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_customlanguage",
+			Type:             "fortimanager_object_switchcontroller_switchinterfacetag",
+			Category:         "No Category",
+			ShortDescription: `Configure switch object tags.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"switchcontroller",
+				"switchinterfacetag",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Tag name. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController SwitchInterfaceTag can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_switchinterfacetag.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController SwitchInterfaceTag can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_switchinterfacetag.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_switchcontroller_trafficpolicy",
+			Category:         "No Category",
+			ShortDescription: `Configure FortiSwitch traffic policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"switchcontroller",
+				"trafficpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "cos_queue",
+					Description: `COS queue(0 - 7), or unset to disable.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the traffic policy.`,
+				},
+				resource.Attribute{
+					Name:        "guaranteed_bandwidth",
+					Description: `Guaranteed bandwidth in kbps (max value = 524287000).`,
+				},
+				resource.Attribute{
+					Name:        "guaranteed_burst",
+					Description: `Guaranteed burst size in bytes (max value = 4294967295).`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `FSW Policer id`,
+				},
+				resource.Attribute{
+					Name:        "maximum_burst",
+					Description: `Maximum burst size in bytes (max value = 4294967295).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Traffic policy name.`,
+				},
+				resource.Attribute{
+					Name:        "policer_status",
+					Description: `Enable/disable policer config on the traffic policy. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type. Valid values: ` + "`" + `ingress` + "`" + `, ` + "`" + `egress` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController TrafficPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_trafficpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController TrafficPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_trafficpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_switchcontroller_vlanpolicy",
+			Category:         "No Category",
+			ShortDescription: `Configure VLAN policy to be applied on the managed FortiSwitch ports through dynamic-port-policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"switchcontroller",
+				"vlanpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_vlans",
+					Description: `Allowed VLANs to be applied when using this VLAN policy.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_vlans_all",
+					Description: `Enable/disable all defined VLANs when using this VLAN policy. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the VLAN policy.`,
+				},
+				resource.Attribute{
+					Name:        "discard_mode",
+					Description: `Discard mode to be applied when using this VLAN policy. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `all-untagged` + "`" + `, ` + "`" + `all-tagged` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `VLAN policy name.`,
+				},
+				resource.Attribute{
+					Name:        "untagged_vlans",
+					Description: `Untagged VLANs to be applied when using this VLAN policy.`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `Native VLAN to be applied when using this VLAN policy. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController VlanPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_vlanpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectSwitchController VlanPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_switchcontroller_vlanpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_system_customlanguage",
 			Category:         "Object System",
 			ShortDescription: `Configure custom languages.`,
 			Description:      ``,
@@ -20679,7 +23221,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_dhcp_server",
+			Type:             "fortimanager_object_system_dhcp_server",
 			Category:         "Object System",
 			ShortDescription: `Configure DHCP servers.`,
 			Description:      ``,
@@ -20912,7 +23454,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_ip",
-					Description: `Start of IP range. The ` + "`" + `ip_range` + "`" + ` block supports:`,
+					Description: `Start of IP range.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `ip_range` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "end_ip",
@@ -20924,7 +23474,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_ip",
-					Description: `Start of IP range. The ` + "`" + `options` + "`" + ` block supports:`,
+					Description: `Start of IP range.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `options` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "code",
@@ -20944,7 +23502,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `DHCP option value. The ` + "`" + `reserved_address` + "`" + ` block supports:`,
+					Description: `DHCP option value.`,
+				},
+				resource.Attribute{
+					Name:        "vci_match",
+					Description: `Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vci_string",
+					Description: `One or more VCI strings in quotes separated by spaces. The ` + "`" + `reserved_address` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -21000,7 +23566,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_externalresource",
+			Type:             "fortimanager_object_system_externalresource",
 			Category:         "Object System",
 			ShortDescription: `Configure external resource.`,
 			Description:      ``,
@@ -21051,6 +23617,10 @@ var (
 					Description: `URI of external resource.`,
 				},
 				resource.Attribute{
+					Name:        "server_identity_check",
+					Description: `Certificate verification option. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `basic` + "`" + `, ` + "`" + `full` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "source_ip",
 					Description: `Source IPv4 address used to communicate with server.`,
 				},
@@ -21061,6 +23631,10 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `User resource type. Valid values: ` + "`" + `category` + "`" + `, ` + "`" + `address` + "`" + `, ` + "`" + `domain` + "`" + `, ` + "`" + `malware` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "update_method",
+					Description: `External resource update method. Valid values: ` + "`" + `feed` + "`" + `, ` + "`" + `push` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "user_agent",
@@ -21088,7 +23662,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_fortiguard",
+			Type:             "fortimanager_object_system_fortiguard",
 			Category:         "Object System",
 			ShortDescription: `Configure FortiGuard services.`,
 			Description:      ``,
@@ -21141,6 +23715,22 @@ var (
 				resource.Attribute{
 					Name:        "anycast_sdns_server_port",
 					Description: `Port to connect to on the FortiGuard anycast DNS rating server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_firmware_upgrade",
+					Description: `Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auto_firmware_upgrade_day",
+					Description: `Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: ` + "`" + `sunday` + "`" + `, ` + "`" + `monday` + "`" + `, ` + "`" + `tuesday` + "`" + `, ` + "`" + `wednesday` + "`" + `, ` + "`" + `thursday` + "`" + `, ` + "`" + `friday` + "`" + `, ` + "`" + `saturday` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auto_firmware_upgrade_end_hour",
+					Description: `End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.`,
+				},
+				resource.Attribute{
+					Name:        "auto_firmware_upgrade_start_hour",
+					Description: `Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.`,
 				},
 				resource.Attribute{
 					Name:        "auto_join_forticloud",
@@ -21235,6 +23825,10 @@ var (
 					Description: `Proxy user name.`,
 				},
 				resource.Attribute{
+					Name:        "sandbox_inline_scan",
+					Description: `Enable/disable FortiCloud Sandbox inline-scan. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "sandbox_region",
 					Description: `Cloud sandbox region.`,
 				},
@@ -21283,6 +23877,10 @@ var (
 					Description: `Enable/disable allowlist update. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "vdom",
+					Description: `FortiGuard Service virtual domain name.`,
+				},
+				resource.Attribute{
 					Name:        "videofilter_expiration",
 					Description: `Videofilter-Expiration.`,
 				},
@@ -21328,7 +23926,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_geoipcountry",
+			Type:             "fortimanager_object_system_geoipcountry",
 			Category:         "Object System",
 			ShortDescription: `ObjectSystem GeoipCountry`,
 			Description:      ``,
@@ -21368,7 +23966,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_geoipoverride",
+			Type:             "fortimanager_object_system_geoipoverride",
 			Category:         "Object System",
 			ShortDescription: `Configure geographical location mapping for IP address(es) to override mappings from FortiGuard.`,
 			Description:      ``,
@@ -21448,7 +24046,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_meta",
+			Type:             "fortimanager_object_system_meta",
 			Category:         "Object System",
 			ShortDescription: `ObjectSystem Meta`,
 			Description:      ``,
@@ -21504,7 +24102,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu",
+			Type:             "fortimanager_object_system_npu",
 			Category:         "No Category",
 			ShortDescription: `Configure NPU attributes.`,
 			Description:      ``,
@@ -21589,6 +24187,10 @@ var (
 					Description: `Configure NPU trunk hash. Valid values: ` + "`" + `5-tuple` + "`" + `, ` + "`" + `src-ip` + "`" + `, ` + "`" + `src-dst-ip` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "hash_ipv6_sel",
+					Description: `Select which 4bytes of the IPv6 address are used for traffic hash(0~3).`,
+				},
+				resource.Attribute{
 					Name:        "hash_tbl_spread",
 					Description: `Enable/disable hash table entry spread (default enabled). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -21635,6 +24237,10 @@ var (
 				resource.Attribute{
 					Name:        "intf_shaping_offload",
 					Description: `Enable/disable NPU offload when doing interface-based traffic shaping according to the egress-shaping-profile. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ip_fragment_offload",
+					Description: `Enable/disable NP7 NPU IP fragment offload. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "iph_rsvd_re_cksum",
@@ -21685,6 +24291,10 @@ var (
 					Description: `Isf-Np-Queues. The structure of ` + "`" + `isf_np_queues` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "isf_np_rx_tr_distr",
+					Description: `Select ISF NP Rx trunk distribution (PSC) mode. Valid values: ` + "`" + `port-flow` + "`" + `, ` + "`" + `round-robin` + "`" + `, ` + "`" + `randomized` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "lag_out_port_select",
 					Description: `Enable/disable LAG outgoing port selection based on incoming traffic port. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -21731,6 +24341,10 @@ var (
 				resource.Attribute{
 					Name:        "per_session_accounting",
 					Description: `Enable/disable per-session accounting. Valid values: ` + "`" + `enable` + "`" + `, ` + "`" + `disable` + "`" + `, ` + "`" + `enable-by-log` + "`" + `, ` + "`" + `all-enable` + "`" + `, ` + "`" + `traffic-log-only` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ple_non_syn_tcp_action",
+					Description: `Configure action for the PLE to take on TCP packets that have the SYN field unset. Valid values: ` + "`" + `forward` + "`" + `, ` + "`" + `drop` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "policy_offload_level",
@@ -21781,6 +24395,10 @@ var (
 					Description: `Enable/disable internal link failure check and recovery after boot up. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "rps_mode",
+					Description: `Enable/disable receive packet steering (RPS) optimization mode. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "session_acct_interval",
 					Description: `Session accounting update interval (1 - 10 sec, default 5 sec).`,
 				},
@@ -21791,6 +24409,10 @@ var (
 				resource.Attribute{
 					Name:        "sse_backpressure",
 					Description: `Enable/disable sse backpressure. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sse_ha_scan",
+					Description: `Sse-Ha-Scan. The structure of ` + "`" + `sse_ha_scan` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "strip_clear_text_padding",
@@ -21827,6 +24449,10 @@ var (
 				resource.Attribute{
 					Name:        "uesp_offload",
 					Description: `Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ull_port_mode",
+					Description: `Set ULL port's speed to 10G/25G (default 10G). Valid values: ` + "`" + `10G` + "`" + `, ` + "`" + `25G` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vlan_lookup_cache",
@@ -22678,7 +25304,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "slbc",
-					Description: `Enable/disable NPU SLBC priority protocol. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `sw_eh_hash` + "`" + ` block supports:`,
+					Description: `Enable/disable NPU SLBC priority protocol. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `sse_ha_scan` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "gap",
+					Description: `Scanning message gap(0~32767, default 6000)`,
+				},
+				resource.Attribute{
+					Name:        "max_session_cnt",
+					Description: `If the session count(in millions) is larger than this, HA scan will be skipped. (0~0xffff, default 0xffff)`,
+				},
+				resource.Attribute{
+					Name:        "min_duration",
+					Description: `Scanning filter for minimum duration of the session. (0~3600, default 0) The ` + "`" + `sw_eh_hash` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "computation",
@@ -22766,7 +25404,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_backgroundssescan",
+			Type:             "fortimanager_object_system_npu_backgroundssescan",
 			Category:         "No Category",
 			ShortDescription: `Configure driver background scan for SSE.`,
 			Description:      ``,
@@ -22813,7 +25451,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_dosoptions",
+			Type:             "fortimanager_object_system_npu_dosoptions",
 			Category:         "No Category",
 			ShortDescription: `NPU DoS configurations.`,
 			Description:      ``,
@@ -22860,7 +25498,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_dswdtsprofile",
+			Type:             "fortimanager_object_system_npu_dswdtsprofile",
 			Category:         "No Category",
 			ShortDescription: `Configure NPU DSW DTS profile.`,
 			Description:      ``,
@@ -22911,7 +25549,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_dswqueuedtsprofile",
+			Type:             "fortimanager_object_system_npu_dswqueuedtsprofile",
 			Category:         "No Category",
 			ShortDescription: `Configure NPU DSW Queue DTS profile.`,
 			Description:      ``,
@@ -22966,7 +25604,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_fpanomaly",
+			Type:             "fortimanager_object_system_npu_fpanomaly",
 			Category:         "No Category",
 			ShortDescription: `NP6Lite anomaly protection (packet drop or send trap to host).`,
 			Description:      ``,
@@ -23261,7 +25899,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_hpe",
+			Type:             "fortimanager_object_system_npu_hpe",
 			Category:         "No Category",
 			ShortDescription: `Host protection engine configuration.`,
 			Description:      ``,
@@ -23360,7 +25998,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_ipreassembly",
+			Type:             "fortimanager_object_system_npu_ipreassembly",
 			Category:         "No Category",
 			ShortDescription: `IP reassebmly engine configuration.`,
 			Description:      ``,
@@ -23407,7 +26045,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_isfnpqueues",
+			Type:             "fortimanager_object_system_npu_isfnpqueues",
 			Category:         "No Category",
 			ShortDescription: `Configure queues of switch port connected to NP6 XAUI on ingress path.`,
 			Description:      ``,
@@ -23474,7 +26112,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_npqueues",
+			Type:             "fortimanager_object_system_npu_npqueues",
 			Category:         "No Category",
 			ShortDescription: `Configure queue assignment on NP7.`,
 			Description:      ``,
@@ -23897,7 +26535,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_npqueues_ethernettype",
+			Type:             "fortimanager_object_system_npu_npqueues_ethernettype",
 			Category:         "No Category",
 			ShortDescription: `Configure a NP7 QoS Ethernet Type.`,
 			Description:      ``,
@@ -23949,7 +26587,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_npqueues_ipprotocol",
+			Type:             "fortimanager_object_system_npu_npqueues_ipprotocol",
 			Category:         "No Category",
 			ShortDescription: `Configure a NP7 QoS IP Protocol.`,
 			Description:      ``,
@@ -24001,7 +26639,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_npqueues_ipservice",
+			Type:             "fortimanager_object_system_npu_npqueues_ipservice",
 			Category:         "No Category",
 			ShortDescription: `Configure a NP7 QoS IP Service.`,
 			Description:      ``,
@@ -24061,7 +26699,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_npqueues_profile",
+			Type:             "fortimanager_object_system_npu_npqueues_profile",
 			Category:         "No Category",
 			ShortDescription: `Configure a NP7 class profile.`,
 			Description:      ``,
@@ -24397,7 +27035,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_npqueues_scheduler",
+			Type:             "fortimanager_object_system_npu_npqueues_scheduler",
 			Category:         "No Category",
 			ShortDescription: `Configure a NP7 QoS Scheduler.`,
 			Description:      ``,
@@ -24441,7 +27079,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_portcpumap",
+			Type:             "fortimanager_object_system_npu_portcpumap",
 			Category:         "No Category",
 			ShortDescription: `Configure NPU interface to CPU core mapping.`,
 			Description:      ``,
@@ -24484,7 +27122,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_portnpumap",
+			Type:             "fortimanager_object_system_npu_portnpumap",
 			Category:         "No Category",
 			ShortDescription: `Configure port to NPU group mapping.`,
 			Description:      ``,
@@ -24527,7 +27165,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_portpathoption",
+			Type:             "fortimanager_object_system_npu_portpathoption",
 			Category:         "No Category",
 			ShortDescription: `Configure port using NPU or Intel-NIC.`,
 			Description:      ``,
@@ -24566,7 +27204,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_priorityprotocol",
+			Type:             "fortimanager_object_system_npu_priorityprotocol",
 			Category:         "No Category",
 			ShortDescription: `Configure NPU priority protocol.`,
 			Description:      ``,
@@ -24613,7 +27251,54 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_swehhash",
+			Type:             "fortimanager_object_system_npu_ssehascan",
+			Category:         "No Category",
+			ShortDescription: `Configure driver HA scan for SSE.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"system",
+				"npu",
+				"ssehascan",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "gap",
+					Description: `Scanning message gap(0~32767, default 6000)`,
+				},
+				resource.Attribute{
+					Name:        "max_session_cnt",
+					Description: `If the session count(in millions) is larger than this, HA scan will be skipped. (0~0xffff, default 0xffff)`,
+				},
+				resource.Attribute{
+					Name:        "min_duration",
+					Description: `Scanning filter for minimum duration of the session. (0~3600, default 0) ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import ObjectSystem NpuSseHaScan can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_system_npu_ssehascan.labelname ObjectSystemNpuSseHaScan $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import ObjectSystem NpuSseHaScan can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_system_npu_ssehascan.labelname ObjectSystemNpuSseHaScan $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_system_npu_swehhash",
 			Category:         "No Category",
 			ShortDescription: `Configure switch enhanced hashing.`,
 			Description:      ``,
@@ -24684,7 +27369,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_tcptimeoutprofile",
+			Type:             "fortimanager_object_system_npu_tcptimeoutprofile",
 			Category:         "No Category",
 			ShortDescription: `Configure TCP timeout profile.`,
 			Description:      ``,
@@ -24747,7 +27432,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_npu_udptimeoutprofile",
+			Type:             "fortimanager_object_system_npu_udptimeoutprofile",
 			Category:         "No Category",
 			ShortDescription: `Configure UDP timeout profile.`,
 			Description:      ``,
@@ -24778,19 +27463,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource. ## Import ObjectSystem NpuUdpTimeoutProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_system_npu_udptimeoutprofile.labelname ObjectSystemNpuUdpTimeoutProfile $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `an identifier for the resource with format {{fosid}}. ## Import ObjectSystem NpuUdpTimeoutProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_system_npu_udptimeoutprofile.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `an identifier for the resource. ## Import ObjectSystem NpuUdpTimeoutProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_system_npu_udptimeoutprofile.labelname ObjectSystemNpuUdpTimeoutProfile $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `an identifier for the resource with format {{fosid}}. ## Import ObjectSystem NpuUdpTimeoutProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_system_npu_udptimeoutprofile.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_objecttagging",
+			Type:             "fortimanager_object_system_objecttagging",
 			Category:         "Object System",
 			ShortDescription: `Configure object tagging.`,
 			Description:      ``,
@@ -24850,7 +27535,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_replacemsggroup",
+			Type:             "fortimanager_object_system_replacemsggroup",
 			Category:         "Object System",
 			ShortDescription: `Configure replacement message groups.`,
 			Description:      ``,
@@ -25558,7 +28243,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_replacemsgimage",
+			Type:             "fortimanager_object_system_replacemsgimage",
 			Category:         "Object System",
 			ShortDescription: `Configure replacement message images.`,
 			Description:      ``,
@@ -25602,7 +28287,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_sdnconnector",
+			Type:             "fortimanager_object_system_sdnconnector",
 			Category:         "Object System",
 			ShortDescription: `Configure connection to SDN Connector.`,
 			Description:      ``,
@@ -25873,6 +28558,10 @@ var (
 					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `external_account_list` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "external_id",
+					Description: `AWS external ID.`,
+				},
+				resource.Attribute{
 					Name:        "region_list",
 					Description: `AWS region name list.`,
 				},
@@ -25962,7 +28651,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_smsserver",
+			Type:             "fortimanager_object_system_smsserver",
 			Category:         "Object System",
 			ShortDescription: `Configure SMS server for sending SMS messages to support user authentication.`,
 			Description:      ``,
@@ -26002,7 +28691,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_system_virtualwirepair",
+			Type:             "fortimanager_object_system_virtualwirepair",
 			Category:         "Object System",
 			ShortDescription: `Configure virtual wire pairs.`,
 			Description:      ``,
@@ -26058,7 +28747,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_adgrp",
+			Type:             "fortimanager_object_user_adgrp",
 			Category:         "Object User",
 			ShortDescription: `Configure FSSO groups.`,
 			Description:      ``,
@@ -26106,7 +28795,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_clearpass",
+			Type:             "fortimanager_object_user_clearpass",
 			Category:         "Object User",
 			ShortDescription: `ObjectUser Clearpass`,
 			Description:      ``,
@@ -26162,7 +28851,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_connector",
+			Type:             "fortimanager_object_user_connector",
 			Category:         "No Category",
 			ShortDescription: `ObjectUser Connector`,
 			Description:      ``,
@@ -26208,7 +28897,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_device",
+			Type:             "fortimanager_object_user_device",
 			Category:         "Object User",
 			ShortDescription: `Configure devices.`,
 			Description:      ``,
@@ -26360,7 +29049,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_deviceaccesslist",
+			Type:             "fortimanager_object_user_deviceaccesslist",
 			Category:         "No Category",
 			ShortDescription: `Configure device access control lists.`,
 			Description:      ``,
@@ -26422,7 +29111,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_devicecategory",
+			Type:             "fortimanager_object_user_devicecategory",
 			Category:         "No Category",
 			ShortDescription: `Configure device categories.`,
 			Description:      ``,
@@ -26468,7 +29157,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_devicegroup",
+			Type:             "fortimanager_object_user_devicegroup",
 			Category:         "No Category",
 			ShortDescription: `Configure device groups.`,
 			Description:      ``,
@@ -26566,7 +29255,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_domaincontroller",
+			Type:             "fortimanager_object_user_domaincontroller",
 			Category:         "Object User",
 			ShortDescription: `Configure domain controller entries.`,
 			Description:      ``,
@@ -26710,7 +29399,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_exchange",
+			Type:             "fortimanager_object_user_exchange",
 			Category:         "Object User",
 			ShortDescription: `Configure MS Exchange server entries.`,
 			Description:      ``,
@@ -26802,7 +29491,69 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_fortitoken",
+			Type:             "fortimanager_object_user_flexvm",
+			Category:         "No Category",
+			ShortDescription: `ObjectUser Flexvm`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"user",
+				"flexvm",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Config.`,
+				},
+				resource.Attribute{
+					Name:        "folder",
+					Description: `Folder.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password.`,
+				},
+				resource.Attribute{
+					Name:        "program",
+					Description: `Program.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `User. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectUser Flexvm can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_user_flexvm.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectUser Flexvm can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_user_flexvm.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_user_fortitoken",
 			Category:         "Object User",
 			ShortDescription: `Configure FortiToken.`,
 			Description:      ``,
@@ -26850,7 +29601,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_fsso",
+			Type:             "fortimanager_object_user_fsso",
 			Category:         "Object User",
 			ShortDescription: `Configure Fortinet Single Sign On (FSSO) agents.`,
 			Description:      ``,
@@ -26971,6 +29722,10 @@ var (
 				resource.Attribute{
 					Name:        "server5",
 					Description: `Domain name or IP address of the fifth FSSO collector agent.`,
+				},
+				resource.Attribute{
+					Name:        "sni",
+					Description: `Server Name Indication.`,
 				},
 				resource.Attribute{
 					Name:        "source_ip",
@@ -27105,6 +29860,10 @@ var (
 					Description: `Domain name or IP address of the fifth FSSO collector agent.`,
 				},
 				resource.Attribute{
+					Name:        "sni",
+					Description: `Sni.`,
+				},
+				resource.Attribute{
 					Name:        "source_ip",
 					Description: `Source IP for communications to FSSO agent.`,
 				},
@@ -27154,7 +29913,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_fssopolling",
+			Type:             "fortimanager_object_user_fssopolling",
 			Category:         "Object User",
 			ShortDescription: `Configure FSSO active directory servers for polling mode.`,
 			Description:      ``,
@@ -27250,7 +30009,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_group",
+			Type:             "fortimanager_object_user_group",
 			Category:         "Object User",
 			ShortDescription: `Configure user groups.`,
 			Description:      ``,
@@ -27718,7 +30477,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_krbkeytab",
+			Type:             "fortimanager_object_user_json",
+			Category:         "No Category",
+			ShortDescription: `ObjectUser Json`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"user",
+				"json",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectUser Json can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_user_json.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectUser Json can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_user_json.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_user_krbkeytab",
 			Category:         "Object User",
 			ShortDescription: `Configure Kerberos keytab entries.`,
 			Description:      ``,
@@ -27774,7 +30575,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_ldap",
+			Type:             "fortimanager_object_user_ldap",
 			Category:         "Object User",
 			ShortDescription: `Configure LDAP server entries.`,
 			Description:      ``,
@@ -27807,6 +30608,14 @@ var (
 				resource.Attribute{
 					Name:        "ca_cert",
 					Description: `CA certificate name.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `Client certificate name.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert_auth",
+					Description: `Enable/disable using client certificate for TLS authentication. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cnid",
@@ -27921,6 +30730,10 @@ var (
 					Description: `Authentication method by FortiToken Cloud. Valid values: ` + "`" + `fortitoken` + "`" + `, ` + "`" + `email` + "`" + `, ` + "`" + `sms` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "two_factor_filter",
+					Description: `Filter used to synchronize users to FortiToken Cloud.`,
+				},
+				resource.Attribute{
 					Name:        "two_factor_notification",
 					Description: `Notification method for user activation by FortiToken Cloud. Valid values: ` + "`" + `email` + "`" + `, ` + "`" + `sms` + "`" + `.`,
 				},
@@ -27963,6 +30776,14 @@ var (
 				resource.Attribute{
 					Name:        "ca_cert",
 					Description: `CA certificate name.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert",
+					Description: `Client-Cert.`,
+				},
+				resource.Attribute{
+					Name:        "client_cert_auth",
+					Description: `Client-Cert-Auth. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cnid",
@@ -28085,6 +30906,10 @@ var (
 					Description: `Authentication method by FortiToken Cloud. Valid values: ` + "`" + `fortitoken` + "`" + `, ` + "`" + `email` + "`" + `, ` + "`" + `sms` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "two_factor_filter",
+					Description: `Filter used to synchronize users to FortiToken Cloud.`,
+				},
+				resource.Attribute{
 					Name:        "two_factor_notification",
 					Description: `Notification method for user activation by FortiToken Cloud. Valid values: ` + "`" + `email` + "`" + `, ` + "`" + `sms` + "`" + `.`,
 				},
@@ -28122,7 +30947,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_local",
+			Type:             "fortimanager_object_user_local",
 			Category:         "Object User",
 			ShortDescription: `Configure local users.`,
 			Description:      ``,
@@ -28258,7 +31083,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_nsx",
+			Type:             "fortimanager_object_user_nsx",
 			Category:         "Object User",
 			ShortDescription: `ObjectUser Nsx`,
 			Description:      ``,
@@ -28289,6 +31114,10 @@ var (
 					Description: `Fmguser.`,
 				},
 				resource.Attribute{
+					Name:        "if_allgroup",
+					Description: `If-Allgroup. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Name.`,
 				},
@@ -28301,8 +31130,20 @@ var (
 					Description: `Server.`,
 				},
 				resource.Attribute{
+					Name:        "service",
+					Description: `Service. The structure of ` + "`" + `service` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "service_id",
 					Description: `Service-Id.`,
+				},
+				resource.Attribute{
+					Name:        "service_manager_id",
+					Description: `Service-Manager-Id.`,
+				},
+				resource.Attribute{
+					Name:        "service_manager_rev",
+					Description: `Service-Manager-Rev.`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -28310,7 +31151,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `User. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `User.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `service` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id.`,
+				},
+				resource.Attribute{
+					Name:        "integration",
+					Description: `Integration. Valid values: ` + "`" + `east-west` + "`" + `, ` + "`" + `north-south` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "ref_id",
+					Description: `Ref-Id. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -28326,7 +31187,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_passwordpolicy",
+			Type:             "fortimanager_object_user_passwordpolicy",
 			Category:         "Object User",
 			ShortDescription: `Configure user password policy.`,
 			Description:      ``,
@@ -28374,7 +31235,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_peer",
+			Type:             "fortimanager_object_user_peer",
 			Category:         "Object User",
 			ShortDescription: `Configure peer users.`,
 			Description:      ``,
@@ -28458,7 +31319,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_peergrp",
+			Type:             "fortimanager_object_user_peergrp",
 			Category:         "Object User",
 			ShortDescription: `Configure peer groups.`,
 			Description:      ``,
@@ -28498,7 +31359,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_pop3",
+			Type:             "fortimanager_object_user_pop3",
 			Category:         "Object User",
 			ShortDescription: `POP3 server entry configuration.`,
 			Description:      ``,
@@ -28550,7 +31411,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_pxgrid",
+			Type:             "fortimanager_object_user_pxgrid",
 			Category:         "Object User",
 			ShortDescription: `ObjectUser Pxgrid`,
 			Description:      ``,
@@ -28602,7 +31463,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_radius",
+			Type:             "fortimanager_object_user_radius",
 			Category:         "Object User",
 			ShortDescription: `Configure RADIUS server entries.`,
 			Description:      ``,
@@ -28645,6 +31506,10 @@ var (
 					Description: `Class attribute name(s).`,
 				},
 				resource.Attribute{
+					Name:        "delimiter",
+					Description: `Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: ` + "`" + `plus` + "`" + `, ` + "`" + `comma` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "dynamic_mapping",
 					Description: `Dynamic_Mapping. The structure of ` + "`" + `dynamic_mapping` + "`" + ` block is documented below.`,
 				},
@@ -28663,6 +31528,18 @@ var (
 				resource.Attribute{
 					Name:        "interface_select_method",
 					Description: `Specify how to select outgoing interface to reach server. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `sdwan` + "`" + `, ` + "`" + `specify` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mac_case",
+					Description: `MAC authentication case (default = lowercase). Valid values: ` + "`" + `uppercase` + "`" + `, ` + "`" + `lowercase` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mac_password_delimiter",
+					Description: `MAC authentication password delimiter (default = hyphen). Valid values: ` + "`" + `hyphen` + "`" + `, ` + "`" + `single-hyphen` + "`" + `, ` + "`" + `colon` + "`" + `, ` + "`" + `none` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mac_username_delimiter",
+					Description: `MAC authentication username delimiter (default = hyphen). Valid values: ` + "`" + `hyphen` + "`" + `, ` + "`" + `single-hyphen` + "`" + `, ` + "`" + `colon` + "`" + `, ` + "`" + `none` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -28861,6 +31738,10 @@ var (
 					Description: `Class attribute name(s).`,
 				},
 				resource.Attribute{
+					Name:        "delimiter",
+					Description: `Delimiter. Valid values: ` + "`" + `plus` + "`" + `, ` + "`" + `comma` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "dp_carrier_endpoint_attribute",
 					Description: `Dp-Carrier-Endpoint-Attribute. Valid values: ` + "`" + `User-Name` + "`" + `, ` + "`" + `User-Password` + "`" + `, ` + "`" + `CHAP-Password` + "`" + `, ` + "`" + `NAS-IP-Address` + "`" + `, ` + "`" + `NAS-Port` + "`" + `, ` + "`" + `Service-Type` + "`" + `, ` + "`" + `Framed-Protocol` + "`" + `, ` + "`" + `Framed-IP-Address` + "`" + `, ` + "`" + `Framed-IP-Netmask` + "`" + `, ` + "`" + `Framed-Routing` + "`" + `, ` + "`" + `Filter-Id` + "`" + `, ` + "`" + `Framed-MTU` + "`" + `, ` + "`" + `Framed-Compression` + "`" + `, ` + "`" + `Login-IP-Host` + "`" + `, ` + "`" + `Login-Service` + "`" + `, ` + "`" + `Login-TCP-Port` + "`" + `, ` + "`" + `Reply-Message` + "`" + `, ` + "`" + `Callback-Number` + "`" + `, ` + "`" + `Callback-Id` + "`" + `, ` + "`" + `Framed-Route` + "`" + `, ` + "`" + `Framed-IPX-Network` + "`" + `, ` + "`" + `State` + "`" + `, ` + "`" + `Class` + "`" + `, ` + "`" + `Vendor-Specific` + "`" + `, ` + "`" + `Session-Timeout` + "`" + `, ` + "`" + `Idle-Timeout` + "`" + `, ` + "`" + `Termination-Action` + "`" + `, ` + "`" + `Called-Station-Id` + "`" + `, ` + "`" + `Calling-Station-Id` + "`" + `, ` + "`" + `NAS-Identifier` + "`" + `, ` + "`" + `Proxy-State` + "`" + `, ` + "`" + `Login-LAT-Service` + "`" + `, ` + "`" + `Login-LAT-Node` + "`" + `, ` + "`" + `Login-LAT-Group` + "`" + `, ` + "`" + `Framed-AppleTalk-Link` + "`" + `, ` + "`" + `Framed-AppleTalk-Network` + "`" + `, ` + "`" + `Framed-AppleTalk-Zone` + "`" + `, ` + "`" + `Acct-Status-Type` + "`" + `, ` + "`" + `Acct-Delay-Time` + "`" + `, ` + "`" + `Acct-Input-Octets` + "`" + `, ` + "`" + `Acct-Output-Octets` + "`" + `, ` + "`" + `Acct-Session-Id` + "`" + `, ` + "`" + `Acct-Authentic` + "`" + `, ` + "`" + `Acct-Session-Time` + "`" + `, ` + "`" + `Acct-Input-Packets` + "`" + `, ` + "`" + `Acct-Output-Packets` + "`" + `, ` + "`" + `Acct-Terminate-Cause` + "`" + `, ` + "`" + `Acct-Multi-Session-Id` + "`" + `, ` + "`" + `Acct-Link-Count` + "`" + `, ` + "`" + `CHAP-Challenge` + "`" + `, ` + "`" + `NAS-Port-Type` + "`" + `, ` + "`" + `Port-Limit` + "`" + `, ` + "`" + `Login-LAT-Port` + "`" + `.`,
 				},
@@ -29003,6 +31884,18 @@ var (
 				resource.Attribute{
 					Name:        "interface_select_method",
 					Description: `Specify how to select outgoing interface to reach server. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `sdwan` + "`" + `, ` + "`" + `specify` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mac_case",
+					Description: `MAC authentication case (default = lowercase). Valid values: ` + "`" + `uppercase` + "`" + `, ` + "`" + `lowercase` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mac_password_delimiter",
+					Description: `MAC authentication password delimiter (default = hyphen). Valid values: ` + "`" + `hyphen` + "`" + `, ` + "`" + `single-hyphen` + "`" + `, ` + "`" + `colon` + "`" + `, ` + "`" + `none` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mac_username_delimiter",
+					Description: `MAC authentication username delimiter (default = hyphen). Valid values: ` + "`" + `hyphen` + "`" + `, ` + "`" + `single-hyphen` + "`" + `, ` + "`" + `colon` + "`" + `, ` + "`" + `none` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "nas_ip",
@@ -29190,7 +32083,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_saml",
+			Type:             "fortimanager_object_user_saml",
 			Category:         "Object User",
 			ShortDescription: `SAML server entry configuration.`,
 			Description:      ``,
@@ -29213,6 +32106,10 @@ var (
 					Description: `Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "auth_url",
+					Description: `URL to verify authentication.`,
+				},
+				resource.Attribute{
 					Name:        "cert",
 					Description: `Certificate to sign SAML messages.`,
 				},
@@ -29223,6 +32120,10 @@ var (
 				resource.Attribute{
 					Name:        "digest_method",
 					Description: `Digest Method Algorithm. (default = sha1). Valid values: ` + "`" + `sha1` + "`" + `, ` + "`" + `sha256` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_mapping",
+					Description: `Dynamic_Mapping. The structure of ` + "`" + `dynamic_mapping` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "entity_id",
@@ -29274,7 +32175,91 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_name",
-					Description: `User name in assertion statement. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `User name in assertion statement.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `dynamic_mapping` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "_scope",
+					Description: `_Scope. The structure of ` + "`" + `_scope` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "adfs_claim",
+					Description: `Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auth_url",
+					Description: `URL to verify authentication.`,
+				},
+				resource.Attribute{
+					Name:        "cert",
+					Description: `Certificate to sign SAML messages.`,
+				},
+				resource.Attribute{
+					Name:        "clock_tolerance",
+					Description: `Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).`,
+				},
+				resource.Attribute{
+					Name:        "digest_method",
+					Description: `Digest method algorithm (default = sha1). Valid values: ` + "`" + `sha1` + "`" + `, ` + "`" + `sha256` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `SP entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "group_claim_type",
+					Description: `Group claim in assertion statement. Valid values: ` + "`" + `email` + "`" + `, ` + "`" + `given-name` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `upn` + "`" + `, ` + "`" + `common-name` + "`" + `, ` + "`" + `email-adfs-1x` + "`" + `, ` + "`" + `group` + "`" + `, ` + "`" + `upn-adfs-1x` + "`" + `, ` + "`" + `role` + "`" + `, ` + "`" + `sur-name` + "`" + `, ` + "`" + `ppid` + "`" + `, ` + "`" + `name-identifier` + "`" + `, ` + "`" + `authentication-method` + "`" + `, ` + "`" + `deny-only-group-sid` + "`" + `, ` + "`" + `deny-only-primary-sid` + "`" + `, ` + "`" + `deny-only-primary-group-sid` + "`" + `, ` + "`" + `group-sid` + "`" + `, ` + "`" + `primary-group-sid` + "`" + `, ` + "`" + `primary-sid` + "`" + `, ` + "`" + `windows-account-name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `Group name in assertion statement.`,
+				},
+				resource.Attribute{
+					Name:        "idp_cert",
+					Description: `IDP Certificate name.`,
+				},
+				resource.Attribute{
+					Name:        "idp_entity_id",
+					Description: `IDP entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "idp_single_logout_url",
+					Description: `IDP single logout url.`,
+				},
+				resource.Attribute{
+					Name:        "idp_single_sign_on_url",
+					Description: `IDP single sign-on URL.`,
+				},
+				resource.Attribute{
+					Name:        "limit_relaystate",
+					Description: `Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "single_logout_url",
+					Description: `SP single logout URL.`,
+				},
+				resource.Attribute{
+					Name:        "single_sign_on_url",
+					Description: `SP single sign-on URL.`,
+				},
+				resource.Attribute{
+					Name:        "user_claim_type",
+					Description: `User name claim in assertion statement. Valid values: ` + "`" + `email` + "`" + `, ` + "`" + `given-name` + "`" + `, ` + "`" + `name` + "`" + `, ` + "`" + `upn` + "`" + `, ` + "`" + `common-name` + "`" + `, ` + "`" + `email-adfs-1x` + "`" + `, ` + "`" + `group` + "`" + `, ` + "`" + `upn-adfs-1x` + "`" + `, ` + "`" + `role` + "`" + `, ` + "`" + `sur-name` + "`" + `, ` + "`" + `ppid` + "`" + `, ` + "`" + `name-identifier` + "`" + `, ` + "`" + `authentication-method` + "`" + `, ` + "`" + `deny-only-group-sid` + "`" + `, ` + "`" + `deny-only-primary-sid` + "`" + `, ` + "`" + `deny-only-primary-group-sid` + "`" + `, ` + "`" + `group-sid` + "`" + `, ` + "`" + `primary-group-sid` + "`" + `, ` + "`" + `primary-sid` + "`" + `, ` + "`" + `windows-account-name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `User name in assertion statement. The ` + "`" + `_scope` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "vdom",
+					Description: `Vdom. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -29290,7 +32275,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_securityexemptlist",
+			Type:             "fortimanager_object_user_securityexemptlist",
 			Category:         "Object User",
 			ShortDescription: `Configure security exemption list.`,
 			Description:      ``,
@@ -29358,7 +32343,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_tacacs",
+			Type:             "fortimanager_object_user_tacacs",
 			Category:         "Object User",
 			ShortDescription: `Configure TACACS+ server entries.`,
 			Description:      ``,
@@ -29510,7 +32495,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_user_vcenter",
+			Type:             "fortimanager_object_user_vcenter",
 			Category:         "Object User",
 			ShortDescription: `ObjectUser Vcenter`,
 			Description:      ``,
@@ -29582,7 +32567,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_videofilter_profile",
+			Type:             "fortimanager_object_videofilter_profile",
 			Category:         "Object Others",
 			ShortDescription: `Configure VideoFilter profile.`,
 			Description:      ``,
@@ -29675,7 +32660,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_videofilter_youtubechannelfilter",
+			Type:             "fortimanager_object_videofilter_youtubechannelfilter",
 			Category:         "Object Others",
 			ShortDescription: `Configure YouTube channel filter.`,
 			Description:      ``,
@@ -29719,6 +32704,10 @@ var (
 					Description: `Name.`,
 				},
 				resource.Attribute{
+					Name:        "override_category",
+					Description: `Enable/disable overriding category filtering result. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "dynamic_sort_subtable",
 					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `entries` + "`" + ` block supports:`,
 				},
@@ -29752,7 +32741,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_voip_profile",
+			Type:             "fortimanager_object_voip_profile",
 			Category:         "Object Others",
 			ShortDescription: `Configure VoIP profiles.`,
 			Description:      ``,
@@ -30301,7 +33290,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpn_certificate_ca",
+			Type:             "fortimanager_object_vpn_certificate_ca",
 			Category:         "Object VPN",
 			ShortDescription: `CA certificate.`,
 			Description:      ``,
@@ -30349,6 +33338,10 @@ var (
 					Description: `Name.`,
 				},
 				resource.Attribute{
+					Name:        "obsolete",
+					Description: `Enable/disable this CA as obsoleted. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "range",
 					Description: `Either global or VDOM IP address range for the CA certificate. Valid values: ` + "`" + `global` + "`" + `, ` + "`" + `vdom` + "`" + `.`,
 				},
@@ -30386,7 +33379,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpn_certificate_ocspserver",
+			Type:             "fortimanager_object_vpn_certificate_ocspserver",
 			Category:         "Object VPN",
 			ShortDescription: `OCSP server configuration.`,
 			Description:      ``,
@@ -30447,7 +33440,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpn_certificate_remote",
+			Type:             "fortimanager_object_vpn_certificate_remote",
 			Category:         "Object VPN",
 			ShortDescription: `Remote certificate as a PEM file.`,
 			Description:      ``,
@@ -30496,7 +33489,86 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpn_ssl_web_hostchecksoftware",
+			Type:             "fortimanager_object_vpn_ipsec_fec",
+			Category:         "No Category",
+			ShortDescription: `Configure Forward Error Correction (FEC) mapping profiles.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"vpn",
+				"ipsec",
+				"fec",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "mappings",
+					Description: `Mappings. The structure of ` + "`" + `mappings` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Profile name.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `mappings` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_bi_threshold",
+					Description: `Apply FEC parameters when available bi-bandwidth is &gt;= threshold (kbps, 0 means no threshold).`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_down_threshold",
+					Description: `Apply FEC parameters when available down bandwidth is &gt;= threshold (kbps, 0 means no threshold).`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_up_threshold",
+					Description: `Apply FEC parameters when available up bandwidth is &gt;= threshold (kbps, 0 means no threshold).`,
+				},
+				resource.Attribute{
+					Name:        "base",
+					Description: `Number of base FEC packets (1 - 20).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Apply FEC parameters when latency is &lt;= threshold (0 means no threshold).`,
+				},
+				resource.Attribute{
+					Name:        "packet_loss_threshold",
+					Description: `Apply FEC parameters when packet loss is &gt;= threshold (0 - 100, 0 means no threshold).`,
+				},
+				resource.Attribute{
+					Name:        "redundant",
+					Description: `Number of redundant FEC packets (1 - 5).`,
+				},
+				resource.Attribute{
+					Name:        "seqno",
+					Description: `Sequence number (1 - 64). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectVpn IpsecFec can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_vpn_ipsec_fec.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectVpn IpsecFec can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_vpn_ipsec_fec.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_vpn_ssl_web_hostchecksoftware",
 			Category:         "Object VPN",
 			ShortDescription: `SSL-VPN host check software.`,
 			Description:      ``,
@@ -30582,7 +33654,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpn_ssl_web_portal",
+			Type:             "fortimanager_object_vpn_ssl_web_portal",
 			Category:         "Object VPN",
 			ShortDescription: `Portal.`,
 			Description:      ``,
@@ -30625,6 +33697,18 @@ var (
 				resource.Attribute{
 					Name:        "customize_forticlient_download_url",
 					Description: `Enable support of customized download URL for FortiClient. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_window_height",
+					Description: `Screen height (range from 0 - 65535, default = 768).`,
+				},
+				resource.Attribute{
+					Name:        "default_window_width",
+					Description: `Screen width (range from 0 - 65535, default = 1024).`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_ip_overlap",
+					Description: `Configure overlapping DHCP IP allocation assignment. Valid values: ` + "`" + `use-old` + "`" + `, ` + "`" + `use-new` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "display_bookmark",
@@ -31088,7 +34172,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpn_ssl_web_realm",
+			Type:             "fortimanager_object_vpn_ssl_web_realm",
 			Category:         "Object VPN",
 			ShortDescription: `Realm.`,
 			Description:      ``,
@@ -31158,7 +34242,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_vpnmgr_node",
+			Type:             "fortimanager_object_vpnmgr_node",
 			Category:         "Object VPN",
 			ShortDescription: `VPN node for VPN Manager. Must specify vpntable and scope member.`,
 			Description:      ``,
@@ -31220,6 +34304,10 @@ var (
 				resource.Attribute{
 					Name:        "default_gateway",
 					Description: `Default-Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_ra_giaddr",
+					Description: `Dhcp-Ra-Giaddr.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_server",
@@ -31304,6 +34392,10 @@ var (
 				resource.Attribute{
 					Name:        "ipv4_exclude_range",
 					Description: `Ipv4-Exclude-Range. The structure of ` + "`" + `ipv4_exclude_range` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_name",
+					Description: `Ipv4-Name.`,
 				},
 				resource.Attribute{
 					Name:        "ipv4_netmask",
@@ -31491,7 +34583,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_waf_mainclass",
+			Type:             "fortimanager_object_waf_mainclass",
 			Category:         "Object WAF",
 			ShortDescription: `Hidden table for datasource.`,
 			Description:      ``,
@@ -31531,7 +34623,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_waf_profile",
+			Type:             "fortimanager_object_waf_profile",
 			Category:         "Object WAF",
 			ShortDescription: `Web application firewall configuration.`,
 			Description:      ``,
@@ -32151,7 +35243,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_waf_signature",
+			Type:             "fortimanager_object_waf_signature",
 			Category:         "Object WAF",
 			ShortDescription: `Hidden table for datasource.`,
 			Description:      ``,
@@ -32191,7 +35283,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_waf_subclass",
+			Type:             "fortimanager_object_waf_subclass",
 			Category:         "Object WAF",
 			ShortDescription: `Hidden table for datasource.`,
 			Description:      ``,
@@ -32231,7 +35323,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wanopt_authgroup",
+			Type:             "fortimanager_object_wanopt_authgroup",
 			Category:         "Object WAN-Opt",
 			ShortDescription: `Configure WAN optimization authentication groups.`,
 			Description:      ``,
@@ -32289,7 +35381,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wanopt_peer",
+			Type:             "fortimanager_object_wanopt_peer",
 			Category:         "Object WAN-Opt",
 			ShortDescription: `Configure WAN optimization peers.`,
 			Description:      ``,
@@ -32331,7 +35423,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wanopt_profile",
+			Type:             "fortimanager_object_wanopt_profile",
 			Category:         "Object WAN-Opt",
 			ShortDescription: `Configure WAN optimization profiles.`,
 			Description:      ``,
@@ -32577,7 +35669,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_categories",
+			Type:             "fortimanager_object_webfilter_categories",
 			Category:         "Object Webfilter",
 			ShortDescription: `ObjectWebfilter Categories`,
 			Description:      ``,
@@ -32613,7 +35705,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_content",
+			Type:             "fortimanager_object_webfilter_content",
 			Category:         "Object Webfilter",
 			ShortDescription: `Configure Web filter banned word table.`,
 			Description:      ``,
@@ -32689,7 +35781,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_contentheader",
+			Type:             "fortimanager_object_webfilter_contentheader",
 			Category:         "Object Webfilter",
 			ShortDescription: `Configure content types used by Web filter.`,
 			Description:      ``,
@@ -32753,7 +35845,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_ftgdlocalcat",
+			Type:             "fortimanager_object_webfilter_ftgdlocalcat",
 			Category:         "Object Webfilter",
 			ShortDescription: `Configure FortiGuard Web Filter local categories.`,
 			Description:      ``,
@@ -32797,7 +35889,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_ftgdlocalrating",
+			Type:             "fortimanager_object_webfilter_ftgdlocalrating",
 			Category:         "Object Webfilter",
 			ShortDescription: `Configure local FortiGuard Web Filter local ratings.`,
 			Description:      ``,
@@ -32845,7 +35937,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_profile",
+			Type:             "fortimanager_object_webfilter_profile",
 			Category:         "Object Webfilter",
 			ShortDescription: `Configure Web filter profiles.`,
 			Description:      ``,
@@ -33373,7 +36465,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webfilter_urlfilter",
+			Type:             "fortimanager_object_webfilter_urlfilter",
 			Category:         "Object Webfilter",
 			ShortDescription: `Configure URL filter lists.`,
 			Description:      ``,
@@ -33473,7 +36565,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webproxy_forwardserver",
+			Type:             "fortimanager_object_webproxy_forwardserver",
 			Category:         "Object Web-Proxy",
 			ShortDescription: `Configure forward-server addresses.`,
 			Description:      ``,
@@ -33551,7 +36643,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webproxy_forwardservergroup",
+			Type:             "fortimanager_object_webproxy_forwardservergroup",
 			Category:         "Object Web-Proxy",
 			ShortDescription: `Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.`,
 			Description:      ``,
@@ -33617,7 +36709,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webproxy_profile",
+			Type:             "fortimanager_object_webproxy_profile",
 			Category:         "Object Web-Proxy",
 			ShortDescription: `Configure web proxy profiles.`,
 			Description:      ``,
@@ -33739,7 +36831,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_webproxy_wisp",
+			Type:             "fortimanager_object_webproxy_wisp",
 			Category:         "Object Web-Proxy",
 			ShortDescription: `Configure Wireless Internet service provider (WISP) servers.`,
 			Description:      ``,
@@ -33801,7 +36893,125 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_address",
+			Type:             "fortimanager_object_wirelesscontroller_accesscontrollist",
+			Category:         "No Category",
+			ShortDescription: `Configure WiFi bridge access control list.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"wirelesscontroller",
+				"accesscontrollist",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "layer3_ipv4_rules",
+					Description: `Layer3-Ipv4-Rules. The structure of ` + "`" + `layer3_ipv4_rules` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "layer3_ipv6_rules",
+					Description: `Layer3-Ipv6-Rules. The structure of ` + "`" + `layer3_ipv6_rules` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `AP access control list name.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `layer3_ipv4_rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Policy action (allow | deny). Valid values: ` + "`" + `allow` + "`" + `, ` + "`" + `deny` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr",
+					Description: `Destination IP address (any | local-LAN | IPv4 address[/&lt;network mask | mask length&gt;], default = any).`,
+				},
+				resource.Attribute{
+					Name:        "dstport",
+					Description: `Destination port (0 - 65535, default = 0, meaning any).`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol type as defined by IANA (0 - 255, default = 255, meaning any).`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Rule ID (1 - 65535).`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr",
+					Description: `Source IP address (any | local-LAN | IPv4 address[/&lt;network mask | mask length&gt;], default = any).`,
+				},
+				resource.Attribute{
+					Name:        "srcport",
+					Description: `Source port (0 - 65535, default = 0, meaning any). The ` + "`" + `layer3_ipv6_rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Policy action (allow | deny). Valid values: ` + "`" + `allow` + "`" + `, ` + "`" + `deny` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr",
+					Description: `Destination IPv6 address (any | local-LAN | IPv6 address[/prefix length]), default = any.`,
+				},
+				resource.Attribute{
+					Name:        "dstport",
+					Description: `Destination port (0 - 65535, default = 0, meaning any).`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol type as defined by IANA (0 - 255, default = 255, meaning any).`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Rule ID (1 - 65535).`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr",
+					Description: `Source IPv6 address (any | local-LAN | IPv6 address[/prefix length]), default = any.`,
+				},
+				resource.Attribute{
+					Name:        "srcport",
+					Description: `Source port (0 - 65535, default = 0, meaning any). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectWirelessController AccessControlList can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_wirelesscontroller_accesscontrollist.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectWirelessController AccessControlList can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_wirelesscontroller_accesscontrollist.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_wirelesscontroller_address",
 			Category:         "No Category",
 			ShortDescription: `Configure the client with its MAC address.`,
 			Description:      ``,
@@ -33847,7 +37057,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_addrgrp",
+			Type:             "fortimanager_object_wirelesscontroller_addrgrp",
 			Category:         "No Category",
 			ShortDescription: `Configure the MAC address group.`,
 			Description:      ``,
@@ -33893,7 +37103,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_arrpprofile",
+			Type:             "fortimanager_object_wirelesscontroller_arrpprofile",
 			Category:         "No Category",
 			ShortDescription: `Configure WiFi Automatic Radio Resource Provisioning (ARRP) profiles.`,
 			Description:      ``,
@@ -34015,7 +37225,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_bleprofile",
+			Type:             "fortimanager_object_wirelesscontroller_bleprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure Bluetooth Low Energy profile.`,
 			Description:      ``,
@@ -34101,7 +37311,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure 3GPP public land mobile network (PLMN).`,
 			Description:      ``,
@@ -34160,7 +37370,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpipaddresstype",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqpipaddresstype",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure IP address type availability.`,
 			Description:      ``,
@@ -34207,7 +37417,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure network access identifier (NAI) realm.`,
 			Description:      ``,
@@ -34294,7 +37504,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpnetworkauthtype",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqpnetworkauthtype",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure network authentication type.`,
 			Description:      ``,
@@ -34341,7 +37551,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure roaming consortium.`,
 			Description:      ``,
@@ -34400,7 +37610,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure venue name duple.`,
 			Description:      ``,
@@ -34459,7 +37669,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl",
 			Category:         "No Category",
 			ShortDescription: `Configure venue URL.`,
 			Description:      ``,
@@ -34518,7 +37728,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge",
 			Category:         "No Category",
 			ShortDescription: `Configure advice of charge.`,
 			Description:      ``,
@@ -34601,7 +37811,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure connection capability.`,
 			Description:      ``,
@@ -34684,7 +37894,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure operator friendly name.`,
 			Description:      ``,
@@ -34743,7 +37953,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure online sign up (OSU) provider list.`,
 			Description:      ``,
@@ -34834,7 +38044,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai",
 			Category:         "No Category",
 			ShortDescription: `Configure online sign up (OSU) provider NAI list.`,
 			Description:      ``,
@@ -34889,7 +38099,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions",
 			Category:         "No Category",
 			ShortDescription: `Configure terms and conditions.`,
 			Description:      ``,
@@ -34940,7 +38150,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpwanmetric",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_h2qpwanmetric",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure WAN metrics.`,
 			Description:      ``,
@@ -35011,7 +38221,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_hsprofile",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_hsprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure hotspot profile.`,
 			Description:      ``,
@@ -35198,7 +38408,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_icon",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_icon",
 			Category:         "No Category",
 			ShortDescription: `Configure OSU provider icon.`,
 			Description:      ``,
@@ -35269,7 +38479,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_hotspot20_qosmap",
+			Type:             "fortimanager_object_wirelesscontroller_hotspot20_qosmap",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure QoS map set.`,
 			Description:      ``,
@@ -35348,7 +38558,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_mpskprofile",
+			Type:             "fortimanager_object_wirelesscontroller_mpskprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure MPSK profile.`,
 			Description:      ``,
@@ -35450,7 +38660,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_nacprofile",
+			Type:             "fortimanager_object_wirelesscontroller_nacprofile",
 			Category:         "No Category",
 			ShortDescription: `Configure WiFi network access control (NAC) profiles.`,
 			Description:      ``,
@@ -35496,7 +38706,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_qosprofile",
+			Type:             "fortimanager_object_wirelesscontroller_qosprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure WiFi quality of service (QoS) profiles.`,
 			Description:      ``,
@@ -35622,7 +38832,119 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_utmprofile",
+			Type:             "fortimanager_object_wirelesscontroller_ssidpolicy",
+			Category:         "No Category",
+			ShortDescription: `Configure WiFi SSID policies.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"wirelesscontroller",
+				"ssidpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `VLAN interface name. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectWirelessController SsidPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_wirelesscontroller_ssidpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectWirelessController SsidPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_wirelesscontroller_ssidpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_wirelesscontroller_syslogprofile",
+			Category:         "No Category",
+			ShortDescription: `Configure Wireless Termination Points (WTP) system log server profile.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"object",
+				"wirelesscontroller",
+				"syslogprofile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `, ` + "`" + `global` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comment.`,
+				},
+				resource.Attribute{
+					Name:        "log_level",
+					Description: `Lowest level of log messages that FortiAP units send to this server (default = information). Valid values: ` + "`" + `emergency` + "`" + `, ` + "`" + `alert` + "`" + `, ` + "`" + `critical` + "`" + `, ` + "`" + `error` + "`" + `, ` + "`" + `warning` + "`" + `, ` + "`" + `notification` + "`" + `, ` + "`" + `information` + "`" + `, ` + "`" + `debugging` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `WTP system log server profile name.`,
+				},
+				resource.Attribute{
+					Name:        "server_addr_type",
+					Description: `Syslog server address type (default = ip). Valid values: ` + "`" + `fqdn` + "`" + `, ` + "`" + `ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server_fqdn",
+					Description: `FQDN of syslog server that FortiAP units send log messages to.`,
+				},
+				resource.Attribute{
+					Name:        "server_ip",
+					Description: `IP address of syslog server that FortiAP units send log messages to.`,
+				},
+				resource.Attribute{
+					Name:        "server_port",
+					Description: `Port number of syslog server that FortiAP units send log messages to (default = 514).`,
+				},
+				resource.Attribute{
+					Name:        "server_status",
+					Description: `Enable/disable FortiAP units to send log messages to a syslog server (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectWirelessController SyslogProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_wirelesscontroller_syslogprofile.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import ObjectWirelessController SyslogProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_object_wirelesscontroller_syslogprofile.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_object_wirelesscontroller_utmprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure UTM (Unified Threat Management) profile.`,
 			Description:      ``,
@@ -35688,7 +39010,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_vap",
+			Type:             "fortimanager_object_wirelesscontroller_vap",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure Virtual Access Points (VAPs).`,
 			Description:      ``,
@@ -35789,6 +39111,10 @@ var (
 					Description: `Address group ID.`,
 				},
 				resource.Attribute{
+					Name:        "address_group_policy",
+					Description: `Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `allow` + "`" + `, ` + "`" + `deny` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "alias",
 					Description: `Alias.`,
 				},
@@ -35797,8 +39123,20 @@ var (
 					Description: `AntiVirus profile name.`,
 				},
 				resource.Attribute{
+					Name:        "application_detection_engine",
+					Description: `Enable/disable application detection engine (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "application_dscp_marking",
+					Description: `Enable/disable application attribute based DSCP marking (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "application_list",
 					Description: `Application control list name.`,
+				},
+				resource.Attribute{
+					Name:        "application_report_intv",
+					Description: `Application report interval (30 - 864000 sec, default = 120).`,
 				},
 				resource.Attribute{
 					Name:        "atf_weight",
@@ -36007,6 +39345,14 @@ var (
 				resource.Attribute{
 					Name:        "keyindex",
 					Description: `WEP key index (1 - 4).`,
+				},
+				resource.Attribute{
+					Name:        "l3_roaming",
+					Description: `Enable/disable layer 3 roaming (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "l3_roaming_mode",
+					Description: `Select the way that layer 3 roaming traffic is passed (default = direct). Valid values: ` + "`" + `direct` + "`" + `, ` + "`" + `indirect` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ldpc",
@@ -36273,12 +39619,20 @@ var (
 					Description: `Allowed data rates for 802.11a. Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `1-basic` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `2-basic` + "`" + `, ` + "`" + `5.5` + "`" + `, ` + "`" + `5.5-basic` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `6-basic` + "`" + `, ` + "`" + `9` + "`" + `, ` + "`" + `9-basic` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `12-basic` + "`" + `, ` + "`" + `18` + "`" + `, ` + "`" + `18-basic` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `24-basic` + "`" + `, ` + "`" + `36` + "`" + `, ` + "`" + `36-basic` + "`" + `, ` + "`" + `48` + "`" + `, ` + "`" + `48-basic` + "`" + `, ` + "`" + `54` + "`" + `, ` + "`" + `54-basic` + "`" + `, ` + "`" + `11` + "`" + `, ` + "`" + `11-basic` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "rates_11ac_mcs_map",
+					Description: `Comma separated list of max supported VHT MCS for spatial streams 1 through 8.`,
+				},
+				resource.Attribute{
 					Name:        "rates_11ac_ss12",
 					Description: `Allowed data rates for 802.11ac/ax with 1 or 2 spatial streams. Valid values: ` + "`" + `mcs0/1` + "`" + `, ` + "`" + `mcs1/1` + "`" + `, ` + "`" + `mcs2/1` + "`" + `, ` + "`" + `mcs3/1` + "`" + `, ` + "`" + `mcs4/1` + "`" + `, ` + "`" + `mcs5/1` + "`" + `, ` + "`" + `mcs6/1` + "`" + `, ` + "`" + `mcs7/1` + "`" + `, ` + "`" + `mcs8/1` + "`" + `, ` + "`" + `mcs9/1` + "`" + `, ` + "`" + `mcs0/2` + "`" + `, ` + "`" + `mcs1/2` + "`" + `, ` + "`" + `mcs2/2` + "`" + `, ` + "`" + `mcs3/2` + "`" + `, ` + "`" + `mcs4/2` + "`" + `, ` + "`" + `mcs5/2` + "`" + `, ` + "`" + `mcs6/2` + "`" + `, ` + "`" + `mcs7/2` + "`" + `, ` + "`" + `mcs8/2` + "`" + `, ` + "`" + `mcs9/2` + "`" + `, ` + "`" + `mcs10/1` + "`" + `, ` + "`" + `mcs11/1` + "`" + `, ` + "`" + `mcs10/2` + "`" + `, ` + "`" + `mcs11/2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "rates_11ac_ss34",
 					Description: `Allowed data rates for 802.11ac/ax with 3 or 4 spatial streams. Valid values: ` + "`" + `mcs0/3` + "`" + `, ` + "`" + `mcs1/3` + "`" + `, ` + "`" + `mcs2/3` + "`" + `, ` + "`" + `mcs3/3` + "`" + `, ` + "`" + `mcs4/3` + "`" + `, ` + "`" + `mcs5/3` + "`" + `, ` + "`" + `mcs6/3` + "`" + `, ` + "`" + `mcs7/3` + "`" + `, ` + "`" + `mcs8/3` + "`" + `, ` + "`" + `mcs9/3` + "`" + `, ` + "`" + `mcs0/4` + "`" + `, ` + "`" + `mcs1/4` + "`" + `, ` + "`" + `mcs2/4` + "`" + `, ` + "`" + `mcs3/4` + "`" + `, ` + "`" + `mcs4/4` + "`" + `, ` + "`" + `mcs5/4` + "`" + `, ` + "`" + `mcs6/4` + "`" + `, ` + "`" + `mcs7/4` + "`" + `, ` + "`" + `mcs8/4` + "`" + `, ` + "`" + `mcs9/4` + "`" + `, ` + "`" + `mcs10/3` + "`" + `, ` + "`" + `mcs11/3` + "`" + `, ` + "`" + `mcs10/4` + "`" + `, ` + "`" + `mcs11/4` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rates_11ax_mcs_map",
+					Description: `Comma separated list of max supported HE MCS for spatial streams 1 through 8.`,
 				},
 				resource.Attribute{
 					Name:        "rates_11ax_ss12",
@@ -36305,8 +39659,20 @@ var (
 					Description: `SAE-Groups. Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `14` + "`" + `, ` + "`" + `15` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `17` + "`" + `, ` + "`" + `18` + "`" + `, ` + "`" + `19` + "`" + `, ` + "`" + `20` + "`" + `, ` + "`" + `21` + "`" + `, ` + "`" + `27` + "`" + `, ` + "`" + `28` + "`" + `, ` + "`" + `29` + "`" + `, ` + "`" + `30` + "`" + `, ` + "`" + `31` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "sae_h2e_only",
+					Description: `Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "sae_password",
 					Description: `WPA3 SAE password to be used to authenticate WiFi users.`,
+				},
+				resource.Attribute{
+					Name:        "sae_pk",
+					Description: `Enable/disable WPA3 SAE-PK (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sae_private_key",
+					Description: `Private key used for WPA3 SAE-PK authentication.`,
 				},
 				resource.Attribute{
 					Name:        "scan_botnet_connections",
@@ -36359,6 +39725,10 @@ var (
 				resource.Attribute{
 					Name:        "sticky_client_threshold_5g",
 					Description: `Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76).`,
+				},
+				resource.Attribute{
+					Name:        "sticky_client_threshold_6g",
+					Description: `Minimum signal level/threshold in dBm required for the 6G client to be serviced by the AP (-95 to -20, default = -76).`,
 				},
 				resource.Attribute{
 					Name:        "target_wake_time",
@@ -36513,6 +39883,10 @@ var (
 					Description: `Address group ID.`,
 				},
 				resource.Attribute{
+					Name:        "address_group_policy",
+					Description: `Address-Group-Policy. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `allow` + "`" + `, ` + "`" + `deny` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "alias",
 					Description: `Alias.`,
 				},
@@ -36521,8 +39895,20 @@ var (
 					Description: `AntiVirus profile name.`,
 				},
 				resource.Attribute{
+					Name:        "application_detection_engine",
+					Description: `Application-Detection-Engine. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "application_dscp_marking",
+					Description: `Enable/disable application attribute based DSCP marking (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "application_list",
 					Description: `Application control list name.`,
+				},
+				resource.Attribute{
+					Name:        "application_report_intv",
+					Description: `Application-Report-Intv.`,
 				},
 				resource.Attribute{
 					Name:        "atf_weight",
@@ -36731,6 +40117,14 @@ var (
 				resource.Attribute{
 					Name:        "keyindex",
 					Description: `WEP key index (1 - 4).`,
+				},
+				resource.Attribute{
+					Name:        "l3_roaming",
+					Description: `L3-Roaming. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "l3_roaming_mode",
+					Description: `Select the way that layer 3 roaming traffic is passed (default = direct). Valid values: ` + "`" + `direct` + "`" + `, ` + "`" + `indirect` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ldpc",
@@ -36985,12 +40379,20 @@ var (
 					Description: `Allowed data rates for 802.11a. Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `1-basic` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `2-basic` + "`" + `, ` + "`" + `5.5` + "`" + `, ` + "`" + `5.5-basic` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `6-basic` + "`" + `, ` + "`" + `9` + "`" + `, ` + "`" + `9-basic` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `12-basic` + "`" + `, ` + "`" + `18` + "`" + `, ` + "`" + `18-basic` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `24-basic` + "`" + `, ` + "`" + `36` + "`" + `, ` + "`" + `36-basic` + "`" + `, ` + "`" + `48` + "`" + `, ` + "`" + `48-basic` + "`" + `, ` + "`" + `54` + "`" + `, ` + "`" + `54-basic` + "`" + `, ` + "`" + `11` + "`" + `, ` + "`" + `11-basic` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "rates_11ac_mcs_map",
+					Description: `Comma separated list of max supported VHT MCS for spatial streams 1 through 8.`,
+				},
+				resource.Attribute{
 					Name:        "rates_11ac_ss12",
 					Description: `Allowed data rates for 802.11ac/ax with 1 or 2 spatial streams. Valid values: ` + "`" + `mcs0/1` + "`" + `, ` + "`" + `mcs1/1` + "`" + `, ` + "`" + `mcs2/1` + "`" + `, ` + "`" + `mcs3/1` + "`" + `, ` + "`" + `mcs4/1` + "`" + `, ` + "`" + `mcs5/1` + "`" + `, ` + "`" + `mcs6/1` + "`" + `, ` + "`" + `mcs7/1` + "`" + `, ` + "`" + `mcs8/1` + "`" + `, ` + "`" + `mcs9/1` + "`" + `, ` + "`" + `mcs0/2` + "`" + `, ` + "`" + `mcs1/2` + "`" + `, ` + "`" + `mcs2/2` + "`" + `, ` + "`" + `mcs3/2` + "`" + `, ` + "`" + `mcs4/2` + "`" + `, ` + "`" + `mcs5/2` + "`" + `, ` + "`" + `mcs6/2` + "`" + `, ` + "`" + `mcs7/2` + "`" + `, ` + "`" + `mcs8/2` + "`" + `, ` + "`" + `mcs9/2` + "`" + `, ` + "`" + `mcs10/1` + "`" + `, ` + "`" + `mcs11/1` + "`" + `, ` + "`" + `mcs10/2` + "`" + `, ` + "`" + `mcs11/2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "rates_11ac_ss34",
 					Description: `Allowed data rates for 802.11ac/ax with 3 or 4 spatial streams. Valid values: ` + "`" + `mcs0/3` + "`" + `, ` + "`" + `mcs1/3` + "`" + `, ` + "`" + `mcs2/3` + "`" + `, ` + "`" + `mcs3/3` + "`" + `, ` + "`" + `mcs4/3` + "`" + `, ` + "`" + `mcs5/3` + "`" + `, ` + "`" + `mcs6/3` + "`" + `, ` + "`" + `mcs7/3` + "`" + `, ` + "`" + `mcs8/3` + "`" + `, ` + "`" + `mcs9/3` + "`" + `, ` + "`" + `mcs0/4` + "`" + `, ` + "`" + `mcs1/4` + "`" + `, ` + "`" + `mcs2/4` + "`" + `, ` + "`" + `mcs3/4` + "`" + `, ` + "`" + `mcs4/4` + "`" + `, ` + "`" + `mcs5/4` + "`" + `, ` + "`" + `mcs6/4` + "`" + `, ` + "`" + `mcs7/4` + "`" + `, ` + "`" + `mcs8/4` + "`" + `, ` + "`" + `mcs9/4` + "`" + `, ` + "`" + `mcs10/3` + "`" + `, ` + "`" + `mcs11/3` + "`" + `, ` + "`" + `mcs10/4` + "`" + `, ` + "`" + `mcs11/4` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rates_11ax_mcs_map",
+					Description: `Comma separated list of max supported HE MCS for spatial streams 1 through 8.`,
 				},
 				resource.Attribute{
 					Name:        "rates_11ax_ss12",
@@ -37017,8 +40419,20 @@ var (
 					Description: `SAE-Groups. Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `14` + "`" + `, ` + "`" + `15` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `17` + "`" + `, ` + "`" + `18` + "`" + `, ` + "`" + `19` + "`" + `, ` + "`" + `20` + "`" + `, ` + "`" + `21` + "`" + `, ` + "`" + `27` + "`" + `, ` + "`" + `28` + "`" + `, ` + "`" + `29` + "`" + `, ` + "`" + `30` + "`" + `, ` + "`" + `31` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "sae_h2e_only",
+					Description: `Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "sae_password",
 					Description: `WPA3 SAE password to be used to authenticate WiFi users.`,
+				},
+				resource.Attribute{
+					Name:        "sae_pk",
+					Description: `Enable/disable WPA3 SAE-PK (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sae_private_key",
+					Description: `Private key used for WPA3 SAE-PK authentication.`,
 				},
 				resource.Attribute{
 					Name:        "scan_botnet_connections",
@@ -37071,6 +40485,10 @@ var (
 				resource.Attribute{
 					Name:        "sticky_client_threshold_5g",
 					Description: `Sticky-Client-Threshold-5G.`,
+				},
+				resource.Attribute{
+					Name:        "sticky_client_threshold_6g",
+					Description: `Minimum signal level/threshold in dBm required for the 6G client to be serviced by the AP (-95 to -20, default = -76).`,
 				},
 				resource.Attribute{
 					Name:        "target_wake_time",
@@ -37214,7 +40632,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_vapgroup",
+			Type:             "fortimanager_object_wirelesscontroller_vapgroup",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure virtual Access Point (VAP) groups.`,
 			Description:      ``,
@@ -37260,7 +40678,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_wagprofile",
+			Type:             "fortimanager_object_wirelesscontroller_wagprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure wireless access gateway (WAG) profiles used for tunnels on AP.`,
 			Description:      ``,
@@ -37330,7 +40748,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_widsprofile",
+			Type:             "fortimanager_object_wirelesscontroller_widsprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure wireless intrusion detection system (WIDS) profiles.`,
 			Description:      ``,
@@ -37568,7 +40986,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_object_wirelesscontroller_wtpprofile",
+			Type:             "fortimanager_object_wirelesscontroller_wtpprofile",
 			Category:         "Object Wireless-Controller",
 			ShortDescription: `Configure WTP profiles or FortiAP profiles that define radio settings for manageable FortiAP platforms.`,
 			Description:      ``,
@@ -38025,6 +41443,10 @@ var (
 					Description: `WTP, FortiAP or AP platform type. There are built-in WTP profiles for all supported FortiAP models. You can select a built-in profile and customize it or create a new profile. Valid values: ` + "`" + `30B-50B` + "`" + `, ` + "`" + `60B` + "`" + `, ` + "`" + `80CM-81CM` + "`" + `, ` + "`" + `220A` + "`" + `, ` + "`" + `220B` + "`" + `, ` + "`" + `210B` + "`" + `, ` + "`" + `60C` + "`" + `, ` + "`" + `222B` + "`" + `, ` + "`" + `112B` + "`" + `, ` + "`" + `320B` + "`" + `, ` + "`" + `11C` + "`" + `, ` + "`" + `14C` + "`" + `, ` + "`" + `223B` + "`" + `, ` + "`" + `28C` + "`" + `, ` + "`" + `320C` + "`" + `, ` + "`" + `221C` + "`" + `, ` + "`" + `25D` + "`" + `, ` + "`" + `222C` + "`" + `, ` + "`" + `224D` + "`" + `, ` + "`" + `214B` + "`" + `, ` + "`" + `21D` + "`" + `, ` + "`" + `24D` + "`" + `, ` + "`" + `112D` + "`" + `, ` + "`" + `223C` + "`" + `, ` + "`" + `321C` + "`" + `, ` + "`" + `C220C` + "`" + `, ` + "`" + `C225C` + "`" + `, ` + "`" + `S321C` + "`" + `, ` + "`" + `S323C` + "`" + `, ` + "`" + `FWF` + "`" + `, ` + "`" + `S311C` + "`" + `, ` + "`" + `S313C` + "`" + `, ` + "`" + `AP-11N` + "`" + `, ` + "`" + `S322C` + "`" + `, ` + "`" + `S321CR` + "`" + `, ` + "`" + `S322CR` + "`" + `, ` + "`" + `S323CR` + "`" + `, ` + "`" + `S421E` + "`" + `, ` + "`" + `S422E` + "`" + `, ` + "`" + `S423E` + "`" + `, ` + "`" + `421E` + "`" + `, ` + "`" + `423E` + "`" + `, ` + "`" + `C221E` + "`" + `, ` + "`" + `C226E` + "`" + `, ` + "`" + `C23JD` + "`" + `, ` + "`" + `C24JE` + "`" + `, ` + "`" + `C21D` + "`" + `, ` + "`" + `U421E` + "`" + `, ` + "`" + `U423E` + "`" + `, ` + "`" + `221E` + "`" + `, ` + "`" + `222E` + "`" + `, ` + "`" + `223E` + "`" + `, ` + "`" + `S221E` + "`" + `, ` + "`" + `S223E` + "`" + `, ` + "`" + `U221EV` + "`" + `, ` + "`" + `U223EV` + "`" + `, ` + "`" + `U321EV` + "`" + `, ` + "`" + `U323EV` + "`" + `, ` + "`" + `224E` + "`" + `, ` + "`" + `U422EV` + "`" + `, ` + "`" + `U24JEV` + "`" + `, ` + "`" + `321E` + "`" + `, ` + "`" + `U431F` + "`" + `, ` + "`" + `U433F` + "`" + `, ` + "`" + `231E` + "`" + `, ` + "`" + `431F` + "`" + `, ` + "`" + `433F` + "`" + `, ` + "`" + `231F` + "`" + `, ` + "`" + `432F` + "`" + `, ` + "`" + `234F` + "`" + `, ` + "`" + `23JF` + "`" + `, ` + "`" + `U231F` + "`" + `, ` + "`" + `831F` + "`" + `, ` + "`" + `U234F` + "`" + `, ` + "`" + `U432F` + "`" + `. The ` + "`" + `radio_1` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "n80211d",
+					Description: `Enable/disable 802.11d countryie(default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "airtime_fairness",
 					Description: `Enable/disable airtime fairness (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -38343,6 +41765,10 @@ var (
 				resource.Attribute{
 					Name:        "zero_wait_dfs",
 					Description: `Enable/disable zero wait DFS on radio (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `radio_2` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "n80211d",
+					Description: `Enable/disable 802.11d countryie(default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "airtime_fairness",
@@ -38665,6 +42091,10 @@ var (
 					Description: `Enable/disable zero wait DFS on radio (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `radio_3` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
+					Name:        "n80211d",
+					Description: `Enable/disable 802.11d countryie(default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "airtime_fairness",
 					Description: `Enable/disable airtime fairness (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -38983,6 +42413,10 @@ var (
 				resource.Attribute{
 					Name:        "zero_wait_dfs",
 					Description: `Enable/disable zero wait DFS on radio (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `radio_4` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "n80211d",
+					Description: `Enable/disable 802.11d countryie(default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "airtime_fairness",
@@ -39326,7 +42760,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_authentication_rule",
+			Type:             "fortimanager_packages_authentication_rule",
 			Category:         "Packages Authentication",
 			ShortDescription: `Configure Authentication Rules.`,
 			Description:      ``,
@@ -39422,7 +42856,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_authentication_setting",
+			Type:             "fortimanager_packages_authentication_setting",
 			Category:         "Packages Authentication",
 			ShortDescription: `Configure authentication setting.`,
 			Description:      ``,
@@ -39497,8 +42931,24 @@ var (
 					Description: `Certificate captive portal port number (1 - 65535, default = 7832).`,
 				},
 				resource.Attribute{
+					Name:        "cookie_max_age",
+					Description: `Persistent web portal cookie maximum age in minutes (30 - 10080 (1 week), default = 480 (8 hours)).`,
+				},
+				resource.Attribute{
+					Name:        "cookie_refresh_div",
+					Description: `Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.`,
+				},
+				resource.Attribute{
 					Name:        "dev_range",
 					Description: `Address range for the IP based device query.`,
+				},
+				resource.Attribute{
+					Name:        "ip_auth_cookie",
+					Description: `Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "persistent_cookie",
+					Description: `Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "rewrite_https_port",
@@ -39507,6 +42957,10 @@ var (
 				resource.Attribute{
 					Name:        "sso_auth_scheme",
 					Description: `Single-Sign-On authentication method (scheme name).`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Time of the last update.`,
 				},
 				resource.Attribute{
 					Name:        "user_cert_ca",
@@ -39526,7 +42980,273 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_centralsnatmap",
+			Type:             "fortimanager_packages_firewall_acl",
+			Category:         "No Category",
+			ShortDescription: `Configure IPv4 access control list.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"packages",
+				"firewall",
+				"acl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Package.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comment.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr",
+					Description: `Destination address name.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Policy name.`,
+				},
+				resource.Attribute{
+					Name:        "policyid",
+					Description: `Policy ID.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service name.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr",
+					Description: `Source address name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable access control list status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Universally Unique Identifier (UUID; automatically assigned but can be manually reset). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}. ## Import Packages FirewallAcl can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["pkg=mypkg"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_packages_firewall_acl.labelname {{policyid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}. ## Import Packages FirewallAcl can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["pkg=mypkg"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_packages_firewall_acl.labelname {{policyid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_packages_firewall_acl6",
+			Category:         "No Category",
+			ShortDescription: `Configure IPv6 access control list.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"packages",
+				"firewall",
+				"acl6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Package.`,
+				},
+				resource.Attribute{
+					Name:        "comments",
+					Description: `Comment.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr",
+					Description: `Destination address name.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Policy name.`,
+				},
+				resource.Attribute{
+					Name:        "policyid",
+					Description: `Policy ID.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service name.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr",
+					Description: `Source address name.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable access control list status. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `Universally Unique Identifier (UUID; automatically assigned but can be manually reset). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}. ## Import Packages FirewallAcl6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["pkg=mypkg"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_packages_firewall_acl6.labelname {{policyid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}. ## Import Packages FirewallAcl6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["pkg=mypkg"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_packages_firewall_acl6.labelname {{policyid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_packages_firewall_acl6_move",
+			Category:         "No Category",
+			ShortDescription: `Move IPv6 access control list.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"packages",
+				"firewall",
+				"acl6",
+				"move",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Package.`,
+				},
+				resource.Attribute{
+					Name:        "acl6",
+					Description: `Acl6.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Key to the target entry.`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `Option. Valid values: ` + "`" + `before` + "`" + `, ` + "`" + `after` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_packages_firewall_acl_move",
+			Category:         "No Category",
+			ShortDescription: `Move IPv4 access control list.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"packages",
+				"firewall",
+				"acl",
+				"move",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Package.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `Acl.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Key to the target entry.`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `Option. Valid values: ` + "`" + `before` + "`" + `, ` + "`" + `after` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{policyid}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_packages_firewall_centralsnatmap",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure central SNAT policies.`,
 			Description:      ``,
@@ -39639,7 +43359,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_centralsnatmap_move",
+			Type:             "fortimanager_packages_firewall_centralsnatmap_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move central SNAT policies.`,
 			Description:      ``,
@@ -39697,7 +43417,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_consolidated_policy",
+			Type:             "fortimanager_packages_firewall_consolidated_policy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure consolidated IPv4/IPv6 policies.`,
 			Description:      ``,
@@ -40094,7 +43814,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_consolidated_policy_move",
+			Type:             "fortimanager_packages_firewall_consolidated_policy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move consolidated IPv4/IPv6 policies.`,
 			Description:      ``,
@@ -40152,7 +43872,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_dospolicy",
+			Type:             "fortimanager_packages_firewall_dospolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv4 DoS policies.`,
 			Description:      ``,
@@ -40297,7 +44017,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_dospolicy6",
+			Type:             "fortimanager_packages_firewall_dospolicy6",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv6 DoS policies.`,
 			Description:      ``,
@@ -40442,7 +44162,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_dospolicy6_move",
+			Type:             "fortimanager_packages_firewall_dospolicy6_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv6 DoS policies.`,
 			Description:      ``,
@@ -40500,7 +44220,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_dospolicy_move",
+			Type:             "fortimanager_packages_firewall_dospolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv4 DoS policies.`,
 			Description:      ``,
@@ -40558,7 +44278,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_hyperscalepolicy",
+			Type:             "fortimanager_packages_firewall_hyperscalepolicy",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv4 hyperscale-policies.`,
 			Description:      ``,
@@ -40740,7 +44460,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_hyperscalepolicy46",
+			Type:             "fortimanager_packages_firewall_hyperscalepolicy46",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv4 to IPv6 policies.`,
 			Description:      ``,
@@ -40846,7 +44566,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_hyperscalepolicy6",
+			Type:             "fortimanager_packages_firewall_hyperscalepolicy6",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv6 policies.`,
 			Description:      ``,
@@ -40968,7 +44688,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_hyperscalepolicy64",
+			Type:             "fortimanager_packages_firewall_hyperscalepolicy64",
 			Category:         "No Category",
 			ShortDescription: `Configure IPv6 to IPv4 policies.`,
 			Description:      ``,
@@ -41098,7 +44818,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_interfacepolicy",
+			Type:             "fortimanager_packages_firewall_interfacepolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv4 interface policies.`,
 			Description:      ``,
@@ -41144,6 +44864,14 @@ var (
 				resource.Attribute{
 					Name:        "comments",
 					Description: `Comments.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `DLP profile name.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile_status",
+					Description: `Enable/disable DLP. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -41243,7 +44971,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_interfacepolicy6",
+			Type:             "fortimanager_packages_firewall_interfacepolicy6",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv6 interface policies.`,
 			Description:      ``,
@@ -41289,6 +45017,14 @@ var (
 				resource.Attribute{
 					Name:        "comments",
 					Description: `Comments.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `DLP profile name.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile_status",
+					Description: `Enable/disable DLP. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -41388,7 +45124,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_interfacepolicy6_move",
+			Type:             "fortimanager_packages_firewall_interfacepolicy6_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv6 interface policies.`,
 			Description:      ``,
@@ -41446,7 +45182,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_interfacepolicy_move",
+			Type:             "fortimanager_packages_firewall_interfacepolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv4 interface policies.`,
 			Description:      ``,
@@ -41504,7 +45240,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_localinpolicy",
+			Type:             "fortimanager_packages_firewall_localinpolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure user defined IPv4 local-in policies.`,
 			Description:      ``,
@@ -41597,7 +45333,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_localinpolicy6",
+			Type:             "fortimanager_packages_firewall_localinpolicy6",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure user defined IPv6 local-in policies.`,
 			Description:      ``,
@@ -41686,7 +45422,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_localinpolicy6_move",
+			Type:             "fortimanager_packages_firewall_localinpolicy6_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move user defined IPv6 local-in policies.`,
 			Description:      ``,
@@ -41744,7 +45480,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_localinpolicy_move",
+			Type:             "fortimanager_packages_firewall_localinpolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move user defined IPv4 local-in policies.`,
 			Description:      ``,
@@ -41802,7 +45538,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_multicastpolicy",
+			Type:             "fortimanager_packages_firewall_multicastpolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure multicast NAT policies.`,
 			Description:      ``,
@@ -41894,6 +45630,10 @@ var (
 					Description: `Enable/disable this policy. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "traffic_shaper",
+					Description: `Traffic shaper to apply to traffic forwarded by the multicast policy.`,
+				},
+				resource.Attribute{
 					Name:        "uuid",
 					Description: `Universally Unique Identifier (UUID; automatically assigned but can be manually reset). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
@@ -41911,7 +45651,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_multicastpolicy6",
+			Type:             "fortimanager_packages_firewall_multicastpolicy6",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv6 multicast NAT policies.`,
 			Description:      ``,
@@ -42008,7 +45748,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_multicastpolicy6_move",
+			Type:             "fortimanager_packages_firewall_multicastpolicy6_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv6 multicast NAT policies.`,
 			Description:      ``,
@@ -42066,7 +45806,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_multicastpolicy_move",
+			Type:             "fortimanager_packages_firewall_multicastpolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move multicast NAT policies.`,
 			Description:      ``,
@@ -42124,7 +45864,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy",
+			Type:             "fortimanager_packages_firewall_policy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv4 policies.`,
 			Description:      ``,
@@ -42251,6 +45991,10 @@ var (
 					Description: `Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "diffserv_copy",
+					Description: `Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "devices",
 					Description: `Names of devices or device groups that can be matched by the policy.`,
 				},
@@ -42273,6 +46017,10 @@ var (
 				resource.Attribute{
 					Name:        "disclaimer",
 					Description: `Enable/disable user authentication disclaimer. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `Name of an existing DLP profile.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -42309,6 +46057,10 @@ var (
 				resource.Attribute{
 					Name:        "dstaddr6",
 					Description: `Destination IPv6 address name and address group names.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr6_negate",
+					Description: `When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dstintf",
@@ -42451,6 +46203,54 @@ var (
 					Description: `When enabled internet-service-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "internet_service6",
+					Description: `Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom",
+					Description: `Custom IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom_group",
+					Description: `Custom Internet Service6 group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_group",
+					Description: `Internet Service group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_name",
+					Description: `IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_negate",
+					Description: `When enabled internet-service6 specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src",
+					Description: `Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom",
+					Description: `Custom IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom_group",
+					Description: `Custom Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_group",
+					Description: `Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_name",
+					Description: `IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_negate",
+					Description: `When enabled internet-service6-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "ippool",
 					Description: `Enable to use IP Pools for source NAT. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -42515,6 +46315,14 @@ var (
 					Description: `Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "network_service_dynamic",
+					Description: `Dynamic Network Service name.`,
+				},
+				resource.Attribute{
+					Name:        "network_service_src_dynamic",
+					Description: `Dynamic Network Service source name.`,
+				},
+				resource.Attribute{
 					Name:        "np_acceleration",
 					Description: `Enable/disable UTM Network Processor acceleration. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -42553,6 +46361,14 @@ var (
 				resource.Attribute{
 					Name:        "pfcp_profile",
 					Description: `PFCP profile.`,
+				},
+				resource.Attribute{
+					Name:        "policy_expiry",
+					Description: `Enable/disable policy expiry. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_expiry_date",
+					Description: `Policy expiry date (YYYY-MM-DD HH:MM:SS).`,
 				},
 				resource.Attribute{
 					Name:        "policy_offload",
@@ -42599,8 +46415,16 @@ var (
 					Description: `Direction of the initial traffic for reputation to take effect. Valid values: ` + "`" + `source` + "`" + `, ` + "`" + `destination` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "reputation_direction6",
+					Description: `Direction of the initial traffic for IPv6 reputation to take effect. Valid values: ` + "`" + `source` + "`" + `, ` + "`" + `destination` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "reputation_minimum",
 					Description: `Minimum Reputation to take action.`,
+				},
+				resource.Attribute{
+					Name:        "reputation_minimum6",
+					Description: `IPv6 Minimum Reputation to take action.`,
 				},
 				resource.Attribute{
 					Name:        "rsso",
@@ -42673,6 +46497,10 @@ var (
 				resource.Attribute{
 					Name:        "srcaddr6",
 					Description: `Source IPv6 address name and address group names.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr6_negate",
+					Description: `When enabled srcaddr6 specifies what the source address must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "srcintf",
@@ -42900,7 +46728,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy46",
+			Type:             "fortimanager_packages_firewall_policy46",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv4 to IPv6 policies.`,
 			Description:      ``,
@@ -43037,7 +46865,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy46_move",
+			Type:             "fortimanager_packages_firewall_policy46_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv4 to IPv6 policies.`,
 			Description:      ``,
@@ -43095,7 +46923,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy6",
+			Type:             "fortimanager_packages_firewall_policy6",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv6 policies.`,
 			Description:      ``,
@@ -43520,7 +47348,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy64",
+			Type:             "fortimanager_packages_firewall_policy64",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure IPv6 to IPv4 policies.`,
 			Description:      ``,
@@ -43673,7 +47501,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy64_move",
+			Type:             "fortimanager_packages_firewall_policy64_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv6 to IPv4 policies.`,
 			Description:      ``,
@@ -43731,7 +47559,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy6_move",
+			Type:             "fortimanager_packages_firewall_policy6_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv6 policies.`,
 			Description:      ``,
@@ -43789,7 +47617,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_policy_move",
+			Type:             "fortimanager_packages_firewall_policy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move IPv4 policies.`,
 			Description:      ``,
@@ -43846,7 +47674,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_proxypolicy",
+			Type:             "fortimanager_packages_firewall_proxypolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure proxy policies.`,
 			Description:      ``,
@@ -43912,6 +47740,10 @@ var (
 				resource.Attribute{
 					Name:        "disclaimer",
 					Description: `Web proxy disclaimer setting: by domain, policy, or user. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `domain` + "`" + `, ` + "`" + `policy` + "`" + `, ` + "`" + `user` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `Name of an existing DLP profile.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -44171,7 +48003,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_proxypolicy_move",
+			Type:             "fortimanager_packages_firewall_proxypolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move proxy policies.`,
 			Description:      ``,
@@ -44229,7 +48061,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_securitypolicy",
+			Type:             "fortimanager_packages_firewall_securitypolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure NGFW IPv4/IPv6 application policies.`,
 			Description:      ``,
@@ -44287,6 +48119,10 @@ var (
 				resource.Attribute{
 					Name:        "comments",
 					Description: `Comment.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `Name of an existing DLP profile.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -44399,6 +48235,54 @@ var (
 				resource.Attribute{
 					Name:        "internet_service_src_negate",
 					Description: `When enabled internet-service-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6",
+					Description: `Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom",
+					Description: `Custom IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom_group",
+					Description: `Custom IPv6 Internet Service group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_group",
+					Description: `Internet Service group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_name",
+					Description: `IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_negate",
+					Description: `When enabled internet-service6 specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src",
+					Description: `Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom",
+					Description: `Custom IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom_group",
+					Description: `Custom Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_group",
+					Description: `Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_name",
+					Description: `IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_negate",
+					Description: `When enabled internet-service6-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ips_sensor",
@@ -44542,7 +48426,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_securitypolicy_move",
+			Type:             "fortimanager_packages_firewall_securitypolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move NGFW IPv4/IPv6 application policies.`,
 			Description:      ``,
@@ -44600,7 +48484,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_shapingpolicy",
+			Type:             "fortimanager_packages_firewall_shapingpolicy",
 			Category:         "Packages Policy",
 			ShortDescription: `Configure shaping policies.`,
 			Description:      ``,
@@ -44809,7 +48693,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_firewall_shapingpolicy_move",
+			Type:             "fortimanager_packages_firewall_shapingpolicy_move",
 			Category:         "Packages Policy",
 			ShortDescription: `Move shaping policies.`,
 			Description:      ``,
@@ -44867,7 +48751,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_footer_consolidated_policy",
+			Type:             "fortimanager_packages_global_footer_consolidated_policy",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure consolidated IPv4/IPv6 policies.`,
 			Description:      ``,
@@ -45278,7 +49162,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_footer_policy",
+			Type:             "fortimanager_packages_global_footer_policy",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure IPv4 policies.`,
 			Description:      ``,
@@ -45447,8 +49331,16 @@ var (
 					Description: `Device-Detection-Portal. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "device_ownership",
+					Description: `Device-Ownership. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "devices",
 					Description: `Devices.`,
+				},
+				resource.Attribute{
+					Name:        "diffserv_copy",
+					Description: `Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "diffserv_forward",
@@ -45469,6 +49361,10 @@ var (
 				resource.Attribute{
 					Name:        "disclaimer",
 					Description: `Enable/disable user authentication disclaimer. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `Dlp-Profile.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -45509,6 +49405,10 @@ var (
 				resource.Attribute{
 					Name:        "dstaddr6",
 					Description: `Dstaddr6.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr6_negate",
+					Description: `When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dstintf",
@@ -45739,6 +49639,54 @@ var (
 					Description: `When enabled internet-service-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "internet_service6",
+					Description: `Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom",
+					Description: `Custom IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom_group",
+					Description: `Custom Internet Service6 group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_group",
+					Description: `Internet Service group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_name",
+					Description: `IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_negate",
+					Description: `When enabled internet-service6 specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src",
+					Description: `Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom",
+					Description: `Custom IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom_group",
+					Description: `Custom Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_group",
+					Description: `Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_name",
+					Description: `IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_negate",
+					Description: `When enabled internet-service6-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "ip_based",
 					Description: `Ip-Based. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -45827,6 +49775,14 @@ var (
 					Description: `Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "network_service_dynamic",
+					Description: `Dynamic Network Service name.`,
+				},
+				resource.Attribute{
+					Name:        "network_service_src_dynamic",
+					Description: `Dynamic Network Service source name.`,
+				},
+				resource.Attribute{
 					Name:        "np_acceleration",
 					Description: `Enable/disable UTM Network Processor acceleration. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -45869,6 +49825,14 @@ var (
 				resource.Attribute{
 					Name:        "pfcp_profile",
 					Description: `PFCP profile.`,
+				},
+				resource.Attribute{
+					Name:        "policy_expiry",
+					Description: `Policy-Expiry. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_expiry_date",
+					Description: `Policy-Expiry-Date.`,
 				},
 				resource.Attribute{
 					Name:        "policy_offload",
@@ -45919,8 +49883,16 @@ var (
 					Description: `Direction of the initial traffic for reputation to take effect. Valid values: ` + "`" + `source` + "`" + `, ` + "`" + `destination` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "reputation_direction6",
+					Description: `Direction of the initial traffic for IPv6 reputation to take effect. Valid values: ` + "`" + `source` + "`" + `, ` + "`" + `destination` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "reputation_minimum",
 					Description: `Minimum Reputation to take action.`,
+				},
+				resource.Attribute{
+					Name:        "reputation_minimum6",
+					Description: `IPv6 Minimum Reputation to take action.`,
 				},
 				resource.Attribute{
 					Name:        "require_tfa",
@@ -46007,12 +49979,20 @@ var (
 					Description: `Srcaddr6.`,
 				},
 				resource.Attribute{
+					Name:        "srcaddr6_negate",
+					Description: `When enabled srcaddr6 specifies what the source address must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "srcintf",
 					Description: `Incoming (ingress) interface.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_filter_profile",
 					Description: `Name of an existing SSH filter profile.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_policy_check",
+					Description: `Ssh-Policy-Check. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_policy_redirect",
@@ -46252,7 +50232,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_footer_policy6",
+			Type:             "fortimanager_packages_global_footer_policy6",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure IPv6 policies.`,
 			Description:      ``,
@@ -46747,7 +50727,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_footer_shapingpolicy",
+			Type:             "fortimanager_packages_global_footer_shapingpolicy",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure shaping policies.`,
 			Description:      ``,
@@ -46942,7 +50922,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `Uuid. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `Uuid.`,
+				},
+				resource.Attribute{
+					Name:        "uuid_idx",
+					Description: `Uuid-Idx. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -46958,7 +50942,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_header_consolidated_policy",
+			Type:             "fortimanager_packages_global_header_consolidated_policy",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure consolidated IPv4/IPv6 policies.`,
 			Description:      ``,
@@ -47369,7 +51353,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_header_policy",
+			Type:             "fortimanager_packages_global_header_policy",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure IPv4 policies.`,
 			Description:      ``,
@@ -47538,8 +51522,16 @@ var (
 					Description: `Device-Detection-Portal. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "device_ownership",
+					Description: `Device-Ownership. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "devices",
 					Description: `Devices.`,
+				},
+				resource.Attribute{
+					Name:        "diffserv_copy",
+					Description: `Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "diffserv_forward",
@@ -47560,6 +51552,10 @@ var (
 				resource.Attribute{
 					Name:        "disclaimer",
 					Description: `Enable/disable user authentication disclaimer. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dlp_profile",
+					Description: `Dlp-Profile.`,
 				},
 				resource.Attribute{
 					Name:        "dlp_sensor",
@@ -47600,6 +51596,10 @@ var (
 				resource.Attribute{
 					Name:        "dstaddr6",
 					Description: `Dstaddr6.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr6_negate",
+					Description: `When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dstintf",
@@ -47830,6 +51830,54 @@ var (
 					Description: `When enabled internet-service-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "internet_service6",
+					Description: `Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom",
+					Description: `Custom IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_custom_group",
+					Description: `Custom Internet Service6 group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_group",
+					Description: `Internet Service group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_name",
+					Description: `IPv6 Internet Service name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_negate",
+					Description: `When enabled internet-service6 specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src",
+					Description: `Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom",
+					Description: `Custom IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_custom_group",
+					Description: `Custom Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_group",
+					Description: `Internet Service6 source group name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_name",
+					Description: `IPv6 Internet Service source name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service6_src_negate",
+					Description: `When enabled internet-service6-src specifies what the service must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "ip_based",
 					Description: `Ip-Based. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -47918,6 +51966,14 @@ var (
 					Description: `Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "network_service_dynamic",
+					Description: `Dynamic Network Service name.`,
+				},
+				resource.Attribute{
+					Name:        "network_service_src_dynamic",
+					Description: `Dynamic Network Service source name.`,
+				},
+				resource.Attribute{
 					Name:        "np_acceleration",
 					Description: `Enable/disable UTM Network Processor acceleration. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -47960,6 +52016,14 @@ var (
 				resource.Attribute{
 					Name:        "pfcp_profile",
 					Description: `PFCP profile.`,
+				},
+				resource.Attribute{
+					Name:        "policy_expiry",
+					Description: `Policy-Expiry. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_expiry_date",
+					Description: `Policy-Expiry-Date.`,
 				},
 				resource.Attribute{
 					Name:        "policy_offload",
@@ -48010,8 +52074,16 @@ var (
 					Description: `Direction of the initial traffic for reputation to take effect. Valid values: ` + "`" + `source` + "`" + `, ` + "`" + `destination` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "reputation_direction6",
+					Description: `Direction of the initial traffic for IPv6 reputation to take effect. Valid values: ` + "`" + `source` + "`" + `, ` + "`" + `destination` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "reputation_minimum",
 					Description: `Minimum Reputation to take action.`,
+				},
+				resource.Attribute{
+					Name:        "reputation_minimum6",
+					Description: `IPv6 Minimum Reputation to take action.`,
 				},
 				resource.Attribute{
 					Name:        "require_tfa",
@@ -48098,12 +52170,20 @@ var (
 					Description: `Srcaddr6.`,
 				},
 				resource.Attribute{
+					Name:        "srcaddr6_negate",
+					Description: `When enabled srcaddr6 specifies what the source address must NOT be. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "srcintf",
 					Description: `Incoming (ingress) interface.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_filter_profile",
 					Description: `Name of an existing SSH filter profile.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_policy_check",
+					Description: `Ssh-Policy-Check. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ssh_policy_redirect",
@@ -48343,7 +52423,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_header_policy6",
+			Type:             "fortimanager_packages_global_header_policy6",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure IPv6 policies.`,
 			Description:      ``,
@@ -48838,7 +52918,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_global_header_shapingpolicy",
+			Type:             "fortimanager_packages_global_header_shapingpolicy",
 			Category:         "Global Footer/Header Policy",
 			ShortDescription: `Configure shaping policies.`,
 			Description:      ``,
@@ -49033,7 +53113,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "uuid",
-					Description: `Uuid. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `Uuid.`,
+				},
+				resource.Attribute{
+					Name:        "uuid_idx",
+					Description: `Uuid-Idx. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -49049,7 +53133,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_packages_pkg",
+			Type:             "fortimanager_packages_pkg",
 			Category:         "Packages",
 			ShortDescription: `Packages Pkg`,
 			Description:      ``,
@@ -49188,7 +53272,172 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_abort",
+			Type:             "fortimanager_packages_user_nacpolicy",
+			Category:         "No Category",
+			ShortDescription: `Configure NAC policy matching pattern to identify matching NAC devices.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"packages",
+				"user",
+				"nacpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Package.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `Category of NAC policy. Valid values: ` + "`" + `device` + "`" + `, ` + "`" + `firewall-user` + "`" + `, ` + "`" + `ems-tag` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description for the NAC policy matching pattern.`,
+				},
+				resource.Attribute{
+					Name:        "ems_tag",
+					Description: `NAC policy matching EMS tag.`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `NAC policy matching family.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `NAC policy matching host.`,
+				},
+				resource.Attribute{
+					Name:        "hw_vendor",
+					Description: `NAC policy matching hardware vendor.`,
+				},
+				resource.Attribute{
+					Name:        "hw_version",
+					Description: `NAC policy matching hardware version.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `NAC policy matching MAC address.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `NAC policy name.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `NAC policy matching operating system.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `NAC policy matching source.`,
+				},
+				resource.Attribute{
+					Name:        "ssid_policy",
+					Description: `SSID policy to be applied on the matched NAC policy.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable NAC policy. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sw_version",
+					Description: `NAC policy matching software version.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `NAC policy matching type.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `NAC policy matching user.`,
+				},
+				resource.Attribute{
+					Name:        "user_group",
+					Description: `NAC policy matching user group. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Packages UserNacPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["pkg=mypkg"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_packages_user_nacpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Packages UserNacPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["pkg=mypkg"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_packages_user_nacpolicy.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_packages_user_nacpolicy_move",
+			Category:         "No Category",
+			ShortDescription: `Move NAC policy matching pattern to identify matching NAC devices.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"packages",
+				"user",
+				"nacpolicy",
+				"move",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Package.`,
+				},
+				resource.Attribute{
+					Name:        "nac_policy",
+					Description: `Nac Policy.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Key to the target entry.`,
+				},
+				resource.Attribute{
+					Name:        "option",
+					Description: `Option. Valid values: ` + "`" + `before` + "`" + `, ` + "`" + `after` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}.`,
+				},
+				resource.Attribute{
+					Name:        "state_pos",
+					Description: `The parameter is read-only, it is used to get the lastest relative position of the two items. This can help check whether the latest relative position of the two items matches the configuration, and help check whether they have been deleted. If the latest relative position of the two items matches the configuration, the value of state_pos is an empty string. ## Others ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_securityconsole_abort",
 			Category:         "Security Console",
 			ShortDescription: `Abort and cancel a security console task.`,
 			Description:      ``,
@@ -49221,7 +53470,65 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_install_device",
+			Type:             "fortimanager_securityconsole_assign_package",
+			Category:         "No Category",
+			ShortDescription: `Assign or unassign global policy package to ADOM packages.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"securityconsole",
+				"assign",
+				"package",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "flags",
+					Description: `cp_all_objs - Assign all objects during global policy assignment. copy_assigned_pkg - For global policy assignment - copy assigned package from ADOM to device. unassign - Remove global policy from ADOM. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `cp_all_objs` + "`" + `, ` + "`" + `copy_assigned_pkg` + "`" + `, ` + "`" + `unassign` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Source package path and name.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Target. The structure of ` + "`" + `target` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.`,
+				},
+				resource.Attribute{
+					Name:        "force_recreate",
+					Description: `The argument is optional, if it is set, when the value changes, the resource will be re-created. The ` + "`" + `target` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Destination ADOM.`,
+				},
+				resource.Attribute{
+					Name:        "excluded",
+					Description: `disable - Only include the packages listed in the <i>pkg</i> list. enable - Exclude the package listed in the <i>pkg</i> list, and assign to all other packages in the ADOM. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pkg",
+					Description: `Destination ADOM policy package path and name. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Securityconsole AssignPackage can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_securityconsole_assign_package.labelname SecurityconsoleAssignPackage $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ## Others ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Securityconsole AssignPackage can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_securityconsole_assign_package.labelname SecurityconsoleAssignPackage $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ## Others ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_securityconsole_install_device",
 			Category:         "Security Console",
 			ShortDescription: `Securityconsole InstallDevice`,
 			Description:      ``,
@@ -49279,7 +53586,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_install_package",
+			Type:             "fortimanager_securityconsole_install_package",
 			Category:         "Security Console",
 			ShortDescription: `Copy and install a policy package to devices.`,
 			Description:      ``,
@@ -49349,7 +53656,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_install_preview",
+			Type:             "fortimanager_securityconsole_install_preview",
 			Category:         "Security Console",
 			ShortDescription: `Generate install preview for a device.`,
 			Description:      ``,
@@ -49395,7 +53702,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_package_cancel_install",
+			Type:             "fortimanager_securityconsole_package_cancel_install",
 			Category:         "Security Console",
 			ShortDescription: `Cancel policy install and clear preview cache. Only to be used when a preview cache is previously generated by install/package command.`,
 			Description:      ``,
@@ -49430,7 +53737,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_package_clone",
+			Type:             "fortimanager_securityconsole_package_clone",
 			Category:         "Security Console",
 			ShortDescription: `Clone a policy package within the same ADOM.`,
 			Description:      ``,
@@ -49492,7 +53799,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_package_commit",
+			Type:             "fortimanager_securityconsole_package_commit",
 			Category:         "Security Console",
 			ShortDescription: `Install policies to device from preview cache. Only to be used when a preview cache is previously generated by install/package command.`,
 			Description:      ``,
@@ -49542,7 +53849,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_package_move",
+			Type:             "fortimanager_securityconsole_package_move",
 			Category:         "Security Console",
 			ShortDescription: `Move and/or rename a policy package within the same ADOM.`,
 			Description:      ``,
@@ -49588,7 +53895,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_pblock_clone",
+			Type:             "fortimanager_securityconsole_pblock_clone",
 			Category:         "Security Console",
 			ShortDescription: `Securityconsole PblockClone`,
 			Description:      ``,
@@ -49630,7 +53937,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_reinstall_package",
+			Type:             "fortimanager_securityconsole_reinstall_package",
 			Category:         "Security Console",
 			ShortDescription: `Re-install a policy package that had been previously installed.`,
 			Description:      ``,
@@ -49692,7 +53999,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_securityconsole_sign_certificate_template",
+			Type:             "fortimanager_securityconsole_sign_certificate_template",
 			Category:         "Security Console",
 			ShortDescription: `Generate and sign certificate on the target device.`,
 			Description:      ``,
@@ -49747,7 +54054,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_group",
+			Type:             "fortimanager_system_admin_group",
 			Category:         "System Admin",
 			ShortDescription: `User group.`,
 			Description:      ``,
@@ -49787,7 +54094,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_ldap",
+			Type:             "fortimanager_system_admin_ldap",
 			Category:         "System Admin",
 			ShortDescription: `LDAP server entry configuration.`,
 			Description:      ``,
@@ -49903,7 +54210,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_profile",
+			Type:             "fortimanager_system_admin_profile",
 			Category:         "System Admin",
 			ShortDescription: `Admin profile.`,
 			Description:      ``,
@@ -49998,6 +54305,10 @@ var (
 					Description: `Manage FortiClient. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "device_fortiextender",
+					Description: `Manage FortiExtender. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "device_fortiswitch",
 					Description: `Manage FortiSwitch. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
 				},
@@ -50076,6 +54387,10 @@ var (
 				resource.Attribute{
 					Name:        "ips_filter",
 					Description: `IPS filter. disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ips_objects",
+					Description: `Ips objects configuration. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `read-write` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6_trusthost1",
@@ -50267,7 +54582,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_radius",
+			Type:             "fortimanager_system_admin_radius",
 			Category:         "System Admin",
 			ShortDescription: `Configure radius.`,
 			Description:      ``,
@@ -50323,7 +54638,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_setting",
+			Type:             "fortimanager_system_admin_setting",
 			Category:         "System Admin",
 			ShortDescription: `Admin setting.`,
 			Description:      ``,
@@ -50523,7 +54838,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_tacacs",
+			Type:             "fortimanager_system_admin_tacacs",
 			Category:         "System Admin",
 			ShortDescription: `TACACS+ server entry configuration.`,
 			Description:      ``,
@@ -50587,7 +54902,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_admin_user",
+			Type:             "fortimanager_system_admin_user",
 			Category:         "System Admin",
 			ShortDescription: `Admin user.`,
 			Description:      ``,
@@ -50656,6 +54971,10 @@ var (
 				resource.Attribute{
 					Name:        "ext_auth_group_match",
 					Description: `Only administrators belonging to this group can login.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `PKI user certificate fingerprint (MD5, SHA1, SHA256) constraints.`,
 				},
 				resource.Attribute{
 					Name:        "first_name",
@@ -51003,7 +55322,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_alertconsole",
+			Type:             "fortimanager_system_alertconsole",
 			Category:         "System Alert",
 			ShortDescription: `Alert console.`,
 			Description:      ``,
@@ -51035,7 +55354,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_alertemail",
+			Type:             "fortimanager_system_alertemail",
 			Category:         "System Alert",
 			ShortDescription: `Configure alertemail.`,
 			Description:      ``,
@@ -51087,7 +55406,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_alertevent",
+			Type:             "fortimanager_system_alertevent",
 			Category:         "System Alert",
 			ShortDescription: `Alert events.`,
 			Description:      ``,
@@ -51179,7 +55498,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_autodelete",
+			Type:             "fortimanager_system_autodelete",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for logs, reports, archived, and quarantined files.`,
 			Description:      ``,
@@ -51286,7 +55605,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_autodelete_dlpfilesautodeletion",
+			Type:             "fortimanager_system_autodelete_dlpfilesautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for DLP archives.`,
 			Description:      ``,
@@ -51326,7 +55645,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_autodelete_logautodeletion",
+			Type:             "fortimanager_system_autodelete_logautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for device logs.`,
 			Description:      ``,
@@ -51366,7 +55685,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_autodelete_quarantinefilesautodeletion",
+			Type:             "fortimanager_system_autodelete_quarantinefilesautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for quarantined files.`,
 			Description:      ``,
@@ -51406,7 +55725,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_autodelete_reportautodeletion",
+			Type:             "fortimanager_system_autodelete_reportautodeletion",
 			Category:         "System AutoDelete",
 			ShortDescription: `Automatic deletion policy for reports.`,
 			Description:      ``,
@@ -51446,7 +55765,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_backup_allsettings",
+			Type:             "fortimanager_system_backup_allsettings",
 			Category:         "System Others",
 			ShortDescription: `Scheduled backup settings.`,
 			Description:      ``,
@@ -51511,7 +55830,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_certificate_ca",
+			Type:             "fortimanager_system_certificate_ca",
 			Category:         "System Certificate",
 			ShortDescription: `CA certificate.`,
 			Description:      ``,
@@ -51547,7 +55866,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_certificate_crl",
+			Type:             "fortimanager_system_certificate_crl",
 			Category:         "System Certificate",
 			ShortDescription: `Certificate Revocation List.`,
 			Description:      ``,
@@ -51591,7 +55910,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_certificate_local",
+			Type:             "fortimanager_system_certificate_local",
 			Category:         "System Certificate",
 			ShortDescription: `Local keys and certificates.`,
 			Description:      ``,
@@ -51639,7 +55958,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_certificate_oftp",
+			Type:             "fortimanager_system_certificate_oftp",
 			Category:         "System Certificate",
 			ShortDescription: `OFTP certificates and keys.`,
 			Description:      ``,
@@ -51687,7 +56006,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_certificate_remote",
+			Type:             "fortimanager_system_certificate_remote",
 			Category:         "System Certificate",
 			ShortDescription: `Remote certificate.`,
 			Description:      ``,
@@ -51723,7 +56042,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_certificate_ssh",
+			Type:             "fortimanager_system_certificate_ssh",
 			Category:         "System Certificate",
 			ShortDescription: `SSH certificates and keys.`,
 			Description:      ``,
@@ -51763,7 +56082,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_connector",
+			Type:             "fortimanager_system_connector",
 			Category:         "System Others",
 			ShortDescription: `Configure connector.`,
 			Description:      ``,
@@ -51807,7 +56126,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_dm",
+			Type:             "fortimanager_system_dm",
 			Category:         "System Others",
 			ShortDescription: `Configure dm.`,
 			Description:      ``,
@@ -51927,7 +56246,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_dns",
+			Type:             "fortimanager_system_dns",
 			Category:         "System Global",
 			ShortDescription: `DNS configuration.`,
 			Description:      ``,
@@ -51967,7 +56286,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_docker",
+			Type:             "fortimanager_system_docker",
 			Category:         "System Others",
 			ShortDescription: `Docker host.`,
 			Description:      ``,
@@ -52055,7 +56374,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_fips",
+			Type:             "fortimanager_system_fips",
 			Category:         "System Others",
 			ShortDescription: `Settings for FIPS-CC mode.`,
 			Description:      ``,
@@ -52091,7 +56410,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_fortiview_autocache",
+			Type:             "fortimanager_system_fortiview_autocache",
 			Category:         "System FortiView",
 			ShortDescription: `FortiView auto-cache settings.`,
 			Description:      ``,
@@ -52127,7 +56446,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_fortiview_setting",
+			Type:             "fortimanager_system_fortiview_setting",
 			Category:         "System FortiView",
 			ShortDescription: `FortiView settings.`,
 			Description:      ``,
@@ -52163,7 +56482,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_global",
+			Type:             "fortimanager_system_global",
 			Category:         "System Global",
 			ShortDescription: `Global range attributes.`,
 			Description:      ``,
@@ -52221,6 +56540,10 @@ var (
 					Description: `Console output mode. standard - Standard output. more - More page output. Valid values: ` + "`" + `standard` + "`" + `, ` + "`" + `more` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "contentpack_fgt_install",
+					Description: `Enable/disable outbreak alert auto install for FGT ADOMS . disable - Disable the sql report auto outbreak auto install. enable - Enable the sql report auto outbreak auto install. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "country_flag",
 					Description: `Country flag Status. disable - Disable country flag icon beside ip address. enable - Enable country flag icon beside ip address. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
@@ -52267,6 +56590,10 @@ var (
 				resource.Attribute{
 					Name:        "fgfm_ssl_protocol",
 					Description: `set the lowest SSL protocols for fgfmsd. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: ` + "`" + `sslv3` + "`" + `, ` + "`" + `tlsv1.0` + "`" + `, ` + "`" + `tlsv1.1` + "`" + `, ` + "`" + `tlsv1.2` + "`" + `, ` + "`" + `tlsv1.3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gui_polling_interval",
+					Description: `GUI polling interval in seconds (1-288000 default 5).`,
 				},
 				resource.Attribute{
 					Name:        "ha_member_auto_grouping",
@@ -52417,6 +56744,10 @@ var (
 					Description: `Enable/disable SSL static key ciphers. disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "table_entry_blink",
+					Description: `Enable/disable table entry blink in GUI disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "task_list_size",
 					Description: `Maximum number of completed tasks to keep.`,
 				},
@@ -52486,7 +56817,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_global_sslciphersuites",
+			Type:             "fortimanager_system_global_sslciphersuites",
 			Category:         "No Category",
 			ShortDescription: `Configure preferred SSL/TLS cipher suites`,
 			Description:      ``,
@@ -52524,7 +56855,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_guiact",
+			Type:             "fortimanager_system_guiact",
 			Category:         "System Others",
 			ShortDescription: `System settings through GUI.`,
 			Description:      ``,
@@ -52584,7 +56915,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_ha",
+			Type:             "fortimanager_system_ha",
 			Category:         "System Global",
 			ShortDescription: `HA configuration.`,
 			Description:      ``,
@@ -52597,6 +56928,10 @@ var (
 				resource.Attribute{
 					Name:        "clusterid",
 					Description: `Cluster ID range (1 - 64).`,
+				},
+				resource.Attribute{
+					Name:        "failover_mode",
+					Description: `HA failover mode. manual - Manual Failove vrrp - Use VRRP Valid values: ` + "`" + `manual` + "`" + `, ` + "`" + `vrrp` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "file_quota",
@@ -52619,6 +56954,14 @@ var (
 					Description: `Mode. standalone - Standalone. primary - Primary. secondary - Secondary. Valid values: ` + "`" + `standalone` + "`" + `, ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "monitored_interfaces",
+					Description: `Monitored-Interfaces. The structure of ` + "`" + `monitored_interfaces` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "monitored_ips",
+					Description: `Monitored-Ips. The structure of ` + "`" + `monitored_ips` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "password",
 					Description: `Group password.`,
 				},
@@ -52627,8 +56970,44 @@ var (
 					Description: `Peer. The structure of ` + "`" + `peer` + "`" + ` block is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "priority",
+					Description: `Runtime priority [1 (lowest) - 253 (highest)]`,
+				},
+				resource.Attribute{
+					Name:        "unicast",
+					Description: `Use unitcast for VRRP message. disable - Disable. enable - Enable. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Virtual IP.`,
+				},
+				resource.Attribute{
+					Name:        "vrrp_adv_interval",
+					Description: `VRRP advert interval [1 - 30 seconnds]`,
+				},
+				resource.Attribute{
+					Name:        "vrrp_interface",
+					Description: `VRRP and vip interface.`,
+				},
+				resource.Attribute{
 					Name:        "dynamic_sort_subtable",
-					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `peer` + "`" + ` block supports:`,
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `monitored_interfaces` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "interface_name",
+					Description: `Interface name. The ` + "`" + `monitored_ips` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address. The ` + "`" + `peer` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -52664,7 +57043,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_ha_peer",
+			Type:             "fortimanager_system_ha_monitoredips",
+			Category:         "No Category",
+			ShortDescription: `Monitored IP addresses.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"system",
+				"ha",
+				"monitoredips",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Id.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System HaMonitoredIps can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_system_ha_monitoredips.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System HaMonitoredIps can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_system_ha_monitoredips.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_system_ha_peer",
 			Category:         "System Global",
 			ShortDescription: `Peer.`,
 			Description:      ``,
@@ -52709,7 +57126,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_hascheduledcheck",
+			Type:             "fortimanager_system_hascheduledcheck",
 			Category:         "No Category",
 			ShortDescription: `Scheduled HA integrity check.`,
 			Description:      ``,
@@ -52746,7 +57163,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_interface",
+			Type:             "fortimanager_system_interface",
 			Category:         "System Global",
 			ShortDescription: `Interface configuration.`,
 			Description:      ``,
@@ -52756,6 +57173,10 @@ var (
 				"interface",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aggregate",
+					Description: `Aggregate interface.`,
+				},
 				resource.Attribute{
 					Name:        "alias",
 					Description: `Alias.`,
@@ -52769,12 +57190,44 @@ var (
 					Description: `Description.`,
 				},
 				resource.Attribute{
+					Name:        "interface",
+					Description: `Underlying interface name.`,
+				},
+				resource.Attribute{
 					Name:        "ip",
 					Description: `IP address of interface.`,
 				},
 				resource.Attribute{
 					Name:        "ipv6",
 					Description: `Ipv6. The structure of ` + "`" + `ipv6` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "lacp_mode",
+					Description: `LACP mode. active - Actively use LACP to negotiate 802.3ad aggregation. Valid values: ` + "`" + `active` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lacp_speed",
+					Description: `How often the interface sends LACP messages. slow - Send LACP message every 30 seconds. fast - Send LACP message every second. Valid values: ` + "`" + `slow` + "`" + `, ` + "`" + `fast` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "link_up_delay",
+					Description: `Number of milliseconds to wait before considering a link is up.`,
+				},
+				resource.Attribute{
+					Name:        "lldp",
+					Description: `Enable/disable LLDP (Link Layer Discovery Protocol). disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member. The structure of ` + "`" + `member` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "min_links",
+					Description: `Minimum number of aggregated ports that must be up.`,
+				},
+				resource.Attribute{
+					Name:        "min_links_down",
+					Description: `Action to take when less than the configured minimum number of links are active. operational - Set the aggregate operationally down. administrative - Set the aggregate administratively down. Valid values: ` + "`" + `operational` + "`" + `, ` + "`" + `administrative` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "mtu",
@@ -52801,8 +57254,20 @@ var (
 					Description: `Interface status. down - Interface down. up - Interface up. Valid values: ` + "`" + `down` + "`" + `, ` + "`" + `up` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "type",
+					Description: `Interface type. vlan - VLAN interface. physical - Physical interface. aggregate - Aggregate interface. Valid values: ` + "`" + `vlan` + "`" + `, ` + "`" + `physical` + "`" + `, ` + "`" + `aggregate` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "update_service_ip",
 					Description: `IP address for fgt/fct update service, must be same subnet with interface ip.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_protocol",
+					Description: `Ethernet protocol of VLAN. 8021q - IEEE 802.1Q. 8021ad - IEEE 802.1AD. Valid values: ` + "`" + `8021q` + "`" + `, ` + "`" + `8021ad` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vlanid",
+					Description: `VLAN ID (1 - 4094).`,
 				},
 				resource.Attribute{
 					Name:        "autogenerated",
@@ -52810,7 +57275,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `Indicates whether the type of the interface is physical. If it is, set it to "physical", else keep it empty. The ` + "`" + `ipv6` + "`" + ` block supports:`,
+					Description: `Indicates whether the type of the interface is physical. If it is, set it to "physical", else keep it empty.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `ipv6` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "ip6_address",
@@ -52822,7 +57291,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip6_autoconf",
-					Description: `Enable/disable address auto config (SLAAC). disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. -> If you want to modify the configuration of the interface which is automatically created by FortiManager (for example, the interface created during the VPN creation process), please set the ` + "`" + `autogenerated` + "`" + ` argument to "auto". ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `Enable/disable address auto config (SLAAC). disable - Disable setting. enable - Enable setting. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `member` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "interface_name",
+					Description: `Physical interface name. -> If you want to modify the configuration of the interface which is automatically created by FortiManager (for example, the interface created during the VPN creation process), please set the ` + "`" + `autogenerated` + "`" + ` argument to "auto". ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -52838,7 +57311,113 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_disk_filter",
+			Type:             "fortimanager_system_localinpolicy",
+			Category:         "No Category",
+			ShortDescription: `IPv4 local in policy configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"system",
+				"localinpolicy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action performed on traffic matching this policy. drop - Drop traffic matching this policy (default). reject - Reject traffic matching this policy. accept - Allow traffic matching this policy. Valid values: ` + "`" + `drop` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `accept` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dport",
+					Description: `Destination port number (0 for all).`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination IP and mask.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Entry number.`,
+				},
+				resource.Attribute{
+					Name:        "intf",
+					Description: `Incoming interface name.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Traffic protocol. tcp - TCP only. udp - UDP only. tcp_udp - Both TCP and UDP. Valid values: ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `tcp_udp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source IP and mask. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_system_localinpolicy.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_system_localinpolicy.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_system_localinpolicy6",
+			Category:         "No Category",
+			ShortDescription: `IPv6 local in policy configuration.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"system",
+				"localinpolicy6",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action performed on traffic matching this policy. drop - Drop traffic matching this policy (default). reject - Reject traffic matching this policy. accept - Allow traffic matching this policy. Valid values: ` + "`" + `drop` + "`" + `, ` + "`" + `reject` + "`" + `, ` + "`" + `accept` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dport",
+					Description: `Destination port number (0 for all).`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination IP and prefix.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Entry number.`,
+				},
+				resource.Attribute{
+					Name:        "intf",
+					Description: `Incoming interface name.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Traffic protocol. tcp - TCP only. udp - UDP only. tcp_udp - Both TCP and UDP. Valid values: ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `tcp_udp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source IP and prefix. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_system_localinpolicy6.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import System LocalInPolicy6 can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_system_localinpolicy6.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_system_locallog_disk_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for disk logging.`,
 			Description:      ``,
@@ -53031,7 +57610,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_disk_setting",
+			Type:             "fortimanager_system_locallog_disk_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for local disk logging.`,
 			Description:      ``,
@@ -53144,7 +57723,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_fortianalyzer2_filter",
+			Type:             "fortimanager_system_locallog_fortianalyzer2_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for FortiAnalyzer2 logging.`,
 			Description:      ``,
@@ -53337,7 +57916,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_fortianalyzer2_setting",
+			Type:             "fortimanager_system_locallog_fortianalyzer2_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog to fortianalyzer.`,
 			Description:      ``,
@@ -53390,7 +57969,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_fortianalyzer3_filter",
+			Type:             "fortimanager_system_locallog_fortianalyzer3_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for FortiAnalyzer3 logging.`,
 			Description:      ``,
@@ -53583,7 +58162,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_fortianalyzer3_setting",
+			Type:             "fortimanager_system_locallog_fortianalyzer3_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog to fortianalyzer.`,
 			Description:      ``,
@@ -53636,7 +58215,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_fortianalyzer_filter",
+			Type:             "fortimanager_system_locallog_fortianalyzer_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for FortiAnalyzer logging.`,
 			Description:      ``,
@@ -53829,7 +58408,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_fortianalyzer_setting",
+			Type:             "fortimanager_system_locallog_fortianalyzer_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog to fortianalyzer.`,
 			Description:      ``,
@@ -53882,7 +58461,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_memory_filter",
+			Type:             "fortimanager_system_locallog_memory_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for memory logging.`,
 			Description:      ``,
@@ -54075,7 +58654,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_memory_setting",
+			Type:             "fortimanager_system_locallog_memory_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for memory buffer.`,
 			Description:      ``,
@@ -54112,7 +58691,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_setting",
+			Type:             "fortimanager_system_locallog_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for locallog logging.`,
 			Description:      ``,
@@ -54148,7 +58727,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_syslogd2_filter",
+			Type:             "fortimanager_system_locallog_syslogd2_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for syslog logging.`,
 			Description:      ``,
@@ -54341,7 +58920,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_syslogd2_setting",
+			Type:             "fortimanager_system_locallog_syslogd2_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for remote syslog server.`,
 			Description:      ``,
@@ -54398,7 +58977,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_syslogd3_filter",
+			Type:             "fortimanager_system_locallog_syslogd3_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for syslog logging.`,
 			Description:      ``,
@@ -54591,7 +59170,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_syslogd3_setting",
+			Type:             "fortimanager_system_locallog_syslogd3_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for remote syslog server.`,
 			Description:      ``,
@@ -54648,7 +59227,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_syslogd_filter",
+			Type:             "fortimanager_system_locallog_syslogd_filter",
 			Category:         "System LocalLog",
 			ShortDescription: `Filter for syslog logging.`,
 			Description:      ``,
@@ -54841,7 +59420,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_locallog_syslogd_setting",
+			Type:             "fortimanager_system_locallog_syslogd_setting",
 			Category:         "System LocalLog",
 			ShortDescription: `Settings for remote syslog server.`,
 			Description:      ``,
@@ -54898,7 +59477,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_alert",
+			Type:             "fortimanager_system_log_alert",
 			Category:         "System Log",
 			ShortDescription: `Log based alert settings.`,
 			Description:      ``,
@@ -54926,7 +59505,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_devicedisable",
+			Type:             "fortimanager_system_log_devicedisable",
 			Category:         "System Log",
 			ShortDescription: `Disable client device logging.`,
 			Description:      ``,
@@ -54937,7 +59516,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "TTL",
+					Name:        "ttl",
 					Description: `Time to Live`,
 				},
 				resource.Attribute{
@@ -54962,7 +59541,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_fospolicystats",
+			Type:             "fortimanager_system_log_fospolicystats",
 			Category:         "No Category",
 			ShortDescription: `FortiOS policy statistics settings.`,
 			Description:      ``,
@@ -55000,7 +59579,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_interfacestats",
+			Type:             "fortimanager_system_log_interfacestats",
 			Category:         "System Log",
 			ShortDescription: `Interface statistics settings.`,
 			Description:      ``,
@@ -55040,7 +59619,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_ioc",
+			Type:             "fortimanager_system_log_ioc",
 			Category:         "System Log",
 			ShortDescription: `IoC settings.`,
 			Description:      ``,
@@ -55088,7 +59667,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_maildomain",
+			Type:             "fortimanager_system_log_maildomain",
 			Category:         "System Log",
 			ShortDescription: `FortiMail domain setting.`,
 			Description:      ``,
@@ -55128,7 +59707,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_ratelimit",
+			Type:             "fortimanager_system_log_ratelimit",
 			Category:         "System Others",
 			ShortDescription: `Logging rate limit.`,
 			Description:      ``,
@@ -55209,7 +59788,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_ratelimit_device",
+			Type:             "fortimanager_system_log_ratelimit_device",
 			Category:         "System Others",
 			ShortDescription: `Device log rate limit.`,
 			Description:      ``,
@@ -55251,7 +59830,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_ratelimit_ratelimits",
+			Type:             "fortimanager_system_log_ratelimit_ratelimits",
 			Category:         "No Category",
 			ShortDescription: `Per device or ADOM log rate limits.`,
 			Description:      ``,
@@ -55294,7 +59873,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_settings",
+			Type:             "fortimanager_system_log_settings",
 			Category:         "System Log",
 			ShortDescription: `Log settings.`,
 			Description:      ``,
@@ -55305,47 +59884,47 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "FAC_custom_field1",
+					Name:        "fac_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FAZ_custom_field1",
+					Name:        "faz_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FCH_custom_field1",
+					Name:        "fch_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FCT_custom_field1",
+					Name:        "fct_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FDD_custom_field1",
+					Name:        "fdd_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FGT_custom_field1",
+					Name:        "fgt_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FMG_custom_field1",
+					Name:        "fmg_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FML_custom_field1",
+					Name:        "fml_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FPX_custom_field1",
+					Name:        "fpx_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FSA_custom_field1",
+					Name:        "fsa_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
-					Name:        "FWB_custom_field1",
+					Name:        "fwb_custom_field1",
 					Description: `Name of custom log field to index.`,
 				},
 				resource.Attribute{
@@ -55465,8 +60044,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -55573,8 +60164,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -55681,8 +60284,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -55730,7 +60345,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_settings_rollinganalyzer",
+			Type:             "fortimanager_system_log_settings_rollinganalyzer",
 			Category:         "System Log",
 			ShortDescription: `Log rolling policy for Network Analyzer logs.`,
 			Description:      ``,
@@ -55814,8 +60429,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -55863,7 +60490,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_settings_rollinglocal",
+			Type:             "fortimanager_system_log_settings_rollinglocal",
 			Category:         "System Log",
 			ShortDescription: `Log rolling policy for local logs.`,
 			Description:      ``,
@@ -55947,8 +60574,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -55996,7 +60635,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_settings_rollingregular",
+			Type:             "fortimanager_system_log_settings_rollingregular",
 			Category:         "System Log",
 			ShortDescription: `Log rolling policy for device logs.`,
 			Description:      ``,
@@ -56080,8 +60719,20 @@ var (
 					Description: `rolling upgrade status (1|0).`,
 				},
 				resource.Attribute{
+					Name:        "server",
+					Description: `Upload server FQDN/IP.`,
+				},
+				resource.Attribute{
 					Name:        "server_type",
 					Description: `Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: ` + "`" + `ftp` + "`" + `, ` + "`" + `sftp` + "`" + `, ` + "`" + `scp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server2",
+					Description: `Upload server2 FQDN/IP.`,
+				},
+				resource.Attribute{
+					Name:        "server3",
+					Description: `Upload server3 FQDN/IP.`,
 				},
 				resource.Attribute{
 					Name:        "upload",
@@ -56129,7 +60780,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_log_topology",
+			Type:             "fortimanager_system_log_topology",
 			Category:         "No Category",
 			ShortDescription: `Logging topology settings.`,
 			Description:      ``,
@@ -56163,7 +60814,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_logfetch_clientprofile",
+			Type:             "fortimanager_system_logfetch_clientprofile",
 			Category:         "System Log",
 			ShortDescription: `Log-fetch client profile settings.`,
 			Description:      ``,
@@ -56300,7 +60951,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_logfetch_serversettings",
+			Type:             "fortimanager_system_logfetch_serversettings",
 			Category:         "System Log",
 			ShortDescription: `Log-fetch server settings.`,
 			Description:      ``,
@@ -56337,7 +60988,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_mail",
+			Type:             "fortimanager_system_mail",
 			Category:         "System Others",
 			ShortDescription: `Alert emails.`,
 			Description:      ``,
@@ -56397,7 +61048,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_metadata_admins",
+			Type:             "fortimanager_system_metadata_admins",
 			Category:         "System Others",
 			ShortDescription: `Configure admins.`,
 			Description:      ``,
@@ -56438,7 +61089,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_ntp",
+			Type:             "fortimanager_system_ntp",
 			Category:         "System NTP",
 			ShortDescription: `NTP settings.`,
 			Description:      ``,
@@ -56509,7 +61160,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_ntp_ntpserver",
+			Type:             "fortimanager_system_ntp_ntpserver",
 			Category:         "System NTP",
 			ShortDescription: `NTP server.`,
 			Description:      ``,
@@ -56565,7 +61216,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_passwordpolicy",
+			Type:             "fortimanager_system_passwordpolicy",
 			Category:         "System Others",
 			ShortDescription: `Password policy.`,
 			Description:      ``,
@@ -56609,7 +61260,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_report_autocache",
+			Type:             "fortimanager_system_report_autocache",
 			Category:         "System Report",
 			ShortDescription: `Report auto-cache settings.`,
 			Description:      ``,
@@ -56645,7 +61296,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_report_estbrowsetime",
+			Type:             "fortimanager_system_report_estbrowsetime",
 			Category:         "System Report",
 			ShortDescription: `Report estimated browse time settings`,
 			Description:      ``,
@@ -56677,7 +61328,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_report_setting",
+			Type:             "fortimanager_system_report_setting",
 			Category:         "System Report",
 			ShortDescription: `Report settings.`,
 			Description:      ``,
@@ -56712,6 +61363,10 @@ var (
 					Description: `LDAP cache timeout in minutes, default 60, 0 means not use cache.`,
 				},
 				resource.Attribute{
+					Name:        "max_rpt_pdf_rows",
+					Description: `Maximum number of rows can be generated in a single pdf.`,
+				},
+				resource.Attribute{
 					Name:        "max_table_rows",
 					Description: `Maximum number of rows can be generated in a single table.`,
 				},
@@ -56741,7 +61396,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_route",
+			Type:             "fortimanager_system_route",
 			Category:         "System Route",
 			ShortDescription: `Routing table configuration.`,
 			Description:      ``,
@@ -56780,7 +61435,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_route6",
+			Type:             "fortimanager_system_route6",
 			Category:         "System Route",
 			ShortDescription: `Routing table configuration.`,
 			Description:      ``,
@@ -56820,7 +61475,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_saml",
+			Type:             "fortimanager_system_saml",
 			Category:         "System Saml",
 			ShortDescription: `Global settings for SAML authentication.`,
 			Description:      ``,
@@ -56946,12 +61601,20 @@ var (
 					Description: `Prefix.`,
 				},
 				resource.Attribute{
+					Name:        "sp_adom",
+					Description: `SP adom name.`,
+				},
+				resource.Attribute{
 					Name:        "sp_cert",
 					Description: `SP certificate name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_entity_id",
 					Description: `SP Entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "sp_profile",
+					Description: `SP profile name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_single_logout_url",
@@ -56975,7 +61638,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_saml_fabricidp",
+			Type:             "fortimanager_system_saml_fabricidp",
 			Category:         "System Saml",
 			ShortDescription: `Authorized identity providers.`,
 			Description:      ``,
@@ -57023,7 +61686,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_saml_serviceproviders",
+			Type:             "fortimanager_system_saml_serviceproviders",
 			Category:         "System Saml",
 			ShortDescription: `Authorized service providers.`,
 			Description:      ``,
@@ -57054,12 +61717,20 @@ var (
 					Description: `Prefix.`,
 				},
 				resource.Attribute{
+					Name:        "sp_adom",
+					Description: `SP adom name.`,
+				},
+				resource.Attribute{
 					Name:        "sp_cert",
 					Description: `SP certificate name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_entity_id",
 					Description: `SP Entity ID.`,
+				},
+				resource.Attribute{
+					Name:        "sp_profile",
+					Description: `SP profile name.`,
 				},
 				resource.Attribute{
 					Name:        "sp_single_logout_url",
@@ -57083,7 +61754,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_sniffer",
+			Type:             "fortimanager_system_sniffer",
 			Category:         "System Others",
 			ShortDescription: `Interface sniffer.`,
 			Description:      ``,
@@ -57143,7 +61814,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_snmp_community",
+			Type:             "fortimanager_system_snmp_community",
 			Category:         "System SNMP",
 			ShortDescription: `SNMP community configuration.`,
 			Description:      ``,
@@ -57251,7 +61922,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_snmp_sysinfo",
+			Type:             "fortimanager_system_snmp_sysinfo",
 			Category:         "System SNMP",
 			ShortDescription: `SNMP configuration.`,
 			Description:      ``,
@@ -57307,7 +61978,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_snmp_user",
+			Type:             "fortimanager_system_snmp_user",
 			Category:         "System SNMP",
 			ShortDescription: `SNMP user configuration.`,
 			Description:      ``,
@@ -57375,7 +62046,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_socfabric",
+			Type:             "fortimanager_system_socfabric",
 			Category:         "System Others",
 			ShortDescription: `SOC Fabric.`,
 			Description:      ``,
@@ -57427,7 +62098,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_sql",
+			Type:             "fortimanager_system_sql",
 			Category:         "System SQL",
 			ShortDescription: `SQL settings.`,
 			Description:      ``,
@@ -57586,7 +62257,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_sql_customindex",
+			Type:             "fortimanager_system_sql_customindex",
 			Category:         "System SQL",
 			ShortDescription: `List of SQL index fields.`,
 			Description:      ``,
@@ -57630,7 +62301,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_sql_customskipidx",
+			Type:             "fortimanager_system_sql_customskipidx",
 			Category:         "System SQL",
 			ShortDescription: `List of aditional SQL skip index fields.`,
 			Description:      ``,
@@ -57670,7 +62341,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_sql_tsindexfield",
+			Type:             "fortimanager_system_sql_tsindexfield",
 			Category:         "System SQL",
 			ShortDescription: `List of SQL text search index fields.`,
 			Description:      ``,
@@ -57702,7 +62373,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_syslog",
+			Type:             "fortimanager_system_syslog",
 			Category:         "System Others",
 			ShortDescription: `Syslog servers.`,
 			Description:      ``,
@@ -57717,12 +62388,28 @@ var (
 					Description: `Syslog server IP address or hostname.`,
 				},
 				resource.Attribute{
+					Name:        "local_cert",
+					Description: `Select local certificate used for secure connection.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Syslog server name.`,
 				},
 				resource.Attribute{
+					Name:        "peer_cert_cn",
+					Description: `Certificate common name of syslog server. null or &apos;-&apos; means not check certificate CN of syslog server`,
+				},
+				resource.Attribute{
 					Name:        "port",
-					Description: `Syslog server port. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+					Description: `Syslog server port.`,
+				},
+				resource.Attribute{
+					Name:        "reliable",
+					Description: `Enable/disable reliable connection with syslog server. disable - Disable reliable connection with syslog server. enable - Enable reliable connection with syslog server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secure_connection",
+					Description: `Enable/disable connection secured by TLS/SSL. disable - Disable SSL connection. enable - Enable SSL connection. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -57738,7 +62425,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_webproxy",
+			Type:             "fortimanager_system_webproxy",
 			Category:         "No Category",
 			ShortDescription: `Configure system web proxy.`,
 			Description:      ``,
@@ -57787,7 +62474,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "fortimanager_fortimanager_system_workflow_approvalmatrix",
+			Type:             "fortimanager_system_workflow_approvalmatrix",
 			Category:         "System Others",
 			ShortDescription: `workflow approval matrix.`,
 			Description:      ``,
@@ -57838,438 +62525,3456 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wan_template",
+			Category:         "No Category",
+			ShortDescription: `Wan Template`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wan",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "oid",
+					Description: `Oid.`,
+				},
+				resource.Attribute{
+					Name:        "scopemember",
+					Description: `Scope Member. The structure of ` + "`" + `scopemember` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type. Valid values: ` + "`" + `wanprof` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `scopemember` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name.`,
+				},
+				resource.Attribute{
+					Name:        "vdom",
+					Description: `Vdom. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Wan Template can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wan_template.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Wan Template can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wan_template.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan",
+			Category:         "No Category",
+			ShortDescription: `Configure redundant Internet connections with multiple outbound links and health-check profiles.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "duplication",
+					Description: `Duplication. The structure of ` + "`" + `duplication` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "duplication_max_num",
+					Description: `Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).`,
+				},
+				resource.Attribute{
+					Name:        "fail_detect",
+					Description: `Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health-Check. The structure of ` + "`" + `health_check` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "load_balance_mode",
+					Description: `Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: ` + "`" + `source-ip-based` + "`" + `, ` + "`" + `weight-based` + "`" + `, ` + "`" + `usage-based` + "`" + `, ` + "`" + `source-dest-ip-based` + "`" + `, ` + "`" + `measured-volume-based` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Members. The structure of ` + "`" + `members` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `Neighbor. The structure of ` + "`" + `neighbor` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_hold_boot_time",
+					Description: `Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_hold_down",
+					Description: `Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_hold_down_time",
+					Description: `Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service. The structure of ` + "`" + `service` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "speedtest_bypass_routing",
+					Description: `Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable SD-WAN. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Zone. The structure of ` + "`" + `zone` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `duplication` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr",
+					Description: `Destination address or address group names.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr6",
+					Description: `Destination address6 or address6 group names.`,
+				},
+				resource.Attribute{
+					Name:        "dstintf",
+					Description: `Outgoing (egress) interfaces or zones.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Duplication rule ID (1 - 255).`,
+				},
+				resource.Attribute{
+					Name:        "packet_de_duplication",
+					Description: `Enable/disable discarding of packets that have been duplicated. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "packet_duplication",
+					Description: `Configure packet duplication method. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `force` + "`" + `, ` + "`" + `on-demand` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service and service group name.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `SD-WAN service rule ID list.`,
+				},
+				resource.Attribute{
+					Name:        "sla_match_service",
+					Description: `Enable/disable packet duplication matching health-check SLAs in service rule. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr",
+					Description: `Source address or address group names.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr6",
+					Description: `Source address6 or address6 group names.`,
+				},
+				resource.Attribute{
+					Name:        "srcintf",
+					Description: `Incoming (ingress) interfaces or zones. The ` + "`" + `health_check` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_server",
+					Description: `_Dynamic-Server.`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "detect_mode",
+					Description: `The mode determining how to detect the server. Valid values: ` + "`" + `active` + "`" + `, ` + "`" + `passive` + "`" + `, ` + "`" + `prefer-passive` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "diffservcode",
+					Description: `Differentiated services code point (DSCP) in the IP header of the probe packet.`,
+				},
+				resource.Attribute{
+					Name:        "dns_match_ip",
+					Description: `Response IP expected from DNS server if the protocol is DNS.`,
+				},
+				resource.Attribute{
+					Name:        "dns_request_domain",
+					Description: `Fully qualified domain name to resolve for the DNS probe.`,
+				},
+				resource.Attribute{
+					Name:        "embed_measured_health",
+					Description: `Enable/disable embedding measured health information. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "failtime",
+					Description: `Number of failures before server is considered lost (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "ftp_file",
+					Description: `Full path and file name on the FTP server to download for FTP health-check to probe.`,
+				},
+				resource.Attribute{
+					Name:        "ftp_mode",
+					Description: `FTP mode. Valid values: ` + "`" + `passive` + "`" + `, ` + "`" + `port` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ha_priority",
+					Description: `HA election priority (1 - 50).`,
+				},
+				resource.Attribute{
+					Name:        "http_agent",
+					Description: `String in the http-agent field in the HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "http_get",
+					Description: `URL used to communicate with the server if the protocol if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "http_match",
+					Description: `Response string expected from the server if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "mos_codec",
+					Description: `Codec to use for MOS calculation (default = g711). Valid values: ` + "`" + `g711` + "`" + `, ` + "`" + `g722` + "`" + `, ` + "`" + `g729` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Status check or health check name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_size",
+					Description: `Packet size of a twamp test session,`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Twamp controller password in authentication mode`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).`,
+				},
+				resource.Attribute{
+					Name:        "probe_count",
+					Description: `Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).`,
+				},
+				resource.Attribute{
+					Name:        "probe_packets",
+					Description: `Enable/disable transmission of probe packets. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "probe_timeout",
+					Description: `Time to wait before a probe packet is considered lost (500 - 3600`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol used to determine if the FortiGate can communicate with the server. Valid values: ` + "`" + `ping` + "`" + `, ` + "`" + `tcp-echo` + "`" + `, ` + "`" + `udp-echo` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `twamp` + "`" + `, ` + "`" + `ping6` + "`" + `, ` + "`" + `dns` + "`" + `, ` + "`" + `tcp-connect` + "`" + `, ` + "`" + `ftp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "quality_measured_method",
+					Description: `Method to measure the quality of tcp-connect. Valid values: ` + "`" + `half-close` + "`" + `, ` + "`" + `half-open` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "recoverytime",
+					Description: `Number of successful responses received before server is considered recovered (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "security_mode",
+					Description: `Twamp controller security mode. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `authentication` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `IP address or FQDN name of the server.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_fail_log_period",
+					Description: `Time interval in seconds that SLA fail log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "sla_id_redistribute",
+					Description: `Select the ID from the SLA sub-table. The selected SLA's priority value will be distributed into the routing table (0 - 32, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "sla_pass_log_period",
+					Description: `Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source IP address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "system_dns",
+					Description: `Enable/disable system DNS as the probe server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_jitter",
+					Description: `Alert threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_latency",
+					Description: `Alert threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_packetloss",
+					Description: `Alert threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_jitter",
+					Description: `Warning threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_latency",
+					Description: `Warning threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_packetloss",
+					Description: `Warning threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "update_cascade_interface",
+					Description: `Enable/disable update cascade interface. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "update_static_route",
+					Description: `Enable/disable updating the static route. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `The user name to access probe server.`,
+				},
+				resource.Attribute{
+					Name:        "vrf",
+					Description: `Virtual Routing Forwarding ID. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_threshold",
+					Description: `Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Criteria on which to base link selection. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mos_threshold",
+					Description: `Minimum Mean Opinion Score for SLA to be marked as pass. (1.0 - 5.0, default = 3.6).`,
+				},
+				resource.Attribute{
+					Name:        "packetloss_threshold",
+					Description: `Packet loss for SLA to make decision in percentage. (0 - 100, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "priority_in_sla",
+					Description: `Value to be distributed into routing table when in-sla (0 - 65535, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "priority_out_sla",
+					Description: `Value to be distributed into routing table when out-sla (0 - 65535, default = 0). The ` + "`" + `members` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_member",
+					Description: `_Dynamic-Member.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comments.`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Cost of this interface for services in SLA mode (0 - 4294967295, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The default gateway for this interface. Usually the default gateway of the Internet service provider that this interface is connected to.`,
+				},
+				resource.Attribute{
+					Name:        "gateway6",
+					Description: `IPv6 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_spillover_threshold",
+					Description: `Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.`,
+				},
+				resource.Attribute{
+					Name:        "priority6",
+					Description: `Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.`,
+				},
+				resource.Attribute{
+					Name:        "seq_num",
+					Description: `Sequence number(1-512).`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source IP address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "source6",
+					Description: `Source IPv6 address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "spillover_threshold",
+					Description: `Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable this interface in the SD-WAN. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volume_ratio",
+					Description: `Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Zone name. The ` + "`" + `neighbor` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check name.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP/IPv6 address of neighbor.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member sequence number.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_sla_meet_members",
+					Description: `Minimum number of members which meet SLA when the neighbor is preferred.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `What metric to select the neighbor. Valid values: ` + "`" + `sla` + "`" + `, ` + "`" + `speedtest` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sla_id",
+					Description: `SLA ID. The ` + "`" + `service` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_weight",
+					Description: `Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Enable/disable use of SD-WAN as default service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward",
+					Description: `Enable/disable forward traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward_tag",
+					Description: `Forward traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse",
+					Description: `Enable/disable reverse traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse_tag",
+					Description: `Reverse traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination address name.`,
+				},
+				resource.Attribute{
+					Name:        "dst_negate",
+					Description: `Enable/disable negation of destination address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dst6",
+					Description: `Destination address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `End destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Enable/disable SD-WAN service gateway. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `User groups.`,
+				},
+				resource.Attribute{
+					Name:        "hash_mode",
+					Description: `Hash algorithm for selected priority members for load balance mode. Valid values: ` + "`" + `round-robin` + "`" + `, ` + "`" + `source-ip-based` + "`" + `, ` + "`" + `source-dest-ip-based` + "`" + `, ` + "`" + `inbandwidth` + "`" + `, ` + "`" + `outbandwidth` + "`" + `, ` + "`" + `bibandwidth` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health check list.`,
+				},
+				resource.Attribute{
+					Name:        "hold_down_time",
+					Description: `Waiting period in seconds when switching from the back-up member to the primary member (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SD-WAN rule ID (1 - 4000).`,
+				},
+				resource.Attribute{
+					Name:        "input_device",
+					Description: `Source interface name.`,
+				},
+				resource.Attribute{
+					Name:        "input_device_negate",
+					Description: `Enable/disable negation of input device match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "input_zone",
+					Description: `Source input-zone name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service",
+					Description: `Enable/disable use of Internet service for application-based load balancing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl",
+					Description: `Application control based Internet Service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl_category",
+					Description: `IDs of one or more application control categories.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl_group",
+					Description: `Application control based Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom",
+					Description: `Custom Internet service name list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom_group",
+					Description: `Custom Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_group",
+					Description: `Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_name",
+					Description: `Internet service name list.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_weight",
+					Description: `Coefficient of jitter in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "latency_weight",
+					Description: `Coefficient of latency in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Link cost factor. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `, ` + "`" + `inbandwidth` + "`" + `, ` + "`" + `outbandwidth` + "`" + `, ` + "`" + `bibandwidth` + "`" + `, ` + "`" + `custom-profile-1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_threshold",
+					Description: `Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).`,
+				},
+				resource.Attribute{
+					Name:        "minimum_sla_meet_members",
+					Description: `Minimum number of members which meet SLA.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `manual` + "`" + `, ` + "`" + `priority` + "`" + `, ` + "`" + `sla` + "`" + `, ` + "`" + `load-balance` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SD-WAN rule name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_loss_weight",
+					Description: `Coefficient of packet-loss in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "passive_measurement",
+					Description: `Enable/disable passive measurement based on the service criteria. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority_members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "priority_zone",
+					Description: `Priority zone name list.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol number.`,
+				},
+				resource.Attribute{
+					Name:        "quality_link",
+					Description: `Quality grade.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Service role to work with neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_tag",
+					Description: `IPv4 route map route-tag.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_compare_method",
+					Description: `Method to compare SLA value for SLA mode. Valid values: ` + "`" + `order` + "`" + `, ` + "`" + `number` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source address name.`,
+				},
+				resource.Attribute{
+					Name:        "src_negate",
+					Description: `Enable/disable negation of source address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src6",
+					Description: `Source address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "standalone_action",
+					Description: `Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `Start destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable SD-WAN service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tie_break",
+					Description: `Method of selecting member if more than one meets the SLA. Valid values: ` + "`" + `zone` + "`" + `, ` + "`" + `cfg-order` + "`" + `, ` + "`" + `fib-best-match` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tos",
+					Description: `Type of service bit pattern.`,
+				},
+				resource.Attribute{
+					Name:        "tos_mask",
+					Description: `Type of service evaluated bits.`,
+				},
+				resource.Attribute{
+					Name:        "use_shortcut_sla",
+					Description: `Enable/disable use of ADVPN shortcut for quality comparison. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `User name. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID. The ` + "`" + `zone` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Zone name.`,
+				},
+				resource.Attribute{
+					Name:        "service_sla_tie_break",
+					Description: `Method of selecting member if more than one meets the SLA. Valid values: ` + "`" + `cfg-order` + "`" + `, ` + "`" + `fib-best-match` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwan can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan.labelname WantempSystemSdwan $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwan can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan.labelname WantempSystemSdwan $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_duplication",
+			Category:         "No Category",
+			ShortDescription: `Create SD-WAN duplication rule.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"duplication",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr",
+					Description: `Destination address or address group names.`,
+				},
+				resource.Attribute{
+					Name:        "dstaddr6",
+					Description: `Destination address6 or address6 group names.`,
+				},
+				resource.Attribute{
+					Name:        "dstintf",
+					Description: `Outgoing (egress) interfaces or zones.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Duplication rule ID (1 - 255).`,
+				},
+				resource.Attribute{
+					Name:        "packet_de_duplication",
+					Description: `Enable/disable discarding of packets that have been duplicated. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "packet_duplication",
+					Description: `Configure packet duplication method. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `force` + "`" + `, ` + "`" + `on-demand` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service and service group name.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `SD-WAN service rule ID list.`,
+				},
+				resource.Attribute{
+					Name:        "sla_match_service",
+					Description: `Enable/disable packet duplication matching health-check SLAs in service rule. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr",
+					Description: `Source address or address group names.`,
+				},
+				resource.Attribute{
+					Name:        "srcaddr6",
+					Description: `Source address6 or address6 group names.`,
+				},
+				resource.Attribute{
+					Name:        "srcintf",
+					Description: `Incoming (ingress) interfaces or zones. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import Wantemp SystemSdwanDuplication can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_duplication.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{fosid}}. ## Import Wantemp SystemSdwanDuplication can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_duplication.labelname {{fosid}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_healthcheck",
+			Category:         "No Category",
+			ShortDescription: `SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"healthcheck",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_server",
+					Description: `_Dynamic-Server.`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "detect_mode",
+					Description: `The mode determining how to detect the server. Valid values: ` + "`" + `active` + "`" + `, ` + "`" + `passive` + "`" + `, ` + "`" + `prefer-passive` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "diffservcode",
+					Description: `Differentiated services code point (DSCP) in the IP header of the probe packet.`,
+				},
+				resource.Attribute{
+					Name:        "dns_match_ip",
+					Description: `Response IP expected from DNS server if the protocol is DNS.`,
+				},
+				resource.Attribute{
+					Name:        "dns_request_domain",
+					Description: `Fully qualified domain name to resolve for the DNS probe.`,
+				},
+				resource.Attribute{
+					Name:        "embed_measured_health",
+					Description: `Enable/disable embedding measured health information. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "failtime",
+					Description: `Number of failures before server is considered lost (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "ftp_file",
+					Description: `Full path and file name on the FTP server to download for FTP health-check to probe.`,
+				},
+				resource.Attribute{
+					Name:        "ftp_mode",
+					Description: `FTP mode. Valid values: ` + "`" + `passive` + "`" + `, ` + "`" + `port` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ha_priority",
+					Description: `HA election priority (1 - 50).`,
+				},
+				resource.Attribute{
+					Name:        "http_agent",
+					Description: `String in the http-agent field in the HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "http_get",
+					Description: `URL used to communicate with the server if the protocol if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "http_match",
+					Description: `Response string expected from the server if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "mos_codec",
+					Description: `Codec to use for MOS calculation (default = g711). Valid values: ` + "`" + `g711` + "`" + `, ` + "`" + `g722` + "`" + `, ` + "`" + `g729` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Status check or health check name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_size",
+					Description: `Packet size of a twamp test session,`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Twamp controller password in authentication mode`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number used to communicate with the server over the selected protocol (0-65535, default = 0, auto select. http, twamp: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21).`,
+				},
+				resource.Attribute{
+					Name:        "probe_count",
+					Description: `Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).`,
+				},
+				resource.Attribute{
+					Name:        "probe_packets",
+					Description: `Enable/disable transmission of probe packets. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "probe_timeout",
+					Description: `Time to wait before a probe packet is considered lost (500 - 3600`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol used to determine if the FortiGate can communicate with the server. Valid values: ` + "`" + `ping` + "`" + `, ` + "`" + `tcp-echo` + "`" + `, ` + "`" + `udp-echo` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `twamp` + "`" + `, ` + "`" + `ping6` + "`" + `, ` + "`" + `dns` + "`" + `, ` + "`" + `tcp-connect` + "`" + `, ` + "`" + `ftp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "quality_measured_method",
+					Description: `Method to measure the quality of tcp-connect. Valid values: ` + "`" + `half-close` + "`" + `, ` + "`" + `half-open` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "recoverytime",
+					Description: `Number of successful responses received before server is considered recovered (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "security_mode",
+					Description: `Twamp controller security mode. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `authentication` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `IP address or FQDN name of the server.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_fail_log_period",
+					Description: `Time interval in seconds that SLA fail log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "sla_id_redistribute",
+					Description: `Select the ID from the SLA sub-table. The selected SLA's priority value will be distributed into the routing table (0 - 32, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "sla_pass_log_period",
+					Description: `Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source IP address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "system_dns",
+					Description: `Enable/disable system DNS as the probe server. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_jitter",
+					Description: `Alert threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_latency",
+					Description: `Alert threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_packetloss",
+					Description: `Alert threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_jitter",
+					Description: `Warning threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_latency",
+					Description: `Warning threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_packetloss",
+					Description: `Warning threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "update_cascade_interface",
+					Description: `Enable/disable update cascade interface. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "update_static_route",
+					Description: `Enable/disable updating the static route. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `The user name to access probe server.`,
+				},
+				resource.Attribute{
+					Name:        "vrf",
+					Description: `Virtual Routing Forwarding ID.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_threshold",
+					Description: `Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Criteria on which to base link selection. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mos_threshold",
+					Description: `Minimum Mean Opinion Score for SLA to be marked as pass. (1.0 - 5.0, default = 3.6).`,
+				},
+				resource.Attribute{
+					Name:        "packetloss_threshold",
+					Description: `Packet loss for SLA to make decision in percentage. (0 - 100, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "priority_in_sla",
+					Description: `Value to be distributed into routing table when in-sla (0 - 65535, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "priority_out_sla",
+					Description: `Value to be distributed into routing table when out-sla (0 - 65535, default = 0). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Wantemp SystemSdwanHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_healthcheck.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Wantemp SystemSdwanHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_healthcheck.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_healthcheck_sla",
+			Category:         "No Category",
+			ShortDescription: `Service level agreement (SLA).`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"healthcheck",
+				"sla",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `SLA ID.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_threshold",
+					Description: `Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Criteria on which to base link selection. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mos_threshold",
+					Description: `Minimum Mean Opinion Score for SLA to be marked as pass. (1.0 - 5.0, default = 3.6).`,
+				},
+				resource.Attribute{
+					Name:        "packetloss_threshold",
+					Description: `Packet loss for SLA to make decision in percentage. (0 - 100, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "priority_in_sla",
+					Description: `Value to be distributed into routing table when in-sla (0 - 65535, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "priority_out_sla",
+					Description: `Value to be distributed into routing table when out-sla (0 - 65535, default = 0). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwanHealthCheckSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "health_check=myhealth_check"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_healthcheck_sla.labelname WantempSystemSdwanHealthCheckSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwanHealthCheckSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "health_check=myhealth_check"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_healthcheck_sla.labelname WantempSystemSdwanHealthCheckSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_members",
+			Category:         "No Category",
+			ShortDescription: `FortiGate interfaces added to the SD-WAN.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"members",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_member",
+					Description: `_Dynamic-Member.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comments.`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Cost of this interface for services in SLA mode (0 - 4294967295, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The default gateway for this interface. Usually the default gateway of the Internet service provider that this interface is connected to.`,
+				},
+				resource.Attribute{
+					Name:        "gateway6",
+					Description: `IPv6 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_spillover_threshold",
+					Description: `Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.`,
+				},
+				resource.Attribute{
+					Name:        "priority6",
+					Description: `Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.`,
+				},
+				resource.Attribute{
+					Name:        "seq_num",
+					Description: `Sequence number(1-512).`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source IP address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "source6",
+					Description: `Source IPv6 address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "spillover_threshold",
+					Description: `Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable this interface in the SD-WAN. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volume_ratio",
+					Description: `Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Zone name. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{seq_num}}. ## Import Wantemp SystemSdwanMembers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_members.labelname {{seq_num}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{seq_num}}. ## Import Wantemp SystemSdwanMembers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_members.labelname {{seq_num}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_neighbor",
+			Category:         "No Category",
+			ShortDescription: `Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"neighbor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check name.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP/IPv6 address of neighbor.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member sequence number.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_sla_meet_members",
+					Description: `Minimum number of members which meet SLA when the neighbor is preferred.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `What metric to select the neighbor. Valid values: ` + "`" + `sla` + "`" + `, ` + "`" + `speedtest` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sla_id",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{ip}}. ## Import Wantemp SystemSdwanNeighbor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_neighbor.labelname {{ip}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{ip}}. ## Import Wantemp SystemSdwanNeighbor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_neighbor.labelname {{ip}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_service",
+			Category:         "No Category",
+			ShortDescription: `Create SD-WAN rules (also called services) to control how sessions are distributed to interfaces in the SD-WAN.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_weight",
+					Description: `Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Enable/disable use of SD-WAN as default service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward",
+					Description: `Enable/disable forward traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward_tag",
+					Description: `Forward traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse",
+					Description: `Enable/disable reverse traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse_tag",
+					Description: `Reverse traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination address name.`,
+				},
+				resource.Attribute{
+					Name:        "dst_negate",
+					Description: `Enable/disable negation of destination address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dst6",
+					Description: `Destination address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `End destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Enable/disable SD-WAN service gateway. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `User groups.`,
+				},
+				resource.Attribute{
+					Name:        "hash_mode",
+					Description: `Hash algorithm for selected priority members for load balance mode. Valid values: ` + "`" + `round-robin` + "`" + `, ` + "`" + `source-ip-based` + "`" + `, ` + "`" + `source-dest-ip-based` + "`" + `, ` + "`" + `inbandwidth` + "`" + `, ` + "`" + `outbandwidth` + "`" + `, ` + "`" + `bibandwidth` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health check list.`,
+				},
+				resource.Attribute{
+					Name:        "hold_down_time",
+					Description: `Waiting period in seconds when switching from the back-up member to the primary member (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `SD-WAN rule ID (1 - 4000).`,
+				},
+				resource.Attribute{
+					Name:        "input_device",
+					Description: `Source interface name.`,
+				},
+				resource.Attribute{
+					Name:        "input_device_negate",
+					Description: `Enable/disable negation of input device match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "input_zone",
+					Description: `Source input-zone name.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service",
+					Description: `Enable/disable use of Internet service for application-based load balancing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl",
+					Description: `Application control based Internet Service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl_category",
+					Description: `IDs of one or more application control categories.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl_group",
+					Description: `Application control based Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom",
+					Description: `Custom Internet service name list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom_group",
+					Description: `Custom Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_group",
+					Description: `Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_name",
+					Description: `Internet service name list.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_weight",
+					Description: `Coefficient of jitter in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "latency_weight",
+					Description: `Coefficient of latency in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Link cost factor. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `, ` + "`" + `inbandwidth` + "`" + `, ` + "`" + `outbandwidth` + "`" + `, ` + "`" + `bibandwidth` + "`" + `, ` + "`" + `custom-profile-1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_threshold",
+					Description: `Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).`,
+				},
+				resource.Attribute{
+					Name:        "minimum_sla_meet_members",
+					Description: `Minimum number of members which meet SLA.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `manual` + "`" + `, ` + "`" + `priority` + "`" + `, ` + "`" + `sla` + "`" + `, ` + "`" + `load-balance` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `SD-WAN rule name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_loss_weight",
+					Description: `Coefficient of packet-loss in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "passive_measurement",
+					Description: `Enable/disable passive measurement based on the service criteria. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority_members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "priority_zone",
+					Description: `Priority zone name list.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol number.`,
+				},
+				resource.Attribute{
+					Name:        "quality_link",
+					Description: `Quality grade.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Service role to work with neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_tag",
+					Description: `IPv4 route map route-tag.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_compare_method",
+					Description: `Method to compare SLA value for SLA mode. Valid values: ` + "`" + `order` + "`" + `, ` + "`" + `number` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source address name.`,
+				},
+				resource.Attribute{
+					Name:        "src_negate",
+					Description: `Enable/disable negation of source address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src6",
+					Description: `Source address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "standalone_action",
+					Description: `Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `Start destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable SD-WAN service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tie_break",
+					Description: `Method of selecting member if more than one meets the SLA. Valid values: ` + "`" + `zone` + "`" + `, ` + "`" + `cfg-order` + "`" + `, ` + "`" + `fib-best-match` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tos",
+					Description: `Type of service bit pattern.`,
+				},
+				resource.Attribute{
+					Name:        "tos_mask",
+					Description: `Type of service evaluated bits.`,
+				},
+				resource.Attribute{
+					Name:        "use_shortcut_sla",
+					Description: `Enable/disable use of ADVPN shortcut for quality comparison. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `User name.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwanService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_service.labelname WantempSystemSdwanService $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwanService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_service.labelname WantempSystemSdwanService $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_service_sla",
+			Category:         "No Category",
+			ShortDescription: `Service level agreement (SLA).`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"service",
+				"sla",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwanServiceSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "service=myservice"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_service_sla.labelname WantempSystemSdwanServiceSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemSdwanServiceSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "service=myservice"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_service_sla.labelname WantempSystemSdwanServiceSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_sdwan_zone",
+			Category:         "No Category",
+			ShortDescription: `Configure SD-WAN zones.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"sdwan",
+				"zone",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Zone name.`,
+				},
+				resource.Attribute{
+					Name:        "service_sla_tie_break",
+					Description: `Method of selecting member if more than one meets the SLA. Valid values: ` + "`" + `cfg-order` + "`" + `, ` + "`" + `fib-best-match` + "`" + `. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Wantemp SystemSdwanZone can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_zone.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format {{name}}. ## Import Wantemp SystemSdwanZone can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_sdwan_zone.labelname {{name}} $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink",
+			Category:         "No Category",
+			ShortDescription: `Configure redundant internet connections using SD-WAN (formerly virtual WAN link).`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "fail_detect",
+					Description: `Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health-Check. The structure of ` + "`" + `health_check` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "load_balance_mode",
+					Description: `Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: ` + "`" + `source-ip-based` + "`" + `, ` + "`" + `weight-based` + "`" + `, ` + "`" + `usage-based` + "`" + `, ` + "`" + `source-dest-ip-based` + "`" + `, ` + "`" + `measured-volume-based` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Members. The structure of ` + "`" + `members` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "neighbor",
+					Description: `Neighbor. The structure of ` + "`" + `neighbor` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_hold_boot_time",
+					Description: `Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_hold_down",
+					Description: `Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "neighbor_hold_down_time",
+					Description: `Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service. The structure of ` + "`" + `service` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable SD-WAN. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `health_check` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_server",
+					Description: `_Dynamic-Server.`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "diffservcode",
+					Description: `Differentiated services code point (DSCP) in the IP header of the probe packet.`,
+				},
+				resource.Attribute{
+					Name:        "failtime",
+					Description: `Number of failures before server is considered lost (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "ha_priority",
+					Description: `HA election priority (1 - 50).`,
+				},
+				resource.Attribute{
+					Name:        "http_agent",
+					Description: `String in the http-agent field in the HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "http_get",
+					Description: `URL used to communicate with the server if the protocol if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "http_match",
+					Description: `Response string expected from the server if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `Internet-Service-Id.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Status check or health check name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_size",
+					Description: `Packet size of a twamp test session,`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Twamp controller password in authentication mode`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number used to communicate with the server over the selected protocol.`,
+				},
+				resource.Attribute{
+					Name:        "probe_packets",
+					Description: `Enable/disable transmission of probe packets. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "probe_timeout",
+					Description: `Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol used to determine if the FortiGate can communicate with the server. Valid values: ` + "`" + `ping` + "`" + `, ` + "`" + `tcp-echo` + "`" + `, ` + "`" + `udp-echo` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `twamp` + "`" + `, ` + "`" + `ping6` + "`" + `, ` + "`" + `dns` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "recoverytime",
+					Description: `Number of successful responses received before server is considered recovered (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "security_mode",
+					Description: `Twamp controller security mode. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `authentication` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `IP address or FQDN name of the server.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_fail_log_period",
+					Description: `Time interval in seconds that SLA fail log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "sla_pass_log_period",
+					Description: `Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_jitter",
+					Description: `Alert threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_latency",
+					Description: `Alert threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_packetloss",
+					Description: `Alert threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_jitter",
+					Description: `Warning threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_latency",
+					Description: `Warning threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_packetloss",
+					Description: `Warning threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "update_cascade_interface",
+					Description: `Enable/disable update cascade interface. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "update_static_route",
+					Description: `Enable/disable updating the static route. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_threshold",
+					Description: `Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Criteria on which to base link selection. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "packetloss_threshold",
+					Description: `Packet loss for SLA to make decision in percentage. (0 - 100, default = 0). The ` + "`" + `members` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_member",
+					Description: `_Dynamic-Member.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comments.`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Cost of this interface for services in SLA mode (0 - 4294967295, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The default gateway for this interface. Usually the default gateway of the Internet service provider that this interface is connected to.`,
+				},
+				resource.Attribute{
+					Name:        "gateway6",
+					Description: `IPv6 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_spillover_threshold",
+					Description: `Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the interface (0 - 4294967295). Used for SD-WAN rules or priority rules.`,
+				},
+				resource.Attribute{
+					Name:        "seq_num",
+					Description: `Sequence number(1-255).`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source IP address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "source6",
+					Description: `Source IPv6 address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "spillover_threshold",
+					Description: `Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable this interface in the SD-WAN. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volume_ratio",
+					Description: `Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights. The ` + "`" + `neighbor` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check name.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of neighbor.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member sequence number.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sla_id",
+					Description: `SLA ID. The ` + "`" + `service` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_weight",
+					Description: `Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Enable/disable use of SD-WAN as default service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward",
+					Description: `Enable/disable forward traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward_tag",
+					Description: `Forward traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse",
+					Description: `Enable/disable reverse traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse_tag",
+					Description: `Reverse traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination address name.`,
+				},
+				resource.Attribute{
+					Name:        "dst_negate",
+					Description: `Enable/disable negation of destination address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dst6",
+					Description: `Destination address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `End destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Enable/disable SD-WAN service gateway. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `User groups.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health check.`,
+				},
+				resource.Attribute{
+					Name:        "hold_down_time",
+					Description: `Waiting period in seconds when switching from the back-up member to the primary member (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Priority rule ID (1 - 4000).`,
+				},
+				resource.Attribute{
+					Name:        "input_device",
+					Description: `Source interface name.`,
+				},
+				resource.Attribute{
+					Name:        "input_device_negate",
+					Description: `Enable/disable negation of input device match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service",
+					Description: `Enable/disable use of Internet service for application-based load balancing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_ctrl",
+					Description: `Control-based Internet Service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_ctrl_group",
+					Description: `Control-based Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl",
+					Description: `Application control based Internet Service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl_group",
+					Description: `Application control based Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom",
+					Description: `Custom Internet service name list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom_group",
+					Description: `Custom Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_group",
+					Description: `Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `Internet service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_weight",
+					Description: `Coefficient of jitter in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "latency_weight",
+					Description: `Coefficient of latency in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Link cost factor. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `, ` + "`" + `inbandwidth` + "`" + `, ` + "`" + `outbandwidth` + "`" + `, ` + "`" + `bibandwidth` + "`" + `, ` + "`" + `custom-profile-1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_threshold",
+					Description: `Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member sequence number.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Control how the priority rule sets the priority of interfaces in the SD-WAN. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `manual` + "`" + `, ` + "`" + `priority` + "`" + `, ` + "`" + `sla` + "`" + `, ` + "`" + `load-balance` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Priority rule name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_loss_weight",
+					Description: `Coefficient of packet-loss in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "priority_members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol number.`,
+				},
+				resource.Attribute{
+					Name:        "quality_link",
+					Description: `Quality grade.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Service role to work with neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_tag",
+					Description: `IPv4 route map route-tag.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_compare_method",
+					Description: `Method to compare SLA value for sla and load balance mode. Valid values: ` + "`" + `order` + "`" + `, ` + "`" + `number` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source address name.`,
+				},
+				resource.Attribute{
+					Name:        "src_negate",
+					Description: `Enable/disable negation of source address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src6",
+					Description: `Source address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "standalone_action",
+					Description: `Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `Start destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable SD-WAN service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tos",
+					Description: `Type of service bit pattern.`,
+				},
+				resource.Attribute{
+					Name:        "tos_mask",
+					Description: `Type of service evaluated bits.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `User name. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Virtual WAN Link health-check.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLink can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink.labelname WantempSystemVirtualWanLink $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLink can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink.labelname WantempSystemVirtualWanLink $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink_healthcheck",
+			Category:         "No Category",
+			ShortDescription: `SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+				"healthcheck",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_server",
+					Description: `_Dynamic-Server.`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "diffservcode",
+					Description: `Differentiated services code point (DSCP) in the IP header of the probe packet.`,
+				},
+				resource.Attribute{
+					Name:        "failtime",
+					Description: `Number of failures before server is considered lost (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "ha_priority",
+					Description: `HA election priority (1 - 50).`,
+				},
+				resource.Attribute{
+					Name:        "http_agent",
+					Description: `String in the http-agent field in the HTTP header.`,
+				},
+				resource.Attribute{
+					Name:        "http_get",
+					Description: `URL used to communicate with the server if the protocol if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "http_match",
+					Description: `Response string expected from the server if the protocol is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `Internet-Service-Id.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Status check interval in milliseconds, or the time between attempting to connect to the server (500 - 3600`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Status check or health check name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_size",
+					Description: `Packet size of a twamp test session,`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Twamp controller password in authentication mode`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number used to communicate with the server over the selected protocol.`,
+				},
+				resource.Attribute{
+					Name:        "probe_packets",
+					Description: `Enable/disable transmission of probe packets. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "probe_timeout",
+					Description: `Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol used to determine if the FortiGate can communicate with the server. Valid values: ` + "`" + `ping` + "`" + `, ` + "`" + `tcp-echo` + "`" + `, ` + "`" + `udp-echo` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `twamp` + "`" + `, ` + "`" + `ping6` + "`" + `, ` + "`" + `dns` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "recoverytime",
+					Description: `Number of successful responses received before server is considered recovered (1 - 3600, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "security_mode",
+					Description: `Twamp controller security mode. Valid values: ` + "`" + `none` + "`" + `, ` + "`" + `authentication` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "server",
+					Description: `IP address or FQDN name of the server.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_fail_log_period",
+					Description: `Time interval in seconds that SLA fail log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "sla_pass_log_period",
+					Description: `Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_jitter",
+					Description: `Alert threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_latency",
+					Description: `Alert threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_alert_packetloss",
+					Description: `Alert threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_jitter",
+					Description: `Warning threshold for jitter (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_latency",
+					Description: `Warning threshold for latency (ms, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "threshold_warning_packetloss",
+					Description: `Warning threshold for packet loss (percentage, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "update_cascade_interface",
+					Description: `Enable/disable update cascade interface. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "update_static_route",
+					Description: `Enable/disable updating the static route. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_threshold",
+					Description: `Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Criteria on which to base link selection. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "packetloss_threshold",
+					Description: `Packet loss for SLA to make decision in percentage. (0 - 100, default = 0). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_healthcheck.labelname WantempSystemVirtualWanLinkHealthCheck $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_healthcheck.labelname WantempSystemVirtualWanLinkHealthCheck $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink_healthcheck_sla",
+			Category:         "No Category",
+			ShortDescription: `Service level agreement (SLA).`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+				"healthcheck",
+				"sla",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health Check.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `SLA ID.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_threshold",
+					Description: `Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "latency_threshold",
+					Description: `Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Criteria on which to base link selection. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "packetloss_threshold",
+					Description: `Packet loss for SLA to make decision in percentage. (0 - 100, default = 0). ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkHealthCheckSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "health_check=myhealth_check"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_healthcheck_sla.labelname WantempSystemVirtualWanLinkHealthCheckSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkHealthCheckSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "health_check=myhealth_check"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_healthcheck_sla.labelname WantempSystemVirtualWanLinkHealthCheckSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink_members",
+			Category:         "No Category",
+			ShortDescription: `FortiGate interfaces added to the virtual-wan-link.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+				"members",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "_dynamic_member",
+					Description: `_Dynamic-Member.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Comments.`,
+				},
+				resource.Attribute{
+					Name:        "cost",
+					Description: `Cost of this interface for services in SLA mode (0 - 4294967295, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `The default gateway for this interface. Usually the default gateway of the Internet service provider that this interface is connected to.`,
+				},
+				resource.Attribute{
+					Name:        "gateway6",
+					Description: `IPv6 gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ingress_spillover_threshold",
+					Description: `Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `Interface name.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the interface (0 - 4294967295). Used for SD-WAN rules or priority rules.`,
+				},
+				resource.Attribute{
+					Name:        "seq_num",
+					Description: `Sequence number(1-255).`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Source IP address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "source6",
+					Description: `Source IPv6 address used in the health-check packet to the server.`,
+				},
+				resource.Attribute{
+					Name:        "spillover_threshold",
+					Description: `Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable this interface in the SD-WAN. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "volume_ratio",
+					Description: `Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkMembers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_members.labelname WantempSystemVirtualWanLinkMembers $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkMembers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_members.labelname WantempSystemVirtualWanLinkMembers $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink_neighbor",
+			Category:         "No Category",
+			ShortDescription: `Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+				"neighbor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `SD-WAN health-check name.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `IP address of neighbor.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member sequence number.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sla_id",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkNeighbor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_neighbor.labelname WantempSystemVirtualWanLinkNeighbor $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkNeighbor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_neighbor.labelname WantempSystemVirtualWanLinkNeighbor $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink_service",
+			Category:         "No Category",
+			ShortDescription: `Create SD-WAN rules (also called services) to control how sessions are distributed to interfaces in the SD-WAN.`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "addr_mode",
+					Description: `Address mode (IPv4 or IPv6). Valid values: ` + "`" + `ipv4` + "`" + `, ` + "`" + `ipv6` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth_weight",
+					Description: `Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Enable/disable use of SD-WAN as default service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward",
+					Description: `Enable/disable forward traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_forward_tag",
+					Description: `Forward traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse",
+					Description: `Enable/disable reverse traffic DSCP tag. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dscp_reverse_tag",
+					Description: `Reverse traffic DSCP tag.`,
+				},
+				resource.Attribute{
+					Name:        "dst",
+					Description: `Destination address name.`,
+				},
+				resource.Attribute{
+					Name:        "dst_negate",
+					Description: `Enable/disable negation of destination address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dst6",
+					Description: `Destination address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `End destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Enable/disable SD-WAN service gateway. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `User groups.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Health check.`,
+				},
+				resource.Attribute{
+					Name:        "hold_down_time",
+					Description: `Waiting period in seconds when switching from the back-up member to the primary member (0 - 10000000, default = 0).`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `Priority rule ID (1 - 4000).`,
+				},
+				resource.Attribute{
+					Name:        "input_device",
+					Description: `Source interface name.`,
+				},
+				resource.Attribute{
+					Name:        "input_device_negate",
+					Description: `Enable/disable negation of input device match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service",
+					Description: `Enable/disable use of Internet service for application-based load balancing. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_ctrl",
+					Description: `Control-based Internet Service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_ctrl_group",
+					Description: `Control-based Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl",
+					Description: `Application control based Internet Service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_app_ctrl_group",
+					Description: `Application control based Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom",
+					Description: `Custom Internet service name list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_custom_group",
+					Description: `Custom Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_group",
+					Description: `Internet Service group list.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `Internet service ID list.`,
+				},
+				resource.Attribute{
+					Name:        "jitter_weight",
+					Description: `Coefficient of jitter in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "latency_weight",
+					Description: `Coefficient of latency in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_factor",
+					Description: `Link cost factor. Valid values: ` + "`" + `latency` + "`" + `, ` + "`" + `jitter` + "`" + `, ` + "`" + `packet-loss` + "`" + `, ` + "`" + `inbandwidth` + "`" + `, ` + "`" + `outbandwidth` + "`" + `, ` + "`" + `bibandwidth` + "`" + `, ` + "`" + `custom-profile-1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "link_cost_threshold",
+					Description: `Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `Member sequence number.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `Control how the priority rule sets the priority of interfaces in the SD-WAN. Valid values: ` + "`" + `auto` + "`" + `, ` + "`" + `manual` + "`" + `, ` + "`" + `priority` + "`" + `, ` + "`" + `sla` + "`" + `, ` + "`" + `load-balance` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Priority rule name.`,
+				},
+				resource.Attribute{
+					Name:        "packet_loss_weight",
+					Description: `Coefficient of packet-loss in the formula of custom-profile-1.`,
+				},
+				resource.Attribute{
+					Name:        "priority_members",
+					Description: `Member sequence number list.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol number.`,
+				},
+				resource.Attribute{
+					Name:        "quality_link",
+					Description: `Quality grade.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Service role to work with neighbor. Valid values: ` + "`" + `primary` + "`" + `, ` + "`" + `secondary` + "`" + `, ` + "`" + `standalone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_tag",
+					Description: `IPv4 route map route-tag.`,
+				},
+				resource.Attribute{
+					Name:        "sla",
+					Description: `Sla. The structure of ` + "`" + `sla` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sla_compare_method",
+					Description: `Method to compare SLA value for sla and load balance mode. Valid values: ` + "`" + `order` + "`" + `, ` + "`" + `number` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src",
+					Description: `Source address name.`,
+				},
+				resource.Attribute{
+					Name:        "src_negate",
+					Description: `Enable/disable negation of source address match. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src6",
+					Description: `Source address6 name.`,
+				},
+				resource.Attribute{
+					Name:        "standalone_action",
+					Description: `Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `Start destination port number.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Enable/disable SD-WAN service. Valid values: ` + "`" + `disable` + "`" + `, ` + "`" + `enable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tos",
+					Description: `Type of service bit pattern.`,
+				},
+				resource.Attribute{
+					Name:        "tos_mask",
+					Description: `Type of service evaluated bits.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `User name.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_sort_subtable",
+					Description: `true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables. The ` + "`" + `sla` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Virtual WAN Link health-check.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_service.labelname WantempSystemVirtualWanLinkService $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_service.labelname WantempSystemVirtualWanLinkService $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fortimanager_wantemp_system_virtualwanlink_service_sla",
+			Category:         "No Category",
+			ShortDescription: `Service level agreement (SLA).`,
+			Description:      ``,
+			Keywords: []string{
+				"no",
+				"category",
+				"wantemp",
+				"system",
+				"virtualwanlink",
+				"service",
+				"sla",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "scopetype",
+					Description: `The scope of application of the resource. Valid values: ` + "`" + `inherit` + "`" + `, ` + "`" + `adom` + "`" + `. The ` + "`" + `inherit` + "`" + ` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is ` + "`" + `inherit` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "adom",
+					Description: `Adom. This value is valid only when the ` + "`" + `scopetype` + "`" + ` is ` + "`" + `adom` + "`" + `, otherwise the value of adom in the provider will be inherited.`,
+				},
+				resource.Attribute{
+					Name:        "wanprof",
+					Description: `Wanprof.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `Service.`,
+				},
+				resource.Attribute{
+					Name:        "health_check",
+					Description: `Virtual WAN Link health-check.`,
+				},
+				resource.Attribute{
+					Name:        "fosid",
+					Description: `SLA ID. ## Attribute Reference In addition to all the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkServiceSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "service=myservice"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_service_sla.labelname WantempSystemVirtualWanLinkServiceSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource. ## Import Wantemp SystemVirtualWanLinkServiceSla can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` Set import_options = ["wanprof=mywanprof", "service=myservice"] in the provider section. $ export "FORTIMANAGER_IMPORT_TABLE"="true" $ terraform import fortimanager_wantemp_system_virtualwanlink_service_sla.labelname WantempSystemVirtualWanLinkServiceSla $ unset "FORTIMANAGER_IMPORT_TABLE" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"fortimanager_fortimanager_dvm_cmd_add_device":                                         0,
-		"fortimanager_fortimanager_dvm_cmd_del_device":                                         1,
-		"fortimanager_fortimanager_dvm_cmd_update_device":                                      2,
-		"fortimanager_fortimanager_dvmdb_adom":                                                 3,
-		"fortimanager_fortimanager_dvmdb_group":                                                4,
-		"fortimanager_fortimanager_dvmdb_revision":                                             5,
-		"fortimanager_fortimanager_dvmdb_script":                                               6,
-		"fortimanager_fortimanager_dvmdb_script_execute":                                       7,
-		"fortimanager_fortimanager_exec_workspace_action":                                      8,
-		"fortimanager_fortimanager_fmupdate_analyzer_virusreport":                              9,
-		"fortimanager_fortimanager_fmupdate_avips_advancedlog":                                 10,
-		"fortimanager_fortimanager_fmupdate_avips_webproxy":                                    11,
-		"fortimanager_fortimanager_fmupdate_customurllist":                                     12,
-		"fortimanager_fortimanager_fmupdate_diskquota":                                         13,
-		"fortimanager_fortimanager_fmupdate_fctservices":                                       14,
-		"fortimanager_fortimanager_fmupdate_fdssetting":                                        15,
-		"fortimanager_fortimanager_fmupdate_fdssetting_pushoverride":                           16,
-		"fortimanager_fortimanager_fmupdate_fdssetting_pushoverridetoclient":                   17,
-		"fortimanager_fortimanager_fmupdate_fdssetting_serveroverride":                         18,
-		"fortimanager_fortimanager_fmupdate_fdssetting_updateschedule":                         19,
-		"fortimanager_fortimanager_fmupdate_fwmsetting":                                        20,
-		"fortimanager_fortimanager_fmupdate_multilayer":                                        21,
-		"fortimanager_fortimanager_fmupdate_publicnetwork":                                     22,
-		"fortimanager_fortimanager_fmupdate_serveraccesspriorities":                            23,
-		"fortimanager_fortimanager_fmupdate_serveroverridestatus":                              24,
-		"fortimanager_fortimanager_fmupdate_service":                                           25,
-		"fortimanager_fortimanager_fmupdate_webspam_fgdsetting":                                26,
-		"fortimanager_fortimanager_fmupdate_webspam_webproxy":                                  27,
-		"fortimanager_fortimanager_json_generic_api":                                           28,
-		"fortimanager_fortimanager_object_adom_options":                                        29,
-		"fortimanager_fortimanager_object_antivirus_mmschecksum":                               30,
-		"fortimanager_fortimanager_object_antivirus_notification":                              31,
-		"fortimanager_fortimanager_object_antivirus_profile":                                   32,
-		"fortimanager_fortimanager_object_application_categories":                              33,
-		"fortimanager_fortimanager_object_application_custom":                                  34,
-		"fortimanager_fortimanager_object_application_group":                                   35,
-		"fortimanager_fortimanager_object_application_list":                                    36,
-		"fortimanager_fortimanager_object_authentication_scheme":                               37,
-		"fortimanager_fortimanager_object_certificate_template":                                38,
-		"fortimanager_fortimanager_object_cifs_domaincontroller":                               39,
-		"fortimanager_fortimanager_object_cifs_profile":                                        40,
-		"fortimanager_fortimanager_object_cli_template":                                        41,
-		"fortimanager_fortimanager_object_cli_templategroup":                                   42,
-		"fortimanager_fortimanager_object_credentialstore_domaincontroller":                    43,
-		"fortimanager_fortimanager_object_dlp_filepattern":                                     44,
-		"fortimanager_fortimanager_object_dlp_fpsensitivity":                                   45,
-		"fortimanager_fortimanager_object_dlp_sensitivity":                                     46,
-		"fortimanager_fortimanager_object_dlp_sensor":                                          47,
-		"fortimanager_fortimanager_object_dnsfilter_domainfilter":                              48,
-		"fortimanager_fortimanager_object_dnsfilter_profile":                                   49,
-		"fortimanager_fortimanager_object_dynamic_address":                                     50,
-		"fortimanager_fortimanager_object_dynamic_certificate_local":                           51,
-		"fortimanager_fortimanager_object_dynamic_interface":                                   52,
-		"fortimanager_fortimanager_object_dynamic_ippool":                                      53,
-		"fortimanager_fortimanager_object_dynamic_multicast_interface":                         54,
-		"fortimanager_fortimanager_object_dynamic_vip":                                         55,
-		"fortimanager_fortimanager_object_dynamic_vpntunnel":                                   56,
-		"fortimanager_fortimanager_object_emailfilter_blockallowlist":                          57,
-		"fortimanager_fortimanager_object_emailfilter_bwl":                                     58,
-		"fortimanager_fortimanager_object_emailfilter_bword":                                   59,
-		"fortimanager_fortimanager_object_emailfilter_dnsbl":                                   60,
-		"fortimanager_fortimanager_object_emailfilter_fortishield":                             61,
-		"fortimanager_fortimanager_object_emailfilter_iptrust":                                 62,
-		"fortimanager_fortimanager_object_emailfilter_mheader":                                 63,
-		"fortimanager_fortimanager_object_emailfilter_options":                                 64,
-		"fortimanager_fortimanager_object_emailfilter_profile":                                 65,
-		"fortimanager_fortimanager_object_endpointcontrol_fctems":                              66,
-		"fortimanager_fortimanager_object_extendercontroller_dataplan":                         67,
-		"fortimanager_fortimanager_object_extendercontroller_extenderprofile":                  68,
-		"fortimanager_fortimanager_object_extendercontroller_sim_profile":                      69,
-		"fortimanager_fortimanager_object_extendercontroller_template":                         70,
-		"fortimanager_fortimanager_object_filefilter_profile":                                  71,
-		"fortimanager_fortimanager_object_firewall_accessproxy":                                72,
-		"fortimanager_fortimanager_object_firewall_accessproxy_move":                           73,
-		"fortimanager_fortimanager_object_firewall_accessproxyvirtualhost":                     74,
-		"fortimanager_fortimanager_object_firewall_address":                                    75,
-		"fortimanager_fortimanager_object_firewall_address6":                                   76,
-		"fortimanager_fortimanager_object_firewall_address6template":                           77,
-		"fortimanager_fortimanager_object_firewall_addrgrp":                                    78,
-		"fortimanager_fortimanager_object_firewall_addrgrp6":                                   79,
-		"fortimanager_fortimanager_object_firewall_carrierendpointbwl":                         80,
-		"fortimanager_fortimanager_object_firewall_decryptedtrafficmirror":                     81,
-		"fortimanager_fortimanager_object_firewall_identitybasedroute":                         82,
-		"fortimanager_fortimanager_object_firewall_internetservice":                            83,
-		"fortimanager_fortimanager_object_firewall_internetservice_entry":                      84,
-		"fortimanager_fortimanager_object_firewall_internetserviceaddition":                    85,
-		"fortimanager_fortimanager_object_firewall_internetservicecustom":                      86,
-		"fortimanager_fortimanager_object_firewall_internetservicecustomgroup":                 87,
-		"fortimanager_fortimanager_object_firewall_internetservicegroup":                       88,
-		"fortimanager_fortimanager_object_firewall_internetservicename":                        89,
-		"fortimanager_fortimanager_object_firewall_ippool":                                     90,
-		"fortimanager_fortimanager_object_firewall_ippool6":                                    91,
-		"fortimanager_fortimanager_object_firewall_ippool_grp":                                 92,
-		"fortimanager_fortimanager_object_firewall_ldbmonitor":                                 93,
-		"fortimanager_fortimanager_object_firewall_mmsprofile":                                 94,
-		"fortimanager_fortimanager_object_firewall_multicastaddress":                           95,
-		"fortimanager_fortimanager_object_firewall_multicastaddress6":                          96,
-		"fortimanager_fortimanager_object_firewall_profilegroup":                               97,
-		"fortimanager_fortimanager_object_firewall_profileprotocoloptions":                     98,
-		"fortimanager_fortimanager_object_firewall_proxyaddress":                               99,
-		"fortimanager_fortimanager_object_firewall_proxyaddrgrp":                               100,
-		"fortimanager_fortimanager_object_firewall_schedule_group":                             101,
-		"fortimanager_fortimanager_object_firewall_schedule_onetime":                           102,
-		"fortimanager_fortimanager_object_firewall_schedule_recurring":                         103,
-		"fortimanager_fortimanager_object_firewall_service_category":                           104,
-		"fortimanager_fortimanager_object_firewall_service_custom":                             105,
-		"fortimanager_fortimanager_object_firewall_service_group":                              106,
-		"fortimanager_fortimanager_object_firewall_shaper_peripshaper":                         107,
-		"fortimanager_fortimanager_object_firewall_shaper_trafficshaper":                       108,
-		"fortimanager_fortimanager_object_firewall_ssh_localca":                                109,
-		"fortimanager_fortimanager_object_firewall_sslsshprofile":                              110,
-		"fortimanager_fortimanager_object_firewall_trafficclass":                               111,
-		"fortimanager_fortimanager_object_firewall_vip":                                        112,
-		"fortimanager_fortimanager_object_firewall_vip46":                                      113,
-		"fortimanager_fortimanager_object_firewall_vip6":                                       114,
-		"fortimanager_fortimanager_object_firewall_vip64":                                      115,
-		"fortimanager_fortimanager_object_firewall_vipgrp":                                     116,
-		"fortimanager_fortimanager_object_firewall_vipgrp46":                                   117,
-		"fortimanager_fortimanager_object_firewall_vipgrp6":                                    118,
-		"fortimanager_fortimanager_object_firewall_vipgrp64":                                   119,
-		"fortimanager_fortimanager_object_firewall_wildcardfqdn_custom":                        120,
-		"fortimanager_fortimanager_object_firewall_wildcardfqdn_group":                         121,
-		"fortimanager_fortimanager_object_fsp_vlan":                                            122,
-		"fortimanager_fortimanager_object_global_ips_sensor":                                   123,
-		"fortimanager_fortimanager_object_icap_profile":                                        124,
-		"fortimanager_fortimanager_object_icap_server":                                         125,
-		"fortimanager_fortimanager_object_ips_custom":                                          126,
-		"fortimanager_fortimanager_object_ips_sensor":                                          127,
-		"fortimanager_fortimanager_object_log_customfield":                                     128,
-		"fortimanager_fortimanager_object_log_npuserver":                                       129,
-		"fortimanager_fortimanager_object_log_npuserver_servergroup":                           130,
-		"fortimanager_fortimanager_object_log_npuserver_serverinfo":                            131,
-		"fortimanager_fortimanager_object_router_accesslist":                                   132,
-		"fortimanager_fortimanager_object_router_accesslist6":                                  133,
-		"fortimanager_fortimanager_object_router_aspathlist":                                   134,
-		"fortimanager_fortimanager_object_router_communitylist":                                135,
-		"fortimanager_fortimanager_object_router_prefixlist":                                   136,
-		"fortimanager_fortimanager_object_router_prefixlist6":                                  137,
-		"fortimanager_fortimanager_object_router_routemap":                                     138,
-		"fortimanager_fortimanager_object_spamfilter_bwl":                                      139,
-		"fortimanager_fortimanager_object_spamfilter_bword":                                    140,
-		"fortimanager_fortimanager_object_spamfilter_dnsbl":                                    141,
-		"fortimanager_fortimanager_object_spamfilter_iptrust":                                  142,
-		"fortimanager_fortimanager_object_spamfilter_mheader":                                  143,
-		"fortimanager_fortimanager_object_spamfilter_profile":                                  144,
-		"fortimanager_fortimanager_object_sshfilter_profile":                                   145,
-		"fortimanager_fortimanager_object_switchcontroller_customcommand":                      146,
-		"fortimanager_fortimanager_object_switchcontroller_dsl_policy":                         147,
-		"fortimanager_fortimanager_object_switchcontroller_lldpprofile":                        148,
-		"fortimanager_fortimanager_object_switchcontroller_qos_dot1pmap":                       149,
-		"fortimanager_fortimanager_object_switchcontroller_qos_ipdscpmap":                      150,
-		"fortimanager_fortimanager_object_switchcontroller_qos_qospolicy":                      151,
-		"fortimanager_fortimanager_object_switchcontroller_qos_queuepolicy":                    152,
-		"fortimanager_fortimanager_object_switchcontroller_securitypolicy_8021x":               153,
-		"fortimanager_fortimanager_object_system_customlanguage":                               154,
-		"fortimanager_fortimanager_object_system_dhcp_server":                                  155,
-		"fortimanager_fortimanager_object_system_externalresource":                             156,
-		"fortimanager_fortimanager_object_system_fortiguard":                                   157,
-		"fortimanager_fortimanager_object_system_geoipcountry":                                 158,
-		"fortimanager_fortimanager_object_system_geoipoverride":                                159,
-		"fortimanager_fortimanager_object_system_meta":                                         160,
-		"fortimanager_fortimanager_object_system_npu":                                          161,
-		"fortimanager_fortimanager_object_system_npu_backgroundssescan":                        162,
-		"fortimanager_fortimanager_object_system_npu_dosoptions":                               163,
-		"fortimanager_fortimanager_object_system_npu_dswdtsprofile":                            164,
-		"fortimanager_fortimanager_object_system_npu_dswqueuedtsprofile":                       165,
-		"fortimanager_fortimanager_object_system_npu_fpanomaly":                                166,
-		"fortimanager_fortimanager_object_system_npu_hpe":                                      167,
-		"fortimanager_fortimanager_object_system_npu_ipreassembly":                             168,
-		"fortimanager_fortimanager_object_system_npu_isfnpqueues":                              169,
-		"fortimanager_fortimanager_object_system_npu_npqueues":                                 170,
-		"fortimanager_fortimanager_object_system_npu_npqueues_ethernettype":                    171,
-		"fortimanager_fortimanager_object_system_npu_npqueues_ipprotocol":                      172,
-		"fortimanager_fortimanager_object_system_npu_npqueues_ipservice":                       173,
-		"fortimanager_fortimanager_object_system_npu_npqueues_profile":                         174,
-		"fortimanager_fortimanager_object_system_npu_npqueues_scheduler":                       175,
-		"fortimanager_fortimanager_object_system_npu_portcpumap":                               176,
-		"fortimanager_fortimanager_object_system_npu_portnpumap":                               177,
-		"fortimanager_fortimanager_object_system_npu_portpathoption":                           178,
-		"fortimanager_fortimanager_object_system_npu_priorityprotocol":                         179,
-		"fortimanager_fortimanager_object_system_npu_swehhash":                                 180,
-		"fortimanager_fortimanager_object_system_npu_tcptimeoutprofile":                        181,
-		"fortimanager_fortimanager_object_system_npu_udptimeoutprofile":                        182,
-		"fortimanager_fortimanager_object_system_objecttagging":                                183,
-		"fortimanager_fortimanager_object_system_replacemsggroup":                              184,
-		"fortimanager_fortimanager_object_system_replacemsgimage":                              185,
-		"fortimanager_fortimanager_object_system_sdnconnector":                                 186,
-		"fortimanager_fortimanager_object_system_smsserver":                                    187,
-		"fortimanager_fortimanager_object_system_virtualwirepair":                              188,
-		"fortimanager_fortimanager_object_user_adgrp":                                          189,
-		"fortimanager_fortimanager_object_user_clearpass":                                      190,
-		"fortimanager_fortimanager_object_user_connector":                                      191,
-		"fortimanager_fortimanager_object_user_device":                                         192,
-		"fortimanager_fortimanager_object_user_deviceaccesslist":                               193,
-		"fortimanager_fortimanager_object_user_devicecategory":                                 194,
-		"fortimanager_fortimanager_object_user_devicegroup":                                    195,
-		"fortimanager_fortimanager_object_user_domaincontroller":                               196,
-		"fortimanager_fortimanager_object_user_exchange":                                       197,
-		"fortimanager_fortimanager_object_user_fortitoken":                                     198,
-		"fortimanager_fortimanager_object_user_fsso":                                           199,
-		"fortimanager_fortimanager_object_user_fssopolling":                                    200,
-		"fortimanager_fortimanager_object_user_group":                                          201,
-		"fortimanager_fortimanager_object_user_krbkeytab":                                      202,
-		"fortimanager_fortimanager_object_user_ldap":                                           203,
-		"fortimanager_fortimanager_object_user_local":                                          204,
-		"fortimanager_fortimanager_object_user_nsx":                                            205,
-		"fortimanager_fortimanager_object_user_passwordpolicy":                                 206,
-		"fortimanager_fortimanager_object_user_peer":                                           207,
-		"fortimanager_fortimanager_object_user_peergrp":                                        208,
-		"fortimanager_fortimanager_object_user_pop3":                                           209,
-		"fortimanager_fortimanager_object_user_pxgrid":                                         210,
-		"fortimanager_fortimanager_object_user_radius":                                         211,
-		"fortimanager_fortimanager_object_user_saml":                                           212,
-		"fortimanager_fortimanager_object_user_securityexemptlist":                             213,
-		"fortimanager_fortimanager_object_user_tacacs":                                         214,
-		"fortimanager_fortimanager_object_user_vcenter":                                        215,
-		"fortimanager_fortimanager_object_videofilter_profile":                                 216,
-		"fortimanager_fortimanager_object_videofilter_youtubechannelfilter":                    217,
-		"fortimanager_fortimanager_object_voip_profile":                                        218,
-		"fortimanager_fortimanager_object_vpn_certificate_ca":                                  219,
-		"fortimanager_fortimanager_object_vpn_certificate_ocspserver":                          220,
-		"fortimanager_fortimanager_object_vpn_certificate_remote":                              221,
-		"fortimanager_fortimanager_object_vpn_ssl_web_hostchecksoftware":                       222,
-		"fortimanager_fortimanager_object_vpn_ssl_web_portal":                                  223,
-		"fortimanager_fortimanager_object_vpn_ssl_web_realm":                                   224,
-		"fortimanager_fortimanager_object_vpnmgr_node":                                         225,
-		"fortimanager_fortimanager_object_waf_mainclass":                                       226,
-		"fortimanager_fortimanager_object_waf_profile":                                         227,
-		"fortimanager_fortimanager_object_waf_signature":                                       228,
-		"fortimanager_fortimanager_object_waf_subclass":                                        229,
-		"fortimanager_fortimanager_object_wanopt_authgroup":                                    230,
-		"fortimanager_fortimanager_object_wanopt_peer":                                         231,
-		"fortimanager_fortimanager_object_wanopt_profile":                                      232,
-		"fortimanager_fortimanager_object_webfilter_categories":                                233,
-		"fortimanager_fortimanager_object_webfilter_content":                                   234,
-		"fortimanager_fortimanager_object_webfilter_contentheader":                             235,
-		"fortimanager_fortimanager_object_webfilter_ftgdlocalcat":                              236,
-		"fortimanager_fortimanager_object_webfilter_ftgdlocalrating":                           237,
-		"fortimanager_fortimanager_object_webfilter_profile":                                   238,
-		"fortimanager_fortimanager_object_webfilter_urlfilter":                                 239,
-		"fortimanager_fortimanager_object_webproxy_forwardserver":                              240,
-		"fortimanager_fortimanager_object_webproxy_forwardservergroup":                         241,
-		"fortimanager_fortimanager_object_webproxy_profile":                                    242,
-		"fortimanager_fortimanager_object_webproxy_wisp":                                       243,
-		"fortimanager_fortimanager_object_wirelesscontroller_address":                          244,
-		"fortimanager_fortimanager_object_wirelesscontroller_addrgrp":                          245,
-		"fortimanager_fortimanager_object_wirelesscontroller_arrpprofile":                      246,
-		"fortimanager_fortimanager_object_wirelesscontroller_bleprofile":                       247,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular":       248,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpipaddresstype":      249,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm":           250,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpnetworkauthtype":    251,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium":  252,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename":          253,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl":           254,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge":     255,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability":     256,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname":       257,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider":        258,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai":     259,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions": 260,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_h2qpwanmetric":          261,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_hsprofile":              262,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_icon":                   263,
-		"fortimanager_fortimanager_object_wirelesscontroller_hotspot20_qosmap":                 264,
-		"fortimanager_fortimanager_object_wirelesscontroller_mpskprofile":                      265,
-		"fortimanager_fortimanager_object_wirelesscontroller_nacprofile":                       266,
-		"fortimanager_fortimanager_object_wirelesscontroller_qosprofile":                       267,
-		"fortimanager_fortimanager_object_wirelesscontroller_utmprofile":                       268,
-		"fortimanager_fortimanager_object_wirelesscontroller_vap":                              269,
-		"fortimanager_fortimanager_object_wirelesscontroller_vapgroup":                         270,
-		"fortimanager_fortimanager_object_wirelesscontroller_wagprofile":                       271,
-		"fortimanager_fortimanager_object_wirelesscontroller_widsprofile":                      272,
-		"fortimanager_fortimanager_object_wirelesscontroller_wtpprofile":                       273,
-		"fortimanager_fortimanager_packages_authentication_rule":                               274,
-		"fortimanager_fortimanager_packages_authentication_setting":                            275,
-		"fortimanager_fortimanager_packages_firewall_centralsnatmap":                           276,
-		"fortimanager_fortimanager_packages_firewall_centralsnatmap_move":                      277,
-		"fortimanager_fortimanager_packages_firewall_consolidated_policy":                      278,
-		"fortimanager_fortimanager_packages_firewall_consolidated_policy_move":                 279,
-		"fortimanager_fortimanager_packages_firewall_dospolicy":                                280,
-		"fortimanager_fortimanager_packages_firewall_dospolicy6":                               281,
-		"fortimanager_fortimanager_packages_firewall_dospolicy6_move":                          282,
-		"fortimanager_fortimanager_packages_firewall_dospolicy_move":                           283,
-		"fortimanager_fortimanager_packages_firewall_hyperscalepolicy":                         284,
-		"fortimanager_fortimanager_packages_firewall_hyperscalepolicy46":                       285,
-		"fortimanager_fortimanager_packages_firewall_hyperscalepolicy6":                        286,
-		"fortimanager_fortimanager_packages_firewall_hyperscalepolicy64":                       287,
-		"fortimanager_fortimanager_packages_firewall_interfacepolicy":                          288,
-		"fortimanager_fortimanager_packages_firewall_interfacepolicy6":                         289,
-		"fortimanager_fortimanager_packages_firewall_interfacepolicy6_move":                    290,
-		"fortimanager_fortimanager_packages_firewall_interfacepolicy_move":                     291,
-		"fortimanager_fortimanager_packages_firewall_localinpolicy":                            292,
-		"fortimanager_fortimanager_packages_firewall_localinpolicy6":                           293,
-		"fortimanager_fortimanager_packages_firewall_localinpolicy6_move":                      294,
-		"fortimanager_fortimanager_packages_firewall_localinpolicy_move":                       295,
-		"fortimanager_fortimanager_packages_firewall_multicastpolicy":                          296,
-		"fortimanager_fortimanager_packages_firewall_multicastpolicy6":                         297,
-		"fortimanager_fortimanager_packages_firewall_multicastpolicy6_move":                    298,
-		"fortimanager_fortimanager_packages_firewall_multicastpolicy_move":                     299,
-		"fortimanager_fortimanager_packages_firewall_policy":                                   300,
-		"fortimanager_fortimanager_packages_firewall_policy46":                                 301,
-		"fortimanager_fortimanager_packages_firewall_policy46_move":                            302,
-		"fortimanager_fortimanager_packages_firewall_policy6":                                  303,
-		"fortimanager_fortimanager_packages_firewall_policy64":                                 304,
-		"fortimanager_fortimanager_packages_firewall_policy64_move":                            305,
-		"fortimanager_fortimanager_packages_firewall_policy6_move":                             306,
-		"fortimanager_fortimanager_packages_firewall_policy_move":                              307,
-		"fortimanager_fortimanager_packages_firewall_proxypolicy":                              308,
-		"fortimanager_fortimanager_packages_firewall_proxypolicy_move":                         309,
-		"fortimanager_fortimanager_packages_firewall_securitypolicy":                           310,
-		"fortimanager_fortimanager_packages_firewall_securitypolicy_move":                      311,
-		"fortimanager_fortimanager_packages_firewall_shapingpolicy":                            312,
-		"fortimanager_fortimanager_packages_firewall_shapingpolicy_move":                       313,
-		"fortimanager_fortimanager_packages_global_footer_consolidated_policy":                 314,
-		"fortimanager_fortimanager_packages_global_footer_policy":                              315,
-		"fortimanager_fortimanager_packages_global_footer_policy6":                             316,
-		"fortimanager_fortimanager_packages_global_footer_shapingpolicy":                       317,
-		"fortimanager_fortimanager_packages_global_header_consolidated_policy":                 318,
-		"fortimanager_fortimanager_packages_global_header_policy":                              319,
-		"fortimanager_fortimanager_packages_global_header_policy6":                             320,
-		"fortimanager_fortimanager_packages_global_header_shapingpolicy":                       321,
-		"fortimanager_fortimanager_packages_pkg":                                               322,
-		"fortimanager_fortimanager_securityconsole_abort":                                      323,
-		"fortimanager_fortimanager_securityconsole_install_device":                             324,
-		"fortimanager_fortimanager_securityconsole_install_package":                            325,
-		"fortimanager_fortimanager_securityconsole_install_preview":                            326,
-		"fortimanager_fortimanager_securityconsole_package_cancel_install":                     327,
-		"fortimanager_fortimanager_securityconsole_package_clone":                              328,
-		"fortimanager_fortimanager_securityconsole_package_commit":                             329,
-		"fortimanager_fortimanager_securityconsole_package_move":                               330,
-		"fortimanager_fortimanager_securityconsole_pblock_clone":                               331,
-		"fortimanager_fortimanager_securityconsole_reinstall_package":                          332,
-		"fortimanager_fortimanager_securityconsole_sign_certificate_template":                  333,
-		"fortimanager_fortimanager_system_admin_group":                                         334,
-		"fortimanager_fortimanager_system_admin_ldap":                                          335,
-		"fortimanager_fortimanager_system_admin_profile":                                       336,
-		"fortimanager_fortimanager_system_admin_radius":                                        337,
-		"fortimanager_fortimanager_system_admin_setting":                                       338,
-		"fortimanager_fortimanager_system_admin_tacacs":                                        339,
-		"fortimanager_fortimanager_system_admin_user":                                          340,
-		"fortimanager_fortimanager_system_alertconsole":                                        341,
-		"fortimanager_fortimanager_system_alertemail":                                          342,
-		"fortimanager_fortimanager_system_alertevent":                                          343,
-		"fortimanager_fortimanager_system_autodelete":                                          344,
-		"fortimanager_fortimanager_system_autodelete_dlpfilesautodeletion":                     345,
-		"fortimanager_fortimanager_system_autodelete_logautodeletion":                          346,
-		"fortimanager_fortimanager_system_autodelete_quarantinefilesautodeletion":              347,
-		"fortimanager_fortimanager_system_autodelete_reportautodeletion":                       348,
-		"fortimanager_fortimanager_system_backup_allsettings":                                  349,
-		"fortimanager_fortimanager_system_certificate_ca":                                      350,
-		"fortimanager_fortimanager_system_certificate_crl":                                     351,
-		"fortimanager_fortimanager_system_certificate_local":                                   352,
-		"fortimanager_fortimanager_system_certificate_oftp":                                    353,
-		"fortimanager_fortimanager_system_certificate_remote":                                  354,
-		"fortimanager_fortimanager_system_certificate_ssh":                                     355,
-		"fortimanager_fortimanager_system_connector":                                           356,
-		"fortimanager_fortimanager_system_dm":                                                  357,
-		"fortimanager_fortimanager_system_dns":                                                 358,
-		"fortimanager_fortimanager_system_docker":                                              359,
-		"fortimanager_fortimanager_system_fips":                                                360,
-		"fortimanager_fortimanager_system_fortiview_autocache":                                 361,
-		"fortimanager_fortimanager_system_fortiview_setting":                                   362,
-		"fortimanager_fortimanager_system_global":                                              363,
-		"fortimanager_fortimanager_system_global_sslciphersuites":                              364,
-		"fortimanager_fortimanager_system_guiact":                                              365,
-		"fortimanager_fortimanager_system_ha":                                                  366,
-		"fortimanager_fortimanager_system_ha_peer":                                             367,
-		"fortimanager_fortimanager_system_hascheduledcheck":                                    368,
-		"fortimanager_fortimanager_system_interface":                                           369,
-		"fortimanager_fortimanager_system_locallog_disk_filter":                                370,
-		"fortimanager_fortimanager_system_locallog_disk_setting":                               371,
-		"fortimanager_fortimanager_system_locallog_fortianalyzer2_filter":                      372,
-		"fortimanager_fortimanager_system_locallog_fortianalyzer2_setting":                     373,
-		"fortimanager_fortimanager_system_locallog_fortianalyzer3_filter":                      374,
-		"fortimanager_fortimanager_system_locallog_fortianalyzer3_setting":                     375,
-		"fortimanager_fortimanager_system_locallog_fortianalyzer_filter":                       376,
-		"fortimanager_fortimanager_system_locallog_fortianalyzer_setting":                      377,
-		"fortimanager_fortimanager_system_locallog_memory_filter":                              378,
-		"fortimanager_fortimanager_system_locallog_memory_setting":                             379,
-		"fortimanager_fortimanager_system_locallog_setting":                                    380,
-		"fortimanager_fortimanager_system_locallog_syslogd2_filter":                            381,
-		"fortimanager_fortimanager_system_locallog_syslogd2_setting":                           382,
-		"fortimanager_fortimanager_system_locallog_syslogd3_filter":                            383,
-		"fortimanager_fortimanager_system_locallog_syslogd3_setting":                           384,
-		"fortimanager_fortimanager_system_locallog_syslogd_filter":                             385,
-		"fortimanager_fortimanager_system_locallog_syslogd_setting":                            386,
-		"fortimanager_fortimanager_system_log_alert":                                           387,
-		"fortimanager_fortimanager_system_log_devicedisable":                                   388,
-		"fortimanager_fortimanager_system_log_fospolicystats":                                  389,
-		"fortimanager_fortimanager_system_log_interfacestats":                                  390,
-		"fortimanager_fortimanager_system_log_ioc":                                             391,
-		"fortimanager_fortimanager_system_log_maildomain":                                      392,
-		"fortimanager_fortimanager_system_log_ratelimit":                                       393,
-		"fortimanager_fortimanager_system_log_ratelimit_device":                                394,
-		"fortimanager_fortimanager_system_log_ratelimit_ratelimits":                            395,
-		"fortimanager_fortimanager_system_log_settings":                                        396,
-		"fortimanager_fortimanager_system_log_settings_rollinganalyzer":                        397,
-		"fortimanager_fortimanager_system_log_settings_rollinglocal":                           398,
-		"fortimanager_fortimanager_system_log_settings_rollingregular":                         399,
-		"fortimanager_fortimanager_system_log_topology":                                        400,
-		"fortimanager_fortimanager_system_logfetch_clientprofile":                              401,
-		"fortimanager_fortimanager_system_logfetch_serversettings":                             402,
-		"fortimanager_fortimanager_system_mail":                                                403,
-		"fortimanager_fortimanager_system_metadata_admins":                                     404,
-		"fortimanager_fortimanager_system_ntp":                                                 405,
-		"fortimanager_fortimanager_system_ntp_ntpserver":                                       406,
-		"fortimanager_fortimanager_system_passwordpolicy":                                      407,
-		"fortimanager_fortimanager_system_report_autocache":                                    408,
-		"fortimanager_fortimanager_system_report_estbrowsetime":                                409,
-		"fortimanager_fortimanager_system_report_setting":                                      410,
-		"fortimanager_fortimanager_system_route":                                               411,
-		"fortimanager_fortimanager_system_route6":                                              412,
-		"fortimanager_fortimanager_system_saml":                                                413,
-		"fortimanager_fortimanager_system_saml_fabricidp":                                      414,
-		"fortimanager_fortimanager_system_saml_serviceproviders":                               415,
-		"fortimanager_fortimanager_system_sniffer":                                             416,
-		"fortimanager_fortimanager_system_snmp_community":                                      417,
-		"fortimanager_fortimanager_system_snmp_sysinfo":                                        418,
-		"fortimanager_fortimanager_system_snmp_user":                                           419,
-		"fortimanager_fortimanager_system_socfabric":                                           420,
-		"fortimanager_fortimanager_system_sql":                                                 421,
-		"fortimanager_fortimanager_system_sql_customindex":                                     422,
-		"fortimanager_fortimanager_system_sql_customskipidx":                                   423,
-		"fortimanager_fortimanager_system_sql_tsindexfield":                                    424,
-		"fortimanager_fortimanager_system_syslog":                                              425,
-		"fortimanager_fortimanager_system_webproxy":                                            426,
-		"fortimanager_fortimanager_system_workflow_approvalmatrix":                             427,
+		"fortimanager_dvm_cmd_add_device":                                         0,
+		"fortimanager_dvm_cmd_del_device":                                         1,
+		"fortimanager_dvm_cmd_update_device":                                      2,
+		"fortimanager_dvmdb_adom":                                                 3,
+		"fortimanager_dvmdb_group":                                                4,
+		"fortimanager_dvmdb_revision":                                             5,
+		"fortimanager_dvmdb_script":                                               6,
+		"fortimanager_dvmdb_script_execute":                                       7,
+		"fortimanager_exec_workspace_action":                                      8,
+		"fortimanager_fmupdate_analyzer_virusreport":                              9,
+		"fortimanager_fmupdate_avips_advancedlog":                                 10,
+		"fortimanager_fmupdate_avips_webproxy":                                    11,
+		"fortimanager_fmupdate_customurllist":                                     12,
+		"fortimanager_fmupdate_diskquota":                                         13,
+		"fortimanager_fmupdate_fctservices":                                       14,
+		"fortimanager_fmupdate_fdssetting":                                        15,
+		"fortimanager_fmupdate_fdssetting_pushoverride":                           16,
+		"fortimanager_fmupdate_fdssetting_pushoverridetoclient":                   17,
+		"fortimanager_fmupdate_fdssetting_serveroverride":                         18,
+		"fortimanager_fmupdate_fdssetting_updateschedule":                         19,
+		"fortimanager_fmupdate_fwmsetting":                                        20,
+		"fortimanager_fmupdate_fwmsetting_upgradetimeout":                         21,
+		"fortimanager_fmupdate_multilayer":                                        22,
+		"fortimanager_fmupdate_publicnetwork":                                     23,
+		"fortimanager_fmupdate_serveraccesspriorities":                            24,
+		"fortimanager_fmupdate_serveroverridestatus":                              25,
+		"fortimanager_fmupdate_service":                                           26,
+		"fortimanager_fmupdate_webspam_fgdsetting":                                27,
+		"fortimanager_fmupdate_webspam_webproxy":                                  28,
+		"fortimanager_json_generic_api":                                           29,
+		"fortimanager_object_adom_options":                                        30,
+		"fortimanager_object_antivirus_mmschecksum":                               31,
+		"fortimanager_object_antivirus_notification":                              32,
+		"fortimanager_object_antivirus_profile":                                   33,
+		"fortimanager_object_application_categories":                              34,
+		"fortimanager_object_application_custom":                                  35,
+		"fortimanager_object_application_group":                                   36,
+		"fortimanager_object_application_list":                                    37,
+		"fortimanager_object_authentication_scheme":                               38,
+		"fortimanager_object_certificate_template":                                39,
+		"fortimanager_object_cifs_domaincontroller":                               40,
+		"fortimanager_object_cifs_profile":                                        41,
+		"fortimanager_object_cli_template":                                        42,
+		"fortimanager_object_cli_templategroup":                                   43,
+		"fortimanager_object_credentialstore_domaincontroller":                    44,
+		"fortimanager_object_dlp_datatype":                                        45,
+		"fortimanager_object_dlp_dictionary":                                      46,
+		"fortimanager_object_dlp_filepattern":                                     47,
+		"fortimanager_object_dlp_fpsensitivity":                                   48,
+		"fortimanager_object_dlp_profile":                                         49,
+		"fortimanager_object_dlp_sensitivity":                                     50,
+		"fortimanager_object_dlp_sensor":                                          51,
+		"fortimanager_object_dnsfilter_domainfilter":                              52,
+		"fortimanager_object_dnsfilter_profile":                                   53,
+		"fortimanager_object_dynamic_address":                                     54,
+		"fortimanager_object_dynamic_certificate_local":                           55,
+		"fortimanager_object_dynamic_interface":                                   56,
+		"fortimanager_object_dynamic_ippool":                                      57,
+		"fortimanager_object_dynamic_multicast_interface":                         58,
+		"fortimanager_object_dynamic_vip":                                         59,
+		"fortimanager_object_dynamic_vpntunnel":                                   60,
+		"fortimanager_object_emailfilter_blockallowlist":                          61,
+		"fortimanager_object_emailfilter_bwl":                                     62,
+		"fortimanager_object_emailfilter_bword":                                   63,
+		"fortimanager_object_emailfilter_dnsbl":                                   64,
+		"fortimanager_object_emailfilter_fortishield":                             65,
+		"fortimanager_object_emailfilter_iptrust":                                 66,
+		"fortimanager_object_emailfilter_mheader":                                 67,
+		"fortimanager_object_emailfilter_options":                                 68,
+		"fortimanager_object_emailfilter_profile":                                 69,
+		"fortimanager_object_endpointcontrol_fctems":                              70,
+		"fortimanager_object_extendercontroller_dataplan":                         71,
+		"fortimanager_object_extendercontroller_extenderprofile":                  72,
+		"fortimanager_object_extendercontroller_sim_profile":                      73,
+		"fortimanager_object_extendercontroller_template":                         74,
+		"fortimanager_object_extensioncontroller_dataplan":                        75,
+		"fortimanager_object_extensioncontroller_extenderprofile":                 76,
+		"fortimanager_object_filefilter_profile":                                  77,
+		"fortimanager_object_firewall_accessproxy":                                78,
+		"fortimanager_object_firewall_accessproxy6":                               79,
+		"fortimanager_object_firewall_accessproxy6_move":                          80,
+		"fortimanager_object_firewall_accessproxy_move":                           81,
+		"fortimanager_object_firewall_accessproxyvirtualhost":                     82,
+		"fortimanager_object_firewall_address":                                    83,
+		"fortimanager_object_firewall_address6":                                   84,
+		"fortimanager_object_firewall_address6template":                           85,
+		"fortimanager_object_firewall_addrgrp":                                    86,
+		"fortimanager_object_firewall_addrgrp6":                                   87,
+		"fortimanager_object_firewall_carrierendpointbwl":                         88,
+		"fortimanager_object_firewall_decryptedtrafficmirror":                     89,
+		"fortimanager_object_firewall_identitybasedroute":                         90,
+		"fortimanager_object_firewall_internetservice":                            91,
+		"fortimanager_object_firewall_internetservice_entry":                      92,
+		"fortimanager_object_firewall_internetserviceaddition":                    93,
+		"fortimanager_object_firewall_internetservicecustom":                      94,
+		"fortimanager_object_firewall_internetservicecustomgroup":                 95,
+		"fortimanager_object_firewall_internetservicegroup":                       96,
+		"fortimanager_object_firewall_internetservicename":                        97,
+		"fortimanager_object_firewall_ippool":                                     98,
+		"fortimanager_object_firewall_ippool6":                                    99,
+		"fortimanager_object_firewall_ippool_grp":                                 100,
+		"fortimanager_object_firewall_ldbmonitor":                                 101,
+		"fortimanager_object_firewall_mmsprofile":                                 102,
+		"fortimanager_object_firewall_multicastaddress":                           103,
+		"fortimanager_object_firewall_multicastaddress6":                          104,
+		"fortimanager_object_firewall_profilegroup":                               105,
+		"fortimanager_object_firewall_profileprotocoloptions":                     106,
+		"fortimanager_object_firewall_proxyaddress":                               107,
+		"fortimanager_object_firewall_proxyaddrgrp":                               108,
+		"fortimanager_object_firewall_schedule_group":                             109,
+		"fortimanager_object_firewall_schedule_onetime":                           110,
+		"fortimanager_object_firewall_schedule_recurring":                         111,
+		"fortimanager_object_firewall_service_category":                           112,
+		"fortimanager_object_firewall_service_custom":                             113,
+		"fortimanager_object_firewall_service_group":                              114,
+		"fortimanager_object_firewall_shaper_peripshaper":                         115,
+		"fortimanager_object_firewall_shaper_trafficshaper":                       116,
+		"fortimanager_object_firewall_ssh_localca":                                117,
+		"fortimanager_object_firewall_sslsshprofile":                              118,
+		"fortimanager_object_firewall_trafficclass":                               119,
+		"fortimanager_object_firewall_vip":                                        120,
+		"fortimanager_object_firewall_vip46":                                      121,
+		"fortimanager_object_firewall_vip6":                                       122,
+		"fortimanager_object_firewall_vip64":                                      123,
+		"fortimanager_object_firewall_vipgrp":                                     124,
+		"fortimanager_object_firewall_vipgrp46":                                   125,
+		"fortimanager_object_firewall_vipgrp6":                                    126,
+		"fortimanager_object_firewall_vipgrp64":                                   127,
+		"fortimanager_object_firewall_wildcardfqdn_custom":                        128,
+		"fortimanager_object_firewall_wildcardfqdn_group":                         129,
+		"fortimanager_object_fmg_device_blueprint":                                130,
+		"fortimanager_object_fmg_fabric_authorization_template":                   131,
+		"fortimanager_object_fmg_variable":                                        132,
+		"fortimanager_object_fsp_vlan":                                            133,
+		"fortimanager_object_global_ips_sensor":                                   134,
+		"fortimanager_object_icap_profile":                                        135,
+		"fortimanager_object_icap_server":                                         136,
+		"fortimanager_object_ips_custom":                                          137,
+		"fortimanager_object_ips_sensor":                                          138,
+		"fortimanager_object_log_customfield":                                     139,
+		"fortimanager_object_log_npuserver":                                       140,
+		"fortimanager_object_log_npuserver_servergroup":                           141,
+		"fortimanager_object_log_npuserver_serverinfo":                            142,
+		"fortimanager_object_router_accesslist":                                   143,
+		"fortimanager_object_router_accesslist6":                                  144,
+		"fortimanager_object_router_aspathlist":                                   145,
+		"fortimanager_object_router_communitylist":                                146,
+		"fortimanager_object_router_prefixlist":                                   147,
+		"fortimanager_object_router_prefixlist6":                                  148,
+		"fortimanager_object_router_routemap":                                     149,
+		"fortimanager_object_spamfilter_bwl":                                      150,
+		"fortimanager_object_spamfilter_bword":                                    151,
+		"fortimanager_object_spamfilter_dnsbl":                                    152,
+		"fortimanager_object_spamfilter_iptrust":                                  153,
+		"fortimanager_object_spamfilter_mheader":                                  154,
+		"fortimanager_object_spamfilter_profile":                                  155,
+		"fortimanager_object_sshfilter_profile":                                   156,
+		"fortimanager_object_switchcontroller_customcommand":                      157,
+		"fortimanager_object_switchcontroller_dsl_policy":                         158,
+		"fortimanager_object_switchcontroller_dynamicportpolicy":                  159,
+		"fortimanager_object_switchcontroller_fortilinksettings":                  160,
+		"fortimanager_object_switchcontroller_lldpprofile":                        161,
+		"fortimanager_object_switchcontroller_macpolicy":                          162,
+		"fortimanager_object_switchcontroller_qos_dot1pmap":                       163,
+		"fortimanager_object_switchcontroller_qos_ipdscpmap":                      164,
+		"fortimanager_object_switchcontroller_qos_qospolicy":                      165,
+		"fortimanager_object_switchcontroller_qos_queuepolicy":                    166,
+		"fortimanager_object_switchcontroller_securitypolicy_8021x":               167,
+		"fortimanager_object_switchcontroller_switchinterfacetag":                 168,
+		"fortimanager_object_switchcontroller_trafficpolicy":                      169,
+		"fortimanager_object_switchcontroller_vlanpolicy":                         170,
+		"fortimanager_object_system_customlanguage":                               171,
+		"fortimanager_object_system_dhcp_server":                                  172,
+		"fortimanager_object_system_externalresource":                             173,
+		"fortimanager_object_system_fortiguard":                                   174,
+		"fortimanager_object_system_geoipcountry":                                 175,
+		"fortimanager_object_system_geoipoverride":                                176,
+		"fortimanager_object_system_meta":                                         177,
+		"fortimanager_object_system_npu":                                          178,
+		"fortimanager_object_system_npu_backgroundssescan":                        179,
+		"fortimanager_object_system_npu_dosoptions":                               180,
+		"fortimanager_object_system_npu_dswdtsprofile":                            181,
+		"fortimanager_object_system_npu_dswqueuedtsprofile":                       182,
+		"fortimanager_object_system_npu_fpanomaly":                                183,
+		"fortimanager_object_system_npu_hpe":                                      184,
+		"fortimanager_object_system_npu_ipreassembly":                             185,
+		"fortimanager_object_system_npu_isfnpqueues":                              186,
+		"fortimanager_object_system_npu_npqueues":                                 187,
+		"fortimanager_object_system_npu_npqueues_ethernettype":                    188,
+		"fortimanager_object_system_npu_npqueues_ipprotocol":                      189,
+		"fortimanager_object_system_npu_npqueues_ipservice":                       190,
+		"fortimanager_object_system_npu_npqueues_profile":                         191,
+		"fortimanager_object_system_npu_npqueues_scheduler":                       192,
+		"fortimanager_object_system_npu_portcpumap":                               193,
+		"fortimanager_object_system_npu_portnpumap":                               194,
+		"fortimanager_object_system_npu_portpathoption":                           195,
+		"fortimanager_object_system_npu_priorityprotocol":                         196,
+		"fortimanager_object_system_npu_ssehascan":                                197,
+		"fortimanager_object_system_npu_swehhash":                                 198,
+		"fortimanager_object_system_npu_tcptimeoutprofile":                        199,
+		"fortimanager_object_system_npu_udptimeoutprofile":                        200,
+		"fortimanager_object_system_objecttagging":                                201,
+		"fortimanager_object_system_replacemsggroup":                              202,
+		"fortimanager_object_system_replacemsgimage":                              203,
+		"fortimanager_object_system_sdnconnector":                                 204,
+		"fortimanager_object_system_smsserver":                                    205,
+		"fortimanager_object_system_virtualwirepair":                              206,
+		"fortimanager_object_user_adgrp":                                          207,
+		"fortimanager_object_user_clearpass":                                      208,
+		"fortimanager_object_user_connector":                                      209,
+		"fortimanager_object_user_device":                                         210,
+		"fortimanager_object_user_deviceaccesslist":                               211,
+		"fortimanager_object_user_devicecategory":                                 212,
+		"fortimanager_object_user_devicegroup":                                    213,
+		"fortimanager_object_user_domaincontroller":                               214,
+		"fortimanager_object_user_exchange":                                       215,
+		"fortimanager_object_user_flexvm":                                         216,
+		"fortimanager_object_user_fortitoken":                                     217,
+		"fortimanager_object_user_fsso":                                           218,
+		"fortimanager_object_user_fssopolling":                                    219,
+		"fortimanager_object_user_group":                                          220,
+		"fortimanager_object_user_json":                                           221,
+		"fortimanager_object_user_krbkeytab":                                      222,
+		"fortimanager_object_user_ldap":                                           223,
+		"fortimanager_object_user_local":                                          224,
+		"fortimanager_object_user_nsx":                                            225,
+		"fortimanager_object_user_passwordpolicy":                                 226,
+		"fortimanager_object_user_peer":                                           227,
+		"fortimanager_object_user_peergrp":                                        228,
+		"fortimanager_object_user_pop3":                                           229,
+		"fortimanager_object_user_pxgrid":                                         230,
+		"fortimanager_object_user_radius":                                         231,
+		"fortimanager_object_user_saml":                                           232,
+		"fortimanager_object_user_securityexemptlist":                             233,
+		"fortimanager_object_user_tacacs":                                         234,
+		"fortimanager_object_user_vcenter":                                        235,
+		"fortimanager_object_videofilter_profile":                                 236,
+		"fortimanager_object_videofilter_youtubechannelfilter":                    237,
+		"fortimanager_object_voip_profile":                                        238,
+		"fortimanager_object_vpn_certificate_ca":                                  239,
+		"fortimanager_object_vpn_certificate_ocspserver":                          240,
+		"fortimanager_object_vpn_certificate_remote":                              241,
+		"fortimanager_object_vpn_ipsec_fec":                                       242,
+		"fortimanager_object_vpn_ssl_web_hostchecksoftware":                       243,
+		"fortimanager_object_vpn_ssl_web_portal":                                  244,
+		"fortimanager_object_vpn_ssl_web_realm":                                   245,
+		"fortimanager_object_vpnmgr_node":                                         246,
+		"fortimanager_object_waf_mainclass":                                       247,
+		"fortimanager_object_waf_profile":                                         248,
+		"fortimanager_object_waf_signature":                                       249,
+		"fortimanager_object_waf_subclass":                                        250,
+		"fortimanager_object_wanopt_authgroup":                                    251,
+		"fortimanager_object_wanopt_peer":                                         252,
+		"fortimanager_object_wanopt_profile":                                      253,
+		"fortimanager_object_webfilter_categories":                                254,
+		"fortimanager_object_webfilter_content":                                   255,
+		"fortimanager_object_webfilter_contentheader":                             256,
+		"fortimanager_object_webfilter_ftgdlocalcat":                              257,
+		"fortimanager_object_webfilter_ftgdlocalrating":                           258,
+		"fortimanager_object_webfilter_profile":                                   259,
+		"fortimanager_object_webfilter_urlfilter":                                 260,
+		"fortimanager_object_webproxy_forwardserver":                              261,
+		"fortimanager_object_webproxy_forwardservergroup":                         262,
+		"fortimanager_object_webproxy_profile":                                    263,
+		"fortimanager_object_webproxy_wisp":                                       264,
+		"fortimanager_object_wirelesscontroller_accesscontrollist":                265,
+		"fortimanager_object_wirelesscontroller_address":                          266,
+		"fortimanager_object_wirelesscontroller_addrgrp":                          267,
+		"fortimanager_object_wirelesscontroller_arrpprofile":                      268,
+		"fortimanager_object_wirelesscontroller_bleprofile":                       269,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular":       270,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqpipaddresstype":      271,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm":           272,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqpnetworkauthtype":    273,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium":  274,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename":          275,
+		"fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl":           276,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge":     277,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability":     278,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname":       279,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider":        280,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai":     281,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions": 282,
+		"fortimanager_object_wirelesscontroller_hotspot20_h2qpwanmetric":          283,
+		"fortimanager_object_wirelesscontroller_hotspot20_hsprofile":              284,
+		"fortimanager_object_wirelesscontroller_hotspot20_icon":                   285,
+		"fortimanager_object_wirelesscontroller_hotspot20_qosmap":                 286,
+		"fortimanager_object_wirelesscontroller_mpskprofile":                      287,
+		"fortimanager_object_wirelesscontroller_nacprofile":                       288,
+		"fortimanager_object_wirelesscontroller_qosprofile":                       289,
+		"fortimanager_object_wirelesscontroller_ssidpolicy":                       290,
+		"fortimanager_object_wirelesscontroller_syslogprofile":                    291,
+		"fortimanager_object_wirelesscontroller_utmprofile":                       292,
+		"fortimanager_object_wirelesscontroller_vap":                              293,
+		"fortimanager_object_wirelesscontroller_vapgroup":                         294,
+		"fortimanager_object_wirelesscontroller_wagprofile":                       295,
+		"fortimanager_object_wirelesscontroller_widsprofile":                      296,
+		"fortimanager_object_wirelesscontroller_wtpprofile":                       297,
+		"fortimanager_packages_authentication_rule":                               298,
+		"fortimanager_packages_authentication_setting":                            299,
+		"fortimanager_packages_firewall_acl":                                      300,
+		"fortimanager_packages_firewall_acl6":                                     301,
+		"fortimanager_packages_firewall_acl6_move":                                302,
+		"fortimanager_packages_firewall_acl_move":                                 303,
+		"fortimanager_packages_firewall_centralsnatmap":                           304,
+		"fortimanager_packages_firewall_centralsnatmap_move":                      305,
+		"fortimanager_packages_firewall_consolidated_policy":                      306,
+		"fortimanager_packages_firewall_consolidated_policy_move":                 307,
+		"fortimanager_packages_firewall_dospolicy":                                308,
+		"fortimanager_packages_firewall_dospolicy6":                               309,
+		"fortimanager_packages_firewall_dospolicy6_move":                          310,
+		"fortimanager_packages_firewall_dospolicy_move":                           311,
+		"fortimanager_packages_firewall_hyperscalepolicy":                         312,
+		"fortimanager_packages_firewall_hyperscalepolicy46":                       313,
+		"fortimanager_packages_firewall_hyperscalepolicy6":                        314,
+		"fortimanager_packages_firewall_hyperscalepolicy64":                       315,
+		"fortimanager_packages_firewall_interfacepolicy":                          316,
+		"fortimanager_packages_firewall_interfacepolicy6":                         317,
+		"fortimanager_packages_firewall_interfacepolicy6_move":                    318,
+		"fortimanager_packages_firewall_interfacepolicy_move":                     319,
+		"fortimanager_packages_firewall_localinpolicy":                            320,
+		"fortimanager_packages_firewall_localinpolicy6":                           321,
+		"fortimanager_packages_firewall_localinpolicy6_move":                      322,
+		"fortimanager_packages_firewall_localinpolicy_move":                       323,
+		"fortimanager_packages_firewall_multicastpolicy":                          324,
+		"fortimanager_packages_firewall_multicastpolicy6":                         325,
+		"fortimanager_packages_firewall_multicastpolicy6_move":                    326,
+		"fortimanager_packages_firewall_multicastpolicy_move":                     327,
+		"fortimanager_packages_firewall_policy":                                   328,
+		"fortimanager_packages_firewall_policy46":                                 329,
+		"fortimanager_packages_firewall_policy46_move":                            330,
+		"fortimanager_packages_firewall_policy6":                                  331,
+		"fortimanager_packages_firewall_policy64":                                 332,
+		"fortimanager_packages_firewall_policy64_move":                            333,
+		"fortimanager_packages_firewall_policy6_move":                             334,
+		"fortimanager_packages_firewall_policy_move":                              335,
+		"fortimanager_packages_firewall_proxypolicy":                              336,
+		"fortimanager_packages_firewall_proxypolicy_move":                         337,
+		"fortimanager_packages_firewall_securitypolicy":                           338,
+		"fortimanager_packages_firewall_securitypolicy_move":                      339,
+		"fortimanager_packages_firewall_shapingpolicy":                            340,
+		"fortimanager_packages_firewall_shapingpolicy_move":                       341,
+		"fortimanager_packages_global_footer_consolidated_policy":                 342,
+		"fortimanager_packages_global_footer_policy":                              343,
+		"fortimanager_packages_global_footer_policy6":                             344,
+		"fortimanager_packages_global_footer_shapingpolicy":                       345,
+		"fortimanager_packages_global_header_consolidated_policy":                 346,
+		"fortimanager_packages_global_header_policy":                              347,
+		"fortimanager_packages_global_header_policy6":                             348,
+		"fortimanager_packages_global_header_shapingpolicy":                       349,
+		"fortimanager_packages_pkg":                                               350,
+		"fortimanager_packages_user_nacpolicy":                                    351,
+		"fortimanager_packages_user_nacpolicy_move":                               352,
+		"fortimanager_securityconsole_abort":                                      353,
+		"fortimanager_securityconsole_assign_package":                             354,
+		"fortimanager_securityconsole_install_device":                             355,
+		"fortimanager_securityconsole_install_package":                            356,
+		"fortimanager_securityconsole_install_preview":                            357,
+		"fortimanager_securityconsole_package_cancel_install":                     358,
+		"fortimanager_securityconsole_package_clone":                              359,
+		"fortimanager_securityconsole_package_commit":                             360,
+		"fortimanager_securityconsole_package_move":                               361,
+		"fortimanager_securityconsole_pblock_clone":                               362,
+		"fortimanager_securityconsole_reinstall_package":                          363,
+		"fortimanager_securityconsole_sign_certificate_template":                  364,
+		"fortimanager_system_admin_group":                                         365,
+		"fortimanager_system_admin_ldap":                                          366,
+		"fortimanager_system_admin_profile":                                       367,
+		"fortimanager_system_admin_radius":                                        368,
+		"fortimanager_system_admin_setting":                                       369,
+		"fortimanager_system_admin_tacacs":                                        370,
+		"fortimanager_system_admin_user":                                          371,
+		"fortimanager_system_alertconsole":                                        372,
+		"fortimanager_system_alertemail":                                          373,
+		"fortimanager_system_alertevent":                                          374,
+		"fortimanager_system_autodelete":                                          375,
+		"fortimanager_system_autodelete_dlpfilesautodeletion":                     376,
+		"fortimanager_system_autodelete_logautodeletion":                          377,
+		"fortimanager_system_autodelete_quarantinefilesautodeletion":              378,
+		"fortimanager_system_autodelete_reportautodeletion":                       379,
+		"fortimanager_system_backup_allsettings":                                  380,
+		"fortimanager_system_certificate_ca":                                      381,
+		"fortimanager_system_certificate_crl":                                     382,
+		"fortimanager_system_certificate_local":                                   383,
+		"fortimanager_system_certificate_oftp":                                    384,
+		"fortimanager_system_certificate_remote":                                  385,
+		"fortimanager_system_certificate_ssh":                                     386,
+		"fortimanager_system_connector":                                           387,
+		"fortimanager_system_dm":                                                  388,
+		"fortimanager_system_dns":                                                 389,
+		"fortimanager_system_docker":                                              390,
+		"fortimanager_system_fips":                                                391,
+		"fortimanager_system_fortiview_autocache":                                 392,
+		"fortimanager_system_fortiview_setting":                                   393,
+		"fortimanager_system_global":                                              394,
+		"fortimanager_system_global_sslciphersuites":                              395,
+		"fortimanager_system_guiact":                                              396,
+		"fortimanager_system_ha":                                                  397,
+		"fortimanager_system_ha_monitoredips":                                     398,
+		"fortimanager_system_ha_peer":                                             399,
+		"fortimanager_system_hascheduledcheck":                                    400,
+		"fortimanager_system_interface":                                           401,
+		"fortimanager_system_localinpolicy":                                       402,
+		"fortimanager_system_localinpolicy6":                                      403,
+		"fortimanager_system_locallog_disk_filter":                                404,
+		"fortimanager_system_locallog_disk_setting":                               405,
+		"fortimanager_system_locallog_fortianalyzer2_filter":                      406,
+		"fortimanager_system_locallog_fortianalyzer2_setting":                     407,
+		"fortimanager_system_locallog_fortianalyzer3_filter":                      408,
+		"fortimanager_system_locallog_fortianalyzer3_setting":                     409,
+		"fortimanager_system_locallog_fortianalyzer_filter":                       410,
+		"fortimanager_system_locallog_fortianalyzer_setting":                      411,
+		"fortimanager_system_locallog_memory_filter":                              412,
+		"fortimanager_system_locallog_memory_setting":                             413,
+		"fortimanager_system_locallog_setting":                                    414,
+		"fortimanager_system_locallog_syslogd2_filter":                            415,
+		"fortimanager_system_locallog_syslogd2_setting":                           416,
+		"fortimanager_system_locallog_syslogd3_filter":                            417,
+		"fortimanager_system_locallog_syslogd3_setting":                           418,
+		"fortimanager_system_locallog_syslogd_filter":                             419,
+		"fortimanager_system_locallog_syslogd_setting":                            420,
+		"fortimanager_system_log_alert":                                           421,
+		"fortimanager_system_log_devicedisable":                                   422,
+		"fortimanager_system_log_fospolicystats":                                  423,
+		"fortimanager_system_log_interfacestats":                                  424,
+		"fortimanager_system_log_ioc":                                             425,
+		"fortimanager_system_log_maildomain":                                      426,
+		"fortimanager_system_log_ratelimit":                                       427,
+		"fortimanager_system_log_ratelimit_device":                                428,
+		"fortimanager_system_log_ratelimit_ratelimits":                            429,
+		"fortimanager_system_log_settings":                                        430,
+		"fortimanager_system_log_settings_rollinganalyzer":                        431,
+		"fortimanager_system_log_settings_rollinglocal":                           432,
+		"fortimanager_system_log_settings_rollingregular":                         433,
+		"fortimanager_system_log_topology":                                        434,
+		"fortimanager_system_logfetch_clientprofile":                              435,
+		"fortimanager_system_logfetch_serversettings":                             436,
+		"fortimanager_system_mail":                                                437,
+		"fortimanager_system_metadata_admins":                                     438,
+		"fortimanager_system_ntp":                                                 439,
+		"fortimanager_system_ntp_ntpserver":                                       440,
+		"fortimanager_system_passwordpolicy":                                      441,
+		"fortimanager_system_report_autocache":                                    442,
+		"fortimanager_system_report_estbrowsetime":                                443,
+		"fortimanager_system_report_setting":                                      444,
+		"fortimanager_system_route":                                               445,
+		"fortimanager_system_route6":                                              446,
+		"fortimanager_system_saml":                                                447,
+		"fortimanager_system_saml_fabricidp":                                      448,
+		"fortimanager_system_saml_serviceproviders":                               449,
+		"fortimanager_system_sniffer":                                             450,
+		"fortimanager_system_snmp_community":                                      451,
+		"fortimanager_system_snmp_sysinfo":                                        452,
+		"fortimanager_system_snmp_user":                                           453,
+		"fortimanager_system_socfabric":                                           454,
+		"fortimanager_system_sql":                                                 455,
+		"fortimanager_system_sql_customindex":                                     456,
+		"fortimanager_system_sql_customskipidx":                                   457,
+		"fortimanager_system_sql_tsindexfield":                                    458,
+		"fortimanager_system_syslog":                                              459,
+		"fortimanager_system_webproxy":                                            460,
+		"fortimanager_system_workflow_approvalmatrix":                             461,
+		"fortimanager_wan_template":                                               462,
+		"fortimanager_wantemp_system_sdwan":                                       463,
+		"fortimanager_wantemp_system_sdwan_duplication":                           464,
+		"fortimanager_wantemp_system_sdwan_healthcheck":                           465,
+		"fortimanager_wantemp_system_sdwan_healthcheck_sla":                       466,
+		"fortimanager_wantemp_system_sdwan_members":                               467,
+		"fortimanager_wantemp_system_sdwan_neighbor":                              468,
+		"fortimanager_wantemp_system_sdwan_service":                               469,
+		"fortimanager_wantemp_system_sdwan_service_sla":                           470,
+		"fortimanager_wantemp_system_sdwan_zone":                                  471,
+		"fortimanager_wantemp_system_virtualwanlink":                              472,
+		"fortimanager_wantemp_system_virtualwanlink_healthcheck":                  473,
+		"fortimanager_wantemp_system_virtualwanlink_healthcheck_sla":              474,
+		"fortimanager_wantemp_system_virtualwanlink_members":                      475,
+		"fortimanager_wantemp_system_virtualwanlink_neighbor":                     476,
+		"fortimanager_wantemp_system_virtualwanlink_service":                      477,
+		"fortimanager_wantemp_system_virtualwanlink_service_sla":                  478,
 	}
 )
 

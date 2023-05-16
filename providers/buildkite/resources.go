@@ -57,6 +57,24 @@ Buildkite Documentation: https://buildkite.com/docs/agent/v3/tokens
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "buildkite_organization_settings",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description: `
+
+This resource allows you to manage the settings for an organization.
+
+You must be an organization administrator to manage organization settings.
+
+Note: The "Allowed API IP Addresses" feature must be enabled on your organization in order to manage the ` + "`" + `allowed_api_ip_addresses` + "`" + ` attribute.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "buildkite_pipeline",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -243,11 +261,12 @@ Note: You must first enable Teams on your organization.
 
 	resourcesMap = map[string]int{
 
-		"buildkite_agent_token":       0,
-		"buildkite_pipeline":          1,
-		"buildkite_pipeline_schedule": 2,
-		"buildkite_team":              3,
-		"buildkite_team_member":       4,
+		"buildkite_agent_token":           0,
+		"buildkite_organization_settings": 1,
+		"buildkite_pipeline":              2,
+		"buildkite_pipeline_schedule":     3,
+		"buildkite_team":                  4,
+		"buildkite_team_member":           5,
 	}
 )
 

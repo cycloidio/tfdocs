@@ -112,6 +112,10 @@ var (
 					Description: `(Optional) The ID of the AMI used to launch the instance.`,
 				},
 				resource.Attribute{
+					Name:        "images",
+					Description: `(Optional) An array of image objects. Note: Elastigroup can be configured with either imageId or images, but not both.`,
+				},
+				resource.Attribute{
 					Name:        "iam_instance_profile",
 					Description: `(Optional) The ARN or name of an IAM instance profile to associate with launched instances.`,
 				},
@@ -150,6 +154,10 @@ var (
 				resource.Attribute{
 					Name:        "http_put_response_hop_limit",
 					Description: `(Optional, Default: ` + "`" + `1` + "`" + `) The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. Valid values: Integers from ` + "`" + `1` + "`" + ` to ` + "`" + `64` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_metadata_tags",
+					Description: `(Optional) Indicates whether access to instance tags from the instance metadata is enabled or disabled. Can’t be null.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_options",
@@ -1920,16 +1928,12 @@ var (
 					Description: `(Required) Available Low-Priority sizes. <a id="strategy"></a> ## Strategy`,
 				},
 				resource.Attribute{
-					Name:        "strategy",
-					Description: `(Required) Describes the deployment strategy.`,
-				},
-				resource.Attribute{
 					Name:        "spot_percentage",
-					Description: `TODO`,
+					Description: `(Optional) Percentage of Spot-VMs to maintain. Required if ` + "`" + `on_demand_count` + "`" + ` is not specified.`,
 				},
 				resource.Attribute{
-					Name:        "od_count",
-					Description: `(Optional) Number of On-Demand instances to maintain. Required if ` + "`" + `low_priority_percentage` + "`" + ` is not specified.`,
+					Name:        "on_demand_count",
+					Description: `(Optional) Number of On-Demand VMs to maintain. Required if ` + "`" + `spot_percentage` + "`" + ` is not specified.`,
 				},
 				resource.Attribute{
 					Name:        "fallback_to_on_demand",
@@ -1937,7 +1941,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "draining_timeout",
-					Description: `(Optional, Default ` + "`" + `120` + "`" + `) Time (seconds) to allow the instance to be drained from incoming TCP connections and detached from MLB before terminating it during a scale-down operation. ` + "`" + `` + "`" + `` + "`" + `hcl strategy { spot_percentage = 65 draining_timeout = 30 fallback_to_on_demand = true od_count = 1 } ` + "`" + `` + "`" + `` + "`" + ` <a id="image"></a> ## Image`,
+					Description: `(Optional, Default ` + "`" + `120` + "`" + `) Time (seconds) to allow the instance to be drained from incoming TCP connections and detached from MLB before terminating it during a scale-down operation. <a id="image"></a> ## Image`,
 				},
 				resource.Attribute{
 					Name:        "image",
@@ -2163,7 +2167,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Tags to mark created instances. <a id="GPU"></a> ## GPU`,
+					Description: `(Optional) Tags to mark created instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name_prefix",
+					Description: `(Optional) Set an instance name prefix to be used for all launched instances and their boot disk. The prefix value should comply with the following limitations:`,
 				},
 				resource.Attribute{
 					Name:        "gpu",
@@ -2175,7 +2183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `(Required) The number of GPUs. Must be 0, 2, 4, 6, 8. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl gpu = { count = 2 type = "nvidia-tesla-p100" } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
+					Description: `(Required) The number of GPUs. Must be 0, 2, 4, 6, 8. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl gpu { count = 2 type = "nvidia-tesla-p100" } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
 				},
 				resource.Attribute{
 					Name:        "auto_healing",
@@ -2210,16 +2218,16 @@ var (
 					Description: `(Optional) Use when ` + "`" + `location_type` + "`" + ` is "regional". Set the traffic for the backend service to either between the instances in the vpc or to traffic from the internet. Valid values: ` + "`" + `INTERNAL` + "`" + `, ` + "`" + `EXTERNAL` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "named_port",
+					Name:        "named_ports",
 					Description: `(Optional) Describes a named port and a list of ports.`,
 				},
 				resource.Attribute{
-					Name:        "port_name",
+					Name:        "name",
 					Description: `(Required) The name of the port.`,
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Required) A list of ports. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl backend_services_config = [ { service_name = "spotinst-elb-backend-service" locationType = "regional" scheme = "INTERNAL" ports = { port_name = "port-name" ports = [8000, 6000] } }, ] ` + "`" + `` + "`" + `` + "`" + ` <a id="disks"></a> ## Disks`,
+					Description: `(Required) A list of ports. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl backend_services { service_name = "spotinst-elb-backend-service" location_type = "regional" scheme = "INTERNAL" named_ports { name = "port-name" ports = [8000, 6000] } } ` + "`" + `` + "`" + `` + "`" + ` <a id="disks"></a> ## Disks`,
 				},
 				resource.Attribute{
 					Name:        "disks",
@@ -2267,7 +2275,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_image",
-					Description: `(Optional) A source image used to create the disk. You can provide a private (custom) image, and Compute Engine will use the corresponding image from your project. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl disks = [ { device_name = "device" mode = "READ_WRITE" type = "PERSISTENT" auto_delete = true boot = true interface = "SCSI" initialize_params = { disk_size_gb = 10 disk_type = "pd-standard" source_image = "" } } ] ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the GCP Instance's "Network Interfaces". It's a good idea to familiarize yourself with [GCP's Network Interfaces docs](https://cloud.google.com/vpc/docs/multiple-interfaces-concepts) to understand the implications of using these attributes.`,
+					Description: `(Optional) A source image used to create the disk. You can provide a private (custom) image, and Compute Engine will use the corresponding image from your project. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl disks { device_name = "device" mode = "READ_WRITE" type = "PERSISTENT" auto_delete = true boot = true interface = "SCSI" initialize_params = { disk_size_gb = 10 disk_type = "pd-standard" source_image = "" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the GCP Instance's "Network Interfaces". It's a good idea to familiarize yourself with [GCP's Network Interfaces docs](https://cloud.google.com/vpc/docs/multiple-interfaces-concepts) to understand the implications of using these attributes.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface",
@@ -2287,7 +2295,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Array of configurations for this interface. Currently, only ONE_TO_ONE_NAT is supported. ` + "`" + `` + "`" + `` + "`" + `hcl network_interface = [{ network = "default" access_configs = { name = "config1" type = "ONE_TO_ONE_NAT" } alias_ip_ranges = { subnetwork_range_name = "range-name-1" ip_cidr_range = "10.128.0.0/20" } }] ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies`,
+					Description: `(Optional) Array of configurations for this interface. Currently, only ONE_TO_ONE_NAT is supported. ` + "`" + `` + "`" + `` + "`" + `hcl network_interface { network = "default" access_configs = { name = "config1" type = "ONE_TO_ONE_NAT" } alias_ip_ranges = { subnetwork_range_name = "range-name-1" ip_cidr_range = "10.128.0.0/20" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies`,
 				},
 				resource.Attribute{
 					Name:        "scaling_up_policy",
@@ -2330,11 +2338,7 @@ var (
 					Description: `(Optional) The operator used to evaluate the threshold against the current metric value. Valid values: "gt" (greater than), "get" (greater-than or equal), "lt" (less than), "lte" (less than or equal).`,
 				},
 				resource.Attribute{
-					Name:        "action",
-					Description: `(Optional) Scaling action to take when the policy is triggered.`,
-				},
-				resource.Attribute{
-					Name:        "type",
+					Name:        "action_type",
 					Description: `(Optional) Type of scaling action to take when the scaling policy is triggered. Valid values: "adjustment", "setMinTarget", "updateCapacity", "percentageAdjustment"`,
 				},
 				resource.Attribute{
@@ -2351,7 +2355,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The dimension value. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling = { up = { policy_name = "scale_up_1" source = "stackdriver" metric_name = "instance/disk/read_ops_count" namespace = "compute" statistic = "average" unit = "percent" threshold = 10000 period = 300 cooldown = 300 operator = "gte" evaluation_periods = 1 action = { type = "adjustment" adjustment = 1 } dimensions = [ { name = "storage_type" value = "pd-ssd" } ] } } ` + "`" + `` + "`" + `` + "`" + ` <a id="third-party-integrations"></a> ## Third-Party Integrations`,
+					Description: `(Required) The dimension value. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy { policy_name = "scale_up_1" source = "stackdriver" metric_name = "instance/disk/read_ops_count" namespace = "compute" statistic = "average" unit = "percent" threshold = 10000 period = 300 cooldown = 300 operator = "gte" evaluation_periods = 1 action_type = "adjustment" adjustment = 1 dimensions { name = "storage_type" value = "pd-ssd" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="third-party-integrations"></a> ## Third-Party Integrations`,
 				},
 				resource.Attribute{
 					Name:        "integration_docker_swarm",
@@ -2387,7 +2391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_capacity",
-					Description: `(Optional) The maximum number of instances the group should have. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task = [{ task_type = "setCapacity" cron_expression = "" is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 }] ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The maximum number of instances the group should have. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { task_type = "setCapacity" cron_expression = "" is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3359,6 +3363,10 @@ var (
 					Description: `(Required) A unique identifier used for connecting the Ocean SaaS platform and the Kubernetes cluster. Typically, the cluster name is used as its identifier.`,
 				},
 				resource.Attribute{
+					Name:        "zones",
+					Description: `(Optional) An Array holding default Availability Zones, this configures the availability zones the Ocean may launch instances in.`,
+				},
+				resource.Attribute{
 					Name:        "aks_name",
 					Description: `(Required) The AKS cluster name.`,
 				},
@@ -3385,6 +3393,10 @@ var (
 				resource.Attribute{
 					Name:        "custom_data",
 					Description: `(Optional) Must contain a valid Base64 encoded string.`,
+				},
+				resource.Attribute{
+					Name:        "max_pods",
+					Description: `(Optional) The maximum number of pods per node in an AKS cluster.`,
 				},
 				resource.Attribute{
 					Name:        "managed_service_identity",
@@ -3628,6 +3640,10 @@ var (
 					Description: `(Required) Set name for the virtual node group.`,
 				},
 				resource.Attribute{
+					Name:        "zones",
+					Description: `(Optional) An Array holding Availability Zones, this configures the availability zones the Ocean may launch instances in per VNG.`,
+				},
+				resource.Attribute{
 					Name:        "label",
 					Description: `(Optional) Additional labels for the virtual node group. Only custom user labels are allowed. Kubernetes built-in labels and Spot internal labels are not allowed.`,
 				},
@@ -3708,6 +3724,10 @@ var (
 					Description: `(Optional) The type of the OS disk. Valid values: ` + "`" + `"Standard_LRS"` + "`" + `, ` + "`" + `"Premium_LRS"` + "`" + `, ` + "`" + `"StandardSSD_LRS"` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "utilize_ephemeral_storage",
+					Description: `(Optional) Flag to enable/disable the Ephemeral OS Disk utilization.`,
+				},
+				resource.Attribute{
 					Name:        "tag",
 					Description: `(Optional) Additional key-value pairs to be used to tag the VMs in the virtual node group.`,
 				},
@@ -3718,6 +3738,10 @@ var (
 				resource.Attribute{
 					Name:        "value",
 					Description: `(Optional) Tag Value for VMs in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_pods",
+					Description: `(Optional) The maximum number of pods per node in an AKS cluster.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3762,12 +3786,96 @@ var (
 					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public IP.`,
 				},
 				resource.Attribute{
+					Name:        "instanceTypes",
+					Description: `(Optional) The type of instances that may or may not be a part of the Ocean cluster.`,
+				},
+				resource.Attribute{
 					Name:        "whitelist",
 					Description: `(Optional) Instance types allowed in the Ocean cluster. Cannot be configured if ` + "`" + `blacklist` + "`" + ` is configured.`,
 				},
 				resource.Attribute{
 					Name:        "blacklist",
 					Description: `(Optional) Instance types not allowed in the Ocean cluster. Cannot be configured if ` + "`" + `whitelist` + "`" + ` is configured.`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) List of filters. The Instance types that match with all filters compose the Ocean's whitelist parameter. Cannot be configured together with whitelist/blacklist.`,
+				},
+				resource.Attribute{
+					Name:        "architectures",
+					Description: `(Optional) The filtered instance types will support at least one of the architectures from this list.`,
+				},
+				resource.Attribute{
+					Name:        "categories",
+					Description: `(Optional) The filtered instance types will belong to one of the categories types from this list.`,
+				},
+				resource.Attribute{
+					Name:        "disk_types",
+					Description: `(Optional) The filtered instance types will have one of the disk type from this list.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_families",
+					Description: `(Optional) Types belonging to a family from the ExcludeFamilies will not be available for scaling (asterisk wildcard is also supported). For example, C`,
+				},
+				resource.Attribute{
+					Name:        "exclude_metal",
+					Description: `(Optional, Default: false) In case excludeMetal is set to true, metal types will not be available for scaling.`,
+				},
+				resource.Attribute{
+					Name:        "hypervisor",
+					Description: `(Optional) The filtered instance types will have a hypervisor type from this list.`,
+				},
+				resource.Attribute{
+					Name:        "include_families",
+					Description: `(Optional) Types belonging to a family from the IncludeFamilies will be available for scaling (asterisk wildcard is also supported). For example, C`,
+				},
+				resource.Attribute{
+					Name:        "is_ena_supported",
+					Description: `(Optional) Ena is supported or not.`,
+				},
+				resource.Attribute{
+					Name:        "max_gpu",
+					Description: `(Optional) Maximum total number of GPUs.`,
+				},
+				resource.Attribute{
+					Name:        "max_memory_gib",
+					Description: `(Optional) Maximum amount of Memory (GiB).`,
+				},
+				resource.Attribute{
+					Name:        "max_network_performance",
+					Description: `(Optional) Maximum Bandwidth in Gib/s of network performance.`,
+				},
+				resource.Attribute{
+					Name:        "max_vcpu",
+					Description: `(Optional) Maximum number of vcpus available.`,
+				},
+				resource.Attribute{
+					Name:        "min_enis",
+					Description: `(Optional) Minimum number of network interfaces (ENIs).`,
+				},
+				resource.Attribute{
+					Name:        "min_gpu",
+					Description: `(Optional) Minimum total number of GPUs.`,
+				},
+				resource.Attribute{
+					Name:        "min_memory_gib",
+					Description: `(Optional) Minimum amount of Memory (GiB).`,
+				},
+				resource.Attribute{
+					Name:        "min_network_performance",
+					Description: `(Optional) Minimum Bandwidth in Gib/s of network performance.`,
+				},
+				resource.Attribute{
+					Name:        "min_vcpu",
+					Description: `(Optional) Minimum number of vcpus available.`,
+				},
+				resource.Attribute{
+					Name:        "root_device_types",
+					Description: `(Optional) The filtered instance types will have a root device types from this list.`,
+				},
+				resource.Attribute{
+					Name:        "virtualization_types",
+					Description: `(Optional) The filtered instance types will support at least one of the virtualization types from this list.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -3792,6 +3900,10 @@ var (
 				resource.Attribute{
 					Name:        "associate_public_ip_address",
 					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Configure public IP address allocation.`,
+				},
+				resource.Attribute{
+					Name:        "associate_ipv6_address",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Configure IPv6 address allocation.`,
 				},
 				resource.Attribute{
 					Name:        "root_volume_size",
@@ -3862,6 +3974,10 @@ var (
 					Description: `(Optional, Default false) If savings plans exist, Ocean will utilize them before launching Spot instances.`,
 				},
 				resource.Attribute{
+					Name:        "spread_nodes_by",
+					Description: `(Optional, Default: ` + "`" + `count` + "`" + `) Ocean will spread the nodes across markets by this value. Possible values: ` + "`" + `vcpu` + "`" + ` or ` + "`" + `count` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "instance_metadata_options",
 					Description: `(Optional) Ocean instance metadata options object for IMDSv2.`,
 				},
@@ -3872,6 +3988,54 @@ var (
 				resource.Attribute{
 					Name:        "http_put_response_hop_limit",
 					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel.`,
+				},
+				resource.Attribute{
+					Name:        "block_device_mappings",
+					Description: `(Optional) Object. Array list of block devices that are exposed to the instance, specify either virtual devices and EBS volumes.`,
+				},
+				resource.Attribute{
+					Name:        "device_name",
+					Description: `(Optional) String. Set device name. (Example: ` + "`" + `/dev/xvda` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "delete_on_termination",
+					Description: `(Optional) Boolean. Flag to delete the EBS on instance termination.`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `(Optional) Boolean. Enables [EBS encryption](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) on the volume.`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(Required for requests to create io1 volumes; it is not used in requests to create ` + "`" + `gp2` + "`" + `, ` + "`" + `st1` + "`" + `, ` + "`" + `sc1` + "`" + `, or standard volumes) Int. The number of I/O operations per second (IOPS) that the volume supports.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `(Optional) String. Identifier (key ID, key alias, ID ARN, or alias ARN) for a customer managed CMK under which the EBS volume is encrypted.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional) (Optional) String. The Snapshot ID to mount by.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Optional, Default: ` + "`" + `"standard"` + "`" + `) String. The type of the volume. (Example: ` + "`" + `gp2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `(Optional) Int. The size, in GB of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "throughput",
+					Description: `(Optional) The amount of data transferred to or from a storage device per second, you can use this param just in a case that ` + "`" + `volume_type` + "`" + ` = ` + "`" + `gp3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_volume_size",
+					Description: `(Optional) Object. Set dynamic volume size properties. When using this object, you cannot use volumeSize. You must use one or the other.`,
+				},
+				resource.Attribute{
+					Name:        "availability_vs_cost",
+					Description: `(Optional, Default: ` + "`" + `balanced` + "`" + `) You can control the approach that Ocean takes while launching nodes by configuring this value. Possible values: ` + "`" + `costOriented` + "`" + `,` + "`" + `balanced` + "`" + `,` + "`" + `cheapest` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "logging",
@@ -3887,7 +4051,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The identifier of The S3 data integration to export the logs to. <a id="auto-scaler"></a> ## Auto Scaler`,
+					Description: `(Required) The identifier of The S3 data integration to export the logs to. ## Auto Scaler`,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -3987,7 +4151,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_min_healthy_percentage",
-					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true auto_apply_tags = true roll_config { batch_size_percentage = 33 launch_spec_ids = ["ols-1a2b3c4d"] batch_min_healthy_percentage = 20 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## scheduled task`,
+					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch.`,
+				},
+				resource.Attribute{
+					Name:        "respect_pdb",
+					Description: `(Optional, Default: false) During the roll, if the parameter is set to True we honor PDB during the instance replacement. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true auto_apply_tags = true roll_config { batch_size_percentage = 33 launch_spec_ids = ["ols-1a2b3c4d"] batch_min_healthy_percentage = 20 respect_pdb = true } } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## Scheduled Task`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -4023,13 +4191,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Cluster ID.`,
+					Description: `The Cluster ID. <a id="import"></a> ## Import Clusters can be imported using the Ocean ` + "`" + `id` + "`" + `, e.g., ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import spotinst_ocean_aws.this o-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Cluster ID.`,
+					Description: `The Cluster ID. <a id="import"></a> ## Import Clusters can be imported using the Ocean ` + "`" + `id` + "`" + `, e.g., ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import spotinst_ocean_aws.this o-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4095,6 +4263,14 @@ var (
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `(Optional) ID of the image used to launch the instances.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `Array of objects (Image object, containing the id of the image used to launch instances.) You can configure VNG with either the imageId or images objects, but not both simultaneously. For each architecture type (amd64, arm64) only one AMI is allowed. Valid values: null, or an array with at least one element.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `Identifier of the image in AWS. Valid values: any string which is not empty or null.`,
 				},
 				resource.Attribute{
 					Name:        "iam_instance_profile",
@@ -4249,6 +4425,14 @@ var (
 					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
 				},
 				resource.Attribute{
+					Name:        "autoscale_down",
+					Description: `(Optional) Auto Scaling scale down operations.`,
+				},
+				resource.Attribute{
+					Name:        "max_scale_down_percentage",
+					Description: `(Optional) The maximum percentage allowed to scale down in a single scaling action on the nodes running in a specific VNG. Allowed only if maxScaleDownPercentage is set to null at the cluster level. Number between [0.1-100].`,
+				},
+				resource.Attribute{
 					Name:        "resource_limits",
 					Description: `(Optional)`,
 				},
@@ -4283,6 +4467,10 @@ var (
 				resource.Attribute{
 					Name:        "force_delete",
 					Description: `(Optional) When set to ` + "`" + `true` + "`" + `, delete even if it is the last Virtual Node Group (also, the default Virtual Node Group must be configured with ` + "`" + `useAsTemlateOnly = true` + "`" + `). Should be set at creation or update, but will be used only at deletion.`,
+				},
+				resource.Attribute{
+					Name:        "delete_nodes",
+					Description: `(Optional) When set to "true", all instances belonging to the deleted launch specification will be drained, detached, and terminated.`,
 				},
 				resource.Attribute{
 					Name:        "scheduling_task",
@@ -4330,7 +4518,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Optional) Flag to enable or disable the shutdown hours mechanism. When False, the mechanism is deactivated, and the virtual node group remains in its current state. <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) Flag to enable or disable the shutdown hours mechanism. When False, the mechanism is deactivated, and the virtual node group remains in its current state.`,
+				},
+				resource.Attribute{
+					Name:        "instance_metadata_options",
+					Description: `(Optional) Ocean instance metadata options object for IMDSv2.`,
+				},
+				resource.Attribute{
+					Name:        "http_tokens",
+					Description: `(Required) Determines if a signed token is required or not. Valid values: ` + "`" + `optional` + "`" + ` or ` + "`" + `required` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_put_response_hop_limit",
+					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel. <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -4377,7 +4577,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_name",
-					Description: `(Required) The ocean cluster name.`,
+					Description: `(Required) The name of the ECS cluster.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4412,12 +4612,96 @@ var (
 					Description: `(Optional) The tag value.`,
 				},
 				resource.Attribute{
+					Name:        "instanceTypes",
+					Description: `(Optional) The type of instances that may or may not be a part of the Ocean cluster.`,
+				},
+				resource.Attribute{
 					Name:        "whitelist",
-					Description: `(Optional) Instance types allowed in the Ocean cluster, Cannot be configured if blacklist is configured.`,
+					Description: `(Optional) Instance types allowed in the Ocean cluster. Cannot be configured if ` + "`" + `blacklist` + "`" + `/` + "`" + `filters` + "`" + ` is configured.`,
 				},
 				resource.Attribute{
 					Name:        "blacklist",
-					Description: `(Optional) Instance types to avoid launching in the Ocean cluster. Cannot be configured if whitelist is configured.`,
+					Description: `(Optional) Instance types not allowed in the Ocean cluster. Cannot be configured if ` + "`" + `whitelist` + "`" + `/` + "`" + `filters` + "`" + ` is configured.`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) List of filters. The Instance types that match with all filters compose the Ocean's whitelist parameter. Cannot be configured together with ` + "`" + `whitelist` + "`" + `/` + "`" + `blacklist` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "architectures",
+					Description: `(Optional) The filtered instance types will support at least one of the architectures from this list.`,
+				},
+				resource.Attribute{
+					Name:        "categories",
+					Description: `(Optional) The filtered instance types will belong to one of the categories types from this list.`,
+				},
+				resource.Attribute{
+					Name:        "disk_types",
+					Description: `(Optional) The filtered instance types will have one of the disk type from this list.`,
+				},
+				resource.Attribute{
+					Name:        "exclude_families",
+					Description: `(Optional) Types belonging to a family from the ExcludeFamilies will not be available for scaling (asterisk wildcard is also supported). For example, C`,
+				},
+				resource.Attribute{
+					Name:        "exclude_metal",
+					Description: `(Optional, Default: false) In case excludeMetal is set to true, metal types will not be available for scaling.`,
+				},
+				resource.Attribute{
+					Name:        "hypervisor",
+					Description: `(Optional) The filtered instance types will have a hypervisor type from this list.`,
+				},
+				resource.Attribute{
+					Name:        "include_families",
+					Description: `(Optional) Types belonging to a family from the IncludeFamilies will be available for scaling (asterisk wildcard is also supported). For example, C`,
+				},
+				resource.Attribute{
+					Name:        "is_ena_supported",
+					Description: `(Optional) Ena is supported or not.`,
+				},
+				resource.Attribute{
+					Name:        "max_gpu",
+					Description: `(Optional) Maximum total number of GPUs.`,
+				},
+				resource.Attribute{
+					Name:        "max_memory_gib",
+					Description: `(Optional) Maximum amount of Memory (GiB).`,
+				},
+				resource.Attribute{
+					Name:        "max_network_performance",
+					Description: `(Optional) Maximum Bandwidth in Gib/s of network performance.`,
+				},
+				resource.Attribute{
+					Name:        "max_vcpu",
+					Description: `(Optional) Maximum number of vcpus available.`,
+				},
+				resource.Attribute{
+					Name:        "min_enis",
+					Description: `(Optional) Minimum number of network interfaces (ENIs).`,
+				},
+				resource.Attribute{
+					Name:        "min_gpu",
+					Description: `(Optional) Minimum total number of GPUs.`,
+				},
+				resource.Attribute{
+					Name:        "min_memory_gib",
+					Description: `(Optional) Minimum amount of Memory (GiB).`,
+				},
+				resource.Attribute{
+					Name:        "min_network_performance",
+					Description: `(Optional) Minimum Bandwidth in Gib/s of network performance.`,
+				},
+				resource.Attribute{
+					Name:        "min_vcpu",
+					Description: `(Optional) Minimum number of vcpus available.`,
+				},
+				resource.Attribute{
+					Name:        "root_device_types",
+					Description: `(Optional) The filtered instance types will have a root device types from this list.`,
+				},
+				resource.Attribute{
+					Name:        "virtualization_types",
+					Description: `(Optional) The filtered instance types will support at least one of the virtualization types from this list.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -4460,12 +4744,20 @@ var (
 					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored.`,
 				},
 				resource.Attribute{
+					Name:        "use_as_template_only",
+					Description: `(Optional, Default: false) launch specification defined on the Ocean object will function only as a template for virtual node groups.`,
+				},
+				resource.Attribute{
 					Name:        "spot_percentage",
 					Description: `(Optional) The percentage of Spot instances that would spin up from the ` + "`" + `desired_capacity` + "`" + ` number.`,
 				},
 				resource.Attribute{
 					Name:        "utilize_commitments",
 					Description: `(Optional, Default false) If savings plans exist, Ocean will utilize them before launching Spot instances.`,
+				},
+				resource.Attribute{
+					Name:        "availability_vs_cost",
+					Description: `(Optional, Default: ` + "`" + `balanced` + "`" + `) You can control the approach that Ocean takes while launching nodes by configuring this value. Possible values: ` + "`" + `costOriented` + "`" + `,` + "`" + `balanced` + "`" + `,` + "`" + `cheapest` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "instance_metadata_options",
@@ -4477,7 +4769,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "http_put_response_hop_limit",
-					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel. <a id="block-devices"></a> ## Block Devices`,
+					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel.`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) Logging configuration.`,
+				},
+				resource.Attribute{
+					Name:        "export",
+					Description: `(Optional) Logging Export configuration.`,
+				},
+				resource.Attribute{
+					Name:        "s3",
+					Description: `(Optional) Exports your cluster's logs to the S3 bucket and subdir configured on the S3 data integration given.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The identifier of The S3 data integration to export the logs to. <a id="block-devices"></a> ## Block Devices`,
 				},
 				resource.Attribute{
 					Name:        "block_device_mappings",
@@ -4609,7 +4917,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_headroom_percentage",
-					Description: `(Optional) The auto-headroom percentage. Set a number between 0-200 to control the headroom % of the cluster. Relevant when ` + "`" + `isAutoConfig` + "`" + `= true. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = false cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } auto_headroom_percentage = 10 } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) The auto-headroom percentage. Set a number between 0-200 to control the headroom % of the cluster. Relevant when ` + "`" + `isAutoConfig` + "`" + `= true.`,
+				},
+				resource.Attribute{
+					Name:        "should_scale_down_non_service_tasks",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Option to scale down non-service tasks. If not set, Ocean does not scale down standalone tasks.`,
+				},
+				resource.Attribute{
+					Name:        "enable_automatic_and_manual_headroom",
+					Description: `(Optional) When set to true, both automatic and per custom launch specification manual headroom to be saved concurrently and independently in the cluster. prerequisite: isAutoConfig must be true ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = true cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } auto_headroom_percentage = 10 should_scale_down_non_service_tasks = false enable_automatic_and_manual_headroom = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -4673,13 +4989,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Spotinst Ocean ID.`,
+					Description: `The Spotinst Ocean ID. <a id="import"></a> ## Import Clusters can be imported using the Ocean ` + "`" + `id` + "`" + `, e.g., ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import spotinst_ocean_ecs.this o-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Spotinst Ocean ID.`,
+					Description: `The Spotinst Ocean ID. <a id="import"></a> ## Import Clusters can be imported using the Ocean ` + "`" + `id` + "`" + `, e.g., ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import spotinst_ocean_ecs.this o-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4717,8 +5033,24 @@ var (
 					Description: `(Optional) A list of instance types allowed to be provisioned for pods pending under the specified launch specification. The list overrides the list defined for the Ocean cluster.`,
 				},
 				resource.Attribute{
+					Name:        "preferred_spot_types",
+					Description: `(Optional) When Ocean scales up instances, it takes your preferred types into consideration while maintaining a variety of machine types running for optimized distribution.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_ids",
 					Description: `(Optional) Set subnets in launchSpec. Each element in the array should be a subnet ID.`,
+				},
+				resource.Attribute{
+					Name:        "instance_metadata_options",
+					Description: `(Optional) Ocean instance metadata options object for IMDSv2.`,
+				},
+				resource.Attribute{
+					Name:        "http_tokens",
+					Description: `(Required) Determines if a signed token is required or not. Valid values: ` + "`" + `optional` + "`" + ` or ` + "`" + `required` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_put_response_hop_limit",
+					Description: `(Optional) An integer from 1 through 64. The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further the instance metadata requests can travel.`,
 				},
 				resource.Attribute{
 					Name:        "attributes",
@@ -4778,7 +5110,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_per_unit",
-					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. <a id="block-devices"></a> ## Block Devices`,
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "spot_percentage",
+					Description: `(Optional- if not using ` + "`" + `spot_percentege` + "`" + ` under ` + "`" + `ocean strategy` + "`" + `) When set, Ocean will proactively try to maintain as close as possible to the percentage of Spot instances out of all the Virtual Node Group instances. <a id="block-devices"></a> ## Block Devices`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -4834,7 +5170,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "whitelist",
-					Description: `(Optional) Instance types allowed in the Ocean cluster.`,
+					Description: `(Optional) Instance types allowed in the Ocean cluster. Cannot be configured if blacklist list is configured.`,
+				},
+				resource.Attribute{
+					Name:        "blacklist",
+					Description: `(Optional) Instance types to avoid launching in the Ocean cluster. Cannot be configured if whitelist list is configured.`,
 				},
 				resource.Attribute{
 					Name:        "draining_timeout",
@@ -4882,7 +5222,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_secure_boot",
-					Description: `(Optional) Boolean. Enable the secure boot parameter on the GCP instances. <a id="scheduled-task"></a> ## Scheduled task`,
+					Description: `(Optional) Boolean. Enable the secure boot parameter on the GCP instances.`,
+				},
+				resource.Attribute{
+					Name:        "use_as_template_only",
+					Description: `(Optional, Default: false) launch specification defined on the Ocean object will function only as a template for virtual node groups. <a id="scheduled-task"></a> ## Scheduled task`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -4918,7 +5262,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Optional) Value in % to set size of batch in roll. Valid values are 0-100 Example: 20. ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = false time_windows = ["Fri:15:30-Sat:18:30"] } tasks { is_enabled = false cron_expression = "0 1`,
+					Description: `(Optional) Value in % to set size of batch in roll. Valid values are 0-100 Example: 20.`,
+				},
+				resource.Attribute{
+					Name:        "task_parameters",
+					Description: `(Optional) The scheduling parameters for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_roll",
+					Description: `(Optional) The cluster roll parameters for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "batch_min_healthy_percentage",
+					Description: `(Optional, Default: 50) Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch.`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Optional) Value as a percent to set the size of a batch in a roll. Valid values are 0-100.`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional) Add a comment description for the roll. The comment is limited to 256 chars.`,
+				},
+				resource.Attribute{
+					Name:        "respect_pdb",
+					Description: `(Optional, Default: 'false' ) During the roll, if the parameter is set to true we honor PDB during the instance replacement. ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { shutdown_hours { is_enabled = false time_windows = ["Fri:15:30-Sat:18:30"] } tasks { is_enabled = false cron_expression = "0 1`,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -5026,7 +5394,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_min_healthy_percentage",
-					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true roll_config { batch_size_percentage = 33 launch_spec_ids = ["ols-1a2b3c4d"] batch_min_healthy_percentage = 20 } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Default: 50. Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch.`,
+				},
+				resource.Attribute{
+					Name:        "respect_pdb",
+					Description: `(Optional) Default: False. During the roll, if the parameter is set to True we honor PDB during the instance replacement. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false conditioned_roll = true roll_config { batch_size_percentage = 33 launch_spec_ids = ["ols-1a2b3c4d"] batch_min_healthy_percentage = 20 respect_pdb = true } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5124,6 +5496,10 @@ var (
 				resource.Attribute{
 					Name:        "instance_types",
 					Description: `(Optional) List of supported machine types for the Launch Spec.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Every node launched from this configuration will be tagged with those tags. Note: during creation some tags are automatically imported to the state file, it is required to manually add it to the template configuration`,
 				},
 				resource.Attribute{
 					Name:        "autoscale_headrooms_automatic",
@@ -5231,7 +5607,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_per_unit",
-					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit. <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "network_interfaces",
+					Description: `(Optional) Settings for network interfaces.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Required) The name of the network.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Use a network resource from a different project. Set the project identifier to use its network resource. This parameter is relevant only if the network resource is in a different project.`,
+				},
+				resource.Attribute{
+					Name:        "access_configs",
+					Description: `(Optional) The network protocol of the VNG.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the access configuration.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the access configuration.`,
+				},
+				resource.Attribute{
+					Name:        "alias_ip_ranges",
+					Description: `(Optional) use the imported node pool’s associated aliasIpRange to assign secondary IP addresses to the nodes. Cannot be changed after VNG creation.`,
+				},
+				resource.Attribute{
+					Name:        "ip_cidr_range",
+					Description: `(Required) specify the IP address range in CIDR notation that can be used for the alias IP addresses associated with the imported node pool.`,
+				},
+				resource.Attribute{
+					Name:        "subnetwork_range_name",
+					Description: `(Required) specify the IP address range for the subnet secondary IP range. <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -5290,6 +5702,50 @@ var (
 					Description: `The Spotinst LaunchSpec ID.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spotinst_ocean_spark",
+			Category:         "Ocean",
+			ShortDescription: `Provides a Spotinst Ocean Spark resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"spark",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spotinst_ocean_spark_virtual_node_group",
+			Category:         "Ocean",
+			ShortDescription: `Provides a Spotinst Ocean Spark Virtual Node Group resource`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"spark",
+				"virtual",
+				"node",
+				"group",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "spotinst_stateful_node_azure",
+			Category:         "Elastigroup",
+			ShortDescription: `Provides a Spotinst Stateful Node resource using Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastigroup",
+				"stateful",
+				"node",
+				"azure",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5358,7 +5814,10 @@ var (
 		"spotinst_ocean_gke_import":                       18,
 		"spotinst_ocean_gke_launch_spec":                  19,
 		"spotinst_ocean_gke_launch_spec_import":           20,
-		"spotinst_subscription":                           21,
+		"spotinst_ocean_spark":                            21,
+		"spotinst_ocean_spark_virtual_node_group":         22,
+		"spotinst_stateful_node_azure":                    23,
+		"spotinst_subscription":                           24,
 	}
 )
 

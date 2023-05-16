@@ -70,12 +70,7 @@ var (
 				"user",
 				"anonymous",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) Username for anonymous user. This is only for ensuring resource schema is valid for Terraform. This is not meant to be set or updated in the HCL. ## Import Anonymous user can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_anonymous_user.anonymous-user anonymous ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -93,7 +88,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `The API key. ## Import A user's API key can be imported using any identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_api_key.test import ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The API key. Deprecated. An upcoming version will support the option to block the usage/creation of API Keys (for admins to set on their platform). In September 2022, the option to block the usage/creation of API Keys will be enabled by default, with the option for admins to change it back to enable API Keys. In January 2023, API Keys will be deprecated all together and the option to use them will no longer be available. It is recommended to use scoped tokens instead - ` + "`" + `artifactory_scoped_token` + "`" + ` resource. Please check the [release notes](https://www.jfrog.com/confluence/display/JFROG/Artifactory+Release+Notes#ArtifactoryReleaseNotes-Artifactory7.38.4). ## Import A user's API key can be imported using any identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_api_key.test import ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -119,11 +114,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'.`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "added", "deleted".`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `added` + "`" + `, ` + "`" + `deleted` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -143,11 +138,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -155,11 +154,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting.`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -189,11 +188,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'.`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "deployed", "deleted", "moved", "copied", "cached".`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `deployed` + "`" + `, ` + "`" + `deleted` + "`" + `, ` + "`" + `moved` + "`" + `, ` + "`" + `copied` + "`" + `, ` + "`" + `cached` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -213,11 +212,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -225,11 +228,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL.`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting.`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -260,11 +263,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "received", "delete_started", "delete_completed", "delete_failed"`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `received` + "`" + `, ` + "`" + `delete_started` + "`" + `, ` + "`" + `delete_completed` + "`" + `, ` + "`" + `delete_failed` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -280,11 +283,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -292,11 +299,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -339,11 +346,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'.`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "uploaded", "deleted", "promoted".`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `uploaded` + "`" + `, ` + "`" + `deleted` + "`" + `, ` + "`" + `promoted` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -359,11 +366,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -371,11 +382,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL.`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting.`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -449,6 +460,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "artifactory_distribution_public_key",
+			Category:         "Security",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"distribution",
+				"public",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alias",
+					Description: `(Required) Will be used as an identifier when uploading/retrieving the public key via REST API.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Required) The Public key to add as a trusted distribution GPG key. The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `Returns the key id by which this key is referenced in Artifactory`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `Returns the computed key fingerprint`,
+				},
+				resource.Attribute{
+					Name:        "issued_on",
+					Description: `Returns the date/time when this GPG key was created`,
+				},
+				resource.Attribute{
+					Name:        "issued_by",
+					Description: `Returns the name and eMail address of issuer`,
+				},
+				resource.Attribute{
+					Name:        "valid_until",
+					Description: `Returns the date/time when this GPG key expires. ## Import Distribution Public Key can be imported using the key id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_distribution_public_key.my-key keyid ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "artifactory_distribution_webhook",
 			Category:         "Webhook",
 			ShortDescription: ``,
@@ -468,11 +523,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'.`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "distribute_started", "distribute_completed", "distribute_aborted", "distribute_failed", "delete_started", "delete_completed", "delete_failed"`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `distribute_started` + "`" + `, ` + "`" + `distribute_completed` + "`" + `, ` + "`" + `distribute_aborted` + "`" + `, ` + "`" + `distribute_failed, ` + "`" + `delete_started` + "`" + `, ` + "`" + `delete_completed` + "`" + `, ` + "`" + `delete_failed` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -488,11 +543,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -500,11 +559,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL.`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting.`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -534,11 +593,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'.`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "pushed", "deleted", "promoted".`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `pushed` + "`" + `, ` + "`" + `deleted` + "`" + `, ` + "`" + `promoted` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -558,11 +617,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -570,11 +633,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL.`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting.`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -610,7 +673,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_alpine_repository.terraform-federated-test-alpine-repo terraform-federated-test-alpine-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -642,7 +709,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_bower_repository.terraform-federated-test-bower-repo terraform-federated-test-bower-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -674,7 +745,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_cargo_repository.terraform-federated-test-cargo-repo terraform-federated-test-cargo-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -706,7 +781,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_chef_repository.terraform-federated-test-chef-repo terraform-federated-test-chef-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -738,7 +817,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_cocoapods_repository.terraform-federated-test-cocoapods-repo terraform-federated-test-cocoapods-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -770,7 +853,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_composer_repository.terraform-federated-test-composer-repo terraform-federated-test-composer-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -802,7 +889,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import resource "artifactory_federated_conan_repository" "terraform-federated-test-conan-repo" { .terraform-federated-test-conan-repo terraform-federated-test-conan-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -834,7 +925,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_conda_repository.terraform-federated-test-conda-repo terraform-federated-test-conda-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -866,7 +961,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_cran_repository.terraform-federated-test-cran-repo terraform-federated-test-cran-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -898,7 +997,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_debian_repository.terraform-federated-test-debian-repo terraform-federated-test-debian-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -930,7 +1033,85 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_docker_repository.terraform-federated-test-docker-repo terraform-federated-test-docker-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_federated_docker_v1_repository",
+			Category:         "Federated Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"federated",
+				"repositories",
+				"docker",
+				"v1",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Required) The list of Federated members and must contain this repository URL (configured base URL ` + "`" + `/artifactory/` + "`" + ` + repo ` + "`" + `key` + "`" + `). Note that each of the federated members will need to have a base URL set. Please follow the [instruction](https://www.jfrog.com/confluence/display/JFROG/Working+with+Federated+Repositories#WorkingwithFederatedRepositories-SettingUpaFederatedRepository) to set up Federated repositories correctly.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Full URL to ending with the repository name.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_federated_docker_v2_repository",
+			Category:         "Federated Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"federated",
+				"repositories",
+				"docker",
+				"v2",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Required) The list of Federated members and must contain this repository URL (configured base URL ` + "`" + `/artifactory/` + "`" + ` + repo ` + "`" + `key` + "`" + `). Note that each of the federated members will need to have a base URL set. Please follow the [instruction](https://www.jfrog.com/confluence/display/JFROG/Working+with+Federated+Repositories#WorkingwithFederatedRepositories-SettingUpaFederatedRepository) to set up Federated repositories correctly.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Full URL to ending with the repository name.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -962,7 +1143,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_gem_repository.terraform-federated-test-gem-repo terraform-federated-test-gem-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -994,7 +1179,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_generic_repository.terraform-federated-test-generic-repo terraform-federated-test-generic-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1026,7 +1215,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_gitlfs_repository.terraform-federated-test-gitlfs-repo terraform-federated-test-gitlfs-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1058,7 +1251,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_go_repository.terraform-federated-test-go-repo terraform-federated-test-go-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1090,7 +1287,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_gradle_repository.terraform-federated-test-gradle-repo terraform-federated-test-gradle-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1122,7 +1323,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_helm_repository.terraform-federated-test-helm-repo terraform-federated-test-helm-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1154,7 +1359,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_ivy_repository.terraform-federated-test-ivy-repo terraform-federated-test-ivy-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1186,7 +1395,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_maven_repository.terraform-federated-test-maven-repo terraform-federated-test-maven-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1218,7 +1431,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_npm_repository.terraform-federated-test-npm-repo terraform-federated-test-npm-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1250,7 +1467,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_nuget_repository.terraform-federated-test-nuget-repo terraform-federated-test-nuget-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1282,7 +1503,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_opkg_repository.terraform-federated-test-opkg-repo terraform-federated-test-opkg-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1314,7 +1539,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_puppet_repository.terraform-federated-test-puppet-repo terraform-federated-test-puppet-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1346,7 +1575,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_pypi_repository.terraform-federated-test-pypi-repo terraform-federated-test-pypi-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1378,7 +1611,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_rpm_repository.terraform-federated-test-rpm-repo terraform-federated-test-rpm-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1410,7 +1647,121 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_sbt_repository.terraform-federated-test-sbt-repo terraform-federated-test-sbt-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_federated_swift_repository",
+			Category:         "Federated Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"federated",
+				"repositories",
+				"swift",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Required) The list of Federated members and must contain this repository URL (configured base URL ` + "`" + `/artifactory/` + "`" + ` + repo ` + "`" + `key` + "`" + `). Note that each of the federated members will need to have a base URL set. Please follow the [instruction](https://www.jfrog.com/confluence/display/JFROG/Working+with+Federated+Repositories#WorkingwithFederatedRepositories-SettingUpaFederatedRepository) to set up Federated repositories correctly.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Full URL to ending with the repository name.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_federated_terraform_module_repository",
+			Category:         "Federated Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"federated",
+				"repositories",
+				"terraform",
+				"module",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Required) The list of Federated members and must contain this repository URL (configured base URL ` + "`" + `/artifactory/` + "`" + ` + repo ` + "`" + `key` + "`" + `). Note that each of the federated members will need to have a base URL set. Please follow the [instruction](https://www.jfrog.com/confluence/display/JFROG/Working+with+Federated+Repositories#WorkingwithFederatedRepositories-SettingUpaFederatedRepository) to set up Federated repositories correctly.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Full URL to ending with the repository name.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_federated_terraform_provider_repository",
+			Category:         "Federated Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"federated",
+				"repositories",
+				"terraform",
+				"provider",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Required) The list of Federated members and must contain this repository URL (configured base URL ` + "`" + `/artifactory/` + "`" + ` + repo ` + "`" + `key` + "`" + `). Note that each of the federated members will need to have a base URL set. Please follow the [instruction](https://www.jfrog.com/confluence/display/JFROG/Working+with+Federated+Repositories#WorkingwithFederatedRepositories-SettingUpaFederatedRepository) to set up Federated repositories correctly.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Full URL to ending with the repository name.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1442,7 +1793,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically. ## Import Federated repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_federated_vagrant_repository.terraform-federated-test-vagrant-repo terraform-federated-test-vagrant-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Represents the active state of the federated member. It is supported to change the enabled status of my own member. The config will be updated on the other federated members automatically.`,
+				},
+				resource.Attribute{
+					Name:        "cleanup_on_delete",
+					Description: `(Optional) Delete all federated members on ` + "`" + `terraform destroy` + "`" + ` if set to ` + "`" + `true` + "`" + `. Default is ` + "`" + `false` + "`" + `. This attribute is added to match Terrform logic, so all the resources, created by the provider, must be removed on cleanup. Artifactory's behavior for the federated repositories is different, all the federated repositories stay after the user deletes the initial federated repository.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1461,7 +1816,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable_anonoymous_access",
-					Description: `(Optional) Enable anonymous access. Default value is ` + "`" + `false` + "`" + `. ## Import Current general security settings can be imported using ` + "`" + `security` + "`" + ` as the ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_general_security.security security ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Enable anonymous access. Default value is ` + "`" + `false` + "`" + `. ## Import Current general security settings can be imported using ` + "`" + `security` + "`" + ` as the ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_general_security.security security ` + "`" + `` + "`" + `` + "`" + ` ~>The ` + "`" + `artifactory_general_security` + "`" + ` resource uses endpoints that are undocumented and may not work with SaaS environments, or may change without notice.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1508,7 +1863,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "passphrase",
-					Description: `(Optional) Passphrase will be used to decrypt the private key. Validated server side.`,
+					Description: `(Optional, Sensitive) Passphrase will be used to decrypt the private key. Validated server side.`,
 				},
 				resource.Attribute{
 					Name:        "public_key",
@@ -1516,7 +1871,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "unavailable",
-					Description: `(Computed) Unknown usage. Returned in the json payload and cannot be set. Artifactory REST API call Get Key Pair doesn't return keys ` + "`" + `private_key` + "`" + ` and ` + "`" + `passphrase` + "`" + `, but consumes these keys in the POST call. The meta-argument ` + "`" + `lifecycle` + "`" + ` used here to make Provider ignore the changes for these two keys in the Terraform state. ## Import Keypair can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_keypair.my-keypair my-keypair ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Unknown usage. Returned in the json payload and cannot be set. Artifactory REST API call Get Key Pair doesn't return keys ` + "`" + `private_key` + "`" + ` and ` + "`" + `passphrase` + "`" + `, but consumes these keys in the POST call. ## Import Keypair can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_keypair.my-keypair my-keypair ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1580,11 +1935,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_key",
-					Description: `(Optional) Project key for assigning this repository to. When assigning repository to a project, repository key must be prefixed with project key, separated by a dash.`,
+					Description: `(Optional) Project key for assigning this repository to. Must be 2 - 20 lowercase alphanumeric and hyphen characters. When assigning repository to a project, repository key must be prefixed with project key, separated by a dash. We don't recommend using this attribute to assign the repository to the project. Use the ` + "`" + `repos` + "`" + ` attribute in Project provider to manage the list of repositories. Default value - ` + "`" + `default` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "project_environments",
-					Description: `(Optional) Project environment for assigning this repository to. Allow values: "DEV" or "PROD"`,
+					Description: `(Optional) Project environment for assigning this repository to. Allow values: ` + "`" + `DEV` + "`" + ` or ` + "`" + `PROD` + "`" + `. Before Artifactory 7.53.1, up to 2 values (` + "`" + `DEV` + "`" + ` and ` + "`" + `PROD` + "`" + `) are allowed. From 7.53.1 onward, only one value is allowed. The attribute should only be used if the repository is already assigned to the existing project. If not, the attribute will be ignored by Artifactory, but will remain in the Terraform state, which will create state drift during the update.`,
 				},
 				resource.Attribute{
 					Name:        "includes_pattern",
@@ -1600,15 +1955,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "blacked_out",
-					Description: `(Optional, Default: false) When set, the repository does not participate in artifact resolution and new artifacts cannot be deployed.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, the repository does not participate in artifact resolution and new artifacts cannot be deployed.`,
 				},
 				resource.Attribute{
 					Name:        "xray_index",
-					Description: `(Optional, Default: false) Enable Indexing In Xray. Repository will be indexed with the default retention period. You will be able to change it via Xray settings.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Enable Indexing In Xray. Repository will be indexed with the default retention period. You will be able to change it via Xray settings.`,
 				},
 				resource.Attribute{
 					Name:        "priority_resolution",
-					Description: `(Optional, Default: false) Setting repositories with priority will cause metadata to be merged only from repositories set with this field`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Setting repositories with priority will cause metadata to be merged only from repositories set with this field`,
 				},
 				resource.Attribute{
 					Name:        "property_sets",
@@ -1616,11 +1971,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "archive_browsing_enabled",
-					Description: `(Optional) When set, you may view content such as HTML or Javadoc files directly from Artifactory.\nThis may not be safe and therefore requires strict content moderation to prevent malicious users from uploading content that may compromise security (e.g., cross-site scripting attacks).`,
+					Description: `(Optional) When set, you may view content such as HTML or Javadoc files directly from Artifactory. This may not be safe and therefore requires strict content moderation to prevent malicious users from uploading content that may compromise security (e.g., cross-site scripting attacks).`,
 				},
 				resource.Attribute{
 					Name:        "download_direct",
 					Description: `(Optional) When set, download requests to this repository will redirect the client to download the artifact directly from the cloud storage provider. Available in Enterprise+ and Edge licenses only.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_redirect",
+					Description: `(Optional) When set, download requests to this repository will redirect the client to download the artifact directly from AWS CloudFront. Available in Enterprise+ and Edge licenses only.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1696,7 +2055,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "anonymous_access",
-					Description: `(Optional) Cargo client does not send credentials when performing download and search for crates. Enable this to allow anonymous access to these resources (only), note that this will override the security anonymous access option. Default value is ` + "`" + `false` + "`" + `. ## Import Local repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_cargo_repository.terraform-local-test-cargo-repo-basic terraform-local-test-cargo-repo-basic ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Cargo client does not send credentials when performing download and search for crates. Enable this to allow anonymous access to these resources (only), note that this will override the security anonymous access option. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_sparse_index",
+					Description: `(Optional) Enable internal index support based on Cargo sparse index specifications, instead of the default git index. Default value is ` + "`" + `false` + "`" + `. ## Import Local repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_cargo_repository.terraform-local-test-cargo-repo-basic terraform-local-test-cargo-repo-basic ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2182,7 +2545,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "checksum_policy_type",
-					Description: `(Optional) Checksum policy determines how Artifactory behaves when a client checksum for a deployed resource is missing or conflicts with the locally calculated checksum (bad checksum). The options are ` + "`" + `client-checksums` + "`" + ` and ` + "`" + `generated-checksums` + "`" + `. For more details, please refer to [Checksum Policy](https://www.jfrog.com/confluence/display/JFROG/Local+Repositories#LocalRepositories-ChecksumPolicy).`,
+					Description: `(Optional) Checksum policy determines how Artifactory behaves when a client checksum for a deployed resource is missing or conflicts with the locally calculated checksum (bad checksum). The options are: - ` + "`" + `client-checksums` + "`" + ` - ` + "`" + `server-generated-checksums` + "`" + `. For more details, please refer to [Checksum Policy](https://www.jfrog.com/confluence/display/JFROG/Local+Repositories#LocalRepositories-ChecksumPolicy).`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_version_behavior",
@@ -2377,6 +2740,170 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "artifactory_local_repository_multi_replication",
+			Category:         "Replication",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"replication",
+				"local",
+				"repository",
+				"multi",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repo_key",
+					Description: `(Required) Repository name.`,
+				},
+				resource.Attribute{
+					Name:        "cron_exp",
+					Description: `(Required) A valid CRON expression that you can use to control replication frequency. Eg: ` + "`" + `0 0 12`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_replication",
+					Description: `(Optional) When set, each event will trigger replication of the artifacts changed in this event. This can be any type of event on artifact, e.g. add, deleted or property change. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "replication",
+					Description: `(Optional) List of replications minimum 1 element.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the target local repository on a remote Artifactory server. Use the format ` + "`" + `https://<artifactory_url>/artifactory/<repository_name>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "socket_timeout_millis",
+					Description: `(Optional) The network timeout in milliseconds to use for remote operations. Default value is ` + "`" + `15000` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username on the remote Artifactory instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Use either the HTTP authentication password or [identity token](https://www.jfrog.com/confluence/display/JFROG/User+Profile#UserProfile-IdentityTokenidentitytoken).`,
+				},
+				resource.Attribute{
+					Name:        "sync_deletes",
+					Description: `(Optional) When set, items that were deleted locally should also be deleted remotely (also applies to properties metadata). Note that enabling this option, will delete artifacts on the target that do not exist in the source repository. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_properties",
+					Description: `(Optional) When set, the task also synchronizes the properties of replicated artifacts. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_statistics",
+					Description: `(Optional) When set, the task also synchronizes artifact download statistics. Set to avoid inadvertent cleanup at the target instance when setting up replication for disaster recovery. Default value is ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) When set, enables replication of this repository to the target specified in ` + "`" + `url` + "`" + ` attribute. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "include_path_prefix_pattern",
+					Description: `(Optional) List of artifact patterns to include when evaluating artifact requests in the form of ` + "`" + `x/y/`,
+				},
+				resource.Attribute{
+					Name:        "exclude_path_prefix_pattern",
+					Description: `(Optional) List of artifact patterns to exclude when evaluating artifact requests, in the form of ` + "`" + `x/y/`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional) Proxy key from Artifactory Proxies settings. The proxy configuration will be used when communicating with the remote instance.`,
+				},
+				resource.Attribute{
+					Name:        "replication_key",
+					Description: `(Computed) Replication ID, the value is unknown until the resource is created. Can't be set or updated.`,
+				},
+				resource.Attribute{
+					Name:        "check_binary_existence_in_filestore",
+					Description: `(Optional) Enabling the ` + "`" + `check_binary_existence_in_filestore` + "`" + ` flag requires an Enterprise Plus license. When true, enables distributed checksum storage. For more information, see [Optimizing Repository Replication with Checksum-Based Storage](https://www.jfrog.com/confluence/display/JFROG/Repository+Replication#RepositoryReplication-OptimizingRepositoryReplicationUsingStorageLevelSynchronizationOptions). ## Import Push replication configs can be imported using their repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_repository_multi_replication.foo-rep provider_test_source ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_local_repository_single_replication",
+			Category:         "Replication",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"replication",
+				"local",
+				"repository",
+				"single",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repo_key",
+					Description: `(Required) Repository name.`,
+				},
+				resource.Attribute{
+					Name:        "cron_exp",
+					Description: `(Required) A valid CRON expression that you can use to control replication frequency. Eg: ` + "`" + `0 0 12`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_replication",
+					Description: `(Optional) When set, each event will trigger replication of the artifacts changed in this event. This can be any type of event on artifact, e.g. add, deleted or property change. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the target local repository on a remote Artifactory server. Use the format ` + "`" + `https://<artifactory_url>/artifactory/<repository_name>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "socket_timeout_millis",
+					Description: `(Optional) The network timeout in milliseconds to use for remote operations. Default value is ` + "`" + `15000` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username on the remote Artifactory instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Use either the HTTP authentication password or [identity token](https://www.jfrog.com/confluence/display/JFROG/User+Profile#UserProfile-IdentityTokenidentitytoken).`,
+				},
+				resource.Attribute{
+					Name:        "sync_deletes",
+					Description: `(Optional) When set, items that were deleted locally should also be deleted remotely (also applies to properties metadata). Note that enabling this option, will delete artifacts on the target that do not exist in the source repository. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_properties",
+					Description: `(Optional) When set, the task also synchronizes the properties of replicated artifacts. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_statistics",
+					Description: `(Optional) When set, the task also synchronizes artifact download statistics. Set to avoid inadvertent cleanup at the target instance when setting up replication for disaster recovery. Default value is ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) When set, enables replication of this repository to the target specified in ` + "`" + `url` + "`" + ` attribute. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "include_path_prefix_pattern",
+					Description: `(Optional) List of artifact patterns to include when evaluating artifact requests in the form of ` + "`" + `x/y/`,
+				},
+				resource.Attribute{
+					Name:        "exclude_path_prefix_pattern",
+					Description: `(Optional) List of artifact patterns to exclude when evaluating artifact requests, in the form of ` + "`" + `x/y/`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional) Proxy key from Artifactory Proxies settings. The proxy configuration will be used when communicating with the remote instance.`,
+				},
+				resource.Attribute{
+					Name:        "replication_key",
+					Description: `(Computed) Replication ID, the value is unknown until the resource is created. Can't be set or updated.`,
+				},
+				resource.Attribute{
+					Name:        "check_binary_existence_in_filestore",
+					Description: `(Optional) Enabling the ` + "`" + `check_binary_existence_in_filestore` + "`" + ` flag requires an Enterprise Plus license. When true, enables distributed checksum storage. For more information, see [Optimizing Repository Replication with Checksum-Based Storage](https://www.jfrog.com/confluence/display/JFROG/Repository+Replication#RepositoryReplication-OptimizingRepositoryReplicationUsingStorageLevelSynchronizationOptions). ## Import Push replication configs can be imported using their repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_repository_single_replication.foo-rep provider_test_source ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "artifactory_local_rpm_repository",
 			Category:         "Local Repositories",
 			ShortDescription: ``,
@@ -2398,11 +2925,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "calculate_yum_metadata",
-					Description: `(Optional) Default: false.`,
+					Description: `(Optional) Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enable_file_lists_indexing",
-					Description: `(Optional) Default: false.`,
+					Description: `(Optional) Default: ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "yum_group_file_names",
@@ -2449,6 +2976,120 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "artifactory_local_swift_repository",
+			Category:         "Local Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"repositories",
+				"swift",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) ## Import Local repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_swift_repository.terraform-local-test-swift-repo terraform-local-test-swift-repo ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_local_terraform_module_repository",
+			Category:         "Local Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"repositories",
+				"terraform",
+				"module",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) ## Import Local repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_terraform_module_repository.terraform-local-test-terraform-module-repo terraform-local-test-terraform-module-repo ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_local_terraform_provider_repository",
+			Category:         "Local Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"repositories",
+				"terraform",
+				"provider",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) ## Import Local repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_terraform_provider_repository.terraform-local-test-terraform-provider-repo terraform-local-test-terraform-provider-repo ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_local_terraformbackend_repository",
+			Category:         "Local Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"local",
+				"repositories",
+				"terraformbackend",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) the identity key of the repo.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) ## Import Local repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_local_terraformbackend_repository.terraform-local-test-terraformbackend-repo terraform-local-test-terraformbackend-repo ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "artifactory_local_vagrant_repository",
 			Category:         "Local Repositories",
 			ShortDescription: ``,
@@ -2485,40 +3126,7 @@ var (
 				"user",
 				"managed",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Username for user.`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `(Required) Email for user.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Required) Password for the user.`,
-				},
-				resource.Attribute{
-					Name:        "admin",
-					Description: `(Optional) When enabled, this user is an administrator with all the ensuing privileges. Default value is ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "profile_updatable",
-					Description: `(Optional) When set, this user can update his profile details (except for the password. Only an administrator can update the password). Default value is ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "disable_ui_access",
-					Description: `(Optional) When set, this user can only access Artifactory through the REST API. This option cannot be set if the user has Admin privileges. Default value is ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "internal_password_disabled",
-					Description: `(Optional) When set, disables the fallback of using an internal password when external authentication (such as LDAP) is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) List of groups this user is a part of. ## Import Users can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_managed_user.test-user myusername ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -2565,7 +3173,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "repositories",
-					Description: `(Optional) List of repositories this permission target is applicable for.`,
+					Description: `(Required) List of repositories this permission target is applicable for. You can specify the name ` + "`" + `ANY` + "`" + ` in the repositories section in order to apply to all repositories, ` + "`" + `ANY REMOTE` + "`" + ` for all remote repositories and ` + "`" + `ANY LOCAL` + "`" + ` for all local repositories. The default value will be ` + "`" + `[]` + "`" + ` if nothing is specified.`,
 				},
 				resource.Attribute{
 					Name:        "actions",
@@ -2581,7 +3189,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "build",
-					Description: `(Optional) As for repo but for artifactory-build-info permssions. ## Permissions The provider supports the following ` + "`" + `permission` + "`" + ` enums:`,
+					Description: `(Optional) As for repo but for artifactory-build-info permissions.`,
+				},
+				resource.Attribute{
+					Name:        "release_bundle",
+					Description: `(Optional) As for repo for for release-bundles permissions. ## Permissions The provider supports the following ` + "`" + `permission` + "`" + ` enums:`,
 				},
 				resource.Attribute{
 					Name:        "read",
@@ -2601,7 +3213,120 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manage",
-					Description: `matches ` + "`" + `Manage` + "`" + ` permissions. ## Import Permission targets can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_permission_target.terraform-test-permission mypermission ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `matches ` + "`" + `Manage` + "`" + ` permissions.`,
+				},
+				resource.Attribute{
+					Name:        "managedXrayMeta",
+					Description: `matches ` + "`" + `Manage Xray Metadata` + "`" + ` permissions.`,
+				},
+				resource.Attribute{
+					Name:        "distribute",
+					Description: `matches ` + "`" + `Distribute` + "`" + ` permissions. ## Import Permission targets can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_permission_target.terraform-test-permission mypermission ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_property_set",
+			Category:         "Configuration",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"configuration",
+				"property",
+				"set",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Property set name.`,
+				},
+				resource.Attribute{
+					Name:        "visible",
+					Description: `(Optional) Defines if the list visible and assignable to the repository or artifact. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "property",
+					Description: `(Required) A list of properties that will be part of the property set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name pf the property.`,
+				},
+				resource.Attribute{
+					Name:        "closed_predefined_values",
+					Description: `(Required) Disables ` + "`" + `multiple_choice` + "`" + ` if set to ` + "`" + `false` + "`" + ` at the same time with multiple_choice set to ` + "`" + `true` + "`" + `. Default value is ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "multiple_choice",
+					Description: `(Optional) Defines if user can select multiple values. ` + "`" + `closed_predefined_values` + "`" + ` should be set to ` + "`" + `true` + "`" + `. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "predefined_value",
+					Description: `(Required) Properties in the property set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Predefined property name.`,
+				},
+				resource.Attribute{
+					Name:        "default_value",
+					Description: `(Required) Whether the value is selected by default in the UI. ## Import Current Property Set can be imported using ` + "`" + `property-set1` + "`" + ` as the ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_property_set.foo property-set1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_proxy",
+			Category:         "Configuration",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"configuration",
+				"proxy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The unique ID of the proxy.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) The name of the proxy host.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The proxy port number.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The proxy username when authentication credentials are required.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The proxy password when authentication credentials are required.`,
+				},
+				resource.Attribute{
+					Name:        "nt_host",
+					Description: `(Optional) The computer name of the machine (the machine connecting to the NTLM proxy).`,
+				},
+				resource.Attribute{
+					Name:        "nt_domain",
+					Description: `(Optional) The proxy domain/realm name.`,
+				},
+				resource.Attribute{
+					Name:        "platform_default",
+					Description: `(Optional) When set, this proxy will be the default proxy for new remote repositories and for internal HTTP requests issued by Artifactory. Will also be used as proxy for all other services in the platform (for example: Xray, Distribution, etc).`,
+				},
+				resource.Attribute{
+					Name:        "redirect_to_hosts",
+					Description: `(Optional) An optional list of host names to which this proxy may redirect requests. The credentials defined for the proxy are reused by requests redirected to all of these hosts.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) An optional list of services names to which this proxy be the default of. The options are ` + "`" + `jfrt` + "`" + `, ` + "`" + `jfmc` + "`" + `, ` + "`" + `jfxr` + "`" + `, ` + "`" + `jfds` + "`" + `. ## Import Current Proxy can be imported using ` + "`" + `proxy-key` + "`" + ` from Artifactory as the ` + "`" + `ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_proxy.my-proxy proxy-key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2619,19 +3344,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repo_key",
-					Description: `(Required)`,
+					Description: `(Required) Repository name.`,
 				},
 				resource.Attribute{
 					Name:        "cron_exp",
-					Description: `(Required)`,
+					Description: `(Required) A valid CRON expression that you can use to control replication frequency. Eg: ` + "`" + `0 0 12`,
 				},
 				resource.Attribute{
 					Name:        "enable_event_replication",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, each event will trigger replication of the artifacts changed in this event. This can be any type of event on artifact, e.g. added, deleted or property change.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Optional) Required for local repository, but not needed for remote repository.`,
+					Description: `(Optional) The URL of the target local repository on a remote Artifactory server. For some package types, you need to prefix the repository key in the URL with api/<pkg>. For a list of package types where this is required, see the [note](https://www.jfrog.com/confluence/display/JFROG/Repository+Replication#RepositoryReplication-anchorPREFIX). Required for local repository, but not needed for remote repository.`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -2643,23 +3368,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, this replication will be enabled when saved.`,
 				},
 				resource.Attribute{
 					Name:        "sync_deletes",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, items that were deleted locally should also be deleted remotely (also applies to properties metadata).`,
 				},
 				resource.Attribute{
 					Name:        "sync_properties",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, the task also synchronizes the properties of replicated artifacts.`,
 				},
 				resource.Attribute{
 					Name:        "sync_statistics",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, artifact download statistics will also be replicated. Set to avoid inadvertent cleanup at the target instance when setting up replication for disaster recovery.`,
 				},
 				resource.Attribute{
 					Name:        "path_prefix",
-					Description: `(Optional) ## Import Pull replication config can be imported using its repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_pull_replication.foo-rep repository-key ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Only artifacts that located in path that matches the subpath within the remote repository will be replicated.`,
+				},
+				resource.Attribute{
+					Name:        "check_binary_existence_in_filestore",
+					Description: `(Optional) When true, enables distributed checksum storage. For more information, see [Optimizing Repository Replication with Checksum-Based Storage](https://www.jfrog.com/confluence/display/JFROG/Repository+Replication#RepositoryReplication-OptimizingRepositoryReplicationUsingStorageLevelSynchronizationOptions). ## Import Pull replication config can be imported using its repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_pull_replication.foo-rep repository-key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2677,15 +3406,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repo_key",
-					Description: `(Required)`,
+					Description: `(Required) Repository name.`,
 				},
 				resource.Attribute{
 					Name:        "cron_exp",
-					Description: `(Required)`,
+					Description: `(Required) A valid CRON expression that you can use to control replication frequency. Eg: ` + "`" + `0 0 12`,
 				},
 				resource.Attribute{
 					Name:        "enable_event_replication",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, each event will trigger replication of the artifacts changed in this event. This can be any type of event on artifact, e.g. added, deleted or property change.`,
 				},
 				resource.Attribute{
 					Name:        "replications",
@@ -2693,43 +3422,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Required)`,
+					Description: `(Required) The URL of the target local repository on a remote Artifactory server. Required for local repository, but not needed for remote repository.`,
 				},
 				resource.Attribute{
 					Name:        "socket_timeout_millis",
-					Description: `(Optional)`,
+					Description: `(Optional) The network timeout in milliseconds to use for remote operations.`,
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Required)`,
+					Description: `(Required) Required for local repository, but not needed for remote repository.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required)`,
+					Description: `(Required) Required for local repository, but not needed for remote repository.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, this replication will be enabled when saved.`,
 				},
 				resource.Attribute{
 					Name:        "sync_deletes",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, items that were deleted locally should also be deleted remotely (also applies to properties metadata). Note that enabling this option, will delete artifacts on the target that do not exist in the source repository.`,
 				},
 				resource.Attribute{
 					Name:        "sync_properties",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, the task also synchronizes the properties of replicated artifacts.`,
 				},
 				resource.Attribute{
 					Name:        "sync_statistics",
-					Description: `(Optional)`,
+					Description: `(Optional) When set, artifact download statistics will also be replicated. Set to avoid inadvertent cleanup at the target instance when setting up replication for disaster recovery.`,
 				},
 				resource.Attribute{
 					Name:        "path_prefix",
-					Description: `(Optional)`,
+					Description: `(Optional) Only artifacts that located in path that matches the subpath within the remote repository will be replicated.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting. ## Import Push replication configs can be imported using their repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_push_replication.foo-rep provider_test_source ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Proxy key from Artifactory Proxies settings. The proxy configuration will be used when communicating with the remote instance.`,
+				},
+				resource.Attribute{
+					Name:        "check_binary_existence_in_filestore",
+					Description: `(Optional) When true, enables distributed checksum storage. For more information, see [Optimizing Repository Replication with Checksum-Based Storage](https://www.jfrog.com/confluence/display/JFROG/Repository+Replication#RepositoryReplication-OptimizingRepositoryReplicationUsingStorageLevelSynchronizationOptions). ## Import Push replication configs can be imported using their repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_push_replication.foo-rep provider_test_source ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2756,11 +3489,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Status of webhook. Default to 'true'.`,
+					Description: `(Optional) Status of webhook. Default to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
-					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: "created", "signed", "deleted".`,
+					Description: `(Required) List of Events in Artifactory, Distribution, Release Bundle that function as the event trigger for the Webhook. Allow values: ` + "`" + `created` + "`" + `, ` + "`" + `signed` + "`" + `, ` + "`" + `deleted` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -2776,11 +3509,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "include_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
 				},
 				resource.Attribute{
 					Name:        "exclude_patterns",
-					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash).\n Ant-style path expressions are supported (`,
+					Description: `(Optional) Simple comma separated wildcard patterns for repository artifact paths (with no leading slash). Ant-style path expressions are supported (`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) At least one is required.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -2788,11 +3525,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret",
-					Description: `(Optional) Secret authentication token that will be sent to the configured URL.`,
+					Description: `(Optional) Secret authentication token that will be sent to the configured URL. The value will be sent as ` + "`" + `x-jfrog-event-auth` + "`" + ` header.`,
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies setting.`,
+					Description: `(Optional) Proxy key from Artifactory UI (Administration -> Proxies -> Configuration).`,
 				},
 				resource.Attribute{
 					Name:        "custom_http_headers",
@@ -2818,19 +3555,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional)`,
+					Description: `(Optional) Public description.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional)`,
+					Description: `(Optional) Internal description.`,
 				},
 				resource.Attribute{
 					Name:        "project_key",
-					Description: `(Optional) Project key for assigning this repository to. When assigning repository to a project, repository key must be prefixed with project key, separated by a dash.`,
+					Description: `(Optional) Project key for assigning this repository to. Must be 2 - 20 lowercase alphanumeric and hyphen characters. When assigning repository to a project, repository key must be prefixed with project key, separated by a dash. We don't recommend using this attribute to assign the repository to the project. Use the ` + "`" + `repos` + "`" + ` attribute in Project provider to manage the list of repositories. Default value - ` + "`" + `default` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "project_environments",
-					Description: `(Optional) Project environment for assigning this repository to. Allow values: "DEV" or "PROD".`,
+					Description: `(Optional) Project environment for assigning this repository to. Allow values: ` + "`" + `DEV` + "`" + ` or ` + "`" + `PROD` + "`" + `. Before Artifactory 7.53.1, up to 2 values (` + "`" + `DEV` + "`" + ` and ` + "`" + `PROD` + "`" + `) are allowed. From 7.53.1 onward, only one value is allowed. The attribute should only be used if the repository is already assigned to the existing project. If not, the attribute will be ignored by Artifactory, but will remain in the Terraform state, which will create state drift during the update.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -2846,15 +3583,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "proxy",
-					Description: `(Optional) Proxy key from Artifactory Proxies settings.`,
+					Description: `(Optional) Proxy key from Artifactory Proxies settings. Default is empty field.`,
 				},
 				resource.Attribute{
 					Name:        "includes_pattern",
-					Description: `(Optional) List of artifact patterns to include when evaluating artifact requests in the form of x/y/\`,
+					Description: `(Optional, Default: ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "excludes_pattern",
-					Description: `(Optional) List of artifact patterns to exclude when evaluating artifact requests, in the form of x/y/`,
+					Description: `(Optional) List of comma-separated artifact patterns to exclude when evaluating artifact requests, in the form of x/y/`,
 				},
 				resource.Attribute{
 					Name:        "repo_layout_ref",
@@ -2862,31 +3599,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_repo_layout_ref",
-					Description: `(Optional) Repository layout key for the remote layout mapping.`,
+					Description: `(Optional) Deprecated field. This field has currently no effect, because there is no corresponding field in the API body, and it's not returned by the GET call.`,
 				},
 				resource.Attribute{
 					Name:        "hard_fail",
-					Description: `(Optional) When set, Artifactory will return an error to the client that causes the build to fail if there is a failure to communicate with this repository.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, Artifactory will return an error to the client that causes the build to fail if there is a failure to communicate with this repository.`,
 				},
 				resource.Attribute{
 					Name:        "offline",
-					Description: `(Optional) If set, Artifactory does not try to fetch remote artifacts. Only locally-cached artifacts are retrieved.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) If set, Artifactory does not try to fetch remote artifacts. Only locally-cached artifacts are retrieved.`,
 				},
 				resource.Attribute{
 					Name:        "blacked_out",
-					Description: `(Optional) (A.K.A 'Ignore Repository' on the UI) When set, the repository or its local cache do not participate in artifact resolution.`,
+					Description: `(Optional) (A.K.A 'Ignore Repository' on the UI) When set, the repository or its local cache do not participate in artifact resolution. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "xray_index",
-					Description: `(Optional, Default: false) Enable Indexing In Xray. Repository will be indexed with the default retention period. You will be able to change it via Xray settings.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Enable Indexing In Xray. Repository will be indexed with the default retention period. You will be able to change it via Xray settings. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "store_artifacts_locally",
-					Description: `(Optional) When set, the repository should store cached artifacts locally. When not set, artifacts are not stored locally, and direct repository-to-client streaming is used. This can be useful for multi-server setups over a high-speed LAN, with one Artifactory caching certain data on central storage, and streaming it directly to satellite pass-though Artifactory servers.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, the repository should store cached artifacts locally. When not set, artifacts are not stored locally, and direct repository-to-client streaming is used. This can be useful for multi-server setups over a high-speed LAN, with one Artifactory caching certain data on central storage, and streaming it directly to satellite pass-though Artifactory servers.`,
 				},
 				resource.Attribute{
 					Name:        "socket_timeout_millis",
-					Description: `(Optional) Network timeout (in ms) to use when establishing a connection and for unanswered requests. Timing out on a network operation is considered a retrieval failure.`,
+					Description: `(Optional, Default: ` + "`" + `15000` + "`" + `) Network timeout (in ms) to use when establishing a connection and for unanswered requests. Timing out on a network operation is considered a retrieval failure.`,
 				},
 				resource.Attribute{
 					Name:        "local_address",
@@ -2894,39 +3631,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retrieval_cache_period_seconds",
-					Description: `(Optional, Default: 7200) The metadataRetrievalTimeoutSecs field not allowed to be bigger then retrievalCachePeriodSecs field.`,
-				},
-				resource.Attribute{
-					Name:        "failed_retrieval_cache_period_secs",
-					Description: `(Optional) This field is not returned in a get payload but is offered on the UI. It's inserted here for inclusive and informational reasons. It does not function.`,
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) The metadataRetrievalTimeoutSecs field not allowed to be bigger then retrievalCachePeriodSecs field.`,
 				},
 				resource.Attribute{
 					Name:        "missed_cache_period_seconds",
-					Description: `(Optional) The number of seconds to cache artifact retrieval misses (artifact not found). A value of 0 indicates no caching.`,
-				},
-				resource.Attribute{
-					Name:        "unused_artifacts_cleanup_period_enabled",
-					Description: `(Optional)`,
+					Description: `(Optional, Default: ` + "`" + `1800` + "`" + `) The number of seconds to cache artifact retrieval misses (artifact not found). A value of 0 indicates no caching.`,
 				},
 				resource.Attribute{
 					Name:        "unused_artifacts_cleanup_period_hours",
-					Description: `(Optional) The number of hours to wait before an artifact is deemed "unused" and eligible for cleanup from the repository. A value of 0 means automatic cleanup of cached artifacts is disabled.`,
+					Description: `(Optional, Default: ` + "`" + `0` + "`" + `) Unused Artifacts Cleanup Period (Hr) in the UI. The number of hours to wait before an artifact is deemed 'unused' and eligible for cleanup from the repository. A value of 0 means automatic cleanup of cached artifacts is disabled.`,
 				},
 				resource.Attribute{
 					Name:        "assumed_offline_period_secs",
-					Description: `(Optional, Default: 300) The number of seconds the repository stays in assumed offline state after a connection error. At the end of this time, an online check is attempted in order to reset the offline status. A value of 0 means the repository is never assumed offline. Default to 300.`,
+					Description: `(Optional, Default: ` + "`" + `300` + "`" + `) The number of seconds the repository stays in assumed offline state after a connection error. At the end of this time, an online check is attempted in order to reset the offline status. A value of 0 means the repository is never assumed offline.`,
 				},
 				resource.Attribute{
 					Name:        "share_configuration",
-					Description: `(Optional)`,
+					Description: `(Optional) The attribute is 'Computed', so it's not managed by the Provider. There is no corresponding field in the UI, but the attribute is returned by Get.`,
 				},
 				resource.Attribute{
 					Name:        "synchronize_properties",
-					Description: `(Optional) When set, remote artifacts are fetched along with their properties.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, remote artifacts are fetched along with their properties.`,
 				},
 				resource.Attribute{
 					Name:        "block_mismatching_mime_types",
-					Description: `(Optional) Before caching an artifact, Artifactory first sends a HEAD request to the remote resource. In some remote resources, HEAD requests are disallowed and therefore rejected, even though downloading the artifact is allowed. When checked, Artifactory will bypass the HEAD request and cache the artifact directly using a GET request.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Before caching an artifact, Artifactory first sends a HEAD request to the remote resource. In some remote resources, HEAD requests are disallowed and therefore rejected, even though downloading the artifact is allowed. When checked, Artifactory will bypass the HEAD request and cache the artifact directly using a GET request. Note: dafault value in the UI is ` + "`" + `true` + "`" + `, but it is ` + "`" + `false` + "`" + ` if the repo was created using the API call. We are copying the UI behavior.`,
 				},
 				resource.Attribute{
 					Name:        "mismatching_mime_types_override_list",
@@ -2938,23 +3667,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_any_host_auth",
-					Description: `(Optional) Also known as 'Lenient Host Authentication', Allow credentials of this repository to be used on requests redirected to any other host.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Also known as 'Lenient Host Authentication', Allow credentials of this repository to be used on requests redirected to any other host.`,
 				},
 				resource.Attribute{
 					Name:        "enable_cookie_management",
-					Description: `(Optional) Enables cookie management if the remote repository uses cookies to manage client state.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Enables cookie management if the remote repository uses cookies to manage client state.`,
 				},
 				resource.Attribute{
 					Name:        "bypass_head_requests",
-					Description: `(Optional) Before caching an artifact, Artifactory first sends a HEAD request to the remote resource. In some remote resources, HEAD requests are disallowed and therefore rejected, even though downloading the artifact is allowed. When checked, Artifactory will bypass the HEAD request and cache the artifact directly using a GET request.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Before caching an artifact, Artifactory first sends a HEAD request to the remote resource. In some remote resources, HEAD requests are disallowed and therefore rejected, even though downloading the artifact is allowed. When checked, Artifactory will bypass the HEAD request and cache the artifact directly using a GET request.`,
 				},
 				resource.Attribute{
 					Name:        "priority_resolution",
-					Description: `(Optional) Setting repositories with priority will cause metadata to be merged only from repositories set with this field.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Setting repositories with priority will cause metadata to be merged only from repositories set with this field.`,
 				},
 				resource.Attribute{
 					Name:        "client_tls_certificate",
-					Description: `(Optional)`,
+					Description: `(Optional) Client TLS certificate name.`,
 				},
 				resource.Attribute{
 					Name:        "content_synchronisation",
@@ -2962,27 +3691,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) If set, Remote repository proxies a local or remote repository from another instance of Artifactory. Default value is 'false'.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) If set, Remote repository proxies a local or remote repository from another instance of Artifactory.`,
 				},
 				resource.Attribute{
 					Name:        "statistics_enabled",
-					Description: `(Optional) If set, Artifactory will notify the remote instance whenever an artifact in the Smart Remote Repository is downloaded locally so that it can update its download counter. Note that if this option is not set, there may be a discrepancy between the number of artifacts reported to have been downloaded in the different Artifactory instances of the proxy chain. Default value is 'false'.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) If set, Artifactory will notify the remote instance whenever an artifact in the Smart Remote Repository is downloaded locally so that it can update its download counter. Note that if this option is not set, there may be a discrepancy between the number of artifacts reported to have been downloaded in the different Artifactory instances of the proxy chain.`,
 				},
 				resource.Attribute{
 					Name:        "properties_enabled",
-					Description: `(Optional) If set, properties for artifacts that have been cached in this repository will be updated if they are modified in the artifact hosted at the remote Artifactory instance. The trigger to synchronize the properties is download of the artifact from the remote repository cache of the local Artifactory instance. Default value is 'false'.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) If set, properties for artifacts that have been cached in this repository will be updated if they are modified in the artifact hosted at the remote Artifactory instance. The trigger to synchronize the properties is download of the artifact from the remote repository cache of the local Artifactory instance.`,
 				},
 				resource.Attribute{
 					Name:        "source_origin_absence_detection",
-					Description: `(Optional) If set, Artifactory displays an indication on cached items if they have been deleted from the corresponding repository in the remote Artifactory instance. Default value is 'false'.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) If set, Artifactory displays an indication on cached items if they have been deleted from the corresponding repository in the remote Artifactory instance.`,
 				},
 				resource.Attribute{
-					Name:        "propagate_query_params",
-					Description: `(Optional, Default: false) When set, if query params are included in the request to Artifactory, they will be passed on to the remote repository.`,
+					Name:        "query_params",
+					Description: `(Optional) Custom HTTP query parameters that will be automatically included in all remote resource requests. For example: "param1=val1&param2=val2&param3=val3"`,
 				},
 				resource.Attribute{
 					Name:        "list_remote_folder_items",
-					Description: `(Optional, Default: false) Lists the items of remote folders in simple and list browsing. The remote content is cached according to the value of the 'Retrieval Cache Period'. This field exists in the API but not in the UI.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Lists the items of remote folders in simple and list browsing. The remote content is cached according to the value of the 'Retrieval Cache Period'. This field exists in the API but not in the UI.`,
+				},
+				resource.Attribute{
+					Name:        "download_direct",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, download requests to this repository will redirect the client to download the artifact directly from the cloud storage provider. Available in Enterprise+ and Edge licenses only.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_redirect",
+					Description: `(Optional) When set, download requests to this repository will redirect the client to download the artifact directly from AWS CloudFront. Available in Enterprise+ and Edge licenses only.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3050,7 +3787,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcs_git_provider",
-					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is "GITHUB". Possible values are: "GITHUB", "BITBUCKET", "OLDSTASH", "STASH", "ARTIFACTORY", "CUSTOM".`,
+					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is ` + "`" + `GITHUB` + "`" + `. Possible values are: ` + "`" + `GITHUB` + "`" + `, ` + "`" + `BITBUCKET` + "`" + `, ` + "`" + `OLDSTASH` + "`" + `, ` + "`" + `STASH` + "`" + `, ` + "`" + `ARTIFACTORY` + "`" + `, ` + "`" + `CUSTOM` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vcs_git_download_url",
@@ -3058,7 +3795,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bower_registry_url",
-					Description: `(Optional) Proxy remote Bower repository. Default value is "https://registry.bower.io". ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_bower_repository.my-remote-bower my-remote-bower ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Proxy remote Bower repository. Default value is ` + "`" + `https://registry.bower.io` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_bower_repository.my-remote-bower my-remote-bower ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3094,11 +3831,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "anonymous_access",
-					Description: `(Required) Cargo client does not send credentials when performing download and search for crates. Enable this to allow anonymous access to these resources (only), note that this will override the security anonymous access option.`,
+					Description: `(Required) Cargo client does not send credentials when performing download and search for crates. Enable this to allow anonymous access to these resources (only), note that this will override the security anonymous access option. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_sparse_index",
+					Description: `(Optional) Enable internal index support based on Cargo sparse index specifications, instead of the default git index. Default value is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "git_registry_url",
-					Description: `(Optional) This is the index url, expected to be a git repository. Default value is "https://github.com/rust-lang/crates.io-index". ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_cargo_repository.my-remote-cargo my-remote-cargo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) This is the index url, expected to be a git repository. Default value is ` + "`" + `https://github.com/rust-lang/crates.io-index` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_cargo_repository.my-remote-cargo my-remote-cargo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3166,15 +3907,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcs_git_provider",
-					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is "GITHUB". Possible values are: "GITHUB", "BITBUCKET", "OLDSTASH", "STASH", "ARTIFACTORY", "CUSTOM".`,
+					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is ` + "`" + `GITHUB` + "`" + `. Possible values are: ` + "`" + `GITHUB` + "`" + `, ` + "`" + `BITBUCKET` + "`" + `, ` + "`" + `OLDSTASH` + "`" + `, ` + "`" + `STASH` + "`" + `, ` + "`" + `ARTIFACTORY` + "`" + `, ` + "`" + `CUSTOM` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vcs_git_download_url",
-					Description: `(Optional) This attribute is used when vcs_git_provider is set to 'CUSTOM'. Provided URL will be used as proxy.`,
+					Description: `(Optional) This attribute is used when vcs_git_provider is set to ` + "`" + `CUSTOM` + "`" + `. Provided URL will be used as proxy.`,
 				},
 				resource.Attribute{
 					Name:        "pods_specs_repo_url",
-					Description: `(Optional) Proxy remote CocoaPods Specs repositories. Default value is "https://github.com/CocoaPods/Specs". ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_cocoapods_repository.my-remote-cocoapods my-remote-cocoapods ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Proxy remote CocoaPods Specs repositories. Default value is ` + "`" + `https://github.com/CocoaPods/Specs` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_cocoapods_repository.my-remote-cocoapods my-remote-cocoapods ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3210,15 +3951,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcs_git_provider",
-					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is "GITHUB". Possible values are: "GITHUB", "BITBUCKET", "OLDSTASH", "STASH", "ARTIFACTORY", "CUSTOM".`,
+					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is ` + "`" + `GITHUB` + "`" + `. Possible values are: ` + "`" + `GITHUB` + "`" + `, ` + "`" + `BITBUCKET` + "`" + `, ` + "`" + `OLDSTASH` + "`" + `, ` + "`" + `STASH` + "`" + `, ` + "`" + `ARTIFACTORY` + "`" + `, ` + "`" + `CUSTOM` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vcs_git_download_url",
-					Description: `(Optional) This attribute is used when vcs_git_provider is set to 'CUSTOM'. Provided URL will be used as proxy.`,
+					Description: `(Optional) This attribute is used when vcs_git_provider is set to ` + "`" + `CUSTOM` + "`" + `. Provided URL will be used as proxy.`,
 				},
 				resource.Attribute{
 					Name:        "composer_registry_url",
-					Description: `(Optional) Proxy remote Composer repository. Default value is "https://packagist.org". ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_composer_repository.my-remote-composer my-remote-composer ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Proxy remote Composer repository. Default value is ` + "`" + `https://packagist.org` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_composer_repository.my-remote-composer my-remote-composer ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3250,7 +3991,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Required) The remote repo URL. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_conan_repository.my-remote-conan my-remote-conan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The remote repo URL.`,
+				},
+				resource.Attribute{
+					Name:        "force_conan_authentication",
+					Description: `(Optional) Force basic authentication credentials in order to use this repository. Default value is ` + "`" + `false` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_conan_repository.my-remote-conan my-remote-conan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3394,7 +4139,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_dependencies_patterns",
-					Description: `(Optional) An allow list of Ant-style path patterns that determine which remote VCS. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_docker_repository.my-remote-docker my-remote-docker ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) An allow list of Ant-style path patterns that determine which remote VCS roots Artifactory will follow to download remote modules from, when presented with 'go-import' meta tags in the remote repository response. By default, this is set to ` + "`" + `[`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3450,15 +4195,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional)`,
+					Description: `(Optional) Public description.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional)`,
+					Description: `(Optional) Internal description.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Required) The remote repo URL. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_generic_repository.my-remote-generic my-remote-generic ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The remote repo URL.`,
+				},
+				resource.Attribute{
+					Name:        "propagate_query_params",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if query params are included in the request to Artifactory, they will be passed on to the remote repository. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_generic_repository.my-remote-generic my-remote-generic ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3526,7 +4275,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcs_git_provider",
-					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is "ARTIFACTORY". ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_go_repository.my-remote-go my-remote-go ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub or a remote Artifactory instance. Default value is ` + "`" + `ARTIFACTORY` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_go_repository.my-remote-go my-remote-go ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3562,31 +4311,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fetch_jars_eagerly",
-					Description: `(Optional, Default: false) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "fetch_sources_eagerly",
-					Description: `(Optional, Default: false) When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "handle_releases",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy release artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy release artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "handle_snapshots",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "suppress_pom_consistency_checks",
-					Description: `(Optional, Default: true) - By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to 'true'.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) - By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reject_invalid_jars",
-					Description: `(Optional, Default: false) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
 				},
 				resource.Attribute{
 					Name:        "remote_repo_checksum_policy_type",
-					Description: `(Optional, Default: 'generate-if-absent') Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are 'generate-if-absent', 'fail', 'ignore-and-generate', and 'pass-thru'. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_gradle_repository.gradle-remote gradle-remote ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `generate-if-absent` + "`" + `) Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are ` + "`" + `generate-if-absent` + "`" + `, ` + "`" + `fail` + "`" + `, ` + "`" + `ignore-and-generate` + "`" + `, and ` + "`" + `pass-thru` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_gradle_repository.gradle-remote gradle-remote ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3626,11 +4375,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_dependencies_enabled",
-					Description: `(Optional) When set, external dependencies are rewritten.`,
+					Description: `(Optional) When set, external dependencies are rewritten. ` + "`" + `External Dependency Rewrite` + "`" + ` in the UI.`,
 				},
 				resource.Attribute{
 					Name:        "external_dependencies_patterns",
-					Description: `(Optional) An Allow List of Ant-style path expressions that specify where external dependencies may be downloaded from. By default, this is set to`,
+					Description: `(Optional) An allow list of Ant-style path patterns that determine which remote VCS roots Artifactory will follow to download remote modules from, when presented with 'go-import' meta tags in the remote repository response. By default, this is set to ` + "`" + `[`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3666,31 +4415,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fetch_jars_eagerly",
-					Description: `(Optional, Default: false) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "fetch_sources_eagerly",
-					Description: `(Optional, Default: false) When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "handle_releases",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy release artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy release artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "handle_snapshots",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "suppress_pom_consistency_checks",
-					Description: `(Optional, Default: true) - By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to 'true'.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) - By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reject_invalid_jars",
-					Description: `(Optional, Default: false) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
 				},
 				resource.Attribute{
 					Name:        "remote_repo_checksum_policy_type",
-					Description: `(Optional, Default: 'generate-if-absent') Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are 'generate-if-absent', 'fail', 'ignore-and-generate', and 'pass-thru'. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_ivy_repository.ivy-remote ivy-remote ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `generate-if-absent` + "`" + `) Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are ` + "`" + `generate-if-absent` + "`" + `, ` + "`" + `fail` + "`" + `, ` + "`" + `ignore-and-generate` + "`" + `, and ` + "`" + `pass-thru` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_ivy_repository.ivy-remote ivy-remote ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3726,31 +4475,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fetch_jars_eagerly",
-					Description: `(Optional, Default: false) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "fetch_sources_eagerly",
-					Description: `(Optional, Default: false) When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "handle_releases",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy release artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy release artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "handle_snapshots",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "suppress_pom_consistency_checks",
-					Description: `(Optional, Default: true) By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to 'true'.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reject_invalid_jars",
-					Description: `(Optional, Default: false) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
 				},
 				resource.Attribute{
 					Name:        "remote_repo_checksum_policy_type",
-					Description: `(Optional, Default: 'generate-if-absent') Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are 'generate-if-absent', 'fail', 'ignore-and-generate', and 'pass-thru'. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_maven_repository.maven-remote maven-remote ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `generate-if-absent` + "`" + `) Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are ` + "`" + `generate-if-absent` + "`" + `, ` + "`" + `fail` + "`" + `, ` + "`" + `ignore-and-generate` + "`" + `, and ` + "`" + `pass-thru` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_retrieval_timeout_secs",
+					Description: `(Optional, Default: 60) This value refers to the number of seconds to cache metadata files before checking for newer versions on remote server. A value of 0 indicates no caching. Cannot be larger than ` + "`" + `retrieval_cache_period_seconds` + "`" + ` attribute. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_maven_repository.maven-remote maven-remote ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3818,19 +4571,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "feed_context_path",
-					Description: `(Optional) When proxying a remote NuGet repository, customize feed resource location using this attribute. Default value is 'api/v2'.`,
+					Description: `(Optional) When proxying a remote NuGet repository, customize feed resource location using this attribute. Default value is ` + "`" + `api/v2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "download_context_path",
-					Description: `(Optional) The context path prefix through which NuGet downloads are served. For example, the NuGet Gallery download URL is 'https://nuget.org/api/v2/package', so the repository URL should be configured as 'https://nuget.org' and the download context path should be configured as 'api/v2/package'. Default value is 'api/v2/package'.`,
+					Description: `(Optional) The context path prefix through which NuGet downloads are served. For example, the NuGet Gallery download URL is ` + "`" + `https://nuget.org/api/v2/package` + "`" + `, so the repository URL should be configured as ` + "`" + `https://nuget.org` + "`" + ` and the download context path should be configured as ` + "`" + `api/v2/package` + "`" + `. Default value is ` + "`" + `api/v2/package` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "v3_feed_url",
-					Description: `(Optional) The URL to the NuGet v3 feed. Default value is 'https://api.nuget.org/v3/index.json'.`,
+					Description: `(Optional) The URL to the NuGet v3 feed. Default value is ` + "`" + `https://api.nuget.org/v3/index.json` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "force_nuget_authentication",
-					Description: `(Optional) Force basic authentication credentials in order to use this repository. Default value is 'false'. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_nuget_repository.my-remote-nuget my-remote-nuget ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Force basic authentication credentials in order to use this repository. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "symbol_server_url",
+					Description: `(Optional) NuGet symbol server URL. Default value is ` + "`" + `https://symbols.nuget.org/download/symbols` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_nuget_repository.my-remote-nuget my-remote-nuget ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3994,11 +4751,66 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pypi_registry_url",
-					Description: `(Optional) To configure the remote repo to proxy public external PyPI repository, or a PyPI repository hosted on another Artifactory server. See JFrog Pypi documentation [here](https://www.jfrog.com/confluence/display/JFROG/PyPI+Repositories) for the usage details. Default value is 'https://pypi.org'.`,
+					Description: `(Optional) To configure the remote repo to proxy public external PyPI repository, or a PyPI repository hosted on another Artifactory server. See JFrog Pypi documentation [here](https://www.jfrog.com/confluence/display/JFROG/PyPI+Repositories) for the usage details. Default value is ` + "`" + `https://pypi.org` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "pypi_repository_suffix",
-					Description: `(Optional) Usually should be left as a default for 'simple', unless the remote is a PyPI server that has custom registry suffix, like +simple in DevPI. Default value is 'simple'. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_pypi_repository.pypi-remote pypi-remote ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Usually should be left as a default for ` + "`" + `simple` + "`" + `, unless the remote is a PyPI server that has custom registry suffix, like +simple in DevPI. Default value is ` + "`" + `simple` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_pypi_repository.pypi-remote pypi-remote ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_remote_repository_replication",
+			Category:         "Replication",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"replication",
+				"remote",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "repo_key",
+					Description: `(Required) Repository name.`,
+				},
+				resource.Attribute{
+					Name:        "cron_exp",
+					Description: `(Required) A valid CRON expression that you can use to control replication frequency. Eg: ` + "`" + `0 0 12`,
+				},
+				resource.Attribute{
+					Name:        "enable_event_replication",
+					Description: `(Optional) When set, each event will trigger replication of the artifacts changed in this event. This can be any type of event on artifact, e.g. add, deleted or property change. Default value is ` + "`" + `false` + "`" + `. com/confluence/display/JFROG/User+Profile#UserProfile-IdentityTokenidentitytoken).`,
+				},
+				resource.Attribute{
+					Name:        "sync_deletes",
+					Description: `(Optional) When set, items that were deleted locally should also be deleted remotely (also applies to properties metadata). Note that enabling this option, will delete artifacts on the target that do not exist in the source repository. Default value is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sync_properties",
+					Description: `(Optional) When set, the task also synchronizes the properties of replicated artifacts. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) When set, enables replication of this repository to the target specified in ` + "`" + `url` + "`" + ` attribute. Default value is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "include_path_prefix_pattern",
+					Description: `(Optional) List of artifact patterns to include when evaluating artifact requests in the form of ` + "`" + `x/y/`,
+				},
+				resource.Attribute{
+					Name:        "exclude_path_prefix_pattern",
+					Description: `(Optional) List of artifact patterns to exclude when evaluating artifact requests, in the form of ` + "`" + `x/y/`,
+				},
+				resource.Attribute{
+					Name:        "replication_key",
+					Description: `(Computed) Replication ID, the value is unknown until the resource is created. Can't be set or updated.`,
+				},
+				resource.Attribute{
+					Name:        "check_binary_existence_in_filestore",
+					Description: `(Optional) Enabling the ` + "`" + `check_binary_existence_in_filestore` + "`" + ` flag requires an Enterprise Plus license. When true, enables distributed checksum storage. For more information, see [Optimizing Repository Replication with Checksum-Based Storage](https://www.jfrog.com/confluence/display/JFROG/Repository+Replication#RepositoryReplication-OptimizingRepositoryReplicationUsingStorageLevelSynchronizationOptions). ## Import Push replication configs can be imported using their repo key, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_repository_replication.foo-rep provider_test_source ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4066,31 +4878,103 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fetch_jars_eagerly",
-					Description: `(Optional, Default: false) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) When set, if a POM is requested, Artifactory attempts to fetch the corresponding jar in the background. This will accelerate first access time to the jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "fetch_sources_eagerly",
-					Description: `(Optional, Default: false) - When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) - When set, if a binaries jar is requested, Artifactory attempts to fetch the corresponding source jar in the background. This will accelerate first access time to the source jar when it is subsequently requested.`,
 				},
 				resource.Attribute{
 					Name:        "handle_releases",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy release artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy release artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "handle_snapshots",
-					Description: `(Optional, Default: true) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) If set, Artifactory allows you to deploy snapshot artifacts into this repository.`,
 				},
 				resource.Attribute{
 					Name:        "suppress_pom_consistency_checks",
-					Description: `(Optional, Default: true) By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to 'true'.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) By default, the system keeps your repositories healthy by refusing POMs with incorrect coordinates (path). If the groupId:artifactId:version information inside the POM does not match the deployed path, Artifactory rejects the deployment with a "409 Conflict" error. You can disable this behavior by setting this attribute to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "reject_invalid_jars",
-					Description: `(Optional, Default: false) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Reject the caching of jar files that are found to be invalid. For example, pseudo jars retrieved behind a "captive portal".`,
 				},
 				resource.Attribute{
 					Name:        "remote_repo_checksum_policy_type",
-					Description: `(Optional, Default: 'generate-if-absent') Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are 'generate-if-absent', 'fail', 'ignore-and-generate', and 'pass-thru'. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_sbt_repository.sbt-remote sbt-remote ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `generate-if-absent` + "`" + `) Checking the Checksum effectively verifies the integrity of a deployed resource. The Checksum Policy determines how the system behaves when a client checksum for a remote resource is missing or conflicts with the locally calculated checksum. Available policies are ` + "`" + `generate-if-absent` + "`" + `, ` + "`" + `fail` + "`" + `, ` + "`" + `ignore-and-generate` + "`" + `, and ` + "`" + `pass-thru` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_sbt_repository.sbt-remote sbt-remote ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_remote_swift_repository",
+			Category:         "Remote Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"remote",
+				"repositories",
+				"swift",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) A mandatory identifier for the repository that must be unique. It cannot begin with a number or contain spaces or special characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The remote repo URL. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_swift_repository.my-remote-swift my-remote-swift ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_remote_terraform_repository",
+			Category:         "Remote Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"remote",
+				"repositories",
+				"terraform",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) A mandatory identifier for the repository that must be unique. It cannot begin with a number or contain spaces or special characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The base URL of the Module storage API.`,
+				},
+				resource.Attribute{
+					Name:        "terraform_registry_url",
+					Description: `(Optional) The base URL of the registry API. When using Smart Remote Repositories, set the URL to ` + "`" + `<base_Artifactory_URL>/api/terraform/repokey` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "terraform_providers_url",
+					Description: `(Optional) The base URL of the Provider's storage API. When using Smart remote repositories, set the URL to ` + "`" + `<base_Artifactory_URL>/api/terraform/repokey/providers` + "`" + `. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_terraform_repository.terraform-remote terraform-remote ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4126,15 +5010,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcs_git_provider",
-					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub, Bitbucket, Stash, a remote Artifactory instance or a custom Git repository. Allowed values are: 'GITHUB', 'BITBUCKET', 'OLDSTASH', 'STASH', 'ARTIFACTORY', 'CUSTOM'. Default value is 'GITHUB'`,
+					Description: `(Optional) Artifactory supports proxying the following Git providers out-of-the-box: GitHub, Bitbucket, Stash, a remote Artifactory instance or a custom Git repository. Allowed values are: ` + "`" + `GITHUB` + "`" + `, ` + "`" + `BITBUCKET` + "`" + `, ` + "`" + `OLDSTASH` + "`" + `, ` + "`" + `STASH` + "`" + `, ` + "`" + `ARTIFACTORY` + "`" + `, ` + "`" + `CUSTOM` + "`" + `. Default value is ` + "`" + `GITHUB` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "vcs_git_download_url",
-					Description: `(Optional) This attribute is used when vcs_git_provider is set to 'CUSTOM'. Provided URL will be used as proxy.`,
+					Description: `(Optional) This attribute is used when vcs_git_provider is set to ` + "`" + `CUSTOM` + "`" + `. Provided URL will be used as proxy.`,
 				},
 				resource.Attribute{
 					Name:        "max_unique_snapshots",
-					Description: `(Optional) The maximum number of unique snapshots of a single artifact to store. Once the number of snapshots exceeds this setting, older versions are removed. A value of 0 (default) indicates there is no limit, and unique snapshots are not cleaned up. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_go_repository.my-remote-vcs my-remote-vcs ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The maximum number of unique snapshots of a single artifact to store. Once the number of snapshots exceeds this setting, older versions are removed. A value of 0 (default) indicates there is no limit, and unique snapshots are not cleaned up. ## Import Remote repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_remote_vcs_repository.my-remote-vcs my-remote-vcs ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4211,6 +5095,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "artifactory_repository_layout",
+			Category:         "Configuration",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"configuration",
+				"repository",
+				"layout",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "artifact_path_pattern",
+					Description: `(Required) Please refer to: [Path Patterns](https://www.jfrog.com/confluence/display/JFROG/Repository+Layouts#RepositoryLayouts-ModulesandPathPatternsusedbyRepositoryLayouts) in the Artifactory Wiki documentation.`,
+				},
+				resource.Attribute{
+					Name:        "distinctive_descriptor_path_pattern",
+					Description: `(Optional) When set, ` + "`" + `descriptor_path_pattern` + "`" + ` will be used. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "descriptor_path_pattern",
+					Description: `(Optional) Please refer to: [Descriptor Path Patterns](https://www.jfrog.com/confluence/display/JFROG/Repository+Layouts#RepositoryLayouts-DescriptorPathPatterns) in the Artifactory Wiki documentation.`,
+				},
+				resource.Attribute{
+					Name:        "folder_integration_revision_regexp",
+					Description: `(Optional) A regular expression matching the integration revision string appearing in a folder name as part of the artifact's path. For example, ` + "`" + `SNAPSHOT` + "`" + `, in Maven. Note! Take care not to introduce any regexp capturing groups within this expression. If not applicable use ` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "file_integration_revision_regexp",
+					Description: `(Optional) A regular expression matching the integration revision string appearing in a file name as part of the artifact's path. For example, ` + "`" + `SNAPSHOT|(?:(?:[0-9]{8}.[0-9]{6})-(?:[0-9]+))` + "`" + `, in Maven. Note! Take care not to introduce any regexp capturing groups within this expression. If not applicable use ` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "artifactory_saml_settings",
 			Category:         "Configuration",
 			ShortDescription: ``,
@@ -4222,6 +5145,113 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_scoped_token",
+			Category:         "Security",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"security",
+				"scoped",
+				"token",
+			},
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The user name for which this token is created. The username is based on the authenticated user - either from the user of the authenticated token or based on the username (if basic auth was used). The username is then used to set the subject of the token: ` + "`" + `<service-id>/users/<username>` + "`" + `. Limited to 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) The scope of access that the token provides. Access to the REST API is always provided by default. Administrators can set any scope, while non-admin users can only set the scope to a subset of the groups to which they belong. The supported scopes include:`,
+				},
+				resource.Attribute{
+					Name:        "applied-permissions/user",
+					Description: `provides user access. If left at the default setting, the token will be created with the user-identity scope, which allows users to identify themselves in the Platform but does not grant any specific access permissions.`,
+				},
+				resource.Attribute{
+					Name:        "applied-permissions/admin",
+					Description: `the scope assigned to admin users.`,
+				},
+				resource.Attribute{
+					Name:        "applied-permissions/groups",
+					Description: `the group to which permissions are assigned by group name (use username to indicate the group name)`,
+				},
+				resource.Attribute{
+					Name:        "system:metrics:r",
+					Description: `for getting the service metrics`,
+				},
+				resource.Attribute{
+					Name:        "system:livelogs:r",
+					Description: `for getting the service livelogsr The scope to assign to the token should be provided as a list of scope tokens, limited to 500 characters in total.`,
+				},
+				resource.Attribute{
+					Name:        "<resource-type>",
+					Description: `one of the permission resource types, from a predefined closed list. Currently, the only resource type that is supported is the ` + "`" + `artifact` + "`" + ` resource type.`,
+				},
+				resource.Attribute{
+					Name:        "<target>",
+					Description: `the target resource, can be exact name or a pattern`,
+				},
+				resource.Attribute{
+					Name:        "<sub-resource>",
+					Description: `optional, the target sub-resource, can be exact name or a pattern`,
+				},
+				resource.Attribute{
+					Name:        "<actions>",
+					Description: `comma-separated list of action acronyms. The actions allowed are <r, w, d, a, m> or any combination of these actions. To allow all actions - use ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "expires_in",
+					Description: `(Optional) The amount of time, in seconds, it would take for the token to expire. An admin shall be able to set whether expiry is mandatory, what is the default expiry, and what is the maximum expiry allowed. Must be non-negative. Default value is based on configuration in ` + "`" + `access.config.yaml` + "`" + `. See [API documentation](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-RevokeTokenbyIDrevoketokenbyid) for details.`,
+				},
+				resource.Attribute{
+					Name:        "refreshable",
+					Description: `(Optional) Is this token refreshable? Defaults to ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "include_reference_token",
+					Description: `(Optional) Should a reference token also be created? Defaults to ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Free text token description. Useful for filtering and managing tokens. Limited to 1024 characters.`,
+				},
+				resource.Attribute{
+					Name:        "audiences",
+					Description: `(Optional) A list of the other instances or services that should accept this token identified by their Service-IDs. Limited to total 255 characters. Default to ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "access_token",
+					Description: `Returns the access token to authenticate to Artifactory`,
+				},
+				resource.Attribute{
+					Name:        "reference_token",
+					Description: `Returns the reference token to authenticate to Artifactory`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `Returns the token type`,
+				},
+				resource.Attribute{
+					Name:        "subject",
+					Description: `Returns the token type`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `Returns the token expiry`,
+				},
+				resource.Attribute{
+					Name:        "issued_at",
+					Description: `Returns the token issued at date/time`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Returns the token issuer ## References - https://www.jfrog.com/confluence/display/JFROG/Access+Tokens - https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-AccessTokens ## Import Artifactory`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4311,7 +5341,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) Password for the user. When omitted, a random password is generated using the following password policy: 10 characters with 1 digit, 1 symbol, with upper and lower case letters.`,
+					Description: `(Optional) Password for the user. When omitted, a random password is generated using the following password policy: 12 characters with 1 digit, 1 symbol, with upper and lower case letters.`,
 				},
 				resource.Attribute{
 					Name:        "admin",
@@ -4331,7 +5361,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "groups",
-					Description: `(Optional) List of groups this user is a part of. ## Import Users can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_unmanaged_user.test-user myusername ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) List of groups this user is a part of.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4345,40 +5375,7 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Username for user.`,
-				},
-				resource.Attribute{
-					Name:        "email",
-					Description: `(Required) Email for user.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional) Password for the user. When omitted, a random password is generated using the following password policy: 10 characters with 1 digit, 1 symbol, with upper and lower case letters.`,
-				},
-				resource.Attribute{
-					Name:        "admin",
-					Description: `(Optional) When enabled, this user is an administrator with all the ensuing privileges. Default value is ` + "`" + `false` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "profile_updatable",
-					Description: `(Optional) When set, this user can update his profile details (except for the password. Only an administrator can update the password). Default value is ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "disable_ui_access",
-					Description: `(Optional) When set, this user can only access Artifactory through the REST API. This option cannot be set if the user has Admin privileges. Default value is ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "internal_password_disabled",
-					Description: `(Optional) When set, disables the fallback of using an internal password when external authentication (such as LDAP) is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "groups",
-					Description: `(Optional) List of groups this user is a part of. - Note: If "groups" attribute is not specified then user's group membership set to empty. User will not be part of default "readers" group automatically. ## Import Users can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_user.test-user myusername ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -4398,15 +5395,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "repositories",
-					Description: `(Optional) The effective list of actual repositories included in this virtual repository. The effective list of actual repositories included in this virtual repository.`,
+					Description: `(Optional) The effective list of actual repositories included in this virtual repository.`,
 				},
 				resource.Attribute{
 					Name:        "project_key",
-					Description: `(Optional) Project key for assigning this repository to. When assigning repository to a project, repository key must be prefixed with project key, separated by a dash.`,
+					Description: `(Optional) Project key for assigning this repository to. Must be 2 - 20 lowercase alphanumeric and hyphen characters. When assigning repository to a project, repository key must be prefixed with project key, separated by a dash. We don't recommend using this attribute to assign the repository to the project. Use the ` + "`" + `repos` + "`" + ` attribute in Project provider to manage the list of repositories. Default value - ` + "`" + `default` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "project_environments",
-					Description: `(Optional) Project environment for assigning this repository to. Allow values: "DEV" or "PROD"`,
+					Description: `(Optional) Project environment for assigning this repository to. Allow values: ` + "`" + `DEV` + "`" + ` or ` + "`" + `PROD` + "`" + `. Before Artifactory 7.53.1, up to 2 values (` + "`" + `DEV` + "`" + ` and ` + "`" + `PROD` + "`" + `) are allowed. From 7.53.1 onward, only one value is allowed. The attribute should only be used if the repository is already assigned to the existing project. If not, the attribute will be ignored by Artifactory, but will remain in the Terraform state, which will create state drift during the update.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -4430,15 +5427,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "artifactory_requests_can_retrieve_remote_artifacts",
-					Description: `(Optional, Default: false) Whether the virtual repository should search through remote repositories when trying to resolve an artifact requested by another Artifactory instance.`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Whether the virtual repository should search through remote repositories when trying to resolve an artifact requested by another Artifactory instance.`,
 				},
 				resource.Attribute{
 					Name:        "default_deployment_repo",
-					Description: `(Optional) Default repository to deploy artifacts.`,
-				},
-				resource.Attribute{
-					Name:        "retrieval_cache_period_seconds",
-					Description: `(Optional, Default: 7200) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. Default: 7200 seconds. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_generic_repository.foo-generic foo-generic ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Default repository to deploy artifacts. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_generic_repository.foo-generic foo-generic ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4474,7 +5467,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "primary_keypair_ref",
-					Description: `(Optional) Primary keypair used to sign artifacts. Default value is empty. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_alpine_repository.foo-alpine foo-alpine ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Primary keypair used to sign artifacts. Default value is empty.`,
+				},
+				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_alpine_repository.foo-alpine foo-alpine ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4550,7 +5547,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_chef_repository.foo-chef foo-chef ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_chef_repository.foo-chef foo-chef ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4614,7 +5615,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_conan_repository.foo-conan foo-conan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_conan_repository.foo-conan foo-conan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4646,7 +5651,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_conda_repository.foo-conda foo-conda ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_conda_repository.foo-conda foo-conda ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4678,7 +5687,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_cran_repository.foo-cran foo-cran ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_cran_repository.foo-cran foo-cran ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4713,6 +5726,10 @@ var (
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching.`,
+				},
+				resource.Attribute{
 					Name:        "primary_keypair_ref",
 					Description: `(Optional) Primary keypair used to sign artifacts. Default is empty.`,
 				},
@@ -4722,7 +5739,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "optional_index_compression_formats",
-					Description: `(Optional) Index file formats you would like to create in addition to the default Gzip (.gzip extension). Supported values are 'bz2','lzma' and 'xz'. Default value is 'bz2'.`,
+					Description: `(Optional) Index file formats you would like to create in addition to the default Gzip (.gzip extension). Supported values are ` + "`" + `bz2` + "`" + `,` + "`" + `lzma` + "`" + ` and ` + "`" + `xz` + "`" + `. Default value is ` + "`" + `bz2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "debian_default_architectures",
@@ -4758,7 +5775,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_docker_repository.foo-docker foo-docker ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "resolve_docker_tags_by_timestamp",
+					Description: `(Optional) When enabled, in cases where the same Docker tag exists in two or more of the aggregated repositories, Artifactory will return the tag that has the latest timestamp. Default values is ` + "`" + `false` + "`" + `. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_docker_repository.foo-docker foo-docker ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4965,8 +5986,12 @@ var (
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching.`,
+				},
+				resource.Attribute{
 					Name:        "use_namespaces",
-					Description: `(Optional) From Artifactory 7.24.1 (SaaS Version), you can explicitly state a specific aggregated local or remote repository to fetch from a virtual by assigning namespaces to local and remote repositories. See the documentation [here](https://www.jfrog.com/confluence/display/JFROG/Kubernetes+Helm+Chart+Repositories#KubernetesHelmChartRepositories-NamespaceSupportforHelmVirtualRepositories). Default is 'false'. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_helm_repository.foo-helm-virtual foo-helm-virtual ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) From Artifactory 7.24.1 (SaaS Version), you can explicitly state a specific aggregated local or remote repository to fetch from a virtual by assigning namespaces to local and remote repositories. See the documentation [here](https://www.jfrog.com/confluence/display/JFROG/Kubernetes+Helm+Chart+Repositories#KubernetesHelmChartRepositories-NamespaceSupportforHelmVirtualRepositories). Default is ` + "`" + `false` + "`" + `. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_helm_repository.foo-helm-virtual foo-helm-virtual ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5066,7 +6091,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_npm_repository.foo-npm foo-npm ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "retrieval_cache_period_seconds",
+					Description: `(Optional, Default: ` + "`" + `7200` + "`" + `) This value refers to the number of seconds to cache metadata files before checking for newer versions on aggregated repositories. A value of 0 indicates no caching. ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_npm_repository.foo-npm foo-npm ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5299,150 +6328,235 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_virtual_swift_repository",
+			Category:         "Virtual Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"repositories",
+				"swift",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) A mandatory identifier for the repository that must be unique. It cannot begin with a number or contain spaces or special characters.`,
+				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `(Optional) The effective list of actual repositories included in this virtual repository.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_swift_repository.foo-swift foo-swift ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "artifactory_virtual_terraform_repository",
+			Category:         "Virtual Repositories",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords: []string{
+				"virtual",
+				"repositories",
+				"terraform",
+				"repository",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) A mandatory identifier for the repository that must be unique. It cannot begin with a number or contain spaces or special characters.`,
+				},
+				resource.Attribute{
+					Name:        "repositories",
+					Description: `(Optional) The effective list of actual repositories included in this virtual repository.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `(Optional) ## Import Virtual repositories can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import artifactory_virtual_terraform_repository.terraform-virtual terraform-remote ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"artifactory_access_token":                       0,
-		"artifactory_anonymous_user":                     1,
-		"artifactory_api_key":                            2,
-		"artifactory_artifact_property_webhook":          3,
-		"artifactory_artifact_webhook":                   4,
-		"artifactory_artifactory_release_bundle_webhook": 5,
-		"artifactory_backup":                             6,
-		"artifactory_build_webhook":                      7,
-		"artifactory_certificate":                        8,
-		"artifactory_distribution_webhook":               9,
-		"artifactory_docker_webhook":                     10,
-		"artifactory_federated_alpine_repository":        11,
-		"artifactory_federated_bower_repository":         12,
-		"artifactory_federated_cargo_repository":         13,
-		"artifactory_federated_chef_repository":          14,
-		"artifactory_federated_cocoapods_repository":     15,
-		"artifactory_federated_composer_repository":      16,
-		"artifactory_federated_conan_repository":         17,
-		"artifactory_federated_conda_repository":         18,
-		"artifactory_federated_cran_repository":          19,
-		"artifactory_federated_debian_repository":        20,
-		"artifactory_federated_docker_repository":        21,
-		"artifactory_federated_gems_repository":          22,
-		"artifactory_federated_generic_repository":       23,
-		"artifactory_federated_gitlfs_repository":        24,
-		"artifactory_federated_go_repository":            25,
-		"artifactory_federated_gradle_repository":        26,
-		"artifactory_federated_helm_repository":          27,
-		"artifactory_federated_ivy_repository":           28,
-		"artifactory_federated_maven_repository":         29,
-		"artifactory_federated_npm_repository":           30,
-		"artifactory_federated_nuget_repository":         31,
-		"artifactory_federated_opkg_repository":          32,
-		"artifactory_federated_puppet_repository":        33,
-		"artifactory_federated_pypi_repository":          34,
-		"artifactory_federated_rpm_repository":           35,
-		"artifactory_federated_sbt_repository":           36,
-		"artifactory_federated_vagrant_repository":       37,
-		"artifactory_general_security":                   38,
-		"artifactory_group":                              39,
-		"artifactory_keypair":                            40,
-		"artifactory_ldap_group_setting":                 41,
-		"artifactory_ldap_setting":                       42,
-		"artifactory_local":                              43,
-		"artifactory_local_alpine_repository":            44,
-		"artifactory_local_bower_repository":             45,
-		"artifactory_local_cargo_repository":             46,
-		"artifactory_local_chef_repository":              47,
-		"artifactory_local_cocoapods_repository":         48,
-		"artifactory_local_composer_repository":          49,
-		"artifactory_local_conan_repository":             50,
-		"artifactory_local_conda_repository":             51,
-		"artifactory_local_cran_repository":              52,
-		"artifactory_local_debian_repository":            53,
-		"artifactory_local_docker_v1_repository":         54,
-		"artifactory_local_docker_v2_repository":         55,
-		"artifactory_local_gems_repository":              56,
-		"artifactory_local_generic_repository":           57,
-		"artifactory_local_gitlfs_repository":            58,
-		"artifactory_local_go_repository":                59,
-		"artifactory_local_gradle_repository":            60,
-		"artifactory_local_helm_repository":              61,
-		"artifactory_local_ivy_repository":               62,
-		"artifactory_local_maven_repository":             63,
-		"artifactory_local_npm_repository":               64,
-		"artifactory_local_nuget_repository":             65,
-		"artifactory_local_opkg_repository":              66,
-		"artifactory_local_pub_repository":               67,
-		"artifactory_local_puppet_repository":            68,
-		"artifactory_local_pypi_repository":              69,
-		"artifactory_local_rpm_repository":               70,
-		"artifactory_local_sbt_repository":               71,
-		"artifactory_local_vagrant_repository":           72,
-		"artifactory_managed_user":                       73,
-		"artifactory_oauth_settings":                     74,
-		"artifactory_permission_target":                  75,
-		"artifactory_pull_replication":                   76,
-		"artifactory_push_replication":                   77,
-		"artifactory_release_bundle_webhook":             78,
-		"artifactory_remote":                             79,
-		"artifactory_remote_alpine_repository":           80,
-		"artifactory_remote_bower_repository":            81,
-		"artifactory_remote_cargo_repository":            82,
-		"artifactory_remote_chef_repository":             83,
-		"artifactory_remote_cocoapods_repository":        84,
-		"artifactory_remote_composer_repository":         85,
-		"artifactory_remote_conan_repository":            86,
-		"artifactory_remote_conda_repository":            87,
-		"artifactory_remote_cran_repository":             88,
-		"artifactory_remote_debian_repository":           89,
-		"artifactory_remote_docker_repository":           90,
-		"artifactory_remote_gems_repository":             91,
-		"artifactory_remote_generic_repository":          92,
-		"artifactory_remote_gitlfs_repository":           93,
-		"artifactory_remote_go_repository":               94,
-		"artifactory_remote_gradle_repository":           95,
-		"artifactory_remote_helm_repository":             96,
-		"artifactory_remote_ivy_repository":              97,
-		"artifactory_remote_maven_repository":            98,
-		"artifactory_remote_npm_repository":              99,
-		"artifactory_remote_nuget_repository":            100,
-		"artifactory_remote_opkg_repository":             101,
-		"artifactory_remote_p2_repository":               102,
-		"artifactory_remote_pub_repository":              103,
-		"artifactory_remote_puppet_repository":           104,
-		"artifactory_remote_pypi_repository":             105,
-		"artifactory_remote_rpm_repository":              106,
-		"artifactory_remote_sbt_repository":              107,
-		"artifactory_remote_vcs_repository":              108,
-		"artifactory_replication_config":                 109,
-		"artifactory_saml_settings":                      110,
-		"artifactory_single_replication_config":          111,
-		"artifactory_unmanaged_user":                     112,
-		"artifactory_user":                               113,
-		"artifactory_virtual":                            114,
-		"artifactory_virtual_alpine_repository":          115,
-		"artifactory_virtual_bower_repository":           116,
-		"artifactory_virtual_chef_repository":            117,
-		"artifactory_virtual_composer_repository":        118,
-		"artifactory_virtual_conan_repository":           119,
-		"artifactory_virtual_conda_repository":           120,
-		"artifactory_virtual_cran_repository":            121,
-		"artifactory_virtual_debian_repository":          122,
-		"artifactory_virtual_docker_repository":          123,
-		"artifactory_virtual_gems_repository":            124,
-		"artifactory_virtual_generic_repository":         125,
-		"artifactory_virtual_gitlfs_repository":          126,
-		"artifactory_virtual_go_repository":              127,
-		"artifactory_virtual_gradle_repository":          128,
-		"artifactory_virtual_helm_repository":            129,
-		"artifactory_virtual_ivy_repository":             130,
-		"artifactory_virtual_maven_repository":           131,
-		"artifactory_virtual_npm_repository":             132,
-		"artifactory_virtual_nuget_repository":           133,
-		"artifactory_virtual_p2_repository":              134,
-		"artifactory_virtual_pub_repository":             135,
-		"artifactory_virtual_puppet_repository":          136,
-		"artifactory_virtual_pypi_repository":            137,
-		"artifactory_virtual_rpm_repository":             138,
-		"artifactory_virtual_sbt_repository":             139,
+		"artifactory_access_token":                            0,
+		"artifactory_anonymous_user":                          1,
+		"artifactory_api_key":                                 2,
+		"artifactory_artifact_property_webhook":               3,
+		"artifactory_artifact_webhook":                        4,
+		"artifactory_artifactory_release_bundle_webhook":      5,
+		"artifactory_backup":                                  6,
+		"artifactory_build_webhook":                           7,
+		"artifactory_certificate":                             8,
+		"artifactory_distribution_public_key":                 9,
+		"artifactory_distribution_webhook":                    10,
+		"artifactory_docker_webhook":                          11,
+		"artifactory_federated_alpine_repository":             12,
+		"artifactory_federated_bower_repository":              13,
+		"artifactory_federated_cargo_repository":              14,
+		"artifactory_federated_chef_repository":               15,
+		"artifactory_federated_cocoapods_repository":          16,
+		"artifactory_federated_composer_repository":           17,
+		"artifactory_federated_conan_repository":              18,
+		"artifactory_federated_conda_repository":              19,
+		"artifactory_federated_cran_repository":               20,
+		"artifactory_federated_debian_repository":             21,
+		"artifactory_federated_docker_repository":             22,
+		"artifactory_federated_docker_v1_repository":          23,
+		"artifactory_federated_docker_v2_repository":          24,
+		"artifactory_federated_gems_repository":               25,
+		"artifactory_federated_generic_repository":            26,
+		"artifactory_federated_gitlfs_repository":             27,
+		"artifactory_federated_go_repository":                 28,
+		"artifactory_federated_gradle_repository":             29,
+		"artifactory_federated_helm_repository":               30,
+		"artifactory_federated_ivy_repository":                31,
+		"artifactory_federated_maven_repository":              32,
+		"artifactory_federated_npm_repository":                33,
+		"artifactory_federated_nuget_repository":              34,
+		"artifactory_federated_opkg_repository":               35,
+		"artifactory_federated_puppet_repository":             36,
+		"artifactory_federated_pypi_repository":               37,
+		"artifactory_federated_rpm_repository":                38,
+		"artifactory_federated_sbt_repository":                39,
+		"artifactory_federated_swift_repository":              40,
+		"artifactory_federated_terraform_module_repository":   41,
+		"artifactory_federated_terraform_provider_repository": 42,
+		"artifactory_federated_vagrant_repository":            43,
+		"artifactory_general_security":                        44,
+		"artifactory_group":                                   45,
+		"artifactory_keypair":                                 46,
+		"artifactory_ldap_group_setting":                      47,
+		"artifactory_ldap_setting":                            48,
+		"artifactory_local":                                   49,
+		"artifactory_local_alpine_repository":                 50,
+		"artifactory_local_bower_repository":                  51,
+		"artifactory_local_cargo_repository":                  52,
+		"artifactory_local_chef_repository":                   53,
+		"artifactory_local_cocoapods_repository":              54,
+		"artifactory_local_composer_repository":               55,
+		"artifactory_local_conan_repository":                  56,
+		"artifactory_local_conda_repository":                  57,
+		"artifactory_local_cran_repository":                   58,
+		"artifactory_local_debian_repository":                 59,
+		"artifactory_local_docker_v1_repository":              60,
+		"artifactory_local_docker_v2_repository":              61,
+		"artifactory_local_gems_repository":                   62,
+		"artifactory_local_generic_repository":                63,
+		"artifactory_local_gitlfs_repository":                 64,
+		"artifactory_local_go_repository":                     65,
+		"artifactory_local_gradle_repository":                 66,
+		"artifactory_local_helm_repository":                   67,
+		"artifactory_local_ivy_repository":                    68,
+		"artifactory_local_maven_repository":                  69,
+		"artifactory_local_npm_repository":                    70,
+		"artifactory_local_nuget_repository":                  71,
+		"artifactory_local_opkg_repository":                   72,
+		"artifactory_local_pub_repository":                    73,
+		"artifactory_local_puppet_repository":                 74,
+		"artifactory_local_pypi_repository":                   75,
+		"artifactory_local_repository_multi_replication":      76,
+		"artifactory_local_repository_single_replication":     77,
+		"artifactory_local_rpm_repository":                    78,
+		"artifactory_local_sbt_repository":                    79,
+		"artifactory_local_swift_repository":                  80,
+		"artifactory_local_terraform_module_repository":       81,
+		"artifactory_local_terraform_provider_repository":     82,
+		"artifactory_local_terraformbackend_repository":       83,
+		"artifactory_local_vagrant_repository":                84,
+		"artifactory_managed_user":                            85,
+		"artifactory_oauth_settings":                          86,
+		"artifactory_permission_target":                       87,
+		"artifactory_property_set":                            88,
+		"artifactory_proxy":                                   89,
+		"artifactory_pull_replication":                        90,
+		"artifactory_push_replication":                        91,
+		"artifactory_release_bundle_webhook":                  92,
+		"artifactory_remote":                                  93,
+		"artifactory_remote_alpine_repository":                94,
+		"artifactory_remote_bower_repository":                 95,
+		"artifactory_remote_cargo_repository":                 96,
+		"artifactory_remote_chef_repository":                  97,
+		"artifactory_remote_cocoapods_repository":             98,
+		"artifactory_remote_composer_repository":              99,
+		"artifactory_remote_conan_repository":                 100,
+		"artifactory_remote_conda_repository":                 101,
+		"artifactory_remote_cran_repository":                  102,
+		"artifactory_remote_debian_repository":                103,
+		"artifactory_remote_docker_repository":                104,
+		"artifactory_remote_gems_repository":                  105,
+		"artifactory_remote_generic_repository":               106,
+		"artifactory_remote_gitlfs_repository":                107,
+		"artifactory_remote_go_repository":                    108,
+		"artifactory_remote_gradle_repository":                109,
+		"artifactory_remote_helm_repository":                  110,
+		"artifactory_remote_ivy_repository":                   111,
+		"artifactory_remote_maven_repository":                 112,
+		"artifactory_remote_npm_repository":                   113,
+		"artifactory_remote_nuget_repository":                 114,
+		"artifactory_remote_opkg_repository":                  115,
+		"artifactory_remote_p2_repository":                    116,
+		"artifactory_remote_pub_repository":                   117,
+		"artifactory_remote_puppet_repository":                118,
+		"artifactory_remote_pypi_repository":                  119,
+		"artifactory_remote_repository_replication":           120,
+		"artifactory_remote_rpm_repository":                   121,
+		"artifactory_remote_sbt_repository":                   122,
+		"artifactory_remote_swift_repository":                 123,
+		"artifactory_remote_terraform_repository":             124,
+		"artifactory_remote_vcs_repository":                   125,
+		"artifactory_replication_config":                      126,
+		"artifactory_repository_layout":                       127,
+		"artifactory_saml_settings":                           128,
+		"artifactory_scoped_token":                            129,
+		"artifactory_single_replication_config":               130,
+		"artifactory_unmanaged_user":                          131,
+		"artifactory_user":                                    132,
+		"artifactory_virtual":                                 133,
+		"artifactory_virtual_alpine_repository":               134,
+		"artifactory_virtual_bower_repository":                135,
+		"artifactory_virtual_chef_repository":                 136,
+		"artifactory_virtual_composer_repository":             137,
+		"artifactory_virtual_conan_repository":                138,
+		"artifactory_virtual_conda_repository":                139,
+		"artifactory_virtual_cran_repository":                 140,
+		"artifactory_virtual_debian_repository":               141,
+		"artifactory_virtual_docker_repository":               142,
+		"artifactory_virtual_gems_repository":                 143,
+		"artifactory_virtual_generic_repository":              144,
+		"artifactory_virtual_gitlfs_repository":               145,
+		"artifactory_virtual_go_repository":                   146,
+		"artifactory_virtual_gradle_repository":               147,
+		"artifactory_virtual_helm_repository":                 148,
+		"artifactory_virtual_ivy_repository":                  149,
+		"artifactory_virtual_maven_repository":                150,
+		"artifactory_virtual_npm_repository":                  151,
+		"artifactory_virtual_nuget_repository":                152,
+		"artifactory_virtual_p2_repository":                   153,
+		"artifactory_virtual_pub_repository":                  154,
+		"artifactory_virtual_puppet_repository":               155,
+		"artifactory_virtual_pypi_repository":                 156,
+		"artifactory_virtual_rpm_repository":                  157,
+		"artifactory_virtual_sbt_repository":                  158,
+		"artifactory_virtual_swift_repository":                159,
+		"artifactory_virtual_terraform_repository":            160,
 	}
 )
 

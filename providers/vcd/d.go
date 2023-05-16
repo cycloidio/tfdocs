@@ -47,7 +47,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(`,
+					Description: `(Deprecated;`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to this Catalog. See [Metadata](#metadata) section for details.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_version",
@@ -66,6 +70,14 @@ var (
 					Description: `(`,
 				},
 				resource.Attribute{
+					Name:        "vapp_template_list",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "media_item_list",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "is_shared",
 					Description: `(`,
 				},
@@ -74,8 +86,40 @@ var (
 					Description: `(`,
 				},
 				resource.Attribute{
+					Name:        "is_local",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "publish_subscription_type",
 					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "publish_subscription_url",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `. ## Filter arguments (Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -97,7 +141,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(`,
+					Description: `(Deprecated;`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to this Catalog. See [Metadata](#metadata) section for details.`,
 				},
 				resource.Attribute{
 					Name:        "catalog_version",
@@ -116,6 +164,14 @@ var (
 					Description: `(`,
 				},
 				resource.Attribute{
+					Name:        "vapp_template_list",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "media_item_list",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "is_shared",
 					Description: `(`,
 				},
@@ -124,8 +180,40 @@ var (
 					Description: `(`,
 				},
 				resource.Attribute{
+					Name:        "is_local",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "publish_subscription_type",
 					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "publish_subscription_url",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `. ## Filter arguments (Supported in provider`,
 				},
 			},
 		},
@@ -159,7 +247,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Key value map of metadata. ## Filter arguments (Supported in provider`,
+					Description: `Key value map of metadata assigned to the associated vApp template.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_item_metadata",
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key value map of metadata assigned to the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to the catalog item. See [Metadata](#metadata) section for details. <a id="metadata"></a> ## Metadata The ` + "`" + `metadata_entry` + "`" + ` (`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `. ## Filter arguments (Supported in provider`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) is an expression starting with an operator (` + "`" + `>` + "`" + `, ` + "`" + `<` + "`" + `, ` + "`" + `>=` + "`" + `, ` + "`" + `<=` + "`" + `, ` + "`" + `==` + "`" + `), followed by a date, with optional spaces in between. For example: ` + "`" + `> 2020-02-01 12:35:00.523Z` + "`" + ` The filter recognizes several formats, but one of ` + "`" + `yyyy-mm-dd [hh:mm[:ss[.nnnZ]]]` + "`" + ` or ` + "`" + `dd-MMM-yyyy [hh:mm[:ss[.nnnZ]]]` + "`" + ` is recommended. Comparison with equality operator (` + "`" + `==` + "`" + `) need to define the date to the microseconds.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the latest item among the ones matching other parameters. If no other parameters are set, it retrieves the newest item.`,
+				},
+				resource.Attribute{
+					Name:        "earliest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the earliest item among the ones matching other parameters. If no other parameters are set, it retrieves the oldest item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -169,7 +305,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Key value map of metadata. ## Filter arguments (Supported in provider`,
+					Description: `Key value map of metadata assigned to the associated vApp template.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_item_metadata",
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key value map of metadata assigned to the catalog item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to the catalog item. See [Metadata](#metadata) section for details. <a id="metadata"></a> ## Metadata The ` + "`" + `metadata_entry` + "`" + ` (`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `. ## Filter arguments (Supported in provider`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) is an expression starting with an operator (` + "`" + `>` + "`" + `, ` + "`" + `<` + "`" + `, ` + "`" + `>=` + "`" + `, ` + "`" + `<=` + "`" + `, ` + "`" + `==` + "`" + `), followed by a date, with optional spaces in between. For example: ` + "`" + `> 2020-02-01 12:35:00.523Z` + "`" + ` The filter recognizes several formats, but one of ` + "`" + `yyyy-mm-dd [hh:mm[:ss[.nnnZ]]]` + "`" + ` or ` + "`" + `dd-MMM-yyyy [hh:mm[:ss[.nnnZ]]]` + "`" + ` is recommended. Comparison with equality operator (` + "`" + `==` + "`" + `) need to define the date to the microseconds.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the latest item among the ones matching other parameters. If no other parameters are set, it retrieves the newest item.`,
+				},
+				resource.Attribute{
+					Name:        "earliest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the earliest item among the ones matching other parameters. If no other parameters are set, it retrieves the oldest item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 		},
@@ -187,7 +371,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "catalog",
-					Description: `(Required) The name of the catalog where media file is`,
+					Description: `(Optional; Deprecated) The name of the catalog to which media file belongs. It's mandatory if ` + "`" + `catalog_id` + "`" + ` is not used.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -197,8 +385,132 @@ var (
 					Name:        "filter",
 					Description: `(Optional;`,
 				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) is an expression starting with an operator (` + "`" + `>` + "`" + `, ` + "`" + `<` + "`" + `, ` + "`" + `>=` + "`" + `, ` + "`" + `<=` + "`" + `, ` + "`" + `==` + "`" + `), followed by a date, with optional spaces in between. For example: ` + "`" + `> 2020-02-01 12:35:00.523Z` + "`" + ` The filter recognizes several formats, but one of ` + "`" + `yyyy-mm-dd [hh:mm[:ss[.nnnZ]]]` + "`" + ` or ` + "`" + `dd-MMM-yyyy [hh:mm[:ss[.nnnZ]]]` + "`" + ` is recommended. Comparison with equality operator (` + "`" + `==` + "`" + `) need to define the date to the microseconds.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the latest item among the ones matching other parameters. If no other parameters are set, it retrieves the newest item.`,
+				},
+				resource.Attribute{
+					Name:        "earliest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the earliest item among the ones matching other parameters. If no other parameters are set, it retrieves the oldest item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_catalog_vapp_template",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vApp Template data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional, but required if not set at provider level) Org name`,
+				},
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Required) ID of the catalog containing the vApp Template. Can't be used if a specific VDC identifier is set (` + "`" + `vdc_id` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Required) ID of the VDC to which the vApp Template belongs. Can't be used if a specific Catalog is set (` + "`" + `catalog_id` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) vApp Template name (optional when ` + "`" + `filter` + "`" + ` is used)`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `vApp Template description`,
+				},
+				resource.Attribute{
+					Name:        "vm_names",
+					Description: `Set of VM names within the vApp template`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key/value map of metadata for the associated vApp template.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to this vApp Template. See [Metadata](/providers/vmware/vcd/latest/docs/resources/catalog_vapp_template#metadata) section for details. ## Filter arguments`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) is an expression starting with an operator (` + "`" + `>` + "`" + `, ` + "`" + `<` + "`" + `, ` + "`" + `>=` + "`" + `, ` + "`" + `<=` + "`" + `, ` + "`" + `==` + "`" + `), followed by a date, with optional spaces in between. For example: ` + "`" + `> 2020-02-01 12:35:00.523Z` + "`" + ` The filter recognizes several formats, but one of ` + "`" + `yyyy-mm-dd [hh:mm[:ss[.nnnZ]]]` + "`" + ` or ` + "`" + `dd-MMM-yyyy [hh:mm[:ss[.nnnZ]]]` + "`" + ` is recommended. Comparison with equality operator (` + "`" + `==` + "`" + `) need to define the date to the microseconds.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the latest item among the ones matching other parameters. If no other parameters are set, it retrieves the newest item.`,
+				},
+				resource.Attribute{
+					Name:        "earliest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the earliest item among the ones matching other parameters. If no other parameters are set, it retrieves the oldest item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `vApp Template description`,
+				},
+				resource.Attribute{
+					Name:        "vm_names",
+					Description: `Set of VM names within the vApp template`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key/value map of metadata for the associated vApp template.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to this vApp Template. See [Metadata](/providers/vmware/vcd/latest/docs/resources/catalog_vapp_template#metadata) section for details. ## Filter arguments`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) is an expression starting with an operator (` + "`" + `>` + "`" + `, ` + "`" + `<` + "`" + `, ` + "`" + `>=` + "`" + `, ` + "`" + `<=` + "`" + `, ` + "`" + `==` + "`" + `), followed by a date, with optional spaces in between. For example: ` + "`" + `> 2020-02-01 12:35:00.523Z` + "`" + ` The filter recognizes several formats, but one of ` + "`" + `yyyy-mm-dd [hh:mm[:ss[.nnnZ]]]` + "`" + ` or ` + "`" + `dd-MMM-yyyy [hh:mm[:ss[.nnnZ]]]` + "`" + ` is recommended. Comparison with equality operator (` + "`" + `==` + "`" + `) need to define the date to the microseconds.`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the latest item among the ones matching other parameters. If no other parameters are set, it retrieves the newest item.`,
+				},
+				resource.Attribute{
+					Name:        "earliest",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, retrieve the earliest item among the ones matching other parameters. If no other parameters are set, it retrieves the oldest item.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -214,7 +526,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) - ID of certificate ` + "`" + `alias` + "`" + ` or ` + "`" + `id` + "`" + ` is required field. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_library_certificate` + "`" + `](/providers/vmware/vcd/latest/docs/resources/vcd_library_certificate) resource are available.`,
+					Description: `(Optional) - ID of certificate ` + "`" + `alias` + "`" + ` or ` + "`" + `id` + "`" + ` is required field. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_library_certificate` + "`" + `](/providers/vmware/vcd/latest/docs/resources/certificate_library) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -223,7 +535,7 @@ var (
 			Name:             "",
 			Type:             "vcd_edgegateway",
 			Category:         "Data Sources",
-			ShortDescription: `Provides an edge gateway data source.`,
+			ShortDescription: `Provides an NSX-V edge gateway data source.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -243,8 +555,17 @@ var (
 					Name:        "filter",
 					Description: `(Optional;`,
 				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -567,6 +888,18 @@ var (
 					Name:        "shared",
 					Description: `Defines if this network is shared between multiple vDCs in the vOrg. ## Filter arguments (Supported in provider`,
 				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -576,6 +909,18 @@ var (
 				resource.Attribute{
 					Name:        "shared",
 					Description: `Defines if this network is shared between multiple vDCs in the vOrg. ## Filter arguments (Supported in provider`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 		},
@@ -603,6 +948,18 @@ var (
 					Name:        "filter",
 					Description: `(Optional;`,
 				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -619,6 +976,10 @@ var (
 					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
 				},
 				resource.Attribute{
+					Name:        "owner_id",
+					Description: `(Optional) VDC or VDC Group ID. Always takes precedence over ` + "`" + `vdc` + "`" + ` fields (in resource and inherited from provider configuration)`,
+				},
+				resource.Attribute{
 					Name:        "vdc",
 					Description: `(Deprecated; Optional) The name of VDC to use.`,
 				},
@@ -629,6 +990,14 @@ var (
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Retrieves the data source using one or more filter parameters.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -656,6 +1025,18 @@ var (
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) One or more parameters that will match metadata contents. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -691,6 +1072,14 @@ var (
 				resource.Attribute{
 					Name:        "owner_id",
 					Description: `Parent VDC or VDC Group ID. All attributes defined in [routed network v2 resource](/providers/vmware/vcd/latest/docs/resources/network_routed_v2#attribute-reference) are supported. ## Filter arguments`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -738,12 +1127,8 @@ var (
 					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
-				},
-				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Optional) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+					Description: `(Optional) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
 				},
 				resource.Attribute{
 					Name:        "service_engine_group_id",
@@ -821,12 +1206,8 @@ var (
 					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
-				},
-				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -847,6 +1228,10 @@ var (
 					Name:        "name",
 					Description: `(Required) - Name of Service Engine Group.`,
 				},
+				resource.Attribute{
+					Name:        "sync_on_refresh",
+					Description: `(Optional) - A special argument that is not passed to VCD, but alters behaviour of this resource so that it performs a Sync operation on every Terraform refresh.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -863,12 +1248,8 @@ var (
 					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
-				},
-				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_alb_settings` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_alb_settings) resource are available.`,
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_alb_settings` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_alb_settings) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -886,12 +1267,8 @@ var (
 					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level`,
-				},
-				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -964,7 +1341,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vdc",
-					Description: `(Optional) The name of VDC that owns the edge cluster. Optional if defined at provider level.`,
+					Description: `(Optional, Deprecated) The name of VDC that owns the edge cluster. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "vdc_group_id",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "provider_vdc_id",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1018,6 +1407,142 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxt_edgegateway_bgp_configuration",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read BGP configuration on NSX-T Edge Gateway that has a dedicated Tier-0 Gateway or VRF.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_edgegateway_bgp_configuration` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_bgp_configuration) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edgegateway_bgp_ip_prefix_list",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to manage NSX-T Edge Gateway BGP IP Prefix Lists. IP prefix lists can contain single or multiple IP addresses and can be used to assign BGP neighbors with access permissions for route advertisement.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be lookup up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name of existing BGP IP Prefix List in specified Edge Gateway ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_edgegateway_bgp_ip_prefix_list` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_bgp_ip_prefix_list) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edgegateway_bgp_neighbor",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T Edge Gateway BGP Neighbors and their configuration.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the edge gateway belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) An ID of NSX-T Edge Gateway. Can be looked up using [vcd_nsxt_edgegateway](/providers/vmware/vcd/latest/docs/data-sources/nsxt_edgegateway) data source`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) An IP Address (IPv4 or IPv6) of existing BGP Neighbor in specified Edge Gateway ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_edgegateway_bgp_neighbor` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_bgp_neighbor) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edgegateway_qos_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T Edge Gateway QoS profiles, which can be used to modify NSX-T Edge Gateway Rate Limiting (QoS) configuration.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nsxt_manager_id",
+					Description: `(Required) NSX-T Manager where the QoS profile is defined in (can be looked up using ` + "`" + `vcd_nsxt_manager` + "`" + ` data source)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) QoS Profile Name ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of QoS Profile`,
+				},
+				resource.Attribute{
+					Name:        "committed_bandwidth",
+					Description: `Committed bandwith specificd in Mb/s`,
+				},
+				resource.Attribute{
+					Name:        "burst_size",
+					Description: `Burst size defined in bytes`,
+				},
+				resource.Attribute{
+					Name:        "excess_action",
+					Description: `Excess action defines action on traffic exceeding bandwidth`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of QoS Profile`,
+				},
+				resource.Attribute{
+					Name:        "committed_bandwidth",
+					Description: `Committed bandwith specificd in Mb/s`,
+				},
+				resource.Attribute{
+					Name:        "burst_size",
+					Description: `Burst size defined in bytes`,
+				},
+				resource.Attribute{
+					Name:        "excess_action",
+					Description: `Excess action defines action on traffic exceeding bandwidth`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_edgegateway_rate_limiting",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T Edge Gateway Rate Limiting (QoS) configuration.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Required) Org in which the NSX-T Edge Gateway is located`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway_id",
+					Description: `(Required) NSX-T Edge Gateway ID ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_edgegateway_rate_limiting` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_rate_limiting) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxt_firewall",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data source to read NSX-T Firewall configuration of an Edge Gateway. Firewalls allow user to control the incoming and outgoing network traffic to and from an NSX-T Data Center Edge Gateway.`,
@@ -1027,10 +1552,6 @@ var (
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations.`,
-				},
-				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
 				},
 				resource.Attribute{
 					Name:        "edge_gateway_id",
@@ -1057,7 +1578,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using`,
+					Description: `(Required) The ID of the Edge Gateway (NSX-T only). Can be looked up using`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1088,12 +1609,8 @@ var (
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
-				},
-				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
+					Description: `(Required) The ID of the Edge Gateway (NSX-T only). Can be looked up using ` + "`" + `vcd_nsxt_edgegateway` + "`" + ` data source`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1130,10 +1647,6 @@ var (
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations.`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
-				},
-				resource.Attribute{
 					Name:        "edge_gateway_id",
 					Description: `(Required) The ID of the Edge Gateway (NSX-T only). Can be looked up using`,
 				},
@@ -1146,7 +1659,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "vcd_nsxt_network_context_profile",
+			Type:             "vcd_nsxt_dynamic_security_group",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a data source for NSX-T Network Context Profile lookup to later be used in Distributed Firewall.`,
 			Description:      ``,
@@ -1171,7 +1684,7 @@ var (
 			Name:             "",
 			Type:             "vcd_nsxt_network_dhcp",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a data source to read DHCP pools for NSX-T Org VDC Routed network.`,
+			ShortDescription: `Provides a data source to read DHCP pools for NSX-T Org VDC networks.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1180,12 +1693,31 @@ var (
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
-					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+					Name:        "org_network_id",
+					Description: `(Required) ID of parent Org VDC Routed network ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxt_network_dhcp` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_network_dhcp) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxt_network_dhcp_binding",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read NSX-T Org VDC network DHCP bindings.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization. Optional if defined at provider level`,
 				},
 				resource.Attribute{
 					Name:        "org_network_id",
-					Description: `(Required) ID of parent Org VDC Routed network ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxt_network_dhcp` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_network_dhcp) resource are available.`,
+					Description: `(Required) The ID of an Org VDC network.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name of DHCP binding ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_nsxt_network_dhcp_binding` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxt_network_dhcp_binding) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1203,6 +1735,10 @@ var (
 					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
 				},
 				resource.Attribute{
+					Name:        "owner_id",
+					Description: `(Optional) VDC or VDC Group ID. Always takes precedence over ` + "`" + `vdc` + "`" + ` fields (in resource and inherited from provider configuration)`,
+				},
+				resource.Attribute{
 					Name:        "vdc",
 					Description: `(Deprecated; Optional) The name of VDC to use.`,
 				},
@@ -1213,6 +1749,14 @@ var (
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute reference All attributes defined in [imported network resource](/providers/vmware/vcd/latest/docs/resources/nsxt_network_imported#attribute-reference) are supported. ## Filter arguments`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) matches the name using a regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) matches the IP of the resource using a regular expression. See [Filters reference](/providers/vmware/vcd/latest/docs/guides/data_source_filters) for details and examples.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1235,7 +1779,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "edge_gateway_id",
-					Description: `(Required) The ID of the edge gateway (NSX-T only). Can be looked up using`,
+					Description: `(Required) The ID of the Edge Gateway (NSX-T only). Can be looked up using`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1278,6 +1822,182 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxv_application",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director data source for reading NSX-V distributed firewall applications`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Required) The ID of VDC to use`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the application ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the application`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used by the application`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `The ports used by the application. Could be a number, a list of numbers, or a range`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `The source port used by this application. Not all applications provide one`,
+				},
+				resource.Attribute{
+					Name:        "destination_port",
+					Description: `The destination port used by this application. Not all applications provide one`,
+				},
+				resource.Attribute{
+					Name:        "app_guid",
+					Description: `The application identifier, when available`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the application`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The protocol used by the application`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `The ports used by the application. Could be a number, a list of numbers, or a range`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `The source port used by this application. Not all applications provide one`,
+				},
+				resource.Attribute{
+					Name:        "destination_port",
+					Description: `The destination port used by this application. Not all applications provide one`,
+				},
+				resource.Attribute{
+					Name:        "app_guid",
+					Description: `The application identifier, when available`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_application_finder",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director data source for searching NSX-V distributed firewall applications and application groups`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Required) The ID of VDC to use`,
+				},
+				resource.Attribute{
+					Name:        "search_expression",
+					Description: `(Required) The regular expression that will be used to search the applications. See [Search Expressions](#search-expressions) below`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) What kind of application we seek. One of ` + "`" + `application` + "`" + `, ` + "`" + `application_group` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "objects",
+					Description: `A list of objects found by the search expression. Each one contains the following properties:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the object`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `the type of the object (` + "`" + `Application` + "`" + ` or ` + "`" + `ApplicationGroup` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The identifier of the object ## Search expressions To search for an application or application group, we can use simple or complex [regular expressions](https://en.wikipedia.org/wiki/Regular_expression). The expressions in this data source follow the [PCRE](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions) standard. A`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "objects",
+					Description: `A list of objects found by the search expression. Each one contains the following properties:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the object`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `the type of the object (` + "`" + `Application` + "`" + ` or ` + "`" + `ApplicationGroup` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The identifier of the object ## Search expressions To search for an application or application group, we can use simple or complex [regular expressions](https://en.wikipedia.org/wiki/Regular_expression). The expressions in this data source follow the [PCRE](https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions) standard. A`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_application_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director data source for reading NSX-V Distributed Firewall application groups`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Required) The ID of VDC to use`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the application group ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the application groups`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `The list of the applications belonging to this group. For each one we get the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the application`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The identifier of the application`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The identifier of the application groups`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `The list of the applications belonging to this group. For each one we get the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the application`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The identifier of the application`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxv_dhcp_relay",
 			Category:         "Data Sources",
 			ShortDescription: `Provides an NSX edge gateway DHCP relay configuration data source.`,
@@ -1295,6 +2015,21 @@ var (
 				resource.Attribute{
 					Name:        "edge_gateway",
 					Description: `(Required) The name of the edge gateway on which DHCP relay is to be configured. ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxv_dhcp_relay` + "`" + `](/providers/vmware/vcd/latest/docs/resources/nsxv_dhcp_relay) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_distributed_firewall",
+			Category:         "Data Sources",
+			ShortDescription: `The NSX-V Distributed Firewall data source reads all defined rules for a particular VDC`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Required) The ID of VDC to manage the Distributed Firewall in. Can be looked up using a ` + "`" + `vcd_org_vdc` + "`" + ` data source ## Attributes reference All the arguments and attributes defined for the ` + "`" + `vcd_nsxv_distributed_firewall` + "`" + ` resource are reported as attributes for this data source.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1453,7 +2188,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(`,
+					Description: `(Deprecated;`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to the organization. See [Metadata](#metadata) section for details.`,
 				},
 				resource.Attribute{
 					Name:        "vapp_lease",
@@ -1485,7 +2224,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_storage_lease_expiration",
-					Description: `If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted`,
+					Description: `If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted <a id="metadata"></a> ## Metadata The ` + "`" + `metadata_entry` + "`" + ` (`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1527,7 +2286,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(`,
+					Description: `(Deprecated;`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to the organization. See [Metadata](#metadata) section for details.`,
 				},
 				resource.Attribute{
 					Name:        "vapp_lease",
@@ -1559,7 +2322,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_on_storage_lease_expiration",
-					Description: `If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted`,
+					Description: `If true, storage for a vAppTemplate is deleted when the vAppTemplate lease expires. If false, the storage is flagged for deletion, but not deleted <a id="metadata"></a> ## Metadata The ` + "`" + `metadata_entry` + "`" + ` (`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `.`,
 				},
 			},
 		},
@@ -1578,6 +2361,21 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the group. ## Attribute reference All attributes defined in [org_group](/providers/vmware/vcd/latest/docs/resources/org_group#attribute-reference) are supported.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_org_ldap",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a data source to read LDAP configuration for an organization.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `(Required) - Name of the organization containing the LDAP settings ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_org_ldap` + "`" + `](/providers/vmware/vcd/latest/docs/resources/org_ldap) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1679,7 +2477,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Organization VDC name ## Attribute reference All attributes defined in [organization VDC resource](/providers/vmware/vcd/latest/docs/resources/org_vdc#attribute-reference) are supported.`,
+					Description: `(Required) Organization VDC name ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "edge_cluster_id",
+					Description: `(`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1699,6 +2501,255 @@ var (
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) ` + "`" + `NETWORK` + "`" + ` for vSwitch port group or ` + "`" + `DV_PORTGROUP` + "`" + ` for distributed port group. ## Attribute reference Only ID is set to be able and reference in other resources or data sources.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_provider_vdc",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Provider VDC data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Provider VDC name ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Optional description of the Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the Provider VDC, it can be -1 (creation failed), 0 (not ready), 1 (ready), 2 (unknown) or 3 (unrecognized).`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `True if this Provider VDC is enabled and can provide resources to organization VDCs. A Provider VDC is always enabled on creation.`,
+				},
+				resource.Attribute{
+					Name:        "capabilities",
+					Description: `Set of virtual hardware versions supported by this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "compute_capacity",
+					Description: `An indicator of CPU and memory capacity. See [Compute Capacity](#compute-capacity) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "compute_provider_scope",
+					Description: `Represents the compute fault domain for this Provider VDC. This value is a tenant-facing tag that is shown to tenants when viewing fault domains of the child Organization VDCs (for example, a VDC Group).`,
+				},
+				resource.Attribute{
+					Name:        "highest_supported_hardware_version",
+					Description: `The highest virtual hardware version supported by this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "nsxt_manager_id",
+					Description: `ID of the registered NSX-T Manager that backs networking operations for this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "storage_containers_ids",
+					Description: `Set of IDs of the vSphere Datastores backing this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "external_network_ids",
+					Description: `Set of IDs of External Networks.`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile_ids",
+					Description: `Set of IDs to the Storage Profiles available to this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "resource_pool_ids",
+					Description: `Set of IDs of the Resource Pools backing this provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "network_pool_ids",
+					Description: `Set IDs of the Network Pools used by this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "universal_network_pool_id",
+					Description: `ID of the universal network reference.`,
+				},
+				resource.Attribute{
+					Name:        "host_ids",
+					Description: `Set with all the hosts which are connected to VC server.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_id",
+					Description: `ID of the vCenter Server that provides the Resource Pools and Datastores.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key and value pairs for Provider VDC Metadata.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to the Provider VDC. See [Metadata](#metadata) section for details. <a id="compute-capacity"></a> ## Compute Capacity The ` + "`" + `compute_capacity` + "`" + ` attribute is a list with a single item which has the following nested attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `An indicator of CPU. See [CPU and memory](#cpu-and-memory) below.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `An indicator of memory. See [CPU and memory](#cpu-and-memory) below.`,
+				},
+				resource.Attribute{
+					Name:        "is_elastic",
+					Description: `True if compute capacity can grow or shrink based on demand.`,
+				},
+				resource.Attribute{
+					Name:        "is_ha",
+					Description: `True if compute capacity is highly available. <a id="cpu-and-memory"></a> ### CPU and memory The ` + "`" + `cpu` + "`" + ` and ` + "`" + `memory` + "`" + ` indicators have the following nested attributes:`,
+				},
+				resource.Attribute{
+					Name:        "allocation",
+					Description: `Allocated CPU/Memory for this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "overhead",
+					Description: `CPU/Memory overhead for this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "reserved",
+					Description: `Reserved CPU/Memory for this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `Total CPU/Memory for this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `Units for the CPU/Memory of this Provider VDC.`,
+				},
+				resource.Attribute{
+					Name:        "used",
+					Description: `Used CPU/Memory in this Provider VDC. <a id="metadata"></a> ## Metadata The ` + "`" + `metadata_entry` + "`" + ` (`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_rde",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the capability of reading an existing Runtime Defined Entity in VMware Cloud Director.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) Name of the [Organization](/providers/vmware/vcd/latest/docs/data-sources/org) that owns the RDE, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "rde_type_id",
+					Description: `(Required) The ID of the [RDE Type](/providers/vmware/vcd/latest/docs/data-sources/rde_type) of the RDE to fetch.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Runtime Defined Entity. ## Attribute Reference The following attributes are supported:`,
+				},
+				resource.Attribute{
+					Name:        "entity",
+					Description: `The entity JSON.`,
+				},
+				resource.Attribute{
+					Name:        "owner_user_id",
+					Description: `The ID of the [Organization user](/providers/vmware/vcd/latest/docs/resources/org_user) that owns this Runtime Defined Entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The ID of the [Organization](/providers/vmware/vcd/latest/docs/resources/org) to which the Runtime Defined Entity belongs.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `It can be ` + "`" + `RESOLVED` + "`" + `, ` + "`" + `RESOLUTION_ERROR` + "`" + ` or ` + "`" + `PRE_CREATED` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "entity",
+					Description: `The entity JSON.`,
+				},
+				resource.Attribute{
+					Name:        "owner_user_id",
+					Description: `The ID of the [Organization user](/providers/vmware/vcd/latest/docs/resources/org_user) that owns this Runtime Defined Entity.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The ID of the [Organization](/providers/vmware/vcd/latest/docs/resources/org) to which the Runtime Defined Entity belongs.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `It can be ` + "`" + `RESOLVED` + "`" + `, ` + "`" + `RESOLUTION_ERROR` + "`" + ` or ` + "`" + `PRE_CREATED` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_rde_interface",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the capability of fetching an existing Runtime Defined Entity Interface from VMware Cloud Director.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `(Required) The vendor of the RDE Interface.`,
+				},
+				resource.Attribute{
+					Name:        "nss",
+					Description: `(Required) A unique namespace associated with the RDE Interface.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version of the RDE Interface. Must follow [semantic versioning](https://semver.org/) syntax. ## Attribute Reference All the supported attributes are defined in the [Defined Interface resource](/providers/vmware/vcd/latest/docs/resources/rde_interface#argument-reference).`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_rde_type",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the capability of fetching an existing Runtime Defined Entity Type from VMware Cloud Director.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vendor",
+					Description: `(Required) The vendor of the Runtime Defined Entity Type.`,
+				},
+				resource.Attribute{
+					Name:        "nss",
+					Description: `(Required) A unique namespace associated with the Runtime Defined Entity Type.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version of the Runtime Defined Entity Type. Must follow [semantic versioning](https://semver.org/) syntax. ## Attribute Reference All the supported attributes are defined in the [Runtime Defined Entity Type resource](/providers/vmware/vcd/latest/docs/resources/rde_type#argument-reference).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1746,6 +2797,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) An unique name to identify the data source`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Which resource we want to list. It needs to use the full name of the resource (i.e. "vcd_org", not simply "org") ## Attribute Reference`,
 				},
 				resource.Attribute{
 					Name:        "attributes",
@@ -1888,7 +2943,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rights",
-					Description: `List of rights assigned to this role`,
+					Description: `Set of rights assigned to this role`,
 				},
 				resource.Attribute{
 					Name:        "publish_to_all_tenants",
@@ -1896,7 +2951,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenants",
-					Description: `List of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
+					Description: `Set of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
@@ -1914,7 +2969,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rights",
-					Description: `List of rights assigned to this role`,
+					Description: `Set of rights assigned to this role`,
 				},
 				resource.Attribute{
 					Name:        "publish_to_all_tenants",
@@ -1922,7 +2977,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenants",
-					Description: `List of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
+					Description: `Set of tenants to which this rights bundle gets published. Ignored if ` + "`" + `publish_to_all_tenants` + "`" + ` is true.`,
 				},
 				resource.Attribute{
 					Name:        "read_only",
@@ -1960,7 +3015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rights",
-					Description: `List of rights assigned to this role ## More information See [Roles management](/providers/vmware/vcd/latest/docs/guides/roles_management) for a broader description of how roles and rights work together.`,
+					Description: `Set of rights assigned to this role ## More information See [Roles management](/providers/vmware/vcd/latest/docs/guides/roles_management) for a broader description of how roles and rights work together.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1978,7 +3033,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rights",
-					Description: `List of rights assigned to this role ## More information See [Roles management](/providers/vmware/vcd/latest/docs/guides/roles_management) for a broader description of how roles and rights work together.`,
+					Description: `Set of rights assigned to this role ## More information See [Roles management](/providers/vmware/vcd/latest/docs/guides/roles_management) for a broader description of how roles and rights work together.`,
 				},
 			},
 		},
@@ -2059,6 +3114,253 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_subscribed_catalog",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director subscribed catalog data source. This can be used to read a subscribed catalog.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Catalog name. Required if ` + "`" + `filter` + "`" + ` is not set.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Retrieves the data source using one or more filter parameters ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile_id",
+					Description: `Allows to set specific storage profile to be used for catalog.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_url",
+					Description: `The URL to which this catalog is subscribed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the catalog. This is inherited from the publishing catalog`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Optional metadata of the catalog. This is inherited from the publishing catalog`,
+				},
+				resource.Attribute{
+					Name:        "catalog_version",
+					Description: `Version number from this catalog.`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `Owner of the catalog.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_vapp_templates",
+					Description: `Number of vApp templates available in this catalog.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_media",
+					Description: `Number of media items available in this catalog.`,
+				},
+				resource.Attribute{
+					Name:        "is_shared",
+					Description: `Indicates if the catalog is shared (` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Indicates if this catalog is available for subscription. (Always return ` + "`" + `false` + "`" + ` for this data source)`,
+				},
+				resource.Attribute{
+					Name:        "is_local",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "publish_subscription_type",
+					Description: `Shows if the catalog is published, if it is a subscription from another one or none of those. (Always returns ` + "`" + `SUBSCRIBED` + "`" + ` for this data source)`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `the catalog's Hyper reference.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Date and time of catalog creation.`,
+				},
+				resource.Attribute{
+					Name:        "running_tasks",
+					Description: `List of running synchronization tasks that are still running. They can refer to the catalog or any of its catalog items.`,
+				},
+				resource.Attribute{
+					Name:        "failed_tasks",
+					Description: `List of synchronization tasks that are have failed. They can refer to the catalog or any of its catalog items. ## Filter arguments`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_profile_id",
+					Description: `Allows to set specific storage profile to be used for catalog.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_url",
+					Description: `The URL to which this catalog is subscribed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the catalog. This is inherited from the publishing catalog`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Optional metadata of the catalog. This is inherited from the publishing catalog`,
+				},
+				resource.Attribute{
+					Name:        "catalog_version",
+					Description: `Version number from this catalog.`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `Owner of the catalog.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_vapp_templates",
+					Description: `Number of vApp templates available in this catalog.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_media",
+					Description: `Number of media items available in this catalog.`,
+				},
+				resource.Attribute{
+					Name:        "is_shared",
+					Description: `Indicates if the catalog is shared (` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `Indicates if this catalog is available for subscription. (Always return ` + "`" + `false` + "`" + ` for this data source)`,
+				},
+				resource.Attribute{
+					Name:        "is_local",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "publish_subscription_type",
+					Description: `Shows if the catalog is published, if it is a subscription from another one or none of those. (Always returns ` + "`" + `SUBSCRIBED` + "`" + ` for this data source)`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `the catalog's Hyper reference.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Date and time of catalog creation.`,
+				},
+				resource.Attribute{
+					Name:        "running_tasks",
+					Description: `List of running synchronization tasks that are still running. They can refer to the catalog or any of its catalog items.`,
+				},
+				resource.Attribute{
+					Name:        "failed_tasks",
+					Description: `List of synchronization tasks that are have failed. They can refer to the catalog or any of its catalog items. ## Filter arguments`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_task",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director Organization Task data source. This can be used to read existing tasks.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The ID of the task ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The URI of the task.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the task. May not be unique. Defines the general operation being performed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of the task.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the task.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The execution status of the task. One of queued, preRunning, running, success, error, aborted.`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `A message describing the operation that is tracked by this task.`,
+				},
+				resource.Attribute{
+					Name:        "operation_name",
+					Description: `The short name of the operation that is tracked by this task.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `The date and time the system started executing the task. May not be present if the task has not been executed yet.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `The date and time that processing of the task was completed. May not be present if the task is still being executed.`,
+				},
+				resource.Attribute{
+					Name:        "expiry_time",
+					Description: `The date and time at which the task resource will be destroyed and no longer available for retrieval. May not be present if the task has not been executed or is still being executed.`,
+				},
+				resource.Attribute{
+					Name:        "cancel_requested",
+					Description: `Whether user has requested this processing to be canceled (` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `The name of the task owner. This is typically the object that the task is creating or updating.`,
+				},
+				resource.Attribute{
+					Name:        "owner_type",
+					Description: `The type of the task owner.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The unique identifier of the task owner.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `error information from a failed task.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The name of the user who started the task.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The unique identifier of the task user.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `The name of the org to which the user belongs.`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The unique identifier of the user org.`,
+				},
+				resource.Attribute{
+					Name:        "progress",
+					Description: `Indicator of task progress as an approximate percentage between 0 and 100. Not available for all tasks.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vapp",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a VMware Cloud Director vApp data source. This can be used to reference vApps.`,
@@ -2083,7 +3385,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Key value map of metadata to assign to this vApp. Key and value can be any string.`,
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key value map of metadata assigned to this vApp. Key and value can be any string.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to this vApp. See [Metadata](#metadata) section for details.`,
 				},
 				resource.Attribute{
 					Name:        "guest_properties",
@@ -2098,12 +3404,36 @@ var (
 					Description: `The vApp status as text.`,
 				},
 				resource.Attribute{
+					Name:        "lease",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "runtime_lease_in_sec",
 					Description: `How long any of the VMs in the vApp can run before the vApp is automatically powered off or suspended. 0 means never expires.`,
 				},
 				resource.Attribute{
 					Name:        "storage_lease_in_sec",
-					Description: `How long the vApp is available before being automatically deleted or marked as expired. 0 means never expires.`,
+					Description: `How long the vApp is available before being automatically deleted or marked as expired. 0 means never expires. <a id="metadata"></a> ## Metadata The ` + "`" + `metadata_entry` + "`" + ` (`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2191,6 +3521,10 @@ var (
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
+					Name:        "vm_type",
+					Description: `(`,
+				},
+				resource.Attribute{
 					Name:        "computer_name",
 					Description: `Computer name to assign to this virtual machine.`,
 				},
@@ -2248,7 +3582,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Key value map of metadata assigned to this VM`,
+					Description: `(Deprecated) Use ` + "`" + `metadata_entry` + "`" + ` instead. Key value map of metadata assigned to this VM`,
+				},
+				resource.Attribute{
+					Name:        "metadata_entry",
+					Description: `A set of metadata entries assigned to this VM. See [Metadata](#metadata) section for details`,
 				},
 				resource.Attribute{
 					Name:        "disk",
@@ -2277,6 +3615,46 @@ var (
 				resource.Attribute{
 					Name:        "hardware_version",
 					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "sizing_policy_id",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "placement_policy_id",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "status_text",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "security_tags",
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Key of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value of this metadata entry.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of this metadata entry. One of: ` + "`" + `MetadataStringValue` + "`" + `, ` + "`" + `MetadataNumberValue` + "`" + `, ` + "`" + `MetadataDateTimeValue` + "`" + `, ` + "`" + `MetadataBooleanValue` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_access",
+					Description: `User access level for this metadata entry. One of: ` + "`" + `PRIVATE` + "`" + ` (hidden), ` + "`" + `READONLY` + "`" + ` (read only), ` + "`" + `READWRITE` + "`" + ` (read/write).`,
+				},
+				resource.Attribute{
+					Name:        "is_system",
+					Description: `Domain for this metadata entry. true if it belongs to ` + "`" + `SYSTEM` + "`" + `, false if it belongs to ` + "`" + `GENERAL` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2330,7 +3708,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) - ID of VDC group Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be used. If both are missing, an error arises. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_vdc_group` + "`" + `](/providers/vmware/vcd/latest/docs/resources/vcd_vdc_group) resource are available.`,
+					Description: `(Optional) - ID of VDC group Either ` + "`" + `name` + "`" + ` or ` + "`" + `id` + "`" + ` must be used. If both are missing, an error arises. ## Attribute Reference All the arguments and attributes defined in [` + "`" + `vcd_vdc_group` + "`" + `](/providers/vmware/vcd/latest/docs/resources/vdc_group) resource are available.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2353,7 +3731,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A name or ID for the standalone VM in VDC ## Attributes reference This data source provides all attributes available for ` + "`" + `vcd_vapp_vm` + "`" + `.`,
+					Description: `(Required) A name or ID for the standalone VM in VDC ## Attributes reference This data source provides all attributes available for [` + "`" + `vcd_vapp_vm` + "`" + `](/providers/vmware/vcd/latest/docs/data-sources/vapp_vm).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2391,6 +3769,81 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_vm_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director VM Group data source. This can be used to fetch vSphere VM Groups and create VM Placement Policies with them.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of VM Group to fetch from vSphere.`,
+				},
+				resource.Attribute{
+					Name:        "provider_vdc_id",
+					Description: `(Required) The ID of [Provider VDC](/providers/vmware/vcd/latest/docs/data-sources/provider_vdc) to which the VM Group belongs. ## Attributes reference`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `Name of the vSphere cluster associated to this VM Group.`,
+				},
+				resource.Attribute{
+					Name:        "named_vm_group_id",
+					Description: `ID of the named VM Group. Used to create Logical VM Groups.`,
+				},
+				resource.Attribute{
+					Name:        "vcenter_id",
+					Description: `ID of the vCenter server.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_moref",
+					Description: `Managed object reference of the vSphere cluster associated to this VM Group.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vm_placement_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a VMware Cloud Director VM Placement Policy data source. This can be used to read a VM placement policy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name VM Placement Policy.`,
+				},
+				resource.Attribute{
+					Name:        "provider_vdc_id",
+					Description: `(Required for System administrator users) The ID of the [Provider VDC](/providers/vmware/vcd/latest/docs/data-sources/provider_vdc) to which the VM Placement Policy belongs.`,
+				},
+				resource.Attribute{
+					Name:        "vdc_id",
+					Description: `(Required for Org users;`,
+				},
+				resource.Attribute{
+					Name:        "vm_group_ids",
+					Description: `This attribute can't be retrieved if the data source is used by a tenant user when fetching by ` + "`" + `vdc_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "logical_vm_group_ids",
+					Description: `This attribute can't be retrieved if the data source is used by a tenant user when fetching by ` + "`" + `vdc_id` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vm_group_ids",
+					Description: `This attribute can't be retrieved if the data source is used by a tenant user when fetching by ` + "`" + `vdc_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "logical_vm_group_ids",
+					Description: `This attribute can't be retrieved if the data source is used by a tenant user when fetching by ` + "`" + `vdc_id` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_vm_sizing_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a VMware Cloud Director VM sizing policy data source. This can be used to read VM sizing policy.`,
@@ -2411,69 +3864,89 @@ var (
 		"vcd_catalog":                                   0,
 		"vcd_catalog_item":                              1,
 		"vcd_catalog_media":                             2,
-		"vcd_library_certificate":                       3,
-		"vcd_edgegateway":                               4,
-		"vcd_external_network":                          5,
-		"vcd_external_network_v2":                       6,
-		"vcd_global_role":                               7,
-		"vcd_independent_disk":                          8,
-		"vcd_lb_app_profile":                            9,
-		"vcd_lb_app_rule":                               10,
-		"vcd_lb_server_pool":                            11,
-		"vcd_lb_service_monitor":                        12,
-		"vcd_lb_virtual_server":                         13,
-		"vcd_network_direct":                            14,
-		"vcd_network_isolated":                          15,
-		"vcd_network_isolated_v2":                       16,
-		"vcd_network_routed":                            17,
-		"vcd_network_routed_v2":                         18,
-		"vcd_nsxt_alb_cloud":                            19,
-		"vcd_nsxt_alb_controller":                       20,
-		"vcd_nsxt_alb_edgegateway_service_engine_group": 21,
-		"vcd_nsxt_alb_importable_cloud":                 22,
-		"vcd_nsxt_alb_pool":                             23,
-		"vcd_nsxt_alb_service_engine_group":             24,
-		"vcd_nsxt_alb_settings":                         25,
-		"vcd_nsxt_alb_virtual_service":                  26,
-		"vcd_nsxt_app_port_profile":                     27,
-		"vcd_nsxt_distributed_firewall":                 28,
-		"vcd_nsxt_edge_cluster":                         29,
-		"vcd_nsxt_edgegateway":                          30,
-		"vcd_nsxt_firewall":                             31,
-		"vcd_nsxt_ip_set":                               32,
-		"vcd_nsxt_ipsec_vpn_tunnel":                     33,
-		"vcd_nsxt_manager":                              34,
-		"vcd_nsxt_nat_rule":                             35,
-		"vcd_nsxt_network_context_profile":              36,
-		"vcd_nsxt_network_dhcp":                         37,
-		"vcd_nsxt_network_imported":                     38,
-		"vcd_nsxt_security_group":                       39,
-		"vcd_nsxt_tier0_router":                         40,
-		"vcd_nsxv_dhcp_relay":                           41,
-		"vcd_nsxv_dnat":                                 42,
-		"vcd_nsxv_firewall_rule":                        43,
-		"vcd_nsxv_ip_set":                               44,
-		"vcd_nsxv_snat":                                 45,
-		"vcd_org":                                       46,
-		"vcd_org_group":                                 47,
-		"vcd_org_user":                                  48,
-		"vcd_org_vdc":                                   49,
-		"vcd_portgroup":                                 50,
-		"vcd_resource_list":                             51,
-		"vcd_resource_schema":                           52,
-		"vcd_right":                                     53,
-		"vcd_rights_bundle":                             54,
-		"vcd_role":                                      55,
-		"vcd_storage_profile":                           56,
-		"vcd_vapp":                                      57,
-		"vcd_vapp_network":                              58,
-		"vcd_vapp_org_network":                          59,
-		"vcd_vapp_vm":                                   60,
-		"vcd_vcenter":                                   61,
-		"vcd_vdc_group":                                 62,
-		"vcd_vm":                                        63,
-		"vcd_vm_affinity_rule":                          64,
-		"vcd_vm_sizing_policy":                          65,
+		"vcd_catalog_vapp_template":                     3,
+		"vcd_library_certificate":                       4,
+		"vcd_edgegateway":                               5,
+		"vcd_external_network":                          6,
+		"vcd_external_network_v2":                       7,
+		"vcd_global_role":                               8,
+		"vcd_independent_disk":                          9,
+		"vcd_lb_app_profile":                            10,
+		"vcd_lb_app_rule":                               11,
+		"vcd_lb_server_pool":                            12,
+		"vcd_lb_service_monitor":                        13,
+		"vcd_lb_virtual_server":                         14,
+		"vcd_network_direct":                            15,
+		"vcd_network_isolated":                          16,
+		"vcd_network_isolated_v2":                       17,
+		"vcd_network_routed":                            18,
+		"vcd_network_routed_v2":                         19,
+		"vcd_nsxt_alb_cloud":                            20,
+		"vcd_nsxt_alb_controller":                       21,
+		"vcd_nsxt_alb_edgegateway_service_engine_group": 22,
+		"vcd_nsxt_alb_importable_cloud":                 23,
+		"vcd_nsxt_alb_pool":                             24,
+		"vcd_nsxt_alb_service_engine_group":             25,
+		"vcd_nsxt_alb_settings":                         26,
+		"vcd_nsxt_alb_virtual_service":                  27,
+		"vcd_nsxt_app_port_profile":                     28,
+		"vcd_nsxt_distributed_firewall":                 29,
+		"vcd_nsxt_edge_cluster":                         30,
+		"vcd_nsxt_edgegateway":                          31,
+		"vcd_nsxt_edgegateway_bgp_configuration":        32,
+		"vcd_nsxt_edgegateway_bgp_ip_prefix_list":       33,
+		"vcd_nsxt_edgegateway_bgp_neighbor":             34,
+		"vcd_nsxt_edgegateway_qos_profile":              35,
+		"vcd_nsxt_edgegateway_rate_limiting":            36,
+		"vcd_nsxt_firewall":                             37,
+		"vcd_nsxt_ip_set":                               38,
+		"vcd_nsxt_ipsec_vpn_tunnel":                     39,
+		"vcd_nsxt_manager":                              40,
+		"vcd_nsxt_nat_rule":                             41,
+		"vcd_nsxt_dynamic_security_group":               42,
+		"vcd_nsxt_network_dhcp":                         43,
+		"vcd_nsxt_network_dhcp_binding":                 44,
+		"vcd_nsxt_network_imported":                     45,
+		"vcd_nsxt_security_group":                       46,
+		"vcd_nsxt_tier0_router":                         47,
+		"vcd_nsxv_application":                          48,
+		"vcd_nsxv_application_finder":                   49,
+		"vcd_nsxv_application_group":                    50,
+		"vcd_nsxv_dhcp_relay":                           51,
+		"vcd_nsxv_distributed_firewall":                 52,
+		"vcd_nsxv_dnat":                                 53,
+		"vcd_nsxv_firewall_rule":                        54,
+		"vcd_nsxv_ip_set":                               55,
+		"vcd_nsxv_snat":                                 56,
+		"vcd_org":                                       57,
+		"vcd_org_group":                                 58,
+		"vcd_org_ldap":                                  59,
+		"vcd_org_user":                                  60,
+		"vcd_org_vdc":                                   61,
+		"vcd_portgroup":                                 62,
+		"vcd_provider_vdc":                              63,
+		"vcd_rde":                                       64,
+		"vcd_rde_interface":                             65,
+		"vcd_rde_type":                                  66,
+		"vcd_resource_list":                             67,
+		"vcd_resource_schema":                           68,
+		"vcd_right":                                     69,
+		"vcd_rights_bundle":                             70,
+		"vcd_role":                                      71,
+		"vcd_storage_profile":                           72,
+		"vcd_subscribed_catalog":                        73,
+		"vcd_task":                                      74,
+		"vcd_vapp":                                      75,
+		"vcd_vapp_network":                              76,
+		"vcd_vapp_org_network":                          77,
+		"vcd_vapp_vm":                                   78,
+		"vcd_vcenter":                                   79,
+		"vcd_vdc_group":                                 80,
+		"vcd_vm":                                        81,
+		"vcd_vm_affinity_rule":                          82,
+		"vcd_vm_group":                                  83,
+		"vcd_vm_placement_policy":                       84,
+		"vcd_vm_sizing_policy":                          85,
 	}
 )
 

@@ -12,14 +12,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_baremetal_keypair_v2",
-			Category:         "Baremetal Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a baremetal v2 keypair resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"baremetal",
-				"keypair",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -60,14 +56,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_baremetal_server_v2",
-			Category:         "Baremetal Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a baremetal v2 server resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"baremetal",
-				"server",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -223,14 +215,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_compute_instance_v2",
-			Category:         "Compute Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Instance resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"compute",
-				"instance",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -463,14 +451,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_compute_keypair_v2",
-			Category:         "Compute Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 keypair resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"compute",
-				"keypair",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -523,15 +507,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_compute_volume_attach_v2",
-			Category:         "Compute Resources",
+			Category:         "Resources",
 			ShortDescription: `Attaches a Compute Volume to an Instance.`,
 			Description:      ``,
-			Keywords: []string{
-				"compute",
-				"volume",
-				"attach",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -572,14 +551,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_compute_volume_v2",
-			Category:         "Compute Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 volume resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"compute",
-				"volume",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -664,15 +639,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_dedicated_hypervisor_license_v1",
-			Category:         "Dedicated Hypervisor Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a dedicated hypervisor v1 license resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"dedicated",
-				"hypervisor",
-				"license",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "license_type",
@@ -709,15 +679,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_dedicated_hypervisor_server_v1",
-			Category:         "Dedicated Hypervisor Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a dedicated hypervisor v1 server resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"dedicated",
-				"hypervisor",
-				"server",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -786,14 +751,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_dns_recordset_v2",
-			Category:         "DNS Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 recordset resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"dns",
-				"recordset",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
@@ -874,14 +835,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_dns_zone_v2",
-			Category:         "DNS Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 zone resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"dns",
-				"zone",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
@@ -962,15 +919,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_imagestorages_image_v2",
-			Category:         "Images Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 image resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"images",
-				"imagestorages",
-				"image",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1115,16 +1067,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_imagestorages_member_accepter_v2",
-			Category:         "Images Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Image member resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"images",
-				"imagestorages",
-				"member",
-				"accepter",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1153,15 +1099,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_imagestorages_member_v2",
-			Category:         "Images Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Image member resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"images",
-				"imagestorages",
-				"member",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1222,16 +1163,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_common_function_gateway_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 common function gateway resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"common",
-				"function",
-				"gateway",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -1304,15 +1239,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_gateway_interface_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 gateway interface resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"gateway",
-				"interface",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1433,15 +1363,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_internet_gateway_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 internet gateway resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"internet",
-				"gateway",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -1490,15 +1415,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_load_balancer_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Load Balancer resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"load",
-				"balancer",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -1835,13 +1755,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_network_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 network resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_state_up",
@@ -1958,14 +1875,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_port_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 port resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"port",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_state_up",
@@ -2170,15 +2083,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_public_ip_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 public ip resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"public",
-				"ip",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -2235,15 +2143,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_static_route_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 static route resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"static",
-				"route",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
@@ -2324,14 +2227,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_network_subnet_v2",
-			Category:         "Network Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 subnet resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"network",
-				"subnet",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_pools",
@@ -2567,18 +2466,11 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "provider_connectivity_tenant_connection_request_v2",
-			Category:         "Provider Connectivity Resources",
+			Type:             "ecl_provider_connectivity_tenant_connection_request_v2",
+			Category:         "Resources",
 			ShortDescription: `Manages a v2 Tenant Connection Request resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"provider",
-				"connectivity",
-				"tenant",
-				"connection",
-				"request",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id_other",
@@ -2639,16 +2531,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_provider_connectivity_tenant_connection_v2",
-			Category:         "Provider Connectivity Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a v2 Tenant Connection resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"provider",
-				"connectivity",
-				"tenant",
-				"connection",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -2809,14 +2695,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_rca_user_v1",
-			Category:         "RCA Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a rca v1 user resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"rca",
-				"user",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "password",
@@ -2861,15 +2743,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_security_host_based_v2",
-			Category:         "Security Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Host Based Security resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
-			Keywords: []string{
-				"security",
-				"host",
-				"based",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -2905,17 +2782,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_security_network_based_device_ha_v2",
-			Category:         "Security Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Network Based Device(HA) resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
-			Keywords: []string{
-				"security",
-				"network",
-				"based",
-				"device",
-				"ha",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -3096,17 +2966,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_security_network_based_device_single_v2",
-			Category:         "Security Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Network Based Device(Single) resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
-			Keywords: []string{
-				"security",
-				"network",
-				"based",
-				"device",
-				"single",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -3215,17 +3078,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_security_network_based_waf_single_v2",
-			Category:         "Security Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Network Based WAF(Single) resource within Enterprise Cloud. If you are using V1 Security Service, please install v1.13.0 of terraform-provider-ecl.`,
 			Description:      ``,
-			Keywords: []string{
-				"security",
-				"network",
-				"based",
-				"waf",
-				"single",
-				"v2",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -3330,15 +3186,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_sss_approval_request_v1",
-			Category:         "SSS Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V2 Approval Request resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"sss",
-				"approval",
-				"request",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "request_id",
@@ -3515,14 +3366,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_sss_tenant_v1",
-			Category:         "SSS Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V1 tenant resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"sss",
-				"tenant",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_name",
@@ -3595,14 +3442,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_sss_user_v1",
-			Category:         "SSS Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V1 user resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"sss",
-				"user",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "login_id",
@@ -3731,14 +3574,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_storage_virtualstorage_v1",
-			Category:         "Storage Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V1 virtual storage resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"storage",
-				"virtualstorage",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3811,14 +3650,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_storage_volume_v1",
-			Category:         "Storage Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V1 volume resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"storage",
-				"volume",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3875,16 +3710,10 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ecl_vna_appliance_v1",
-			Category:         "Virtual Network Appliance Resources",
+			Category:         "Resources",
 			ShortDescription: `Manages a V1 Virtual Network Appliance resource within Enterprise Cloud.`,
 			Description:      ``,
-			Keywords: []string{
-				"virtual",
-				"network",
-				"appliance",
-				"vna",
-				"v1",
-			},
+			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
@@ -3963,6 +3792,14 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "username",
+					Description: `Username with user access to VNA instance`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for user`,
+				},
+				resource.Attribute{
 					Name:        "interface_[slot number]_info/updatable",
 					Description: `See Argument Reference above.`,
 				},
@@ -3989,6 +3826,14 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "username",
+					Description: `Username with user access to VNA instance`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for user`,
+				},
+				resource.Attribute{
 					Name:        "interface_[slot number]_info/updatable",
 					Description: `See Argument Reference above.`,
 				},
@@ -4010,41 +3855,41 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"ecl_baremetal_keypair_v2":                           0,
-		"ecl_baremetal_server_v2":                            1,
-		"ecl_compute_instance_v2":                            2,
-		"ecl_compute_keypair_v2":                             3,
-		"ecl_compute_volume_attach_v2":                       4,
-		"ecl_compute_volume_v2":                              5,
-		"ecl_dedicated_hypervisor_license_v1":                6,
-		"ecl_dedicated_hypervisor_server_v1":                 7,
-		"ecl_dns_recordset_v2":                               8,
-		"ecl_dns_zone_v2":                                    9,
-		"ecl_imagestorages_image_v2":                         10,
-		"ecl_imagestorages_member_accepter_v2":               11,
-		"ecl_imagestorages_member_v2":                        12,
-		"ecl_network_common_function_gateway_v2":             13,
-		"ecl_network_gateway_interface_v2":                   14,
-		"ecl_network_internet_gateway_v2":                    15,
-		"ecl_network_load_balancer_v2":                       16,
-		"ecl_network_network_v2":                             17,
-		"ecl_network_port_v2":                                18,
-		"ecl_network_public_ip_v2":                           19,
-		"ecl_network_static_route_v2":                        20,
-		"ecl_network_subnet_v2":                              21,
-		"provider_connectivity_tenant_connection_request_v2": 22,
-		"ecl_provider_connectivity_tenant_connection_v2":     23,
-		"ecl_rca_user_v1":                                    24,
-		"ecl_security_host_based_v2":                         25,
-		"ecl_security_network_based_device_ha_v2":            26,
-		"ecl_security_network_based_device_single_v2":        27,
-		"ecl_security_network_based_waf_single_v2":           28,
-		"ecl_sss_approval_request_v1":                        29,
-		"ecl_sss_tenant_v1":                                  30,
-		"ecl_sss_user_v1":                                    31,
-		"ecl_storage_virtualstorage_v1":                      32,
-		"ecl_storage_volume_v1":                              33,
-		"ecl_vna_appliance_v1":                               34,
+		"ecl_baremetal_keypair_v2":                               0,
+		"ecl_baremetal_server_v2":                                1,
+		"ecl_compute_instance_v2":                                2,
+		"ecl_compute_keypair_v2":                                 3,
+		"ecl_compute_volume_attach_v2":                           4,
+		"ecl_compute_volume_v2":                                  5,
+		"ecl_dedicated_hypervisor_license_v1":                    6,
+		"ecl_dedicated_hypervisor_server_v1":                     7,
+		"ecl_dns_recordset_v2":                                   8,
+		"ecl_dns_zone_v2":                                        9,
+		"ecl_imagestorages_image_v2":                             10,
+		"ecl_imagestorages_member_accepter_v2":                   11,
+		"ecl_imagestorages_member_v2":                            12,
+		"ecl_network_common_function_gateway_v2":                 13,
+		"ecl_network_gateway_interface_v2":                       14,
+		"ecl_network_internet_gateway_v2":                        15,
+		"ecl_network_load_balancer_v2":                           16,
+		"ecl_network_network_v2":                                 17,
+		"ecl_network_port_v2":                                    18,
+		"ecl_network_public_ip_v2":                               19,
+		"ecl_network_static_route_v2":                            20,
+		"ecl_network_subnet_v2":                                  21,
+		"ecl_provider_connectivity_tenant_connection_request_v2": 22,
+		"ecl_provider_connectivity_tenant_connection_v2":         23,
+		"ecl_rca_user_v1":                                        24,
+		"ecl_security_host_based_v2":                             25,
+		"ecl_security_network_based_device_ha_v2":                26,
+		"ecl_security_network_based_device_single_v2":            27,
+		"ecl_security_network_based_waf_single_v2":               28,
+		"ecl_sss_approval_request_v1":                            29,
+		"ecl_sss_tenant_v1":                                      30,
+		"ecl_sss_user_v1":                                        31,
+		"ecl_storage_virtualstorage_v1":                          32,
+		"ecl_storage_volume_v1":                                  33,
+		"ecl_vna_appliance_v1":                                   34,
 	}
 )
 

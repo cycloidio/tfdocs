@@ -1202,8 +1202,12 @@ var (
 					Description: `(Required) Full path of the KV-V1 secret. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "data_json",
+					Name:        "data",
 					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `JSON-encoded string that that is read as the secret data at the given path.`,
 				},
 				resource.Attribute{
 					Name:        "lease_id",
@@ -1220,8 +1224,12 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "data_json",
+					Name:        "data",
 					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `JSON-encoded string that that is read as the secret data at the given path.`,
 				},
 				resource.Attribute{
 					Name:        "lease_id",
@@ -1266,8 +1274,12 @@ var (
 					Description: `Full path where the KVV2 secret is written.`,
 				},
 				resource.Attribute{
-					Name:        "data_json",
+					Name:        "data",
 					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `JSON-encoded string that that is read as the secret data at the given path.`,
 				},
 				resource.Attribute{
 					Name:        "created_time",
@@ -1292,8 +1304,12 @@ var (
 					Description: `Full path where the KVV2 secret is written.`,
 				},
 				resource.Attribute{
-					Name:        "data_json",
+					Name:        "data",
 					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `JSON-encoded string that that is read as the secret data at the given path.`,
 				},
 				resource.Attribute{
 					Name:        "created_time",
@@ -1415,7 +1431,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_json",
-					Description: `Subkeys for the KV-V2 secret read from Vault..`,
+					Description: `Subkeys for the KV-V2 secret read from Vault.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `Subkeys for the KV-V2 secret stored as a serialized map of strings.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1425,7 +1445,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_json",
-					Description: `Subkeys for the KV-V2 secret read from Vault..`,
+					Description: `Subkeys for the KV-V2 secret read from Vault.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `Subkeys for the KV-V2 secret stored as a serialized map of strings.`,
 				},
 			},
 		},
@@ -1489,6 +1513,100 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_transform_decode",
+			Category:         "Data Sources",
+			ShortDescription: `"/transform/decode/{role_name}"`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path to where the back-end is mounted within Vault.`,
+				},
+				resource.Attribute{
+					Name:        "batch_input",
+					Description: `(Optional) Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.`,
+				},
+				resource.Attribute{
+					Name:        "batch_results",
+					Description: `(Optional) The result of decoding a batch.`,
+				},
+				resource.Attribute{
+					Name:        "decoded_value",
+					Description: `(Optional) The result of decoding a value.`,
+				},
+				resource.Attribute{
+					Name:        "role_name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "transformation",
+					Description: `(Optional) The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.`,
+				},
+				resource.Attribute{
+					Name:        "tweak",
+					Description: `(Optional) The tweak value to use. Only applicable for FPE transformations`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value in which to decode.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_transform_encode",
+			Category:         "Data Sources",
+			ShortDescription: `"/transform/encode/{role_name}"`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace of the target resource. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path to where the back-end is mounted within Vault.`,
+				},
+				resource.Attribute{
+					Name:        "batch_input",
+					Description: `(Optional) Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.`,
+				},
+				resource.Attribute{
+					Name:        "batch_results",
+					Description: `(Optional) The result of encoding a batch.`,
+				},
+				resource.Attribute{
+					Name:        "encoded_value",
+					Description: `(Optional) The result of encoding a value.`,
+				},
+				resource.Attribute{
+					Name:        "role_name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "transformation",
+					Description: `(Optional) The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.`,
+				},
+				resource.Attribute{
+					Name:        "tweak",
+					Description: `(Optional) The tweak value to use. Only applicable for FPE transformations`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The value in which to encode.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -1512,6 +1630,8 @@ var (
 		"vault_kv_secrets_list_v2":             16,
 		"vault_kv_subkeys_v2":                  17,
 		"vault_policy_document":                18,
+		"vault_transform_decode":               19,
+		"vault_transform_encode":               20,
 	}
 )
 

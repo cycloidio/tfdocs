@@ -11,9 +11,29 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "vercel_alias",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about an existing Alias resource. An Alias allows a vercel_deployment to be accessed through a different URL.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vercel_file",
 			Category:         "Data Sources",
 			ShortDescription: `Provides information about a file on disk. This will read a single file, providing metadata for use with a vercel_deployment.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vercel_prebuilt_project",
+			Category:         "Data Sources",
+			ShortDescription: ``,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -43,9 +63,11 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"vercel_file":              0,
-		"vercel_project":           1,
-		"vercel_project_directory": 2,
+		"vercel_alias":             0,
+		"vercel_file":              1,
+		"vercel_prebuilt_project":  2,
+		"vercel_project":           3,
+		"vercel_project_directory": 4,
 	}
 )
 

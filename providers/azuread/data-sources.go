@@ -11,6 +11,188 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "azuread_access_package",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Use this data source to retrieve information for an existing access package within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Optional) The ID of the Catalog this access package is in.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The display name of the access package.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(Optional) The ID of this access package. ~> Either ` + "`" + `object_id` + "`" + `, or both ` + "`" + `catalog_id` + "`" + ` and ` + "`" + `display_name` + "`" + `, must be specified. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the access package.`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `Whether the access package is hidden from the requestor.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the access package.`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `Whether the access package is hidden from the requestor.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_catalog",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+i
+Use this resource to retrieve information for an existing access package catalog within Identity Governance in Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"catalog",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The display name of the access package catalog.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(Optional) The ID of this access package catalog. ~> One of ` + "`" + `display_name` + "`" + ` or ` + "`" + `object_id` + "`" + ` must be specified. ## Attributes Reference In additional to the arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the access package catalog.`,
+				},
+				resource.Attribute{
+					Name:        "externally_visible",
+					Description: `Whether the access packages in this catalog can be requested by users outside the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "published",
+					Description: `Whether the access packages in this catalog are available for management.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the access package catalog.`,
+				},
+				resource.Attribute{
+					Name:        "externally_visible",
+					Description: `Whether the access packages in this catalog can be requested by users outside the tenant.`,
+				},
+				resource.Attribute{
+					Name:        "published",
+					Description: `Whether the access packages in this catalog are available for management.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_access_package_catalog_role",
+			Category:         "Identity Governance",
+			ShortDescription: ``,
+			Description: `
+
+Gets information about an access package catalog role.
+
+`,
+			Keywords: []string{
+				"identity",
+				"governance",
+				"access",
+				"package",
+				"catalog",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Specifies the display name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(Optional) Specifies the object ID of the role. ~> One of ` + "`" + `display_name` + "`" + ` or ` + "`" + `object_id` + "`" + ` must be specified. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the role.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The object ID of the role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the role.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The object ID of the role.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azuread_administrative_unit",
 			Category:         "Administrative Units",
 			ShortDescription: ``,
@@ -121,6 +303,10 @@ Use this data source to access information about an existing Application within 
 					Description: `The Application ID (also called Client ID).`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the application, as shown to end users.`,
+				},
+				resource.Attribute{
 					Name:        "device_only_auth_enabled",
 					Description: `Specifies whether this application supports device authentication without a user.`,
 				},
@@ -151,6 +337,10 @@ Use this data source to access information about an existing Application within 
 				resource.Attribute{
 					Name:        "logo_url",
 					Description: `CDN URL to the application's logo.`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `User-specified notes relevant for the management of the application.`,
 				},
 				resource.Attribute{
 					Name:        "marketing_url",
@@ -191,6 +381,10 @@ Use this data source to access information about an existing Application within 
 				resource.Attribute{
 					Name:        "required_resource_access",
 					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "service_management_reference",
+					Description: `References application context information from a Service or Asset Management database.`,
 				},
 				resource.Attribute{
 					Name:        "sign_in_audience",
@@ -399,6 +593,10 @@ Use this data source to access information about an existing Application within 
 					Description: `The Application ID (also called Client ID).`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the application, as shown to end users.`,
+				},
+				resource.Attribute{
 					Name:        "device_only_auth_enabled",
 					Description: `Specifies whether this application supports device authentication without a user.`,
 				},
@@ -429,6 +627,10 @@ Use this data source to access information about an existing Application within 
 				resource.Attribute{
 					Name:        "logo_url",
 					Description: `CDN URL to the application's logo.`,
+				},
+				resource.Attribute{
+					Name:        "notes",
+					Description: `User-specified notes relevant for the management of the application.`,
 				},
 				resource.Attribute{
 					Name:        "marketing_url",
@@ -469,6 +671,10 @@ Use this data source to access information about an existing Application within 
 				resource.Attribute{
 					Name:        "required_resource_access",
 					Description: `A collection of ` + "`" + `required_resource_access` + "`" + ` blocks as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "service_management_reference",
+					Description: `References application context information from a Service or Asset Management database.`,
 				},
 				resource.Attribute{
 					Name:        "sign_in_audience",
@@ -669,7 +875,7 @@ Use this data source to access information about an existing Application within 
 
 Use this data source to discover application IDs for APIs published by Microsoft.
 
-This data source uses an [unofficial source of application IDs](https://github.com/manicminer/hamilton/blob/main/environments/published.go), as there is currently no available official indexed source for applications or APIs published by Microsoft.
+This data source uses an [unofficial source of application IDs](https://github.com/hashicorp/go-azure-sdk/blob/main/sdk/environments/application_ids.go), as there is currently no available official indexed source for applications or APIs published by Microsoft.
 
 The app IDs returned by this data source are sourced from the Azure Global (Public) Cloud, however some of them are known to work in government and national clouds.
 
@@ -827,6 +1033,104 @@ Use this data source to access the configuration of the AzureAD provider.
 				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `The tenant ID of the authenticated principal.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_directory_object",
+			Category:         "Base",
+			ShortDescription: ``,
+			Description: `
+
+Retrieves the OData type for a generic directory object having the provided object ID.
+
+`,
+			Keywords: []string{
+				"base",
+				"directory",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(Optional) Specifies the Object ID of the directory object to look up. ## Attributes Reference The following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azuread_directory_roles",
+			Category:         "Directory Roles",
+			ShortDescription: ``,
+			Description: `
+
+Use this data source to access information about activated directory roles within Azure Active Directory.
+
+`,
+			Keywords: []string{
+				"directory",
+				"roles",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `The object IDs of the roles.`,
+				},
+				resource.Attribute{
+					Name:        "template_ids",
+					Description: `The template IDs of the roles.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `A list of users. Each ` + "`" + `role` + "`" + ` object provides the attributes documented below. --- ` + "`" + `role` + "`" + ` object exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the directory role.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The template ID of the directory role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the directory role.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the directory role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "object_ids",
+					Description: `The object IDs of the roles.`,
+				},
+				resource.Attribute{
+					Name:        "template_ids",
+					Description: `The template IDs of the roles.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `A list of users. Each ` + "`" + `role` + "`" + ` object provides the attributes documented below. --- ` + "`" + `role` + "`" + ` object exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `The display name of the directory role.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `The template ID of the directory role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the directory role.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `The object ID of the directory role.`,
 				},
 			},
 		},
@@ -1036,6 +1340,10 @@ Gets information about an Azure Active Directory group.
 					Description: `The on-premises FQDN, also called dnsDomainName, synchronised from the on-premises directory when Azure AD Connect is used.`,
 				},
 				resource.Attribute{
+					Name:        "onpremises_group_type",
+					Description: `The on-premises group type that the AAD group will be written as, when writeback is enabled. Possible values are ` + "`" + `UniversalDistributionGroup` + "`" + `, ` + "`" + `UniversalMailEnabledSecurityGroup` + "`" + `, or ` + "`" + `UniversalSecurityGroup` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "onpremises_netbios_name",
 					Description: `The on-premises NetBIOS name, synchronised from the on-premises directory when Azure AD Connect is used.`,
 				},
@@ -1081,7 +1389,11 @@ Gets information about an Azure Active Directory group.
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility. --- ` + "`" + `dynamic_membership` + "`" + ` block exports the following:`,
+					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility.`,
+				},
+				resource.Attribute{
+					Name:        "writeback_enabled",
+					Description: `Whether the group will be written back to the configured on-premises Active Directory when Azure AD Connect is used. --- ` + "`" + `dynamic_membership` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1154,6 +1466,10 @@ Gets information about an Azure Active Directory group.
 					Description: `The on-premises FQDN, also called dnsDomainName, synchronised from the on-premises directory when Azure AD Connect is used.`,
 				},
 				resource.Attribute{
+					Name:        "onpremises_group_type",
+					Description: `The on-premises group type that the AAD group will be written as, when writeback is enabled. Possible values are ` + "`" + `UniversalDistributionGroup` + "`" + `, ` + "`" + `UniversalMailEnabledSecurityGroup` + "`" + `, or ` + "`" + `UniversalSecurityGroup` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "onpremises_netbios_name",
 					Description: `The on-premises NetBIOS name, synchronised from the on-premises directory when Azure AD Connect is used.`,
 				},
@@ -1199,7 +1515,11 @@ Gets information about an Azure Active Directory group.
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility. --- ` + "`" + `dynamic_membership` + "`" + ` block exports the following:`,
+					Description: `The group join policy and group content visibility. Possible values are ` + "`" + `Private` + "`" + `, ` + "`" + `Public` + "`" + `, or ` + "`" + `Hiddenmembership` + "`" + `. Only Microsoft 365 groups can have ` + "`" + `Hiddenmembership` + "`" + ` visibility.`,
+				},
+				resource.Attribute{
+					Name:        "writeback_enabled",
+					Description: `Whether the group will be written back to the configured on-premises Active Directory when Azure AD Connect is used. --- ` + "`" + `dynamic_membership` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -1848,6 +2168,10 @@ Gets information about an Azure Active Directory user.
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "mail",
+					Description: `(Optional) The SMTP address for the user.`,
+				},
+				resource.Attribute{
 					Name:        "mail_nickname",
 					Description: `(Optional) The email alias of the user.`,
 				},
@@ -1857,7 +2181,7 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "user_principal_name",
-					Description: `(Optional) The user principal name (UPN) of the user. ~> One of ` + "`" + `user_principal_name` + "`" + `, ` + "`" + `object_id` + "`" + ` or ` + "`" + `mail_nickname` + "`" + ` must be specified. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The user principal name (UPN) of the user. ~> One of ` + "`" + `user_principal_name` + "`" + `, ` + "`" + `object_id` + "`" + `, ` + "`" + `mail` + "`" + ` or ` + "`" + `mail_nickname` + "`" + ` must be specified. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "account_enabled",
@@ -2361,18 +2685,23 @@ Gets basic information for multiple Azure Active Directory users.
 
 	dataSourcesMap = map[string]int{
 
-		"azuread_administrative_unit":           0,
-		"azuread_application":                   1,
-		"azuread_application_published_app_ids": 2,
-		"azuread_application_template":          3,
-		"azuread_client_config":                 4,
-		"azuread_domains":                       5,
-		"azuread_group":                         6,
-		"azuread_groups":                        7,
-		"azuread_service_principal":             8,
-		"azuread_service_principals":            9,
-		"azuread_user":                          10,
-		"azuread_users":                         11,
+		"azuread_access_package":                0,
+		"azuread_access_package_catalog":        1,
+		"azuread_access_package_catalog_role":   2,
+		"azuread_administrative_unit":           3,
+		"azuread_application":                   4,
+		"azuread_application_published_app_ids": 5,
+		"azuread_application_template":          6,
+		"azuread_client_config":                 7,
+		"azuread_directory_object":              8,
+		"azuread_directory_roles":               9,
+		"azuread_domains":                       10,
+		"azuread_group":                         11,
+		"azuread_groups":                        12,
+		"azuread_service_principal":             13,
+		"azuread_service_principals":            14,
+		"azuread_user":                          15,
+		"azuread_users":                         16,
 	}
 )
 

@@ -71,11 +71,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_name",
-					Description: `(Required) name of template attached to this schema.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Required) tenant_id for this schema. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of schema created. ## Importing ## An existing MSO Schema can be [imported][docs-import] into this resource via its Id, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema.schema1 {schema_id} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) A block that represents the template associated with the schema. Multiple templates can be created using this attribute. Type - Block.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of template.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for the template.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `tenant_id for the template. ## Attribute Reference ## The only Attribute exposed for this resource is ` + "`" + `id` + "`" + `. Which is set to the id of schema created. ## Importing ## An existing MSO Schema can be [imported][docs-import] into this resource via its Id, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema.schema1 {schema_id} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -92,8 +108,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "template_name",
-					Description: `(Required) Template to be deployed on the site. ## Attribute Reference ## The only attribute exported with this resource is ` + "`" + `id` + "`" + `. Which is set to the id of schema site associated. ## Importing ## An existing MSO Schema Site can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site.site1 {schema_id}/site/{site_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "undeploy_on_destroy",
+					Description: `(Optional) Boolean flag to undeploy templates from site prior to destroy. Default value is set to false. Only supported for NDO version 3.7 and higher. ## Attribute Reference ## The only attribute exported with this resource is ` + "`" + `id` + "`" + `. Which is set to the id of schema site associated. ## Importing ## An existing MSO Schema Site can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_site.site1 {schema_id}/site/{site_name} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -799,19 +815,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr.cidr_ip",
-					Description: `(Required) Ip address for cidr.`,
+					Description: `(Required) IP address for CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.primary",
-					Description: `(Required) Primary flag to set above ip as primary for cidr. Only one ip must be set as primary.`,
+					Description: `(Required) Primary flag to set CIDR as primary. Only one CIDR can be set as primary.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet",
-					Description: `(Required) Subnets to associate with cidr.`,
+					Description: `(Required) Subnets to associate with CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.ip",
-					Description: `(Required) Ip address for subnet.`,
+					Description: `(Required) IP address for the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet.name",
+					Description: `(Required) Name for the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.zone",
@@ -1225,7 +1245,7 @@ var (
 					Description: `(Required) SchemaID under which you want to deploy Anp Epg Subnet.`,
 				},
 				resource.Attribute{
-					Name:        "template_name",
+					Name:        "template",
 					Description: `(Required) Template where Anp Epg Subnet to be created.`,
 				},
 				resource.Attribute{
@@ -1396,6 +1416,26 @@ var (
 				resource.Attribute{
 					Name:        "unknown_multicast_flooding",
 					Description: `(Optional) Unknown Multicast Flooding behavior. Allowed values are ` + "`" + `flood` + "`" + ` and ` + "`" + `optimized_flooding` + "`" + `. Default to ` + "`" + `flood` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies",
+					Description: `(Optional) Block to provide dhcp_policy configurations.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.name",
+					Description: `(Required) Dhcp_policy name. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.version",
+					Description: `(Optional) Version of dhcp_policy. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.dhcp_option_policy_name",
+					Description: `(Optional) Name of dhcp_option_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.dhcp_option_policy_version",
+					Description: `(Optional) Version of dhcp_option_policy. ### Deprecation warning: do not use 'dhcp_policy' map below in combination with NDO releases 3.2 and higher, use above 'dhcp_policies' block instead.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_policy",
@@ -2163,7 +2203,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vzany",
-					Description: `(Optional) Whether to enable vzany. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Resource Schema Template Vrf can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_vrf.vrf1 {schema_id}/template/{template}/vrf/{name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Whether to enable vzany.`,
+				},
+				resource.Attribute{
+					Name:        "ip_data_plane_learning",
+					Description: `(Optional) Whether IP data plane learning is enabled or disabled. Allowed values are ` + "`" + `disabled` + "`" + `and ` + "`" + `enabled` + "`" + `. Default to ` + "`" + `enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_group",
+					Description: `(Optional) Whether to enable preferred Endpoint Group. ## Attribute Reference ## No attributes are exported. ## Importing ## An existing MSO Resource Schema Template Vrf can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_vrf.vrf1 {schema_id}/template/{template}/vrf/{name} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2207,7 +2255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "contract_template_name",
-					Description: `(Optional) Name of template where contract is residing. This parameter should be used when the contract and VRF are in different Templates. ` + "`" + `template_name` + "`" + ` will be used if not provided. ## Attribute Reference ## The only attribute exported is ` + "`" + `id` + "`" + `. Which is set to the name of contract attached. ## Importing ## An existing MSO Resource Schema Template Vrf Contract can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_vrf_contract.demovrf01 {schema_id}/template/{template_name}/vrf/{vrf_name}/contract/{contract_name} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Name of template where contract is residing. This parameter should be used when the contract and VRF are in different Templates. ` + "`" + `template_name` + "`" + ` will be used if not provided. ## Attribute Reference ## The only attribute exported is ` + "`" + `id` + "`" + `. Which is set to the name of contract attached. ## Importing ## An existing MSO Resource Schema Template Vrf Contract can be [imported][docs-import] into this resource via its Id/path, via the following command: [docs-import]: <https://www.terraform.io/docs/import/index.html> ` + "`" + `` + "`" + `` + "`" + `bash terraform import mso_schema_template_vrf_contract.demovrf01 {schema_id}/template/{template_name}/vrf/{vrf_name}/contract/{contract_name}/type/{relationship_type} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2305,6 +2353,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description for this tenant.`,
+				},
+				resource.Attribute{
+					Name:        "orchestrator_only",
+					Description: `(Optional) Option to delete this tenant only from orchestrator or not. Default value is "false".`,
 				},
 				resource.Attribute{
 					Name:        "user_associations",

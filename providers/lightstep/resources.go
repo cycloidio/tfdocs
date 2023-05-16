@@ -11,7 +11,27 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "lightstep_alert",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "lightstep_alerting_rule",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "lightstep_dashboard",
 			Category:         "Resources",
 			ShortDescription: ``,
 			Description:      ``,
@@ -81,6 +101,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "lightstep_stream_dashboard",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "lightstep_webhook_destination",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -93,14 +123,17 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"lightstep_alerting_rule":         0,
-		"lightstep_metric_condition":      1,
-		"lightstep_metric_dashboard":      2,
-		"lightstep_pagerduty_destination": 3,
-		"lightstep_slack_destination":     4,
-		"lightstep_stream":                5,
-		"lightstep_stream_condition":      6,
-		"lightstep_webhook_destination":   7,
+		"lightstep_alert":                 0,
+		"lightstep_alerting_rule":         1,
+		"lightstep_dashboard":             2,
+		"lightstep_metric_condition":      3,
+		"lightstep_metric_dashboard":      4,
+		"lightstep_pagerduty_destination": 5,
+		"lightstep_slack_destination":     6,
+		"lightstep_stream":                7,
+		"lightstep_stream_condition":      8,
+		"lightstep_stream_dashboard":      9,
+		"lightstep_webhook_destination":   10,
 	}
 )
 

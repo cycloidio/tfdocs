@@ -201,6 +201,37 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gridscale_object_storage_bucket",
+			Category:         "Resources",
+			ShortDescription: `Manages an object storage bucket in gridscale.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required, Force New) Access key.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required, Force New) Secret key.`,
+				},
+				resource.Attribute{
+					Name:        "s3_host",
+					Description: `(Required, Force New) Host of the s3. Default: "gos3.io".`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(Required, Force New) Name of the bucket.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gridscale_filesystem",
 			Category:         "Resources",
 			ShortDescription: `Manage a Filesystem service in gridscale.`,
@@ -226,8 +257,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "root_squash",
@@ -307,11 +342,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that filesystem service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -1362,11 +1401,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) Security zone UUID linked to the Kubernetes resource. If ` + "`" + `security_zone_uuid` + "`" + ` is not set, the default security zone will be created (if it doesn't exist) and linked. A change of this argument necessitates the re-creation of the resource.`,
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "gsk_version",
+					Description: `(Optional) The gridscale's Kubernetes version of this instance (e.g. "1.21.14-gs1"). Define which gridscale k8s version will be used to create the cluster. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available gridscale k8s version.`,
 				},
 				resource.Attribute{
 					Name:        "release",
-					Description: `(Required) The Kubernetes release of this instance. Define which release will be used to create the cluster. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available release numbers.`,
+					Description: `(Optional) The Kubernetes release of this instance. Define which release will be used to create the cluster. For convenience, please use [gscloud](https://github.com/gridscale/gscloud) to get the list of available releases.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1398,7 +1441,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_type",
-					Description: `(Immutable) Storage type (one of storage, storage_high, storage_insane). ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: `(Immutable) Storage type (one of storage, storage_high, storage_insane).`,
+				},
+				resource.Attribute{
+					Name:        "surge_node",
+					Description: `Enable surge node to avoid resources shortage during the cluster upgrade (Default: true).`,
+				},
+				resource.Attribute{
+					Name:        "cluster_cidr",
+					Description: `The cluster CIDR that will be used to generate the CIDR of nodes, services, and pods. The allowed CIDR prefix length is /16. If the cluster CIDR is not set, the cluster will use "10.244.0.0/16" as it default (even though the ` + "`" + `cluster_cidr` + "`" + ` in the k8s resource is empty). ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -1425,16 +1476,28 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "gsk_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that k8s service uses. The ` + "`" + `service_template_uuid` + "`" + ` may not relate to ` + "`" + `release` + "`" + `, if ` + "`" + `service_template_uuid` + "`" + `/` + "`" + `release` + "`" + ` is updated outside of terraform (e.g. the k8s service is upgraded by gridscale staffs).`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "network_uuid",
-					Description: `Network UUID containing security zone, which is linked to the k8s cluster.`,
+					Name:        "kubeconfig",
+					Description: `The kubeconfig file content of the k8s cluster.`,
+				},
+				resource.Attribute{
+					Name:        "k8s_private_network_uuid",
+					Description: `Private network UUID which k8s nodes are attached to. It can be used to attach other PaaS/VMs.`,
 				},
 				resource.Attribute{
 					Name:        "node_pool",
@@ -1462,6 +1525,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "surge_node",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_cidr",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -1687,8 +1758,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "max_core_count",
@@ -1788,11 +1863,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that MariaDB service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -2459,8 +2538,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "max_core_count",
@@ -2520,11 +2603,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that Memcached service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -2620,8 +2707,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "max_core_count",
@@ -2721,11 +2812,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that mysql service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -2957,8 +3052,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "parameters",
@@ -3034,7 +3133,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
@@ -3043,6 +3142,10 @@ var (
 				resource.Attribute{
 					Name:        "service_template_uuid_computed",
 					Description: `Template that PaaS service uses. The ` + "`" + `service_template_uuid_computed` + "`" + ` will be different from ` + "`" + `service_template_uuid` + "`" + `, when ` + "`" + `service_template_uuid` + "`" + ` is updated outside of terraform.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minute",
@@ -3126,8 +3229,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "max_core_count",
@@ -3187,7 +3294,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
@@ -3248,8 +3355,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -3305,11 +3416,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that Redis cache service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -3362,8 +3477,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in. ## Timeouts Timeouts configuration options (in seconds): More info: [terraform.io/docs/configuration/resources.html#operation-timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts)`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -3419,11 +3538,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that Redis store service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -3579,6 +3702,42 @@ var (
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional, Computed) Defines which Availability-Zone the Server is placed.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_profile_config",
+					Description: `(Optional, Computed) Specifies the custom hardware settings for the virtual machine. Note: hardware_profile and hardware_profile_config parameters can't be used at the same time.`,
+				},
+				resource.Attribute{
+					Name:        "machinetype",
+					Description: `(Optional, Computed) Allowed values: ` + "`" + `"i440fx"` + "`" + `, ` + "`" + `"q35_bios"` + "`" + `, ` + "`" + `"q35_uefi"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_device",
+					Description: `(Optional, Computed) Allowed values: ` + "`" + `"ide"` + "`" + `, ` + "`" + `"sata"` + "`" + `, ` + "`" + `"virtio_scsi"` + "`" + `, ` + "`" + `"virtio_block"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "usb_controller",
+					Description: `(Optional, Computed) Allowed values: ` + "`" + `"nec_xhci"` + "`" + `, ` + "`" + `"piix3_uhci"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nested_virtualization",
+					Description: `(Optional, Computed) Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "hyperv_extensions",
+					Description: `(Optional, Computed) Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "network_model",
+					Description: `(Optional, Computed) Allowed values: ` + "`" + `"e1000"` + "`" + `, ` + "`" + `"e1000e"` + "`" + `, ` + "`" + `"virtio"` + "`" + `, ` + "`" + `"vmxnet3"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "serial_interface",
+					Description: `(Optional, Computed) Boolean.`,
+				},
+				resource.Attribute{
+					Name:        "server_renice",
+					Description: `(Optional, Computed) Boolean.`,
 				},
 				resource.Attribute{
 					Name:        "storage",
@@ -3791,6 +3950,42 @@ var (
 				resource.Attribute{
 					Name:        "hardware_profile",
 					Description: `The hardware profile of the server.`,
+				},
+				resource.Attribute{
+					Name:        "hardware_profile_config",
+					Description: `(See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "machinetype",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_device",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "usb_controller",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "nested_virtualization",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "hyperv_extensions",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_model",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "serial_interface",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_renice",
+					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "storage",
@@ -4574,8 +4769,12 @@ var (
 					Description: `(Optional) List of labels in the format [ "label1", "label2" ].`,
 				},
 				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `(Optional) The UUID of the network that the service is attached to.`,
+				},
+				resource.Attribute{
 					Name:        "security_zone_uuid",
-					Description: `(Optional) The UUID of the security zone that the service is running in.`,
+					Description: ``,
 				},
 				resource.Attribute{
 					Name:        "s3_backup",
@@ -4675,11 +4874,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_uuid",
-					Description: `Network UUID containing security zone.`,
+					Description: `The UUID of the network that the service is attached to or network UUID containing security zone.`,
 				},
 				resource.Attribute{
 					Name:        "service_template_uuid",
 					Description: `PaaS service template that MS SQL server service uses.`,
+				},
+				resource.Attribute{
+					Name:        "service_template_category",
+					Description: `The template service's category used to create the service.`,
 				},
 				resource.Attribute{
 					Name:        "usage_in_minutes",
@@ -4907,7 +5110,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_uuid",
-					Description: `(Required) The UUID of a template. This can be found in the [expert panel](https://my.gridscale.io/Expert/Template) by clicking more on the template or by using a gridscale_template datasource.`,
+					Description: `(Required) The UUID of a template. This can be found in the [the page Template](https://my.gridscale.io/Template) by clicking more on the template or by using a gridscale_template datasource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -5232,7 +5435,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The exact name of the template as show in [the expert panel of gridscale](https://my.gridscale.io/Expert/Template).`,
+					Description: `(Required) The exact name of the template as show in [the page Template](https://my.gridscale.io/Template).`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_uuid",
@@ -5415,35 +5618,36 @@ var (
 	resourcesMap = map[string]int{
 
 		"gridscale_backupschedule":                 0,
-		"gridscale_filesystem":                     1,
-		"gridscale_firewall":                       2,
-		"gridscale_ipv4":                           3,
-		"gridscale_ipv6":                           4,
-		"gridscale_isoimage":                       5,
-		"gridscale_k8s":                            6,
-		"gridscale_loadbalancer":                   7,
-		"gridscale_mariadb":                        8,
-		"gridscale_marketplace_application":        9,
-		"gridscale_marketplace_application_import": 10,
-		"gridscale_memcached":                      11,
-		"gridscale_mysql":                          12,
-		"gridscale_network":                        13,
-		"gridscale_object_storage_accesskey":       14,
-		"gridscale_paas":                           15,
-		"gridscale_postgres":                       16,
-		"gridscale_redis_cache":                    17,
-		"gridscale_redis_store":                    18,
-		"gridscale_paas_securityzone":              19,
-		"gridscale_server":                         20,
-		"gridscale_snapshot":                       21,
-		"gridscale_snapshotschedule":               22,
-		"gridscale_sqlserver":                      23,
-		"gridscale_sshkey":                         24,
-		"gridscale_ssl_certificate":                25,
-		"gridscale_storage":                        26,
-		"gridscale_storage_clone":                  27,
-		"gridscale_storage_import":                 28,
-		"gridscale_template":                       29,
+		"gridscale_object_storage_bucket":          1,
+		"gridscale_filesystem":                     2,
+		"gridscale_firewall":                       3,
+		"gridscale_ipv4":                           4,
+		"gridscale_ipv6":                           5,
+		"gridscale_isoimage":                       6,
+		"gridscale_k8s":                            7,
+		"gridscale_loadbalancer":                   8,
+		"gridscale_mariadb":                        9,
+		"gridscale_marketplace_application":        10,
+		"gridscale_marketplace_application_import": 11,
+		"gridscale_memcached":                      12,
+		"gridscale_mysql":                          13,
+		"gridscale_network":                        14,
+		"gridscale_object_storage_accesskey":       15,
+		"gridscale_paas":                           16,
+		"gridscale_postgres":                       17,
+		"gridscale_redis_cache":                    18,
+		"gridscale_redis_store":                    19,
+		"gridscale_paas_securityzone":              20,
+		"gridscale_server":                         21,
+		"gridscale_snapshot":                       22,
+		"gridscale_snapshotschedule":               23,
+		"gridscale_sqlserver":                      24,
+		"gridscale_sshkey":                         25,
+		"gridscale_ssl_certificate":                26,
+		"gridscale_storage":                        27,
+		"gridscale_storage_clone":                  28,
+		"gridscale_storage_import":                 29,
+		"gridscale_template":                       30,
 	}
 )
 

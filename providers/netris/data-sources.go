@@ -25,6 +25,19 @@ You can define various BGP objects referenced from a route-map to declare a dyna
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "netris_dhcp_option_set",
+			Category:         "Data Sources",
+			ShortDescription: `Data Source: dhcp option sets`,
+			Description: `
+
+Get dhcp option set resource in Netris.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "netris_inventory_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Data Source: inventory profiles`,
@@ -39,12 +52,12 @@ Inventory profiles allow security hardening of inventory devices. By default all
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "netris_port",
+			Type:             "netris_network_interface",
 			Category:         "Data Sources",
-			ShortDescription: `Data Source: Switch Ports`,
+			ShortDescription: `Data Source: Network Interface`,
 			Description: `
 
-Switch ports data.
+Network Interface data.
 
 `,
 			Keywords:   []string{},
@@ -112,12 +125,13 @@ V-Net is a virtual networking service that provide a Layer-2 (unrouted) or Layer
 	dataSourcesMap = map[string]int{
 
 		"netris_bgp_object":        0,
-		"netris_inventory_profile": 1,
-		"netris_port":              2,
-		"netris_routemap":          3,
-		"netris_site":              4,
-		"netris_tenant":            5,
-		"netris_vnet":              6,
+		"netris_dhcp_option_set":   1,
+		"netris_inventory_profile": 2,
+		"netris_network_interface": 3,
+		"netris_routemap":          4,
+		"netris_site":              5,
+		"netris_tenant":            6,
+		"netris_vnet":              7,
 	}
 )
 

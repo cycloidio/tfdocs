@@ -131,6 +131,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "buddy_buddy_sso",
+			Category:         "Resources",
+			ShortDescription: `Manage SSO in workspace Workspace administrator rights are required Token scopes required: WORKSPACE`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "buddy_buddy_variable",
 			Category:         "Resources",
 			ShortDescription: `Create and manage a variable Workspace administrator rights are required Token scopes required: WORKSPACE, VARIABLE_ADD, VARIABLE_MANAGE, VARIABLE_INFO`,
@@ -185,10 +195,11 @@ var (
 		"buddy_buddy_project":            9,
 		"buddy_buddy_project_group":      10,
 		"buddy_buddy_project_member":     11,
-		"buddy_buddy_variable":           12,
-		"buddy_buddy_variable_ssh_key":   13,
-		"buddy_buddy_webhook":            14,
-		"buddy_buddy_workspace":          15,
+		"buddy_buddy_sso":                12,
+		"buddy_buddy_variable":           13,
+		"buddy_buddy_variable_ssh_key":   14,
+		"buddy_buddy_webhook":            15,
+		"buddy_buddy_workspace":          16,
 	}
 )
 

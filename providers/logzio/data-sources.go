@@ -11,194 +11,6 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "logzio_alert",
-			Category:         "Data Sources",
-			ShortDescription: ``,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "title",
-					Description: `Alert title.`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `Logz.io alert ID. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date and time in UTC when the alert was first created.`,
-				},
-				resource.Attribute{
-					Name:        "created_by",
-					Description: `Email of the user who first created the alert.`,
-				},
-				resource.Attribute{
-					Name:        "search_timeframe_minutes",
-					Description: `The time frame for evaluating the log data is a sliding window, with 1 minute granularity.`,
-				},
-				resource.Attribute{
-					Name:        "operation",
-					Description: `Specifies the operator for evaluating the results. Enum: ` + "`" + `LESS_THAN` + "`" + `, ` + "`" + `GREATER_THAN` + "`" + `, ` + "`" + `LESS_THAN_OR_EQUALS` + "`" + `, ` + "`" + `GREATER_THAN_OR_EQUALS` + "`" + `, ` + "`" + `EQUALS` + "`" + `, ` + "`" + `NOT_EQUALS` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "severity_threshold_tiers",
-					Description: `Set as many as 5 thresholds, each with its own severity level.`,
-				},
-				resource.Attribute{
-					Name:        "severity",
-					Description: `Defaults to ` + "`" + `MEDIUM` + "`" + `. Labels the event with a severity tag. Available severity tags are: ` + "`" + `INFO` + "`" + `, ` + "`" + `LOW` + "`" + `, ` + "`" + `MEDIUM` + "`" + `, ` + "`" + `HIGH` + "`" + `, ` + "`" + `SEVERE` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "threshold",
-					Description: `Number of logs per search timeframe.`,
-				},
-				resource.Attribute{
-					Name:        "alert_notification_endpoints",
-					Description: `Add email addresses and/or endpoint channels to automatically receive notifications with sample data when the alert triggers.`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `Add email addresses to automatically receive notifications with sample data when the alert triggers.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A description of the event, its significance, and suggested next steps or instructions for the team.`,
-				},
-				resource.Attribute{
-					Name:        "query_string",
-					Description: `Search query in Lucene syntax. You can combine filters and a search query to specify the logs you are looking for. You can combine filters and a search query to specify the logs you are looking for.`,
-				},
-				resource.Attribute{
-					Name:        "filter",
-					Description: `You can use ` + "`" + `must` + "`" + ` and ` + "`" + `must_not` + "`" + ` filters. Filters are more efficient compared to a query, so it's recommended to opt for a filter over a ` + "`" + `query_string` + "`" + `, where possible.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Tags for filtering alerts and triggered alerts. Can be used in Kibana Discover, Kibana dashboards, and more.`,
-				},
-				resource.Attribute{
-					Name:        "group_by_aggregation_fields",
-					Description: `Specify 1-3 fields by which to group the results and count them. If you apply a group by operation, the alert returns a count of the results aggregated by unique values.`,
-				},
-				resource.Attribute{
-					Name:        "is_enabled",
-					Description: `True by default. If ` + "`" + `true` + "`" + `, the alert is currently active.`,
-				},
-				resource.Attribute{
-					Name:        "last_triggered_at",
-					Description: `Date and time in UTC when the alert last triggered.`,
-				},
-				resource.Attribute{
-					Name:        "last_updated",
-					Description: `Date and time in UTC when the alert was last updated.`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `Array of email addresses to be notified when the alert triggers.`,
-				},
-				resource.Attribute{
-					Name:        "suppress_notifications_minutes",
-					Description: `Add a waiting period in minutes to space out notifications. (The alert will still trigger but will not send out notifications during the waiting period.)`,
-				},
-				resource.Attribute{
-					Name:        "value_aggregation_field",
-					Description: `Specify the field on which to run the aggregation for the trigger condition.`,
-				},
-				resource.Attribute{
-					Name:        "value_aggregation_type",
-					Description: `Specifies the aggregation operator. Can be: ` + "`" + `SUM` + "`" + `, ` + "`" + `MIN` + "`" + `, ` + "`" + `MAX` + "`" + `, ` + "`" + `AVG` + "`" + `, ` + "`" + `COUNT` + "`" + `, ` + "`" + `UNIQUE_COUNT` + "`" + `, ` + "`" + `NONE` + "`" + `.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `Date and time in UTC when the alert was first created.`,
-				},
-				resource.Attribute{
-					Name:        "created_by",
-					Description: `Email of the user who first created the alert.`,
-				},
-				resource.Attribute{
-					Name:        "search_timeframe_minutes",
-					Description: `The time frame for evaluating the log data is a sliding window, with 1 minute granularity.`,
-				},
-				resource.Attribute{
-					Name:        "operation",
-					Description: `Specifies the operator for evaluating the results. Enum: ` + "`" + `LESS_THAN` + "`" + `, ` + "`" + `GREATER_THAN` + "`" + `, ` + "`" + `LESS_THAN_OR_EQUALS` + "`" + `, ` + "`" + `GREATER_THAN_OR_EQUALS` + "`" + `, ` + "`" + `EQUALS` + "`" + `, ` + "`" + `NOT_EQUALS` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "severity_threshold_tiers",
-					Description: `Set as many as 5 thresholds, each with its own severity level.`,
-				},
-				resource.Attribute{
-					Name:        "severity",
-					Description: `Defaults to ` + "`" + `MEDIUM` + "`" + `. Labels the event with a severity tag. Available severity tags are: ` + "`" + `INFO` + "`" + `, ` + "`" + `LOW` + "`" + `, ` + "`" + `MEDIUM` + "`" + `, ` + "`" + `HIGH` + "`" + `, ` + "`" + `SEVERE` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "threshold",
-					Description: `Number of logs per search timeframe.`,
-				},
-				resource.Attribute{
-					Name:        "alert_notification_endpoints",
-					Description: `Add email addresses and/or endpoint channels to automatically receive notifications with sample data when the alert triggers.`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `Add email addresses to automatically receive notifications with sample data when the alert triggers.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `A description of the event, its significance, and suggested next steps or instructions for the team.`,
-				},
-				resource.Attribute{
-					Name:        "query_string",
-					Description: `Search query in Lucene syntax. You can combine filters and a search query to specify the logs you are looking for. You can combine filters and a search query to specify the logs you are looking for.`,
-				},
-				resource.Attribute{
-					Name:        "filter",
-					Description: `You can use ` + "`" + `must` + "`" + ` and ` + "`" + `must_not` + "`" + ` filters. Filters are more efficient compared to a query, so it's recommended to opt for a filter over a ` + "`" + `query_string` + "`" + `, where possible.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `Tags for filtering alerts and triggered alerts. Can be used in Kibana Discover, Kibana dashboards, and more.`,
-				},
-				resource.Attribute{
-					Name:        "group_by_aggregation_fields",
-					Description: `Specify 1-3 fields by which to group the results and count them. If you apply a group by operation, the alert returns a count of the results aggregated by unique values.`,
-				},
-				resource.Attribute{
-					Name:        "is_enabled",
-					Description: `True by default. If ` + "`" + `true` + "`" + `, the alert is currently active.`,
-				},
-				resource.Attribute{
-					Name:        "last_triggered_at",
-					Description: `Date and time in UTC when the alert last triggered.`,
-				},
-				resource.Attribute{
-					Name:        "last_updated",
-					Description: `Date and time in UTC when the alert was last updated.`,
-				},
-				resource.Attribute{
-					Name:        "notification_emails",
-					Description: `Array of email addresses to be notified when the alert triggers.`,
-				},
-				resource.Attribute{
-					Name:        "suppress_notifications_minutes",
-					Description: `Add a waiting period in minutes to space out notifications. (The alert will still trigger but will not send out notifications during the waiting period.)`,
-				},
-				resource.Attribute{
-					Name:        "value_aggregation_field",
-					Description: `Specify the field on which to run the aggregation for the trigger condition.`,
-				},
-				resource.Attribute{
-					Name:        "value_aggregation_type",
-					Description: `Specifies the aggregation operator. Can be: ` + "`" + `SUM` + "`" + `, ` + "`" + `MIN` + "`" + `, ` + "`" + `MAX` + "`" + `, ` + "`" + `AVG` + "`" + `, ` + "`" + `COUNT` + "`" + `, ` + "`" + `UNIQUE_COUNT` + "`" + `, ` + "`" + `NONE` + "`" + `.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "logzio_alert_v2",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -279,11 +91,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sub_components.filter_must",
-					Description: `Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
+					Description: `Runs Elasticsearch Bool Query ` + "`" + `must` + "`" + ` filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
 				},
 				resource.Attribute{
 					Name:        "sub_components.filter_must_not",
-					Description: `Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
+					Description: `Runs Elasticsearch Bool Query ` + "`" + `must_not` + "`" + ` filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
 				},
 				resource.Attribute{
 					Name:        "sub_components.group_by_aggregation_fields",
@@ -405,11 +217,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sub_components.filter_must",
-					Description: `Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
+					Description: `Runs Elasticsearch Bool Query ` + "`" + `must` + "`" + ` filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
 				},
 				resource.Attribute{
 					Name:        "sub_components.filter_must_not",
-					Description: `Runs Elasticsearch Bool Query filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
+					Description: `Runs Elasticsearch Bool Query ` + "`" + `must_not` + "`" + ` filters on the data (before the search query is applied). The most efficient way to grab the logs you are looking for.`,
 				},
 				resource.Attribute{
 					Name:        "sub_components.group_by_aggregation_fields",
@@ -479,15 +291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_type",
-					Description: `(String) Specifies the storage provider. If ` + "`" + `S3` + "`" + `, the ` + "`" + `amazon_s3_storage_settings` + "`" + ` are relevant. If ` + "`" + `BLOB` + "`" + `, the ` + "`" + `azure_blob_storage_settings` + "`" + ` are relevant.`,
-				},
-				resource.Attribute{
-					Name:        "amazon_s3_storage_settings",
-					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings",
-					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `.`,
+					Description: `(String) Specifies the storage provider.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -498,70 +302,46 @@ var (
 					Description: `(Boolean) If ` + "`" + `true` + "`" + `, logs are compressed before they are archived.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.credentials_type",
-					Description: `(String) Specifies which credentials will be used for authentication.`,
+					Name:        "aws_credentials_type",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. Specifies which credentials will be used for authentication.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.path",
-					Description: `(String) Specify a path to the`,
+					Name:        "aws_s3_path",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. Specify a path to the`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_secret_credentials",
-					Description: `(Object) Applicable settings when the ` + "`" + `credentials_type` + "`" + ` is ` + "`" + `KEYS` + "`" + `.`,
+					Name:        "aws_s3_iam_credentials_arn",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. Amazon Resource Name (ARN) to uniquely identify the S3 bucket.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_iam_credentials_arn",
-					Description: `(String) Amazon Resource Name (ARN) to uniquely identify the S3 bucket.`,
+					Name:        "aws_access_key",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. AWS access key.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_external_id",
-					Description: `(String) The external id that gives Logz.io access to your S3 bucket.`,
+					Name:        "azure_tenant_id",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Azure Directory (tenant) ID. The Tenant ID of the AD app.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_secret_credentials.access_key",
-					Description: `(String) AWS access key.`,
+					Name:        "azure_client_id",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Azure application (client) ID. The Client ID of the AD app.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_secret_credentials.secret_key",
-					Description: `(String) AWS secret key.`,
+					Name:        "azure_account_name",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Azure Storage account name.`,
 				},
 				resource.Attribute{
-					Name:        "azure_blob_storage_settings.tenant_id",
-					Description: `(String) Azure Directory (tenant) ID. The Tenant ID of the AD app.`,
+					Name:        "azure_container_name",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Name of the container in the Storage account.`,
 				},
 				resource.Attribute{
-					Name:        "azure_blob_storage_settings.client_id",
-					Description: `(String) Azure application (client) ID. The Client ID of the AD app.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings.client_secret",
-					Description: `(String) Azure client secret.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings.account_name",
-					Description: `(String) Azure Storage account name.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings.container_name",
-					Description: `(String) Name of the container in the Storage account.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settingspath",
-					Description: `(String) Optional virtual sub-folder specifiying a path within the container.`,
+					Name:        "azure_blob_path",
+					Description: `(String) Optional virtual sub-folder specifying a path within the container.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "storage_type",
-					Description: `(String) Specifies the storage provider. If ` + "`" + `S3` + "`" + `, the ` + "`" + `amazon_s3_storage_settings` + "`" + ` are relevant. If ` + "`" + `BLOB` + "`" + `, the ` + "`" + `azure_blob_storage_settings` + "`" + ` are relevant.`,
-				},
-				resource.Attribute{
-					Name:        "amazon_s3_storage_settings",
-					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings",
-					Description: `(Object) Applicable settings when the ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `.`,
+					Description: `(String) Specifies the storage provider.`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -572,56 +352,40 @@ var (
 					Description: `(Boolean) If ` + "`" + `true` + "`" + `, logs are compressed before they are archived.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.credentials_type",
-					Description: `(String) Specifies which credentials will be used for authentication.`,
+					Name:        "aws_credentials_type",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. Specifies which credentials will be used for authentication.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.path",
-					Description: `(String) Specify a path to the`,
+					Name:        "aws_s3_path",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. Specify a path to the`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_secret_credentials",
-					Description: `(Object) Applicable settings when the ` + "`" + `credentials_type` + "`" + ` is ` + "`" + `KEYS` + "`" + `.`,
+					Name:        "aws_s3_iam_credentials_arn",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. Amazon Resource Name (ARN) to uniquely identify the S3 bucket.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_iam_credentials_arn",
-					Description: `(String) Amazon Resource Name (ARN) to uniquely identify the S3 bucket.`,
+					Name:        "aws_access_key",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `S3` + "`" + `. AWS access key.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_external_id",
-					Description: `(String) The external id that gives Logz.io access to your S3 bucket.`,
+					Name:        "azure_tenant_id",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Azure Directory (tenant) ID. The Tenant ID of the AD app.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_secret_credentials.access_key",
-					Description: `(String) AWS access key.`,
+					Name:        "azure_client_id",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Azure application (client) ID. The Client ID of the AD app.`,
 				},
 				resource.Attribute{
-					Name:        "amazon_s3_storage_settings.s3_secret_credentials.secret_key",
-					Description: `(String) AWS secret key.`,
+					Name:        "azure_account_name",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Azure Storage account name.`,
 				},
 				resource.Attribute{
-					Name:        "azure_blob_storage_settings.tenant_id",
-					Description: `(String) Azure Directory (tenant) ID. The Tenant ID of the AD app.`,
+					Name:        "azure_container_name",
+					Description: `(String) Applicable when ` + "`" + `storage_type` + "`" + ` is ` + "`" + `BLOB` + "`" + `. Name of the container in the Storage account.`,
 				},
 				resource.Attribute{
-					Name:        "azure_blob_storage_settings.client_id",
-					Description: `(String) Azure application (client) ID. The Client ID of the AD app.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings.client_secret",
-					Description: `(String) Azure client secret.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings.account_name",
-					Description: `(String) Azure Storage account name.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settings.container_name",
-					Description: `(String) Name of the container in the Storage account.`,
-				},
-				resource.Attribute{
-					Name:        "azure_blob_storage_settingspath",
-					Description: `(String) Optional virtual sub-folder specifiying a path within the container.`,
+					Name:        "azure_blob_path",
+					Description: `(String) Optional virtual sub-folder specifying a path within the container.`,
 				},
 			},
 		},
@@ -702,7 +466,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Detailed description of the endpoint. ## Endpoints used`,
+					Description: `Detailed description of the endpoint.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -716,7 +480,70 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `Detailed description of the endpoint. ## Endpoints used`,
+					Description: `Detailed description of the endpoint.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logzio_grafana_dashboard",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dashboard_uid",
+					Description: `The unique identifier (uid) of the dashboard. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `Dashboard url.`,
+				},
+				resource.Attribute{
+					Name:        "folder_uid",
+					Description: `The unique identifier (uid) of a folder to store your dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_json",
+					Description: `The complete dashboard model, to create a new dashboard, in a JSON format.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logzio_kibana_object",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(String) The id of the Kibana Object.`,
+				},
+				resource.Attribute{
+					Name:        "object_type",
+					Description: `(String) The type of the Kibana Object. Can be one of the following: ` + "`" + `search` + "`" + `, ` + "`" + `dashboard` + "`" + `, ` + "`" + `visualization` + "`" + `. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "kibana_version",
+					Description: `(String) The version of Kibana used at the time of export.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(String) Exported Kibana objects.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "kibana_version",
+					Description: `(String) The version of Kibana used at the time of export.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(String) Exported Kibana objects.`,
 				},
 			},
 		},
@@ -730,35 +557,35 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(String) Descriptive name for this token.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Boolean) To enable this token, true. To disable, false.`,
+					Description: `(String) Descriptive name for this log shipping token.`,
 				},
 				resource.Attribute{
 					Name:        "token_id",
-					Description: `(Integer) The token's ID.`,
+					Description: `(Integer) The log shipping token's ID.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Boolean) To enable this log shipping token, true. To disable, false.`,
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(String) The token itself.`,
+					Description: `(String) The log shipping token itself.`,
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `(Integer) Unix timestamp of when this token was last updated.`,
+					Description: `(Integer) Unix timestamp of when this log shipping token was last updated.`,
 				},
 				resource.Attribute{
 					Name:        "updated_by",
-					Description: `(String) Email address of the last user to update this token.`,
+					Description: `(String) Email address of the last user to update this log shipping token.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `(Integer) Unix timestamp of when this token was created.`,
+					Description: `(Integer) Unix timestamp of when this log shipping token was created.`,
 				},
 				resource.Attribute{
 					Name:        "created_by",
-					Description: `(String) Email address of the user who created this token.`,
+					Description: `(String) Email address of the user who created this log shipping token.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -861,6 +688,53 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logzio_s3_fetcher",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "fetcher_id",
+					Description: `ID of the S3 Fetcher. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "aws_access_key",
+					Description: `(String) AWS S3 bucket access key. Not applicable if you chose to authenticate with ` + "`" + `aws_arn` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "aws_arn",
+					Description: `(String) Amazon Resource Name (ARN) to uniquely identify the S3 bucket. Not applicable if you choose to authenticate with AWS keys (access key & secret key).`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `(String) AWS S3 bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Boolean) If true, the S3 bucket connector is active and logs are being fetched to Logz.io. If false, the connector is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "aws_region",
+					Description: `(String) Bucket's region. Allowed values: ` + "`" + `US_EAST_1` + "`" + `, ` + "`" + `US_EAST_2` + "`" + `, ` + "`" + `US_WEST_1` + "`" + `, ` + "`" + `US_WEST_2` + "`" + `, ` + "`" + `EU_WEST_1` + "`" + `, ` + "`" + `EU_WEST_2` + "`" + `, ` + "`" + `EU_WEST_3` + "`" + `, ` + "`" + `EU_CENTRAL_1` + "`" + `, ` + "`" + `AP_NORTHEAST_1` + "`" + `, ` + "`" + `AP_NORTHEAST_2` + "`" + `, ` + "`" + `AP_SOUTHEAST_1` + "`" + `, ` + "`" + `AP_SOUTHEAST_2` + "`" + `, ` + "`" + `SA_EAST_1` + "`" + `, ` + "`" + `AP_SOUTH_1` + "`" + `, ` + "`" + `CA_CENTRAL_1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "logs_type",
+					Description: `(String) Specifies the log type being sent to Logz.io. Determines the parsing pipeline used to parse and map the logs. [Learn more about parsing options supported by Logz.io](https://docs.logz.io/user-guide/log-shipping/built-in-log-types.html). Allowed values: ` + "`" + `elb` + "`" + `, ` + "`" + `vpcflow` + "`" + `, ` + "`" + `S3Access` + "`" + `, ` + "`" + `cloudfront` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(String) Prefix of the AWS S3 bucket.`,
+				},
+				resource.Attribute{
+					Name:        "add_s3_object_key_as_log_field",
+					Description: `(Boolean) If ` + "`" + `true` + "`" + `, enriches logs with a new field detailing the S3 object key.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logzio_subaccount",
 			Category:         "Data Sources",
 			ShortDescription: ``,
@@ -917,7 +791,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reserved_daily_gb",
-					Description: `(Float) The maximum volume of data that an account can index per calendar day. Depends on ` + "`" + `flexible` + "`" + `. For further info see [the docs](https://docs.logz.io/api/#operation/createTimeBasedAccount). ## Endpoints used`,
+					Description: `(Float) The maximum volume of data that an account can index per calendar day. Depends on ` + "`" + `flexible` + "`" + `. For further info see [the docs](https://docs.logz.io/api/#operation/createTimeBasedAccount).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -943,8 +817,8 @@ var (
 					Description: `First and last name of the user.`,
 				},
 				resource.Attribute{
-					Name:        "roles",
-					Description: `For User access, ` + "`" + `2` + "`" + `. For Admin access, ` + "`" + `3` + "`" + `.`,
+					Name:        "role",
+					Description: `User role. Can be ` + "`" + `USER_ROLE_READONLY` + "`" + `, ` + "`" + `USER_ROLE_REGULAR` + "`" + ` or ` + "`" + `USER_ROLE_ACCOUNT_ADMIN` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -952,7 +826,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_id",
-					Description: `Logz.io account ID. ## Endpoints used`,
+					Description: `Logz.io account ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -961,16 +835,18 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"logzio_alert":                 0,
-		"logzio_alert_v2":              1,
-		"logzio_archive_logs":          2,
-		"logzio_authentication_groups": 3,
-		"logzio_drop_filter":           4,
-		"logzio_endpoint":              5,
-		"logzio_log_shipping_token":    6,
-		"logzio_restore_logs":          7,
-		"logzio_subaccount":            8,
-		"logzio_user":                  9,
+		"logzio_alert_v2":              0,
+		"logzio_archive_logs":          1,
+		"logzio_authentication_groups": 2,
+		"logzio_drop_filter":           3,
+		"logzio_endpoint":              4,
+		"logzio_grafana_dashboard":     5,
+		"logzio_kibana_object":         6,
+		"logzio_log_shipping_token":    7,
+		"logzio_restore_logs":          8,
+		"logzio_s3_fetcher":            9,
+		"logzio_subaccount":            10,
+		"logzio_user":                  11,
 	}
 )
 

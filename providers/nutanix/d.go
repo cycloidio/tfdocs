@@ -138,6 +138,173 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_floating_ip",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a datasource to retrieve floating ip with floating_ip_uuid.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "floating_ip_uuid",
+					Description: `(Required) Floating IP UUID ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Floating IP output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Floating IP spec ### spec An intentful representation of a floating_ip spec`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Floating IP Resources. ### status An intentful representation of a floating_ip status`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the floating_ip.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `floating_ip Name.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Floating IP allocation status.`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of Floating IP. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Private IP with which the floating IP is associated.`,
+				},
+				resource.Attribute{
+					Name:        "vm_nic_reference",
+					Description: `The reference to a vm_nic`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference",
+					Description: `The reference to a vpc ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Floating IP output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Floating IP spec ### spec An intentful representation of a floating_ip spec`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Floating IP Resources. ### status An intentful representation of a floating_ip status`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the floating_ip.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `floating_ip Name.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Floating IP allocation status.`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of Floating IP. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Private IP with which the floating IP is associated.`,
+				},
+				resource.Attribute{
+					Name:        "vm_nic_reference",
+					Description: `The reference to a vm_nic`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference",
+					Description: `The reference to a vpc ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_floating_ips",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a datasource to retrieve list of all floating ips.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `Floating IP output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `Floating IP spec ### spec An intentful representation of a floating_ip spec`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Floating IP Resources. ### status An intentful representation of a floating_ip status`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the floating_ip.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `floating_ip Name.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Floating IP allocation status.`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of Floating IP. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip",
+					Description: `Private IP with which the floating IP is associated.`,
+				},
+				resource.Attribute{
+					Name:        "vm_nic_reference",
+					Description: `The reference to a vm_nic`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference",
+					Description: `The reference to a vpc ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_foundation_central_get_api_key",
 			Category:         "Data Sources",
 			ShortDescription: `Details of the api key.`,
@@ -278,66 +445,8 @@ var (
 			ShortDescription: `Describes a Karbon Cluster`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "reclaim_policy",
-					Description: `Reclaim policy for persistent volumes provisioned using the specified storage class.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.file_system",
-					Description: `Karbon uses either the ext4 or xfs file-system on the volume disk.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.flash_mode",
-					Description: `Pins the persistent volumes to the flash tier in case of a ` + "`" + `true` + "`" + ` value.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.password",
-					Description: `The password of the Prism Element user that the API calls use to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.prism_element_cluster_uuid",
-					Description: `The universally unique identifier (UUID) of the Prism Element cluster.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.storage_container",
-					Description: `Name of the storage container the storage container uses to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.username",
-					Description: `Username of the Prism Element user that the API calls use to provision volumes. ### External LB Config The external load balancer configuration in the case of a multi-master-external-load-balancer type master deployment.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "reclaim_policy",
-					Description: `Reclaim policy for persistent volumes provisioned using the specified storage class.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.file_system",
-					Description: `Karbon uses either the ext4 or xfs file-system on the volume disk.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.flash_mode",
-					Description: `Pins the persistent volumes to the flash tier in case of a ` + "`" + `true` + "`" + ` value.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.password",
-					Description: `The password of the Prism Element user that the API calls use to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.prism_element_cluster_uuid",
-					Description: `The universally unique identifier (UUID) of the Prism Element cluster.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.storage_container",
-					Description: `Name of the storage container the storage container uses to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.username",
-					Description: `Username of the Prism Element user that the API calls use to provision volumes. ### External LB Config The external load balancer configuration in the case of a multi-master-external-load-balancer type master deployment.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -366,58 +475,8 @@ var (
 			ShortDescription: `Describes a Karbon Clusters`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "reclaim_policy",
-					Description: `Reclaim policy for persistent volumes provisioned using the specified storage class.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.file_system",
-					Description: `Karbon uses either the ext4 or xfs file-system on the volume disk.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.password",
-					Description: `TPassword of the Prism Element user that the API calls use to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.prism_element_cluster_uuid",
-					Description: `The universally unique identifier (UUID) of the Prism Element cluster.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.storage_container",
-					Description: `TName of the storage container the storage container uses to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.username",
-					Description: `TThe username of the Prism Element user that the API calls use to provision volumes. ### External LB Config The external load balancer configuration in the case of a multi-master-external-load-balancer type master deployment.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "reclaim_policy",
-					Description: `Reclaim policy for persistent volumes provisioned using the specified storage class.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.file_system",
-					Description: `Karbon uses either the ext4 or xfs file-system on the volume disk.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.password",
-					Description: `TPassword of the Prism Element user that the API calls use to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.prism_element_cluster_uuid",
-					Description: `The universally unique identifier (UUID) of the Prism Element cluster.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.storage_container",
-					Description: `TName of the storage container the storage container uses to provision volumes.`,
-				},
-				resource.Attribute{
-					Name:        "volumes_config.#.username",
-					Description: `TThe username of the Prism Element user that the API calls use to provision volumes. ### External LB Config The external load balancer configuration in the case of a multi-master-external-load-balancer type master deployment.`,
-				},
-			},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -441,6 +500,236 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_ndb_clone",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a clone in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_clones",
+			Category:         "Data Sources",
+			ShortDescription: `List all the clone in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a cluster in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_clusters",
+			Category:         "Data Sources",
+			ShortDescription: `List all clusters in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_database",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a database instance in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_databases",
+			Category:         "Data Sources",
+			ShortDescription: `List all database instances in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_dbserver",
+			Category:         "Data Sources",
+			ShortDescription: `Describes Database Server VM in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_dbservers",
+			Category:         "Data Sources",
+			ShortDescription: `List of all Database Server VM in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_maintenance_window",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a maintenance window in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_maintenance_windows",
+			Category:         "Data Sources",
+			ShortDescription: `List of maintenance windows in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_network",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a network in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_network_available_ips",
+			Category:         "Data Sources",
+			ShortDescription: `List of available IPs in Network`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_networks",
+			Category:         "Data Sources",
+			ShortDescription: `List of networks in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_profile",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a profile in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_profiles",
+			Category:         "Data Sources",
+			ShortDescription: `List profiles in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_sla",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a SLA in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_slas",
+			Category:         "Data Sources",
+			ShortDescription: `Lists all SLAs in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_snapshots",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a snaphot in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_tag",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a tag in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_tags",
+			Category:         "Data Sources",
+			ShortDescription: `List of tags in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_time_machine",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a time machine in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_tms_capability",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a time machine in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_ndb_time_machines",
+			Category:         "Data Sources",
+			ShortDescription: `List all time machines in Nutanix Database Service`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_network_security_rule",
 			Category:         "Data Sources",
 			ShortDescription: `Describes a Network security rule`,
@@ -456,6 +745,233 @@ var (
 				resource.Attribute{
 					Name:        "network_security_rule_id",
 					Description: `(Required) The ID for the rule you want to retrieve.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_pbr",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a datasource to retrieve Policy Based Routing with pbr_uuid .`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pbr_uuid",
+					Description: `(Required) pbr UUID ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `PBR output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `PBR input spec ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of PBR`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `PBR resources ### status`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the PBR`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the PBR`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `PBR resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of PBR. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "is_bidirectional",
+					Description: `Policy in reverse direction.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference",
+					Description: `Reference to VPC`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `destination address of an IP.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `source address of an IP.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `priority of routing policy`,
+				},
+				resource.Attribute{
+					Name:        "protocol_parameters",
+					Description: `Routing policy IP protocol parameters`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Routing policy action`,
+				},
+				resource.Attribute{
+					Name:        "protocol_type",
+					Description: `Protocol type of routing policy ### source , destination source/destination address of an IP.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `PBR output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `PBR input spec ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of PBR`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `PBR resources ### status`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the PBR`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the PBR`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `PBR resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of PBR. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "is_bidirectional",
+					Description: `Policy in reverse direction.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference",
+					Description: `Reference to VPC`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `destination address of an IP.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `source address of an IP.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `priority of routing policy`,
+				},
+				resource.Attribute{
+					Name:        "protocol_parameters",
+					Description: `Routing policy IP protocol parameters`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Routing policy action`,
+				},
+				resource.Attribute{
+					Name:        "protocol_type",
+					Description: `Protocol type of routing policy ### source , destination source/destination address of an IP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_pbrs",
+			Category:         "Data Sources",
+			ShortDescription: `This operation retrieves a list of all the policy based routing.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `PBR output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `PBR spec ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of PBR`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `PBR resources ### status`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the PBR`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the PBR`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `PBR resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of PBR. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "is_bidirectional",
+					Description: `Policy in reverse direction.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference",
+					Description: `Reference to VPC`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `destination address of an IP.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `source address of an IP.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `priority of routing policy`,
+				},
+				resource.Attribute{
+					Name:        "protocol_parameters",
+					Description: `Routing policy IP protocol parameters`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Routing policy action`,
+				},
+				resource.Attribute{
+					Name:        "protocol_type",
+					Description: `Protocol type of routing policy ### source , destination source/destination address of an IP.`,
 				},
 			},
 		},
@@ -744,7 +1260,99 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_domain.resources.#.value",
-					Description: `The amount of resource consumed ### Metadata The metadata attribute exports the following:`,
+					Description: `The amount of resource consumed ### Tunnel Reference List`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list",
+					Description: `(Optional/Computed) List of tunnels associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `tunnel` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.uuid",
+					Description: `(Required) The UUID of a tunnel`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a tunnel. ### Cluster Reference List`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list",
+					Description: `(Optional/Computed) List of clusters associated with the project..`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `cluster` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.uuid",
+					Description: `(Required) The UUID of a cluster`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a cluster. ### VPC Reference List`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list",
+					Description: `(Optional/Computed) List of VPCs associated with the project..`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `vpc` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.uuid",
+					Description: `(Required) The UUID of a vpc`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a vpc. ### Default Environment Reference Map`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference",
+					Description: `(Optional/Computed) Reference to a environment.`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `environment` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.uuid",
+					Description: `(Required) The UUID of a environment`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.name",
+					Description: `(Optional/Computed) The name of a environment. ### ACP ACPs will be exported if use_project_internal flag is set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of ACP`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of ACP`,
+				},
+				resource.Attribute{
+					Name:        "user_reference_list",
+					Description: `List of Reference of users.`,
+				},
+				resource.Attribute{
+					Name:        "user_group_reference_list",
+					Description: `List of Reference of users groups.`,
+				},
+				resource.Attribute{
+					Name:        "role_reference",
+					Description: `Reference to role.`,
+				},
+				resource.Attribute{
+					Name:        "context_filter_list",
+					Description: `The list of context filters. These are OR filters. The scope-expression-list defines the context, and the filter works in conjunction with the entity-expression-list. The context_list attribute supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "entity_filter_expression_list",
+					Description: `(Required) A list of Entity filter expressions. ### Scope Filter Expression List The scope_filter_expression_list attribute supports the following.`,
 				},
 				resource.Attribute{
 					Name:        "last_update_time",
@@ -914,7 +1522,99 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_domain.resources.#.value",
-					Description: `The amount of resource consumed ### Metadata The metadata attribute exports the following:`,
+					Description: `The amount of resource consumed ### Tunnel Reference List`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list",
+					Description: `(Optional/Computed) List of tunnels associated with the project.`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `tunnel` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.uuid",
+					Description: `(Required) The UUID of a tunnel`,
+				},
+				resource.Attribute{
+					Name:        "tunnel_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a tunnel. ### Cluster Reference List`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list",
+					Description: `(Optional/Computed) List of clusters associated with the project..`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `cluster` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.uuid",
+					Description: `(Required) The UUID of a cluster`,
+				},
+				resource.Attribute{
+					Name:        "cluster_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a cluster. ### VPC Reference List`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list",
+					Description: `(Optional/Computed) List of VPCs associated with the project..`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `vpc` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.uuid",
+					Description: `(Required) The UUID of a vpc`,
+				},
+				resource.Attribute{
+					Name:        "vpc_reference_list.#.name",
+					Description: `(Optional/Computed) The name of a vpc. ### Default Environment Reference Map`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference",
+					Description: `(Optional/Computed) Reference to a environment.`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.kind",
+					Description: `(Optional) The kind name. Default value is ` + "`" + `environment` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.uuid",
+					Description: `(Required) The UUID of a environment`,
+				},
+				resource.Attribute{
+					Name:        "default_environment_reference.name",
+					Description: `(Optional/Computed) The name of a environment. ### ACP ACPs will be exported if use_project_internal flag is set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of ACP`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of ACP`,
+				},
+				resource.Attribute{
+					Name:        "user_reference_list",
+					Description: `List of Reference of users.`,
+				},
+				resource.Attribute{
+					Name:        "user_group_reference_list",
+					Description: `List of Reference of users groups.`,
+				},
+				resource.Attribute{
+					Name:        "role_reference",
+					Description: `Reference to role.`,
+				},
+				resource.Attribute{
+					Name:        "context_filter_list",
+					Description: `The list of context filters. These are OR filters. The scope-expression-list defines the context, and the filter works in conjunction with the entity-expression-list. The context_list attribute supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "entity_filter_expression_list",
+					Description: `(Required) A list of Entity filter expressions. ### Scope Filter Expression List The scope_filter_expression_list attribute supports the following.`,
 				},
 				resource.Attribute{
 					Name:        "last_update_time",
@@ -2245,6 +2945,198 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_static_routes",
+			Category:         "Data Sources",
+			ShortDescription: `This operation retrieves a static routes within VPCs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_reference_uuid",
+					Description: `vpc UUID ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `API version`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The vpc_route_table kind metadata`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `An intentful representation of a vpc_route_table spec`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `An intentful representation of a vpc_route_table status ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `vpc_route_table Name.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC route table resources ### status`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the vpc_route_table.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC route table resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of VPC. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "static_routes_list",
+					Description: `list of static routes`,
+				},
+				resource.Attribute{
+					Name:        "default_route_nexthop",
+					Description: `default routes (present in spec resource)`,
+				},
+				resource.Attribute{
+					Name:        "default_route",
+					Description: `default route. (present in status resource only )`,
+				},
+				resource.Attribute{
+					Name:        "local_routes_list",
+					Description: `list of local routes (present in status resource only )`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_routes_list",
+					Description: `list of dynamic routes (present in status resource only) ### static_routes_list`,
+				},
+				resource.Attribute{
+					Name:        "nexthop",
+					Description: `Targeted link to use as the nexthop in a route.`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `destination ip address with prefix.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The preference value assigned to this route. A higher value means greater preference. Present in Status Resource.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `Whether this route is currently active. Present in Status Resources. ### nexthop`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "direct_connect_virtual_interface_reference",
+					Description: `The reference to a direct_connect_virtual_interface`,
+				},
+				resource.Attribute{
+					Name:        "local_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "vpn_connection_reference",
+					Description: `The reference to a vpn_connection ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `API version`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The vpc_route_table kind metadata`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `An intentful representation of a vpc_route_table spec`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `An intentful representation of a vpc_route_table status ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `vpc_route_table Name.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC route table resources ### status`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the vpc_route_table.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC route table resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of VPC. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "static_routes_list",
+					Description: `list of static routes`,
+				},
+				resource.Attribute{
+					Name:        "default_route_nexthop",
+					Description: `default routes (present in spec resource)`,
+				},
+				resource.Attribute{
+					Name:        "default_route",
+					Description: `default route. (present in status resource only )`,
+				},
+				resource.Attribute{
+					Name:        "local_routes_list",
+					Description: `list of local routes (present in status resource only )`,
+				},
+				resource.Attribute{
+					Name:        "dynamic_routes_list",
+					Description: `list of dynamic routes (present in status resource only) ### static_routes_list`,
+				},
+				resource.Attribute{
+					Name:        "nexthop",
+					Description: `Targeted link to use as the nexthop in a route.`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `destination ip address with prefix.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The preference value assigned to this route. A higher value means greater preference. Present in Status Resource.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `Whether this route is currently active. Present in Status Resources. ### nexthop`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "direct_connect_virtual_interface_reference",
+					Description: `The reference to a direct_connect_virtual_interface`,
+				},
+				resource.Attribute{
+					Name:        "local_subnet_reference",
+					Description: `The reference to a subnet`,
+				},
+				resource.Attribute{
+					Name:        "vpn_connection_reference",
+					Description: `The reference to a vpn_connection ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_subnet",
 			Category:         "Data Sources",
 			ShortDescription: `This operation retrieves a subnet based on the input parameters. A subnet is a block of IP addresses.`,
@@ -2429,6 +3321,273 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_vpc",
+			Category:         "Data Sources",
+			ShortDescription: `This operation retrieves a vpc based on the input parameters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_uuid",
+					Description: `vpc UUID`,
+				},
+				resource.Attribute{
+					Name:        "vpc_name",
+					Description: `vpc Name ## Attribute Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `VPC output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `VPC input spec ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of VPC .`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC resources . ### status`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPC`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VPC`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of VPC. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_list",
+					Description: `List of external subnets attached to this VPC.`,
+				},
+				resource.Attribute{
+					Name:        "externally_routable_prefix_list",
+					Description: `List of external routable ip and prefix .`,
+				},
+				resource.Attribute{
+					Name:        "common_domain_name_server_ip_list",
+					Description: `List of domain name server IPs. ### external_subnet_list`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `Reference to a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "external_ip_list",
+					Description: `List of external subnets attached to this VPC. Only present in VPC Status Resources .`,
+				},
+				resource.Attribute{
+					Name:        "active_gateway_node",
+					Description: `Active Gateway Node. Only present in VPC Status Resources. ### externally_routable_prefix_list`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip address .`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `prefix length of routable ip . ### common_domain_name_server_ip_list`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip address of domain name server. #### active_gateway_node`,
+				},
+				resource.Attribute{
+					Name:        "host_reference",
+					Description: `Reference to host.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `ip address. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `VPC output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `VPC input spec ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of VPC .`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC resources . ### status`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPC`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VPC`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of VPC. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_list",
+					Description: `List of external subnets attached to this VPC.`,
+				},
+				resource.Attribute{
+					Name:        "externally_routable_prefix_list",
+					Description: `List of external routable ip and prefix .`,
+				},
+				resource.Attribute{
+					Name:        "common_domain_name_server_ip_list",
+					Description: `List of domain name server IPs. ### external_subnet_list`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `Reference to a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "external_ip_list",
+					Description: `List of external subnets attached to this VPC. Only present in VPC Status Resources .`,
+				},
+				resource.Attribute{
+					Name:        "active_gateway_node",
+					Description: `Active Gateway Node. Only present in VPC Status Resources. ### externally_routable_prefix_list`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip address .`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `prefix length of routable ip . ### common_domain_name_server_ip_list`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip address of domain name server. #### active_gateway_node`,
+				},
+				resource.Attribute{
+					Name:        "host_reference",
+					Description: `Reference to host.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `ip address. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nutanix_vpcs",
+			Category:         "Data Sources",
+			ShortDescription: `This operation retrieves a list of all the vpcs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `VPC output status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `VPC input spec ### spec`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of VPC .`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC resources . ### status`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPC`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the VPC`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `VPC resources status`,
+				},
+				resource.Attribute{
+					Name:        "execution_context",
+					Description: `Execution Context of VPC. ### resources`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_list",
+					Description: `List of external subnets attached to this VPC.`,
+				},
+				resource.Attribute{
+					Name:        "externally_routable_prefix_list",
+					Description: `List of external routable ip and prefix .`,
+				},
+				resource.Attribute{
+					Name:        "common_domain_name_server_ip_list",
+					Description: `List of domain name server IPs. ### external_subnet_list`,
+				},
+				resource.Attribute{
+					Name:        "external_subnet_reference",
+					Description: `Reference to a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "external_ip_list",
+					Description: `List of external subnets attached to this VPC. Only present in VPC Status Resources .`,
+				},
+				resource.Attribute{
+					Name:        "active_gateway_node",
+					Description: `Active Gateway Node. Only present in VPC Status Resources. ### externally_routable_prefix_list`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip address .`,
+				},
+				resource.Attribute{
+					Name:        "prefix_length",
+					Description: `prefix length of routable ip . ### common_domain_name_server_ip_list`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `ip address of domain name server. #### active_gateway_node`,
+				},
+				resource.Attribute{
+					Name:        "host_reference",
+					Description: `Reference to host.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `ip address. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -2440,41 +3599,71 @@ var (
 		"nutanix_category_key":                                4,
 		"nutanix_cluster":                                     5,
 		"nutanix_clusters":                                    6,
-		"nutanix_foundation_central_get_api_key":              7,
-		"nutanix_foundation_central_imaged_cluster_details":   8,
-		"nutanix_foundation_central_imaged_node_details":      9,
-		"nutanix_foundation_central_list_all_api_keys":        10,
-		"nutanix_foundation_central_list_all_imaged_clusters": 11,
-		"nutanix_foundation_central_list_all_imaged_nodes":    12,
-		"nutanix_foundation_discover_nodes":                   13,
-		"nutanix_foundation_node_network_details":             14,
-		"nutanix_foundation_nos_packages":                     15,
-		"nutanix_host":                                        16,
-		"nutanix_hosts":                                       17,
-		"nutanix_image":                                       18,
-		"nutanix_karbon_cluster":                              19,
-		"nutanix_karbon_cluster_kubeconfig":                   20,
-		"nutanix_karbon_cluster_ssh":                          21,
-		"nutanix_karbon_clusters":                             22,
-		"nutanix_karbon_private_registries":                   23,
-		"nutanix_karbon_private_registry":                     24,
-		"nutanix_network_security_rule":                       25,
-		"nutanix_permission":                                  26,
-		"nutanix_permissions":                                 27,
-		"nutanix_project":                                     28,
-		"nutanix_projects":                                    29,
-		"nutanix_protection_rule":                             30,
-		"nutanix_protection_rules":                            31,
-		"nutanix_recovery_plan":                               32,
-		"nutanix_role":                                        33,
-		"nutanix_roles":                                       34,
-		"nutanix_subnet":                                      35,
-		"nutanix_subnets":                                     36,
-		"nutanix_user":                                        37,
-		"nutanix_user_group":                                  38,
-		"nutanix_user_groups":                                 39,
-		"nutanix_users":                                       40,
-		"nutanix_virtual_machine":                             41,
+		"nutanix_floating_ip":                                 7,
+		"nutanix_floating_ips":                                8,
+		"nutanix_foundation_central_get_api_key":              9,
+		"nutanix_foundation_central_imaged_cluster_details":   10,
+		"nutanix_foundation_central_imaged_node_details":      11,
+		"nutanix_foundation_central_list_all_api_keys":        12,
+		"nutanix_foundation_central_list_all_imaged_clusters": 13,
+		"nutanix_foundation_central_list_all_imaged_nodes":    14,
+		"nutanix_foundation_discover_nodes":                   15,
+		"nutanix_foundation_node_network_details":             16,
+		"nutanix_foundation_nos_packages":                     17,
+		"nutanix_host":                                        18,
+		"nutanix_hosts":                                       19,
+		"nutanix_image":                                       20,
+		"nutanix_karbon_cluster":                              21,
+		"nutanix_karbon_cluster_kubeconfig":                   22,
+		"nutanix_karbon_cluster_ssh":                          23,
+		"nutanix_karbon_clusters":                             24,
+		"nutanix_karbon_private_registries":                   25,
+		"nutanix_karbon_private_registry":                     26,
+		"nutanix_ndb_clone":                                   27,
+		"nutanix_ndb_clones":                                  28,
+		"nutanix_ndb_cluster":                                 29,
+		"nutanix_ndb_clusters":                                30,
+		"nutanix_ndb_database":                                31,
+		"nutanix_ndb_databases":                               32,
+		"nutanix_ndb_dbserver":                                33,
+		"nutanix_ndb_dbservers":                               34,
+		"nutanix_ndb_maintenance_window":                      35,
+		"nutanix_ndb_maintenance_windows":                     36,
+		"nutanix_ndb_network":                                 37,
+		"nutanix_ndb_network_available_ips":                   38,
+		"nutanix_ndb_networks":                                39,
+		"nutanix_ndb_profile":                                 40,
+		"nutanix_ndb_profiles":                                41,
+		"nutanix_ndb_sla":                                     42,
+		"nutanix_ndb_slas":                                    43,
+		"nutanix_ndb_snapshots":                               44,
+		"nutanix_ndb_tag":                                     45,
+		"nutanix_ndb_tags":                                    46,
+		"nutanix_ndb_time_machine":                            47,
+		"nutanix_ndb_tms_capability":                          48,
+		"nutanix_ndb_time_machines":                           49,
+		"nutanix_network_security_rule":                       50,
+		"nutanix_pbr":                                         51,
+		"nutanix_pbrs":                                        52,
+		"nutanix_permission":                                  53,
+		"nutanix_permissions":                                 54,
+		"nutanix_project":                                     55,
+		"nutanix_projects":                                    56,
+		"nutanix_protection_rule":                             57,
+		"nutanix_protection_rules":                            58,
+		"nutanix_recovery_plan":                               59,
+		"nutanix_role":                                        60,
+		"nutanix_roles":                                       61,
+		"nutanix_static_routes":                               62,
+		"nutanix_subnet":                                      63,
+		"nutanix_subnets":                                     64,
+		"nutanix_user":                                        65,
+		"nutanix_user_group":                                  66,
+		"nutanix_user_groups":                                 67,
+		"nutanix_users":                                       68,
+		"nutanix_virtual_machine":                             69,
+		"nutanix_vpc":                                         70,
+		"nutanix_vpcs":                                        71,
 	}
 )
 

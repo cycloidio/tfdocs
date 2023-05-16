@@ -35,7 +35,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "plan",
-					Description: `(Optional) Cloud Server Plan ID or Slug that indentifies the desired plan type of the Cloud Server. Changing this resizes the existing server. See the [list of available products](https://websa.advancedhosting.com/slugs).`,
+					Description: `(Optional) Cloud Server Plan ID or Slug that identifies the desired plan type of the Cloud Server. Changing this resizes the existing server. See the [list of available products](https://websa.advancedhosting.com/slugs).`,
 				},
 				resource.Attribute{
 					Name:        "backups",
@@ -51,7 +51,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create_public_ip_address",
-					Description: `(Optional) Boolean defining if a new public IP address should be created for the server. This public IP address will become a primary IP address for the Cloud Server. Defaults to true. --- ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Boolean defining if a new public IP address should be created for the server. This public IP address will become a primary IP address for the Cloud Server. Defaults to true.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional, Required in case of ` + "`" + `private_cloud=true` + "`" + `) The Cloud Server cluster ID`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `(Optional) The Cloud Server node ID. If not set, system will choose respective one automatically.`,
+				},
+				resource.Attribute{
+					Name:        "vcpu",
+					Description: `(Optional, Required in case of ` + "`" + `private_cloud=true` + "`" + `) Required number of VCPUs for the Cloud Server`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `(Optional, Required in case of ` + "`" + `private_cloud=true` + "`" + `) Required RAM value for the Cloud Server`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `(Optional, Required in case of ` + "`" + `private_cloud=true` + "`" + `) Required disk size for the Cloud Server --- ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",

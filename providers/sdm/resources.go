@@ -39,6 +39,10 @@ Accounts are users that have access to strongDM. There are two types of accounts
 					Description: `(Required) The User's email address. Must be unique.`,
 				},
 				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Optional) External ID is an alternative unique ID this user is represented by within an external service.`,
+				},
+				resource.Attribute{
 					Name:        "first_name",
 					Description: `(Required) The User's first name.`,
 				},
@@ -56,13 +60,29 @@ Accounts are users that have access to strongDM. There are two types of accounts
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Account resource. ## Import Account can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Account.example a-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Account resource.`,
+				},
+				resource.Attribute{
+					Name:        "managed_by",
+					Description: `Managed By is a read only field for what service manages this user, e.g. StrongDM, Okta, Azure.`,
+				},
+				resource.Attribute{
+					Name:        "permission_level",
+					Description: `PermissionLevel is a read only field for the user's permission level e.g. admin, DBA, user. ## Import Account can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_account.example a-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Account resource. ## Import Account can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Account.example a-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Account resource.`,
+				},
+				resource.Attribute{
+					Name:        "managed_by",
+					Description: `Managed By is a read only field for what service manages this user, e.g. StrongDM, Okta, Azure.`,
+				},
+				resource.Attribute{
+					Name:        "permission_level",
+					Description: `PermissionLevel is a read only field for the user's permission level e.g. admin, DBA, user. ## Import Account can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_account.example a-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -87,45 +107,13 @@ AccountAttachments assign an account to a role.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the AccountAttachment resource. ## Import AccountAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountAttachment.example aa-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the AccountAttachment resource. ## Import AccountAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_account_attachment.example aa-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the AccountAttachment resource. ## Import AccountAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountAttachment.example aa-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "sdm_account_grant",
-			Category:         "Resources",
-			ShortDescription: `Provides settings for AccountGrant. layout: “sdm” sidebar_current: “docs-sdm-resource-account-grant"`,
-			Description: `
-
-AccountGrants connect a resource directly to an account, giving the account the permission to connect to that resource.
-This resource is deprecated.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "account_id",
-					Description: `(Required) The id of the attached role of this AccountGrant.`,
-				},
-				resource.Attribute{
-					Name:        "resource_id",
-					Description: `(Required) The id of the composite role of this AccountGrant. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the AccountGrant resource:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `A unique identifier for the AccountGrant resource. ## Import AccountGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountGrant.example ag-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `A unique identifier for the AccountGrant resource. ## Import AccountGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import AccountGrant.example ag-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the AccountAttachment resource. ## Import AccountAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_account_attachment.example aa-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -177,13 +165,97 @@ Nodes make up the strongDM network, and allow your users to connect securely to 
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Node resource. ## Import Node can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Node.example n-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Node resource.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `Device is a read only device name uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Location is a read only network location uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version is a read only sdm binary version uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `Device is a read only device name uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Location is a read only network location uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version is a read only sdm binary version uploaded by the gateway process when it comes online. ## Import Node can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_node.example n-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Node resource. ## Import Node can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Node.example n-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Node resource.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `Device is a read only device name uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Location is a read only network location uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version is a read only sdm binary version uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `Device is a read only device name uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Location is a read only network location uploaded by the gateway process when it comes online.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version is a read only sdm binary version uploaded by the gateway process when it comes online. ## Import Node can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_node.example n-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "sdm_remote_identity",
+			Category:         "Resources",
+			ShortDescription: `Provides settings for RemoteIdentity. layout: “sdm” sidebar_current: “docs-sdm-resource-remote-identity"`,
+			Description: `
+
+RemoteIdentities define the username to be used for a specific account
+ when connecting to a remote resource using that group.
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The account for this remote identity.`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Required) The remote identity group.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to be used as the remote identity for this account. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the RemoteIdentity resource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `A unique identifier for the RemoteIdentity resource. ## Import RemoteIdentity can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_remote_identity.example i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `A unique identifier for the RemoteIdentity resource. ## Import RemoteIdentity can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_remote_identity.example i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -199,6 +271,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
 				resource.Attribute{
 					Name:        "certificate_authority",
 					Description: `(Optional)`,
@@ -256,12 +332,32 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -296,8 +392,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -316,44 +420,8 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Tags is a map of key, value pairs.`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_key",
-					Description: `(Optional)`,
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -376,8 +444,24 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -394,6 +478,62 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_token_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "certificate_authority",
@@ -452,8 +592,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -472,12 +620,292 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "certificate_authority",
-					Description: `(Required if storing credentials directly strongDM)`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_path",
 					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_certificate_authority_key",
@@ -548,96 +976,8 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Tags is a map of key, value pairs.`,
-				},
-				resource.Attribute{
-					Name:        "access_key",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "cluster_name",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "role_arn",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_arn_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "role_external_id",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_path",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_role_external_id_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_access_key",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_secret_access_key_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_secret_access_key_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -656,6 +996,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -666,6 +1010,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -712,8 +1060,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -744,8 +1100,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -780,6 +1144,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -790,6 +1158,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "output",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -836,8 +1208,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -872,8 +1252,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -890,6 +1278,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -928,8 +1320,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -960,6 +1360,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -970,6 +1374,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "role_arn",
@@ -1012,6 +1420,174 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "enable_env_variables",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "session_expiry",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_arn_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "role_external_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_role_external_id_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_access_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_secret_access_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "session_expiry",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -1026,6 +1602,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_app_id_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1048,8 +1628,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1080,12 +1668,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "client_certificate",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_client_certificate_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_client_certificate_key",
@@ -1100,8 +1692,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1118,6 +1718,74 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_tenant_id_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -1156,8 +1824,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1176,6 +1852,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -1186,6 +1866,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "private_key",
@@ -1208,12 +1892,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1244,8 +1936,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1266,6 +1966,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -1304,8 +2008,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1322,6 +2034,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -1356,8 +2072,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1374,6 +2098,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -1412,8 +2140,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1430,6 +2166,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1457,11 +2197,19 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1482,6 +2230,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -1516,8 +2268,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1538,6 +2298,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "auth_database",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1568,8 +2332,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1590,6 +2362,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "auth_database",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "connect_to_replica",
@@ -1620,12 +2396,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "replica_set",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1642,6 +2426,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1672,8 +2460,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1704,6 +2500,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -1714,6 +2514,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1760,8 +2564,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1777,11 +2589,11 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required if storing credentials directly strongDM)`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_path",
-					Description: `(Required if using credentials stored in a secret store)`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_password_key",
@@ -1792,8 +2604,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1816,6 +2636,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -1844,8 +2668,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1854,6 +2686,22 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "tls_required",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -1876,6 +2724,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required) Unique human-readable name of the Resource.`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "scopes",
 					Description: `(Required)`,
 				},
@@ -1884,16 +2736,88 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "certificate_authority",
-					Description: `(Required if storing credentials directly strongDM)`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_key",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_service_account_key_path",
 					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_service_account_key_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "certificate_authority",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_certificate_authority_path",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_certificate_authority_key",
@@ -1932,56 +2856,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Tags is a map of key, value pairs.`,
-				},
-				resource.Attribute{
-					Name:        "certificate_authority",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_certificate_authority_key",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "endpoint",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "service_account_key",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_service_account_key_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_service_account_key_key",
-					Description: `(Optional)`,
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -2020,8 +2904,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2052,6 +2944,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "default_path",
 					Description: `(Optional)`,
 				},
@@ -2066,6 +2962,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "healthcheck_path",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "host_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2088,6 +2988,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "default_path",
 					Description: `(Optional)`,
 				},
@@ -2102,6 +3006,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "healthcheck_path",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "host_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2148,6 +3056,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "default_path",
 					Description: `(Optional)`,
 				},
@@ -2162,6 +3074,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "healthcheck_path",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "host_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2182,6 +3098,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "url",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "certificate_authority",
@@ -2240,12 +3160,32 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2280,8 +3220,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2300,44 +3248,8 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
-					Name:        "egress_filter",
-					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
-				},
-				resource.Attribute{
-					Name:        "healthcheck_namespace",
-					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Unique human-readable name of the Resource.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_id",
-					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Tags is a map of key, value pairs.`,
-				},
-				resource.Attribute{
-					Name:        "token",
-					Description: `(Required if storing credentials directly strongDM)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_path",
-					Description: `(Required if using credentials stored in a secret store)`,
-				},
-				resource.Attribute{
-					Name:        "secret_store_token_key",
-					Description: `(Optional)`,
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -2360,8 +3272,24 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2378,6 +3306,62 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_token_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_namespace",
+					Description: `The path used to check the health of your connection. Defaults to ` + "`" + `default` + "`" + `. This field is required, and is only marked as optional for backwards compatibility.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_token_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "certificate_authority",
@@ -2436,12 +3420,24 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -2476,8 +3472,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2496,6 +3500,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -2512,12 +3520,24 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -2552,8 +3572,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2576,6 +3604,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -2604,8 +3636,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2632,6 +3672,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -2657,6 +3701,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -2668,6 +3716,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -2690,6 +3742,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "auth_database",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "connect_to_replica",
@@ -2724,12 +3780,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "replica_set",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2754,6 +3818,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "auth_database",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "connect_to_replica",
@@ -2788,12 +3856,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "replica_set",
 					Description: `(Required)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2820,6 +3896,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -2844,8 +3924,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2866,6 +3954,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "certificate_authority",
@@ -2933,6 +4025,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -2944,6 +4040,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -2958,6 +4058,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "certificate_authority",
@@ -3032,12 +4136,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
 					Name:        "server_name",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3054,6 +4166,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3088,8 +4204,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3108,6 +4232,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -3124,8 +4252,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3144,6 +4280,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -3157,6 +4297,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -3204,8 +4348,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3240,8 +4392,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Required)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3262,6 +4422,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3300,8 +4464,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3318,6 +4490,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3352,8 +4528,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3366,6 +4550,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -3396,8 +4584,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3420,6 +4616,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -3436,12 +4636,24 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "downgrade_nla_connections",
@@ -3473,11 +4685,19 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Required)`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3494,6 +4714,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -3524,12 +4748,40 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tls_required",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3568,8 +4820,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3586,6 +4846,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3620,8 +4884,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3638,6 +4910,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3668,12 +4944,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "schema",
-					Description: `(Required)`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3690,6 +4974,54 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck_username",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "saml_metadata",
+					Description: `(Required if storing credentials directly strongDM)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_saml_metadata_path",
+					Description: `(Required if using credentials stored in a secret store)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_saml_metadata_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -3728,6 +5060,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "schema",
 					Description: `(Optional)`,
 				},
@@ -3736,6 +5072,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -3756,12 +5096,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "key_type",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3773,6 +5121,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port_forwarding",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -3780,6 +5132,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -3800,12 +5156,20 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "key_type",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3817,6 +5181,18 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port_forwarding",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_group_id",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "remote_identity_healthcheck_username",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
@@ -3824,6 +5200,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -3844,6 +5224,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
 					Name:        "egress_filter",
 					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
 				},
@@ -3861,15 +5245,19 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "port_forwarding",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "private_key",
-					Description: `(Optional)`,
+					Description: `(Required if storing credentials directly strongDM)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_private_key_path",
-					Description: `(Optional)`,
+					Description: `(Required if using credentials stored in a secret store)`,
 				},
 				resource.Attribute{
 					Name:        "secret_store_private_key_key",
@@ -3880,6 +5268,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
 				},
 				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Tags is a map of key, value pairs.`,
 				},
@@ -3894,6 +5286,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -3924,8 +5320,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3942,6 +5346,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -3972,8 +5380,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3990,6 +5406,10 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				resource.Attribute{
 					Name:        "secret_store_username_key",
 					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
 				},
 				resource.Attribute{
 					Name:        "egress_filter",
@@ -4020,8 +5440,16 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
 					Name:        "secret_store_id",
 					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -4037,6 +5465,62 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 				},
 				resource.Attribute{
 					Name:        "secret_store_username_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "bind_interface",
+					Description: `(Optional) Bind interface`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "egress_filter",
+					Description: `(Optional) A filter applied to the routing logic to pin datasource to nodes.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the Resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_path",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_password_key",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "port_override",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "secret_store_id",
+					Description: `(Optional) ID of the secret store containing credentials for this resource, if any.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Optional) Subdomain is the local DNS address. (e.g. app-prod1 turns into app-prod1.your-org-name.sdm.network)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "username",
 					Description: `(Optional) ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Resource resource:`,
 				},
 				resource.Attribute{
@@ -4044,196 +5528,8 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `A unique identifier for the Resource resource.`,
 				},
 				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
 					Name:        "public_key",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: `## Import Resource can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Resource.example rs-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `## Import Resource can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_resource.example rs-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4242,196 +5538,8 @@ A Resource is a database, server, cluster, website, or cloud that strongDM
 					Description: `A unique identifier for the Resource resource.`,
 				},
 				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
 					Name:        "public_key",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: ``,
-				},
-				resource.Attribute{
-					Name:        "port_override",
-					Description: `## Import Resource can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Resource.example rs-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `## Import Resource can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_resource.example rs-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4453,90 +5561,18 @@ A Role has a list of access rules which determine which Resources the members
 					Description: `(Optional) AccessRules is a list of access rules defining the resources this Role has access to.`,
 				},
 				resource.Attribute{
-					Name:        "composite",
-					Description: `(Optional) Composite is true if the Role is a composite role. Deprecated: composite roles are deprecated, use multi-role via AccountAttachments instead.`,
-				},
-				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Unique human-readable name of the Role. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the Role resource:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Role resource. ## Import Role can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Role.example r-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Role resource. ## Import Role can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_role.example r-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the Role resource. ## Import Role can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import Role.example r-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "sdm_role_attachment",
-			Category:         "Resources",
-			ShortDescription: `Provides settings for RoleAttachment. layout: “sdm” sidebar_current: “docs-sdm-resource-role-attachment"`,
-			Description: `
-
-A RoleAttachment assigns a role to a composite role.
- 
- Deprecated: use multi-role via AccountAttachments instead.
-This resource is deprecated.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "attached_role_id",
-					Description: `(Required) The id of the attached role of this RoleAttachment.`,
-				},
-				resource.Attribute{
-					Name:        "composite_role_id",
-					Description: `(Required) The id of the composite role of this RoleAttachment. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the RoleAttachment resource:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `A unique identifier for the RoleAttachment resource. ## Import RoleAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleAttachment.example ra-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `A unique identifier for the RoleAttachment resource. ## Import RoleAttachment can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleAttachment.example ra-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "sdm_role_grant",
-			Category:         "Resources",
-			ShortDescription: `Provides settings for RoleGrant. layout: “sdm” sidebar_current: “docs-sdm-resource-role-grant"`,
-			Description: `
-
-A RoleGrant connects a resource to a role, granting members of the role access to that resource.
-
- Deprecated: use Role access rules instead.
-This resource is deprecated.
-`,
-			Keywords: []string{},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "resource_id",
-					Description: `(Required) The id of the resource of this RoleGrant.`,
-				},
-				resource.Attribute{
-					Name:        "role_id",
-					Description: `(Required) The id of the attached role of this RoleGrant. ## Attribute Reference In addition to provided arguments above, the following attributes are returned by the RoleGrant resource:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `A unique identifier for the RoleGrant resource. ## Import RoleGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleGrant.example rg-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `A unique identifier for the RoleGrant resource. ## Import RoleGrant can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import RoleGrant.example rg-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Role resource. ## Import Role can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_role.example r-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4548,7 +5584,7 @@ This resource is deprecated.
 			Description: `
 
 A SecretStore is a server where resource secrets (passwords, keys) are stored.
- Coming soon support for HashiCorp Vault and AWS Secret Store. Contact support@strongdm.com to request access to the beta.
+ Coming soon support for HashiCorp Vault and AWS Secret Store.
 This resource can be imported using the [import](https://www.terraform.io/docs/cli/commands/import.html) command.
 
 `,
@@ -4577,6 +5613,58 @@ This resource can be imported using the [import](https://www.terraform.io/docs/c
 				resource.Attribute{
 					Name:        "vault_uri",
 					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "app_url",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "app_url",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "app_url",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique human-readable name of the SecretStore.`,
+				},
+				resource.Attribute{
+					Name:        "server_url",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags is a map of key, value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_name",
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4652,13 +5740,13 @@ This resource can be imported using the [import](https://www.terraform.io/docs/c
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the SecretStore resource. ## Import SecretStore can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import SecretStore.example se-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the SecretStore resource. ## Import SecretStore can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_secret_store.example se-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `A unique identifier for the SecretStore resource. ## Import SecretStore can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import SecretStore.example se-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the SecretStore resource. ## Import SecretStore can be imported using the id, e.g., ` + "`" + `` + "`" + `` + "`" + ` $ terraform import sdm_secret_store.example se-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4668,13 +5756,11 @@ This resource can be imported using the [import](https://www.terraform.io/docs/c
 
 		"sdm_account":            0,
 		"sdm_account_attachment": 1,
-		"sdm_account_grant":      2,
-		"sdm_node":               3,
+		"sdm_node":               2,
+		"sdm_remote_identity":    3,
 		"sdm_resource":           4,
 		"sdm_role":               5,
-		"sdm_role_attachment":    6,
-		"sdm_role_grant":         7,
-		"sdm_secret_store":       8,
+		"sdm_secret_store":       6,
 	}
 )
 

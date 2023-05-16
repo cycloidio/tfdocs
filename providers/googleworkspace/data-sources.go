@@ -81,6 +81,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "googleworkspace_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Groups data source in the Terraform Googleworkspace provider. Groups resides under the https://www.googleapis.com/auth/admin.directory.group client scope.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "googleworkspace_org_unit",
 			Category:         "Data Sources",
 			ShortDescription: `Org Unit data source in the Terraform Googleworkspace provider. Org Unit resides under the https://www.googleapis.com/auth/admin.directory.orgunit client scope.`,
@@ -150,12 +160,13 @@ var (
 		"googleworkspace_group_member":         4,
 		"googleworkspace_group_members":        5,
 		"googleworkspace_group_settings":       6,
-		"googleworkspace_org_unit":             7,
-		"googleworkspace_privileges":           8,
-		"googleworkspace_role":                 9,
-		"googleworkspace_schema":               10,
-		"googleworkspace_user":                 11,
-		"googleworkspace_users":                12,
+		"googleworkspace_groups":               7,
+		"googleworkspace_org_unit":             8,
+		"googleworkspace_privileges":           9,
+		"googleworkspace_role":                 10,
+		"googleworkspace_schema":               11,
+		"googleworkspace_user":                 12,
+		"googleworkspace_users":                13,
 	}
 )
 

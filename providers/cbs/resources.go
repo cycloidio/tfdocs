@@ -29,12 +29,23 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cbs_fusion_sec_azure",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"cbs_array_aws":   0,
-		"cbs_array_azure": 1,
+		"cbs_array_aws":        0,
+		"cbs_array_azure":      1,
+		"cbs_fusion_sec_azure": 2,
 	}
 )
 

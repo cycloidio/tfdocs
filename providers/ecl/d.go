@@ -771,6 +771,1762 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_mlb_certificate_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer certificate.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert_status",
+					Description: `(Optional) CA certificate file upload status of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert_status",
+					Description: `(Optional) SSL certificate file upload status of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ssl_key_status",
+					Description: `(Optional) SSL key file upload status of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the certificate (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `CA certificate file of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert",
+					Description: `SSL certificate file of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ssl_key",
+					Description: `SSL key file of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status of the certificate <a name="ssl-cert"></a>The ` + "`" + `ssl_cert` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status of the certificate <a name="ssl-key"></a>The ` + "`" + `ssl_key` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status of the certificate`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the certificate (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `CA certificate file of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ssl_cert",
+					Description: `SSL certificate file of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "ssl_key",
+					Description: `SSL key file of the certificate`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status of the certificate <a name="ssl-cert"></a>The ` + "`" + `ssl_cert` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status of the certificate <a name="ssl-key"></a>The ` + "`" + `ssl_key` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `File upload status of the certificate`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_health_monitor_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer health monitor.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port number of the resource for healthchecking or listening`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Protocol of the resource for healthchecking or listening`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Interval of healthchecking (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "retry",
+					Description: `(Optional) Retry count of healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout of healthchecking (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) URL path of healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "http_status_code",
+					Description: `(Optional) HTTP status codes expected in healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `(Optional) ID of the load balancer which the resource belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found health monitor.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the health monitor (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the health monitor belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the health monitor belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the health monitor for healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the health monitor for healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of healthchecking (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "retry",
+					Description: `Retry count of healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Timeout of healthchecking (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `URL path of healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "http_status_code",
+					Description: `HTTP status codes expected in healthchecking`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the health monitor (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the health monitor belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the health monitor belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the health monitor`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the health monitor for healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the health monitor for healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `Interval of healthchecking (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "retry",
+					Description: `Retry count of healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Timeout of healthchecking (in seconds)`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `URL path of healthchecking`,
+				},
+				resource.Attribute{
+					Name:        "http_status_code",
+					Description: `HTTP status codes expected in healthchecking`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_listener_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer listener.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) IP address of the resource for listening`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port number of the resource for healthchecking or listening`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Protocol of the resource for healthchecking or listening`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `(Optional) ID of the load balancer which the resource belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found listener.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the listener`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the listener`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the listener (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the listener`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the listener belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the listener belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the listener`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the listener for listening`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the listener for listening`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the listener for listening`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the listener`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the listener`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the listener (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the listener`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the listener belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the listener belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the listener`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the listener for listening`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the listener for listening`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the listener for listening`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_load_balancer_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer load balancer.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_status",
+					Description: `(Optional) Monitoring status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "primary_availability_zone",
+					Description: `(Optional) The zone / group where the primary virtual server of load balancer is deployed`,
+				},
+				resource.Attribute{
+					Name:        "secondary_availability_zone",
+					Description: `(Optional) The zone / group where the secondary virtual server of load balancer is deployed`,
+				},
+				resource.Attribute{
+					Name:        "active_availability_zone",
+					Description: `(Optional) Primary or secondary availability zone where the load balancer is currently running`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `(Optional) Revision of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "plan_id",
+					Description: `(Optional) ID of the plan`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found load balancer.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the load balancer (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_status",
+					Description: `Monitoring status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "primary_availability_zone",
+					Description: `The zone / group where the primary virtual server of load balancer is deployed`,
+				},
+				resource.Attribute{
+					Name:        "secondary_availability_zone",
+					Description: `The zone / group where the secondary virtual server of load balancer is deployed`,
+				},
+				resource.Attribute{
+					Name:        "active_availability_zone",
+					Description: `Primary or secondary availability zone where the load balancer is currently running`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Revision of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "plan_id",
+					Description: `ID of the plan`,
+				},
+				resource.Attribute{
+					Name:        "plan_name",
+					Description: `Name of the plan`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "syslog_servers",
+					Description: `Syslog servers to which access logs are transferred`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `Interfaces that attached to the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the syslog server`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the syslog server`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the syslog server <a name="interfaces"></a>The ` + "`" + `interfaces` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network that this interface belongs to`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_address",
+					Description: `Virtual IP address of the interface within subnet`,
+				},
+				resource.Attribute{
+					Name:        "reserved_fixed_ips",
+					Description: `IP addresses that are pre-reserved for applying configurations of load balancer to be performed without losing redundancy`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address assign to this interface within subnet`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the load balancer (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "monitoring_status",
+					Description: `Monitoring status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "primary_availability_zone",
+					Description: `The zone / group where the primary virtual server of load balancer is deployed`,
+				},
+				resource.Attribute{
+					Name:        "secondary_availability_zone",
+					Description: `The zone / group where the secondary virtual server of load balancer is deployed`,
+				},
+				resource.Attribute{
+					Name:        "active_availability_zone",
+					Description: `Primary or secondary availability zone where the load balancer is currently running`,
+				},
+				resource.Attribute{
+					Name:        "revision",
+					Description: `Revision of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "plan_id",
+					Description: `ID of the plan`,
+				},
+				resource.Attribute{
+					Name:        "plan_name",
+					Description: `Name of the plan`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "syslog_servers",
+					Description: `Syslog servers to which access logs are transferred`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `Interfaces that attached to the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the syslog server`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the syslog server`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the syslog server <a name="interfaces"></a>The ` + "`" + `interfaces` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network that this interface belongs to`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip_address",
+					Description: `Virtual IP address of the interface within subnet`,
+				},
+				resource.Attribute{
+					Name:        "reserved_fixed_ips",
+					Description: `IP addresses that are pre-reserved for applying configurations of load balancer to be performed without losing redundancy`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The IP address assign to this interface within subnet`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_operation_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer operation.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Optional) Type of the resource`,
+				},
+				resource.Attribute{
+					Name:        "request_id",
+					Description: `(Optional) The unique hyphenated UUID to identify the request`,
+				},
+				resource.Attribute{
+					Name:        "request_type",
+					Description: `(Optional) Type of the request`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource`,
+				},
+				resource.Attribute{
+					Name:        "no_deleted",
+					Description: `(Optional) When ` + "`" + `true` + "`" + ` is specified, operations of deleted resource is not displayed`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) When ` + "`" + `true` + "`" + ` is specified, only the latest operation of each resource is displayed ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found operation.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource`,
+				},
+				resource.Attribute{
+					Name:        "request_id",
+					Description: `The unique hyphenated UUID to identify the request`,
+				},
+				resource.Attribute{
+					Name:        "request_types",
+					Description: `Types of the request`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "reception_datetime",
+					Description: `The time when operation has been started by API execution`,
+				},
+				resource.Attribute{
+					Name:        "commit_datetime",
+					Description: `The time when operation has been finished`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The warning message of operation that has been stopped or failed`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The error message of operation that has been stopped or failed`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the resource`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource`,
+				},
+				resource.Attribute{
+					Name:        "request_id",
+					Description: `The unique hyphenated UUID to identify the request`,
+				},
+				resource.Attribute{
+					Name:        "request_types",
+					Description: `Types of the request`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "reception_datetime",
+					Description: `The time when operation has been started by API execution`,
+				},
+				resource.Attribute{
+					Name:        "commit_datetime",
+					Description: `The time when operation has been finished`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `The warning message of operation that has been stopped or failed`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `The error message of operation that has been stopped or failed`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the resource`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_plan_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer plan.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) Bandwidth of the plan`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `(Optional) Redundancy of the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_interfaces",
+					Description: `(Optional) Maximum number of interfaces for the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_health_monitors",
+					Description: `(Optional) Maximum number of health monitors for the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_listeners",
+					Description: `(Optional) Maximum number of listeners for the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_policies",
+					Description: `(Optional) Maximum number of policies for the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_routes",
+					Description: `(Optional) Maximum number of routes for the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_target_groups",
+					Description: `(Optional) Maximum number of target groups for the plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_members",
+					Description: `(Optional) Maximum number of members for the target group of plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_rules",
+					Description: `(Optional) Maximum number of rules for the policy of plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_conditions",
+					Description: `(Optional) Maximum number of conditions in the rule of the plan`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether a new load balancer can be created with this plan ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found plan.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the plan`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the plan`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `Bandwidth of the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `Redundancy of the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_interfaces",
+					Description: `Maximum number of interfaces for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_health_monitors",
+					Description: `Maximum number of health monitors for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_listeners",
+					Description: `Maximum number of listeners for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_policies",
+					Description: `Maximum number of routes for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_routes",
+					Description: `Maximum number of routes for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_target_groups",
+					Description: `Maximum number of target groups for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_members",
+					Description: `Maximum number of members for the target group of load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_rules",
+					Description: `Maximum number of rules for the policy of load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_conditions",
+					Description: `Maximum number of conditions in the rule of load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether a new load balancer can be created with this plan`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the plan`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the plan`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `Bandwidth of the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "redundancy",
+					Description: `Redundancy of the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_interfaces",
+					Description: `Maximum number of interfaces for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_health_monitors",
+					Description: `Maximum number of health monitors for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_listeners",
+					Description: `Maximum number of listeners for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_policies",
+					Description: `Maximum number of routes for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_routes",
+					Description: `Maximum number of routes for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_target_groups",
+					Description: `Maximum number of target groups for the load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_members",
+					Description: `Maximum number of members for the target group of load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_rules",
+					Description: `Maximum number of rules for the policy of load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_conditions",
+					Description: `Maximum number of conditions in the rule of load balancer created with this plan`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether a new load balancer can be created with this plan`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_policy_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer policy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Optional) Load balancing algorithm (method) of the policy`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `(Optional) Persistence setting of the policy`,
+				},
+				resource.Attribute{
+					Name:        "sorry_page_url",
+					Description: `(Optional) URL of the sorry page to which accesses are redirected when all members in the target group are down`,
+				},
+				resource.Attribute{
+					Name:        "source_nat",
+					Description: `(Optional) Source NAT setting of the policy`,
+				},
+				resource.Attribute{
+					Name:        "certificate_id",
+					Description: `(Optional) ID of the certificate that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "health_monitor_id",
+					Description: `(Optional) ID of the health monitor that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Optional) ID of the listener that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "default_target_group_id",
+					Description: `(Optional) ID of the default target group that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "tls_policy_id",
+					Description: `(Optional) ID of the TLS policy that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `(Optional) ID of the load balancer which the resource belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found policy.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the policy`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the policy (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the policy`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the policy belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the policy belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the policy`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `Load balancing algorithm (method) of the policy`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `Persistence setting of the policy`,
+				},
+				resource.Attribute{
+					Name:        "sorry_page_url",
+					Description: `URL of the sorry page to which accesses are redirected when all members in the target group are down`,
+				},
+				resource.Attribute{
+					Name:        "source_nat",
+					Description: `Source NAT setting of the policy`,
+				},
+				resource.Attribute{
+					Name:        "certificate_id",
+					Description: `ID of the certificate that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "health_monitor_id",
+					Description: `ID of the health monitor that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `ID of the listener that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "default_target_group_id",
+					Description: `ID of the default target group that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "tls_policy_id",
+					Description: `ID of the TLS policy that assigned to the policy`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the policy`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the policy (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the policy`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the policy belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the policy belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the policy`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `Load balancing algorithm (method) of the policy`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `Persistence setting of the policy`,
+				},
+				resource.Attribute{
+					Name:        "sorry_page_url",
+					Description: `URL of the sorry page to which accesses are redirected when all members in the target group are down`,
+				},
+				resource.Attribute{
+					Name:        "source_nat",
+					Description: `Source NAT setting of the policy`,
+				},
+				resource.Attribute{
+					Name:        "certificate_id",
+					Description: `ID of the certificate that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "health_monitor_id",
+					Description: `ID of the health monitor that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `ID of the listener that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "default_target_group_id",
+					Description: `ID of the default target group that assigned to the policy`,
+				},
+				resource.Attribute{
+					Name:        "tls_policy_id",
+					Description: `ID of the TLS policy that assigned to the policy`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_route_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer route.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "destination_cidr",
+					Description: `(Optional) CIDR of destination for the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip_address",
+					Description: `(Optional) IP address of next hop for the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `(Optional) ID of the load balancer which the resource belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found route.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the (static) route (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the (static) route belongs to`,
+				},
+				resource.Attribute{
+					Name:        "destination_cidr",
+					Description: `CIDR of destination for the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the (static) route belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip_address",
+					Description: `IP address of next hop for the (static) route`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the (static) route (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the (static) route belongs to`,
+				},
+				resource.Attribute{
+					Name:        "destination_cidr",
+					Description: `CIDR of destination for the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the (static) route belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the (static) route`,
+				},
+				resource.Attribute{
+					Name:        "next_hop_ip_address",
+					Description: `IP address of next hop for the (static) route`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_rule_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer rule.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority of the rule`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `(Optional) ID of the target group that assigned to the rule`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) ID of the policy which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `(Optional) ID of the load balancer which the resource belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found rule.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the rule`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the rule`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the rule (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the rule`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `ID of the policy which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the rule`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the rule`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `ID of the target group that assigned to the rule`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `Conditions of the rules to distribute accesses to the target groups`,
+				},
+				resource.Attribute{
+					Name:        "path_patterns",
+					Description: `URL path patterns (regular expressions) of the condition`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the rule`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the rule`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the rule (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the rule`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `ID of the policy which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the rule belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the rule`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `Priority of the rule`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `ID of the target group that assigned to the rule`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `Conditions of the rules to distribute accesses to the target groups`,
+				},
+				resource.Attribute{
+					Name:        "path_patterns",
+					Description: `URL path patterns (regular expressions) of the condition`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_system_update_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer system update.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `(Optional) URL of announcement for the system update (for example, Knowledge Center news)`,
+				},
+				resource.Attribute{
+					Name:        "current_revision",
+					Description: `(Optional) Current revision for the system update`,
+				},
+				resource.Attribute{
+					Name:        "next_revision",
+					Description: `(Optional) Next revision for the system update`,
+				},
+				resource.Attribute{
+					Name:        "applicable",
+					Description: `(Optional) Whether the system update can be applied to the load balancer`,
+				},
+				resource.Attribute{
+					Name:        "latest",
+					Description: `(Optional) When ` + "`" + `true` + "`" + ` is specified, only the latest resource is displayed ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found system update.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the system update`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the system update`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `URL of announcement for the system update (for example, Knowledge Center news)`,
+				},
+				resource.Attribute{
+					Name:        "publish_datetime",
+					Description: `The time when the system update has been announced`,
+				},
+				resource.Attribute{
+					Name:        "limit_datetime",
+					Description: `The deadline for applying the system update to the load balancer at any time`,
+				},
+				resource.Attribute{
+					Name:        "current_revision",
+					Description: `Current revision for the system update`,
+				},
+				resource.Attribute{
+					Name:        "next_revision",
+					Description: `Next revision for the system update`,
+				},
+				resource.Attribute{
+					Name:        "applicable",
+					Description: `Whether the system update can be applied to the load balancer`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the system update`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the system update`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `URL of announcement for the system update (for example, Knowledge Center news)`,
+				},
+				resource.Attribute{
+					Name:        "publish_datetime",
+					Description: `The time when the system update has been announced`,
+				},
+				resource.Attribute{
+					Name:        "limit_datetime",
+					Description: `The deadline for applying the system update to the load balancer at any time`,
+				},
+				resource.Attribute{
+					Name:        "current_revision",
+					Description: `Current revision for the system update`,
+				},
+				resource.Attribute{
+					Name:        "next_revision",
+					Description: `Next revision for the system update`,
+				},
+				resource.Attribute{
+					Name:        "applicable",
+					Description: `Whether the system update can be applied to the load balancer`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_target_group_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer target group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `(Optional) Configuration status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `(Optional) Operation status of the resource`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `(Optional) ID of the load balancer which the resource belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) ID of the owner tenant of the resource ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found target group.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the target group`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the target group`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the target group (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the target group`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the target group belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the target group belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the target group`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Members (real servers) of the target group`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the member (real server)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the member (real server)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight for the member (real server)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the target group`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the target group`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the target group (JSON object format)`,
+				},
+				resource.Attribute{
+					Name:        "configuration_status",
+					Description: `Configuration status of the target group`,
+				},
+				resource.Attribute{
+					Name:        "operation_status",
+					Description: `Operation status of the load balancer which the target group belongs to`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_id",
+					Description: `ID of the load balancer which the target group belongs to`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `ID of the owner tenant of the target group`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `Members (real servers) of the target group`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `IP address of the member (real server)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port number of the member (real server)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `Weight for the member (real server)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ecl_mlb_tls_policy_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Managed Load Balancer tls policy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the resource`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the resource`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional) Whether the TLS policy will be set ` + "`" + `policy.tls_policy_id` + "`" + ` when that is not specified ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found tls policy.<br> In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the TLS policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the TLS policy`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Whether the TLS policy will be set ` + "`" + `policy.tls_policy_id` + "`" + ` when that is not specified`,
+				},
+				resource.Attribute{
+					Name:        "tls_protocols",
+					Description: `The list of acceptable TLS protocols in the policy that specifed this TLS policty`,
+				},
+				resource.Attribute{
+					Name:        "tls_ciphers",
+					Description: `The list of acceptable TLS ciphers in the policy that specifed this TLS policty`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the TLS policy`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the TLS policy`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `Whether the TLS policy will be set ` + "`" + `policy.tls_policy_id` + "`" + ` when that is not specified`,
+				},
+				resource.Attribute{
+					Name:        "tls_protocols",
+					Description: `The list of acceptable TLS protocols in the policy that specifed this TLS policty`,
+				},
+				resource.Attribute{
+					Name:        "tls_ciphers",
+					Description: `The list of acceptable TLS ciphers in the policy that specifed this TLS policty`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_network_common_function_gateway_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an Enterprise Cloud Common Function Gateway.`,
@@ -1367,6 +3123,90 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_network_internet_service_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Internet service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Internet Service resource.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `(Optional) Unique ID of the Internet Service resource.`,
+				},
+				resource.Attribute{
+					Name:        "minimal_submask_length",
+					Description: `(Optional) Don’t allow allocating public IP blocks with shorter mask.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Internet Service resource.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Name of zone. ## Attributes Reference The following attributes are exported: ` + "`" + `id` + "`" + ` is set to the ID of the found internet service. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "minimal_submask_length",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "minimal_submask_length",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_network_load_balancer_plan_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an Enterprise Cloud Load Balancer Plan.`,
@@ -1907,6 +3747,186 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_network_qos_options_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud Qos option.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aws_service_id",
+					Description: `(Optional) Unique ID for the AWSService.`,
+				},
+				resource.Attribute{
+					Name:        "azure_service_id",
+					Description: `(Optional) Unique ID for the AzureService.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) Bandwidth assigned with this QoS option.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Qos Policy.`,
+				},
+				resource.Attribute{
+					Name:        "fic_service_id",
+					Description: `(Optional) Unique ID for the FICService.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_service_id",
+					Description: `(Optional) Unique ID for the GCPService.`,
+				},
+				resource.Attribute{
+					Name:        "interdc_service_id",
+					Description: `(Optional) Unique ID for the InterDCService.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `(Optional) Unique ID for the InternetService.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Qos option.`,
+				},
+				resource.Attribute{
+					Name:        "qos_option_id",
+					Description: `(Optional) Unique ID of the Qos option.`,
+				},
+				resource.Attribute{
+					Name:        "qos_type",
+					Description: `(Optional) Type of the QoS option.(guarantee or besteffort)`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `(Optional) Service type of the QoS option.(aws, azure, fic, gcp, vpn, internet, interdc)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) Indicates whether QoS option is currently operational.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_service_id",
+					Description: `(Optional) Unique ID for the VPNService. ## Attributes Reference The following attributes are exported: ` + "`" + `id` + "`" + ` is set to the ID of the found qos option. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "aws_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "azure_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fic_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interdc_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "qos_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_service_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "aws_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "azure_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fic_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gcp_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interdc_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "qos_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_service_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_network_static_route_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an Enterprise Cloud Static route.`,
@@ -2323,7 +4343,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ecl_storage_virtualstorage_v2",
+			Type:             "ecl_storage_virtualstorage_v1",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an Enterprise Cloud Virtual Storage.`,
 			Description:      ``,
@@ -2519,9 +4539,165 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ecl_vna_appliance_plan_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Enterprise Cloud VNA Plan.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "appliance_type",
+					Description: `(Optional) Type of appliance`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Version of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Optional) Nova flavor`,
+				},
+				resource.Attribute{
+					Name:        "number_of_interfaces",
+					Description: `(Optional) Number of Interfaces`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Is user allowed to create new firewalls with this plan.`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_aap",
+					Description: `(Optional) Max Number of allowed\_address\_pairs`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `(Optional) If details is false, availability\_zones is not displayed.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) Availability zones of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone.available",
+					Description: `(Optional) Display only the Virtual Network Appliance Plan including available=X in the array of availability_zones and stores only the availability_zone including available=X in the array of availability_zones. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found VNA Plan. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "appliance_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_interfaces",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_aap",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "licenses/license_type",
+					Description: `Type of license`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones/availability_zone",
+					Description: `Availability\_zones of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones/available",
+					Description: `Availability\_zones availability`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones/rank",
+					Description: `The rank is displayed in the order of decreasing the quantity of Virtual Network Appliance resources.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "appliance_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_interfaces",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_number_of_aap",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "licenses/license_type",
+					Description: `Type of license`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones/availability_zone",
+					Description: `Availability\_zones of the Virtual Network Appliance Plan`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones/available",
+					Description: `Availability\_zones availability`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones/rank",
+					Description: `The rank is displayed in the order of decreasing the quantity of Virtual Network Appliance resources.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ecl_vna_appliance_v1",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on an Enterprise Virtual Network Appliance.`,
+			ShortDescription: `Get information on an Enterprise Cloud Virtual Network Appliance.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -2724,22 +4900,37 @@ var (
 		"ecl_compute_keypair_v2":                 4,
 		"ecl_dns_zone_v2":                        5,
 		"ecl_imagestorages_image_v2":             6,
-		"ecl_network_common_function_gateway_v2": 7,
-		"ecl_network_common_function_pool_v2":    8,
-		"ecl_network_fic_gateway_v2":             9,
-		"ecl_network_gateway_interface_v2":       10,
-		"ecl_network_internet_gateway_v2":        11,
-		"ecl_network_load_balancer_plan_v2":      12,
-		"ecl_network_network_v2":                 13,
-		"ecl_network_port_v2":                    14,
-		"ecl_network_public_ip_v2":               15,
-		"ecl_network_static_route_v2":            16,
-		"ecl_network_subnet_v2":                  17,
-		"ecl_sss_tenant_v1":                      18,
-		"ecl_storage_virtualstorage_v2":          19,
-		"ecl_storage_volume_v1":                  20,
-		"ecl_storage_volumetype_v1":              21,
-		"ecl_vna_appliance_v1":                   22,
+		"ecl_mlb_certificate_v1":                 7,
+		"ecl_mlb_health_monitor_v1":              8,
+		"ecl_mlb_listener_v1":                    9,
+		"ecl_mlb_load_balancer_v1":               10,
+		"ecl_mlb_operation_v1":                   11,
+		"ecl_mlb_plan_v1":                        12,
+		"ecl_mlb_policy_v1":                      13,
+		"ecl_mlb_route_v1":                       14,
+		"ecl_mlb_rule_v1":                        15,
+		"ecl_mlb_system_update_v1":               16,
+		"ecl_mlb_target_group_v1":                17,
+		"ecl_mlb_tls_policy_v1":                  18,
+		"ecl_network_common_function_gateway_v2": 19,
+		"ecl_network_common_function_pool_v2":    20,
+		"ecl_network_fic_gateway_v2":             21,
+		"ecl_network_gateway_interface_v2":       22,
+		"ecl_network_internet_gateway_v2":        23,
+		"ecl_network_internet_service_v2":        24,
+		"ecl_network_load_balancer_plan_v2":      25,
+		"ecl_network_network_v2":                 26,
+		"ecl_network_port_v2":                    27,
+		"ecl_network_public_ip_v2":               28,
+		"ecl_network_qos_options_v2":             29,
+		"ecl_network_static_route_v2":            30,
+		"ecl_network_subnet_v2":                  31,
+		"ecl_sss_tenant_v1":                      32,
+		"ecl_storage_virtualstorage_v1":          33,
+		"ecl_storage_volume_v1":                  34,
+		"ecl_storage_volumetype_v1":              35,
+		"ecl_vna_appliance_plan_v1":              36,
+		"ecl_vna_appliance_v1":                   37,
 	}
 )
 

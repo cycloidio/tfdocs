@@ -95,7 +95,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "teams",
-					Description: `(Optional) Teams associated with the policy. Account must have the ` + "`" + `teams` + "`" + ` ability to use this parameter.`,
+					Description: `(Optional) Team associated with the policy (Only 1 team can be assigned to an Escalation Policy). Account must have the ` + "`" + `teams` + "`" + ` ability to use this parameter.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -741,6 +741,10 @@ var (
 					Description: `(Required) The escalation policy used by this service.`,
 				},
 				resource.Attribute{
+					Name:        "response_play",
+					Description: `(Optional) The response play used by this service.`,
+				},
+				resource.Attribute{
 					Name:        "alert_creation",
 					Description: `(Optional) Must be one of two values. PagerDuty receives events from your monitoring systems and can then create incidents in different ways. Value "create_incidents" is default: events will create an incident that cannot be merged. Value "create_alerts_and_incidents" is the alternative: events will create an alert and then add it to a new incident, these incidents can be merged. This option is recommended.`,
 				},
@@ -754,7 +758,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_grouping_parameters",
-					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident. The ` + "`" + `alert_grouping_parameters` + "`" + ` block contains the following arguments:`,
+					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident.`,
+				},
+				resource.Attribute{
+					Name:        "auto_pause_notifications_parameters",
+					Description: `(Optional) Defines how alerts on this service are automatically suspended for a period of time before triggering, when identified as likely being transient. Note that automatically pausing notifications is only available on certain plans as mentioned [here](https://support.pagerduty.com/docs/auto-pause-incident-notifications). The ` + "`" + `alert_grouping_parameters` + "`" + ` block contains the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
@@ -766,7 +774,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fields",
-					Description: `(Optional) Alerts will be grouped together if the content of these fields match. This setting applies only when ` + "`" + `type` + "`" + ` is set to ` + "`" + `content_based` + "`" + `. You may specify one optional ` + "`" + `incident_urgency_rule` + "`" + ` block configuring what urgencies to use. Your PagerDuty account must have the ` + "`" + `urgencies` + "`" + ` ability to assign an incident urgency rule. The block contains the following arguments:`,
+					Description: `(Optional) Alerts will be grouped together if the content of these fields match. This setting applies only when ` + "`" + `type` + "`" + ` is set to ` + "`" + `content_based` + "`" + `. The ` + "`" + `auto_pause_notifications_parameters` + "`" + ` block contains the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -861,11 +869,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "supporting_service",
-					Description: `(Required) The service that supports the dependent service.`,
+					Description: `(Required) The service that supports the dependent service. Dependency supporting service documented below.`,
 				},
 				resource.Attribute{
 					Name:        "dependent_service",
-					Description: `(Required) The service that dependents on the supporting service. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The service that dependents on the supporting service. Dependency dependent service documented below. Dependency supporting and dependent service supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The ID of the service dependency.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Can be ` + "`" + `business_service` + "`" + `, ` + "`" + `service` + "`" + `, ` + "`" + `business_service_reference` + "`" + ` or ` + "`" + `technical_service_reference` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -916,11 +932,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email_incident_creation",
-					Description: `(Optional) This is the unique fully-qualified email address used for routing emails to this integration for processing.`,
+					Description: `(Optional) Behaviour of Email Management feature ([explained in PD docs](https://support.pagerduty.com/docs/email-management-filters-and-rules#control-when-a-new-incident-or-alert-is-triggered)). Can be ` + "`" + `on_new_email` + "`" + `, ` + "`" + `on_new_email_subject` + "`" + `, ` + "`" + `only_if_no_open_incidents` + "`" + ` or ` + "`" + `use_rules` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "email_filter_mode",
-					Description: `(Optional) This is the unique fully-qualified email address used for routing emails to this integration for processing.`,
+					Description: `(Optional) Mode of Emails Filters feature ([explained in PD docs](https://support.pagerduty.com/docs/email-management-filters-and-rules#configure-a-regex-filter)). Can be ` + "`" + `all-email` + "`" + `, ` + "`" + `or-rules-email` + "`" + ` or ` + "`" + `and-rules-email` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "email_parsing_fallback",
@@ -1071,7 +1087,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "priorities",
-					Description: `(Optional) Allows you to filter events by priority. Needs to be an array of PagerDuty priority IDs. Available through [pagerduty_priority](https://registry.terraform.io/providers/PagerDuty/pagerduty/latest/docs/data-sources/priority) data source.`,
+					Description: `(Optional) Allows you to filter events by priority. Needs to be an array of PagerDuty priority IDs. Available through [pagerduty_priority](https://registry.terraform.io/providers/PagerDuty/pagerduty/latest/docs/data-sources/priority) data source. - When omitted or set to an empty array (` + "`" + `[]` + "`" + `) in the configuration for a Slack Connection, its default behaviour is to set ` + "`" + `priorities` + "`" + ` to ` + "`" + `No Priority` + "`" + ` value. - When set to ` + "`" + `["`,
 				},
 				resource.Attribute{
 					Name:        "urgency",
@@ -1279,7 +1295,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A human-friendly description of the user. If not set, a placeholder of "Managed by Terraform" will be set. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A human-friendly description of the user. If not set, a placeholder of "Managed by Terraform" will be set.`,
+				},
+				resource.Attribute{
+					Name:        "license",
+					Description: `(Optional) The license id assigned to the user. If provided the user's role must exist in the assigned license's ` + "`" + `valid_roles` + "`" + ` list. To reference purchased licenses' ids see data source ` + "`" + `pagerduty_licenses` + "`" + ` [data source][1]. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1299,7 +1319,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "invitation_sent",
-					Description: `If true, the user has an outstanding invitation. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_user.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If true, the user has an outstanding invitation. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_user.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ` [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzNA-create-a-user [2]: https://registry.terraform.io/providers/PagerDuty/pagerduty/latest/docs/data-sources/pagerduty_license`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1321,7 +1341,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "invitation_sent",
-					Description: `If true, the user has an outstanding invitation. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_user.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If true, the user has an outstanding invitation. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_user.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ` [1]: https://developer.pagerduty.com/api-reference/b3A6Mjc0ODIzNA-create-a-user [2]: https://registry.terraform.io/providers/PagerDuty/pagerduty/latest/docs/data-sources/pagerduty_license`,
 				},
 			},
 		},
@@ -1482,7 +1502,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `(Required) The destination URL for webhook delivery. ### Webhook filter (` + "`" + `filter` + "`" + `) supports the following:`,
+					Description: `(Required) The destination URL for webhook delivery.`,
+				},
+				resource.Attribute{
+					Name:        "custom_header",
+					Description: `(Optional) The custom_header of a webhook subscription define any optional headers that will be passed along with the payload to the destination URL. ### Webhook filter (` + "`" + `filter` + "`" + `) supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",

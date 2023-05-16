@@ -69,15 +69,37 @@ volterra_http_loadbalancer_state is used to get the state information related to
 			Name:             "",
 			Type:             "volterra_volterra_namespace",
 			Category:         "Data Sources",
-			ShortDescription: `'Data source for namespace resource'`,
+			ShortDescription: `"Data source for namespace resource"`,
 			Description: `
 
 Namespace creates logical independent workspace within a tenant. Data Source reads the namespace object and gets values like tenant_name, id of the namespace object.
 
 `,
-			Keywords:   []string{},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the namespace to be queried ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the namespace returned`,
+				},
+				resource.Attribute{
+					Name:        "tenant_name",
+					Description: `Tenant name configured in volterra`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the namespace returned`,
+				},
+				resource.Attribute{
+					Name:        "tenant_name",
+					Description: `Tenant name configured in volterra`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",

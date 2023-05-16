@@ -92,6 +92,10 @@ var (
 					Description: `(Optional) A Redis check. See below for details on how to configure the ` + "`" + `redis` + "`" + ` check.`,
 				},
 				resource.Attribute{
+					Name:        "ssh2",
+					Description: `(Optional) A SSH2 check. See below for details on how to configure the ` + "`" + `ssh2` + "`" + ` check.`,
+				},
+				resource.Attribute{
 					Name:        "statsd",
 					Description: `(Optional) A statsd check. See below for details on how to configure the ` + "`" + `statsd` + "`" + ` check.`,
 				},
@@ -405,7 +409,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "db_index",
-					Description: `(Optional) Integer Which of the redis databases to gather metrics about. Default 0 ### ` + "`" + `statsd` + "`" + ` Check Type Attributes`,
+					Description: `(Optional) Integer Which of the redis databases to gather metrics about. Default 0 ### ` + "`" + `ssh2` + "`" + ` Check Type Attributes`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The TCP port on which the remote server's ssh service is running. Default 22`,
+				},
+				resource.Attribute{
+					Name:        "method_kex",
+					Description: `(Optional) The key exchange method to use. Default diffie-hellman-group14-sha1`,
+				},
+				resource.Attribute{
+					Name:        "method_hostkey",
+					Description: `(Optional) The host key algorithm supported. Default ssh-rsa`,
+				},
+				resource.Attribute{
+					Name:        "method_crypt_cs",
+					Description: `(Optional) The encryption algorithm used from client to server.`,
+				},
+				resource.Attribute{
+					Name:        "method_crypt_sc",
+					Description: `(Optional) The encryption algorithm used from server to client.`,
+				},
+				resource.Attribute{
+					Name:        "method_mac_cs",
+					Description: `(Optional) The message authentication code algorithm used from client to server.`,
+				},
+				resource.Attribute{
+					Name:        "method_mac_sc",
+					Description: `(Optional) The message authentication code algorithm used from server to client.`,
+				},
+				resource.Attribute{
+					Name:        "method_comp_sc",
+					Description: `(Optional) The compress algorithm used from client to server. Default none`,
+				},
+				resource.Attribute{
+					Name:        "method_comp_cs",
+					Description: `(Optional) The compress algorithm used from server to client. Default none`,
+				},
+				resource.Attribute{
+					Name:        "method_lang_sc",
+					Description: `(Optional) The language used from client to server.`,
+				},
+				resource.Attribute{
+					Name:        "method_lang_cs",
+					Description: `(Optional) The language used from server to client. Available metrics depend on the metrics sent to the ` + "`" + `ssh2` + "`" + ` check. ### ` + "`" + `statsd` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "source_ip",
@@ -574,7 +622,7 @@ var (
 					Description: `(Optional) An email will be sent to the email address of record for the corresponding user ID (e.g. ` + "`" + `/user/1234` + "`" + `). A ` + "`" + `user` + "`" + `'s email address is automatically maintained and kept up to date by the recipient, whereas an ` + "`" + `address` + "`" + ` provides no automatic layer of indirection for keeping the information accurate (including LDAP and SAML-based authentication mechanisms). ## Supported Contact Group ` + "`" + `http` + "`" + ` Attributes`,
 				},
 				resource.Attribute{
-					Name:        "address",
+					Name:        "url",
 					Description: `(Required) URL to send a webhook request to.`,
 				},
 				resource.Attribute{
@@ -583,11 +631,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) The HTTP verb to use when making a request. Either ` + "`" + `GET` + "`" + ` or ` + "`" + `POST` + "`" + ` may be specified. The default verb is ` + "`" + `POST` + "`" + `. ## Supported Contact Group ` + "`" + `irc` + "`" + ` Attributes`,
-				},
-				resource.Attribute{
-					Name:        "user",
-					Description: `(Required) When a user has configured IRC on their user account, they will receive an IRC notification. ## Supported Contact Group ` + "`" + `pager_duty` + "`" + ` Attributes`,
+					Description: `(Optional) The HTTP verb to use when making a request. Either ` + "`" + `GET` + "`" + ` or ` + "`" + `POST` + "`" + ` may be specified. The default verb is ` + "`" + `POST` + "`" + `. ## Supported Contact Group ` + "`" + `pager_duty` + "`" + ` Attributes`,
 				},
 				resource.Attribute{
 					Name:        "contact_group_fallback",
@@ -655,15 +699,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "warning",
-					Description: `(Required) ## Supported Contact Group ` + "`" + `xmpp` + "`" + ` Attributes Either an ` + "`" + `address` + "`" + ` or ` + "`" + `user` + "`" + ` attribute is required.`,
-				},
-				resource.Attribute{
-					Name:        "address",
-					Description: `(Optional) XMPP address to send a short notification to.`,
-				},
-				resource.Attribute{
-					Name:        "user",
-					Description: `(Optional) An XMPP notification will be sent to the XMPP address of record for the corresponding user ID (e.g. ` + "`" + `/user/1234` + "`" + `). ## Import Example ` + "`" + `circonus_contact_group` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_contact_group" "myteam" { name = "My Team's Contact Group" email { address = "myteam@example.com" } slack { channel = "#myteam" team = "T024UT03C" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_contact_group` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_contact_group.myteam ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Contact Group (e.g. ` + "`" + `/contact_group/12345` + "`" + `) and ` + "`" + `circonus_contact_group.myteam` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
+					Description: `(Required) ## Import Example ` + "`" + `circonus_contact_group` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_contact_group" "myteam" { name = "My Team's Contact Group" email { address = "myteam@example.com" } slack { channel = "#myteam" team = "T024UT03C" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_contact_group` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_contact_group.myteam ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Contact Group (e.g. ` + "`" + `/contact_group/12345` + "`" + `) and ` + "`" + `circonus_contact_group.myteam` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

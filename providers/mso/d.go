@@ -95,21 +95,53 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_name",
-					Description: `(Optional) name of template Attached to this schema.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) tenant_id for this schema.`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) A block that represents the template associated with the schema. Type - Block.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of template.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for the template.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `tenant_id for the template.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template_name",
-					Description: `(Optional) name of template Attached to this schema.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) tenant_id for this schema.`,
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) A block that represents the template associated with the schema. Type - Block.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of template.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Display name for the template.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `tenant_id for the template.`,
 				},
 			},
 		},
@@ -903,19 +935,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr.cidr_ip",
-					Description: `(Optional) Ip address for cidr.`,
+					Description: `(Optional) IP address for CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.primary",
-					Description: `(Optional) primary flag to set above ip as primary for cidr. Only one ip must be set as primary.`,
+					Description: `(Optional) primary flag to set CIDR as primary. Only one CIDR can be set as primary.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet",
-					Description: `(Optional) subnets to associate with cidr.`,
+					Description: `(Optional) subnets to associate with CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.ip",
-					Description: `(Optional) ip address for subnet.`,
+					Description: `(Optional) IP address for the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet.name",
+					Description: `(Optional) Name for the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.zone",
@@ -957,19 +993,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr.cidr_ip",
-					Description: `(Optional) Ip address for cidr.`,
+					Description: `(Optional) IP address for CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.primary",
-					Description: `(Optional) primary flag to set above ip as primary for cidr. Only one ip must be set as primary.`,
+					Description: `(Optional) primary flag to set CIDR as primary. Only one CIDR can be set as primary.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet",
-					Description: `(Optional) subnets to associate with cidr.`,
+					Description: `(Optional) subnets to associate with CIDR.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.ip",
-					Description: `(Optional) ip address for subnet.`,
+					Description: `(Optional) IP address for the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "cidr.subnet.name",
+					Description: `(Optional) Name for the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "cidr.subnet.zone",
@@ -1425,7 +1465,7 @@ var (
 					Description: `(Required) SchemaID under which you want to deploy Anp Epg Subnet.`,
 				},
 				resource.Attribute{
-					Name:        "template_name",
+					Name:        "template",
 					Description: `(Required) Template where Anp Epg Subnet to be created.`,
 				},
 				resource.Attribute{
@@ -1597,6 +1637,26 @@ var (
 					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic.`,
 				},
 				resource.Attribute{
+					Name:        "dhcp_policies",
+					Description: `(Optional) Block to provide dhcp_policy configurations.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.name",
+					Description: `(Optional) Dhcp_policy name. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.version",
+					Description: `(Optional) Version of dhcp_policy. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.dhcp_option_policy_name",
+					Description: `(Optional) Name of dhcp_option_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.dhcp_option_policy_version",
+					Description: `(Optional) Version of dhcp_option_policy. ### Deprecation warning: do not use 'dhcp_policy' map below in combination with NDO releases 3.2 and higher, use above 'dhcp_policies' block instead.`,
+				},
+				resource.Attribute{
 					Name:        "dhcp_policy",
 					Description: `(Optional) Map to provide dhcp_policy configurations.`,
 				},
@@ -1653,6 +1713,26 @@ var (
 				resource.Attribute{
 					Name:        "layer3_multicast",
 					Description: `(Optional) Boolean flag to enable or disable layer 3 multicast traffic.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies",
+					Description: `(Optional) Block to provide dhcp_policy configurations.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.name",
+					Description: `(Optional) Dhcp_policy name. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.version",
+					Description: `(Optional) Version of dhcp_policy. Required if you specify the dhcp_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.dhcp_option_policy_name",
+					Description: `(Optional) Name of dhcp_option_policy.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_policies.dhcp_option_policy_version",
+					Description: `(Optional) Version of dhcp_option_policy. ### Deprecation warning: do not use 'dhcp_policy' map below in combination with NDO releases 3.2 and higher, use above 'dhcp_policies' block instead.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_policy",
@@ -2584,6 +2664,14 @@ var (
 					Name:        "vzany",
 					Description: `(Optional) Whether to enable vzany.`,
 				},
+				resource.Attribute{
+					Name:        "ip_data_plane_learning",
+					Description: `(Optional) Whether IP data plane learning is enabled or disabled. Allowed values are ` + "`" + `disabled` + "`" + `and ` + "`" + `enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_group",
+					Description: `(Optional) Whether to enable preferred Endpoint Group.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2597,6 +2685,14 @@ var (
 				resource.Attribute{
 					Name:        "vzany",
 					Description: `(Optional) Whether to enable vzany.`,
+				},
+				resource.Attribute{
+					Name:        "ip_data_plane_learning",
+					Description: `(Optional) Whether IP data plane learning is enabled or disabled. Allowed values are ` + "`" + `disabled` + "`" + `and ` + "`" + `enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_group",
+					Description: `(Optional) Whether to enable preferred Endpoint Group.`,
 				},
 			},
 		},

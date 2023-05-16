@@ -65,7 +65,7 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) Specify the exact chart version to install. If this is not specified, the latest version is installed.`,
+					Description: `(Optional) Specify the exact chart version to install. If this is not specified, the latest version is installed. ` + "`" + `helm_release` + "`" + ` will not automatically grab the latest release, version must explicitly upgraded when upgrading an installed chart.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -144,6 +144,10 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 					Description: `(Optional) Value block with custom values to be merged with the values yaml.`,
 				},
 				resource.Attribute{
+					Name:        "set_list",
+					Description: `(Optional) Value block with list of custom values to be merged with the values yaml.`,
+				},
+				resource.Attribute{
 					Name:        "set_sensitive",
 					Description: `(Optional) Value block with custom sensitive values to be merged with the values yaml that won't be exposed in the plan's diff.`,
 				},
@@ -164,12 +168,16 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 					Description: `(Optional) Configure a command to run after helm renders the manifest which can alter the manifest contents.`,
 				},
 				resource.Attribute{
+					Name:        "pass_credentials",
+					Description: `(Optional) Pass credentials to all domains. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "lint",
 					Description: `(Optional) Run the helm chart linter during the plan. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "create_namespace",
-					Description: `(Optional) Create the namespace if it does not yet exist. Defaults to ` + "`" + `false` + "`" + `. The ` + "`" + `set` + "`" + ` and ` + "`" + `set_sensitive` + "`" + ` blocks support:`,
+					Description: `(Optional) Create the namespace if it does not yet exist. Defaults to ` + "`" + `false` + "`" + `. The ` + "`" + `set` + "`" + `, ` + "`" + `set_list` + "`" + `, and ` + "`" + `set_sensitive` + "`" + ` blocks support:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -181,11 +189,15 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) type of the variable to be set. Valid options are ` + "`" + `auto` + "`" + ` and ` + "`" + `string` + "`" + `. The ` + "`" + `postrender` + "`" + ` block supports a single attribute:`,
+					Description: `(Optional) type of the variable to be set. Valid options are ` + "`" + `auto` + "`" + ` and ` + "`" + `string` + "`" + `. Since Terraform Utilizes HCL as well as Helm using the Helm Template Language, it's necessary to escape certain characters twice in order for it to be parsed. ` + "`" + `name` + "`" + ` should also be the path that leads to the desired value, where ` + "`" + `value` + "`" + ` is the desired value that will be set. ` + "`" + `` + "`" + `` + "`" + `hcl set { name = "grafana.ingress.annotations\\.alb\\.ingress\\.kubernetes\\.io/group\\.name" value = "shared-ingress" } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl set_list { name = "hashicorp" value = ["terraform", "nomad", "vault"] } ` + "`" + `` + "`" + `` + "`" + ` The ` + "`" + `postrender` + "`" + ` block supports two attributes:`,
 				},
 				resource.Attribute{
 					Name:        "binary_path",
-					Description: `(Required) relative or full path to command binary. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) relative or full path to command binary.`,
+				},
+				resource.Attribute{
+					Name:        "args",
+					Description: `(Optional) a list of arguments to supply to the post-renderer. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "manifest",
@@ -193,7 +205,11 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Block status of the deployed release. The ` + "`" + `metadata` + "`" + ` block supports:`,
+					Description: `Block status of the deployed release.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the release. The ` + "`" + `metadata` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "chart",
@@ -210,10 +226,6 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				resource.Attribute{
 					Name:        "revision",
 					Description: `Version is an int32 which represents the version of the release.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the release.`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -235,7 +247,11 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `Block status of the deployed release. The ` + "`" + `metadata` + "`" + ` block supports:`,
+					Description: `Block status of the deployed release.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the release. The ` + "`" + `metadata` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "chart",
@@ -252,10 +268,6 @@ A Chart is a Helm package. It contains all of the resource definitions necessary
 				resource.Attribute{
 					Name:        "revision",
 					Description: `Version is an int32 which represents the version of the release.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the release.`,
 				},
 				resource.Attribute{
 					Name:        "version",

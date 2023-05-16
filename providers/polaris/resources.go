@@ -61,6 +61,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "polaris_custom_role",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "polaris_gcp_project",
 			Category:         "Resources",
 			ShortDescription: ``,
@@ -79,6 +89,26 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "polaris_role_assignment",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "polaris_user",
+			Category:         "Resources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -88,8 +118,11 @@ var (
 		"polaris_azure_exocompute":        2,
 		"polaris_azure_service_principal": 3,
 		"polaris_azure_subscription":      4,
-		"polaris_gcp_project":             5,
-		"polaris_gcp_service_account":     6,
+		"polaris_custom_role":             5,
+		"polaris_gcp_project":             6,
+		"polaris_gcp_service_account":     7,
+		"polaris_role_assignment":         8,
+		"polaris_user":                    9,
 	}
 )
 

@@ -11,6 +11,24 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "elasticstack_elasticsearch_enrich_policy",
+			Category:         "Enrich",
+			ShortDescription: `Returns information about an enrich policy. See: https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html`,
+			Description: `
+
+Returns information about an enrich policy. See: https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html
+
+`,
+			Keywords: []string{
+				"enrich",
+				"elasticsearch",
+				"policy",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "elasticstack_elasticsearch_ingest_processor_append",
 			Category:         "Ingest",
 			ShortDescription: `Helper data source to create a processor which appends one or more values to an existing array if the field already exists and it is an array.`,
@@ -894,6 +912,43 @@ See: https://www.elastic.co/guide/en/elasticsearch/reference/current/user-agent-
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "elasticstack_elasticsearch_security_role",
+			Category:         "Security",
+			ShortDescription: `Retrieves roles in the native realm.`,
+			Description: `
+
+Use this data source to get information about an existing Elasticsearch role. See, https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html
+
+`,
+			Keywords: []string{
+				"security",
+				"elasticsearch",
+				"role",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_elasticsearch_security_role_mapping",
+			Category:         "Security",
+			ShortDescription: `Retrieves role mappings.`,
+			Description: `
+
+Retrieves role mappings. See, https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html
+
+`,
+			Keywords: []string{
+				"security",
+				"elasticsearch",
+				"role",
+				"mapping",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "elasticstack_elasticsearch_security_user",
 			Category:         "Security",
 			ShortDescription: `Gets information about Elasticsearch user.`,
@@ -928,50 +983,72 @@ This data source provides the information about the registered snaphosts reposit
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "elasticstack_fleet_enrollment_tokens",
+			Category:         "Fleet",
+			ShortDescription: `Gets information about Fleet Enrollment Tokens. See https://www.elastic.co/guide/en/fleet/current/fleet-enrollment-tokens.html`,
+			Description: `
+
+This data source provides information about Fleet Enrollment Tokens.
+
+`,
+			Keywords: []string{
+				"fleet",
+				"enrollment",
+				"tokens",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"elasticstack_elasticsearch_ingest_processor_append":            0,
-		"elasticstack_elasticsearch_ingest_processor_bytes":             1,
-		"elasticstack_elasticsearch_ingest_processor_circle":            2,
-		"elasticstack_elasticsearch_ingest_processor_community_id":      3,
-		"elasticstack_elasticsearch_ingest_processor_convert":           4,
-		"elasticstack_elasticsearch_ingest_processor_csv":               5,
-		"elasticstack_elasticsearch_ingest_processor_date":              6,
-		"elasticstack_elasticsearch_ingest_processor_date_index_name":   7,
-		"elasticstack_elasticsearch_ingest_processor_dissect":           8,
-		"elasticstack_elasticsearch_ingest_processor_dot_expander":      9,
-		"elasticstack_elasticsearch_ingest_processor_drop":              10,
-		"elasticstack_elasticsearch_ingest_processor_enrich":            11,
-		"elasticstack_elasticsearch_ingest_processor_fail":              12,
-		"elasticstack_elasticsearch_ingest_processor_fingerprint":       13,
-		"elasticstack_elasticsearch_ingest_processor_foreach":           14,
-		"elasticstack_elasticsearch_ingest_processor_geoip":             15,
-		"elasticstack_elasticsearch_ingest_processor_grok":              16,
-		"elasticstack_elasticsearch_ingest_processor_gsub":              17,
-		"elasticstack_elasticsearch_ingest_processor_html_strip":        18,
-		"elasticstack_elasticsearch_ingest_processor_join":              19,
-		"elasticstack_elasticsearch_ingest_processor_json":              20,
-		"elasticstack_elasticsearch_ingest_processor_kv":                21,
-		"elasticstack_elasticsearch_ingest_processor_lowercase":         22,
-		"elasticstack_elasticsearch_ingest_processor_network_direction": 23,
-		"elasticstack_elasticsearch_ingest_processor_pipeline":          24,
-		"elasticstack_elasticsearch_ingest_processor_registered_domain": 25,
-		"elasticstack_elasticsearch_ingest_processor_remove":            26,
-		"elasticstack_elasticsearch_ingest_processor_rename":            27,
-		"elasticstack_elasticsearch_ingest_processor_script":            28,
-		"elasticstack_elasticsearch_ingest_processor_set":               29,
-		"elasticstack_elasticsearch_ingest_processor_set_security_user": 30,
-		"elasticstack_elasticsearch_ingest_processor_sort":              31,
-		"elasticstack_elasticsearch_ingest_processor_split":             32,
-		"elasticstack_elasticsearch_ingest_processor_trim":              33,
-		"elasticstack_elasticsearch_ingest_processor_uppercase":         34,
-		"elasticstack_elasticsearch_ingest_processor_uri_parts":         35,
-		"elasticstack_elasticsearch_ingest_processor_urldecode":         36,
-		"elasticstack_elasticsearch_ingest_processor_user_agent":        37,
-		"elasticstack_elasticsearch_security_user":                      38,
-		"elasticstack_elasticsearch_snapshot_repository":                39,
+		"elasticstack_elasticsearch_enrich_policy":                      0,
+		"elasticstack_elasticsearch_ingest_processor_append":            1,
+		"elasticstack_elasticsearch_ingest_processor_bytes":             2,
+		"elasticstack_elasticsearch_ingest_processor_circle":            3,
+		"elasticstack_elasticsearch_ingest_processor_community_id":      4,
+		"elasticstack_elasticsearch_ingest_processor_convert":           5,
+		"elasticstack_elasticsearch_ingest_processor_csv":               6,
+		"elasticstack_elasticsearch_ingest_processor_date":              7,
+		"elasticstack_elasticsearch_ingest_processor_date_index_name":   8,
+		"elasticstack_elasticsearch_ingest_processor_dissect":           9,
+		"elasticstack_elasticsearch_ingest_processor_dot_expander":      10,
+		"elasticstack_elasticsearch_ingest_processor_drop":              11,
+		"elasticstack_elasticsearch_ingest_processor_enrich":            12,
+		"elasticstack_elasticsearch_ingest_processor_fail":              13,
+		"elasticstack_elasticsearch_ingest_processor_fingerprint":       14,
+		"elasticstack_elasticsearch_ingest_processor_foreach":           15,
+		"elasticstack_elasticsearch_ingest_processor_geoip":             16,
+		"elasticstack_elasticsearch_ingest_processor_grok":              17,
+		"elasticstack_elasticsearch_ingest_processor_gsub":              18,
+		"elasticstack_elasticsearch_ingest_processor_html_strip":        19,
+		"elasticstack_elasticsearch_ingest_processor_join":              20,
+		"elasticstack_elasticsearch_ingest_processor_json":              21,
+		"elasticstack_elasticsearch_ingest_processor_kv":                22,
+		"elasticstack_elasticsearch_ingest_processor_lowercase":         23,
+		"elasticstack_elasticsearch_ingest_processor_network_direction": 24,
+		"elasticstack_elasticsearch_ingest_processor_pipeline":          25,
+		"elasticstack_elasticsearch_ingest_processor_registered_domain": 26,
+		"elasticstack_elasticsearch_ingest_processor_remove":            27,
+		"elasticstack_elasticsearch_ingest_processor_rename":            28,
+		"elasticstack_elasticsearch_ingest_processor_script":            29,
+		"elasticstack_elasticsearch_ingest_processor_set":               30,
+		"elasticstack_elasticsearch_ingest_processor_set_security_user": 31,
+		"elasticstack_elasticsearch_ingest_processor_sort":              32,
+		"elasticstack_elasticsearch_ingest_processor_split":             33,
+		"elasticstack_elasticsearch_ingest_processor_trim":              34,
+		"elasticstack_elasticsearch_ingest_processor_uppercase":         35,
+		"elasticstack_elasticsearch_ingest_processor_uri_parts":         36,
+		"elasticstack_elasticsearch_ingest_processor_urldecode":         37,
+		"elasticstack_elasticsearch_ingest_processor_user_agent":        38,
+		"elasticstack_elasticsearch_security_role":                      39,
+		"elasticstack_elasticsearch_security_role_mapping":              40,
+		"elasticstack_elasticsearch_security_user":                      41,
+		"elasticstack_elasticsearch_snapshot_repository":                42,
+		"elasticstack_fleet_enrollment_tokens":                          43,
 	}
 )
 

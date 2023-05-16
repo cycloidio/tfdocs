@@ -30,6 +30,10 @@ var (
 					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `ad` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
+				},
+				resource.Attribute{
 					Name:        "anonymous_group_search",
 					Description: `(Optional) Use anonymous binds when performing LDAP group searches (if true the initial credentials will still be used for the initial connection test).`,
 				},
@@ -607,6 +611,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_audit_request_header",
+			Category:         "Resources",
+			ShortDescription: `Manages audited request headers in Vault`,
+			Description:      ``,
+			Keywords: []string{
+				"audit",
+				"request",
+				"header",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the request header to audit.`,
+				},
+				resource.Attribute{
+					Name:        "hmac",
+					Description: `(Optional) Whether this header's value should be HMAC'd in the audit logs. ## Attributes Reference No additional attributes are exported by this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_auth_backend",
 			Category:         "Resources",
 			ShortDescription: `Writes auth methods for Vault`,
@@ -627,6 +654,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) The path to mount the auth method — this defaults to the name of the type.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -768,6 +799,43 @@ var (
 				resource.Attribute{
 					Name:        "iam_server_id_header_value",
 					Description: `(Optional) The value to require in the ` + "`" + `X-Vault-AWS-IAM-Server-ID` + "`" + ` header as part of ` + "`" + `GetCallerIdentity` + "`" + ` requests that are used in the IAM auth method. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend clients can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, and ` + "`" + `/config/client` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_client.example auth/aws/config/client ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_aws_auth_backend_config_identity",
+			Category:         "Resources",
+			ShortDescription: `Manages AWS auth backend identity configuration in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"aws",
+				"auth",
+				"backend",
+				"config",
+				"identity",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "iam_alias",
+					Description: `(Optional) How to generate the identity alias when using the iam auth method. Valid choices are ` + "`" + `role_id` + "`" + `, ` + "`" + `unique_id` + "`" + `, and ` + "`" + `full_arn` + "`" + `. Defaults to ` + "`" + `role_id` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "iam_metadata",
+					Description: `(Optional) The metadata to include on the token returned by the ` + "`" + `login` + "`" + ` endpoint. This metadata will be added to both audit logs, and on the ` + "`" + `iam_alias` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ec2_alias",
+					Description: `(Optional) How to generate the identity alias when using the ec2 auth method. Valid choices are ` + "`" + `role_id` + "`" + `, ` + "`" + `instance_id` + "`" + `, and ` + "`" + `image_id` + "`" + `. Defaults to ` + "`" + `role_id` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ec2_metadata",
+					Description: `(Optional) The metadata to include on the token returned by the ` + "`" + `login` + "`" + ` endpoint. This metadata will be added to both audit logs, and on the ` + "`" + `ec2_alias` + "`" + ` ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend identity config can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, and ` + "`" + `/config/identity` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/config/identity ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1224,6 +1292,10 @@ var (
 					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `aws` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A human-friendly description for this backend.`,
 				},
@@ -1449,12 +1521,7 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "namespace",
-					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -1615,11 +1682,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Required) The Consul management token this backend should use to issue new tokens. ~>`,
+					Description: `(Optional) The Consul management token this backend should use to issue new tokens. This field is required when ` + "`" + `bootstrap` + "`" + ` is false. ~>`,
+				},
+				resource.Attribute{
+					Name:        "bootstrap",
+					Description: `(Optional) Denotes that the resource is used to bootstrap the Consul ACL system. ~>`,
 				},
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) The unique location this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `consul` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1835,7 +1910,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "influxdb",
-					Description: `(Optional) A nested block containing configuration options for InfluxDB connections. Exactly one of the nested blocks of configuration options must be supplied. ### Cassandra Configuration Options`,
+					Description: `(Optional) A nested block containing configuration options for InfluxDB connections.`,
+				},
+				resource.Attribute{
+					Name:        "redis",
+					Description: `(Optional) A nested block containing configuration options for Redis connections.`,
+				},
+				resource.Attribute{
+					Name:        "redis_elasticache",
+					Description: `(Optional) A nested block containing configuration options for Redis ElastiCache connections. Exactly one of the nested blocks of configuration options must be supplied. ### Cassandra Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "hosts",
@@ -1947,7 +2030,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connect_timeout",
-					Description: `(Optional) The number of seconds to use as a connection timeout. ### MongoDB Configuration Options`,
+					Description: `(Optional) The number of seconds to use as a connection timeout. ### Redis Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) The host to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The default port to connect to if no port is specified as part of the host.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Redis.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `(Optional) The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity. ### Redis ElastiCache Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The url to connect to including the port; e.g. master.my-cluster.xxxxxx.use1.cache.amazonaws.com:6379.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The AWS access key id to authenticate with. If omitted Vault tries to infer from the credential provider chain instead.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The AWS secret access key to authenticate with. If omitted Vault tries to infer from the credential provider chain instead.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead. ### MongoDB Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -2391,7 +2518,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_entropy_access",
-					Description: `(Optional) Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source The following arguments are common to all database engines:`,
+					Description: `(Optional) Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source`,
+				},
+				resource.Attribute{
+					Name:        "allowed_managed_keys",
+					Description: `(Optional) Set of managed key registry entry names that the mount in question is allowed to access The following arguments are common to all database engines:`,
 				},
 				resource.Attribute{
 					Name:        "plugin_name",
@@ -2476,6 +2607,14 @@ var (
 				resource.Attribute{
 					Name:        "influxdb",
 					Description: `(Optional) A nested block containing configuration options for InfluxDB connections.`,
+				},
+				resource.Attribute{
+					Name:        "redis",
+					Description: `(Optional) A nested block containing configuration options for Redis connections.`,
+				},
+				resource.Attribute{
+					Name:        "redis_elasticache",
+					Description: `(Optional) A nested block containing configuration options for Redis ElastiCache connections.`,
 				},
 				resource.Attribute{
 					Name:        "hosts",
@@ -2815,7 +2954,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "username_template",
-					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### AWS Redshift Configuration Options`,
+					Description: `(Optional) For Vault v1.7+. The template to use for username generation. See [Vault docs](https://www.vaultproject.io/docs/concepts/username-templating) ### Redis Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) The host to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The username to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password to authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The default port to connect to if no port is specified as part of the host.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) Whether to use TLS when connecting to Redis.`,
+				},
+				resource.Attribute{
+					Name:        "insecure_tls",
+					Description: `(Optional) Whether to skip verification of the server certificate when using TLS.`,
+				},
+				resource.Attribute{
+					Name:        "ca_cert",
+					Description: `(Optional) The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity. ### Redis ElastiCache Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The configuration endpoint for the ElastiCache cluster to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment. ### AWS Redshift Configuration Options`,
 				},
 				resource.Attribute{
 					Name:        "connection_url",
@@ -2946,6 +3129,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) The path to mount the auth method — this defaults to 'gcp'.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -3122,6 +3309,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `gcp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -3346,6 +3537,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) Path where the auth backend is mounted. Defaults to ` + "`" + `auth/github` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "organization",
@@ -3711,7 +3906,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_member_entity_ids",
-					Description: `(Optional) ` + "`" + `false` + "`" + ` by default. If set to ` + "`" + `true` + "`" + `, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use [` + "`" + `vault_identity_group_member_entity_ids` + "`" + `](identity_group_member_entity_ids.html) to manage Entity IDs for this group in a decoupled manner. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) ` + "`" + `false` + "`" + ` by default. If set to ` + "`" + `true` + "`" + `, this resource will ignore any Entity IDs returned from Vault or specified in the resource. You can use [` + "`" + `vault_identity_group_member_entity_ids` + "`" + `](identity_group_member_entity_ids.html) to manage Entity IDs for this group in a decoupled manner.`,
+				},
+				resource.Attribute{
+					Name:        "external_member_group_ids",
+					Description: `(Optional) ` + "`" + `false` + "`" + ` by default. If set to ` + "`" + `true` + "`" + `, this resource will ignore any Group IDs returned from Vault or specified in the resource. You can use [` + "`" + `vault_identity_group_member_group_ids` + "`" + `](identity_group_member_group_ids.html) to manage Group IDs for this group in a decoupled manner. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3809,6 +4008,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_group_member_group_ids",
+			Category:         "Resources",
+			ShortDescription: `Manages member groups for an Identity Group for Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"group",
+				"member",
+				"ids",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "member_group_ids",
+					Description: `(Required) List of member groups that belong to the group`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Group ID to assign member entities to.`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `(Optional) Defaults to ` + "`" + `true` + "`" + `. If ` + "`" + `true` + "`" + `, this resource will take exclusive control of the member groups that belong to the group and will set it equal to what is specified in the resource. If set to ` + "`" + `false` + "`" + `, this resource will simply ensure that the member groups specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource are removed. ## Attributes Reference No additional attributes are exported by this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_identity_group_policies",
 			Category:         "Resources",
 			ShortDescription: `Manages policies for an Identity Group for Vault.`,
@@ -3844,6 +4075,415 @@ var (
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `The name of the group that are assigned the policies.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_mfa_duo",
+			Category:         "Resources",
+			ShortDescription: `Resource for configuring the duo MFA method.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"mfa",
+				"duo",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_hostname",
+					Description: `(Required) API hostname for Duo`,
+				},
+				resource.Attribute{
+					Name:        "integration_key",
+					Description: `(Required) Integration key for Duo`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) Secret key for Duo`,
+				},
+				resource.Attribute{
+					Name:        "mount_accessor",
+					Description: `(Optional) Mount accessor.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Target namespace. (requires Enterprise)`,
+				},
+				resource.Attribute{
+					Name:        "push_info",
+					Description: `(Optional) Push information for Duo.`,
+				},
+				resource.Attribute{
+					Name:        "use_passcode",
+					Description: `(Optional) Require passcode upon MFA validation.`,
+				},
+				resource.Attribute{
+					Name:        "username_format",
+					Description: `(Optional) A template string for mapping Identity names to MFA methods.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Optional) Resource UUID. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_duo.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_duo.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_mfa_login_enforcement",
+			Category:         "Resources",
+			ShortDescription: `Resource for configuring MFA login-enforcement`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"mfa",
+				"login",
+				"enforcement",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "mfa_method_ids",
+					Description: `(Required) Set of MFA method UUIDs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Login enforcement name.`,
+				},
+				resource.Attribute{
+					Name:        "auth_method_accessors",
+					Description: `(Optional) Set of auth method accessor IDs.`,
+				},
+				resource.Attribute{
+					Name:        "auth_method_types",
+					Description: `(Optional) Set of auth method types.`,
+				},
+				resource.Attribute{
+					Name:        "identity_entity_ids",
+					Description: `(Optional) Set of identity entity IDs.`,
+				},
+				resource.Attribute{
+					Name:        "identity_group_ids",
+					Description: `(Optional) Set of identity group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Target namespace. (requires Enterprise)`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Optional) Resource UUID. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path. ## Import Resource can be imported using its ` + "`" + `name` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_login_enforcement.example default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path. ## Import Resource can be imported using its ` + "`" + `name` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_login_enforcement.example default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_mfa_okta",
+			Category:         "Resources",
+			ShortDescription: `Resource for configuring the okta MFA method.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"mfa",
+				"okta",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_token",
+					Description: `(Required) Okta API token.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `(Required) Name of the organization to be used in the Okta API.`,
+				},
+				resource.Attribute{
+					Name:        "base_url",
+					Description: `(Optional) The base domain to use for API requests.`,
+				},
+				resource.Attribute{
+					Name:        "mount_accessor",
+					Description: `(Optional) Mount accessor.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Target namespace. (requires Enterprise)`,
+				},
+				resource.Attribute{
+					Name:        "primary_email",
+					Description: `(Optional) Only match the primary email for the account.`,
+				},
+				resource.Attribute{
+					Name:        "username_format",
+					Description: `(Optional) A template string for mapping Identity names to MFA methods.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Optional) Resource UUID. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_okta.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_okta.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_mfa_pingid",
+			Category:         "Resources",
+			ShortDescription: `Resource for configuring the pingid MFA method.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"mfa",
+				"pingid",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "settings_file_base64",
+					Description: `(Required) A base64-encoded third-party settings contents as retrieved from PingID's configuration page.`,
+				},
+				resource.Attribute{
+					Name:        "admin_url",
+					Description: `(Optional) The admin URL, derived from "settings_file_base64"`,
+				},
+				resource.Attribute{
+					Name:        "authenticator_url",
+					Description: `(Optional) A unique identifier of the organization, derived from "settings_file_base64"`,
+				},
+				resource.Attribute{
+					Name:        "idp_url",
+					Description: `(Optional) The IDP URL, derived from "settings_file_base64"`,
+				},
+				resource.Attribute{
+					Name:        "mount_accessor",
+					Description: `(Optional) Mount accessor.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Target namespace. (requires Enterprise)`,
+				},
+				resource.Attribute{
+					Name:        "org_alias",
+					Description: `(Optional) The name of the PingID client organization, derived from "settings_file_base64"`,
+				},
+				resource.Attribute{
+					Name:        "use_signature",
+					Description: `(Optional) Use signature value, derived from "settings_file_base64"`,
+				},
+				resource.Attribute{
+					Name:        "username_format",
+					Description: `(Optional) A template string for mapping Identity names to MFA methods.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Optional) Resource UUID. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_pingid.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_pingid.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_mfa_totp",
+			Category:         "Resources",
+			ShortDescription: `Resource for configuring the totp MFA method.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"mfa",
+				"totp",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `(Required) The name of the key's issuing organization.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Optional) Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.`,
+				},
+				resource.Attribute{
+					Name:        "digits",
+					Description: `(Optional) The number of digits in the generated TOTP token. This value can either be 6 or 8`,
+				},
+				resource.Attribute{
+					Name:        "key_size",
+					Description: `(Optional) Specifies the size in bytes of the generated key.`,
+				},
+				resource.Attribute{
+					Name:        "max_validation_attempts",
+					Description: `(Optional) The maximum number of consecutive failed validation attempts allowed.`,
+				},
+				resource.Attribute{
+					Name:        "mount_accessor",
+					Description: `(Optional) Mount accessor.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Target namespace. (requires Enterprise)`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) The length of time in seconds used to generate a counter for the TOTP token calculation.`,
+				},
+				resource.Attribute{
+					Name:        "qr_size",
+					Description: `(Optional) The pixel size of the generated square QR code.`,
+				},
+				resource.Attribute{
+					Name:        "skew",
+					Description: `(Optional) The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `(Optional) Resource UUID. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_totp.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "method_id",
+					Description: `Method ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Method's namespace ID.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_path",
+					Description: `Method's namespace path.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `MFA type. ## Import Resource can be imported using its ` + "`" + `uuid` + "`" + ` field, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_identity_mfa_totp.example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4169,6 +4809,10 @@ var (
 					Description: `(Required) Path to mount the JWT/OIDC auth backend`,
 				},
 				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Optional) Type of auth backend. Should be one of ` + "`" + `jwt` + "`" + ` or ` + "`" + `oidc` + "`" + `. Default - ` + "`" + `jwt` + "`" + ``,
 				},
@@ -4307,7 +4951,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bound_audiences",
-					Description: `(Required for roles of type ` + "`" + `jwt` + "`" + `, optional for roles of type ` + "`" + `oidc` + "`" + `) List of ` + "`" + `aud` + "`" + ` claims to match against. Any match is sufficient.`,
+					Description: `(For "jwt" roles, at least one of ` + "`" + `bound_audiences` + "`" + `, ` + "`" + `bound_subject` + "`" + `, ` + "`" + `bound_claims` + "`" + ` or ` + "`" + `token_bound_cidrs` + "`" + ` is required. Optional for "oidc" roles.) List of ` + "`" + `aud` + "`" + ` claims to match against. Any match is sufficient.`,
 				},
 				resource.Attribute{
 					Name:        "user_claim",
@@ -4427,6 +5071,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `kmip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -4849,7 +5497,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_json",
-					Description: `(Required) String containing a JSON-encoded object that will be written as the secret data at the given path. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ## Attributes Reference The following attributes are exported in addition to the above:`,
+					Description: `(Required) JSON-encoded string that will be written as the secret data at the given path. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ## Attributes Reference The following attributes are exported in addition to the above:`,
 				},
 				resource.Attribute{
 					Name:        "data",
@@ -4894,10 +5542,102 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delete_version_after",
-					Description: `(Optional) If set, specifies the length of time before a version is deleted. Accepts duration in integer seconds. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ## Attributes Reference No additional attributes are exported by this resource. ## Import The KV-V2 secret backend can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret_backend_v2.config kvv2/config ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) If set, specifies the length of time before a version is deleted. Accepts duration in integer seconds. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ## Attributes Reference No additional attributes are exported by this resource. ## Import The KV-V2 secret backend can be imported using its unique ID, the ` + "`" + `${mount}/config` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret_backend_v2.example kvv2/config ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_kv_secret_v2",
+			Category:         "Resources",
+			ShortDescription: `Writes a KV-V2 secret to a given path in Vault`,
+			Description:      ``,
+			Keywords: []string{
+				"kv",
+				"secret",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where KV-V2 engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Full name of the secret. For a nested secret the name is the nested path excluding the mount and data prefix. For example, for a secret at ` + "`" + `kvv2/data/foo/bar/baz` + "`" + ` the name is ` + "`" + `foo/bar/baz` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cas",
+					Description: `(Optional) This flag is required if ` + "`" + `cas_required` + "`" + ` is set to true on either the secret or the engine's config. In order for a write operation to be successful, cas must be set to the current version of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `(Optional) An object that holds option settings.`,
+				},
+				resource.Attribute{
+					Name:        "disable_read",
+					Description: `(Optional) If set to true, disables reading secret from Vault; note: drift won't be detected.`,
+				},
+				resource.Attribute{
+					Name:        "delete_all_versions",
+					Description: `(Optional) If set to true, permanently deletes all versions for the specified key.`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `(Required) JSON-encoded string that will be written as the secret data at the given path.`,
+				},
+				resource.Attribute{
+					Name:        "custom_metadata",
+					Description: `(Optional) A nested block that allows configuring metadata for the KV secret. Refer to the [Configuration Options](#custom-metadata-configuration-options) for more info. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` or ` + "`" + `update` + "`" + ` capability (depending on whether the resource already exists) on the given path, the ` + "`" + `delete` + "`" + ` capability if the resource is removed from configuration, and the ` + "`" + `read` + "`" + ` capability for drift detection (by default). ### Custom Metadata Configuration Options`,
+				},
+				resource.Attribute{
+					Name:        "max_versions",
+					Description: `(Optional) The number of versions to keep per key.`,
+				},
+				resource.Attribute{
+					Name:        "cas_required",
+					Description: `(Optional) If true, all keys will require the cas parameter to be set on all write requests.`,
+				},
+				resource.Attribute{
+					Name:        "delete_version_after",
+					Description: `(Optional) If set, specifies the length of time before a version is deleted. Accepts duration in integer seconds.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Optional) A string to string map describing the secret. ## Attributes Reference The following attributes are exported in addition to the above:`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KV-V2 secret will be written.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Metadata associated with this secret read from Vault. ## Import KV-V2 secrets can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret_v2.example kvv2/data/secret ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `Full path where the KV-V2 secret will be written.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Metadata associated with this secret read from Vault. ## Import KV-V2 secrets can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_kv_secret_v2.example kvv2/data/secret ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4990,6 +5730,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) Path to mount the LDAP auth backend under`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -5117,6 +5861,160 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_managed_keys",
+			Category:         "Resources",
+			ShortDescription: `Configures Managed Keys in Vault`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"keys",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](../index.html#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "allow_generate_key",
+					Description: `(Optional) If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend.`,
+				},
+				resource.Attribute{
+					Name:        "allow_replace_key",
+					Description: `(Optional) Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to ` + "`" + `false` + "`" + ` those operations are forbidden if a key exists.`,
+				},
+				resource.Attribute{
+					Name:        "allow_store_key",
+					Description: `(Optional) Controls the ability for Vault to import a key to the configured backend, if ` + "`" + `false` + "`" + `, those operations will be forbidden.`,
+				},
+				resource.Attribute{
+					Name:        "any_mount",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, allows usage from any mount point within the namespace. ### AWS Parameters`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique lowercase name that serves as identifying the key.`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) The AWS access key to use.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) The AWS access key to use.`,
+				},
+				resource.Attribute{
+					Name:        "key_bits",
+					Description: `(Required) The size in bits for an RSA key.`,
+				},
+				resource.Attribute{
+					Name:        "key_type",
+					Description: `(Required) The type of key to use.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key",
+					Description: `(Required) An identifier for the key.`,
+				},
+				resource.Attribute{
+					Name:        "curve",
+					Description: `(Optional) The curve to use for an ECDSA key. Used when ` + "`" + `key_type` + "`" + ` is ` + "`" + `ECDSA` + "`" + `. Required if ` + "`" + `allow_generate_key` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Optional) Used to specify a custom AWS endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The AWS region where the keys are stored (or will be stored). ### Azure Parameters`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique lowercase name that serves as identifying the key.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Required) The tenant id for the Azure Active Directory organization.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The client id for credentials to query the Azure APIs.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The client secret for credentials to query the Azure APIs.`,
+				},
+				resource.Attribute{
+					Name:        "vault_name",
+					Description: `(Required) The Key Vault vault to use for encryption and decryption.`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `(Required) The Key Vault key to use for encryption and decryption.`,
+				},
+				resource.Attribute{
+					Name:        "key_type",
+					Description: `(Required) The type of key to use.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Optional) The Azure Cloud environment API endpoints to use.`,
+				},
+				resource.Attribute{
+					Name:        "resource",
+					Description: `(Optional) The Azure Key Vault resource's DNS Suffix to connect to.`,
+				},
+				resource.Attribute{
+					Name:        "key_bits",
+					Description: `(Optional) The size in bits for an RSA key. This field is required when ` + "`" + `key_type` + "`" + ` is ` + "`" + `RSA` + "`" + ` or when ` + "`" + `allow_generate_key` + "`" + ` is ` + "`" + `true` + "`" + ` ### PKCS Parameters`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique lowercase name that serves as identifying the key.`,
+				},
+				resource.Attribute{
+					Name:        "library",
+					Description: `(Required) The name of the kms_library stanza to use from Vault's config to lookup the local library path.`,
+				},
+				resource.Attribute{
+					Name:        "key_label",
+					Description: `(Required) The label of the key to use.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Required) The id of a PKCS#11 key to use.`,
+				},
+				resource.Attribute{
+					Name:        "mechanism",
+					Description: `(Required) The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.`,
+				},
+				resource.Attribute{
+					Name:        "pin",
+					Description: `(Required) The PIN for login.`,
+				},
+				resource.Attribute{
+					Name:        "slot",
+					Description: `(Optional) The slot number to use, specified as a string in a decimal format (e.g. ` + "`" + `2305843009213693953` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "token_label",
+					Description: `(Optional) The slot token label to use.`,
+				},
+				resource.Attribute{
+					Name:        "curve",
+					Description: `(Optional) Supplies the curve value when using the ` + "`" + `CKM_ECDSA` + "`" + ` mechanism. Required if ` + "`" + `allow_generate_key` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "key_bits",
+					Description: `(Optional) Supplies the size in bits of the key when using ` + "`" + `CKM_RSA_PKCS_PSS` + "`" + `, ` + "`" + `CKM_RSA_PKCS_OAEP` + "`" + ` or ` + "`" + `CKM_RSA_PKCS` + "`" + ` as a value for ` + "`" + `mechanism` + "`" + `. Required if ` + "`" + `allow_generate_key` + "`" + ` is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "force_rw_session",
+					Description: `(Optional) Force all operations to open up a read-write session to the HSM. ## Import Mounts can be imported using the ` + "`" + `id` + "`" + ` of ` + "`" + `default` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_managed_keys.keys default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_mfa_duo",
 			Category:         "Resources",
 			ShortDescription: `Managing the MFA Duo method configuration`,
@@ -5189,6 +6087,96 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_mongodbatlas_secret_backend",
+			Category:         "Resources",
+			ShortDescription: `Creates a MongoDB Atlas secret backend for Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"mongodbatlas",
+				"secret",
+				"backend",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where the MongoDB Atlas Secrets Engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) Specifies the Private API Key used to authenticate with the MongoDB Atlas API.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `(Required) Specifies the Public API Key used to authenticate with the MongoDB Atlas API. ## Attributes Reference No additional attributes are exported by this resource. ## Import MongoDB Atlas secret backends can be imported using the ` + "`" + `${mount}/config` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_mongodbatlas_secret_backend.config mongodbatlas/config ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_mongodbatlas_secret_role",
+			Category:         "Resources",
+			ShortDescription: `Creates a role for the MongoDB Atlas Secret Engine in Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"mongodbatlas",
+				"secret",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "mount",
+					Description: `(Required) Path where the MongoDB Atlas Secrets Engine is mounted.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "organization_id",
+					Description: `(Optional) Unique identifier for the organization to which the target API Key belongs. Required if ` + "`" + `project_id` + "`" + ` is not set.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Unique identifier for the project to which the target API Key belongs. Required if ` + "`" + `organization_id is` + "`" + ` not set.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Required) List of roles that the API Key needs to have.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Optional) IP address to be added to the whitelist for the API key.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_blocks",
+					Description: `(Optional) Whitelist entry in CIDR notation to be added for the API key.`,
+				},
+				resource.Attribute{
+					Name:        "project_roles",
+					Description: `(Optional) Roles assigned when an org API key is assigned to a project API key.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) Duration in seconds after which the issued credential should expire.`,
+				},
+				resource.Attribute{
+					Name:        "max_ttl",
+					Description: `(Optional) The maximum allowed lifetime of credentials issued using this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import The MongoDB Atlas secret role can be imported using the full path to the role of the form: ` + "`" + `<mount_path>/roles/<role_name>` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_mongodbatlas_secret_role.example mongodbatlas/roles/example-role ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_mount",
 			Category:         "Resources",
 			ShortDescription: `Managing the mounting of secret backends in Vault`,
@@ -5243,7 +6231,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_entropy_access",
-					Description: `(Optional) Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+					Description: `(Optional) Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source`,
+				},
+				resource.Attribute{
+					Name:        "allowed_managed_keys",
+					Description: `(Optional) Set of managed key registry entry names that the mount in question is allowed to access ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "accessor",
@@ -5313,7 +6305,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Required) Path to mount the Okta auth backend`,
+					Description: `(Optional) Path to mount the Okta auth backend. Default to path ` + "`" + `okta` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -5552,6 +6548,10 @@ var (
 					Name:        "expiration",
 					Description: `The expiration date of the certificate in unix epoch format`,
 				},
+				resource.Attribute{
+					Name:        "renew_pending",
+					Description: `` + "`" + `true` + "`" + ` if the current time (during refresh) is after the start of the early renewal window declared by ` + "`" + `min_seconds_remaining` + "`" + `, and ` + "`" + `false` + "`" + ` otherwise; if ` + "`" + `auto_renew` + "`" + ` is set to ` + "`" + `true` + "`" + ` then the provider will plan to replace the certificate once renewal is pending.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -5581,6 +6581,10 @@ var (
 				resource.Attribute{
 					Name:        "expiration",
 					Description: `The expiration date of the certificate in unix epoch format`,
+				},
+				resource.Attribute{
+					Name:        "renew_pending",
+					Description: `` + "`" + `true` + "`" + ` if the current time (during refresh) is after the start of the early renewal window declared by ` + "`" + `min_seconds_remaining` + "`" + `, and ` + "`" + `false` + "`" + ` otherwise; if ` + "`" + `auto_renew` + "`" + ` is set to ` + "`" + `true` + "`" + ` then the provider will plan to replace the certificate once renewal is pending.`,
 				},
 			},
 		},
@@ -5678,7 +6682,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disable",
-					Description: `(Optional) Disables or enables CRL building. ## Attributes Reference No additional attributes are exported by this resource.`,
+					Description: `(Optional) Disables or enables CRL building.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_disable",
+					Description: `(Optional) Disables the OCSP responder in Vault.`,
+				},
+				resource.Attribute{
+					Name:        "ocsp_expiry",
+					Description: `(Optional) The amount of time an OCSP response can be cached for, useful for OCSP stapling refresh durations.`,
+				},
+				resource.Attribute{
+					Name:        "auto_rebuild",
+					Description: `(Optional) Enables periodic rebuilding of the CRL upon expiry.`,
+				},
+				resource.Attribute{
+					Name:        "auto_rebuild_grace_period",
+					Description: `(Optional) Grace period before CRL expiry to attempt rebuild of CRL.`,
+				},
+				resource.Attribute{
+					Name:        "enable_delta",
+					Description: `(Optional) Enables building of delta CRLs with up-to-date revocation information, augmenting the last complete CRL.`,
+				},
+				resource.Attribute{
+					Name:        "delta_rebuild_interval",
+					Description: `(Optional) Interval to check for new revocations on, to regenerate the delta CRL.`,
+				},
+				resource.Attribute{
+					Name:        "cross_cluster_revocation",
+					Description: `(Optional) Enable cross-cluster revocation request queues.`,
+				},
+				resource.Attribute{
+					Name:        "unified_crl",
+					Description: `(Optional) Enables unified CRL and OCSP building.`,
+				},
+				resource.Attribute{
+					Name:        "unified_crl_on_existing_paths",
+					Description: `(Optional) Enables serving the unified CRL and OCSP on the existing, previously cluster-local paths.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -5708,7 +6748,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Type of intermediate to create. Must be either \"exported\" or \"internal\"`,
+					Description: `(Required) Type of intermediate to create. Must be either \"exported\" or \"internal\" or \"kms\"`,
 				},
 				resource.Attribute{
 					Name:        "common_name",
@@ -5776,7 +6816,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "postal_code",
-					Description: `(Optional) The postal code ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+					Description: `(Optional) The postal code`,
+				},
+				resource.Attribute{
+					Name:        "managed_key_name",
+					Description: `(Optional) The name of the previously configured managed key. This field is required if ` + "`" + `type` + "`" + ` is ` + "`" + `kms` + "`" + ` and it conflicts with ` + "`" + `managed_key_id` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "managed_key_id",
+					Description: `(Optional) The ID of the previously configured managed key. This field is required if ` + "`" + `type` + "`" + ` is ` + "`" + `kms` + "`" + ` and it conflicts with ` + "`" + `managed_key_name` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "add_basic_constraints",
+					Description: `(Optional) Adds a Basic Constraints extension with 'CA: true'. Only needed as a workaround in some compatibility scenarios with Active Directory Certificate Services ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "csr",
@@ -6048,7 +7100,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Type of intermediate to create. Must be either \"exported\" or \"internal\"`,
+					Description: `(Required) Type of intermediate to create. Must be either \"exported\", \"internal\" or \"kms\"`,
 				},
 				resource.Attribute{
 					Name:        "common_name",
@@ -6128,7 +7180,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "postal_code",
-					Description: `(Optional) The postal code ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+					Description: `(Optional) The postal code`,
+				},
+				resource.Attribute{
+					Name:        "managed_key_name",
+					Description: `(Optional) The name of the previously configured managed key. This field is required if ` + "`" + `type` + "`" + ` is ` + "`" + `kms` + "`" + ` and it conflicts with ` + "`" + `managed_key_id` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "managed_key_id",
+					Description: `(Optional) The ID of the previously configured managed key. This field is required if ` + "`" + `type` + "`" + ` is ` + "`" + `kms` + "`" + ` and it conflicts with ` + "`" + `managed_key_name` + "`" + ` ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "certificate",
@@ -6408,7 +7468,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expiration",
-					Description: `The expiration date of the certificate in unix epoch format ## Deprecations`,
+					Description: `The expiration date of the certificate in unix epoch format`,
+				},
+				resource.Attribute{
+					Name:        "renew_pending",
+					Description: `` + "`" + `true` + "`" + ` if the current time (during refresh) is after the start of the early renewal window declared by ` + "`" + `min_seconds_remaining` + "`" + `, and ` + "`" + `false` + "`" + ` otherwise; if ` + "`" + `auto_renew` + "`" + ` is set to ` + "`" + `true` + "`" + ` then the provider will plan to replace the certificate once renewal is pending. ## Deprecations`,
 				},
 				resource.Attribute{
 					Name:        "serial",
@@ -6434,7 +7498,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "expiration",
-					Description: `The expiration date of the certificate in unix epoch format ## Deprecations`,
+					Description: `The expiration date of the certificate in unix epoch format`,
+				},
+				resource.Attribute{
+					Name:        "renew_pending",
+					Description: `` + "`" + `true` + "`" + ` if the current time (during refresh) is after the start of the early renewal window declared by ` + "`" + `min_seconds_remaining` + "`" + `, and ` + "`" + `false` + "`" + ` otherwise; if ` + "`" + `auto_renew` + "`" + ` is set to ` + "`" + `true` + "`" + ` then the provider will plan to replace the certificate once renewal is pending. ## Deprecations`,
 				},
 				resource.Attribute{
 					Name:        "serial",
@@ -6580,6 +7648,10 @@ var (
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `. Defaults to ` + "`" + `rabbitmq` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disable_remount",
+					Description: `(Optional) If set, opts out of mount migration on path updates. See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -6784,6 +7856,10 @@ var (
 					Description: `(Optional) Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.`,
 				},
 				resource.Attribute{
+					Name:        "default_user_template",
+					Description: `(Optional) If set, ` + "`" + `default_users` + "`" + ` can be specified using identity template values. A non-templated user is also permitted.`,
+				},
+				resource.Attribute{
 					Name:        "default_user",
 					Description: `(Optional) Specifies the default username for which a credential will be generated.`,
 				},
@@ -6974,6 +8050,66 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_transform_alphabet",
+			Category:         "Resources",
+			ShortDescription: `"/transform/alphabet/{name}"`,
+			Description:      ``,
+			Keywords: []string{
+				"transform",
+				"alphabet",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path to where the back-end is mounted within Vault.`,
+				},
+				resource.Attribute{
+					Name:        "alphabet",
+					Description: `(Optional) A string of characters that contains the alphabet set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the alphabet.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_transform_role",
+			Category:         "Resources",
+			ShortDescription: `"/transform/role/{name}"`,
+			Description:      ``,
+			Keywords: []string{
+				"transform",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path to where the back-end is mounted within Vault.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the role.`,
+				},
+				resource.Attribute{
+					Name:        "transformations",
+					Description: `(Optional) A comma separated string or slice of transformations to use.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_transform_template",
 			Category:         "Resources",
 			ShortDescription: `"/transform/template/{name}"`,
@@ -7014,6 +8150,60 @@ var (
 				resource.Attribute{
 					Name:        "decode_formats",
 					Description: `(Optional) - Optional mapping of name to regular expression template, used to customize the decoded output. (requires Vault Enterprise 1.9+)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_transform_transformation",
+			Category:         "Resources",
+			ShortDescription: `"/transform/transformation/{name}"`,
+			Description:      ``,
+			Keywords: []string{
+				"transform",
+				"transformation",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) The namespace to provision the resource in. The value should not contain leading or trailing forward slashes. The ` + "`" + `namespace` + "`" + ` is always relative to the provider's configured [namespace](/docs/providers/vault#namespace).`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path to where the back-end is mounted within Vault.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_roles",
+					Description: `(Optional) The set of roles allowed to perform this transformation.`,
+				},
+				resource.Attribute{
+					Name:        "masking_character",
+					Description: `(Optional) The character used to replace data when in masking mode`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the transformation.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) The name of the template to use.`,
+				},
+				resource.Attribute{
+					Name:        "templates",
+					Description: `(Optional) Templates configured for transformation.`,
+				},
+				resource.Attribute{
+					Name:        "tweak_source",
+					Description: `(Optional) The source of where the tweak value comes from. Only valid when in FPE mode.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of transformation to perform.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_allowed",
+					Description: `(Optional) If true, this transform can be deleted. Otherwise, deletion is blocked while this value remains false. Default: ` + "`" + `false` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -7183,99 +8373,114 @@ var (
 		"vault_approle_auth_backend_role":                    5,
 		"vault_approle_auth_backend_role_secret_id":          6,
 		"vault_audit":                                        7,
-		"vault_auth_backend":                                 8,
-		"vault_aws_auth_backend_cert":                        9,
-		"vault_aws_auth_backend_client":                      10,
-		"vault_aws_auth_backend_identity_whitelist":          11,
-		"vault_aws_auth_backend_login":                       12,
-		"vault_aws_auth_backend_role":                        13,
-		"vault_aws_auth_backend_role_tag":                    14,
-		"vault_aws_auth_backend_roletag_blacklist":           15,
-		"vault_aws_auth_backend_sts_role":                    16,
-		"vault_aws_secret_backend":                           17,
-		"vault_aws_secret_backend_role":                      18,
-		"vault_azure_auth_backend_config":                    19,
-		"vault_azure_auth_backend_role":                      20,
-		"vault_azure_secret_backend":                         21,
-		"vault_azure_secret_backend_role":                    22,
-		"vault_cert_auth_backend_role":                       23,
-		"vault_consul_secret_backend":                        24,
-		"vault_consul_secret_backend_role":                   25,
-		"vault_database_secret_backend_connection":           26,
-		"vault_database_secret_backend_role":                 27,
-		"vault_database_secret_backend_static_role":          28,
-		"vault_database_secrets_mount":                       29,
-		"vault_egp_policy":                                   30,
-		"vault_gcp_auth_backend":                             31,
-		"vault_gcp_auth_backend_role":                        32,
-		"vault_gcp_secret_backend":                           33,
-		"vault_gcp_secret_roleset":                           34,
-		"vault_gcp_secret_static_account":                    35,
-		"vault_generic_endpoint":                             36,
-		"vault_generic_secret":                               37,
-		"vault_github_auth_backend":                          38,
-		"vault_github_team":                                  39,
-		"vault_github_user":                                  40,
-		"vault_identity_entity":                              41,
-		"vault_identity_entity_alias":                        42,
-		"vault_identity_entity_policies":                     43,
-		"vault_identity_group":                               44,
-		"vault_identity_group_alias":                         45,
-		"vault_identity_group_member_entity_ids":             46,
-		"vault_identity_group_policies":                      47,
-		"vault_identity_oidc":                                48,
-		"vault_identity_oidc_assignment":                     49,
-		"vault_identity_oidc_client":                         50,
-		"vault_identity_oidc_key":                            51,
-		"vault_identity_oidc_key_allowed_client_id":          52,
-		"vault_identity_oidc_provider":                       53,
-		"vault_identity_oidc_role":                           54,
-		"vault_identity_oidc_scope":                          55,
-		"vault_jwt_auth_backend":                             56,
-		"vault_jwt_auth_backend_role":                        57,
-		"vault_kmip_secret_backend":                          58,
-		"vault_kmip_secret_role":                             59,
-		"vault_kmip_secret_scope":                            60,
-		"vault_kubernetes_auth_backend_config":               61,
-		"vault_kubernetes_auth_backend_role":                 62,
-		"vault_kubernetes_secret_backend":                    63,
-		"vault_kubernetes_secret_backend_role":               64,
-		"vault_kv_secret":                                    65,
-		"vault_kv_secret_backend_v2":                         66,
-		"vault_ldap_auth_backend":                            67,
-		"vault_ldap_auth_backend_group":                      68,
-		"vault_ldap_auth_backend_user":                       69,
-		"vault_mfa_duo":                                      70,
-		"vault_mfa_okta":                                     71,
-		"vault_mfa_pingid":                                   72,
-		"vault_mfa_totp":                                     73,
-		"vault_mount":                                        74,
-		"vault_namespace":                                    75,
-		"vault_okta_auth_backend":                            76,
-		"vault_okta_auth_backend_group":                      77,
-		"vault_okta_auth_backend_user":                       78,
-		"vault_pki_secret_backend_cert":                      79,
-		"vault_pki_secret_backend_config_ca":                 80,
-		"vault_pki_secret_backend_config_urls":               81,
-		"vault_pki_secret_backend_crl_config":                82,
-		"vault_pki_secret_backend_intermediate_cert_request": 83,
-		"vault_pki_secret_backend_intermediate_set_signed":   84,
-		"vault_pki_secret_backend_role":                      85,
-		"vault_pki_secret_backend_root_cert":                 86,
-		"vault_pki_secret_backend_root_sign_intermediate":    87,
-		"vault_pki_secret_backend_sign":                      88,
-		"vault_policy":                                       89,
-		"vault_quota_lease_count":                            90,
-		"vault_quota_rate_limit":                             91,
-		"vault_rabbitmq_secret_backend":                      92,
-		"vault_rabbitmq_secret_backend_role":                 93,
-		"vault_rgp_policy":                                   94,
-		"vault_ssh_secret_backend_ca":                        95,
-		"vault_ssh_secret_backend_role":                      96,
-		"vault_token":                                        97,
-		"vault_token_auth_backend_role":                      98,
-		"vault_transform_template":                           99,
-		"vault_transit_secret_backend_key":                   100,
+		"vault_audit_request_header":                         8,
+		"vault_auth_backend":                                 9,
+		"vault_aws_auth_backend_cert":                        10,
+		"vault_aws_auth_backend_client":                      11,
+		"vault_aws_auth_backend_config_identity":             12,
+		"vault_aws_auth_backend_identity_whitelist":          13,
+		"vault_aws_auth_backend_login":                       14,
+		"vault_aws_auth_backend_role":                        15,
+		"vault_aws_auth_backend_role_tag":                    16,
+		"vault_aws_auth_backend_roletag_blacklist":           17,
+		"vault_aws_auth_backend_sts_role":                    18,
+		"vault_aws_secret_backend":                           19,
+		"vault_aws_secret_backend_role":                      20,
+		"vault_azure_auth_backend_config":                    21,
+		"vault_azure_auth_backend_role":                      22,
+		"vault_azure_secret_backend":                         23,
+		"vault_azure_secret_backend_role":                    24,
+		"vault_cert_auth_backend_role":                       25,
+		"vault_consul_secret_backend":                        26,
+		"vault_consul_secret_backend_role":                   27,
+		"vault_database_secret_backend_connection":           28,
+		"vault_database_secret_backend_role":                 29,
+		"vault_database_secret_backend_static_role":          30,
+		"vault_database_secrets_mount":                       31,
+		"vault_egp_policy":                                   32,
+		"vault_gcp_auth_backend":                             33,
+		"vault_gcp_auth_backend_role":                        34,
+		"vault_gcp_secret_backend":                           35,
+		"vault_gcp_secret_roleset":                           36,
+		"vault_gcp_secret_static_account":                    37,
+		"vault_generic_endpoint":                             38,
+		"vault_generic_secret":                               39,
+		"vault_github_auth_backend":                          40,
+		"vault_github_team":                                  41,
+		"vault_github_user":                                  42,
+		"vault_identity_entity":                              43,
+		"vault_identity_entity_alias":                        44,
+		"vault_identity_entity_policies":                     45,
+		"vault_identity_group":                               46,
+		"vault_identity_group_alias":                         47,
+		"vault_identity_group_member_entity_ids":             48,
+		"vault_identity_group_member_group_ids":              49,
+		"vault_identity_group_policies":                      50,
+		"vault_identity_mfa_duo":                             51,
+		"vault_identity_mfa_login_enforcement":               52,
+		"vault_identity_mfa_okta":                            53,
+		"vault_identity_mfa_pingid":                          54,
+		"vault_identity_mfa_totp":                            55,
+		"vault_identity_oidc":                                56,
+		"vault_identity_oidc_assignment":                     57,
+		"vault_identity_oidc_client":                         58,
+		"vault_identity_oidc_key":                            59,
+		"vault_identity_oidc_key_allowed_client_id":          60,
+		"vault_identity_oidc_provider":                       61,
+		"vault_identity_oidc_role":                           62,
+		"vault_identity_oidc_scope":                          63,
+		"vault_jwt_auth_backend":                             64,
+		"vault_jwt_auth_backend_role":                        65,
+		"vault_kmip_secret_backend":                          66,
+		"vault_kmip_secret_role":                             67,
+		"vault_kmip_secret_scope":                            68,
+		"vault_kubernetes_auth_backend_config":               69,
+		"vault_kubernetes_auth_backend_role":                 70,
+		"vault_kubernetes_secret_backend":                    71,
+		"vault_kubernetes_secret_backend_role":               72,
+		"vault_kv_secret":                                    73,
+		"vault_kv_secret_backend_v2":                         74,
+		"vault_kv_secret_v2":                                 75,
+		"vault_ldap_auth_backend":                            76,
+		"vault_ldap_auth_backend_group":                      77,
+		"vault_ldap_auth_backend_user":                       78,
+		"vault_managed_keys":                                 79,
+		"vault_mfa_duo":                                      80,
+		"vault_mfa_okta":                                     81,
+		"vault_mfa_pingid":                                   82,
+		"vault_mfa_totp":                                     83,
+		"vault_mongodbatlas_secret_backend":                  84,
+		"vault_mongodbatlas_secret_role":                     85,
+		"vault_mount":                                        86,
+		"vault_namespace":                                    87,
+		"vault_okta_auth_backend":                            88,
+		"vault_okta_auth_backend_group":                      89,
+		"vault_okta_auth_backend_user":                       90,
+		"vault_pki_secret_backend_cert":                      91,
+		"vault_pki_secret_backend_config_ca":                 92,
+		"vault_pki_secret_backend_config_urls":               93,
+		"vault_pki_secret_backend_crl_config":                94,
+		"vault_pki_secret_backend_intermediate_cert_request": 95,
+		"vault_pki_secret_backend_intermediate_set_signed":   96,
+		"vault_pki_secret_backend_role":                      97,
+		"vault_pki_secret_backend_root_cert":                 98,
+		"vault_pki_secret_backend_root_sign_intermediate":    99,
+		"vault_pki_secret_backend_sign":                      100,
+		"vault_policy":                                       101,
+		"vault_quota_lease_count":                            102,
+		"vault_quota_rate_limit":                             103,
+		"vault_rabbitmq_secret_backend":                      104,
+		"vault_rabbitmq_secret_backend_role":                 105,
+		"vault_rgp_policy":                                   106,
+		"vault_ssh_secret_backend_ca":                        107,
+		"vault_ssh_secret_backend_role":                      108,
+		"vault_token":                                        109,
+		"vault_token_auth_backend_role":                      110,
+		"vault_transform_alphabet":                           111,
+		"vault_transform_role":                               112,
+		"vault_transform_template":                           113,
+		"vault_transform_transformation":                     114,
+		"vault_transit_secret_backend_key":                   115,
 	}
 )
 

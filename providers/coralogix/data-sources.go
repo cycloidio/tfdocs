@@ -11,296 +11,129 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "coralogix_alert",
-			Category:         "Alerts",
-			ShortDescription: ``,
+			Type:             "coralogix_action",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix action. For more info please review - https://coralogix.com/docs/coralogix-action-extension/."`,
 			Description:      ``,
-			Keywords: []string{
-				"alerts",
-				"alert",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "alert_id",
-					Description: `(Required) Alert ID. ## Attribute Reference The result is an object containing the following attributes.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Alert name.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Alert description.`,
-				},
-				resource.Attribute{
-					Name:        "severity",
-					Description: `Alert severity.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Alert state.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Alert type.`,
-				},
-				resource.Attribute{
-					Name:        "filter",
-					Description: `Alert filter.`,
-				},
-				resource.Attribute{
-					Name:        "condition",
-					Description: `Alert condition.`,
-				},
-				resource.Attribute{
-					Name:        "content",
-					Description: `List of fields attached to alert notification.`,
-				},
-				resource.Attribute{
-					Name:        "schedule",
-					Description: `Configuration of period when alert triggering will be allowed.`,
-				},
-				resource.Attribute{
-					Name:        "notifications",
-					Description: `Alert notifications.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Alert name.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Alert description.`,
-				},
-				resource.Attribute{
-					Name:        "severity",
-					Description: `Alert severity.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Alert state.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Alert type.`,
-				},
-				resource.Attribute{
-					Name:        "filter",
-					Description: `Alert filter.`,
-				},
-				resource.Attribute{
-					Name:        "condition",
-					Description: `Alert condition.`,
-				},
-				resource.Attribute{
-					Name:        "content",
-					Description: `List of fields attached to alert notification.`,
-				},
-				resource.Attribute{
-					Name:        "schedule",
-					Description: `Configuration of period when alert triggering will be allowed.`,
-				},
-				resource.Attribute{
-					Name:        "notifications",
-					Description: `Alert notifications.`,
-				},
-			},
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "coralogix_rule",
-			Category:         "Rules",
+			Type:             "coralogix_alert",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix Alert"`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_dashboard",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix Dashboard."`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_data_set",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix data-set. More info: https://coralogix.com/blog/elevate-your-event-data-with-custom-data-enrichment-in-coralogix/."`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_enrichment",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix enrichment. More info: https://coralogix.com/docs/threat-discovery/."`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_events2metric",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix events2metric. More info:-https://coralogix.com/docs/event2metrics/"`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_hosted_dashboard",
+			Category:         "Data Sources",
+			ShortDescription: `"Hosted dashboard. Can be one of - ["grafana"]."`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_recording_rules_group",
+			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description:      ``,
-			Keywords: []string{
-				"rules",
-				"rule",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "rule_id",
-					Description: `(Required) Rule ID.`,
-				},
-				resource.Attribute{
-					Name:        "rules_group_id",
-					Description: `(Required) Rules Group ID. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Rule name.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Rule type.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Rule description.`,
-				},
-				resource.Attribute{
-					Name:        "order",
-					Description: `Rule order number.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Rule state.`,
-				},
-				resource.Attribute{
-					Name:        "rule_matcher",
-					Description: `A ` + "`" + `rule_matcher` + "`" + ` block as documented below.`,
-				},
-				resource.Attribute{
-					Name:        "expression",
-					Description: `Rule expression.`,
-				},
-				resource.Attribute{
-					Name:        "source_field",
-					Description: `Rule source field.`,
-				},
-				resource.Attribute{
-					Name:        "destination_field",
-					Description: `Rule destination field.`,
-				},
-				resource.Attribute{
-					Name:        "replace_value",
-					Description: `Rule replace value. --- Each ` + "`" + `rule_matcher` + "`" + ` block exports the following:`,
-				},
-				resource.Attribute{
-					Name:        "field",
-					Description: `Rule Matcher field.`,
-				},
-				resource.Attribute{
-					Name:        "constraint",
-					Description: `Rule Matcher constraint.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Rule name.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Rule type.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Rule description.`,
-				},
-				resource.Attribute{
-					Name:        "order",
-					Description: `Rule order number.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Rule state.`,
-				},
-				resource.Attribute{
-					Name:        "rule_matcher",
-					Description: `A ` + "`" + `rule_matcher` + "`" + ` block as documented below.`,
-				},
-				resource.Attribute{
-					Name:        "expression",
-					Description: `Rule expression.`,
-				},
-				resource.Attribute{
-					Name:        "source_field",
-					Description: `Rule source field.`,
-				},
-				resource.Attribute{
-					Name:        "destination_field",
-					Description: `Rule destination field.`,
-				},
-				resource.Attribute{
-					Name:        "replace_value",
-					Description: `Rule replace value. --- Each ` + "`" + `rule_matcher` + "`" + ` block exports the following:`,
-				},
-				resource.Attribute{
-					Name:        "field",
-					Description: `Rule Matcher field.`,
-				},
-				resource.Attribute{
-					Name:        "constraint",
-					Description: `Rule Matcher constraint.`,
-				},
-			},
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "coralogix_rules_group",
-			Category:         "Rules",
+			Category:         "Data Sources",
 			ShortDescription: ``,
 			Description:      ``,
-			Keywords: []string{
-				"rules",
-				"group",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "rules_group_id",
-					Description: `(Required) Rules Group ID. ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Rules Group name.`,
-				},
-				resource.Attribute{
-					Name:        "order",
-					Description: `Rules Group order number.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Rules Group state.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Rules Group description.`,
-				},
-				resource.Attribute{
-					Name:        "creator",
-					Description: `Rules Group creator.`,
-				},
-				resource.Attribute{
-					Name:        "rules",
-					Description: `Rules Group rules list.`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `Rules Group name.`,
-				},
-				resource.Attribute{
-					Name:        "order",
-					Description: `Rules Group order number.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Rules Group state.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `Rules Group description.`,
-				},
-				resource.Attribute{
-					Name:        "creator",
-					Description: `Rules Group creator.`,
-				},
-				resource.Attribute{
-					Name:        "rules",
-					Description: `Rules Group rules list.`,
-				},
-			},
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_tco_policy",
+			Category:         "Data Sources",
+			ShortDescription: `"Coralogix TCO-Policy. For more information - https://coralogix.com/docs/tco-optimizer-api ."`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "coralogix_webhook",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"coralogix_alert":       0,
-		"coralogix_rule":        1,
-		"coralogix_rules_group": 2,
+		"coralogix_action":                0,
+		"coralogix_alert":                 1,
+		"coralogix_dashboard":             2,
+		"coralogix_data_set":              3,
+		"coralogix_enrichment":            4,
+		"coralogix_events2metric":         5,
+		"coralogix_hosted_dashboard":      6,
+		"coralogix_recording_rules_group": 7,
+		"coralogix_rules_group":           8,
+		"coralogix_tco_policy":            9,
+		"coralogix_webhook":               10,
 	}
 )
 
